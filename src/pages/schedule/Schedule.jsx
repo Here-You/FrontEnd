@@ -31,6 +31,7 @@ const SchedulePage = () => {
       ) : (
         <S.MapWrapper>Map</S.MapWrapper>
       )}
+      <S.AddButton>+</S.AddButton>
     </S.Container>
   );
 };
