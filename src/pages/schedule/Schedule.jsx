@@ -27,11 +27,11 @@ const SchedulePage = () => {
               <Journey key={item.id} data={item} dataLength={testData.length} />
             ))}
           </S.JourneyWrapper>
+          <S.AddButton>+</S.AddButton>
         </S.CalendarWrapper>
       ) : (
         <S.MapWrapper>Map</S.MapWrapper>
       )}
-      <S.AddButton>+</S.AddButton>
     </S.Container>
   );
 };

@@ -23,7 +23,7 @@ const AddButton = styled.button`
   font-size: ${FONT_SIZE.FIVE_XL};
   position: sticky;
   bottom: 20px;
-  margin-right: 50px;
+  margin-right: -80px;
 
   cursor: pointer;
   z-index: 1;
