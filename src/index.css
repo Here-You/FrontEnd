@@ -94,3 +94,160 @@
     format('woff');
   font-display: swap;
 }
+
+/* REACT_CALENDAR */
+
+.react-calendar {
+  width: 500px;
+  max-width: 100%;
+  border: none;
+  line-height: 1.125em;
+}
+
+.react-calendar__month-view__weekdays {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-calendar__navigation__label > span {
+  color: #3a3a3a;
+  display: none;
+}
+
+.react-calendar__month-view__weekdays__weekday > abbr {
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* 현재 날짜 */
+
+.react-calendar__tile--now {
+  position: relative;
+  background-color: white;
+
+  abbr {
+    background-color: #1b9c85;
+    color: white;
+    font-size: 22px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+}
+
+.react-calendar__tile--now::after {
+  position: absolute;
+  bottom: 0px;
+  content: 'TODAY';
+  font-family: 900;
+  background-color: gold;
+  border-radius: 10px;
+  padding: 2px 8px;
+}
+
+/* 일자 */
+.react-calendar__tile {
+  text-align: center;
+  position: relative;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus,
+.react-calendar__tile--active {
+  color: black;
+  background-color: white;
+
+  abbr {
+    text-decoration: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid black !important;
+  }
+}
+
+.react-calendar__tile--range::after {
+  content: '';
+  border: 1px solid black;
+  position: absolute;
+  right: 0;
+  width: 10%;
+}
+
+.react-calendar__tile--range::before {
+  content: '';
+  border: 1px solid black;
+  position: absolute;
+  left: 0;
+  width: 10%;
+}
+
+.react-calendar__tile--rangeStart::before {
+  content: '';
+  border: none;
+  position: absolute;
+  right: 0;
+  width: 10%;
+}
+
+.react-calendar__tile--rangeEnd::after {
+  content: '';
+  border: 1px solid black;
+  position: absolute;
+  left: 0;
+  width: 10%;
+}
+
+/* ARROW */
+.react-calendar {
+  position: relative;
+}
+
+.react-calendar__navigation__prev-button {
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  font-size: 40px;
+  color: #aaaaaa;
+  background-color: transparent;
+  border: none;
+}
+
+.react-calendar__navigation__next-button {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  font-size: 40px;
+  color: #aaaaaa;
+  background-color: transparent;
+  border: none;
+}
+
+.react-calendar__navigation__next2-button {
+  display: none;
+}
+
+.react-calendar__navigation__prev2-button {
+  display: none;
+}
+
+.react-calendar__navigation__label {
+  display: none;
+}

@@ -1,5 +1,11 @@
+import { TravelCalendar } from '@/components';
+
 const SchedulePage = () => {
-  return <div>SchedulePage</div>;
+  return (
+    <>
+      <TravelCalendar />
+    </>
+  );
 };
 
 export default SchedulePage;
