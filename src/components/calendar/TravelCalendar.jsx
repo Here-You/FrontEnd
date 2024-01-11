@@ -36,8 +36,8 @@ const TravelCalendar = () => {
         formatDay={(locale, date) => moment(date).format('D')}
         selectRange={true}
       />
-      <div>출발일: {startDate}</div>
-      <div>종료일: {endDate}</div>
+      {/* <div>출발일: {startDate}</div>
+      <div>종료일: {endDate}</div> */}
     </S.Wrapper>
   );
 };
