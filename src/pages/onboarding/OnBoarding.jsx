@@ -25,40 +25,42 @@ const OnBoardingPage = () => {
       id: 1,
       img: onboardingImg2,
       title: '기록하세요',
-      content: '',
+      content:
+        'Notely is the world’s safest, largest and intelligent digital notebook. Join over 10M+ users already using Notely.',
       buttonText: 'NEXT',
     },
     {
       id: 2,
       img: onboardingImg3,
-      title: '우리가 여행을 즐기는 방법',
+      title: '성장하세요',
       content:
         'Notely is the world’s safest, largest and intelligent digital notebook. Join over 10M+ users already using Notely.',
       buttonText: 'NEXT',
     },
-    {
-      id: 3,
-      img: onboardingImg4,
-      title: '우리가 여행을 즐기는 방법',
-      content:
-        'Notely is the world’s safest, largest and intelligent digital notebook. Join over 10M+ users already using Notely.',
-      buttonText: '시작하기',
-    },
+    // {
+    //   id: 3,
+    //   img: onboardingImg4,
+    //   title: '우리가 여행을 즐기는 방법',
+    //   content:
+    //     'Notely is the world’s safest, largest and intelligent digital notebook. Join over 10M+ users already using Notely.',
+    //   buttonText: '시작하기',
+    // }, 여기는 포함되는건지 아직 모름
   ];
 
   const settings = {
     dots: true,
-    speed: 500,
+    speed: 1,
     slidesToShow: 1,
+    
     draggable: false,
     customPaging: i => <S.CustomDot active={i === currentdot} />,
   };
 
   const nextHandler = id => {
-    if (id !== 3) {
+    if (id !== 2) { 
       setCurrentDot(id + 1);
       slideRef.slickNext();
-      if (id === 2) {
+      if (id === 1) {
         setDot(false);
       }
     }
@@ -71,7 +73,7 @@ const OnBoardingPage = () => {
       <S.StyledSlider ref={slider => (slideRef = slider)} {...settings}>
         {slideImages.map(slide => (
           <div key={slide.id}>
-            <S.FirstOnBoardingImg
+            <S.OnBoardingImg
               src={slide.img}
               alt={slide.text}
               id={`image-${slide.id}`}
