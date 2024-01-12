@@ -1,7 +1,9 @@
 import React from 'react';
 
+import MateHomePage from '@/pages/mate/home/MateHome';
+
 const MatePage = () => {
-  return <div>MatePage</div>;
+  return <MateHomePage />;
 };
 
 export default MatePage;
