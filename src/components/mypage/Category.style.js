@@ -10,7 +10,6 @@ const CategoryBox = styled.div`
 const MyPageCategory = styled.div`
   color: ${theme.COLOR.MAIN.GRAY};
   font-size: ${FONT_SIZE.XL};
-  font-family: 'Pretendard';
   font-weight: bold;
   margin-bottom: 15px;
   @media ${theme.WINDOW_SIZE.MOBILE} {
@@ -23,7 +22,6 @@ const Subcategory = styled.div`
 const SubcategoryContent = styled.div`
   color: ${theme.COLOR.MAIN.GRAY};
   font-size: ${FONT_SIZE.XL};
-  font-family: 'Pretendard';
   font-weight: 300;
 
   margin: 13px 0px;

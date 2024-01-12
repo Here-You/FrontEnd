@@ -29,7 +29,6 @@ const ProfilePicture = styled.img`
 const NickName = styled.div`
   font-size: ${FONT_SIZE.TWO_XL};
   font-weight: 700;
-  font-family: 'Pretendard';
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.XL};
   }
@@ -38,13 +37,11 @@ const Email = styled.div`
   color: ${theme.COLOR.MAIN.GRAY};
   font-size: ${FONT_SIZE.LG};
   font-weight: 350;
-  font-family: 'Pretendard';
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.BASE};
   }
 `;
 const Introduction = styled.div`
-  font-family: 'Pretendard';
   font-size: ${FONT_SIZE.LG};
   font-weight: 350;
   @media ${theme.WINDOW_SIZE.MOBILE} {
@@ -55,7 +52,6 @@ const Mate = styled.div`
   color: ${theme.COLOR.MAIN.GRAY};
   font-weight: 350;
   font-size: ${FONT_SIZE.LG};
-  font-family: 'Pretendard';
   margin-top: 20px;
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.BASE};

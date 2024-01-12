@@ -1,13 +1,13 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  font-family: 'NPSfont_regular', sans-serif;
+  font-family: 'Pretendard', sans-serif;
 }
 
 /* Here you font: 국민연금체 */
 @font-face {
   font-family: 'NPSfont_regular';
-  src: url(./assets/fonts/NPSfoxnt_regular.ttf);
+  src: url(./assets/fonts/NPSfont_regular.ttf);
 }
 
 @font-face {
@@ -18,4 +18,79 @@
 @font-face {
   font-family: 'NPSfont_extrabold';
   src: url(./assets/fonts/NPSfont_extrabold.ttf);
+}
+
+/* Pretendard font */
+@font-face {
+  font-family: 'Pretendard-thin';
+  font-weight: 100;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Thin.woff')
+    format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard-Extralight';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraLight.woff')
+    format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard-light';
+  font-weight: 300;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Light.woff')
+    format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard-regular';
+  font-weight: 400;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.woff')
+    format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.woff')
+    format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard-semibold';
+  font-weight: 600;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.woff')
+    format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard-bold';
+  font-weight: 700;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff')
+    format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard-Extrabold';
+  font-weight: 800;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-ExtraBold.woff')
+    format('woff');
+
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pretendard-Black';
+  font-weight: 900;
+  font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Black.woff')
+    format('woff');
+  font-display: swap;
 }

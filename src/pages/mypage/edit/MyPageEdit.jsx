@@ -7,6 +7,7 @@ import MyProfileEdit from '@/components/mypage/edit/MyProfileEdit';
 const MyPageEditPage = () => {
   return (
     <S.EditPageWrap>
+      <S.UserInfo>유저 정보</S.UserInfo>
       <MyProfileEdit />
     </S.EditPageWrap>
   );
