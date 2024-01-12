@@ -7,6 +7,7 @@ const Category = () => {
       id: 0,
       img: myPageImg.User,
       title: '프로필 변경',
+      link: '/mypage/edit',
     },
     {
       id: 1,
@@ -63,8 +64,10 @@ const Category = () => {
           c =>
             c.id < 5 && (
               <S.Subcategory key={c.id}>
-                <S.CategoryImg src={c.img} alt={c.title} />
-                <S.SubcategoryContent>{c.title}</S.SubcategoryContent>
+                <S.LinkTo to={c.link}>
+                  <S.CategoryImg src={c.img} alt={c.title} />
+                  <S.SubcategoryContent>{c.title}</S.SubcategoryContent>
+                </S.LinkTo>
               </S.Subcategory>
             ),
         )}
@@ -77,8 +80,10 @@ const Category = () => {
             c.id > 4 &&
             c.id < 8 && (
               <S.Subcategory key={c.id}>
-                <S.CategoryImg src={c.img} alt={c.title} />
-                <S.SubcategoryContent>{c.title}</S.SubcategoryContent>
+                   <S.LinkTo to={c.link}>
+                  <S.CategoryImg src={c.img} alt={c.title} />
+                  <S.SubcategoryContent>{c.title}</S.SubcategoryContent>
+                </S.LinkTo>
               </S.Subcategory>
             ),
         )}
@@ -90,8 +95,10 @@ const Category = () => {
           c =>
             c.id > 7 && (
               <S.Subcategory key={c.id}>
-                <S.CategoryImg src={c.img} alt={c.title} />
-                <S.SubcategoryContent>{c.title}</S.SubcategoryContent>
+                   <S.LinkTo to={c.link}>
+                  <S.CategoryImg src={c.img} alt={c.title} />
+                  <S.SubcategoryContent>{c.title}</S.SubcategoryContent>
+                </S.LinkTo>
               </S.Subcategory>
             ),
         )}

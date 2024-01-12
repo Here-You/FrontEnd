@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
@@ -24,6 +25,7 @@ const SubcategoryContent = styled.div`
   font-size: ${FONT_SIZE.XL};
   font-family: 'Pretendard';
   font-weight: 300;
+
   margin: 13px 0px;
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.BASE};
@@ -34,10 +36,16 @@ const CategoryImg = styled.img`
   margin-right: 20px;
 `;
 
+const LinkTo = styled(Link)`
+  text-decoration-line: none;
+  display: flex;
+ 
+`;
 export {
   MyPageCategory,
   Subcategory,
   CategoryBox,
   CategoryImg,
   SubcategoryContent,
+  LinkTo,
 };
