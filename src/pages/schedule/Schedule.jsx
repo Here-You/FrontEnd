@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
 import * as S from './Schedule.style';
-import { Journey, TravelCalendar } from '@/components';
+import { Journey, TravelCalendar, TravelMap } from '@/components';
+import BottomSheet from '@/components/bottomSheet/BottomScrollPage';
+import BottomScrollPage from '@/components/bottomSheet/BottomScrollPage';
 import testData from '@/constants/journey';
 
 const SchedulePage = () => {
@@ -30,7 +32,10 @@ const SchedulePage = () => {
           <S.AddButton>+</S.AddButton>
         </S.CalendarWrapper>
       ) : (
-        <S.MapWrapper>Map</S.MapWrapper>
+        <S.MapWrapper>
+          <TravelMap />
+          <BottomScrollPage />
+        </S.MapWrapper>
       )}
     </S.Container>
   );
