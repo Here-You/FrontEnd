@@ -6,11 +6,13 @@ import theme from '@/theme';
 
 const CategoryBox = styled.div`
   margin: 40px 10px;
+  
 `;
 const MyPageCategory = styled.div`
   color: ${theme.COLOR.MAIN.GRAY};
   font-size: ${FONT_SIZE.XL};
   font-weight: bold;
+  
   margin-bottom: 15px;
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.BASE};
@@ -22,8 +24,7 @@ const Subcategory = styled.div`
 const SubcategoryContent = styled.div`
   color: ${theme.COLOR.MAIN.GRAY};
   font-size: ${FONT_SIZE.XL};
-  font-weight: 300;
-
+  font-family: 'Pretendard-light';
   margin: 13px 0px;
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.BASE};

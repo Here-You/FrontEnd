@@ -10,6 +10,8 @@ import Sign_out_squre from '../mypage/Sign_out_squre.svg';
 import User from '../mypage/User_cicrle_light.svg';
 import File from '../mypage/File_dock_light.svg'
 import RigthArrow from '../mypage/Expand_right_light.svg'
+import Close from '../mypage/Close_round_light.svg'
+
 
 export const myPageImg ={
     ProfilePicture,
@@ -27,4 +29,6 @@ export const myPageImg ={
 
 export const myPageEditImg ={
     RigthArrow,
+    Close,
+    
 }

@@ -1,9 +1,9 @@
 import { HttpResponse, http } from 'msw';
-
 import { baseURL } from '@/apis/api';
 import { API_PATH } from '@/constants/path';
 
 export const profileInfoHandlers = [
+  
   http.get(`${baseURL}${API_PATH.MY_PAGE_INFO}`, (req, res, ctx) => {
     const profile = 
       {
