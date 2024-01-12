@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const MainContainer = styled.div`
@@ -22,4 +23,9 @@ const RuleCardContainer = styled.div`
   gap: 15px;
 `;
 
-export { MainContainer, CardContainer, RuleCardContainer };
+const LinkTo = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
+export { MainContainer, CardContainer, RuleCardContainer, LinkTo };

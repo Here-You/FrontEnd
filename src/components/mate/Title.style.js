@@ -3,11 +3,9 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const StyledSpan = styled.span`
-  display: flex;
+  ${theme.ALIGN.COLUMN_CENTER}
   width: auto;
   height: 23px;
-  flex-direction: column;
-  justify-content: center;
 
   color: ${theme.COLOR.MAIN.GREEN};
   font-family: Pretendard;

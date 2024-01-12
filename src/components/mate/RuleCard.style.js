@@ -31,6 +31,7 @@ const StyledTitle = styled.span`
   left: 14.65px;
   width: 102.558px;
   height: 56px;
+  ${theme.ALIGN.COLUMN_CENTER}
 
   color: ${theme.COLOR.MAIN.BLACK};
   font-family: 'Pretandard';
