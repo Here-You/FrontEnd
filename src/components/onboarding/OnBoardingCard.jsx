@@ -5,11 +5,11 @@ import onboardingImg1 from '../../../public/images/onboarding1.svg';
 import onboardingImg2 from '../../../public/images/onboarding2.svg';
 import onboardingImg3 from '../../../public/images/onboarding3.svg';
 import onboardingImg4 from '../../../public/images/onboarding4.svg';
-import * as S from './OnBoarding.style';
+import * as S from './OnBoardingCard.style';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
-const OnBoardingPage = () => {
+const OnBoardingCardPage = () => {
   const [dot, setDot] = useState(true);
   const [currentdot, setCurrentDot] = useState(0);
   const slideImages = [
@@ -69,8 +69,7 @@ const OnBoardingPage = () => {
   let slideRef;
 
   return (
-    <S.SlickWrapper>
-      <S.StyledSlider ref={slider => (slideRef = slider)} {...settings}>
+    <>      <S.StyledSlider ref={slider => (slideRef = slider)} {...settings}>
         {slideImages.map(slide => (
           <div key={slide.id}>
             <S.OnBoardingImg
@@ -93,8 +92,9 @@ const OnBoardingPage = () => {
         {slideImages[currentdot].buttonText}
       </S.NextButton>
       <S.AccountAvailability>Alredy have an account?</S.AccountAvailability>
-    </S.SlickWrapper>
+      </>
+
   );
 };
 
-export default OnBoardingPage;
+export default OnBoardingCardPage;

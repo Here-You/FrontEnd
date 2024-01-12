@@ -7,14 +7,14 @@ import theme from '../../theme';
 const StyledSlider = styled(Slider)`
   height: 100%;
   width: 100%;
-  
+
   display: flex;
   cursor: default;
   .slick-list {
     height: 100%;
     object-fit: cover;
     display: flex;
-    align-items: center; 
+    align-items: center;
   }
   .slick-track {
     display: flex;
@@ -28,7 +28,7 @@ const StyledSlider = styled(Slider)`
     right: 6px;
     z-index: 999;
   }
-  .slick-dots li{
+  .slick-dots li {
     cursor: default;
     margin: 0;
   }
@@ -66,31 +66,31 @@ const OnBoardingImg = styled.img`
  
    @media ${theme.WINDOW_SIZE.MOBILE} {
     ${props =>
-    props.id === 'image-0' &&
-    css`
-      height: 200px;
-      margin-bottom: 3.3px;
-    `}
-  ${props =>
-    props.id === 'image-1' &&
-    css`
-      height: 203.3px;
-    `}
+      props.id === 'image-0' &&
+      css`
+        height: 200px;
+        margin-bottom: 3.3px;
+      `}
     ${props =>
-    props.id === 'image-2' &&
-    css`
-      height: 127px;
-      bottom: 0px;
-      margin-bottom: 76.8px;
-    `}
+      props.id === 'image-1' &&
+      css`
+        height: 203.3px;
+      `}
+    ${props =>
+      props.id === 'image-2' &&
+      css`
+        height: 127px;
+        bottom: 0px;
+        margin-bottom: 76.8px;
+      `}
     /* ${props =>
-    props.id === 'image-3' &&
-    css`
-      width: 203px;
-      height: 1px;
-      margin-bottom: 47.8px;
-    `} */
-  } 
+      props.id === 'image-3' &&
+      css`
+        width: 203px;
+        height: 1px;
+        margin-bottom: 47.8px;
+      `} */
+  }
 `;
 
 const NextButton = styled.button`
@@ -98,7 +98,7 @@ const NextButton = styled.button`
   width: 70%;
   height: 110px;
   border-radius: 12px;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   color: #fffbfa;
   font-family: Nunito;
   border: none;
@@ -106,7 +106,7 @@ const NextButton = styled.button`
   font-size: ${FONT_SIZE.XL};
   margin-top: 80px;
   outline: none;
-  
+
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.BASE};
     height: 90px;
@@ -119,11 +119,10 @@ const SlickTitle = styled.div`
   line-height: 32.74px;
   margin-bottom: 20px;
   text-align: center;
-  color: #403B36;
+  color: #403b36;
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.TWO_XL};
   }
-
 `;
 const SlickContent = styled.div`
   font-size: ${FONT_SIZE.TWO_XL};
@@ -133,7 +132,7 @@ const SlickContent = styled.div`
   text-align: center;
   width: 70%;
   color: #595550;
-  
+
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.XL};
   }
@@ -144,34 +143,34 @@ const CustomDot = styled.div`
   background-color: ${props => (props.active ? '#1B9C85' : '#1B9C8580')};
   border-radius: 30%;
   pointer-events: none;
-  
 `;
-const SlickWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  align-items: center;
-  padding-bottom: 40px;
-  text-align: center;
-`;
+
 const SlickContentBox = styled.div`
   width: 100%;
   height: 108px;
   text-align: center;
   ${theme.ALIGN.COLUMN_CENTER};
   margin: auto;
-  ;
-`
+`;
 const AccountAvailability = styled.div`
   font-size: ${FONT_SIZE.BASE};
   font-weight: 800;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   font-family: Nunito;
   margin-top: 30px;
-  color: #1B9C85;
+  color: #1b9c85;
   line-height: 20.8px;
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.SM};
   }
 `;
-export { OnBoardingImg, NextButton, StyledSlider, CustomDot, SlickTitle, SlickContent, SlickWrapper, SlickContentBox,AccountAvailability };
+export {
+  OnBoardingImg,
+  NextButton,
+  StyledSlider,
+  CustomDot,
+  SlickTitle,
+  SlickContent,
+  SlickContentBox,
+  AccountAvailability,
+};
