@@ -16,4 +16,10 @@ const CardContainer = styled.div`
   gap: 20px;
 `;
 
-export { MainContainer, CardContainer };
+const RuleCardContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+`;
+
+export { MainContainer, CardContainer, RuleCardContainer };
