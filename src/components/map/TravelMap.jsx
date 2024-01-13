@@ -83,7 +83,6 @@ const TravelMap = () => {
     setClicked(!clicked);
   };
   const onLoad = useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
     const bounds = new window.google.maps.LatLngBounds(center);
     if (map.current) {
       map.current.fitBounds(bounds);
@@ -103,8 +102,6 @@ const TravelMap = () => {
       zoom={20}
       onLoad={onLoad}
       onUnmount={onUnmount}>
-      {/* Child components, such as markers, info windows, etc. */}
-
       {posts.slice(0, 30).map(post => (
         <>
           <MarkerF

@@ -22,7 +22,7 @@ const SchedulePage = () => {
         </S.Button>
       </S.ButtonContainer>
       {layout === 'Calendar' ? (
-        <S.CalendarWrapper>
+        <S.CalendarContainer>
           <TravelCalendar />
           <S.JourneyWrapper>
             {testData.map(item => (
@@ -30,12 +30,12 @@ const SchedulePage = () => {
             ))}
           </S.JourneyWrapper>
           <S.AddButton>+</S.AddButton>
-        </S.CalendarWrapper>
+        </S.CalendarContainer>
       ) : (
-        <S.MapWrapper>
+        <S.MapContainer>
           <TravelMap />
           <BottomScrollPage />
-        </S.MapWrapper>
+        </S.MapContainer>
       )}
     </S.Container>
   );

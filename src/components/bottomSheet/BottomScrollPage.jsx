@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 
 import * as S from './BottomScrollPage.style';
+import BottomTravelList from './bottomTravelList/BottomTravelList';
 import Location from '/icons/Location.svg';
 import LeftIcon from '/icons/left.svg';
 import RightIcon from '/icons/right.svg';
+import { TRAVEL } from '@/constants/travel';
 import 'react-spring-bottom-sheet/dist/style.css';
 
 const BottomScrollPage = () => {
@@ -30,42 +32,16 @@ const BottomScrollPage = () => {
           style={{
             height: '100%',
           }}>
-          <S.ListWrapper>
-            <S.ListContainer>
-              <S.MarkImage src={Location} />
-              <S.ListDescriptionContainer>
-                <h2>제주 게스트하우스에서의 일주일</h2>
-                <S.TextContainer>
-                  <p>작성 일지 1개</p>
-                  <date>1/1~1/8</date>
-                </S.TextContainer>
-              </S.ListDescriptionContainer>
-            </S.ListContainer>
-          </S.ListWrapper>
-          <S.ListWrapper>
-            <S.ListContainer>
-              <S.MarkImage src={Location} />
-              <S.ListDescriptionContainer>
-                <h2>제주 게스트하우스에서의 일주일</h2>
-                <S.TextContainer>
-                  <p>작성 일지 1개</p>
-                  <date>1/1~1/8</date>
-                </S.TextContainer>
-              </S.ListDescriptionContainer>
-            </S.ListContainer>
-          </S.ListWrapper>
-          <S.ListWrapper>
-            <S.ListContainer>
-              <S.MarkImage src={Location} />
-              <S.ListDescriptionContainer>
-                <h2>제주 게스트하우스에서의 일주일</h2>
-                <S.TextContainer>
-                  <p>작성 일지 1개</p>
-                  <date>1/1~1/8</date>
-                </S.TextContainer>
-              </S.ListDescriptionContainer>
-            </S.ListContainer>
-          </S.ListWrapper>
+          {TRAVEL.map(({ title, startDate, endDate, count }, idx) => {
+            return (
+              <BottomTravelList
+                title={title}
+                startDate={startDate}
+                endDate={endDate}
+                count={count}
+              />
+            );
+          })}
         </div>
       </BottomSheet>
     </>

@@ -50,22 +50,22 @@ const Button = styled.button`
   }
 `;
 
-const CalendarWrapper = styled.div`
+const CalendarContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER}
 `;
 
 const JourneyWrapper = styled.div``;
 
-const MapWrapper = styled.div`
+const MapContainer = styled.div`
   margin-top: 40px;
 `;
 
 export {
   Container,
-  CalendarWrapper,
+  CalendarContainer,
   JourneyWrapper,
   ButtonContainer,
   Button,
-  MapWrapper,
+  MapContainer,
   AddButton,
 };
