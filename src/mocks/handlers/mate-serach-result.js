@@ -5,7 +5,7 @@ import { API_PATH } from '@/constants/path';
 
 export const mateSearchHandlers = [
   http.get(`${baseURL}${API_PATH.MATE_SEARCH}`, (req, res, ctx) => {
-    const userId = req.url.searchParams.get('userid');
+    // const userId = req.url.searchParams.get('userid');
 
     const mates = [
       {
@@ -40,7 +40,8 @@ export const mateSearchHandlers = [
         follower: '23',
         following: '32',
       },
-    ].filter(mate => mate.userid === userId);
+      // ].filter(mate => mate.userid === userId);
+    ];
 
     return HttpResponse.json(mates);
   }),

@@ -3,9 +3,10 @@ import { API_PATH } from '@/constants/path';
 
 // 토큰이 필요없는 경우 axios를 쓰면됩니다.
 const getMateSearch = searchTerm => {
-  const url = `${API_PATH.MATE_SEARCH}?userid=${encodeURIComponent(
-    searchTerm,
-  )}`;
+  // const url = `${API_PATH.MATE_SEARCH}?userid=${encodeURIComponent(
+  //   searchTerm,
+  // )}`;
+  const url = `${API_PATH.MATE_SEARCH}`;
   return axios.get(url);
 };
 

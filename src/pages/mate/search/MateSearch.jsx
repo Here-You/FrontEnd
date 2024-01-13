@@ -13,18 +13,20 @@ const MateSearchPage = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await getMateSearch(searchTerm);
+        // const response = await getMateSearch(searchTerm);
+        const response = await getMateSearch();
         setProfilesData(response.data);
       } catch (error) {
         console.error('프로필 데이터를 가져오는데 실패했습니다.', error);
       }
     };
-
+    fetchProfileData();
     // 검색어가 변경되면 검색 결과를 다시 가져옴
-    if (searchTerm) {
-      fetchProfileData();
-    }
-  }, [searchTerm]);
+    // if (searchTerm) {
+    //   fetchProfileData();
+    // }
+    // }, [searchTerm]);
+  }, []);
 
   return (
     <div>
