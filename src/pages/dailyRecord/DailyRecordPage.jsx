@@ -76,6 +76,7 @@ const DailyRecordPage = () => {
           <S.RecordContainer></S.RecordContainer>
         </div>
       </S.SlideContainer>
+      <S.AddButton>+</S.AddButton>
     </S.Container>
   );
 };

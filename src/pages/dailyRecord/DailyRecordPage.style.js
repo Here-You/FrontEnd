@@ -1,5 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
+import theme from '@/theme';
+
 const slideAnimation = keyframes`
   0% {
     opacity: 0.5;
@@ -158,6 +161,37 @@ const ContentText = styled.p`
   overflow: scroll;
   text-align: center;
   white-space: pre-wrap;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+  /* &::-webkit-scrollbar-thumb {
+    width: 5px;
+    background-color: #1b9c85;
+    border-radius: 100px;
+  } */
+`;
+
+const AddButton = styled.button`
+  ${theme.ALIGN.COLUMN_CENTER};
+  padding: 0;
+  margin: auto;
+  background-color: #e8f6ef;
+  border: none;
+  text-align: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  color: ${theme.COLOR.MAIN.GREEN};
+  font-size: ${FONT_SIZE.FIVE_XL};
+  position: sticky;
+  bottom: 20px;
+  margin-right: -80px;
+
+  cursor: pointer;
+  z-index: 1;
+  align-self: flex-end;
 `;
 
 export {
@@ -176,4 +210,5 @@ export {
   ContentText,
   WeatherContainer,
   WeatherText,
+  AddButton,
 };
