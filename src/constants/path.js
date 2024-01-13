@@ -33,6 +33,7 @@ const BASE_PATH = {
 
 const API_PATH = {
   FAVORITE_TRAVELS: `${BASE_PATH.TRAVELS}/favorite`,
+  MATE_SEARCH: `${BASE_PATH.MATE_SEARCH}`,
 };
 
 const KAKAO_REDIRECT_URL = ``;
