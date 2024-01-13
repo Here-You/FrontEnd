@@ -7,6 +7,7 @@ import styled from "styled-components";
 const EditPageWrap = styled.div`
     background-color: ${theme.COLOR.MAIN.LIGHT_BLACK};
     width: 100%;
+    height: 100%;
     ${theme.ALIGN.COLUMN_CENTER}
     text-align: start;
     padding-top: 40px;

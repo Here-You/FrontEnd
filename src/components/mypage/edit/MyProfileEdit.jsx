@@ -8,7 +8,7 @@ import editModal from '@/store/editModal';
 
 const MyProfileEdit = () => {
   const [info, setInfo] = useState([]);
-  const { onOpen, isOpen } = editModal();
+  const { onOpen } = editModal();
   const getInfo = async () => {
     try {
       const res = await getProfileInfo();
@@ -24,8 +24,7 @@ const MyProfileEdit = () => {
   }, []);
   return (
     <>
-      {isOpen && <EditModalPage nickname={info.nickname} introduction={info.introduction}/>}
-
+    <EditModalPage nickname={info.nickname} introduction={info.introduction}/>
       <S.EditBox>
         <S.EditContentWrap>
           <S.EditContent>닉네임</S.EditContent>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { myPageEditImg } from '../../../../public/images/mypage/index';
 import * as S from './EditModalPage.style';
@@ -7,7 +7,9 @@ import editModal from '@/store/editModal';
 
 const EditModalPage = ({ nickname, introduction }) => {
   const [info, setInfo] = useState();
-  const [editedValue, setEditedValue] = useState('');
+  const [nick, setNick] = useState(nickname);
+
+  const [introductions, setIntroductions] = useState(introduction);
   const getInfo = async () => {
     try {
       const res = await getProfileInfo();
@@ -21,62 +23,95 @@ const EditModalPage = ({ nickname, introduction }) => {
   useEffect(() => {
     getInfo();
   }, []);
-  const { onClose, modalNum } = editModal();
+  const { onClose, modalNum, isOpen } = editModal();
   const handleInputChange = event => {
-    setEditedValue(event.target.value);
+    if (Modals.id === 0) {
+      setNick(event.target.value);
+    } else {
+      setIntroductions(event.target.value);
+    }
   };
+  const outside = useRef();
   const Modals = [
     {
       id: 0,
       title: '변경할 닉네임을 입력해 주세요',
       button_text: '닉네임 변경',
-      input_value: nickname,
+      input_value: nick,
     },
     {
       id: 1,
       title: '변경할 프로필 소개 내용을 입력해 주세요.',
       button_text: '프로필 소개 변경',
-      input_value: introduction,
+      input_value: introductions,
     },
     {
       id: 2,
-      title: '여행의 이유 회원탈퇴 정말 탈퇴하시겠어요? ㅠㅠ',
+      title: '여행의 이유 회원탈퇴',
+      title2: '정말 탈퇴하시겠어요? ㅠㅠ',
       button_text: '회원탈퇴',
     },
+    {
+      id: 3,
+      title: '여행의 이유 로그아웃',
+      title2: '로그아웃 하시겠습니까?',
+      button_text: '로그아웃',
+    },
   ];
-  const handleButtonClick = async () => {
-    try {
-      if (modalNum === 0) {
-        await getProfileInfo({ nickname: editedValue });
-      } else if (modalNum === 1) {
-        await getProfileInfo({ introduction: editedValue });
-      }
-      getInfo(); 
-      onClose(); 
-    } catch (error) {
-      console.log(error);
-    }
+  const handleButtonClick = () => {
+    onClose();
   };
   return (
     <>
-      <S.ModalOverlay>
-        <S.ModalContent>
-          <S.CloseImg
-            onClick={() => onClose()}
-            src={myPageEditImg.Close}
-            alt="닫기"
-          />
-          <S.ModalTitle>{Modals[modalNum].title}</S.ModalTitle>
-          <S.ModalInput
-            onChange={handleInputChange}
-            type="text"
-            placeholder={Modals[modalNum].input_value}
-            ></S.ModalInput>
-          <S.ModalButton onClick={handleButtonClick}>
-            {Modals[modalNum].button_text}
-          </S.ModalButton>
-        </S.ModalContent>
-      </S.ModalOverlay>
+      {isOpen && (
+        <S.ModalOverlay
+          ref={outside}
+          onClick={e => {
+            if (e.target == outside.current) onClose();
+          }}>
+          <S.ModalContent>
+            <S.CloseImg
+              onClick={() => onClose()}
+              src={myPageEditImg.Close}
+              alt="닫기"
+            />
+            <S.ModalTitle>
+              {Modals[modalNum].title}
+              <br />
+              <S.ModalSecondTitle>{Modals[modalNum].title2}</S.ModalSecondTitle>
+            </S.ModalTitle>
+            {Modals[modalNum].id < 2 ? (
+              <>
+                <S.ModalInput
+                  onChange={handleInputChange}
+                  type="text"
+                  defaultValue={
+                    Modals[modalNum].id === 0 ? nick : introductions
+                  }></S.ModalInput>
+                <S.ModalButton onClick={handleButtonClick}>
+                  {Modals[modalNum].button_text}
+                </S.ModalButton>
+              </>
+            ) : (
+              <>
+                <S.ButtonBox>
+                  <S.SecondButton onClick={() => onClose()}>
+                    취소
+                  </S.SecondButton>
+                  <S.SecondButton
+                    style={{
+                      borderLeft: '1px solid #EEEEEE',
+                      color: '#ff8686',
+                    }}
+                    onClick={handleButtonClick}>
+                    {Modals[modalNum].button_text}
+                  </S.SecondButton>
+                </S.ButtonBox>
+              </>
+            )}
+          </S.ModalContent>
+        </S.ModalOverlay>
+      )}
     </>
   );
 };

@@ -21,27 +21,36 @@ const ModalContent = styled.div`
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 10px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
   overflow: auto;
 `;
 
 const CloseImg = styled.img`
-  width: 20px;
+  width: 30px;
   align-self: flex-start;
-  margin-bottom: 50px;
+  margin: 10px 0 0 15px;
 `;
 
 const ModalTitle = styled.div`
   font-size: ${FONT_SIZE.BASE};
+  text-align: center;
+  color: ${theme.COLOR.MAIN.GRAY};
+  white-space: pre-wrap;
+  margin-top: 0px;
+  font-family: 'Pretendard-semibold';
+  line-height: 30px;
+`;
+const ModalSecondTitle = styled.p`
+  font-size: ${FONT_SIZE.BASE};
   font-family: 'Pretendard-regular';
   color: ${theme.COLOR.MAIN.GRAY};
+  white-space: pre-wrap;
+
 `;
 const ModalButton = styled.button`
   font-size: ${FONT_SIZE.BASE};
@@ -53,6 +62,20 @@ const ModalButton = styled.button`
   width: 100%;
   border-top: 1px solid #eeeeee;
 `;
+const SecondButton = styled.button`
+  font-size: ${FONT_SIZE.BASE};
+  font-family: 'Pretendard-regular';
+  border: none;
+  padding: 15px;
+  background-color: #ffffff;
+  width: 50%;
+  border-top: 1px solid #eeeeee;
+`;
+const ButtonBox = styled.div`
+  display: flex;
+  width: 100%;
+`
+
 
 const ModalInput = styled.input`
   width: 90%;
@@ -68,4 +91,7 @@ export {
   ModalTitle,
   ModalButton,
   ModalInput,
+  SecondButton,
+  ButtonBox,
+  ModalSecondTitle,
 };

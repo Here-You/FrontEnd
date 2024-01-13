@@ -57,6 +57,15 @@ const Mate = styled.div`
     font-size: ${FONT_SIZE.BASE};
   }
 `;
+const NumberOfPeople = styled.span`
+  color: ${theme.COLOR.MAIN.BLACK};
+  font-family: 'Pretendard-bold';
+  font-size: ${FONT_SIZE.LG};
+  margin: 0 10px;
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: ${FONT_SIZE.BASE};
+  }
+`;
 export {
   ProfileBox,
   ProfileInfoBox,
@@ -66,4 +75,5 @@ export {
   NickName,
   NickNameTypeBox,
   Mate,
+  NumberOfPeople,
 };

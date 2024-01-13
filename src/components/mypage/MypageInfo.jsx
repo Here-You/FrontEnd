@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { myPageImg } from '../../../public/images/mypage/index';
-import { getProfileInfo } from '@/apis/request/profile';
-import * as S from './MypageInfo.style';
 
- const MyPageInfo = () => {
-    const [info, setInfo] = useState([]);
+import { myPageImg } from '../../../public/images/mypage/index';
+import * as S from './MypageInfo.style';
+import { getProfileInfo } from '@/apis/request/profile';
+
+const MyPageInfo = () => {
+  const [info, setInfo] = useState([]);
   const getInfo = async () => {
     try {
       const res = await getProfileInfo();
@@ -28,7 +29,11 @@ import * as S from './MypageInfo.style';
         </S.NickNameTypeBox>
         <S.Email> {info.email}</S.Email>
         <S.Introduction> {info.introduction}</S.Introduction>
-        <S.Mate> {info.mate}</S.Mate>
+        <S.Mate>
+          {info.follower}
+          <S.NumberOfPeople>32</S.NumberOfPeople> {info.following}
+          <S.NumberOfPeople>32</S.NumberOfPeople>
+        </S.Mate>
       </S.ProfileInfoBox>
     </S.ProfileBox>
   );

@@ -1,7 +1,10 @@
 import { myPageImg } from '../../../public/images/mypage/index';
 import * as S from './Category.style';
+import editModal from '@/store/editModal';
 
 const Category = () => {
+  const { onOpen } = editModal();
+
   const SubCategory = [
     {
       id: 0,
@@ -64,7 +67,7 @@ const Category = () => {
           c =>
             c.id < 5 && (
               <S.Subcategory key={c.id}>
-                <S.LinkTo to={c.link}>
+               <S.LinkTo to={c.link} onClick={c.id === 1 ? () => onOpen(3) : undefined}>
                   <S.CategoryImg src={c.img} alt={c.title} />
                   <S.SubcategoryContent>{c.title}</S.SubcategoryContent>
                 </S.LinkTo>
