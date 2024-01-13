@@ -8,13 +8,15 @@ const ListContainer = styled.div`
 `;
 
 const ListWrapper = styled.div`
+  width: 90%;
+  padding: 20px 40px;
+  color: #21b69c;
+
   border: 1px solid #21b69c;
   border-radius: 20px;
-  width: 90%;
+
   ${theme.ALIGN.ROW_CENTER};
-  padding: 20px 40px;
   gap: 60px;
-  color: #21b69c;
 `;
 
 const MarkImage = styled.img`

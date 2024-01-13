@@ -270,3 +270,33 @@
     --rsbs-mr: auto;
   }
 }
+
+/* GOOGLE_MAP */
+
+.gm-style .gm-style-iw-c {
+  min-width: 52px !important;
+  min-height: 56px !important;
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+  top: 150px;
+  transform: translate(-50%, -100%);
+  border-radius: 8px;
+  box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.3);
+}
+
+div.info {
+  position: absolute;
+  z-index: 999;
+  width: 200px;
+  height: 100px;
+  display: none;
+  background-color: #fff;
+  border: 3px solid #ebebeb;
+  padding: 10px;
+}
+
+/* X 버튼 삭제 */
+.gm-style-iw > button {
+  display: none !important;
+}
