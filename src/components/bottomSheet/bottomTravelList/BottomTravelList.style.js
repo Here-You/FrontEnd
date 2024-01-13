@@ -2,10 +2,6 @@ import styled from 'styled-components';
 
 import theme from '@/theme';
 
-const MarkImage = styled.img`
-  height: 40px;
-`;
-
 const ListContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER}
   margin: 20px;
@@ -19,6 +15,10 @@ const ListWrapper = styled.div`
   padding: 20px 40px;
   gap: 60px;
   color: #21b69c;
+`;
+
+const MarkImage = styled.img`
+  height: 40px;
 `;
 
 const ListDescriptionContainer = styled.div`

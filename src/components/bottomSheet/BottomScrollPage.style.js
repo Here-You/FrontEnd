@@ -8,13 +8,18 @@ const HeaderWrapper = styled.div`
 
 const HeaderContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  width: 100%;
   justify-content: space-between;
+  width: 100%;
   padding: 20px;
 `;
 
 const Image = styled.img`
   height: 20px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const MarkImage = styled.img`
@@ -27,13 +32,13 @@ const ListWrapper = styled.div`
 `;
 
 const ListContainer = styled.div`
-  border: 1px solid #21b69c;
+  color: ${theme.COLOR.MAIN.GREEN};
+  border: 1px solid ${theme.COLOR.MAIN.GREEN};
   border-radius: 20px;
   width: 90%;
-  ${theme.ALIGN.ROW_CENTER};
   padding: 20px 40px;
+  ${theme.ALIGN.ROW_CENTER};
   gap: 60px;
-  color: #21b69c;
 `;
 
 const ListDescriptionContainer = styled.div`
