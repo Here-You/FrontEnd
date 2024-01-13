@@ -31,7 +31,7 @@ const AppLayout = () => {
   return (
     <AppContainer>
       <ContentContainer>
-        <Navbar />
+
         <OutletContainer>
           <Outlet />
         </OutletContainer>
