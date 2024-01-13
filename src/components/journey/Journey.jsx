@@ -3,7 +3,6 @@ import { useState } from 'react';
 import * as S from './Journey.style';
 import DetailPlan from './detail/DetailPlan';
 import Group from '/icons/Group.svg';
-import Pen from '/icons/Pen.svg';
 
 const Journey = ({ data, dataLength }) => {
   const { id, title, date, group, detail } = data;
@@ -26,12 +25,6 @@ const Journey = ({ data, dataLength }) => {
             <S.Image src={Group} />
             {group}
           </S.Mate>
-          <S.Date>
-            일지 작성하기
-            <S.CursorPointer>
-              <S.Image src={Pen} />
-            </S.CursorPointer>
-          </S.Date>
         </S.RowContainer>
       </S.MainContainer>
 

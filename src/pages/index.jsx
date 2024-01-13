@@ -1,4 +1,7 @@
 import AppLayout from './AppLayout';
+// DailyRecord
+import DailyRecordPage from './dailyRecord/DailyRecordPage';
+import DailyRecordWritePage from './dailyRecord/write/DailyRecordWrite';
 // ERROR
 import ErrorPage from './error/ErrorPage';
 // HOME
@@ -53,4 +56,6 @@ export {
   SignUpPage,
   SignaturePostPage,
   SignatureWritePage,
+  DailyRecordPage,
+  DailyRecordWritePage,
 };

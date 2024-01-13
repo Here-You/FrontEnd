@@ -5,6 +5,9 @@ const BASE_PATH = {
   LOGIN: '/login',
   ON_BOARDING: 'onboarding',
   SCHEDULE: '/schedule',
+  // DAILYRECORD
+  DAILYRECORD: '/dailyrecord',
+  DAILYRECORD_WRITE: '/dailyrecord/write',
   // SIGNATURE
   SIGNATURE: '/signature',
   SIGNATURE_WRITE: '/signature/write',
@@ -33,6 +36,7 @@ const BASE_PATH = {
 
 const API_PATH = {
   FAVORITE_TRAVELS: `${BASE_PATH.TRAVELS}/favorite`,
+  DAILYRECORD_WRITE: `${BASE_PATH.DAILYRECORD_WRITE}`,
 };
 
 const KAKAO_REDIRECT_URL = ``;
