@@ -6,6 +6,7 @@ import {
   Home,
   LoginPage,
   MateHomePage,
+  MateLookPage,
   MateManagementPage,
   MatePage,
   MateSearchPage,
@@ -112,6 +113,10 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.MATE_SEARCH}`,
             element: <MateSearchPage />,
+          },
+          {
+            path: `${BASE_PATH.MATE_LOOK}`,
+            element: <MateLookPage />,
           },
         ],
       },

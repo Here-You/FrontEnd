@@ -16,8 +16,9 @@ const BASE_PATH = {
   // MATE
   MATE: '/mate',
   MATE_SEARCH: '/mate/search',
-  MATE_MANAGEMENT: '/mate/management',
-  MATE_HOME: '/mate/:userId',
+  MATE_LOOK: '/mate/look',
+  // MATE_MANAGEMENT: '/mate/management',
+  // MATE_HOME: '/mate/:userId',
   // MATE_MY_RULE: '/mate/rule/mine',
   // MATE_WRITE_RULE: '/mate/rule/mine/edit',
   // MATE_OURS_RULE: '/mate/rule/ours',
@@ -34,6 +35,7 @@ const BASE_PATH = {
 const API_PATH = {
   FAVORITE_TRAVELS: `${BASE_PATH.TRAVELS}/favorite`,
   MATE_SEARCH: `${BASE_PATH.MATE_SEARCH}`,
+  MATE_LOOK: `${BASE_PATH.MATE_LOOK}`,
 };
 
 const KAKAO_REDIRECT_URL = ``;

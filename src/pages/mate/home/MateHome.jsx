@@ -20,7 +20,7 @@ const MateHomePage = () => {
       <A.MainContainer>
         <Title text="내 메이트" />
         <A.CardContainer>
-          <A.LinkTo to="/mate/search">
+          <A.LinkTo to="/mate/look">
             <Card text="메이트 탐색하기" imgSrc={mateSearchIcon} />
           </A.LinkTo>
           <A.LinkTo to="/mate/management">
