@@ -45,17 +45,6 @@ const DailyRecordWritePage = () => {
 
   const onSubmit = async data => {
     console.log('제출된 데이터: ', data);
-    // setIsLoading(true);
-    // try {
-    //   await editUserInfo('user', data);
-    // } catch (error) {
-    //   console.error(error);
-    // } finally {
-    //   userInfoEditModal.onClose();
-    //   setNowPage(STEPS.ONE);
-    //   toast.success('개인 정보가 수정되었습니다');
-    // }
-    // setIsLoading(false);
   };
 
   return (
