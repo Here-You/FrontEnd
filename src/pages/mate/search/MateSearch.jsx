@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { getMateSearch } from '@/apis/request/mate';
 import Profile from '@/components/mate/Profile';
+import Search from '@/components/mate/Search';
 
 const MateSearchPage = () => {
   const [profilesData, setProfilesData] = useState([]);
@@ -21,6 +22,9 @@ const MateSearchPage = () => {
 
   return (
     <div>
+      <div style={{ marginBottom: '18.93px' }}>
+        <Search />
+      </div>
       {profilesData.map((profileData, index) => (
         <Profile key={index} profileData={profileData} />
       ))}
