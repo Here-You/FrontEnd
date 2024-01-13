@@ -6,6 +6,7 @@ import { getProfileInfo } from '@/apis/request/profile';
 
 const MyPageInfo = () => {
   const [info, setInfo] = useState([]);
+  const [islogin, setIsLogin] = useState(true);
   const getInfo = async () => {
     try {
       const res = await getProfileInfo();
@@ -23,17 +24,27 @@ const MyPageInfo = () => {
     <S.ProfileBox>
       <S.ProfilePicture src={myPageImg.ProfilePicture} alt="아" />
       <S.ProfileInfoBox>
-        <S.NickNameTypeBox>
-          <S.NickName> {info.nickname}</S.NickName>
-          <S.NickName> {info.type}</S.NickName>
-        </S.NickNameTypeBox>
-        <S.Email> {info.email}</S.Email>
-        <S.Introduction> {info.introduction}</S.Introduction>
-        <S.Mate>
-          {info.follower}
-          <S.NumberOfPeople>32</S.NumberOfPeople> {info.following}
-          <S.NumberOfPeople>32</S.NumberOfPeople>
-        </S.Mate>
+        {info.nickname ? (
+          <>
+            {' '}
+            <S.NickNameTypeBox>
+              <S.NickName> {info.nickname}</S.NickName>
+              <S.NickName> {info.type}</S.NickName>
+            </S.NickNameTypeBox>
+            <S.Email> {info.email}</S.Email>
+            <S.Introduction> {info.introduction}</S.Introduction>
+            <S.Mate>
+              {info.follower}
+              <S.NumberOfPeople>32</S.NumberOfPeople> {info.following}
+              <S.NumberOfPeople>32</S.NumberOfPeople>
+            </S.Mate>
+          </>
+        ) : (
+          <>
+            <S.NickName>로그인하세요.</S.NickName>
+            <S.Email>로그인 하러가기</S.Email>
+          </>
+        )}
       </S.ProfileInfoBox>
     </S.ProfileBox>
   );

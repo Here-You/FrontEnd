@@ -25,7 +25,7 @@ const EditModalPage = ({ nickname, introduction }) => {
   }, []);
   const { onClose, modalNum, isOpen } = editModal();
   const handleInputChange = event => {
-    if (Modals.id === 0) {
+    if (Modals[modalNum].id === 0) {
       setNick(event.target.value);
     } else {
       setIntroductions(event.target.value);
