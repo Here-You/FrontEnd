@@ -265,7 +265,7 @@
 
 @media (min-width: 600px) {
   :root {
-    --rsbs-max-w: 740px;
+    --rsbs-max-w: 768px;
     --rsbs-ml: auto;
     --rsbs-mr: auto;
   }
