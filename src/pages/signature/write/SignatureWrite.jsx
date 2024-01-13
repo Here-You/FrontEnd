@@ -1,22 +1,21 @@
 import styled from 'styled-components';
 
+import Editor from './Editor';
+
 const SignatureWritePage = () => {
   return (
-    <div>
-      <Title placeholder="제목" />
-    </div>
+    <Wrap>
+      <Editor />
+    </Wrap>
   );
 };
 
 export default SignatureWritePage;
 
-const Title = styled.input`
-  outline: none;
-  border: none;
-  color: var(--black, #393939);
-  font-family: Pretendard;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  height: 100%;
 `;
