@@ -86,7 +86,7 @@ const router = createBrowserRouter([
             element: <SignaturePopularPage />,
           },
           {
-            path: `${BASE_PATH.SIGNATURE_RECOMMEND}/:tag`,
+            path: `${BASE_PATH.SIGNATURE_RECOMMEND}`,
             element: <SignatureRecommendPage />,
           },
         ],

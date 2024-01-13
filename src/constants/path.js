@@ -11,7 +11,7 @@ const BASE_PATH = {
   SIGNATURE_SEARCH: '/signature/search',
   SIGNATURE_EDIT: '/signature/edit',
   SIGNATURE_POPULAR: '/signature/popular',
-  SIGNATURE_RECOMMEND: '/signature/recommend',
+  SIGNATURE_RECOMMEND: '/signature/recommend/:tag',
   SIGNATURE_POST_PAGE: '/signature/:userId/:title',
   // MATE
   MATE: '/mate',
