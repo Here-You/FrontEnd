@@ -14,8 +14,8 @@ const FooterMenu = [
 const Footer = () => {
   return (
     <S.FooterWrapper>
-      {FooterMenu.map(f => (
-        <S.LinkTo to={f.to}>
+      {FooterMenu.map((f, index) => (
+        <S.LinkTo key={index} to={f.to}>
           <S.Image src={f.icon} />
           <p>{f.name}</p>
         </S.LinkTo>
