@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
+import theme from '@/theme';
+
 const SlickWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${theme.ALIGN.COLUMN_CENTER}
   height: 100%;
-  align-items: center;
   padding-bottom: 40px;
-  text-align: center;
 `;
 
 export { SlickWrapper };

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import * as S from './OnBoardingCard.style';
 import onboardingImg1 from '/images/onboarding1.svg';
 import onboardingImg2 from '/images/onboarding2.svg';
@@ -62,8 +63,6 @@ const OnBoardingCardPage = () => {
       }
     }
   };
-  
-
 
   let slideRef;
 
