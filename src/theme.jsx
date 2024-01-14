@@ -19,7 +19,7 @@ const ALIGN = {
   ROW_CENTER: `
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
     `,
   COLUMN_CENTER: `
     display: flex;

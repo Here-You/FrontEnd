@@ -2,6 +2,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { BASE_PATH } from './constants/path';
 import {
+  DailyRecordEditPage,
+  DailyRecordPage,
+  DailyRecordWritePage,
   ErrorPage,
   Home,
   LoginPage,
@@ -9,6 +12,7 @@ import {
   MateLookPage,
   MateManagementPage,
   MatePage,
+  MateRuleCheckPage,
   MateSearchPage,
   MyPage,
   MyPageEditPage,
@@ -54,6 +58,27 @@ const router = createBrowserRouter([
       {
         path: `${BASE_PATH.SCHEDULE}`,
         element: <SchedulePage />,
+      },
+    ],
+  },
+  {
+    path: `${BASE_PATH.DAILYRECORD}`,
+    children: [
+      {
+        element: <DailyRecordPage />,
+        element: <AppLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <DailyRecordPage /> },
+          {
+            path: `${BASE_PATH.DAILYRECORD_WRITE}`,
+            element: <DailyRecordWritePage />,
+          },
+          {
+            path: `${BASE_PATH.DAILYRECORD_EDIT}`,
+            element: <DailyRecordEditPage />,
+          },
+        ],
       },
     ],
   },
@@ -117,6 +142,10 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.MATE_LOOK}`,
             element: <MateLookPage />,
+          },
+          {
+            path: `${BASE_PATH.MATE_RULE_CHECK_PAGE}`,
+            element: <MateRuleCheckPage />,
           },
         ],
       },

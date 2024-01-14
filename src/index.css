@@ -4,7 +4,7 @@
   font-family: 'Pretendard', sans-serif;
 }
 
-/* Here you font: 국민연금체 */
+/* 국민연금체 */
 @font-face {
   font-family: 'NPSfont_regular';
   src: url(./assets/fonts/NPSfont_regular.ttf);
@@ -93,4 +93,210 @@
   src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Black.woff')
     format('woff');
   font-display: swap;
+}
+
+/* REACT_CALENDAR */
+
+.react-calendar {
+  width: 500px;
+  max-width: 100%;
+  border: none;
+  line-height: 1.125em;
+}
+
+.react-calendar__month-view__weekdays {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-calendar__navigation__label > span {
+  color: #3a3a3a;
+  display: none;
+}
+
+.react-calendar__month-view__weekdays__weekday > abbr {
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* 현재 날짜 */
+
+.react-calendar__tile--now {
+  position: relative;
+  background-color: white;
+
+  abbr {
+    background-color: #1b9c85;
+    color: white;
+    font-size: 22px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+}
+
+.react-calendar__tile--now::after {
+  position: absolute;
+  bottom: 0px;
+  content: 'TODAY';
+  font-family: 900;
+  background-color: gold;
+  border-radius: 10px;
+  padding: 2px 8px;
+}
+
+/* 일자 */
+.react-calendar__tile {
+  text-align: center;
+  position: relative;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus,
+.react-calendar__tile--active {
+  color: black;
+  background-color: white;
+
+  abbr {
+    text-decoration: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid black !important;
+  }
+}
+
+.react-calendar__tile--range::after {
+  content: '';
+  border: 1px solid black;
+  position: absolute;
+  right: 0;
+  width: 10%;
+}
+
+.react-calendar__tile--range::before {
+  content: '';
+  border: 1px solid black;
+  position: absolute;
+  left: 0;
+  width: 10%;
+}
+
+.react-calendar__tile--rangeStart::before {
+  content: '';
+  border: none;
+  position: absolute;
+  right: 0;
+  width: 10%;
+}
+
+.react-calendar__tile--rangeEnd::after {
+  content: '';
+  border: 1px solid black;
+  position: absolute;
+  left: 0;
+  width: 10%;
+}
+
+/* ARROW */
+.react-calendar {
+  position: relative;
+}
+
+.react-calendar__navigation__prev-button {
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  font-size: 40px;
+  color: #aaaaaa;
+  background-color: transparent;
+  border: none;
+}
+
+.react-calendar__navigation__next-button {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  font-size: 40px;
+  color: #aaaaaa;
+  background-color: transparent;
+  border: none;
+}
+
+.react-calendar__navigation__next2-button {
+  display: none;
+}
+
+.react-calendar__navigation__prev2-button {
+  display: none;
+}
+
+.react-calendar__navigation__label {
+  display: none;
+}
+
+/* react-spring-bottom-sheet */
+:root {
+  --rsbs-backdrop-bg: rgba(255, 255, 255, 0.1);
+  --rsbs-bg: #ffffff;
+  --rsbs-handle-bg: #31313a;
+  --rsbs-max-w: auto;
+  --rsbs-ml: env(safe-area-inset-left);
+  --rsbs-mr: env(safe-area-inset-right);
+  --rsbs-overlay-rounded: 16px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --rsbs-max-w: 768px;
+    --rsbs-ml: auto;
+    --rsbs-mr: auto;
+  }
+}
+
+/* GOOGLE_MAP */
+
+.gm-style .gm-style-iw-c {
+  min-width: 52px !important;
+  min-height: 56px !important;
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+  top: 150px;
+  transform: translate(-50%, -100%);
+  border-radius: 8px;
+  box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.3);
+}
+
+div.info {
+  position: absolute;
+  z-index: 999;
+  width: 200px;
+  height: 100px;
+  display: none;
+  background-color: #fff;
+  border: 3px solid #ebebeb;
+  padding: 10px;
+}
+
+/* X 버튼 삭제 */
+.gm-style-iw > button {
+  display: none !important;
 }
