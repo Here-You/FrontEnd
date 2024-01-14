@@ -33,6 +33,7 @@ const BASE_PATH = {
 
 const API_PATH = {
   FAVORITE_TRAVELS: `${BASE_PATH.TRAVELS}/favorite`,
+  SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,
 };
 
 const KAKAO_REDIRECT_URL = ``;
