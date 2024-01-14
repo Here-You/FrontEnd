@@ -37,6 +37,7 @@ const TextContainer = styled.div`
   flex-direction: column;
   gap: 6px;
 `;
+
 const NameAndFollow = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: space-between;
@@ -48,7 +49,6 @@ const NameAndFollow = styled.div`
     line-height: normal;
   }
 `;
-const UserNickname = styled.span``;
 
 const FollowButton = styled.button`
   width: 46px;
@@ -83,10 +83,12 @@ const FollowContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   gap: 21px;
 `;
+
 const FollowData = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   gap: 10px;
 `;
+
 const UserFollow = styled.span`
   color: #aaa;
   font-size: 9px;
@@ -94,6 +96,7 @@ const UserFollow = styled.span`
   font-weight: 700;
   line-height: normal;
 `;
+
 const UserFollowNumber = styled.span`
   color: ${theme.COLOR.MAIN.BLACK};
   font-size: 9px;
@@ -101,13 +104,13 @@ const UserFollowNumber = styled.span`
   font-weight: 700;
   line-height: normal;
 `;
+
 export {
   CenteredContainer,
   ProfileContainer,
   UserImg,
   TextContainer,
   NameAndFollow,
-  UserNickname,
   FollowButton,
   UserId,
   UserAbout,

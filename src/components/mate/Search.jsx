@@ -8,8 +8,7 @@ const Search = () => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    // 검색어를 포함하여 다음 페이지로 이동
-    // navigate(`/mate/search?userid=${searchTerm}`);
+    // 검색어 디바운싱 적용해서 하기
     navigate(`/mate/search`);
   };
 

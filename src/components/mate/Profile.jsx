@@ -6,17 +6,17 @@ const Profile = ({ profileData }) => {
     return <div>데이터가 없습니다.</div>;
   }
 
-  const { imgSrc, nickname, userid, about, follower, following } = profileData;
+  const { imgSrc, nickName, userId, about, follower, following } = profileData;
   return (
     <S.CenteredContainer>
       <S.ProfileContainer>
-        <S.UserImg src={imgSrc} alt="Img data" />
+        <S.UserImg src={imgSrc} alt="Img" />
         <S.TextContainer>
           <S.NameAndFollow>
-            <span>{nickname}</span>
+            <span>{nickName}</span>
             <S.FollowButton>팔로우</S.FollowButton>
           </S.NameAndFollow>
-          <S.UserId>{userid}</S.UserId>
+          <S.UserId>{userId}</S.UserId>
           <S.UserAbout>{about}</S.UserAbout>
           <S.FollowContainer>
             <FollowBox text="팔로워" num={follower} />

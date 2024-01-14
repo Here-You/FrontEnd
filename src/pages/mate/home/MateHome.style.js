@@ -7,16 +7,16 @@ const SpanWrapper = styled.div`
   margin-bottom: 46px;
   margin-top: 22.93px;
   ${theme.ALIGN.ROW_CENTER};
-`;
 
-const styledSpan = styled.span`
-  color: rgba(0, 0, 0, 0.57);
-  text-align: center;
-  font-size: 12.268px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  width: 200px;
+  span {
+    color: rgba(0, 0, 0, 0.57);
+    text-align: center;
+    font-size: 12.268px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 200px;
+  }
 `;
 
 const MainContainer = styled.div`
@@ -36,4 +36,4 @@ const LinkTo = styled(Link)`
   color: inherit;
 `;
 
-export { SpanWrapper, styledSpan, MainContainer, CardContainer, LinkTo };
+export { SpanWrapper, MainContainer, CardContainer, LinkTo };

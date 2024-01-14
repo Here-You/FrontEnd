@@ -1,22 +1,7 @@
 import * as A from './MateLook.style';
 import mateSearchIcon from '/images/mate_search.svg';
-import { getMateLook } from '@/apis/request/mate';
 
 const MateLookPage = () => {
-  // const [profilesData, setProfilesData] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchProfileData = async () => {
-  //     try {
-  //       const response = await getMateLook();
-  //       setProfilesData(response.data);
-  //     } catch (error) {
-  //       console.error('데이터를 가져오는데 실패했습니다.', error);
-  //     }
-  //   };
-  //   fetchProfileData();
-  // }, []);
-
   return (
     <A.ContainerContainer>
       <A.FixedContainer>

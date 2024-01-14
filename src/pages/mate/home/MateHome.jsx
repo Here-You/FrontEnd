@@ -12,9 +12,7 @@ const MateHomePage = () => {
     <div>
       <Search />
       <S.SpanWrapper>
-        <S.styledSpan>
-          여행의 이유를 함께 찾아줄 친구를 ID로 추가해보세요!
-        </S.styledSpan>
+        <span>여행의 이유를 함께 찾아줄 친구를 ID로 추가해보세요!</span>
       </S.SpanWrapper>
 
       <S.MainContainer>

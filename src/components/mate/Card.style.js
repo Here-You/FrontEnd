@@ -18,7 +18,6 @@ const StyledSpan = styled.span`
   left: 13px;
   width: ${props => props.width || '65px'};
   height: 63.184px;
-  font-family: 'Pretandrd';
   font-size: 16px;
   font-weight: 700;
   line-height: normal;
