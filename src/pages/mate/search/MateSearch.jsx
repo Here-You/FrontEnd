@@ -29,14 +29,14 @@ const MateSearchPage = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <div style={{ marginBottom: '18.93px' }}>
         <Search />
       </div>
       {profilesData.map((profileData, index) => (
         <Profile key={index} profileData={profileData} />
       ))}
-    </div>
+    </>
   );
 };
 

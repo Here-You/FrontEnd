@@ -1,11 +1,7 @@
-import * as A from './Title.style';
+import * as S from './Title.style';
 
 const Title = ({ text }) => {
-  return (
-    <div>
-      <A.StyledSpan> {text}</A.StyledSpan>
-    </div>
-  );
+  return <S.StyledSpan> {text}</S.StyledSpan>;
 };
 
 export default Title;

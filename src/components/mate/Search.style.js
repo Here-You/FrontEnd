@@ -1,34 +1,32 @@
 import styled from 'styled-components';
 
-import searchIcon from '@/assets/images/search.svg';
+import searchIcon from '/images/mateSearch.svg';
 import theme from '@/theme';
 
-const ParentConatiner = styled.div`
+const SearchContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER}
 `;
-const SearchContainer = styled.div`
+
+const InputContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   width: 295px;
   height: 42.074px;
-
   border-radius: 13.941px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
   background: #fdfdfd;
-
   margin-top: 38px;
 `;
 
-const InputContainer = styled.input`
+const InputText = styled.input`
   border: none;
   background: none;
   padding-left: 17.85px;
 
   ::placeholder {
     color: rgba(0, 0, 0, 0.57);
-    font-family: Inter;
+    font-family: 'Inter';
     font-size: 12.268px;
     font-style: normal;
     font-weight: 400;
@@ -47,11 +45,10 @@ const SearchButton = styled.button`
   border-radius: 0px 13.941px 13.941px 0px;
   border-color: transparent;
   background-color: ${theme.COLOR.MAIN.GREEN};
-
   background-image: url(${searchIcon});
   background-repeat: no-repeat;
   background-position: center center;
   cursor: pointer;
 `;
 
-export { ParentConatiner, SearchContainer, InputContainer, SearchButton };
+export { SearchContainer, InputContainer, InputText, SearchButton };

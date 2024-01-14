@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import theme from '@/theme';
 
-const CardWrapper = styled.div`
+const CardContainer = styled.div`
   position: relative;
   width: 142px;
   height: 160px;
@@ -18,8 +18,7 @@ const StyledSpan = styled.span`
   left: 13px;
   width: ${props => props.width || '65px'};
   height: 63.184px;
-
-  font-family: 'Pretandard';
+  font-family: 'Pretandrd';
   font-size: 16px;
   font-weight: 700;
   line-height: normal;
@@ -35,4 +34,4 @@ const StyledImg = styled.img`
   height: 96px;
 `;
 
-export { CardWrapper, StyledSpan, StyledImg };
+export { CardContainer, StyledSpan, StyledImg };

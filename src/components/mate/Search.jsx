@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import * as A from './Search.style';
+import * as S from './Search.style';
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -14,16 +14,16 @@ const Search = () => {
   };
 
   return (
-    <A.ParentConatiner>
-      <A.SearchContainer>
-        <A.InputContainer
+    <S.SearchContainer>
+      <S.InputContainer>
+        <S.InputText
           placeholder="ID로 친구 추가"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
         />
-        <A.SearchButton onClick={handleSearch} />
-      </A.SearchContainer>
-    </A.ParentConatiner>
+        <S.SearchButton onClick={handleSearch} />
+      </S.InputContainer>
+    </S.SearchContainer>
   );
 };
 

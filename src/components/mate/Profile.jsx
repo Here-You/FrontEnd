@@ -1,4 +1,4 @@
-import * as A from './Profile.style';
+import * as S from './Profile.style';
 
 const Profile = ({ profileData }) => {
   if (!profileData) {
@@ -7,29 +7,29 @@ const Profile = ({ profileData }) => {
 
   const { imgSrc, nickname, userid, about, follower, following } = profileData;
   return (
-    <A.CenteredContainer>
-      <A.ProfileContainer>
-        <A.UserImg src={imgSrc} alt="Img data" />
-        <A.TextContainer>
-          <A.ContainerFirst>
-            <A.UserNickname>{nickname}</A.UserNickname>
-            <A.FollowButton>팔로우</A.FollowButton>
-          </A.ContainerFirst>
-          <A.UserId>{userid}</A.UserId>
-          <A.UserAbout>{about}</A.UserAbout>
-          <A.ContainerThird>
-            <A.ContainerSecond>
-              <A.UserFollow>팔로워</A.UserFollow>
-              <A.UserFollowNumber>{follower}</A.UserFollowNumber>
-            </A.ContainerSecond>
-            <A.ContainerSecond>
-              <A.UserFollow>팔로잉</A.UserFollow>
-              <A.UserFollowNumber>{following}</A.UserFollowNumber>
-            </A.ContainerSecond>
-          </A.ContainerThird>
-        </A.TextContainer>
-      </A.ProfileContainer>
-    </A.CenteredContainer>
+    <S.CenteredContainer>
+      <S.ProfileContainer>
+        <S.UserImg src={imgSrc} alt="Img data" />
+        <S.TextContainer>
+          <S.ContainerFirst>
+            <S.UserNickname>{nickname}</S.UserNickname>
+            <S.FollowButton>팔로우</S.FollowButton>
+          </S.ContainerFirst>
+          <S.UserId>{userid}</S.UserId>
+          <S.UserAbout>{about}</S.UserAbout>
+          <S.ContainerThird>
+            <S.ContainerSecond>
+              <S.UserFollow>팔로워</S.UserFollow>
+              <S.UserFollowNumber>{follower}</S.UserFollowNumber>
+            </S.ContainerSecond>
+            <S.ContainerSecond>
+              <S.UserFollow>팔로잉</S.UserFollow>
+              <S.UserFollowNumber>{following}</S.UserFollowNumber>
+            </S.ContainerSecond>
+          </S.ContainerThird>
+        </S.TextContainer>
+      </S.ProfileContainer>
+    </S.CenteredContainer>
   );
 };
 

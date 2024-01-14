@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import theme from '@/theme';
 
-const SpanContainer = styled.div`
+const SpanWrapper = styled.div`
   margin-bottom: 46px;
   margin-top: 22.93px;
   ${theme.ALIGN.ROW_CENTER}
@@ -21,18 +21,14 @@ const styledSpan = styled.span`
 `;
 
 const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${theme.ALIGN.COLUMN_CENTER}
   margin-bottom: 40px;
   gap: 20px;
 `;
 
 const CardContainer = styled.div`
-  display: flex;
+  ${theme.ALIGN.ROW_CENTER}
   flex-direction: row;
-  justify-content: center;
   gap: 20px;
 `;
 
@@ -41,4 +37,4 @@ const LinkTo = styled(Link)`
   color: inherit;
 `;
 
-export { SpanContainer, styledSpan, MainContainer, CardContainer, LinkTo };
+export { SpanWrapper, styledSpan, MainContainer, CardContainer, LinkTo };

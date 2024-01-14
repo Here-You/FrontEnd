@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import theme from '@/theme';
 
-const ContainerWrapper = styled.div`
+const ContainerContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
@@ -44,4 +44,10 @@ const StyledIcon = styled.img`
   border: none;
 `;
 
-export { ContainerWrapper, FixedContainer, StyledTitle, StyledDes, StyledIcon };
+export {
+  ContainerContainer,
+  FixedContainer,
+  StyledTitle,
+  StyledDes,
+  StyledIcon,
+};
