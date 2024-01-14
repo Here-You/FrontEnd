@@ -18,8 +18,8 @@ const ALIGN = {
   // FLEX
   ROW_CENTER: `
     display: flex;
-    justify-contents: center;
-    align-items: center
+    justify-content: center;
+    align-items: center;
     `,
   COLUMN_CENTER: `
     display: flex;
