@@ -10,9 +10,11 @@ const ProfileContainer = styled.div`
   border-radius: 30px;
   display: flex;
   align-items: self-start;
+
   h3 {
     font-size: ${FONT_SIZE.TWO_XL};
     font-weight: 700;
+
     @media ${theme.WINDOW_SIZE.MOBILE} {
       font-size: ${FONT_SIZE.XL};
     }
@@ -22,22 +24,26 @@ const ProfileContainer = styled.div`
     color: ${theme.COLOR.MAIN.GRAY};
     font-size: ${FONT_SIZE.LG};
     font-weight: 350;
+
     @media ${theme.WINDOW_SIZE.MOBILE} {
       font-size: ${FONT_SIZE.BASE};
     }
   }
 `;
+
 const ProfileInfoContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   align-items: start;
   line-height: 35px;
   margin-left: 40px;
 `;
+
 const NickNameTypeContainer = styled.div`
   display: flex;
   width: 50%;
   justify-content: space-between;
 `;
+
 const ProfilePicture = styled.img`
   width: 90px;
   border-radius: 50%;
@@ -48,19 +54,23 @@ const Mate = styled.div`
   font-weight: 350;
   font-size: ${FONT_SIZE.LG};
   margin-top: 20px;
+
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.BASE};
   }
 `;
+
 const NumberOfPeople = styled.span`
   color: ${theme.COLOR.MAIN.BLACK};
   font-family: 'Pretendard-bold';
   font-size: ${FONT_SIZE.LG};
   margin: 0 10px;
+
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.BASE};
   }
 `;
+
 export {
   ProfileContainer,
   ProfileInfoContainer,

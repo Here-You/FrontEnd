@@ -1,5 +1,6 @@
 import { myPageImg } from '/public/images/mypage/index';
-const SubCategory = [
+
+const USER_SETTING = [
   {
     id: 0,
     img: myPageImg.User,
@@ -26,30 +27,42 @@ const SubCategory = [
     img: myPageImg.Lock,
     title: '공개범위 설정',
   },
+
+ 
+];
+
+const SUPPORT = [
   {
-    id: 5,
+    id: 0,
     img: myPageImg.Question,
     title: '자주 묻는 질문',
   },
   {
-    id: 6,
+    id: 1,
     img: myPageImg.Bug,
     title: '버그 및 오류 제보',
   },
   {
-    id: 7,
+    id: 2,
     img: myPageImg.Chat,
     title: '의견 보내기',
   },
+];
+
+const ETC = [
   {
-    id: 8,
+    id: 0,
     img: myPageImg.Sertificate,
     title: '개발자 소개',
   },
   {
-    id: 9,
+    id: 1,
     img: myPageImg.File,
     title: '서비스 이용약관',
   },
-];
-export { SubCategory };
+
+]
+
+
+
+export {USER_SETTING, SUPPORT, ETC};
