@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import Slider from 'react-slick';
-
-import onboardingImg1 from '../../../public/images/onboarding1.svg';
-import onboardingImg2 from '../../../public/images/onboarding2.svg';
-import onboardingImg3 from '../../../public/images/onboarding3.svg';
-import onboardingImg4 from '../../../public/images/onboarding4.svg';
 import * as S from './OnBoardingCard.style';
+import onboardingImg1 from '/images/onboarding1.svg';
+import onboardingImg2 from '/images/onboarding2.svg';
+import onboardingImg3 from '/images/onboarding3.svg';
+import onboardingImg4 from '/images/onboarding4.svg';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
@@ -51,13 +49,12 @@ const OnBoardingCardPage = () => {
     dots: true,
     speed: 1,
     slidesToShow: 1,
-    
     draggable: false,
     customPaging: i => <S.CustomDot active={i === currentdot} />,
   };
 
   const nextHandler = id => {
-    if (id !== 2) { 
+    if (id !== 2) {
       setCurrentDot(id + 1);
       slideRef.slickNext();
       if (id === 1) {
@@ -65,11 +62,14 @@ const OnBoardingCardPage = () => {
       }
     }
   };
+  
+
 
   let slideRef;
 
   return (
-    <>      <S.StyledSlider ref={slider => (slideRef = slider)} {...settings}>
+    <>
+      <S.StyledSlider ref={slider => (slideRef = slider)} {...settings}>
         {slideImages.map(slide => (
           <div key={slide.id}>
             <S.OnBoardingImg
@@ -77,14 +77,13 @@ const OnBoardingCardPage = () => {
               alt={slide.text}
               id={`image-${slide.id}`}
             />
-            <S.SlickContentBox>
-              <S.SlickTitle>{slide.title}</S.SlickTitle>
-              <S.SlickContent>{slide.content}</S.SlickContent>
-            </S.SlickContentBox>
+            <S.SlickContentWrapper>
+              <h2>{slide.title}</h2>
+              <p>{slide.content}</p>
+            </S.SlickContentWrapper>
           </div>
         ))}
       </S.StyledSlider>
-
       <S.NextButton
         onClick={() => {
           nextHandler(currentdot);
@@ -92,8 +91,7 @@ const OnBoardingCardPage = () => {
         {slideImages[currentdot].buttonText}
       </S.NextButton>
       <S.AccountAvailability>Alredy have an account?</S.AccountAvailability>
-      </>
-
+    </>
   );
 };
 

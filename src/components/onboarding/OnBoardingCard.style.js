@@ -8,7 +8,6 @@ const StyledSlider = styled(Slider)`
   height: 100%;
   width: 100%;
 
-  display: flex;
   cursor: default;
   .slick-list {
     height: 100%;
@@ -33,6 +32,7 @@ const StyledSlider = styled(Slider)`
     margin: 0;
   }
 `;
+
 const OnBoardingImg = styled.img`
   margin: auto;
   position: relative;
@@ -112,31 +112,6 @@ const NextButton = styled.button`
     height: 90px;
   }
 `;
-const SlickTitle = styled.div`
-  font-size: ${FONT_SIZE.FOUR_XL};
-  font-weight: 900;
-  font-family: Nunito;
-  line-height: 32.74px;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #403b36;
-  @media ${theme.WINDOW_SIZE.MOBILE} {
-    font-size: ${FONT_SIZE.TWO_XL};
-  }
-`;
-const SlickContent = styled.div`
-  font-size: ${FONT_SIZE.TWO_XL};
-  font-weight: 700;
-  font-family: Nunito;
-  line-height: 27.8px;
-  text-align: center;
-  width: 70%;
-  color: #595550;
-
-  @media ${theme.WINDOW_SIZE.MOBILE} {
-    font-size: ${FONT_SIZE.XL};
-  }
-`;
 const CustomDot = styled.div`
   width: ${props => (props.active ? '10px' : '8px')};
   height: ${props => (props.active ? '10px' : '8px')};
@@ -145,12 +120,39 @@ const CustomDot = styled.div`
   pointer-events: none;
 `;
 
-const SlickContentBox = styled.div`
+const SlickContentWrapper = styled.div`
   width: 100%;
   height: 108px;
   text-align: center;
   ${theme.ALIGN.COLUMN_CENTER};
   margin: auto;
+
+  h2 {
+    font-size: ${FONT_SIZE.FOUR_XL};
+    font-weight: 900;
+    font-family: Nunito;
+    line-height: 32.74px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #403b36;
+
+    @media ${theme.WINDOW_SIZE.MOBILE} {
+      font-size: ${FONT_SIZE.TWO_XL};
+    }
+  }
+  p {
+    font-size: ${FONT_SIZE.TWO_XL};
+    font-weight: 700;
+    font-family: Nunito;
+    line-height: 27.8px;
+    text-align: center;
+    width: 70%;
+    color: #595550;
+
+    @media ${theme.WINDOW_SIZE.MOBILE} {
+      font-size: ${FONT_SIZE.XL};
+    }
+  }
 `;
 const AccountAvailability = styled.div`
   font-size: ${FONT_SIZE.BASE};
@@ -169,8 +171,6 @@ export {
   NextButton,
   StyledSlider,
   CustomDot,
-  SlickTitle,
-  SlickContent,
-  SlickContentBox,
+  SlickContentWrapper,
   AccountAvailability,
 };

@@ -1,6 +1,4 @@
-
-import styled, { css } from 'styled-components';
-
+import styled from 'styled-components';
 
 const SlickWrapper = styled.div`
   display: flex;
@@ -11,4 +9,4 @@ const SlickWrapper = styled.div`
   text-align: center;
 `;
 
-export {SlickWrapper  };
+export { SlickWrapper };
