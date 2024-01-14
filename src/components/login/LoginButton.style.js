@@ -10,7 +10,6 @@ const LoginButton = styled.button`
     padding: 20px;
     margin-bottom: 26px;
     font-size: ${FONT_SIZE.BASE};
-
 `;
 
 export {LoginButton};

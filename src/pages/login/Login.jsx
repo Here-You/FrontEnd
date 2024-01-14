@@ -1,14 +1,13 @@
 import * as S from './Login.style';
 import LoginButton from '@/components/login/LoginButton';
-import Logo from '../../../public/images/main.svg';
+import Logo from '/images/main.svg';
 
 const LoginPage = () => {
   return (
-    <S.LoginWrap>
+    <S.LoginContainer>
         <S.LogoImg src={Logo}/>
-      
         <LoginButton/>
-    </S.LoginWrap>
+    </S.LoginContainer>
   )
 
 ;
