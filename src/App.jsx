@@ -8,7 +8,6 @@ import {
   ErrorPage,
   Home,
   LoginPage,
-  MateHomePage,
   MateLookPage,
   MateManagementPage,
   MatePage,
@@ -127,10 +126,7 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
           { index: true, element: <MatePage /> },
-          {
-            path: `${BASE_PATH.MATE_HOME}`,
-            element: <MateHomePage />,
-          },
+
           {
             path: `${BASE_PATH.MATE_MANAGEMENT}`,
             element: <MateManagementPage />,
