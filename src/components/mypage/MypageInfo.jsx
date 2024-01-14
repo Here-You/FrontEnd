@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { myPageImg } from '../../../public/images/mypage/index';
 import * as S from './MypageInfo.style';
+import { myPageImg } from '/public/images/mypage/index';
 import { getProfileInfo } from '@/apis/request/profile';
+import theme from '@/theme';
 
 const MyPageInfo = () => {
   const [info, setInfo] = useState([]);
-  const [islogin, setIsLogin] = useState(true);
   const getInfo = async () => {
     try {
       const res = await getProfileInfo();
@@ -21,18 +21,19 @@ const MyPageInfo = () => {
     getInfo();
   }, []);
   return (
-    <S.ProfileBox>
+    <S.ProfileContainer>
       <S.ProfilePicture src={myPageImg.ProfilePicture} alt="아" />
-      <S.ProfileInfoBox>
+      <S.ProfileInfoContainer>
         {info.nickname ? (
           <>
-            {' '}
-            <S.NickNameTypeBox>
-              <S.NickName> {info.nickname}</S.NickName>
-              <S.NickName> {info.type}</S.NickName>
-            </S.NickNameTypeBox>
-            <S.Email> {info.email}</S.Email>
-            <S.Introduction> {info.introduction}</S.Introduction>
+            <S.NickNameTypeContainer>
+              <h3> {info.nickname}</h3>
+              <h3> {info.type}</h3>
+            </S.NickNameTypeContainer>
+            <p> {info.email}</p>
+            <p style={{ color: `${theme.COLOR.MAIN.BLACK}` }}>
+              {info.introduction}
+            </p>
             <S.Mate>
               {info.follower}
               <S.NumberOfPeople>32</S.NumberOfPeople> {info.following}
@@ -41,12 +42,12 @@ const MyPageInfo = () => {
           </>
         ) : (
           <>
-            <S.NickName>로그인하세요.</S.NickName>
-            <S.Email>로그인 하러가기</S.Email>
+            <h3>로그인하세요.</h3>
+            <p>로그인 하러가기</p>
           </>
         )}
-      </S.ProfileInfoBox>
-    </S.ProfileBox>
+      </S.ProfileInfoContainer>
+    </S.ProfileContainer>
   );
 };
 export default MyPageInfo;

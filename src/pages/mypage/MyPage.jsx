@@ -5,11 +5,11 @@ import EditModalPage from '@/components/mypage/edit/EditModalPage';
 
 const MyPage = () => {
   return (
-    <S.MypageWrap>
+    <S.MypageContainer>
       <EditModalPage/>
       <MyPageInfo />
       <Category />
-    </S.MypageWrap>
+    </S.MypageContainer>
   );
 };
 

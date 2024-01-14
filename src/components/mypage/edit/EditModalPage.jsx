@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-
-import { myPageEditImg } from '../../../../public/images/mypage/index';
+import { myPageEditImg } from '/public/images/mypage';
 import * as S from './EditModalPage.style';
 import { getProfileInfo } from '@/apis/request/profile';
 import editModal from '@/store/editModal';
@@ -69,17 +68,17 @@ const EditModalPage = ({ nickname, introduction }) => {
           onClick={e => {
             if (e.target == outside.current) onClose();
           }}>
-          <S.ModalContent>
+          <S.ModalContentContainer >
             <S.CloseImg
               onClick={() => onClose()}
               src={myPageEditImg.Close}
               alt="닫기"
             />
-            <S.ModalTitle>
+            <h3>
               {Modals[modalNum].title}
               <br />
-              <S.ModalSecondTitle>{Modals[modalNum].title2}</S.ModalSecondTitle>
-            </S.ModalTitle>
+              <p>{Modals[modalNum].title2}</p>
+            </h3>
             {Modals[modalNum].id < 2 ? (
               <>
                 <S.ModalInput
@@ -94,7 +93,7 @@ const EditModalPage = ({ nickname, introduction }) => {
               </>
             ) : (
               <>
-                <S.ButtonBox>
+                <S.ButtonContainer>
                   <S.SecondButton onClick={() => onClose()}>
                     취소
                   </S.SecondButton>
@@ -106,10 +105,10 @@ const EditModalPage = ({ nickname, introduction }) => {
                     onClick={handleButtonClick}>
                     {Modals[modalNum].button_text}
                   </S.SecondButton>
-                </S.ButtonBox>
+                </S.ButtonContainer>
               </>
             )}
-          </S.ModalContent>
+          </S.ModalContentContainer>
         </S.ModalOverlay>
       )}
     </>

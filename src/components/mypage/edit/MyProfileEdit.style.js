@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
-const EditBox = styled.div`
+const EditContainer = styled.div`
   border-radius: 15px;
   padding: 20px 20px;
   width: 85%;
@@ -12,22 +12,23 @@ const EditBox = styled.div`
   background-color: ${theme.COLOR.MAIN.WHITE};
 `;
 
-const EditContent = styled.div`
-  color: ${theme.COLOR.MAIN.GRAY};
-  font-family: 'Pretendard-light';
-`;
-const EditContentWrap = styled.div`
-  display: flex;
+const EditContentContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER}
+  width: 100%;
   justify-content: space-between;
   padding: 10px 0px 10px;
   border-bottom: 1px solid #eeeeee;
   font-size: ${FONT_SIZE.LG};
   height: 43px;
   align-items: center;
+
+  p {
+    color: ${theme.COLOR.MAIN.GRAY};
+    font-family: 'Pretendard-light';
+  }
 `;
 
 const ArrowImg = styled.img`
- width: 30px;
- 
+  width: 30px;
 `;
-export { EditBox, EditContent, EditContentWrap, ArrowImg };
+export { EditContainer, EditContentContainer, ArrowImg };

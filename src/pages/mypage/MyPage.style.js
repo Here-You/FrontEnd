@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const MypageWrap = styled.div`
+const MypageContainer = styled.div`
   width: 87%;
 
   margin: auto;
 `;
 
-export { MypageWrap };
+export { MypageContainer };
