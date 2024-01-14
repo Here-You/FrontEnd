@@ -16,7 +16,7 @@ import MyPageEditPage from './mypage/edit/MyPageEdit';
 import MyPagePasswordPage from './mypage/password/MyPagePassword';
 import MyPageWithdrawPage from './mypage/withdraw/MyPageWithdraw';
 // ON_BOARDING
-import OnBoardingPage from './onboarding/OnBoarding';
+import OnBoardingPage from './onboarding/OnBoardingPage';
 // Schedule
 import SchedulePage from './schedule/Schedule';
 // Signature
