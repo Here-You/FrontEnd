@@ -1,4 +1,4 @@
-const testData = [
+const DAILYRECORD_DATA = [
   {
     id: 1,
     date: new Date(),
@@ -94,4 +94,37 @@ const testData = [
   },
 ];
 
-export { testData };
+const SCHEDULE_DATA = [
+  {
+    id: 1,
+    title: '지수와 함께한 겨울 제주',
+    date: new Date(),
+    dailyRecordList: DAILYRECORD_DATA,
+  },
+  {
+    id: 2,
+    title: '지수와 함께한 겨울 제주',
+    date: new Date(),
+    dailyRecordList: DAILYRECORD_DATA,
+  },
+  {
+    id: 3,
+    title: '지수와 함께한 겨울 제주',
+    date: new Date(),
+    dailyRecordList: DAILYRECORD_DATA,
+  },
+  {
+    id: 4,
+    title: '지수와 함께한 겨울 제주',
+    date: new Date(),
+    dailyRecordList: DAILYRECORD_DATA,
+  },
+  {
+    id: 5,
+    title: '지수와 함께한 겨울 제주',
+    date: new Date(),
+    dailyRecordList: DAILYRECORD_DATA,
+  },
+];
+
+export { SCHEDULE_DATA, DAILYRECORD_DATA };

@@ -17,6 +17,7 @@ const PreviewImage = styled.img`
   width: 300px;
   height: 250px;
   border-radius: 20px;
+  object-fit: cover;
   cursor: pointer;
 `;
 
@@ -49,8 +50,8 @@ const DateText = styled(YearText)`
 const RecordContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
+  gap: 20px;
   padding: 43px 40px;
   width: 550px;
   height: 930px;
@@ -63,7 +64,6 @@ const RecordImageContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   width: 300px;
   height: 300px;
-  border: ${props => (props.$selectedImg ? '' : '1px solid #21b69c')};
   border-radius: 20px;
 `;
 

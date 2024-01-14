@@ -1,34 +1,58 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import * as S from './DailyRecordWritePage.style';
-import AddRoundDuotone from '/icons/AddRoundDuotone.svg';
+import { DAILYRECORD_DATA } from '../data';
+import * as S from './DailyRecordEdit.style';
 
-const DailyRecordWritePage = () => {
+const DailyRecordEditPage = () => {
+  const navigate = useNavigate();
+  const { recordid: recordId, scheduleid: scheduleId } = useParams();
+  const [recordData, setRecordData] = useState();
   const [selectedImg, setSelectedImg] = useState();
-  const year = new Date().getFullYear();
-  const month = new Date().toLocaleString('en-US', { month: 'short' });
-  const day = new Date().getDate();
   const [isLoading, setIsLoading] = useState(false);
+
+  const Date = useMemo(() => {
+    if (!recordData?.date) {
+      return null;
+    }
+    const dateObject = recordData?.date;
+    const year = dateObject.getFullYear();
+    const month = dateObject.toLocaleString('en-US', { month: 'short' });
+    const day = dateObject.getDate();
+    return { year, month, day };
+  }, [recordData?.date]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
+    watch,
   } = useForm({
     mode: 'onBlur',
     // resolver: zodResolver(schema),
-    defaultValues: {
-      location: '',
-      title: '',
-      weather: '',
-      feeling: '',
-      content: '',
-      recordImg: '',
-    },
   });
+
+  const { location, title, weather, feeling, content, recordImg } = watch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = DAILYRECORD_DATA[recordId - 1]; //데이터 요청 부분
+      setRecordData(data);
+
+      // 데이터를 가져온 후에 기본값 설정
+      setValue('location', data?.location);
+      setValue('title', data?.title);
+      setValue('weather', data?.weather);
+      setValue('feeling', data?.feeling);
+      setValue('content', data?.content);
+      setValue('recordImg', data?.recordImg);
+    };
+    fetchData();
+  }, []);
 
   const textRef = useRef();
   const handleResizeHeight = useCallback(() => {
@@ -48,25 +72,22 @@ const DailyRecordWritePage = () => {
 
   const onSubmit = async data => {
     console.log('제출된 데이터: ', data);
+    alert('수정되었습니다');
+    navigate(`/dailyrecord?scheduleid=${scheduleId}&recordid=${recordId}`);
   };
 
   return (
     <S.Container>
       <S.DateContainer>
-        <S.YearText>{year}</S.YearText>
+        <S.YearText>{Date?.year}</S.YearText>
         <S.DateText>
-          {day}, {month}
+          {Date?.day}, {Date?.month}
         </S.DateText>
       </S.DateContainer>
       <S.RecordContainer>
         <S.RecordImageContainer $selectedImg={selectedImg}>
-          {selectedImg && (
-            <label htmlFor="recordImg">
-              <S.PreviewImage src={selectedImg} />
-            </label>
-          )}
           <label htmlFor="recordImg">
-            <S.ImageUploadButton src={AddRoundDuotone} />
+            <S.PreviewImage src={selectedImg ? selectedImg : recordImg} />
           </label>
           <S.ImageInput
             id="recordImg"
@@ -80,36 +101,41 @@ const DailyRecordWritePage = () => {
           placeholder="오늘의 위치"
           ref={textRef}
           onInput={handleResizeHeight}
+          value={location || ''}
           {...register('location', { required: '위치를 입력해주세요' })}
         />
         <S.TitleText
           id="title"
           placeholder="제목"
+          value={title || ''}
           {...register('title', { required: '제목을 입력해주세요' })}
         />
         <S.WeatherContainer>
           <S.WeatherText
             id="weather"
             placeholder="날씨"
+            value={weather || ''}
             {...register('weather', { required: '날씨를 입력해주세요' })}
           />
           <S.FeelingText
             id="feeling"
             placeholder="오늘의 기분"
+            value={feeling || ''}
             {...register('feeling', { required: '기분을 알려주세요' })}
           />
         </S.WeatherContainer>
         <S.ContentText
           id="content"
           placeholder="내용"
+          value={content || ''}
           {...register('content', { required: '내용을 입력해주세요' })}
         />
       </S.RecordContainer>
       <button type="submit" onClick={handleSubmit(onSubmit)}>
-        제출하기
+        수정하기
       </button>
     </S.Container>
   );
 };
 
-export default DailyRecordWritePage;
+export default DailyRecordEditPage;

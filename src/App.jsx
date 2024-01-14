@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { BASE_PATH } from './constants/path';
 import {
+  DailyRecordEditPage,
   DailyRecordPage,
   DailyRecordWritePage,
   ErrorPage,
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.DAILYRECORD_WRITE}`,
             element: <DailyRecordWritePage />,
+          },
+          {
+            path: `${BASE_PATH.DAILYRECORD_EDIT}`,
+            element: <DailyRecordEditPage />,
           },
         ],
       },

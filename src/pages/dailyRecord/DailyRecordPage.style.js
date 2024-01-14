@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
@@ -26,16 +27,14 @@ const slideAnimationReverse = keyframes`
 `;
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${theme.ALIGN.COLUMN_CENTER};
+  overflow: hidden;
   gap: 20px;
 `;
 
 const DateText = styled.p`
   color: #333;
-  font-size: 20px;
+  font-size: ${FONT_SIZE.LG};
   font-weight: 600;
 `;
 
@@ -50,8 +49,8 @@ const SlideContainer = styled.div`
 const RecordContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
+  gap: 20px;
   padding: 43px 40px;
   min-width: 550px;
   width: 100%;
@@ -67,8 +66,8 @@ const MainRecordContainer = styled(RecordContainer)`
 const RecordContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
+  gap: 20px;
   min-width: 550px;
   width: 100%;
 
@@ -120,7 +119,7 @@ const LocationText = styled.p`
   display: flex;
   height: 50px;
   color: #333;
-  font-size: 15px;
+  font-size: ${FONT_SIZE.SM};
   font-weight: 400px;
   text-align: center;
   white-space: pre-wrap;
@@ -128,7 +127,7 @@ const LocationText = styled.p`
 
 const TitleText = styled.p`
   color: black;
-  font-size: 30px;
+  font-size: ${FONT_SIZE.THREE_XL};
   font-weight: 700;
   text-align: center;
   white-space: pre-wrap;
@@ -145,7 +144,7 @@ const WeatherContainer = styled.div`
 
 const WeatherText = styled.p`
   color: #1b9c85;
-  font-size: 16px;
+  font-size: ${FONT_SIZE.SM};
   font-weight: 700;
   text-align: center;
 `;
@@ -153,8 +152,8 @@ const WeatherText = styled.p`
 const FeelingText = styled(WeatherText)``;
 
 const ContentText = styled.p`
-  color: black;
-  font-size: 17px;
+  color: ${theme.COLOR.MAIN.BLACK};
+  font-size: ${FONT_SIZE.LG};
   font-weight: 700;
   width: 100%;
   height: 390px;
@@ -166,32 +165,28 @@ const ContentText = styled.p`
     width: 5px;
     background-color: transparent;
   }
-  /* &::-webkit-scrollbar-thumb {
-    width: 5px;
-    background-color: #1b9c85;
-    border-radius: 100px;
-  } */
 `;
 
-const AddButton = styled.button`
+const AddButton = styled(Link)`
   ${theme.ALIGN.COLUMN_CENTER};
   padding: 0;
-  margin: auto;
+  margin-left: auto;
   background-color: #e8f6ef;
-  border: none;
   text-align: center;
-  width: 58px;
-  height: 58px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  color: ${theme.COLOR.MAIN.GREEN};
-  font-size: ${FONT_SIZE.FIVE_XL};
   position: sticky;
-  bottom: 20px;
-  margin-right: -80px;
+  bottom: 80px;
+  right: 30px;
 
   cursor: pointer;
   z-index: 1;
-  align-self: flex-end;
+`;
+
+const PenIcon = styled.img`
+  width: 25px;
+  height: 25px;
 `;
 
 export {
@@ -211,4 +206,5 @@ export {
   WeatherContainer,
   WeatherText,
   AddButton,
+  PenIcon,
 };

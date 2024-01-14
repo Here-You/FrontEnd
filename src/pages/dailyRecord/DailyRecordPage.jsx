@@ -1,26 +1,34 @@
 import { format } from 'date-fns';
 import { useEffect, useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import * as S from './DailyRecordPage.style';
-import { testData } from './data';
+import { SCHEDULE_DATA } from './data';
 import ExpandLeft from '/icons/ExpandLeft.svg';
 import ExpandRight from '/icons/ExpandRight.svg';
+import PenGreen from '/icons/PenGreen.svg';
 
 const DailyRecordPage = () => {
-  const [currentVisibleData, setCurrentVisibleData] = useState({});
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+
+  const scheduleId = params.get('scheduleid');
+  const recordId = params.get('recordid') || 1;
+  const recordData = SCHEDULE_DATA[0].dailyRecordList; //전체 데이터
+  const [currentVisibleData, setCurrentVisibleData] = useState({}); //현재 화면에 보여주는 데이터
   const [slideDirection, setSlideDirection] = useState(null);
-  const [nowPage, setNowPage] = useState(3);
+  const [nowPage, setNowPage] = useState(parseInt(recordId)); //일지 하나당 데이터 id
 
   const date = useMemo(() => {
     if (!currentVisibleData.date) {
       return null;
     }
 
-    return `${format(currentVisibleData.date, 'yyyy년 MM월 dd일')}`;
-  }, [currentVisibleData.date]);
+    return `${format(currentVisibleData?.date, 'yyyy년 MM월 dd일')}`;
+  }, [currentVisibleData?.date]);
 
   useEffect(() => {
-    setCurrentVisibleData(testData[nowPage - 1]); //처음 불러온 데이터
+    setCurrentVisibleData(recordData[nowPage - 1]);
   }, [nowPage]);
 
   const handleAnimationEnd = () => {
@@ -29,7 +37,7 @@ const DailyRecordPage = () => {
 
   const prevButtonClick = () => {
     if (nowPage === 1) {
-      alert('이번 달 가장 첫 일지입니다!');
+      alert('이 여정의 가장 첫 일지입니다!');
     } else {
       setSlideDirection('slide-right');
       setNowPage(prevPage => prevPage - 1);
@@ -37,8 +45,8 @@ const DailyRecordPage = () => {
   };
 
   const nextButtonClick = () => {
-    if (nowPage === testData.length) {
-      alert('이번 달 가장 마지막 일지입니다!');
+    if (nowPage === recordData.length) {
+      alert('이 여정의 가장 마지막 일지입니다!');
     } else {
       setSlideDirection('slide-left');
       setNowPage(prevPage => prevPage + 1);
@@ -76,7 +84,9 @@ const DailyRecordPage = () => {
           <S.RecordContainer></S.RecordContainer>
         </div>
       </S.SlideContainer>
-      <S.AddButton>+</S.AddButton>
+      <S.AddButton to={`/dailyrecord/edit/${scheduleId}/${nowPage}`}>
+        <S.PenIcon src={PenGreen} />
+      </S.AddButton>
     </S.Container>
   );
 };

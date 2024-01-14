@@ -7,7 +7,8 @@ const BASE_PATH = {
   SCHEDULE: '/schedule',
   // DAILYRECORD
   DAILYRECORD: '/dailyrecord',
-  DAILYRECORD_WRITE: '/dailyrecord/write',
+  DAILYRECORD_WRITE: '/dailyrecord/write/:scheduleid',
+  DAILYRECORD_EDIT: '/dailyrecord/edit/:scheduleid/:recordid',
   // SIGNATURE
   SIGNATURE: '/signature',
   SIGNATURE_WRITE: '/signature/write',
