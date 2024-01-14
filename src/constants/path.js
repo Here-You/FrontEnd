@@ -18,6 +18,7 @@ const BASE_PATH = {
   MATE_SEARCH: '/mate/search',
   MATE_MANAGEMENT: '/mate/management',
   MATE_HOME: '/mate/:userId',
+  MATE_RULE_CHECK_PAGE: '/mate/rule-check/:teamId',
   // MATE_MY_RULE: '/mate/rule/mine',
   // MATE_WRITE_RULE: '/mate/rule/mine/edit',
   // MATE_OURS_RULE: '/mate/rule/ours',
