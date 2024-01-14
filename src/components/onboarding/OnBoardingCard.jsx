@@ -1,57 +1,20 @@
 import { useState } from 'react';
 
 import * as S from './OnBoardingCard.style';
-import onboardingImg1 from '/images/onboarding1.svg';
-import onboardingImg2 from '/images/onboarding2.svg';
-import onboardingImg3 from '/images/onboarding3.svg';
-import onboardingImg4 from '/images/onboarding4.svg';
+import { BOARDING_SLIDE } from '@/constants/boardingSlide';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
 const OnBoardingCardPage = () => {
   const [dot, setDot] = useState(true);
-  const [currentdot, setCurrentDot] = useState(0);
-  const slideImages = [
-    {
-      id: 0,
-      img: onboardingImg1,
-      title: '우리가 여행을 즐기는 방법',
-      content:
-        'Notely is the world’s safest, largest and intelligent digital notebook. Join over 10M+ users already using Notely.',
-      buttonText: 'NEXT',
-    },
-    {
-      id: 1,
-      img: onboardingImg2,
-      title: '기록하세요',
-      content:
-        'Notely is the world’s safest, largest and intelligent digital notebook. Join over 10M+ users already using Notely.',
-      buttonText: 'NEXT',
-    },
-    {
-      id: 2,
-      img: onboardingImg3,
-      title: '성장하세요',
-      content:
-        'Notely is the world’s safest, largest and intelligent digital notebook. Join over 10M+ users already using Notely.',
-      buttonText: 'NEXT',
-    },
-    // {
-    //   id: 3,
-    //   img: onboardingImg4,
-    //   title: '우리가 여행을 즐기는 방법',
-    //   content:
-    //     'Notely is the world’s safest, largest and intelligent digital notebook. Join over 10M+ users already using Notely.',
-    //   buttonText: '시작하기',
-    // }, 여기는 포함되는건지 아직 모름
-  ];
+  const [currentDot, setCurrentDot] = useState(0);
 
   const settings = {
     dots: true,
     speed: 1,
     slidesToShow: 1,
     draggable: false,
-    customPaging: i => <S.CustomDot active={i === currentdot} />,
+    customPaging: i => <S.CustomDot active={i === currentDot} />,
   };
 
   const nextHandler = id => {
@@ -69,7 +32,7 @@ const OnBoardingCardPage = () => {
   return (
     <>
       <S.StyledSlider ref={slider => (slideRef = slider)} {...settings}>
-        {slideImages.map(slide => (
+        {BOARDING_SLIDE.map(slide => (
           <div key={slide.id}>
             <S.OnBoardingImg
               src={slide.img}
@@ -85,11 +48,11 @@ const OnBoardingCardPage = () => {
       </S.StyledSlider>
       <S.NextButton
         onClick={() => {
-          nextHandler(currentdot);
+          nextHandler(currentDot);
         }}>
-        {slideImages[currentdot].buttonText}
+        {BOARDING_SLIDE[currentDot].buttonText}
       </S.NextButton>
-      <S.AccountAvailability>Alredy have an account?</S.AccountAvailability>
+      <S.AccountAvailability>Already have an account?</S.AccountAvailability>
     </>
   );
 };

@@ -12,12 +12,10 @@ const StyledSlider = styled(Slider)`
   .slick-list {
     height: 100%;
     object-fit: cover;
-    display: flex;
-    align-items: center;
+    ${theme.ALIGN.ROW_CENTER};
   }
   .slick-track {
-    display: flex;
-    align-items: center;
+    ${theme.ALIGN.ROW_CENTER};
   }
   .slick-prev {
     left: 6px;
@@ -100,7 +98,6 @@ const NextButton = styled.button`
   border-radius: 12px;
   letter-spacing: 0.1rem;
   color: #fffbfa;
-  font-family: Nunito;
   border: none;
   font-weight: 900;
   font-size: ${FONT_SIZE.XL};
@@ -141,10 +138,10 @@ const SlickContentWrapper = styled.div`
       font-size: ${FONT_SIZE.TWO_XL};
     }
   }
+
   p {
     font-size: ${FONT_SIZE.TWO_XL};
     font-weight: 700;
-    font-family: Nunito;
     line-height: 27.8px;
     text-align: center;
     width: 70%;
@@ -160,7 +157,6 @@ const AccountAvailability = styled.div`
   font-size: ${FONT_SIZE.BASE};
   font-weight: 800;
   letter-spacing: 0.1rem;
-  font-family: Nunito;
   margin-top: 30px;
   color: #1b9c85;
   line-height: 20.8px;
