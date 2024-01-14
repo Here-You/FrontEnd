@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-
 import * as S from './MypageInfo.style';
 import { myPageImg } from '/public/images/mypage/index';
 import { getProfileInfo } from '@/apis/request/profile';
 import theme from '@/theme';
+import { Link } from 'react-router-dom';
+
 
 const MyPageInfo = () => {
   const [info, setInfo] = useState([]);
@@ -43,7 +44,7 @@ const MyPageInfo = () => {
         ) : (
           <>
             <h3>로그인하세요.</h3>
-            <p>로그인 하러가기</p>
+            <S.LinkTo to="/login">로그인 하러가기</S.LinkTo>
           </>
         )}
       </S.ProfileInfoContainer>

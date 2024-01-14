@@ -27,8 +27,6 @@ const USER_SETTING = [
     img: myPageImg.Lock,
     title: '공개범위 설정',
   },
-
- 
 ];
 
 const SUPPORT = [
@@ -60,9 +58,6 @@ const ETC = [
     img: myPageImg.File,
     title: '서비스 이용약관',
   },
+];
 
-]
-
-
-
-export {USER_SETTING, SUPPORT, ETC};
+export { USER_SETTING, SUPPORT, ETC };

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
@@ -71,6 +71,11 @@ const NumberOfPeople = styled.span`
   }
 `;
 
+const LinkTo = styled(Link)`
+ text-decoration-line: none;
+ color: ${theme.COLOR.MAIN.BLACK};
+`;
+
 export {
   ProfileContainer,
   ProfileInfoContainer,
@@ -78,4 +83,5 @@ export {
   NickNameTypeContainer,
   Mate,
   NumberOfPeople,
+  LinkTo,
 };

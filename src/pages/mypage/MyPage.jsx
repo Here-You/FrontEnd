@@ -1,12 +1,15 @@
 import * as S from './MyPage.style';
+import ModalPortal from '@/components/ModalPortal';
 import Category from '@/components/mypage/Category';
 import MyPageInfo from '@/components/mypage/MypageInfo';
-import EditModalPage from '@/components/mypage/edit/EditModalPage';
+import EditModalPage from '@/components/mypage/edit/EditModal';
 
 const MyPage = () => {
   return (
     <S.MypageContainer>
-      <EditModalPage/>
+      <ModalPortal>
+        <EditModalPage />
+      </ModalPortal>
       <MyPageInfo />
       <Category />
     </S.MypageContainer>

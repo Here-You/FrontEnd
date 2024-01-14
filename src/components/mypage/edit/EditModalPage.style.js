@@ -13,6 +13,7 @@ const ModalOverlay = styled.div`
   left: 0;
   backdrop-filter: blur(7px);
 `;
+
 const ModalContentContainer = styled.div`
   width: 360px;
   height: 240px;
@@ -49,6 +50,7 @@ const CloseImg = styled.img`
   align-self: flex-start;
   margin: 10px 0 0 15px;
 `;
+
 const ModalButton = styled.button`
   font-size: ${FONT_SIZE.BASE};
   color: #ff8686;
@@ -59,6 +61,7 @@ const ModalButton = styled.button`
   width: 100%;
   border-top: 1px solid #eeeeee;
 `;
+
 const SecondButton = styled.button`
   font-size: ${FONT_SIZE.BASE};
   font-family: 'Pretendard-regular';
@@ -68,6 +71,7 @@ const SecondButton = styled.button`
   width: 50%;
   border-top: 1px solid #eeeeee;
 `;
+
 const ButtonContainer = styled.div`
   width: 100%;
 `;
@@ -79,6 +83,7 @@ const ModalInput = styled.input`
   padding: 15px;
   margin-bottom: 10px;
 `;
+
 export {
   ModalContentContainer,
   ModalOverlay,
