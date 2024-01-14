@@ -37,6 +37,7 @@ const OnBoardingImg = styled.img`
   margin: auto;
   position: relative;
   bottom: 20px;
+
   ${props =>
     props.id === 'image-0' &&
     css`
@@ -63,7 +64,6 @@ const OnBoardingImg = styled.img`
       margin-bottom: 47.8px;
     `}
 
- 
    @media ${theme.WINDOW_SIZE.MOBILE} {
     ${props =>
       props.id === 'image-0' &&
@@ -112,6 +112,7 @@ const NextButton = styled.button`
     height: 90px;
   }
 `;
+
 const CustomDot = styled.div`
   width: ${props => (props.active ? '10px' : '8px')};
   height: ${props => (props.active ? '10px' : '8px')};
@@ -154,6 +155,7 @@ const SlickContentWrapper = styled.div`
     }
   }
 `;
+
 const AccountAvailability = styled.div`
   font-size: ${FONT_SIZE.BASE};
   font-weight: 800;
@@ -162,10 +164,12 @@ const AccountAvailability = styled.div`
   margin-top: 30px;
   color: #1b9c85;
   line-height: 20.8px;
+
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.SM};
   }
 `;
+
 export {
   OnBoardingImg,
   NextButton,
