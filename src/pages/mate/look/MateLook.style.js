@@ -3,13 +3,12 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const ContainerContainer = styled.div`
-  display: flex;
-  justify-content: center;
+  ${theme.ALIGN.COLUMN_CENTER}
 `;
 
 const FixedContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
   position: relative;
-  ${theme.ALIGN.COLUMN_CENTER}
   align-items: flex-start;
   width: 269px;
   height: 164px;
@@ -40,7 +39,6 @@ const StyledIcon = styled.img`
   bottom: 0;
   width: 96px;
   height: 96px;
-
   border: none;
 `;
 

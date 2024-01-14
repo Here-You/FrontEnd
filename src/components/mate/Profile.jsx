@@ -1,3 +1,4 @@
+import FollowBox from './FollowBox';
 import * as S from './Profile.style';
 
 const Profile = ({ profileData }) => {
@@ -11,22 +12,16 @@ const Profile = ({ profileData }) => {
       <S.ProfileContainer>
         <S.UserImg src={imgSrc} alt="Img data" />
         <S.TextContainer>
-          <S.ContainerFirst>
-            <S.UserNickname>{nickname}</S.UserNickname>
+          <S.NameAndFollow>
+            <span>{nickname}</span>
             <S.FollowButton>팔로우</S.FollowButton>
-          </S.ContainerFirst>
+          </S.NameAndFollow>
           <S.UserId>{userid}</S.UserId>
           <S.UserAbout>{about}</S.UserAbout>
-          <S.ContainerThird>
-            <S.ContainerSecond>
-              <S.UserFollow>팔로워</S.UserFollow>
-              <S.UserFollowNumber>{follower}</S.UserFollowNumber>
-            </S.ContainerSecond>
-            <S.ContainerSecond>
-              <S.UserFollow>팔로잉</S.UserFollow>
-              <S.UserFollowNumber>{following}</S.UserFollowNumber>
-            </S.ContainerSecond>
-          </S.ContainerThird>
+          <S.FollowContainer>
+            <FollowBox text="팔로워" num={follower} />
+            <FollowBox text="팔로잉" num={following} />
+          </S.FollowContainer>
         </S.TextContainer>
       </S.ProfileContainer>
     </S.CenteredContainer>

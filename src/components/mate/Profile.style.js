@@ -20,11 +20,9 @@ const UserImg = styled.img`
   position: absolute;
   margin-left: 27px;
   margin-top: 29px;
-
   width: 78px;
   height: 78px;
   border-radius: 78px;
-  background-image: url(<path-to-image>), none;
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -39,25 +37,25 @@ const TextContainer = styled.div`
   flex-direction: column;
   gap: 6px;
 `;
-
-const ContainerFirst = styled.div`
-  display: flex;
-  flex-direction: row;
+const NameAndFollow = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
   justify-content: space-between;
+
+  span {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 `;
-const UserNickname = styled.span`
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-`;
+const UserNickname = styled.span``;
+
 const FollowButton = styled.button`
   width: 46px;
   height: 14px;
   border-radius: 10px;
   border: none;
   background-color: ${theme.COLOR.MAIN.GREEN};
-
   color: ${theme.COLOR.MAIN.WHITE};
   font-size: 8px;
   font-style: normal;
@@ -81,14 +79,12 @@ const UserAbout = styled.span`
   line-height: normal;
 `;
 
-const ContainerThird = styled.div`
-  display: flex;
-  flex-direction: row;
+const FollowContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
   gap: 21px;
 `;
-const ContainerSecond = styled.div`
-  display: flex;
-  flex-direction: row;
+const FollowData = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
   gap: 10px;
 `;
 const UserFollow = styled.span`
@@ -110,13 +106,13 @@ export {
   ProfileContainer,
   UserImg,
   TextContainer,
-  ContainerFirst,
+  NameAndFollow,
   UserNickname,
   FollowButton,
   UserId,
   UserAbout,
-  ContainerThird,
-  ContainerSecond,
+  FollowContainer,
+  FollowData,
   UserFollow,
   UserFollowNumber,
 };

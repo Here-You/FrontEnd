@@ -10,7 +10,7 @@ const MatePage = () => {
   return (
     <Routes>
       <Route path="/" element={<MateHomePage />} />
-      <Route path="/search/:userid" element={<MateSearchPage />} />
+      <Route path="/search" element={<MateSearchPage />} />
       <Route path="/look" element={<MateLookPage />} />
       <Route path="/management" element={<MateManagementPage />} />
     </Routes>

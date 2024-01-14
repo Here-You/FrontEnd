@@ -6,13 +6,12 @@ import theme from '@/theme';
 const SpanWrapper = styled.div`
   margin-bottom: 46px;
   margin-top: 22.93px;
-  ${theme.ALIGN.ROW_CENTER}
+  ${theme.ALIGN.ROW_CENTER};
 `;
 
 const styledSpan = styled.span`
   color: rgba(0, 0, 0, 0.57);
   text-align: center;
-  font-family: 'Inter';
   font-size: 12.268px;
   font-style: normal;
   font-weight: 400;
@@ -21,7 +20,7 @@ const styledSpan = styled.span`
 `;
 
 const MainContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER}
+  ${theme.ALIGN.COLUMN_CENTER};
   margin-bottom: 40px;
   gap: 20px;
 `;

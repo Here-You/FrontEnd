@@ -4,12 +4,11 @@ import searchIcon from '/images/mateSearch.svg';
 import theme from '@/theme';
 
 const SearchContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER}
+  ${theme.ALIGN.ROW_CENTER};
 `;
 
 const InputContainer = styled.div`
-  display: flex;
-  align-items: center;
+  ${theme.ALIGN.ROW_CENTER};
   justify-content: space-between;
   width: 295px;
   height: 42.074px;
