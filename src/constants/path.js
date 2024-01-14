@@ -20,6 +20,7 @@ const BASE_PATH = {
   // MATE
   MATE: '/mate',
   MATE_SEARCH: '/mate/search',
+  MATE_LOOK: '/mate/look',
   MATE_MANAGEMENT: '/mate/management',
   MATE_HOME: '/mate/:userId',
   MATE_RULE_CHECK_PAGE: '/mate/rule-check/:teamId',
@@ -38,6 +39,8 @@ const BASE_PATH = {
 
 const API_PATH = {
   FAVORITE_TRAVELS: `${BASE_PATH.TRAVELS}/favorite`,
+  MATE_SEARCH: `${BASE_PATH.MATE_SEARCH}`,
+  MATE_LOOK: `${BASE_PATH.MATE_LOOK}`,
   DAILYRECORD_WRITE: `${BASE_PATH.DAILYRECORD_WRITE}`,
 };
 

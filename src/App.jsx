@@ -9,6 +9,7 @@ import {
   Home,
   LoginPage,
   MateHomePage,
+  MateLookPage,
   MateManagementPage,
   MatePage,
   MateRuleCheckPage,
@@ -137,6 +138,10 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.MATE_SEARCH}`,
             element: <MateSearchPage />,
+          },
+          {
+            path: `${BASE_PATH.MATE_LOOK}`,
+            element: <MateLookPage />,
           },
           {
             path: `${BASE_PATH.MATE_RULE_CHECK_PAGE}`,
