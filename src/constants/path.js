@@ -17,7 +17,7 @@ const BASE_PATH = {
   MATE: '/mate',
   MATE_SEARCH: '/mate/search',
   MATE_LOOK: '/mate/look',
-  // MATE_MANAGEMENT: '/mate/management',
+  MATE_MANAGEMENT: '/mate/management',
   // MATE_HOME: '/mate/:userId',
   // MATE_MY_RULE: '/mate/rule/mine',
   // MATE_WRITE_RULE: '/mate/rule/mine/edit',
