@@ -1,21 +1,14 @@
 import styled from 'styled-components';
 
 import Editor from './Editor';
+import * as S from './Editor.style';
 
 const SignatureWritePage = () => {
   return (
-    <Wrap>
+    <S.PageWrapper>
       <Editor />
-    </Wrap>
+    </S.PageWrapper>
   );
 };
 
 export default SignatureWritePage;
-
-const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  margin: auto;
-  height: 100%;
-`;
