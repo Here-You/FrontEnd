@@ -4,8 +4,6 @@ import theme from '@/theme';
 
 //SignatureWrite.jsx
 const PageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   width: 90%;
   margin: auto;
   height: 100%;
@@ -13,13 +11,10 @@ const PageWrapper = styled.div`
 
 //Editor.jsx
 const EditorContainer = styled.div`
-  diplay: flex;
-  flex-direction: column;
   width: 100%;
   height: 100%;
 `;
 const Title = styled.input`
-  diplay: flex;
   outline: none;
   border: none;
   font-family: 'Pretendard-bold';
@@ -30,14 +25,12 @@ const Title = styled.input`
   line-height: normal;
 `;
 const Divider = styled.div`
-  diplay: flex;
   color: ${theme.COLOR.MAIN.LIGHT_BLACK};
   width: 100%;
   height: 1px;
   margin: 15px 0px;
 `;
 const ContentInput = styled.textarea`
-  diplay: flex;
   width: 100%;
   height: 50%;
   outline: none;
@@ -48,37 +41,36 @@ const ContentInput = styled.textarea`
   font-weight: 400;
   line-height: normal;
 `;
+
 const LocationContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 10px 0px;
+  ${theme.ALIGN.ROW_CENTER};
+  margin-bottom: 30px;
 `;
+
 const LocationIcon = styled.img`
-  diplay: flex;
   margin: 0px 5px;
 `;
+
 const LocationButton = styled.div`
-  diplay: flex;
   color: ${theme.COLOR.MAIN.GRAY};
   text-align: center;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
   &:hover {
     color: ${theme.COLOR.MAIN.BLACK};
   }
 `;
 const OptionContainer = styled.div`
-  display: flex;
-  flex-direction: row;
+  ${theme.ALIGN.ROW_CENTER};
+  position: relative;
 `;
 const ButtonContainer = styled.div`
-  diplay: flex;
   position: absolute;
 `;
 const OptionButton = styled.img`
-  diplay: flex;
   margin: 0px 5px;
 `;
 
