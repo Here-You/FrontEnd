@@ -1,7 +1,7 @@
 import SubCateGoryPage from './SubCategoryPage';
-import { SUPPORT, USER_SETTING, ETC } from '@/constants/subcategory';
+import { ETC, SUPPORT, USER_SETTING } from '@/constants/subcategory';
+
 const Category = () => {
- 
   return (
     <>
       <SubCateGoryPage listName={USER_SETTING}>유저설정</SubCateGoryPage>

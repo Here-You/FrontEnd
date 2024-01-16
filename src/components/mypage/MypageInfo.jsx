@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
+
 import * as S from './MypageInfo.style';
 import { myPageImg } from '/public/images/mypage/index';
 import { getProfileInfo } from '@/apis/request/profile';
 import theme from '@/theme';
-import { Link } from 'react-router-dom';
-
 
 const MyPageInfo = () => {
   const [info, setInfo] = useState([]);

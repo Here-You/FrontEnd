@@ -6,13 +6,15 @@ import EditModalPage from '@/components/mypage/edit/EditModal';
 
 const MyPage = () => {
   return (
-    <S.MypageContainer>
+    <>
       <ModalPortal>
         <EditModalPage />
       </ModalPortal>
-      <MyPageInfo />
-      <Category />
-    </S.MypageContainer>
+      <S.MypageContainer>
+        <MyPageInfo />
+        <Category />
+      </S.MypageContainer>
+    </>
   );
 };
 

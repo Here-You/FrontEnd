@@ -2,8 +2,9 @@ import { create } from 'zustand';
 
 const editModal = create(set => ({
   isOpen: false,
-  modalNum: 0,
-  onOpen: val => set({ isOpen: true, modalNum: val }),
+  modalName: '',
+  modalId: 0,
+  onOpen: (val, num) => set({ isOpen: true, modalName: val, modalId: num }),
   onClose: () => set({ isOpen: false }),
 }));
 

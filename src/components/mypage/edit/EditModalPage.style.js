@@ -7,11 +7,12 @@ const ModalOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   width: 100%;
   height: 100vh;
-  z-index: 10;
+  z-index: 30;
   position: fixed;
   top: 0;
   left: 0;
   backdrop-filter: blur(7px);
+
 `;
 
 const ModalContentContainer = styled.div`

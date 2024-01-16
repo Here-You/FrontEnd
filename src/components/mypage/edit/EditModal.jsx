@@ -1,40 +1,49 @@
 import { useEffect, useRef, useState } from 'react';
-import EDIT_MODALS from '../../../constants/editModal';
+
+import { EDIT_MODAL, INPUT_EDIT_MODAL } from '../../../constants/editModal';
 import * as S from './EditModalPage.style';
 import { myPageEditImg } from '/public/images/mypage';
 import { getProfileInfo } from '@/apis/request/profile';
 import editModal from '@/store/editModal';
 
-const EditModalPage = ({ nickname, introduction }) => {
+const EditModalPage = () => {
   const [info, setInfo] = useState();
-  const [nick, setNick] = useState(nickname);
+  const [nick, setNick] = useState();
+  const { onClose, isOpen, modalId, modalName } = editModal();
+  const [changeValue, setChangeValue] = useState();
+  const [modals, setModals] = useState();
 
-  const [introductions, setIntroductions] = useState(introduction);
+  const [introductions, setIntroductions] = useState();
   const getInfo = async () => {
     try {
       const res = await getProfileInfo();
       const members = res.data;
       setInfo(members);
-      console.log(info);
     } catch (e) {
       console.log(e);
     }
   };
   useEffect(() => {
     getInfo();
-  }, []);
-  const { onClose, modalNum, isOpen } = editModal();
+    setModals(modalName === 'EDIT_MODAL' ? EDIT_MODAL : INPUT_EDIT_MODAL);
+  }, [modalName]);
+
   const handleInputChange = event => {
-    if (EDIT_MODALS[modalNum].id === 0) {
-      setNick(event.target.value);
+    if (EDIT_MODAL[modalId].id === 0) {
+      setChangeValue(event.target.value);
     } else {
-      setIntroductions(event.target.value);
+      setChangeValue(event.target.value);
     }
   };
   const outside = useRef();
 
   const handleButtonClick = () => {
     onClose();
+    if (EDIT_MODAL[modalId].id === 0) {
+      setNick(changeValue);
+    } else {
+      setIntroductions(changeValue);
+    }
   };
   return (
     <>
@@ -51,20 +60,20 @@ const EditModalPage = ({ nickname, introduction }) => {
               alt="닫기"
             />
             <h3>
-              {EDIT_MODALS[modalNum].title}
+              {modals[modalId].title}
               <br />
-              <p>{EDIT_MODALS[modalNum].title2}</p>
+              <p>{modals[modalId].title2}</p>
             </h3>
-            {EDIT_MODALS[modalNum].id < 2 ? (
+            {modals !== EDIT_MODAL ? (
               <>
                 <S.ModalInput
                   onChange={handleInputChange}
                   type="text"
                   defaultValue={
-                    EDIT_MODALS[modalNum].id === 0 ? nick : introductions
+                    modals[modalId].id === 0 ? nick : introductions
                   }></S.ModalInput>
                 <S.ModalButton onClick={handleButtonClick}>
-                  {EDIT_MODALS[modalNum].button_text}
+                  {modals[modalId].button_text}
                 </S.ModalButton>
               </>
             ) : (
@@ -79,7 +88,7 @@ const EditModalPage = ({ nickname, introduction }) => {
                       color: '#ff8686',
                     }}
                     onClick={handleButtonClick}>
-                    {EDIT_MODALS[modalNum].button_text}
+                    {modals[modalId].button_text}
                   </S.SecondButton>
                 </S.ButtonContainer>
               </>

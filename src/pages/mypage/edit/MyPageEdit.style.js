@@ -17,4 +17,5 @@ const UserInfo = styled.div`
   width: 90%;
   font-size: ${FONT_SIZE.LG};
 `;
+
 export { EditPageContainer, UserInfo };
