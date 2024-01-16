@@ -11,9 +11,7 @@ const SubCateGoryPage = ({ children, listName }) => {
         return (
           <S.Subcategory
             key={list.id}
-            onClick={() =>
-              list.modal && onOpen(list.modal, list.modalNum)
-            }>
+            onClick={() => list.modal && onOpen(list.modal, list.modalNum)}>
             <S.LinkTo to={list.link}>
               <S.CategoryImg src={list.img} alt={list.title} />
               <p>{list.title}</p>
