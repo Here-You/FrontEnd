@@ -1,6 +1,4 @@
-import EditModalPage from './EditModal';
 import MyProfileEditContainer from './MyProfileEditContainer';
-import ModalPortal from '@/components/ModalPortal';
 import {
   EDIT_CONTENTS_LIST,
   EDIT_SECOND_CONTENTS_LIST,

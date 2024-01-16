@@ -20,9 +20,18 @@ const EditContentContainer = styled.div`
   font-size: ${FONT_SIZE.LG};
   height: 43px;
   border-bottom: ${props => (props.id === 2 ? 'none' : '1px solid #eeeeee')};
+  cursor: pointer;
+
   p {
+    padding: 0px 10px;
     color: ${theme.COLOR.MAIN.GRAY};
     font-family: 'Pretendard-light';
+  }
+
+  &:hover {
+    background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
+    border-radius: 10px;
+    padding: 10px 0;
   }
 `;
 
