@@ -27,6 +27,8 @@ import {
   SignatureRecommendPage,
   SignatureSearchPage,
   SignatureWritePage,
+  TravelTypePage,
+  TravelTypeResultPage,
 } from './pages';
 import AppLayout from './pages/AppLayout';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -166,6 +168,22 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.MY_PAGE_CHANGE_PASSWORD}`,
             element: <MyPagePasswordPage />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: `${BASE_PATH.TRAVEL_TYPE}`,
+    children: [
+      {
+        element: <AppLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <TravelTypePage /> },
+          {
+            path: `${BASE_PATH.TRAVEL_TYPE_RESULT}`,
+            element: <TravelTypeResultPage />,
           },
         ],
       },

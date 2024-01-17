@@ -34,6 +34,9 @@ import SignatureSearchPage from './signature/search/SignatureSearch';
 import SignatureWritePage from './signature/write/SignatureWrite';
 // SignUp
 import SignUpPage from './signup/SignUp';
+// TravelType
+import TravelTypePage from './traveltype/TravelType';
+import TravelTypeResultPage from './traveltype/result/TravelTypeResult';
 
 export {
   AppLayout,
@@ -62,4 +65,6 @@ export {
   DailyRecordPage,
   DailyRecordEditPage,
   DailyRecordWritePage,
+  TravelTypePage,
+  TravelTypeResultPage,
 };
