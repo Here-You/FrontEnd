@@ -12,7 +12,6 @@ const ModalOverlay = styled.div`
   top: 0;
   left: 0;
   backdrop-filter: blur(7px);
-
 `;
 
 const ModalContentContainer = styled.div`
@@ -73,8 +72,21 @@ const SecondButton = styled.button`
   border-top: 1px solid #eeeeee;
 `;
 
+const SecondaryButton = styled.div`
+  font-size: ${FONT_SIZE.BASE};
+  font-family: 'Pretendard-regular';
+  border: none;
+  padding: 15px;
+  background-color: #ffffff;
+  width: 50%;
+  border-top: 1px solid #eeeeee;
+  border-left: '1px solid #EEEEEE';
+  color: '#ff8686';
+`;
+
 const ButtonContainer = styled.div`
   width: 100%;
+  ${theme.ALIGN.ROW_CENTER}
 `;
 
 const ModalInput = styled.input`
@@ -92,5 +104,6 @@ export {
   ModalButton,
   ModalInput,
   SecondButton,
+  SecondaryButton,
   ButtonContainer,
 };
