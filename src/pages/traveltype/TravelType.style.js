@@ -28,18 +28,20 @@ const StartButton = styled.button`
   height: 60%;
   padding: 5px 11px;
   border-radius: 50px;
-  background: ${theme.COLOR.MAIN.GREEN};
+  background: ${theme.COLOR.MAIN.WHITE};
   outline: none;
   border: none;
-  color: ${theme.COLOR.MAIN.WHITE};
+  color: ${theme.COLOR.MAIN.GREEN};
   text-align: center;
   font-family: 'Pretendard-bold';
   font-size: 18px;
 
   cursor: pointer;
-
+  border: 2px solid ${theme.COLOR.MAIN.GREEN};
   &:hover {
-    transform: scale(1.05);
+    background: ${theme.COLOR.MAIN.GREEN};
+    color: ${theme.COLOR.MAIN.WHITE};
+    border: 2px solid ${theme.COLOR.MAIN.GREEN};
   }
 `;
 

@@ -40,7 +40,7 @@ const TravelTypeResultPage = () => {
 
         <S.ButtonContainer>
           <S.Button onClick={() => navigate('/')}>
-            여행의 이유를 찾으로 가기
+            여행의 이유를 찾으러 가기
           </S.Button>
           <p>✈️</p>
         </S.ButtonContainer>

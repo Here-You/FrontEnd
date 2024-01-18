@@ -68,8 +68,9 @@ const AnswerButton = styled.button`
   border: none;
   font-family: Pretendard-bold;
   ${theme.ALIGN.ROW_CENTER}
-  background-color: ${theme.COLOR.MAIN.GREEN};
-  color: ${theme.COLOR.MAIN.WHITE};
+  background-color: ${theme.COLOR.MAIN.WHITE};
+  color: ${theme.COLOR.MAIN.GREEN};
+  border: 2px solid ${theme.COLOR.MAIN.GREEN};
   width: 90%;
   height: 14%;
   font-size: 16px;
@@ -81,7 +82,8 @@ const AnswerButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.05);
+    background-color: ${theme.COLOR.MAIN.GREEN};
+    color: ${theme.COLOR.MAIN.WHITE};
   }
 `;
 

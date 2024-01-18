@@ -35,11 +35,16 @@ const TypeResult = styled.div`
 `;
 
 const ResultBoxContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER}
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
   width: 100%;
-  height: 70%;
+  height: 75%;
   border: 1px solid black;
   border-radius: 10px;
+  padding: 5px;
 `;
 
 const Text1 = styled.div`
@@ -102,26 +107,26 @@ const ButtonContainer = styled.div`
   p {
     transform: rotate(20deg);
     position: absolute;
-    top: -5px;
-    right: 0px;
+    top: -10px;
+    right: -5px;
     font-size: 40px;
-  }
-
-  &:hover {
-    transform: scale(1.15);
   }
 `;
 
 const Button = styled.button`
   margin-top: 12px;
-  padding: 20px 35px;
+  padding: 15px 28px;
   font-family: 'Pretendard-extrabold';
   border-radius: 30px;
-  background-color: ${theme.COLOR.MAIN.GREEN};
-  color: ${theme.COLOR.MAIN.WHITE};
-  border: none;
+  background-color: ${theme.COLOR.MAIN.WHITE};
+  color: ${theme.COLOR.MAIN.GREEN};
+  border: 2px solid ${theme.COLOR.MAIN.GREEN};
   font-size: ${FONT_SIZE.XL};
   cursor: pointer;
+  &:hover {
+    background-color: ${theme.COLOR.MAIN.GREEN};
+    color: ${theme.COLOR.MAIN.WHITE};
+  }
 `;
 
 export {
