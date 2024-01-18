@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import {
   CountryResult,
   JapanTag,
@@ -7,13 +9,15 @@ import {
 } from '../TestData';
 import * as S from './TravelType.style';
 import japan from '/images/japan.svg';
-import mainlogo from '/images/mainlogo.svg';
+import mainLogo from '/images/mainlogo.svg';
 
 const TravelTypeResultPage = () => {
+  const navigate = useNavigate();
+
   return (
     <S.ResultContainer>
       <S.LogoWrapper>
-        <S.Logo src={mainlogo} />
+        <S.Logo src={mainLogo} />
       </S.LogoWrapper>
       <S.TypeResultContainer>
         <S.TypeResult>{resultType}</S.TypeResult>
@@ -33,6 +37,13 @@ const TravelTypeResultPage = () => {
           <S.Des>{japanDes[1]}</S.Des>
           <S.Des>{japanDes[2]}</S.Des>
         </S.DesContainer>
+
+        <S.ButtonContainer>
+          <S.Button onClick={() => navigate('/')}>
+            여행의 이유를 찾으로 가기
+          </S.Button>
+          <p>✈️</p>
+        </S.ButtonContainer>
       </S.ResultBoxContainer>
     </S.ResultContainer>
   );

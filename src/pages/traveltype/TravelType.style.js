@@ -9,13 +9,11 @@ const PageContainer = styled.div`
   height: 100%;
 `;
 const LogoWrapper = styled.div`
-  height: 55%;
   ${theme.ALIGN.ROW_CENTER}
+  height: 55%;
 `;
 const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${theme.ALIGN.COLUMN_CENTER};
   justify-content: space-around;
   height: 13%;
 `;
@@ -37,6 +35,12 @@ const StartButton = styled.button`
   text-align: center;
   font-family: 'Pretendard-bold';
   font-size: 18px;
+
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 export { PageContainer, LogoWrapper, ButtonContainer, StartButton, StatusText };

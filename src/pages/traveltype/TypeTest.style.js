@@ -3,17 +3,19 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const TestContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${theme.ALIGN.COLUMN_CENTER};
+
   width: 100%;
   height: 100%;
 `;
+
 const BarContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER}
 
   width: 100%;
   height: 20%;
 `;
+
 const ProgressBar = styled.div`
   position: relative;
   width: 100%;
@@ -33,31 +35,34 @@ const ProgressLogo = styled.img`
   top: -10px;
   left: ${({ currentStep, totalSteps }) => (currentStep / totalSteps) * 93}%;
 `;
+
 const QuestionContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  ${theme.ALIGN.COLUMN_CENTER};
   width: 100%;
   height: 15%;
 `;
+
 const QuestionNumber = styled.div`
   font-size: 16px;
   font-family: Pretendard-bold;
 `;
+
 const Question = styled.div`
   ${theme.ALIGN.ROW_CENTER}
+
   font-family: Pretendard-bold;
   font-size: 18px;
   white-space: pre-line; //줄바꿈 인식되게
   text-align: center;
 `;
+
 const ButtonContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER}
 
   width: 100%;
   height: 55%;
 `;
+
 const AnswerButton = styled.button`
   outline: none;
   border: none;
@@ -73,6 +78,11 @@ const AnswerButton = styled.button`
   white-space: pre-line; //줄바꿈 인식되게
   line-height: normal;
   margin: 3%;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 export {

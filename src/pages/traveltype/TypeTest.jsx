@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { answerA, answerB, questions } from './TestData';
 import * as S from './TypeTest.style';
-import spacelogo from '/images/spacelogo.svg';
+import spaceLogo from '/images/spacelogo.svg';
 
 const TypeTest = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const TypeTest = () => {
           <S.ProgressLogo
             currentStep={currentStep}
             totalSteps={totalSteps}
-            src={spacelogo}
+            src={spaceLogo}
             alt="logo"
           />
         </S.ProgressBar>
