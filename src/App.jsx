@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { BASE_PATH } from './constants/path';
+import { TravelLayout } from './layout';
 import {
   DailyRecordEditPage,
   DailyRecordPage,
@@ -177,7 +178,7 @@ const router = createBrowserRouter([
     path: `${BASE_PATH.TRAVEL_TYPE}`,
     children: [
       {
-        element: <AppLayout />,
+        element: <TravelLayout />,
         errorElement: <ErrorPage />,
         children: [
           { index: true, element: <TravelTypePage /> },
