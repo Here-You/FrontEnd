@@ -1,16 +1,23 @@
+import { TravelTypeResultPage } from '..';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { answerA, answerB, questions } from './TestData';
 import * as S from './TypeTest.style';
 import spacelogo from '/images/spacelogo.svg';
 
 const TypeTest = () => {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
+
   const totalSteps = 10;
 
   const handleNextStep = () => {
     if (currentStep < totalSteps) {
       setCurrentStep(prevStep => prevStep + 1);
+    }
+    if (currentStep == totalSteps) {
+      navigate('/traveltype/result');
     }
   };
 
@@ -34,14 +41,10 @@ const TypeTest = () => {
         <S.Question>{questions[currentStep - 1]}</S.Question>
       </S.QuestionContainer>
       <S.ButtonContainer>
-        <S.AnswerButton
-          onClick={handleNextStep}
-          disabled={currentStep === totalSteps}>
+        <S.AnswerButton onClick={handleNextStep}>
           {answerA[currentStep - 1]}
         </S.AnswerButton>
-        <S.AnswerButton
-          onClick={handleNextStep}
-          disabled={currentStep === totalSteps}>
+        <S.AnswerButton onClick={handleNextStep}>
           {answerB[currentStep - 1]}
         </S.AnswerButton>
       </S.ButtonContainer>

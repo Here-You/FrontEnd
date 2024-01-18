@@ -58,7 +58,9 @@ const ButtonContainer = styled.div`
   width: 100%;
   height: 55%;
 `;
-const AnswerButton = styled.div`
+const AnswerButton = styled.button`
+  outline: none;
+  border: none;
   font-family: Pretendard-bold;
   ${theme.ALIGN.ROW_CENTER}
   background-color: ${theme.COLOR.MAIN.GREEN};
