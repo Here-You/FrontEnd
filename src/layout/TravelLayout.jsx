@@ -1,8 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Footer, Navbar } from '../components';
-
 const AppContainer = styled.div`
   height: 100vh;
   display: flex;
@@ -27,21 +25,21 @@ const OutletContainer = styled.div`
   overflow-y: scroll;
 `;
 
-const AppLayout = () => {
+const TravelLayout = () => {
   const location = useLocation();
-  const hideNavAndFooter = location.pathname === '/onboarding';
+  const hideNavAndFooter =
+    location.pathname === '/onboarding' ||
+    location.pathname === '/traveltype' ||
+    location.pathname === '/traveltype/result';
   return (
     <AppContainer>
       <ContentContainer>
-        {!hideNavAndFooter && <Navbar />}
-
         <OutletContainer>
           <Outlet />
         </OutletContainer>
-        {!hideNavAndFooter && <Footer />}
       </ContentContainer>
     </AppContainer>
   );
 };
 
-export default AppLayout;
+export default TravelLayout;
