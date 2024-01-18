@@ -12,12 +12,15 @@ const CardContainer = styled.div`
   box-shadow: 0px 4px 4px 0px #00000040;
 `;
 
-const StyledSpan = styled.span`
+const TextContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  align-items: flex-start;
   position: absolute;
   top: 24px;
   left: 13px;
-  width: ${props => props.width || '65px'};
-  height: 63.184px;
+`;
+
+const StyledSpan = styled.span`
   font-size: 16px;
   font-weight: 700;
   line-height: normal;
@@ -33,4 +36,4 @@ const StyledImg = styled.img`
   height: 96px;
 `;
 
-export { CardContainer, StyledSpan, StyledImg };
+export { CardContainer, TextContainer, StyledSpan, StyledImg };
