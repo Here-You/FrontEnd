@@ -5,6 +5,7 @@ import * as S from './EditModalPage.style';
 import { myPageEditImg } from '/public/images/mypage';
 import { getProfileInfo } from '@/apis/request/profile';
 import editModal from '@/store/editModal';
+import imageStore from '@/store/imageStore';
 
 const EditModalPage = () => {
   const [info, setInfo] = useState();
@@ -12,6 +13,8 @@ const EditModalPage = () => {
   const { onClose, isOpen, modalId, modalName } = editModal();
   const [changeValue, setChangeValue] = useState();
   const [modals, setModals] = useState();
+  const { setUploadImgUrl } = imageStore();
+  const [changeImg, setChangeImg] = useState();
 
   const [introductions, setIntroductions] = useState();
   const getInfo = async () => {
@@ -29,21 +32,33 @@ const EditModalPage = () => {
   }, [modalName]);
 
   const handleInputChange = event => {
-    if (EDIT_MODAL[modalId].id === 0) {
-      setChangeValue(event.target.value);
-    } else {
-      setChangeValue(event.target.value);
-    }
+    setChangeValue(event.target.value);
   };
   const outside = useRef();
 
   const handleButtonClick = () => {
-    onClose();
-    if (EDIT_MODAL[modalId].id === 0) {
-      setNick(changeValue);
+    if (modals === INPUT_EDIT_MODAL) {
+      if (INPUT_EDIT_MODAL[modalId].id === 0) {
+        setNick(changeValue);
+      } else if (INPUT_EDIT_MODAL[modalId].id === 2) {
+        setUploadImgUrl(changeImg);
+      } else {
+        setIntroductions(changeValue);
+      }
+      onClose();
     } else {
-      setIntroductions(changeValue);
+      onClose();
     }
+  };
+
+  const onchangeImageUpload = e => {
+    const { files } = e.target;
+    const uploadFile = files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(uploadFile);
+    reader.onloadend = () => {
+      setChangeImg(reader.result);
+    };
   };
   return (
     <>
@@ -66,12 +81,30 @@ const EditModalPage = () => {
             </h3>
             {modals !== EDIT_MODAL ? (
               <>
-                <S.ModalInput
-                  onChange={handleInputChange}
-                  type="text"
-                  defaultValue={
-                    modals[modalId].id === 0 ? nick : introductions
-                  }></S.ModalInput>
+                {modals[modalId].id === 2 ? (
+                  <>
+                    <div>
+                      <label for="file">
+                        <S.UpLoadButton>사진 가져오기</S.UpLoadButton>
+                      </label>
+                      {changeImg && <img src={changeImg} alt="Selected" />}
+                    </div>
+                    <S.ImageInput
+                      type="file"
+                      accept="image/*"
+                      id="file"
+                      onChange={onchangeImageUpload}
+                    />
+                  </>
+                ) : (
+                  <S.ModalInput
+                    onChange={handleInputChange}
+                    type="text"
+                    defaultValue={
+                      modals[modalId].id === 0 ? nick : introductions
+                    }></S.ModalInput>
+                )}
+
                 <S.ModalButton onClick={handleButtonClick}>
                   {modals[modalId].button_text}
                 </S.ModalButton>

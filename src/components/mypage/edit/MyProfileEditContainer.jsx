@@ -18,6 +18,7 @@ const MyProfileEditContainer = ({ listName }) => {
             <S.EditContentContainer
               key={list.id}
               id={list.id}
+              isLast={listName === EDIT_SECOND_CONTENTS_LIST ? 3 :2}
               onClick={
                 listName === EDIT_SECOND_CONTENTS_LIST &&
                 (() => onOpen(list.modal, list.modalNum))

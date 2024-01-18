@@ -43,6 +43,16 @@ const ModalContentContainer = styled.div`
     color: ${theme.COLOR.MAIN.GRAY};
     white-space: pre-wrap;
   }
+  div {
+   
+    ${theme.ALIGN.ROW_CENTER}
+
+  }
+  div img {
+    width: 100px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
 `;
 
 const CloseImg = styled.img`
@@ -96,7 +106,21 @@ const ModalInput = styled.input`
   padding: 15px;
   margin-bottom: 10px;
 `;
+const ImageInput = styled.input`
+  display: none;
+`;
 
+const UpLoadButton = styled.div`
+  font-size: ${FONT_SIZE.SM};
+  padding: 10px 20px;
+  width: 100%;
+  background-color: ${theme.COLOR.MAIN.GREEN};
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+
+`;
 export {
   ModalContentContainer,
   ModalOverlay,
@@ -106,4 +130,6 @@ export {
   SecondButton,
   SecondaryButton,
   ButtonContainer,
+  ImageInput,
+  UpLoadButton,
 };
