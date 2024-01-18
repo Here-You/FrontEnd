@@ -34,5 +34,24 @@ const answerB = [
   '잘 놀다 왔다!\n이제 친구들 만나고 기념품 줘야지!',
   '어디를 갔는지, 무엇을 먹었는지 등\n사건 위주로 회고한다',
 ];
+const resultType = '탐험가 바다거북이 🐢';
+const user = '이유지';
+const CountryResult = '오키나와, 일본 ';
+const JapanTag = ['스노우쿨링', '액티비티', '감성'];
+const japanDes = [
+  '에너지가 가득한 오키나와, 에너자이저인 당신에게 더욱 힘을 실어줄 수 있겠군요!',
+  '창문을 열면 바다! 감성적인 당신에게 에메랄드빛 바다는 마음 속에 깊게 기억될 거예요.',
 
-export { questions, answerA, answerB };
+  '오키나와에서 수영은 필수! 여행 예약 서비스에서 하루 종일 바다에 있는 코스를 예약하고 원없이 수영을 즐겨보세요',
+];
+
+export {
+  questions,
+  answerA,
+  answerB,
+  resultType,
+  user,
+  CountryResult,
+  JapanTag,
+  japanDes,
+};
