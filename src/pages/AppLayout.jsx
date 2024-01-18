@@ -29,7 +29,8 @@ const OutletContainer = styled.div`
 
 const AppLayout = () => {
   const location = useLocation();
-  const hideNavAndFooter = location.pathname === '/onboarding';
+  const hideNavAndFooter =
+    location.pathname === '/onboarding' || location.pathname === '/traveltype';
   return (
     <AppContainer>
       <ContentContainer>
