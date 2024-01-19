@@ -27,6 +27,7 @@ export default function TotalSignature() {
         <Text>{state.location}</Text>
       </LocationContainer>
       <ImgContainer>
+        {currentPage == 0 && <Blank />}
         {currentPage !== 0 && (
           <img
             src={previous}
@@ -42,6 +43,7 @@ export default function TotalSignature() {
             disabled={currentPage === totalPages - 1}
           />
         )}
+        {currentPage == totalPages - 1 && <Blank />}
       </ImgContainer>
 
       <PageIndicator>
@@ -49,7 +51,7 @@ export default function TotalSignature() {
           <PageDot key={index} selected={index === currentPage} />
         ))}
       </PageIndicator>
-      <div>{state.page[currentPage].content}</div>
+      <Content>{state.page[currentPage].content}</Content>
     </PageContainer>
   );
 }
@@ -61,11 +63,24 @@ const PageContainer = styled.div`
 `;
 const LocationContainer = styled.div`
   display: flex;
+  margin: 5%;
 `;
 
-const Title = styled.div``;
+const Title = styled.div`
+  font-family: 'Pretendard-bold';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
 const Icon = styled.img``;
-const Text = styled.div``;
+const Text = styled.div`
+  font-family: 'Pretendard-bold';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
 const ImgContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -89,4 +104,16 @@ const PageDot = styled.div`
 
 const NavigationButtons = styled.div`
   display: flex;
+`;
+
+const Blank = styled.div`
+  width: 24px;
+`;
+const Content = styled.div`
+  text-align: center;
+  width: 90%;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
