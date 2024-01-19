@@ -3,8 +3,6 @@ import styled, { keyframes } from 'styled-components';
 
 import TokenErrorPage from './TokenErrorPage';
 
-// TokenErrorPage 컴포넌트의 경로에 따라 수정하세요
-
 const fadeInLeft = keyframes`
   from {
     opacity: 0;
@@ -27,12 +25,7 @@ const Signature = () => {
     return <TokenErrorPage />;
   }
 
-  return (
-    <div>
-      <AnimatedText>글이 한 줄씩 왼쪽에서 튀어나오게</AnimatedText>
-      <AnimatedText>글이 한 줄씩 왼쪽에서 튀어나오게</AnimatedText>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Signature;
