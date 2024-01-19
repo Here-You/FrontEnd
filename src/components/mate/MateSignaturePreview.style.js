@@ -18,7 +18,6 @@ const SubWrapper = styled.div`
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: aliceblue;
   width: 140px;
   height: 228px;
 `;

@@ -1,17 +1,23 @@
 import * as S from './MateSignaturePreview.style';
 
-const MateSignaturePreview = () => {
+const MateSignaturePreview = ({ mateData }) => {
+  if (!mateData) {
+    return <div>데이터가 없습니다.</div>;
+  }
+
+  const { imgSrc, nickName, signatureImg, title } = mateData;
+
   return (
     <S.MainContainer>
       <S.FirstLine>
-        <S.UserImg />
-        <S.UserName>매튜</S.UserName>
+        <S.UserImg src={imgSrc} />
+        <S.UserName>{nickName}</S.UserName>
         <S.FollowButton>
           <span>팔로우</span>
         </S.FollowButton>
       </S.FirstLine>
-      <S.PreviewImg />
-      <S.StyledTitle>뽀똔이와 함께하는 일본 뿌시기</S.StyledTitle>
+      <S.PreviewImg src={signatureImg} />
+      <S.StyledTitle>{title}</S.StyledTitle>
       <S.StyledText>자세히 보기</S.StyledText>
     </S.MainContainer>
   );

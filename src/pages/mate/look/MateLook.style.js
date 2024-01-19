@@ -42,16 +42,10 @@ const StyledIcon = styled.img`
   border: none;
 `;
 
-const ContentsContainer = styled.div`
-  width: 300px;
-  margin-bottom: 23px;
-`;
-
 export {
   CenteredContainer,
   FixedContainer,
   StyledTitle,
   StyledDes,
   StyledIcon,
-  ContentsContainer,
 };
