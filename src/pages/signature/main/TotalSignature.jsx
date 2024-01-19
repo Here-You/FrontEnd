@@ -98,8 +98,10 @@ const PageDot = styled.div`
   margin: 3px;
   width: 10px;
   height: 10px;
-  border-radius: 50%;
-  background-color: ${props => (props.selected ? '#393939' : '#828282')};
+  border-radius: 3px;
+  background: rgba(130, 130, 130, 0.5);
+  background-color: ${props =>
+    props.selected ? theme.COLOR.MAIN.BLACK : theme.COLOR.MAIN.GRAY};
 `;
 
 const NavigationButtons = styled.div`
@@ -115,5 +117,5 @@ const Content = styled.div`
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.5;
 `;

@@ -29,7 +29,7 @@ export default function Preview(data) {
 const PreviewWrap = styled.div`
   display: flex;
   flex-direction: column;
-  width: 42%;
+  max-width: 140px;
   margin: 3%;
   cursor: pointer;
 `;
@@ -40,7 +40,8 @@ const Profile = styled.div`
 `;
 const ProfileImg = styled.img`
   display: flex;
-  width: 20%;
+  max-width: 30px;
+  max-height: 30px;
   border-radius: 100%;
 `;
 const Date = styled.div`
@@ -55,7 +56,9 @@ const Date = styled.div`
 `;
 const PreviewImg = styled.img`
   display: flex;
-  max-width: 100%;
+  max-width: 150px;
+  max-height: 150px;
+  overflow: hidden;
   border-radius: 5px;
   border: 1px solid var(--gray2, #c8c8c8);
 `;

@@ -31,24 +31,34 @@ export default function SignaturePage() {
   };
 
   return (
-    <PageContainer>
-      <ButtonContainer>
-        <Button
-          selected={selectedHeader === '내 시그니처'}
-          onClick={() => handleHeaderClick('내 시그니처')}>
-          내 시그니처
-        </Button>
-        <Button
-          selected={selectedHeader === '작성하기'}
-          onClick={() => handleHeaderClick('작성하기')}>
-          작성하기
-        </Button>
-      </ButtonContainer>
-      {selectedHeader === '내 시그니처' && <MySignaturePage />}
-      {selectedHeader === '작성하기' && <Editor />}
-    </PageContainer>
+    <>
+      <BannerContainer>배너 들어갈 자리</BannerContainer>
+      <PageContainer>
+        <ButtonContainer>
+          <Button
+            selected={selectedHeader === '내 시그니처'}
+            onClick={() => handleHeaderClick('내 시그니처')}>
+            내 시그니처
+          </Button>
+          <Button
+            selected={selectedHeader === '작성하기'}
+            onClick={() => handleHeaderClick('작성하기')}>
+            작성하기
+          </Button>
+        </ButtonContainer>
+        {selectedHeader === '내 시그니처' && <MySignaturePage />}
+        {selectedHeader === '작성하기' && <Editor />}
+      </PageContainer>
+    </>
   );
 }
+
+const BannerContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 10vh;
+  background: rgba(27, 156, 133, 0.16);
+`;
 
 const PageContainer = styled.div`
   display: flex;
