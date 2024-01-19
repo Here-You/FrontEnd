@@ -6,15 +6,20 @@ import styled from 'styled-components';
 //Data : 유저 프사, 작성 날짜, 미리보기 사진 이미지, 제목, 하트 수
 
 export default function Preview(data) {
-  const handleOpenSignature = () => {};
   const navigate = useNavigate();
+
+  //이거 나중에 수정하기
+  const handleOpenSignature = () => {
+    navigate(`/signature/?title=${data.title}`, { state: data });
+  };
+
   return (
-    <PreviewWrap>
-      <Profile onClick={handleOpenSignature}>
+    <PreviewWrap onClick={handleOpenSignature}>
+      <Profile>
         <ProfileImg src={data.userImgUrl} />
         <Date>{data.date}</Date>
       </Profile>
-      <PreviewImg src={data.previewUrl} />
+      <PreviewImg src={data.page[0].img} />
       <Title>{data.title}</Title>
       <Open>자세히보기</Open>
     </PreviewWrap>
@@ -24,7 +29,7 @@ export default function Preview(data) {
 const PreviewWrap = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 42%;
   margin: 3%;
   cursor: pointer;
 `;
