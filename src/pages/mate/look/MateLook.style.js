@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 import theme from '@/theme';
 
-const ContainerContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER}
+const CenteredContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
 `;
 
 const FixedContainer = styled.div`
@@ -42,10 +42,16 @@ const StyledIcon = styled.img`
   border: none;
 `;
 
+const ContentsContainer = styled.div`
+  width: 300px;
+  margin-bottom: 23px;
+`;
+
 export {
-  ContainerContainer,
+  CenteredContainer,
   FixedContainer,
   StyledTitle,
   StyledDes,
   StyledIcon,
+  ContentsContainer,
 };
