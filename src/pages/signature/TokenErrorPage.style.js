@@ -2,6 +2,17 @@ import styled, { keyframes } from 'styled-components';
 
 import theme from '@/theme';
 
+const fadeInLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 const PageContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER}
   width: 80%;
@@ -47,17 +58,6 @@ const TextContainer = styled.div`
   color: ${theme.COLOR.MAIN.BLACK};
 `;
 
-const fadeInLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
 const AnimatedText = styled.div`
   animation: ${fadeInLeft} 1s ease-out;
   z-index: 100;
@@ -85,6 +85,7 @@ const StartButton = styled.button`
   font-family: 'Pretendard-bold';
   font-size: 20px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
   &:hover {
     background-color: ${theme.COLOR.MAIN.WHITE};
     color: ${theme.COLOR.MAIN.GREEN};

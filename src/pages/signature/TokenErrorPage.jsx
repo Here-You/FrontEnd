@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './TokenErrorPage.style';
-import spacelogo from '/images/spacelogoShadow.svg';
+import spaceLogo from '/images/spacelogoShadow.svg';
 
 const TokenErrorPage = () => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const TokenErrorPage = () => {
     <S.PageContainer>
       <S.BackgroundColor />
       <S.LogoWrapper>
-        <S.SpaceLogo src={spacelogo} />
+        <S.SpaceLogo src={spaceLogo} />
       </S.LogoWrapper>
       <S.TextContainer>
         <S.AnimatedText>막막한 여행도</S.AnimatedText>
