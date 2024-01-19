@@ -30,14 +30,14 @@ const MatePage = () => {
       <S.MainContainer>
         <Title text="우리 여행의 규칙은?" />
         <S.CardContainer>
-          <S.LinkTo to="">
+          <S.LinkTo to="/mate/rule-write">
             <Card
               text="여행 규칙 작성하기"
               imgSrc={mateRuleWriteIcon}
               width="90px"
             />
           </S.LinkTo>
-          <S.LinkTo to="">
+          <S.LinkTo to="/mate/rule-check/:teamId">
             <Card
               text="여행 규칙 확인하기"
               imgSrc={mateRuleCheckIcon}
