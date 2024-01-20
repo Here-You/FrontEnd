@@ -37,7 +37,7 @@ const MatePage = () => {
               width="90px"
             />
           </S.LinkTo>
-          <S.LinkTo to="/mate/rule-check/:teamId">
+          <S.LinkTo to="/mate/rule-check">
             <Card
               text="여행 규칙 확인하기"
               imgSrc={mateRuleCheckIcon}

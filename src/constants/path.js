@@ -22,8 +22,9 @@ const BASE_PATH = {
   MATE_SEARCH: '/mate/search',
   MATE_LOOK: '/mate/look',
   MATE_MANAGEMENT: '/mate/management',
-  MATE_RULE_CHECK_PAGE: '/mate/rule-check/:teamId',
-  MATE_RULE_WRITE_PAGE: '/mate/rule-write',
+  // MATE_RULE_CHECK: '/mate/rule-check/:teamId',
+  MATE_RULE_CHECK: '/mate/rule-check',
+  MATE_RULE_WRITE: '/mate/rule-write',
   // MATE_MY_RULE: '/mate/rule/mine',
   // MATE_WRITE_RULE: '/mate/rule/mine/edit',
   // MATE_OURS_RULE: '/mate/rule/ours',
@@ -43,6 +44,7 @@ const API_PATH = {
   FAVORITE_TRAVELS: `${BASE_PATH.TRAVELS}/favorite`,
   MATE_SEARCH: `${BASE_PATH.MATE_SEARCH}`,
   MATE_LOOK: `${BASE_PATH.MATE_LOOK}`,
+  MATE_RULE_CHECK: `${BASE_PATH.MATE_RULE_CHECK}`,
   DAILYRECORD_WRITE: `${BASE_PATH.DAILYRECORD_WRITE}`,
 };
 
