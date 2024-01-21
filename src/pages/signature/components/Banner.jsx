@@ -1,8 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 
+import * as S from './Banner.style';
 import space from '/images/spacelogo.svg';
-import theme from '@/theme';
 
 export default function Banner() {
   const contentData = [
@@ -12,54 +11,16 @@ export default function Banner() {
   ];
 
   return (
-    <BannerContainer>
-      <ButtonContainer>
+    <S.BannerContainer>
+      <S.ButtonContainer>
         <img src={space} />
-        <Button>시그니처란?</Button>
-      </ButtonContainer>
-      <ContentContainer>
-        <Content>{contentData[0]}</Content>
-        <Content>{contentData[1]}</Content>
-        <Content>{contentData[2]}</Content>
-      </ContentContainer>
-    </BannerContainer>
+        <S.Button>시그니처란?</S.Button>
+      </S.ButtonContainer>
+      <S.ContentContainer>
+        <S.Content>{contentData[0]}</S.Content>
+        <S.Content>{contentData[1]}</S.Content>
+        <S.Content>{contentData[2]}</S.Content>
+      </S.ContentContainer>
+    </S.BannerContainer>
   );
 }
-
-const BannerContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 5%;
-  width: 100%;
-  height: 15vh;
-  background: rgba(27, 156, 133, 0.16);
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  border-radius: 20px;
-  background: ${theme.COLOR.MAIN.GREEN};
-  justify-content: space-around;
-  padding: 5px 11px;
-  width: 150px;
-  color: white;
-`;
-
-const Button = styled.div`
-  display: flex;
-  font-size: 16px;
-  font-family: 'Pretendard-semibold';
-`;
-const ContentContainer = styled.div`
-  display: flex;
-  margin: 5px;
-  flex-direction: column;
-`;
-
-const Content = styled.div`
-  display: flex;
-  margin-top: 3px;
-  font-size: 12px;
-`;
