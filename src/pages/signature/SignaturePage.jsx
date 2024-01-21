@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import * as S from './SignaturePage.style';
+import Banner from './components/Banner';
 import Preview from './components/Preview';
 import MySignaturePage from './main/MySignaturePage';
 import Editor from './write/Editor';
@@ -31,7 +32,7 @@ export default function SignaturePage() {
 
   return (
     <>
-      <S.BannerContainer>배너 들어갈 자리</S.BannerContainer>
+      <Banner />
       <S.PageContainer>
         <S.ButtonContainer>
           <S.Button
