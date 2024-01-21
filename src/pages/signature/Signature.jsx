@@ -16,13 +16,15 @@ const Signature = () => {
   // 전역으로 관리하거나, 매번 페이지 렌더링 시, 백엔드에 토큰 유효성 요청을 하는 방안으로 변경.
   // 향후 protected Route 도입 예정. BE에서 세션형식인지 JWT형식인지 혼용인지 아직 몰라서유...
   const token = getAuthToken();
-  /*  const isAuthenticated = token ? true : false; */ //이게 원래꺼
+  /*  const isAuthenticated = token ? true : false; */ //이게 원래꺼!!
   const isAuthenticated = token ? false : true; //SignaturePage보려면 이거로
 
   //내가 작성한 시그니처가 없을 때 NoSignature 렌더링
-
   const [data, setData] = useState([]);
-
+  useEffect(() => {
+    setData([]);
+  });
+  /* 
   const getData = async () => {
     try {
       const res = await getSignaturePreview();
@@ -36,7 +38,7 @@ const Signature = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, []); */
 
   if (!isAuthenticated) {
     return <TokenErrorPage />;
