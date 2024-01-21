@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import SignaturePage from './SignaturePage';
 import TokenErrorPage from './TokenErrorPage';
+import NoSignature from './main/NoSignature';
 import TotalSignature from './main/TotalSignature';
+import { getSignaturePreview } from '@/apis/request/preview';
 import { getAuthToken } from '@/utils/auth';
 
 const Signature = () => {
@@ -16,9 +18,33 @@ const Signature = () => {
   const token = getAuthToken();
   /*  const isAuthenticated = token ? true : false; */ //이게 원래꺼
   const isAuthenticated = token ? false : true; //SignaturePage보려면 이거로
+
+  //내가 작성한 시그니처가 없을 때 NoSignature 렌더링
+
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    try {
+      const res = await getSignaturePreview();
+      const mockData = res.data;
+      setData(mockData);
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   if (!isAuthenticated) {
     return <TokenErrorPage />;
   }
+  if (data.length == 0) {
+    return <NoSignature />;
+  }
+
   return <div>{hasTitle ? <TotalSignature /> : <SignaturePage />}</div>;
 };
 

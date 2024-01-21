@@ -26,11 +26,9 @@ export default function MySignaturePage() {
   return (
     <S.PageContainer>
       <S.PreviewContainer>
-        {data.length > 0 ? ( // data가 비어있지 않으면 Preview 컴포넌트 렌더링
-          data.map((item, index) => <Preview key={index} {...item} />)
-        ) : (
-          <NoSignature /> // data가 비어있으면 NoSignature 컴포넌트 렌더링
-        )}
+        {data.map((item, index) => (
+          <Preview key={index} {...item} />
+        ))}
       </S.PreviewContainer>
     </S.PageContainer>
   );
