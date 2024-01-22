@@ -5,6 +5,7 @@ const BASE_PATH = {
   LOGIN: '/login',
   ON_BOARDING: 'onboarding',
   SCHEDULE: '/schedule',
+  MAP: '/map',
   // DAILYRECORD
   DAILYRECORD: '/dailyrecord',
   DAILYRECORD_WRITE: '/dailyrecord/write/:scheduleid',
