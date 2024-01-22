@@ -15,7 +15,8 @@ import MapPage from './map/MapPage';
 import MatePage from './mate/Mate';
 import MateLookPage from './mate/look/MateLook';
 import MateManagementPage from './mate/management/MateManagement';
-import MateRuleCheckPage from './mate/rule/MateRuleCheck';
+import MateRuleCheckPage from './mate/ruleCheck/MateRuleCheck';
+import MateRuleWritePage from './mate/ruleWrite/MateRuleWrite';
 import MateSearchPage from './mate/search/MateSearch';
 // MY_PAGE
 import MyPage from './mypage/MyPage';
@@ -49,6 +50,7 @@ export {
   MateManagementPage,
   MateLookPage,
   MateRuleCheckPage,
+  MateRuleWritePage,
   MyPage,
   MyPageEditPage,
   MyPagePasswordPage,

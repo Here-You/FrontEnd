@@ -14,6 +14,7 @@ import {
   MateManagementPage,
   MatePage,
   MateRuleCheckPage,
+  MateRuleWritePage,
   MateSearchPage,
   MyPage,
   MyPageEditPage,
@@ -143,8 +144,12 @@ const router = createBrowserRouter([
             element: <MateLookPage />,
           },
           {
-            path: `${BASE_PATH.MATE_RULE_CHECK_PAGE}`,
+            path: `${BASE_PATH.MATE_RULE_CHECK}`,
             element: <MateRuleCheckPage />,
+          },
+          {
+            path: `${BASE_PATH.MATE_RULE_WRITE}`,
+            element: <MateRuleWritePage />,
           },
         ],
       },
