@@ -45,9 +45,8 @@ const NickNameTypeContainer = styled.div`
 `;
 
 const ProfilePicture = styled.img`
-  width: 100px;
+  width: 90px;
   border-radius: 50%;
-  height: 100px;
 `;
 
 const Mate = styled.div`

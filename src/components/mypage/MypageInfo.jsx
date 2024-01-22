@@ -3,12 +3,10 @@ import { useEffect, useState } from 'react';
 import * as S from './MypageInfo.style';
 import { myPageImg } from '/public/images/mypage/index';
 import { getProfileInfo } from '@/apis/request/profile';
-import imageStore from '@/store/imageStore';
 import theme from '@/theme';
 
 const MyPageInfo = () => {
   const [info, setInfo] = useState([]);
-  const { uploadImgUrl } = imageStore();
   const getInfo = async () => {
     try {
       const res = await getProfileInfo();
@@ -24,10 +22,7 @@ const MyPageInfo = () => {
   }, []);
   return (
     <S.ProfileContainer>
-      <S.ProfilePicture
-        src={!uploadImgUrl ? myPageImg.ProfilePicture : uploadImgUrl}
-        alt="프로필"
-      />
+      <S.ProfilePicture src={myPageImg.ProfilePicture} alt="아" />
       <S.ProfileInfoContainer>
         {info.nickname ? (
           <>

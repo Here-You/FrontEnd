@@ -34,19 +34,11 @@ const EDIT_SECOND_CONTENTS_LIST = [
   },
   {
     id: 2,
-    title: '프로필 사진 수정',
-    img: myPageEditImg.RigthArrow,
-    modal: 'INPUT_EDIT_MODAL',
-    modalNum: 2,
-  },
-  {
-    id: 3,
     title: '여행의 이유 회원 탈퇴',
     img: myPageEditImg.RigthArrow,
     modal: 'EDIT_MODAL',
     modalNum: 1,
   },
- 
 ];
 
 export { EDIT_CONTENTS_LIST, EDIT_SECOND_CONTENTS_LIST };

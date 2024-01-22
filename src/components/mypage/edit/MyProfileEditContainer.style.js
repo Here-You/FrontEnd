@@ -19,8 +19,7 @@ const EditContentContainer = styled.div`
   padding: 10px 0px 10px;
   font-size: ${FONT_SIZE.LG};
   height: 43px;
-  border-bottom: ${props =>
-    props.id === props.isLast ? 'none' : '1px solid #eeeeee'};
+  border-bottom: ${props => (props.id === 2 ? 'none' : '1px solid #eeeeee')};
   cursor: pointer;
 
   p {

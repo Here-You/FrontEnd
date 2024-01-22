@@ -25,10 +25,5 @@ const INPUT_EDIT_MODAL = [
     button_text: '프로필 소개 변경',
     input_value: '특기는 여행, 취미는 기록 : >',
   },
-  {
-    id: 2,
-    title: '사진을 변경하시겠습니까?',
-    button_text: '프로필 사진 변경',
-  },
 ];
 export { EDIT_MODAL, INPUT_EDIT_MODAL };
