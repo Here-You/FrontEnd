@@ -5,6 +5,7 @@ const BASE_PATH = {
   LOGIN: '/login',
   ON_BOARDING: 'onboarding',
   SCHEDULE: '/schedule',
+  MAP: '/map',
   // DAILYRECORD
   DAILYRECORD: '/dailyrecord',
   DAILYRECORD_WRITE: '/dailyrecord/write/:scheduleid',
@@ -35,10 +36,14 @@ const BASE_PATH = {
   MY_PAGE_CHANGE_PASSWORD: '/mypage/password',
   MY_PAGE_WITHDRAW: '/mypage/withdraw',
   // App.jsx에서, path 추가할때 사용하시면 됩니다. 예시코드 9번줄
+  TRAVEL_TYPE: '/traveltype',
+  TRAVEL_TYPE_RESULT: '/traveltype/result',
 };
 
 const API_PATH = {
   FAVORITE_TRAVELS: `${BASE_PATH.TRAVELS}/favorite`,
+  SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,
+  MY_PAGE_INFO: `${BASE_PATH.MY_PAGE}`,
   MATE_SEARCH: `${BASE_PATH.MATE_SEARCH}`,
   MATE_LOOK: `${BASE_PATH.MATE_LOOK}`,
   MATE_MANAGEMENT: `${BASE_PATH.MATE_MANAGEMENT}`,

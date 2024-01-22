@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { BASE_PATH } from './constants/path';
+import { TravelLayout } from './layout';
 import {
   DailyRecordEditPage,
   DailyRecordPage,
@@ -8,6 +9,7 @@ import {
   ErrorPage,
   Home,
   LoginPage,
+  MapPage,
   MateLookPage,
   MateManagementPage,
   MatePage,
@@ -18,7 +20,6 @@ import {
   MyPagePasswordPage,
   MyPageWithdrawPage,
   OnBoardingPage,
-  SchedulePage,
   SignUpPage,
   SignatureEditPage,
   SignaturePage,
@@ -27,6 +28,8 @@ import {
   SignatureRecommendPage,
   SignatureSearchPage,
   SignatureWritePage,
+  TravelTypePage,
+  TravelTypeResultPage,
 } from './pages';
 import AppLayout from './pages/AppLayout';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -43,6 +46,10 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: `${BASE_PATH.MAP}`,
+        element: <MapPage />,
+      },
+      {
         path: `${BASE_PATH.SIGN_UP}`,
         element: <SignUpPage />,
       },
@@ -53,10 +60,6 @@ const router = createBrowserRouter([
       {
         path: `${BASE_PATH.ON_BOARDING}`,
         element: <OnBoardingPage />,
-      },
-      {
-        path: `${BASE_PATH.SCHEDULE}`,
-        element: <SchedulePage />,
       },
     ],
   },
@@ -166,6 +169,22 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.MY_PAGE_CHANGE_PASSWORD}`,
             element: <MyPagePasswordPage />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: `${BASE_PATH.TRAVEL_TYPE}`,
+    children: [
+      {
+        element: <TravelLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <TravelTypePage /> },
+          {
+            path: `${BASE_PATH.TRAVEL_TYPE_RESULT}`,
+            element: <TravelTypeResultPage />,
           },
         ],
       },
