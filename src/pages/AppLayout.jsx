@@ -31,11 +31,11 @@ const AppLayout = () => {
   return (
     <AppContainer>
       <ContentContainer>
-        {/* <Navbar /> */}
+        <Navbar />
         <OutletContainer>
           <Outlet />
         </OutletContainer>
-        {/* <Footer /> */}
+        <Footer />
       </ContentContainer>
     </AppContainer>
   );

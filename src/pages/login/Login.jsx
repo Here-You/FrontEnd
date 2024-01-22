@@ -7,7 +7,9 @@ const LoginPage = () => {
     <S.LoginContainer>
       <S.LogoImg src={Logo} />
       <S.ButtonWrap>
-        <LoginButton />
+        <S.LinkTo to="/signup">
+          <LoginButton />
+        </S.LinkTo>
       </S.ButtonWrap>
     </S.LoginContainer>
   );
