@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import theme from '@/theme';
-import { Link } from 'react-router-dom';
+
 
 const LoginContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
@@ -17,7 +17,6 @@ const ButtonWrap = styled.div`
   width: 70%;
 `;
 
-const LinkTo = styled(Link)`
-`
 
-export { LoginContainer, LogoImg, ButtonWrap, LinkTo };
+
+export { LoginContainer, LogoImg, ButtonWrap};
