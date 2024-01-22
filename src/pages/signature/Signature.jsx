@@ -21,10 +21,12 @@ const Signature = () => {
 
   //내가 작성한 시그니처가 없을 때 NoSignature 렌더링
   const [data, setData] = useState([]);
-  useEffect(() => {
+
+  /*   useEffect(() => {   NoSignature 보고 싶으면 밑에 코드 주석처리 하고 이걸로
     setData([]);
   });
-  /* 
+ */
+
   const getData = async () => {
     try {
       const res = await getSignaturePreview();
@@ -38,7 +40,7 @@ const Signature = () => {
 
   useEffect(() => {
     getData();
-  }, []); */
+  }, []);
 
   if (!isAuthenticated) {
     return <TokenErrorPage />;

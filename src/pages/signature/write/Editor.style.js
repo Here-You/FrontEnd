@@ -25,32 +25,18 @@ const Title = styled.input`
   line-height: normal;
 `;
 const Divider = styled.div`
-  color: ${theme.COLOR.MAIN.LIGHT_BLACK};
   width: 100%;
   height: 1px;
+  background-color: ${theme.COLOR.MAIN.LIGHT_BLACK};
   margin: 15px 0px;
 `;
-const ContentInput = styled.textarea`
-  width: 100%;
-  height: 50%;
-  outline: none;
-  border: none;
-  color: ${theme.COLOR.MAIN.GRAY};
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
-
 const LocationContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: flex-start;
-  margin-bottom: 30px;
+  margin: 10px 0px;
 `;
 
-const LocationIcon = styled.img`
-  margin: 0px 5px;
-`;
+const LocationIcon = styled.img``;
 
 const LocationButton = styled.div`
   color: ${theme.COLOR.MAIN.GRAY};
@@ -64,16 +50,23 @@ const LocationButton = styled.div`
     color: ${theme.COLOR.MAIN.BLACK};
   }
 `;
+
+const ContentInput = styled.textarea`
+  width: 100%;
+  outline: none;
+  border: none;
+  color: ${theme.COLOR.MAIN.BLACK};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 20px 10px 10px 0px;
+`;
+
 const OptionContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: space-between;
   position: relative;
-`;
-const ButtonContainer = styled.div`
-  position: absolute;
-`;
-const OptionButton = styled.img`
-  margin: 0px 5px;
 `;
 
 const SubmitButton = styled.div`
@@ -94,8 +87,6 @@ export {
   LocationIcon,
   LocationButton,
   OptionContainer,
-  ButtonContainer,
-  OptionButton,
   SubmitButton,
   PageWrapper,
 };
