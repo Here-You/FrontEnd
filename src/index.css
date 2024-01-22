@@ -252,6 +252,38 @@
   display: none;
 }
 
+.highlight {
+  position: relative;
+  abbr {
+    background-color: white;
+    color: black;
+    border: 2px solid black !important;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+}
+
+.highlight:after {
+  content: '';
+  border: 1px solid black;
+  position: absolute;
+  right: 0;
+  width: 10%;
+}
+
+.highlight::before {
+  content: '';
+  border: 1px solid black;
+  position: absolute;
+  left: 0;
+  width: 10%;
+}
+
 /* react-spring-bottom-sheet */
 :root {
   --rsbs-backdrop-bg: rgba(255, 255, 255, 0.1);

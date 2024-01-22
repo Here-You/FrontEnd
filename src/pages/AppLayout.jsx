@@ -34,7 +34,6 @@ const AppLayout = () => {
     <AppContainer>
       <ContentContainer>
         {!hideNavAndFooter && <Navbar />}
-
         <OutletContainer>
           <Outlet />
         </OutletContainer>
