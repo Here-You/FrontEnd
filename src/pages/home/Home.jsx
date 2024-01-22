@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './Home.style';
-import { Journey, TravelCalendar, TravelMap } from '@/components';
-import BottomScrollPage from '@/components/bottomSheet/BottomScrollPage';
+import { Journey, TravelCalendar } from '@/components';
 import testData from '@/constants/journey';
 
 const HomePage = () => {

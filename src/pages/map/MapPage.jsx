@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './Map.style';
-import { Journey, TravelCalendar, TravelMap } from '@/components';
+import { TravelMap } from '@/components';
 import BottomScrollPage from '@/components/bottomSheet/BottomScrollPage';
 import testData from '@/constants/journey';
 
