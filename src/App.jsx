@@ -1,20 +1,25 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { BASE_PATH } from './constants/path';
+import { TravelLayout } from './layout';
 import {
+  DailyRecordEditPage,
+  DailyRecordPage,
+  DailyRecordWritePage,
   ErrorPage,
   Home,
   LoginPage,
-  MateHomePage,
+  MapPage,
+  MateLookPage,
   MateManagementPage,
   MatePage,
+  MateRuleCheckPage,
   MateSearchPage,
   MyPage,
   MyPageEditPage,
   MyPagePasswordPage,
   MyPageWithdrawPage,
   OnBoardingPage,
-  SchedulePage,
   SignUpPage,
   SignatureEditPage,
   SignaturePage,
@@ -23,6 +28,8 @@ import {
   SignatureRecommendPage,
   SignatureSearchPage,
   SignatureWritePage,
+  TravelTypePage,
+  TravelTypeResultPage,
 } from './pages';
 import AppLayout from './pages/AppLayout';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -39,6 +46,10 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: `${BASE_PATH.MAP}`,
+        element: <MapPage />,
+      },
+      {
         path: `${BASE_PATH.SIGN_UP}`,
         element: <SignUpPage />,
       },
@@ -50,9 +61,26 @@ const router = createBrowserRouter([
         path: `${BASE_PATH.ON_BOARDING}`,
         element: <OnBoardingPage />,
       },
+    ],
+  },
+  {
+    path: `${BASE_PATH.DAILYRECORD}`,
+    children: [
       {
-        path: `${BASE_PATH.SCHEDULE}`,
-        element: <SchedulePage />,
+        element: <DailyRecordPage />,
+        element: <AppLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <DailyRecordPage /> },
+          {
+            path: `${BASE_PATH.DAILYRECORD_WRITE}`,
+            element: <DailyRecordWritePage />,
+          },
+          {
+            path: `${BASE_PATH.DAILYRECORD_EDIT}`,
+            element: <DailyRecordEditPage />,
+          },
+        ],
       },
     ],
   },
@@ -101,10 +129,7 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
           { index: true, element: <MatePage /> },
-          {
-            path: `${BASE_PATH.MATE_HOME}`,
-            element: <MateHomePage />,
-          },
+
           {
             path: `${BASE_PATH.MATE_MANAGEMENT}`,
             element: <MateManagementPage />,
@@ -112,6 +137,14 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.MATE_SEARCH}`,
             element: <MateSearchPage />,
+          },
+          {
+            path: `${BASE_PATH.MATE_LOOK}`,
+            element: <MateLookPage />,
+          },
+          {
+            path: `${BASE_PATH.MATE_RULE_CHECK_PAGE}`,
+            element: <MateRuleCheckPage />,
           },
         ],
       },
@@ -136,6 +169,22 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.MY_PAGE_CHANGE_PASSWORD}`,
             element: <MyPagePasswordPage />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: `${BASE_PATH.TRAVEL_TYPE}`,
+    children: [
+      {
+        element: <TravelLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <TravelTypePage /> },
+          {
+            path: `${BASE_PATH.TRAVEL_TYPE_RESULT}`,
+            element: <TravelTypeResultPage />,
           },
         ],
       },

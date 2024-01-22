@@ -13,8 +13,6 @@ if (import.meta.env.VITE_NODE_ENV === 'development') {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={theme}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </ThemeProvider>,
 );

@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Footer, Navbar } from '../components';
@@ -28,14 +28,17 @@ const OutletContainer = styled.div`
 `;
 
 const AppLayout = () => {
+  const location = useLocation();
+  const hideNavAndFooter = location.pathname === '/onboarding';
   return (
     <AppContainer>
       <ContentContainer>
-        <Navbar />
+        {!hideNavAndFooter && <Navbar />}
+
         <OutletContainer>
           <Outlet />
         </OutletContainer>
-        <Footer />
+        {!hideNavAndFooter && <Footer />}
       </ContentContainer>
     </AppContainer>
   );
