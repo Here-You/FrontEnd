@@ -26,8 +26,7 @@ const MainContainer = styled.div`
 `;
 
 const CardContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER}
-  flex-direction: row;
+  ${theme.ALIGN.ROW_CENTER};
   gap: 20px;
 `;
 
