@@ -16,7 +16,6 @@ const Journey = ({ data, dataLength }) => {
 
   return (
     <S.Container>
-      <SearchMap />
       <S.MainContainer onClick={handleOnToggle}>
         <S.RowContainer>
           <S.Title>{title}</S.Title>
