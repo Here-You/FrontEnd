@@ -1,10 +1,13 @@
 import * as S from './Card.style';
 
-const Card = ({ width, text, imgSrc }) => {
+const Card = ({ text1, text2, imgSrc }) => {
   return (
     <S.CardContainer>
-      <S.StyledSpan width={width}>{text}</S.StyledSpan>
-      <S.StyledImg src={imgSrc} alt={text}></S.StyledImg>
+      <S.TextContainer>
+        <S.StyledSpan>{text1}</S.StyledSpan>
+        <S.StyledSpan>{text2}</S.StyledSpan>
+      </S.TextContainer>
+      <S.StyledImg src={imgSrc} alt={text1}></S.StyledImg>
     </S.CardContainer>
   );
 };

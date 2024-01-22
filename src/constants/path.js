@@ -5,6 +5,7 @@ const BASE_PATH = {
   LOGIN: '/login',
   ON_BOARDING: 'onboarding',
   SCHEDULE: '/schedule',
+  MAP: '/map',
   // DAILYRECORD
   DAILYRECORD: '/dailyrecord',
   DAILYRECORD_WRITE: '/dailyrecord/write/:scheduleid',
@@ -41,8 +42,11 @@ const BASE_PATH = {
 
 const API_PATH = {
   FAVORITE_TRAVELS: `${BASE_PATH.TRAVELS}/favorite`,
+  SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,
+  MY_PAGE_INFO: `${BASE_PATH.MY_PAGE}`,
   MATE_SEARCH: `${BASE_PATH.MATE_SEARCH}`,
   MATE_LOOK: `${BASE_PATH.MATE_LOOK}`,
+  MATE_MANAGEMENT: `${BASE_PATH.MATE_MANAGEMENT}`,
   DAILYRECORD_WRITE: `${BASE_PATH.DAILYRECORD_WRITE}`,
   SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,
 };
