@@ -36,6 +36,7 @@ const COLOR = {
     BLUE: '#3083FF',
     BLACK: '#393939',
     GRAY: '#828282',
+    LIGHT_GRAY: '#EEEEEE',
     LIGHT_BLACK: '#C8C8C8',
     WHITE: '#FFFFFF',
   },
