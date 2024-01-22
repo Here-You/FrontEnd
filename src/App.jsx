@@ -20,7 +20,6 @@ import {
   MyPagePasswordPage,
   MyPageWithdrawPage,
   OnBoardingPage,
-  SchedulePage,
   SignUpPage,
   SignatureEditPage,
   SignaturePage,
@@ -61,10 +60,6 @@ const router = createBrowserRouter([
       {
         path: `${BASE_PATH.ON_BOARDING}`,
         element: <OnBoardingPage />,
-      },
-      {
-        path: `${BASE_PATH.SCHEDULE}`,
-        element: <SchedulePage />,
       },
     ],
   },

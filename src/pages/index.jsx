@@ -24,8 +24,6 @@ import MyPagePasswordPage from './mypage/password/MyPagePassword';
 import MyPageWithdrawPage from './mypage/withdraw/MyPageWithdraw';
 // ON_BOARDING
 import OnBoardingPage from './onboarding/OnBoardingPage';
-// Schedule
-import SchedulePage from './schedule/Schedule';
 // Signature
 import SignaturePage from './signature/Signature';
 import SignatureEditPage from './signature/edit/SignatureEdit';
@@ -46,7 +44,6 @@ export {
   ErrorPage,
   LoginPage,
   OnBoardingPage,
-  SchedulePage,
   MatePage,
   MateSearchPage,
   MateManagementPage,
