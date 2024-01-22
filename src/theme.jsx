@@ -18,8 +18,8 @@ const ALIGN = {
   // FLEX
   ROW_CENTER: `
     display: flex;
-    justify-contents: center;
-    align-items: center
+    justify-content: center;
+    align-items: center;
     `,
   COLUMN_CENTER: `
     display: flex;
@@ -36,6 +36,7 @@ const COLOR = {
     BLUE: '#3083FF',
     BLACK: '#393939',
     GRAY: '#828282',
+    LIGHT_GRAY: '#EEEEEE',
     LIGHT_BLACK: '#C8C8C8',
     WHITE: '#FFFFFF',
   },

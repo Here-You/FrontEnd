@@ -1,60 +1,21 @@
-import styled from 'styled-components';
+import { useEffect } from 'react';
 
-import Content from './main/Content';
-import Message from './main/Message';
+import TokenErrorPage from './TokenErrorPage';
+import { getAuthToken } from '@/utils/auth';
 
-const SignaturePage = () => {
-  const userName = 'cowboysj';
-  const profileUrl = 'https://i.ibb.co/JdGMYqf/Group-1000000912.png';
+const Signature = () => {
+  // 이렇게 관리하는 것으 임시 방책.
+  // 전역으로 관리하거나, 매번 페이지 렌더링 시, 백엔드에 토큰 유효성 요청을 하는 방안으로 변경.
+  // 향후 protected Route 도입 예정. BE에서 세션형식인지 JWT형식인지 혼용인지 아직 몰라서유...
+  const token = getAuthToken();
+  const isAuthenticated = token ? true : false;
 
-  return (
-    <PageWrap>
-      <ProfileWrap>
-        <ProfileImg src={profileUrl} />
-        <UserName>{userName}</UserName>
-      </ProfileWrap>
-      <Message />
-      <Divider />
-      <Content />
-    </PageWrap>
-  );
+  if (!isAuthenticated) {
+    return <TokenErrorPage />;
+  }
+
+  return <div></div>;
 };
 
-export default SignaturePage;
+export default Signature;
 
-const PageWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-  margin: 0 auto;
-  height: 100%;
-`;
-
-const ProfileWrap = styled.div`
-  display: flex;
-  height: 25%;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-`;
-
-const ProfileImg = styled.img`
-  display: flex;
-  border-radius: 100%;
-  max-width: 40%;
-`;
-
-const UserName = styled.div`
-  display: flex;
-  font-family: 'Pretendard-bold';
-  font-size: 18px;
-`;
-
-const Divider = styled.div`
-  display: flex;
-  width: 90%;
-  height: 1px;
-  background: var(--gray2, #c8c8c8);
-`;

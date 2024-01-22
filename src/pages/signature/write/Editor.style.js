@@ -44,6 +44,7 @@ const ContentInput = styled.textarea`
 
 const LocationContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
+  justify-content: flex-start;
   margin-bottom: 30px;
 `;
 
@@ -65,6 +66,7 @@ const LocationButton = styled.div`
 `;
 const OptionContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
+  justify-content: space-between;
   position: relative;
 `;
 const ButtonContainer = styled.div`

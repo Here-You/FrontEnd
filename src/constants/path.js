@@ -5,6 +5,11 @@ const BASE_PATH = {
   LOGIN: '/login',
   ON_BOARDING: 'onboarding',
   SCHEDULE: '/schedule',
+  MAP: '/map',
+  // DAILYRECORD
+  DAILYRECORD: '/dailyrecord',
+  DAILYRECORD_WRITE: '/dailyrecord/write/:scheduleid',
+  DAILYRECORD_EDIT: '/dailyrecord/edit/:scheduleid/:recordid',
   // SIGNATURE
   SIGNATURE: '/signature',
   SIGNATURE_WRITE: '/signature/write',
@@ -16,8 +21,10 @@ const BASE_PATH = {
   // MATE
   MATE: '/mate',
   MATE_SEARCH: '/mate/search',
+  MATE_LOOK: '/mate/look',
   MATE_MANAGEMENT: '/mate/management',
   MATE_HOME: '/mate/:userId',
+  MATE_RULE_CHECK_PAGE: '/mate/rule-check/:teamId',
   // MATE_MY_RULE: '/mate/rule/mine',
   // MATE_WRITE_RULE: '/mate/rule/mine/edit',
   // MATE_OURS_RULE: '/mate/rule/ours',
@@ -29,11 +36,17 @@ const BASE_PATH = {
   MY_PAGE_CHANGE_PASSWORD: '/mypage/password',
   MY_PAGE_WITHDRAW: '/mypage/withdraw',
   // App.jsx에서, path 추가할때 사용하시면 됩니다. 예시코드 9번줄
+  TRAVEL_TYPE: '/traveltype',
+  TRAVEL_TYPE_RESULT: '/traveltype/result',
 };
 
 const API_PATH = {
   FAVORITE_TRAVELS: `${BASE_PATH.TRAVELS}/favorite`,
   SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,
+  MY_PAGE_INFO: `${BASE_PATH.MY_PAGE}`,
+  MATE_SEARCH: `${BASE_PATH.MATE_SEARCH}`,
+  MATE_LOOK: `${BASE_PATH.MATE_LOOK}`,
+  DAILYRECORD_WRITE: `${BASE_PATH.DAILYRECORD_WRITE}`,
 };
 
 const KAKAO_REDIRECT_URL = ``;
