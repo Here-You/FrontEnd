@@ -9,6 +9,7 @@ import {
   ErrorPage,
   Home,
   LoginPage,
+  MapPage,
   MateLookPage,
   MateManagementPage,
   MatePage,
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: `${BASE_PATH.MAP}`,
+        element: <MapPage />,
       },
       {
         path: `${BASE_PATH.SIGN_UP}`,
