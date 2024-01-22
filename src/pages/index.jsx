@@ -9,6 +9,8 @@ import ErrorPage from './error/ErrorPage';
 import Home from './home/Home';
 // LOGIN
 import LoginPage from './login/Login';
+// MAP
+import MapPage from './map/MapPage';
 // MATE
 import MatePage from './mate/Mate';
 import MateLookPage from './mate/look/MateLook';
@@ -23,8 +25,6 @@ import MyPagePasswordPage from './mypage/password/MyPagePassword';
 import MyPageWithdrawPage from './mypage/withdraw/MyPageWithdraw';
 // ON_BOARDING
 import OnBoardingPage from './onboarding/OnBoardingPage';
-// Schedule
-import SchedulePage from './schedule/Schedule';
 // Signature
 import SignaturePage from './signature/Signature';
 import SignatureEditPage from './signature/edit/SignatureEdit';
@@ -45,7 +45,6 @@ export {
   ErrorPage,
   LoginPage,
   OnBoardingPage,
-  SchedulePage,
   MatePage,
   MateSearchPage,
   MateManagementPage,
@@ -69,4 +68,5 @@ export {
   DailyRecordWritePage,
   TravelTypePage,
   TravelTypeResultPage,
+  MapPage,
 };

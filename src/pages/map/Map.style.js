@@ -33,20 +33,26 @@ const AddButton = styled.button`
 const ButtonContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   margin-top: 40px;
-  gap: 20px;
+  border: 1px solid ${theme.COLOR.MAIN.GREEN};
+  border-radius: 40px;
 `;
 
 const Button = styled.button`
   width: 200px;
-  background-color: transparent;
+  background-color: #ffffff;
   padding: 20px;
   border: ${props =>
     props.clicked ? `2px solid ${theme.COLOR.MAIN.GREEN}` : 'none'};
+  color: ${props =>
+    props.clicked ? `${theme.COLOR.MAIN.GREEN}` : `${theme.COLOR.MAIN.GRAY}`};
+  font-size: ${FONT_SIZE.SM};
+  font-weight: ${props => (props.clicked ? 'bold' : 'none')};
   border-radius: 40px;
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.1);
+    border: 2px solid ${theme.COLOR.MAIN.GREEN};
+    background: ${theme.COLOR.MAIN.GREEN};
   }
 `;
 

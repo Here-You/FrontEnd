@@ -9,6 +9,7 @@ import {
   ErrorPage,
   Home,
   LoginPage,
+  MapPage,
   MateLookPage,
   MateManagementPage,
   MatePage,
@@ -20,7 +21,6 @@ import {
   MyPagePasswordPage,
   MyPageWithdrawPage,
   OnBoardingPage,
-  SchedulePage,
   SignUpPage,
   SignatureEditPage,
   SignaturePage,
@@ -47,6 +47,10 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: `${BASE_PATH.MAP}`,
+        element: <MapPage />,
+      },
+      {
         path: `${BASE_PATH.SIGN_UP}`,
         element: <SignUpPage />,
       },
@@ -57,10 +61,6 @@ const router = createBrowserRouter([
       {
         path: `${BASE_PATH.ON_BOARDING}`,
         element: <OnBoardingPage />,
-      },
-      {
-        path: `${BASE_PATH.SCHEDULE}`,
-        element: <SchedulePage />,
       },
     ],
   },
