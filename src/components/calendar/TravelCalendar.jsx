@@ -7,8 +7,8 @@ import * as S from './TravelCalendar.style';
 moment.locale('en');
 
 const TravelCalendar = () => {
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const changeDate = e => {
     const startDateFormat = moment(e[0]).format('YYYY/MM/DD');
