@@ -5,6 +5,7 @@ import theme from '@/theme';
 
 const SearchContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
+  margin-bottom: ${props => props.marginBottom || '38px'};
 `;
 
 const InputContainer = styled.div`
@@ -15,7 +16,6 @@ const InputContainer = styled.div`
   border-radius: 13.941px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
   background: #fdfdfd;
-  margin-top: 38px;
 `;
 
 const InputText = styled.input`
@@ -25,7 +25,6 @@ const InputText = styled.input`
 
   ::placeholder {
     color: rgba(0, 0, 0, 0.57);
-    font-family: 'Inter';
     font-size: 12.268px;
     font-style: normal;
     font-weight: 400;

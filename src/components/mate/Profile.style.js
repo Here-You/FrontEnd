@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const CenteredContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER}
+  ${theme.ALIGN.COLUMN_CENTER};
   margin-bottom: 38px;
 `;
 
@@ -48,19 +48,6 @@ const NameAndFollow = styled.div`
     font-weight: 700;
     line-height: normal;
   }
-`;
-
-const FollowButton = styled.button`
-  width: 46px;
-  height: 14px;
-  border-radius: 10px;
-  border: none;
-  background-color: ${theme.COLOR.MAIN.GREEN};
-  color: ${theme.COLOR.MAIN.WHITE};
-  font-size: 8px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
 `;
 
 const UserId = styled.span`
@@ -111,7 +98,6 @@ export {
   UserImg,
   TextContainer,
   NameAndFollow,
-  FollowButton,
   UserId,
   UserAbout,
   FollowContainer,

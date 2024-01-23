@@ -3,7 +3,7 @@ import { HttpResponse, http } from 'msw';
 import { baseURL } from '@/apis/api';
 import { API_PATH } from '@/constants/path';
 
-export const PreveiewHandlers = [
+export const PreviewHandlers = [
   http.get(`${baseURL}${API_PATH.SIGNATURE_PREVIEW}`, (req, res, ctx) => {
     const previewData = [
       {

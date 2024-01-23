@@ -31,7 +31,7 @@ const TextContainer = styled.div`
   left: 121px;
 `;
 
-const UserNickname = styled.span`
+const UserName = styled.span`
   height: 15px;
   color: var(--black, #333);
   font-size: 12px;
@@ -41,7 +41,7 @@ const UserNickname = styled.span`
   letter-spacing: 0.864px;
 `;
 
-const UserId = styled.span`
+const UserNickName = styled.span`
   height: 15px;
   color: #aaa;
   font-size: 12px;
@@ -51,7 +51,7 @@ const UserId = styled.span`
   letter-spacing: 0.864px;
 `;
 
-const UserAbout = styled.span`
+const UserBio = styled.span`
   width: 100%;
   height: 15px;
   color: var(--black, #333);
@@ -65,22 +65,9 @@ const UserAbout = styled.span`
   text-overflow: ellipsis;
 `;
 
-const FollowButton = styled.button`
-  background-color: ${theme.COLOR.MAIN.GREEN};
-  border-radius: 30px;
-  border: transparent;
-  padding: 5px 11px;
-  gap: 10px;
+const Wrapper = styled.div`
   position: absolute;
-  left: 270px;
-
-  span {
-    color: var(--main, #fff);
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
+  right: 51px;
 `;
 
 export {
@@ -88,8 +75,8 @@ export {
   ProfileContainer,
   UserImg,
   TextContainer,
-  UserNickname,
-  UserId,
-  UserAbout,
-  FollowButton,
+  UserName,
+  UserNickName,
+  UserBio,
+  Wrapper,
 };
