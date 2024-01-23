@@ -19,10 +19,10 @@ const MatePage = () => {
         <Title text="내 메이트" />
         <S.CardContainer>
           <S.LinkTo to="/mate/look">
-            <Card text="메이트 탐색하기" imgSrc={mateSearchIcon} />
+            <Card text1="메이트" text2="탐색하기" imgSrc={mateSearchIcon} />
           </S.LinkTo>
           <S.LinkTo to="/mate/management">
-            <Card text="메이트 관리" imgSrc={mateManagementIcon} />
+            <Card text1="메이트" text2="관리하기" imgSrc={mateManagementIcon} />
           </S.LinkTo>
         </S.CardContainer>
       </S.MainContainer>
@@ -32,16 +32,16 @@ const MatePage = () => {
         <S.CardContainer>
           <S.LinkTo to="">
             <Card
-              text="여행 규칙 작성하기"
+              text1="여행 규칙"
+              text2="작성하기"
               imgSrc={mateRuleWriteIcon}
-              width="90px"
             />
           </S.LinkTo>
           <S.LinkTo to="">
             <Card
-              text="여행 규칙 확인하기"
+              text1="여행 규칙"
+              text2="확인하기"
               imgSrc={mateRuleCheckIcon}
-              width="90px"
             />
           </S.LinkTo>
         </S.CardContainer>

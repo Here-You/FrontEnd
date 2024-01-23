@@ -27,6 +27,7 @@ const TravelMap = () => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API,
+    libraries: ['places'],
   });
 
   const [map, setMap] = useState(null);
