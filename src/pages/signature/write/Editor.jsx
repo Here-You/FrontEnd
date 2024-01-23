@@ -3,7 +3,19 @@ import styled from 'styled-components';
 
 import * as S from './Editor.style';
 import Page from './Page';
+import leftIcon from '/icons/leftIcon.svg';
+import rightIcon from '/icons/rightIcon.svg';
 import useSignatureWrite from '@/store/useSignatureWrite';
+
+//✍️시그니처 작성하기 로직✍️//
+//1. Page 컴포넌트 그대로
+//2. 상태관리 라이브러리로 페이지 index별 변경 사항 있을 때마다 업데이트
+//3. 발행 누르면 API POST 요청
+
+//🔥참고사항🔥
+//1. 시그니처-수정할 때도 이거 그대로 띄울 건데, 그때 첫 렌더링 시 1페이지, 이전, 다음 버튼
+//누를 때마다 GET 요청 보내지 말고, 그냥 한 번에 다 가져와서 위에 상태관리에 넣어버리기
+//2. 이후 로직은 동일
 
 export default function Editor() {
   const {
@@ -66,9 +78,11 @@ export default function Editor() {
     <S.EditorContainer>
       <S.Title placeholder="제목" value={title} onChange={handleTitleChange} />
       <S.Divider />
-      <div>
-        {currentPageIndex > 0 && (
-          <button onClick={goToPreviousPage}>이전</button>
+      <S.ContentContainer>
+        {currentPageIndex > 0 ? (
+          <img src={leftIcon} onClick={goToPreviousPage} />
+        ) : (
+          <S.Empty />
         )}
         <Page
           position={pages[currentPageIndex]?.position}
@@ -76,20 +90,24 @@ export default function Editor() {
           content={pages[currentPageIndex]?.content}
           onImageChange={e => handleImageChange(e, currentPageIndex)}
         />
-        {currentPageIndex < pages.length - 1 && (
-          <button onClick={goToNextPage}>다음</button>
+        {currentPageIndex < pages.length - 1 ? (
+          <img src={rightIcon} onClick={goToNextPage} />
+        ) : (
+          <S.Empty />
         )}
-      </div>
+      </S.ContentContainer>
 
-      <ButtonWrap>
-        {(currentPageIndex === pages.length - 1 || pages.length === 1) && (
-          <AddButton onClick={handleAddPage}>페이지 추가</AddButton>
+      <S.ButtonWrap>
+        {currentPageIndex === pages.length - 1 || pages.length === 1 ? (
+          <S.AddButton onClick={handleAddPage}>페이지 추가</S.AddButton>
+        ) : (
+          <S.Empty2 />
         )}
 
-        <Button /*  enabled={validatePages()}  */ onClick={handlePublish}>
+        <S.Button /*  enabled={validatePages()}  */ onClick={handlePublish}>
           발행
-        </Button>
-      </ButtonWrap>
+        </S.Button>
+      </S.ButtonWrap>
       <div>
         <p>현재 페이지: {currentPageIndex + 1}</p>
         <p>총 페이지 개수: {pages.length}</p>
@@ -98,33 +116,3 @@ export default function Editor() {
     </S.EditorContainer>
   );
 }
-
-const ButtonWrap = styled.div`
-  display: flex;
-  margin-left: 70%;
-  font-family: 'Pretendard-bold';
-`;
-
-const AddButton = styled.button`
-  display: flex;
-  border-radius: 5px;
-  background: var(--New-Main, #21b69c);
-  padding: 5px 11px;
-  outline: none;
-  color: white;
-  border: none;
-  margin-right: 10px;
-  cursor: pointer;
-`;
-
-const Button = styled.button`
-  display: flex;
-  border-radius: 5px;
-  background: ${props => (props.enabled ? 'var(--New-Main, #21b69c)' : '#ccc')};
-  padding: 5px 11px;
-  outline: none;
-  color: white;
-  border: none;
-  margin-right: 10px;
-  cursor: ${props => (props.enabled ? 'pointer' : 'not-allowed')};
-`;

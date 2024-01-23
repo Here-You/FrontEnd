@@ -23,14 +23,14 @@ export default function Page() {
   };
 
   return (
-    <div>
+    <S.PageContainer>
       <S.LocationContainer>
         <S.LocationIcon src={location} />
         <S.LocationButton>{position ? position : '위치 추가'}</S.LocationButton>
       </S.LocationContainer>
-      <InputWrap>
+      <S.InputWrap>
         {photo && <img src={URL.createObjectURL(photo)} />}
-        <PhotoButton>
+        <S.PhotoButton>
           <img src={addButton} alt="Add Button" />
           <input
             type="file"
@@ -46,25 +46,13 @@ export default function Page() {
               cursor: 'pointer',
             }}
           />
-        </PhotoButton>
-      </InputWrap>
+        </S.PhotoButton>
+      </S.InputWrap>
       <S.ContentInput
         placeholder="오늘의 시그니처를 기록해보세요!"
         value={pages[currentPageIndex].content}
         onChange={handleContentChange}
       />
-    </div>
+    </S.PageContainer>
   );
 }
-
-const InputWrap = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER}
-`;
-
-const PhotoButton = styled.label`
-  border: 1px dashed #393939;
-  width: 50%;
-  height: 20vh;
-  ${theme.ALIGN.COLUMN_CENTER}
-  position: relative;
-`;
