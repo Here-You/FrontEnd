@@ -1,18 +1,27 @@
 import { useState } from 'react';
 
 import * as S from './FollowButton.style';
+import FollowModal from './FollowModal';
 
-const FollowButton = () => {
-  const [isFollowing, setIsFollowing] = useState(false);
+const FollowButton = ({ isFollowing, onFollowing, name }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClick = () => {
-    setIsFollowing(!isFollowing);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    onFollowing();
   };
 
   return (
-    <S.FollowButton isFollowing={isFollowing} onClick={handleClick}>
-      {isFollowing ? '팔로잉' : '팔로우'}
-    </S.FollowButton>
+    <>
+      <S.FollowButton isFollowing={isFollowing} onClick={handleClick}>
+        {isFollowing ? '팔로잉' : '팔로우'}
+      </S.FollowButton>
+      {isModalOpen && <FollowModal onClose={handleCloseModal} name={name} />}
+    </>
   );
 };
 

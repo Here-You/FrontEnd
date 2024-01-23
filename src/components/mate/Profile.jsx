@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import FollowBox from './FollowBox';
 import FollowButton from './FollowButton';
 import * as S from './Profile.style';
@@ -9,6 +11,13 @@ const Profile = ({ profileData }) => {
 
   const { image, name, nickname, bio, follower_num, following_num } =
     profileData;
+
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  const handleFollowing = () => {
+    setIsFollowing(!isFollowing);
+  };
+
   return (
     <S.CenteredContainer>
       <S.ProfileContainer>
@@ -16,7 +25,11 @@ const Profile = ({ profileData }) => {
         <S.TextContainer>
           <S.NameAndFollow>
             <span>{name}</span>
-            <FollowButton text="팔로우" />
+            <FollowButton
+              isFollowing={isFollowing}
+              onFollowing={handleFollowing}
+              name={name}
+            />
           </S.NameAndFollow>
           <S.UserId>{nickname}</S.UserId>
           <S.UserAbout>{bio}</S.UserAbout>
