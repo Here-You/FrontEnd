@@ -1,24 +1,34 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import * as S from './Search.style';
 
-const Search = () => {
+const Search = ({ marginBottom }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const urlSearchTerm = searchParams.get('searchTerm') || '';
+    setSearchTerm(urlSearchTerm);
+  }, [location.search]);
 
   const handleSearch = () => {
-    // 검색어 디바운싱 적용해서 하기
-    navigate(`/mate/search`);
+    navigate(`/mate?searchTerm=${encodeURIComponent(searchTerm)}`);
+  };
+
+  const handleChange = e => {
+    setSearchTerm(e.target.value);
   };
 
   return (
-    <S.SearchContainer>
+    <S.SearchContainer marginBottom={marginBottom}>
       <S.InputContainer>
         <S.InputText
           placeholder="ID로 친구 추가"
           value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
+          onChange={handleChange}
         />
         <S.SearchButton onClick={handleSearch} />
       </S.InputContainer>

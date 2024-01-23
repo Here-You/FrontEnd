@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+import BigFollowButton from './BigFollowButton';
 import * as S from './ManagementProfile.style';
 
 const ManagementProfile = ({ profileData }) => {
@@ -5,20 +8,28 @@ const ManagementProfile = ({ profileData }) => {
     return <div>데이터가 없습니다.</div>;
   }
 
-  const { imgSrc, nickName, userId, about } = profileData;
+  const { image, name, nickname, bio } = profileData;
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  const handleFollowing = () => {
+    setIsFollowing(!isFollowing);
+  };
 
   return (
     <S.CenteredContainer>
       <S.ProfileContainer>
-        <S.UserImg src={imgSrc} />
+        <S.UserImg src={image} />
         <S.TextContainer>
-          <S.UserNickname>{nickName}</S.UserNickname>
-          <S.UserId>{userId}</S.UserId>
-          <S.UserAbout>{about}</S.UserAbout>
+          <S.UserName>{name}</S.UserName>
+          <S.UserNickName>{nickname}</S.UserNickName>
+          <S.UserBio>{bio}</S.UserBio>
         </S.TextContainer>
-        <S.FollowButton>
-          <span>팔로우</span>
-        </S.FollowButton>
+        <S.Wrapper>
+          <BigFollowButton
+            isFollowing={isFollowing}
+            onFollowing={handleFollowing}
+          />
+        </S.Wrapper>
       </S.ProfileContainer>
     </S.CenteredContainer>
   );
