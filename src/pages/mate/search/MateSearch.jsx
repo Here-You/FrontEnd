@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
+import * as S from './MateSearch.style';
 import { getMateSearch } from '@/apis/request/mate';
 import Profile from '@/components/mate/Profile';
-import Search from '@/components/mate/Search';
 
 const MateSearchPage = () => {
   const [profilesData, setProfilesData] = useState([]);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchTerm = searchParams.get('searchTerm') || '';
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -19,15 +23,22 @@ const MateSearchPage = () => {
     fetchProfileData();
   }, []);
 
+  const filteredProfiles = profilesData.filter(
+    profile => profile.name === searchTerm || profile.nickname === searchTerm,
+  );
+
   return (
-    <>
-      <div style={{ marginBottom: '18.93px' }}>
-        <Search />
-      </div>
-      {profilesData.map((profileData, index) => (
-        <Profile key={index} profileData={profileData} />
-      ))}
-    </>
+    <div style={{ height: '100%' }}>
+      {filteredProfiles.length > 0 ? (
+        filteredProfiles.map((profileData, index) => (
+          <Profile key={index} profileData={profileData} />
+        ))
+      ) : (
+        <S.NoResult>
+          <span>해당 이름의 메이트가 존재하지 않아요</span>
+        </S.NoResult>
+      )}
+    </div>
   );
 };
 
