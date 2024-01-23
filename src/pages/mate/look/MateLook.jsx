@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './MateLook.style';
 import mateSearchIcon from '/images/mate_search.svg';
 import { getMateLook } from '@/apis/request/mate';
+import Banner from '@/components/mate/Banner';
 import MateSignatureSection from '@/components/mate/MateSignatureSection';
 
 const MateLookPage = () => {
@@ -22,6 +23,7 @@ const MateLookPage = () => {
 
   return (
     <>
+      <Banner />
       <S.CenteredContainer>
         <S.FixedContainer>
           <S.StyledTitle>메이트 탐색하기</S.StyledTitle>
