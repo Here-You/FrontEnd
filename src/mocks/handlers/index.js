@@ -1,11 +1,9 @@
-import { PreveiewHandlers } from './PreviewHandler';
 import { mateLookHandlers } from './mate-look';
 import { mateManagementHandlers } from './mate-management';
 import { mateSearchHandlers } from './mate-search-result';
 import { PreveiewHandlers } from './previewHandlers';
-import { travelHandlers } from './travel-place';
 import { profileInfoHandlers } from './profile-info';
-
+import { travelHandlers } from './travel-place';
 
 export const handlers = [
   ...travelHandlers,
@@ -14,8 +12,5 @@ export const handlers = [
   ...PreveiewHandlers,
   ...mateManagementHandlers,
   ...PreveiewHandlers,
-  ...profileInfoHandlers
+  ...profileInfoHandlers,
 ];
-
-
-
