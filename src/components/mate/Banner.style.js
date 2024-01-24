@@ -7,20 +7,22 @@ const BannerContainer = styled.div`
   height: 99px;
   background: rgba(27, 156, 133, 0.16);
   position: relative;
+  margin-bottom: 18px;
 `;
 
 const TitleContainer = styled.div`
   width: 112px;
   height: 29px;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: #1b9c85;
   position: absolute;
   left: 20px;
   top: 14px;
-  ${theme.ALIGN.ROW_CENTER}
+  ${theme.ALIGN.ROW_CENTER};
+  gap: 2.51px;
 
   img {
-    width: 20px;
+    width: 20.345px;
     height: 13.494px;
   }
 
@@ -31,7 +33,7 @@ const TitleContainer = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    letter-spacing: 0.432px;
+    letter-spacing: 0.864px;
   }
 `;
 
