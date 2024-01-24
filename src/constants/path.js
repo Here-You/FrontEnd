@@ -6,9 +6,9 @@ const BASE_PATH = {
   ON_BOARDING: 'onboarding',
   MAP: '/map',
   // DAILYRECORD
-  DAILYRECORD: '/dailyrecord',
-  DAILYRECORD_WRITE: '/dailyrecord/write/:scheduleid',
-  DAILYRECORD_EDIT: '/dailyrecord/edit/:scheduleid/:recordid',
+  DAILY_RECORD: '/dailyrecord',
+  DAILY_RECORD_WRITE: '/dailyrecord/write/:scheduleid',
+  DAILY_RECORD_EDIT: '/dailyrecord/edit/:scheduleid/:recordid',
   // SIGNATURE
   SIGNATURE: '/signature',
   SIGNATURE_WRITE: '/signature/write',
@@ -48,7 +48,7 @@ const API_PATH = {
   MATE_LOOK: `${BASE_PATH.MATE_LOOK}`,
   MATE_RULE_CHECK: `${BASE_PATH.MATE_RULE_CHECK}`,
   MATE_MANAGEMENT: `${BASE_PATH.MATE_MANAGEMENT}`,
-  DAILYRECORD_WRITE: `${BASE_PATH.DAILYRECORD_WRITE}`,
+  DAILY_RECORD_WRITE: `${BASE_PATH.DAILY_RECORD_WRITE}`,
   SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,
 };
 
