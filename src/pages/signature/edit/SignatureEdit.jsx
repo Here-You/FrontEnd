@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
+//이거 API 테스트 코드
+
 const CountryCitySelector = () => {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -63,6 +65,7 @@ const CountryCitySelector = () => {
         });
     }
   }, [selectedCountry]);
+
   return (
     <div>
       <label>Select a country:</label>
@@ -90,4 +93,5 @@ const CountryCitySelector = () => {
     </div>
   );
 };
+
 export default CountryCitySelector;

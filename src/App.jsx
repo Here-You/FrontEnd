@@ -65,7 +65,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: `${BASE_PATH.DAILYRECORD}`,
+    path: `${BASE_PATH.DAILY_RECORD}`,
     children: [
       {
         element: <DailyRecordPage />,
@@ -74,11 +74,11 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <DailyRecordPage /> },
           {
-            path: `${BASE_PATH.DAILYRECORD_WRITE}`,
+            path: `${BASE_PATH.DAILY_RECORD_WRITE}`,
             element: <DailyRecordWritePage />,
           },
           {
-            path: `${BASE_PATH.DAILYRECORD_EDIT}`,
+            path: `${BASE_PATH.DAILY_RECORD_EDIT}`,
             element: <DailyRecordEditPage />,
           },
         ],

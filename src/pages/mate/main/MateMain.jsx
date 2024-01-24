@@ -1,4 +1,4 @@
-import * as S from './MateMAin.style';
+import * as S from './MateMain.style';
 import mateRuleCheckIcon from '/images/mateRule_check.svg';
 import mateRuleWriteIcon from '/images/mateRule_write.svg';
 import mateManagementIcon from '/images/mate_management.svg';
