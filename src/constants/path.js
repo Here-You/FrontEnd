@@ -4,7 +4,6 @@ const BASE_PATH = {
   SIGN_UP: '/signup',
   LOGIN: '/login',
   ON_BOARDING: 'onboarding',
-  SCHEDULE: '/schedule',
   MAP: '/map',
   // DAILYRECORD
   DAILYRECORD: '/dailyrecord',
