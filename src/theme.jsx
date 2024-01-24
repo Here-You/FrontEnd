@@ -31,14 +31,18 @@ const ALIGN = {
 
 const COLOR = {
   MAIN: {
-    GREEN: '#1EAA67',
+    HEAVY_GREEN: '#1B9C85',
+    GREEN: '#1FB69C',
+    MEDIUM_GREEN: '#21B69C',
+    LIGHT_GREEN: '#D8EDE9',
     YELLOW: '#FBC300',
     BLUE: '#3083FF',
-    BLACK: '#393939',
-    GRAY: '#828282',
-    LIGHT_GRAY: '#EEEEEE',
-    LIGHT_BLACK: '#C8C8C8',
+    RED: '#D80000',
     WHITE: '#FFFFFF',
+    BLACK: '#1C1C1C',
+    LIGHT_BLACK: '#C8C8C8',
+    GRAY: '#828282',
+    LIGHT_GRAY: '#F8F8F8',
   },
 };
 
