@@ -2,103 +2,93 @@ import styled from 'styled-components';
 
 import theme from '@/theme';
 
-const SubWrapper = styled.div`
-  width: 300px;
-
-  span {
-    color: ${theme.COLOR.MAIN.GRAY};
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    padding-bottom: 21px;
-  }
-`;
-
 const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 140px;
-  height: 228px;
-`;
-
-const FirstLine = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
-  padding-bottom: 7px;
-`;
-
-const UserImg = styled.img`
-  background-color: white;
-  width: 20px;
-  height: 20px;
+  width: 190px;
+  height: 175px;
+  border: 1px solid rgba(130, 130, 130, 0.3);
   border-radius: 20px;
-  border: transparent;
-  margin-right: 5px;
+  padding: 15px;
 `;
 
-const UserName = styled.span`
-  color: #000;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
+const ProfileContainer = styled.div`
+  width: 100%;
+  ${theme.ALIGN.ROW_CENTER};
+  justify-content: stretch;
+  margin-bottom: 14px;
 
-const FollowButton = styled.button`
-  ${theme.ALIGN.ROW_CENTER}
-  background-color: ${theme.COLOR.MAIN.GREEN};
-  width: 46px;
-  height: 14px;
-  border-radius: 10px;
-  border: transparent;
-  margin-left: auto;
-
-  span {
-    width: 21px;
-    height: 8.75px;
-    color: ${theme.COLOR.MAIN.WHITE};
-    font-size: 8px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
   }
 `;
 
-const PreviewImg = styled.img`
-  width: 140px;
-  height: 140px;
-  border-radius: 5px;
-  border: 1px solid ${theme.COLOR.MAIN.LIGHT_BLACK};
-`;
-
-const StyledTitle = styled.span`
-  ${theme.ALIGN.COLUMN_CENTER};
+const ColumnContainer = styled.div`
   width: 100%;
-  height: 35px;
-  color: var(--black, #393939);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin: 5px 0;
+  ${theme.ALIGN.COLUMN_CENTER};
+  align-items: start;
+  padding-left: 8px;
 `;
 
-const StyledText = styled.span`
-  color: #000;
-  font-size: 12px;
+const RowContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  justify-content: space-between;
+
+  span {
+    width: 60px;
+    color: var(--black, #333);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-right: 5px;
+  }
+`;
+
+const UserBio = styled.span`
+  color: var(--black, #333);
+  font-size: 8.864px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: normal;
+  letter-spacing: 0.638px;
+`;
+
+const SignatureContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  gap: 5px;
+`;
+
+const SignatureContent = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  width: 70px;
+
+  img {
+    width: 100%;
+    height: 70px;
+    border-radius: 2.5px;
+    border: 0.5px solid ${theme.COLOR.MAIN.LIGHT_BLACK};
+  }
+
+  span {
+    width: 100%;
+    color: ${theme.COLOR.MAIN.BLACK};
+    font-size: 7px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-top: 2.5px;
+    padding-left: 1px;
+    padding-right: 1px;
+  }
 `;
 
 export {
-  SubWrapper,
   MainContainer,
-  FirstLine,
-  UserImg,
-  UserName,
-  FollowButton,
-  PreviewImg,
-  StyledTitle,
-  StyledText,
+  ProfileContainer,
+  RowContainer,
+  ColumnContainer,
+  UserBio,
+  SignatureContainer,
+  SignatureContent,
 };
