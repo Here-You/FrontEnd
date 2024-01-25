@@ -1,34 +1,36 @@
 import { useState } from 'react';
 
 import * as S from './MateRuleWrite.style';
+import RuleBox from '@/components/mate/RuleBox';
 import RuleButton from '@/components/mate/RuleButton';
+import RuleFollowModal from '@/components/mate/RuleFollowModal';
 
 const MateRuleWritePage = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleClick = () => {
+    setModalOpen(!isModalOpen);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <S.CenteredContainer>
-      <S.InputContainer>
-        <S.Topcontainer>
-          <S.LineWrapper>
-            <S.StyledTitle
-              value={title}
-              onChange={e => setTitle(e.target.value)}
-            />
-            <S.PlusButton />
-          </S.LineWrapper>
-
-          <S.Participant />
-        </S.Topcontainer>
-        <S.InputBox
-          value={content}
-          onChange={e => setContent(e.target.value)}
-        />
-      </S.InputContainer>
+      <RuleBox
+        title={title}
+        setTitle={setTitle}
+        content={content}
+        setContent={setContent}
+        handleClick={handleClick}
+      />
       <S.ButtonWrapper>
         <RuleButton text="발행하기" />
       </S.ButtonWrapper>
+      {isModalOpen && <RuleFollowModal onClose={handleCloseModal} />}
     </S.CenteredContainer>
   );
 };
