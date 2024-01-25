@@ -8,6 +8,7 @@ const CenteredContainer = styled.div`
 `;
 
 const InputContainer = styled.div`
+  position: relative;
   width: 293px;
   height: 526px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
@@ -18,29 +19,23 @@ const InputContainer = styled.div`
 `;
 
 const Topcontainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
-  justify-content: space-around;
+  ${theme.ALIGN.COLUMN_CENTER};
+  position: relative;
   width: 100%;
-  height: 64px;
+  margin: 20px 0;
 `;
 
-const SortButton = styled.button`
-  width: 24px;
-  height: 24px;
-  margin-left: 17px;
-  position: relative;
-  border: none;
-  background-color: transparent;
+const LineWrapper = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
 `;
 
 const StyledTitle = styled.input`
   border: none;
   border-bottom: 1px solid ${theme.COLOR.MAIN.LIGHT_BLACK};
-  width: 160px;
+  width: 200px;
   height: 24px;
-  margin-left: auto;
-  margin-right: auto;
   padding: 5px;
+
   color: #000;
   text-align: center;
   font-size: 16px;
@@ -54,9 +49,11 @@ const StyledTitle = styled.input`
 `;
 
 const PlusButton = styled.button`
-  width: 24px;
-  height: 24px;
-  margin-right: 17px;
+  position: absolute;
+  right: 10px;
+  margin-left: 13px;
+  width: 20px;
+  height: 20px;
   border: none;
   background-image: url(${AddUserIcon});
   background-repeat: no-repeat;
@@ -64,11 +61,18 @@ const PlusButton = styled.button`
   background-color: transparent;
 `;
 
+const Participant = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  width: 200px;
+  margin-top: 10px;
+  height: 13px;
+`;
+
 const InputBox = styled.textarea`
   border: none;
   width: 100%;
-  height: 450px;
-  border-top: 1px solid ${theme.COLOR.MAIN.GREEN};
+  height: 430px;
+  border-top: 1px solid ${theme.COLOR.MAIN.LIGHT_GRAY};
   padding: 5px;
 
   &:focus {
@@ -76,12 +80,18 @@ const InputBox = styled.textarea`
   }
 `;
 
+const ButtonWrapper = styled.div`
+  position: relative;
+`;
+
 export {
   CenteredContainer,
   InputContainer,
   Topcontainer,
-  SortButton,
+  LineWrapper,
   StyledTitle,
   PlusButton,
+  Participant,
   InputBox,
+  ButtonWrapper,
 };
