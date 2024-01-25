@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const ContentsContainer = styled.div`
-  width: 375px;
+  width: 100%;
   margin-bottom: 32px;
 `;
 
@@ -17,6 +17,7 @@ const PreviewContainer = styled.div`
 const SubWrapper = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: flex-start;
+  width: 100%;
 
   span {
     color: ${theme.COLOR.MAIN.GRAY};

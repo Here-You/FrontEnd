@@ -2,10 +2,14 @@ import styled from 'styled-components';
 
 import theme from '@/theme';
 
-const CenteredContainer = styled.div`
+const MateLookContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  position: absolute;
-  left: 20px;
+  position: relative;
 `;
 
-export { CenteredContainer };
+const CenteredContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  margin: 0 20px;
+`;
+
+export { MateLookContainer, CenteredContainer };

@@ -22,7 +22,7 @@ const MateLookPage = () => {
   }, []);
 
   return (
-    <div style={{ position: 'relative' }}>
+    <S.MateLookContainer>
       <Banner />
       <S.CenteredContainer>
         <MateSignatureSection
@@ -35,7 +35,7 @@ const MateLookPage = () => {
           matesData={matesData}
         />
       </S.CenteredContainer>
-    </div>
+    </S.MateLookContainer>
   );
 };
 

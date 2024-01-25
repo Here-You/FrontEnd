@@ -12,6 +12,7 @@ const ModalBase = styled.div`
   background: rgba(51, 51, 51, 0.3);
   backdrop-filter: blur(1px);
   ${theme.ALIGN.COLUMN_CENTER};
+  z-index: 3;
 `;
 
 const ModalContainer = styled.div`

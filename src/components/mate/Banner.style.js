@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const BannerContainer = styled.div`
-  width: 100%;
+  ${theme.ALIGN.COLUMN_CENTER};
+  width: 375px;
   height: 99px;
   background: rgba(27, 156, 133, 0.16);
   position: relative;
