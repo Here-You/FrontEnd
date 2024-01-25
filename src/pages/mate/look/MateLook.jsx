@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import * as S from './MateLook.style';
-import mateSearchIcon from '/images/mate_search.svg';
+import mateSearchIcon from '/images/mate/mate_search.svg';
 import { getMateLook } from '@/apis/request/mate';
 import Banner from '@/components/mate/Banner';
 import MateSignatureSection from '@/components/mate/MateSignatureSection';

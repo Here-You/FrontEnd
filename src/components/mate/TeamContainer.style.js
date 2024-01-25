@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const TeamContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  justify-content: space-around;
   width: 327px;
   height: 62px;
   border-radius: 10px;
   border: 1px solid #eee;
   background: #fdfdfd;
-  ${theme.ALIGN.ROW_CENTER};
-  justify-content: space-around;
   position: relative;
   margin-bottom: 10px;
 `;

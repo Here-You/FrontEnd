@@ -12,14 +12,14 @@ const BannerContainer = styled.div`
 `;
 
 const TitleContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
   width: 112px;
   height: 29px;
   border-radius: 20px;
-  background-color: #1b9c85;
+  background-color: ${theme.COLOR.MAIN.HEAVY_GREEN};
   position: absolute;
   left: 20px;
   top: 14px;
-  ${theme.ALIGN.ROW_CENTER};
   gap: 2.51px;
 
   img {
@@ -39,11 +39,11 @@ const TitleContainer = styled.div`
 `;
 
 const Contents = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  align-items: start;
   position: absolute;
   left: 20px;
   top: 53px;
-  ${theme.ALIGN.COLUMN_CENTER};
-  align-items: start;
 
   span {
     color: ${theme.COLOR.MAIN.BLACK};

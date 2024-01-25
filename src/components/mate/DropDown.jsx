@@ -1,8 +1,8 @@
 import * as S from './DropDown.style';
-import textAlignCenter from '/images/text-center-black.svg';
-import textAlignJustify from '/images/text-justify-black.svg';
-import textAlignLeft from '/images/text-left-black.svg';
-import textAlignRight from '/images/text-right-black.svg';
+import textAlignCenter from '/images/mate/text-center-black.svg';
+import textAlignJustify from '/images/mate/text-justify-black.svg';
+import textAlignLeft from '/images/mate/text-left-black.svg';
+import textAlignRight from '/images/mate/text-right-black.svg';
 
 const DropDown = ({ visible, handleAlignChange }) => {
   return (

@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
+import theme from '@/theme';
+
 const WriteButton = styled.button`
   width: 201px;
   height: 51px;
   border-radius: 50px;
   border: none;
-  background: #1b9c85;
+  background: ${theme.COLOR.MAIN.HEAVY_GREEN};
   margin-bottom: 54px;
 
   span {
-    color: var(--main, #fff);
+    color: ${theme.COLOR.MAIN.WHITE};
     text-align: center;
     font-size: 16px;
     font-style: normal;

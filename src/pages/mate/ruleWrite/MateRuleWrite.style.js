@@ -18,10 +18,10 @@ const InputContainer = styled.div`
 `;
 
 const Topcontainer = styled.div`
-  width: 100%;
-  height: 64px;
   ${theme.ALIGN.ROW_CENTER};
   justify-content: space-around;
+  width: 100%;
+  height: 64px;
 `;
 
 const SortButton = styled.button`

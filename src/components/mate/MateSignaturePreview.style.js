@@ -11,9 +11,9 @@ const MainContainer = styled.div`
 `;
 
 const ProfileContainer = styled.div`
-  width: 100%;
   ${theme.ALIGN.ROW_CENTER};
   justify-content: stretch;
+  width: 100%;
   margin-bottom: 14px;
 
   img {
@@ -24,9 +24,9 @@ const ProfileContainer = styled.div`
 `;
 
 const ColumnContainer = styled.div`
-  width: 100%;
   ${theme.ALIGN.COLUMN_CENTER};
   align-items: start;
+  width: 100%;
   padding-left: 8px;
 `;
 

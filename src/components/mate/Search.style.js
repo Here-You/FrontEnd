@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import searchIcon from '/images/mateSearch.svg';
+import searchIcon from '/images/mate/mateSearch.svg';
 import theme from '@/theme';
 
 const SearchContainer = styled.div`
