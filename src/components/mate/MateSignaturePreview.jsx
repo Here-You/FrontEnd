@@ -1,6 +1,6 @@
 import FollowButton from './FollowButton';
 import * as S from './MateSignaturePreview.style';
-import theme from '@/theme';
+import MateLookSignatue from '/images/mate/mateLookSignature.jpg';
 
 const MateSignaturePreview = ({ mateData }) => {
   if (!mateData) {
@@ -24,11 +24,11 @@ const MateSignaturePreview = ({ mateData }) => {
 
       <S.SignatureContainer>
         <S.SignatureContent>
-          <img />
+          <img src={MateLookSignatue} />
           <span>뽀똔이와 함께하는 일본 뿌시기</span>
         </S.SignatureContent>
         <S.SignatureContent>
-          <img />
+          <img src={MateLookSignatue} />
           <span>뽀똔이와 함께하는 일본 뿌시기</span>
         </S.SignatureContent>
       </S.SignatureContainer>
