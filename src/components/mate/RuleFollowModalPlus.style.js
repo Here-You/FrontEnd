@@ -19,10 +19,16 @@ const ModalContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   position: relative;
   width: 277px;
-  height: 174px;
+  height: 300px;
   border-radius: 10px;
   border-color: transparent;
   background-color: ${theme.COLOR.MAIN.WHITE};
+`;
+
+const WrapContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  position: absolute;
+  top: 38px;
 
   span {
     color: ${theme.COLOR.MAIN.GRAY};
@@ -31,6 +37,7 @@ const ModalContainer = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    top: 38px;
   }
 `;
 
@@ -79,6 +86,14 @@ const SearchButton = styled.button`
   cursor: pointer;
 `;
 
+const PlusContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  width: 100%;
+  position: absolute;
+  top: 110px;
+  gap: 5px;
+`;
+
 const ButtonContainer = styled.div`
   position: absolute;
   bottom: 0px;
@@ -121,9 +136,11 @@ const OkButton = styled.button`
 export {
   ModalBase,
   ModalContainer,
+  WrapContainer,
   SearchContainer,
   UserInput,
   SearchButton,
+  PlusContainer,
   ButtonContainer,
   CancelButton,
   OkButton,

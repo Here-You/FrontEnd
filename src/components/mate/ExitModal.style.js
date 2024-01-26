@@ -34,49 +34,24 @@ const ModalContainer = styled.div`
   }
 `;
 
-const SearchContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
-  position: relative;
-  width: 240px;
-  height: 35px;
-  border-radius: 10px;
-  border: 1px solid #eee;
-  margin-top: 16px;
-  margin-bottom: 23px;
-`;
-
-const UserInput = styled.input`
+const SpanContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
   position: absolute;
-  height: 100%;
-  left: 5px;
-  padding: 5px;
-  border: none;
+  top: 62px;
+  gap: 7px;
 
   span {
     color: ${theme.COLOR.MAIN.GRAY};
+    text-align: center;
     font-size: 12px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: normal;
   }
 
-  &:focus {
-    outline: none;
+  span:last-child {
+    font-weight: 500;
   }
-`;
-
-const SearchButton = styled.button`
-  width: 34.793px;
-  height: 35px;
-  position: absolute;
-  right: 0;
-  border-radius: 0px 10px 10px 0px;
-  border-color: transparent;
-  background-color: #eee;
-  background-image: url(${searchIcon});
-  background-repeat: no-repeat;
-  background-position: center center;
-  cursor: pointer;
 `;
 
 const ButtonContainer = styled.div`
@@ -121,9 +96,7 @@ const OkButton = styled.button`
 export {
   ModalBase,
   ModalContainer,
-  SearchContainer,
-  UserInput,
-  SearchButton,
+  SpanContainer,
   ButtonContainer,
   CancelButton,
   OkButton,
