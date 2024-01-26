@@ -41,6 +41,74 @@ const BASE_PATH = {
   TRAVEL_TYPE_RESULT: '/traveltype/result',
 };
 
+const VERSION = 'v1';
+
+const API_BASE = {
+  USER: 'user',
+  PROFILE: 'profile',
+  NOTIFICATION: 'notification',
+  SCHEDULE: 'schedule',
+  SCHEDULES: 'schedules',
+  DETAIL_SCHEDULE: 'detail-schedule',
+  JOURNEY: 'journey',
+  DIARY: 'diary',
+  DIARIES: 'diaries',
+  MAP: 'map',
+  SEARCH: 'search',
+  SIGNATURE: 'signature',
+  MATE: 'mate',
+};
+
+const API_URL = {
+  LOGIN: `/api/${VERSION}/${API_BASE.USER}/login`,
+  SNS_LOGIN: `/api/${VERSION}/${API_BASE.USER}/login/oauth`,
+  UPDATE_NICKNAME: `/api/${VERSION}/${API_BASE.PROFILE}/nickname`,
+  UPDATE_PROFILE_INTRO: `/api/${VERSION}/${API_BASE.PROFILE}/intro`,
+  NOTIFICATION: `/api/${VERSION}/${API_BASE.NOTIFICATION}`,
+  WITHDRAW_MEMBER: `/api/${VERSION}/${API_BASE.PROFILE}/delete`,
+  LOAD_MONTHLY_SCHEDULE: `/api/${VERSION}/${API_BASE.SCHEDULES}/monthly`,
+  SAVE_JOURNEY: `/api/${VERSION}/${API_BASE.JOURNEY}/create`,
+  UPDATE_JOURNEY: `/api/${VERSION}/${API_BASE.JOURNEY}/update/:journeyId`,
+  DELETE_JOURNEY: `/api/${VERSION}/${API_BASE.JOURNEY}/delete/:journeyId`,
+  CREATE_SCHEDULE: `/api/${VERSION}/${API_BASE.SCHEDULE}/create`,
+  GET_SCHEDULE: `/api/${VERSION}/${API_BASE.SCHEDULES}/:journeyId`,
+  CREATE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/:scheduleId`,
+  UPDATE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/:scheduleId/update/:detailId`,
+  DELETE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/:scheduleId/delete/:detailId`,
+  CREATE_DIARY: `/api/${VERSION}/${API_BASE.DIARY}/create/:scheduleId`,
+  GET_DIARY: `/api/${VERSION}/${API_BASE.DIARIES}/:scheduleId`,
+  // MAP
+  GET_MONTHLY_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/monthly-journey`,
+  GET_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/journey/get/:journeyId`,
+  GET_DIARIES_MAP: `/api/${VERSION}/${API_BASE.MAP}/diaries/get/:journeyId`,
+  GET_DETAIL_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/schedules/get/:journeyId`,
+  // SIGNATURE
+  SEARCH_SIGNATURE: `/api/${VERSION}/${API_BASE.SEARCH}`, // 검색탭 메인화면
+  GET_MY_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}`,
+  SETTING_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/:signatureId`,
+  UPLOAD_SIGNATURE_IMAGE: `/api/${VERSION}/${API_BASE.SIGNATURE}/image`,
+  PUBLISH_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/new`,
+  // 시그니처 수정, 삭제, 상세보기, 설정 (같은 URL)
+  GET_DETAIL_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/:signatureId`,
+  // 좋아요, 좋아요 취소, 좋아요한 사용자 목록
+  LIKE_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/:signatureId/like`,
+  // MATE
+  SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
+  FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:mateId`,
+  UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/unfollow/:mateId`,
+  EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/explore/:userId`,
+  GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/followList/:userId`,
+  GET_MATE_FOLLOWING: `/api/${VERSION}/${API_BASE.MATE}/followingList/:userId`,
+  CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,
+  SEARCH_INVITE_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/searchMate`,
+  GET_PARTICIPATE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/participants/:ruleId`,
+  GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/view/:ruleId`,
+  UPDATE_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/edit/:ruleId`,
+  DELETE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/editMate/:ruleId/:mateId`,
+  CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule/comment/:ruleId`,
+  GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list/:userId`,
+};
+
 const API_PATH = {
   FAVORITE_TRAVELS: `${BASE_PATH.TRAVELS}/favorite`,
   SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,
@@ -51,8 +119,9 @@ const API_PATH = {
   MATE_MANAGEMENT: `${BASE_PATH.MATE_MANAGEMENT}`,
   DAILYRECORD_WRITE: `${BASE_PATH.DAILYRECORD_WRITE}`,
   SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,
+  MONTHLY_SCHEDULE: `${BASE_PATH.BASE}`,
 };
 
 const KAKAO_REDIRECT_URL = ``;
 
-export { BASE_PATH, API_PATH };
+export { BASE_PATH, VERSION, API_BASE, API_URL, API_PATH };
