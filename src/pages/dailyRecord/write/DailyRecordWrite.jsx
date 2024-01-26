@@ -56,6 +56,9 @@ const DailyRecordWritePage = () => {
         <S.YearText>{year}</S.YearText>
         <S.DateText>
           {day}, {month}
+          <S.UploadButton type="submit" onClick={handleSubmit(onSubmit)}>
+            저장
+          </S.UploadButton>
         </S.DateText>
       </S.DateContainer>
       <S.RecordContainer>
@@ -105,9 +108,6 @@ const DailyRecordWritePage = () => {
           {...register('content', { required: '내용을 입력해주세요' })}
         />
       </S.RecordContainer>
-      <button type="submit" onClick={handleSubmit(onSubmit)}>
-        제출하기
-      </button>
     </S.Container>
   );
 };
