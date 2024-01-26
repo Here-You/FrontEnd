@@ -18,6 +18,11 @@ const PreviewImage = styled.img`
   border-radius: 20px;
   cursor: pointer;
 
+  @media ${theme.WINDOW_SIZE.TABLET} {
+    width: 200px;
+    height: 200px;
+  }
+
   @media ${theme.WINDOW_SIZE.MOBILE} {
     width: 100px;
     height: 100px;
@@ -115,7 +120,6 @@ const WeatherContainer = styled.div`
 `;
 
 const LocationText = styled.textarea`
-  width: 100%;
   height: 50px;
   color: #333;
   font-size: ${FONT_SIZE.SM};
