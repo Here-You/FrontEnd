@@ -10,9 +10,9 @@ import {
   useJsApiLoader,
 } from '@react-google-maps/api';
 
-const containerStyle = {
-  width: '750px',
-  height: '650px',
+const tabletStyle = {
+  height: '100vh',
+  width: '100%',
 };
 
 const myStyles = [
@@ -63,8 +63,9 @@ const TravelMap = () => {
 
   return isLoaded ? (
     <GoogleMap
+      style={{ width: '1200', height: '450' }}
       options={{ disableDefaultUI: true, styles: myStyles }}
-      mapContainerStyle={containerStyle}
+      mapContainerStyle={tabletStyle}
       center={center}
       zoom={10}
       onLoad={onLoad}

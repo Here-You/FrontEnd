@@ -67,6 +67,7 @@ const CalendarContainer = styled.div`
 const JourneyWrapper = styled.div``;
 
 const MapContainer = styled.div`
+  width: 90%;
   margin-top: 40px;
 `;
 
