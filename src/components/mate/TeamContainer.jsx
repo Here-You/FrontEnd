@@ -1,22 +1,47 @@
-import * as S from './TeamContainer.style';
+import { useState } from 'react';
 
-const TeamContainer = () => {
+import ExitModal from './ExitModal';
+import * as S from './TeamContainer.style';
+import over from '/images/mate/over.svg';
+
+const TeamContainer = ({ profileData }) => {
+  if (!profileData) {
+    return <div>데이터가 없습니다.</div>;
+  }
+
+  const { participant_cnt, title, last_updated_date, participants } =
+    profileData;
+
+  const [showExitModal, setShowExitModal] = useState(false);
+
+  const handleExitButtonClick = () => {
+    setShowExitModal(true);
+  };
+
+  const handleCloseExitModal = () => {
+    setShowExitModal(false);
+    onClose();
+  };
+
   return (
     <S.TeamContainer>
       <S.TeamInfoContainer>
-        <S.TeamInfo>
-          <S.TeammateImg src="/images/userImg.png" />
-          <S.TeammateNum>5명</S.TeammateNum>
-        </S.TeamInfo>
-        <S.TeammateName>신서영, 김지아</S.TeammateName>
+        <S.ImgContainer>
+          {participants.slice(0, 2).map((participant, index) => (
+            <S.TeammateImg key={index} src={participant.image} index={index} />
+          ))}
+          {participant_cnt >= 4 && <S.OverImg src={over} alt="over" />}
+        </S.ImgContainer>
+        <S.TeammateNum>{participant_cnt}명</S.TeammateNum>
       </S.TeamInfoContainer>
 
-      <S.TeamTitle>제주여행을 하며</S.TeamTitle>
+      <S.TeamTitle>{title}</S.TeamTitle>
 
       <S.ExitContainer>
-        <S.ExitButton>나가기</S.ExitButton>
-        <S.WriteDate>23.12.20</S.WriteDate>
+        <S.ExitButton onClick={handleExitButtonClick}>나가기</S.ExitButton>
+        <S.WriteDate>{last_updated_date}</S.WriteDate>
       </S.ExitContainer>
+      {showExitModal && <ExitModal onClose={handleCloseExitModal} />}
     </S.TeamContainer>
   );
 };

@@ -5,31 +5,45 @@ import theme from '@/theme';
 const TeamContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: space-around;
+  position: relative;
   width: 327px;
   height: 62px;
   border-radius: 10px;
   border: 1px solid #eee;
   background: #fdfdfd;
-  position: relative;
   margin-bottom: 10px;
+  cursor: pointer;
 `;
 
 const TeamInfoContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  gap: 5px;
   position: absolute;
   left: 15px;
+  height: 35px;
+  gap: 10px;
 `;
 
-const TeamInfo = styled.div`
+const ImgContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  gap: 5px;
+  position: relative;
+  width: 26px;
 `;
 
 const TeammateImg = styled.img`
-  width: 12.828px;
-  height: 13.977px;
-  border-radius: 13.977px;
+  position: absolute;
+  left: ${props => props.index * 8}px;
+  width: 14px;
+  height: 14px;
+  border-radius: 14px;
+`;
+
+const OverImg = styled.img`
+  position: absolute;
+  left: 25px;
+  width: 14px;
+  height: 14px;
+  border-radius: 14px;
+  background-color: ${theme.COLOR.MAIN.WHITE};
 `;
 
 const TeammateNum = styled.span`
@@ -40,25 +54,19 @@ const TeammateNum = styled.span`
   font-weight: 400;
   line-height: normal;
 `;
-const TeammateName = styled.span`
-  color: ${theme.COLOR.MAIN.BLACK};
-  text-align: center;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
 
 const TeamTitle = styled.span`
+  position: absolute;
+  left: 70px;
+  width: 180px;
+  margin-left: auto;
+  margin-right: auto;
   color: #000;
   text-align: center;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  width: 140px;
 `;
 
 const ExitContainer = styled.div`
@@ -77,6 +85,11 @@ const ExitButton = styled.button`
   border: none;
   background-color: transparent;
   margin-bottom: 3px;
+  cursor: pointer;
+
+  &:hover {
+    font-weight: 600;
+  }
 `;
 
 const WriteDate = styled.span`
@@ -92,10 +105,10 @@ const WriteDate = styled.span`
 export {
   TeamContainer,
   TeamInfoContainer,
-  TeamInfo,
+  ImgContainer,
   TeammateImg,
+  OverImg,
   TeammateNum,
-  TeammateName,
   TeamTitle,
   ExitContainer,
   ExitButton,

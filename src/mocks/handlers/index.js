@@ -1,4 +1,5 @@
 import { MateInviteHandlers } from './MateInviteHandlers';
+import { MateRuleListHandlers } from './MateRuleListHandlers';
 import { PreviewHandlers } from './PreviewHandler';
 import { PreviewHandlers2 } from './PreviewHandlers2';
 import { mateLookHandlers } from './mate-look';
@@ -13,6 +14,7 @@ export const handlers = [
   ...mateLookHandlers,
   ...PreviewHandlers,
   ...mateManagementHandlers,
+  ...MateRuleListHandlers,
   ...MateInviteHandlers,
   ...profileInfoHandlers,
   ...PreviewHandlers2,

@@ -12,7 +12,7 @@ const StyledTitle = styled.span`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-bottom: 47px;
+  margin-bottom: 35px;
 `;
 
 export { CenteredContainer, StyledTitle };
