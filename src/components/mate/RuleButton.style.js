@@ -9,6 +9,7 @@ const WriteButton = styled.button`
   border: none;
   background: ${theme.COLOR.MAIN.HEAVY_GREEN};
   margin-bottom: 54px;
+  cursor: pointer;
 
   span {
     color: ${theme.COLOR.MAIN.WHITE};

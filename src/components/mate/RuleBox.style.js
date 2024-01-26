@@ -63,6 +63,23 @@ const Participant = styled.div`
   width: 200px;
   margin-top: 10px;
   height: 13px;
+  gap: 5px;
+
+  img {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    border: none;
+  }
+
+  span {
+    color: #aaa;
+    text-align: center;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
 `;
 
 const InputBox = styled.textarea`

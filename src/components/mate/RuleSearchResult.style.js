@@ -5,13 +5,18 @@ import theme from '@/theme';
 const ResultContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   position: relative;
-  width: 100%;
+  width: 240px;
   height: 60px;
+  flex-shrink: 0;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: ${props => (props.isActive ? '#eee' : 'transparent')};
 `;
 
 const UserImg = styled.img`
   position: absolute;
-  left: 50px;
+  left: 20px;
   top: 50%;
   transform: translateY(-50%);
   width: 33.24px;
@@ -22,7 +27,7 @@ const TextContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   align-items: start;
   position: absolute;
-  left: 100px;
+  left: 70px;
   height: 100%;
   gap: 2px;
 

@@ -1,14 +1,24 @@
-import * as S from './RuleSearchResult.style';
-import mateImg from '/images/mate/mateImg.svg';
+import { useState } from 'react';
 
-const RuleSearchResult = () => {
+import * as S from './RuleSearchResult.style';
+
+const RuleSearchResult = ({ profileData, onClick }) => {
+  const { image, name, nickname, bio } = profileData;
+
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = () => {
+    setIsActive(!isActive);
+    onClick(profileData);
+  };
+
   return (
-    <S.ResultContainer>
-      <S.UserImg src={mateImg} alt="프로필" />
+    <S.ResultContainer isActive={isActive} onClick={handleClick}>
+      <S.UserImg src={image} alt="프로필" />
       <S.TextContainer>
-        <span>신서영</span>
-        <span>@orb</span>
-        <span>가나다라마바사</span>
+        <span>{name}</span>
+        <span>{nickname}</span>
+        <span>{bio}</span>
       </S.TextContainer>
     </S.ResultContainer>
   );

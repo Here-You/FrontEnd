@@ -37,7 +37,6 @@ const WrapContainer = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    top: 38px;
   }
 `;
 
@@ -49,7 +48,6 @@ const SearchContainer = styled.div`
   border-radius: 10px;
   border: 1px solid #eee;
   margin-top: 16px;
-  margin-bottom: 23px;
 `;
 
 const UserInput = styled.input`
@@ -89,9 +87,27 @@ const SearchButton = styled.button`
 const PlusContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   width: 100%;
+  max-height: 130px;
   position: absolute;
   top: 110px;
   gap: 5px;
+  overflow-y: auto;
+`;
+
+const NoResult = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  width: 100%;
+  height: 100%;
+  margin-top: 50px;
+
+  span {
+    color: rgba(0, 0, 0, 0.57);
+    text-align: center;
+    font-size: 12.268px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -141,6 +157,7 @@ export {
   UserInput,
   SearchButton,
   PlusContainer,
+  NoResult,
   ButtonContainer,
   CancelButton,
   OkButton,
