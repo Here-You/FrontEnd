@@ -1,7 +1,7 @@
 import * as S from './BottomTravelList.style';
 import Location from '/icons/Location.svg';
 
-const BottomTravelList = ({ title, count, startDate, endDate }) => {
+const BottomTravelList = ({ title, count }) => {
   return (
     <S.ListContainer>
       <S.ListWrapper>
@@ -10,9 +10,9 @@ const BottomTravelList = ({ title, count, startDate, endDate }) => {
           <h2>{title}</h2>
           <S.TextContainer>
             <p>작성 일지 {count}개</p>
-            <date>
+            {/* <date>
               {startDate}~{endDate}
-            </date>
+            </date> */}
           </S.TextContainer>
         </S.ListDescriptionContainer>
       </S.ListWrapper>

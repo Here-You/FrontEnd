@@ -2,7 +2,7 @@ import { axios } from '../api';
 import { API_BASE, VERSION } from '@/constants/path';
 
 // 토큰이 필요 없는 경우 axios를 사용하면 됩니다.
-const getMonthlyJourney = ({ year, month }) => {
+const getMonthlyJourney = (year, month) => {
   const url = `/api/${VERSION}/${API_BASE.MAP}/monthly-journey?year=${year}&month=${month}`;
   const res = axios.get(url);
   return res;

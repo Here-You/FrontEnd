@@ -11,6 +11,7 @@ export const HomeHandlers = [
       const url = new URL(request.url);
       const year = parseInt(url.searchParams.get('year')) || 0;
       const month = parseInt(url.searchParams.get('month')) || 0;
+
       if (!year || !month) {
         return new HttpResponse(null, { status: 404 });
       } else if (year && month) {
@@ -670,6 +671,42 @@ export const HomeHandlers = [
               },
             ],
           },
+        });
+      }
+    },
+  ),
+  http.get(
+    `${baseURL}${API_URL.GET_MONTHLY_JOURNEY_MAP}`,
+    ({ request, params }) => {
+      const url = new URL(request.url);
+      const year = parseInt(url.searchParams.get('year')) || 0;
+      const month = parseInt(url.searchParams.get('month')) || 0;
+
+      if (!year & !month) {
+        return new HttpResponse(null, { status: 404 });
+      } else {
+        return HttpResponse.json({
+          status: 200,
+          success: true,
+          message: '월별 여정 불러오기 성공',
+          data: [
+            {
+              monthly_journey_id: 1,
+              journey_list: [
+                {
+                  journey_id: 1,
+                  journey_title: `${year}년 ${month}서울 여행`,
+                  diary_count: 5,
+                },
+                {
+                  journey_id: 2,
+                  journey_title: `${year}년 ${month}부산 소풍`,
+                  diary_count: 3,
+                },
+                // 추가적인 Journey 항목...
+              ],
+            },
+          ],
         });
       }
     },

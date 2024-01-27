@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { getMonthlyJourney } from '@/apis/request/map';
+import { loadMonthlySchedule } from '@/apis/request/home';
 
-export const useGetMonthlyJourney = (year, month) => {
+export const useLoadMonthlyJourney = (year, month) => {
+  console.log(year, month);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -11,8 +12,9 @@ export const useGetMonthlyJourney = (year, month) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getMonthlyJourney({ year, month });
+        const res = await loadMonthlySchedule(year, month);
         const data = res.data.data;
+
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

@@ -1,14 +1,23 @@
 import moment from 'moment';
 import { useState } from 'react';
 import Calendar from 'react-calendar';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import * as S from './TravelCalendar.style';
+import { useLoadMonthlyJourney } from '@/hooks/home/useLoadMonthlyJourney';
 
 moment.locale('en');
 
 const TravelCalendar = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const year = moment(endDate).format('YYYY');
+  const month = moment(endDate).format('MM');
+
+  const { data, loading, error } = useLoadMonthlyJourney(year, month);
 
   const changeDate = e => {
     const startDateFormat = moment(e[0]).format('YYYY/MM/DD');
@@ -35,8 +44,22 @@ const TravelCalendar = () => {
     return '';
   };
 
+  if (loading) {
+    return <div>로딩 중</div>;
+  }
+
   return (
     <S.Wrapper>
+      <S.ButtonContainer>
+        <S.Button clicked={pathname === '/'} onClick={() => navigate('/')}>
+          캘린더로 보기
+        </S.Button>
+        <S.Button
+          clicked={pathname === '/map'}
+          onClick={() => navigate(`/map?year=${year}&month=${month}`)}>
+          지도로 보기
+        </S.Button>
+      </S.ButtonContainer>
       <S.HeaderWrapper>
         <S.Circle />
         <S.CircleWrapper>
