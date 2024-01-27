@@ -13,14 +13,14 @@ export const HomeHandlers = [
       const month = parseInt(url.searchParams.get('month')) || 0;
       if (!year || !month) {
         return new HttpResponse(null, { status: 404 });
-      } else if (year === 2024 && month === 1) {
+      } else if (year && month) {
         return HttpResponse.json({
           status: 200,
           success: true,
           message: '닉네임 수정 성공',
           data: {
-            year: 2024,
-            month: 1,
+            year: year,
+            month: month,
             monthlyJourneys: [
               {
                 journeyId: 123,
@@ -28,7 +28,7 @@ export const HomeHandlers = [
                 schedules: [
                   {
                     scheduleId: 1,
-                    date: '2024-01-11',
+                    date: `${year}-${month}-11`,
                     title: 'Day 1 Schedule',
                     location: {
                       name: 'Google Location',
@@ -44,7 +44,7 @@ export const HomeHandlers = [
                   },
                   {
                     scheduleId: 2,
-                    date: '2024-01-12',
+                    date: `${year}-${month}-12`,
                     title: 'Day 2 Schedule',
                     location: {
                       name: 'Google Location',
@@ -60,7 +60,7 @@ export const HomeHandlers = [
                   },
                   {
                     scheduleId: 3,
-                    date: '2024-01-13',
+                    date: `${year}-${month}-13`,
                     title: 'Day 3 Schedule',
                     location: {
                       name: 'Google Location',
@@ -105,7 +105,9 @@ export const HomeHandlers = [
         status: 200,
         success: true,
         message: '여정 수정하기 성공',
-        data: {},
+        data: {
+          journeyId: journeyId,
+        },
       });
     }
   }),
@@ -119,7 +121,9 @@ export const HomeHandlers = [
         status: 200,
         success: true,
         message: '여정 삭제하기 성공',
-        data: {},
+        data: {
+          journeyId: journeyId,
+        },
       });
     }
   }),
@@ -147,7 +151,7 @@ export const HomeHandlers = [
     const journeyId = params.journeyId;
     if (!journeyId) {
       return new HttpResponse(null, { status: 404 });
-    } else if (journeyId === 1) {
+    } else if (journeyId) {
       return HttpResponse.json({
         status: 200,
         success: true,
@@ -155,7 +159,7 @@ export const HomeHandlers = [
         data: [
           {
             scheduleId: 1,
-            journeyId: 1,
+            journeyId: journeyId,
             title: 'Exploration',
             date: '2024-01-11',
             location: {
@@ -176,7 +180,7 @@ export const HomeHandlers = [
           },
           {
             scheduleId: 2,
-            journeyId: 1,
+            journeyId: journeyId,
             title: 'Relaxation',
             date: '2024-01-12',
             location: {
@@ -197,78 +201,7 @@ export const HomeHandlers = [
           },
           {
             scheduleId: 3,
-            journeyId: 1,
-            title: 'City Tour',
-            date: '2024-01-13',
-            location: {
-              name: 'City Center',
-              latitude: 37.7749,
-              longitude: -122.4194,
-            },
-            detailSchedules: [
-              {
-                detailScheduleId: 5,
-                content: 'Visit landmarks',
-              },
-              {
-                detailScheduleId: 6,
-                content: 'Try local cuisine',
-              },
-            ],
-          },
-        ],
-      });
-    } else if (journeyId === 2) {
-      return HttpResponse.json({
-        status: 200,
-        success: true,
-        message: '일정 불러오기 성공',
-        data: [
-          {
-            scheduleId: 1,
-            journeyId: 2,
-            title: 'Exploration',
-            date: '2024-01-11',
-            location: {
-              name: 'Googleplex',
-              latitude: 37.422,
-              longitude: -122.0841,
-            },
-            detailSchedules: [
-              {
-                detailScheduleId: 1,
-                content: 'Morning exploration',
-              },
-              {
-                detailScheduleId: 2,
-                content: 'Afternoon adventure',
-              },
-            ],
-          },
-          {
-            scheduleId: 2,
-            journeyId: 2,
-            title: 'Relaxation',
-            date: '2024-01-12',
-            location: {
-              name: 'Sunny Beach',
-              latitude: 36.7783,
-              longitude: -119.4179,
-            },
-            detailSchedules: [
-              {
-                detailScheduleId: 3,
-                content: 'Beach time',
-              },
-              {
-                detailScheduleId: 4,
-                content: 'Sunset watching',
-              },
-            ],
-          },
-          {
-            scheduleId: 3,
-            journeyId: 2,
+            journeyId: journeyId,
             title: 'City Tour',
             date: '2024-01-13',
             location: {
@@ -306,7 +239,7 @@ export const HomeHandlers = [
           data: {
             id: 1,
             content: 'Meeting',
-            scheduleId: 1,
+            scheduleId: scheduleId,
           },
         });
       }
@@ -327,7 +260,7 @@ export const HomeHandlers = [
           data: {
             id: 1,
             content: 'Meeting',
-            scheduleId: 1,
+            scheduleId: scheduleId,
           },
         });
       }
@@ -348,7 +281,7 @@ export const HomeHandlers = [
           data: {
             id: 1,
             content: 'Meeting',
-            scheduleId: 1,
+            scheduleId: scheduleId,
           },
         });
       }
@@ -376,7 +309,7 @@ export const HomeHandlers = [
             name: '사용자 이름',
           },
           schedule: {
-            id: 456,
+            id: scheduleId,
             date: '2024-01-11',
             title: '일정 제목',
           },
@@ -417,7 +350,7 @@ export const HomeHandlers = [
             mood: 'HAPPY',
             content: 'jejudo ganda ~',
             user_id: 123,
-            schedule_id: 456,
+            schedule_id: scheduleId,
             location_id: 789,
             diary_image: {
               id: 101,
@@ -438,7 +371,7 @@ export const HomeHandlers = [
             mood: 'HAPPY',
             content: 'jejudo ganda ~',
             user_id: 123,
-            schedule_id: 456,
+            schedule_id: scheduleId,
             location_id: 789,
             diary_image: {
               id: 101,
@@ -459,7 +392,7 @@ export const HomeHandlers = [
             mood: 'HAPPY',
             content: 'jejudo ganda ~',
             user_id: 123,
-            schedule_id: 456,
+            schedule_id: scheduleId,
             location_id: 789,
             diary_image: {
               id: 101,
@@ -483,7 +416,7 @@ export const HomeHandlers = [
     const month = parseInt(url.searchParams.get('month')) || 0;
     if (!year || !month) {
       return new HttpResponse(null, { status: 404 });
-    } else if (year === 2024 && month === 1) {
+    } else if (year && month) {
       return HttpResponse.json({
         status: 200,
         success: true,
@@ -669,82 +602,13 @@ export const HomeHandlers = [
       const journeyId = params.journeyId;
       if (!journeyId) {
         return new HttpResponse(null, { status: 404 });
-      } else if (journeyId === 1) {
+      } else if (journeyId) {
         return HttpResponse.json({
           status: 200,
           success: true,
           message: '지도에서 세부 여정 불러오기 성공',
           data: {
-            journey_id: 1,
-            journey_title: '제주도 여행',
-            schedules: [
-              {
-                schedule_id: 1,
-                schedule_title: '첫 번째 일정',
-                schedule_date: '2024-01-11',
-                participant: 'John Doe',
-                location: {
-                  id: 1,
-                  name: '제주 성산일출봉',
-                  latitude: 33.4584,
-                  longitude: 126.9422,
-                  image:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-                },
-                diary_image: {
-                  diary_id: 201,
-                  image_key:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-                },
-              },
-              {
-                schedule_id: 2,
-                schedule_title: '두 번째 일정',
-                schedule_date: '2024-01-11',
-                participant: 'John Doe',
-                location: {
-                  id: 1,
-                  name: '장소 2',
-                  latitude: 35.4584,
-                  longitude: 126.9422,
-                  image:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-                },
-                diary_image: {
-                  diary_id: 201,
-                  image_key:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-                },
-              },
-              {
-                schedule_id: 3,
-                schedule_title: '세 번째 일정',
-                schedule_date: '2024-01-11',
-                participant: 'John Doe',
-                location: {
-                  id: 1,
-                  name: '장소 3',
-                  latitude: 33.4584,
-                  longitude: 128.9422,
-                  image:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-                },
-                diary_image: {
-                  diary_id: 201,
-                  image_key:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-                },
-              },
-            ],
-          },
-        });
-      } else if (journeyId === 2) {
-        return HttpResponse.json({
-          status: 200,
-          success: true,
-          message: '지도에서 2 세부 여정 불러오기 성공',
-          data: {
-            journey_id: 2,
+            journey_id: journeyId,
             journey_title: '제주도 여행',
             schedules: [
               {
