@@ -35,6 +35,10 @@ const ButtonContainer = styled.div`
   margin-top: 40px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
   border-radius: 40px;
+
+  @media (max-width: 600px) {
+    width: 80%;
+  }
 `;
 
 const Button = styled.button`
@@ -63,6 +67,7 @@ const CalendarContainer = styled.div`
 const JourneyWrapper = styled.div``;
 
 const MapContainer = styled.div`
+  width: 90%;
   margin-top: 40px;
 `;
 
