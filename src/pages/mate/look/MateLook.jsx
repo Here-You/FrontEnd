@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import * as S from './MateLook.style';
-import mateSearchIcon from '/images/mate_search.svg';
 import { getMateLook } from '@/apis/request/mate';
+import Banner from '@/components/mate/Banner';
 import MateSignatureSection from '@/components/mate/MateSignatureSection';
 import { useMateLook } from '@/hooks/mate/useMate';
 
@@ -10,7 +10,8 @@ const MateLookPage = () => {
   const { data: matesData, loading, error } = useMateLook();
 
   return (
-    <>
+    <S.MateLookContainer>
+      <Banner />
       <S.CenteredContainer>
         <S.FixedContainer>
           <S.StyledTitle>메이트 탐색하기</S.StyledTitle>
@@ -21,7 +22,6 @@ const MateLookPage = () => {
           </S.StyledDes>
           <S.StyledIcon src={mateSearchIcon}></S.StyledIcon>
         </S.FixedContainer>
-
         {loading ? (
           <div>로딩중입니다.</div>
         ) : (
@@ -37,7 +37,7 @@ const MateLookPage = () => {
           </>
         )}
       </S.CenteredContainer>
-    </>
+    </S.MateLookContainer>
   );
 };
 

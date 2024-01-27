@@ -12,16 +12,17 @@ const ModalBase = styled.div`
   background: rgba(51, 51, 51, 0.3);
   backdrop-filter: blur(1px);
   ${theme.ALIGN.COLUMN_CENTER};
+  z-index: 3;
 `;
 
 const ModalContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  position: relative;
   width: 277px;
   height: 120px;
   border-radius: 10px;
   border-color: transparent;
   background: ${theme.COLOR.MAIN.WHITE};
-  ${theme.ALIGN.COLUMN_CENTER};
-  position: relative;
 
   button {
     width: 24px;

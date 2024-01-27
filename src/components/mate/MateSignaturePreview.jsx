@@ -1,4 +1,6 @@
+import FollowButton from './FollowButton';
 import * as S from './MateSignaturePreview.style';
+import MateLookSignatue from '/images/mate/mateLookSignature.jpg';
 
 const MateSignaturePreview = ({ mateData }) => {
   if (!mateData) {
@@ -9,16 +11,27 @@ const MateSignaturePreview = ({ mateData }) => {
 
   return (
     <S.MainContainer>
-      <S.FirstLine>
-        <S.UserImg src={imgSrc} />
-        <S.UserName>{nickName}</S.UserName>
-        <S.FollowButton>
-          <span>팔로우</span>
-        </S.FollowButton>
-      </S.FirstLine>
-      <S.PreviewImg src={signatureImg} />
-      <S.StyledTitle>{title}</S.StyledTitle>
-      <S.StyledText>자세히 보기</S.StyledText>
+      <S.ProfileContainer>
+        <img src={imgSrc} />
+        <S.ColumnContainer>
+          <S.RowContainer>
+            <span>매튜튜</span>
+            <FollowButton />
+          </S.RowContainer>
+          <S.UserBio>가나다라마바사</S.UserBio>
+        </S.ColumnContainer>
+      </S.ProfileContainer>
+
+      <S.SignatureContainer>
+        <S.SignatureContent>
+          <img src={MateLookSignatue} />
+          <span>뽀똔이와 함께하는 일본 뿌시기</span>
+        </S.SignatureContent>
+        <S.SignatureContent>
+          <img src={MateLookSignatue} />
+          <span>뽀똔이와 함께하는 일본 뿌시기</span>
+        </S.SignatureContent>
+      </S.SignatureContainer>
     </S.MainContainer>
   );
 };

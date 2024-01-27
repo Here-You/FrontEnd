@@ -1,68 +1,53 @@
 import { useState } from 'react';
 
 import * as S from './MateRuleWrite.style';
-import textAlignCenter from '/images/text-center-black.svg';
-import textAlignJustify from '/images/text-justify-black.svg';
-import textAlignLeft from '/images/text-left-black.svg';
-import textAlignRight from '/images/text-right-black.svg';
-import DropDown from '@/components/mate/DropDown';
+import RuleBox from '@/components/mate/RuleBox';
 import RuleButton from '@/components/mate/RuleButton';
+import RuleFollowModalPlus from '@/components/mate/RuleFollowModalPlus';
 
 const MateRuleWritePage = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [textAlign, setTextAlign] = useState('left');
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [sortButtonImage, setSortButtonImage] = useState(textAlignLeft);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedProfile, setSelectedProfile] = useState(null);
 
-  const handleAlignChange = align => {
-    setTextAlign(align);
-    setDropdownVisible(false);
+  const handleClick = () => {
+    setModalOpen(!isModalOpen);
+  };
 
-    switch (align) {
-      case 'justify':
-        setSortButtonImage(textAlignJustify);
-        break;
-      case 'left':
-        setSortButtonImage(textAlignLeft);
-        break;
-      case 'center':
-        setSortButtonImage(textAlignCenter);
-        break;
-      case 'right':
-        setSortButtonImage(textAlignRight);
-        break;
-      default:
-        break;
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
+  const handlePublishClick = () => {
+    if (title && content && selectedProfile) {
+      console.log('Title:', title);
+      console.log('Content:', content);
+      console.log('Selected Profile:', selectedProfile);
+    } else {
+      alert('제목, 내용, 초대할 메이트를 모두 입력해주세요.');
     }
   };
 
   return (
     <S.CenteredContainer>
-      <S.InputContainer>
-        <S.Topcontainer>
-          <S.SortButton onClick={() => setDropdownVisible(!dropdownVisible)}>
-            <img src={sortButtonImage} alt="정렬 아이콘" />
-            <DropDown
-              visible={dropdownVisible}
-              handleAlignChange={handleAlignChange}
-            />
-          </S.SortButton>
-          <S.StyledTitle
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-          />
-          <S.PlusButton />
-        </S.Topcontainer>
-
-        <S.InputBox
-          value={content}
-          onChange={e => setContent(e.target.value)}
-          style={{ textAlign: textAlign }}
+      <RuleBox
+        title={title}
+        setTitle={setTitle}
+        content={content}
+        setContent={setContent}
+        handleClick={handleClick}
+        selectedProfile={selectedProfile}
+      />
+      <S.ButtonWrapper>
+        <RuleButton text="발행하기" onClick={handlePublishClick} />
+      </S.ButtonWrapper>
+      {isModalOpen && (
+        <RuleFollowModalPlus
+          onClose={handleCloseModal}
+          setSelectedProfile={setSelectedProfile}
         />
-      </S.InputContainer>
-
-      <RuleButton text="발행하기" />
+      )}
     </S.CenteredContainer>
   );
 };

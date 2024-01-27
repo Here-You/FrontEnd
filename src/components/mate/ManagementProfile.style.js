@@ -60,7 +60,7 @@ const UserBio = styled.span`
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.864px;
-  white-space: nowrap; //너무 길 경우 ...으로
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;

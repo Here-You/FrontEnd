@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const SpanWrapper = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
   margin-bottom: 46px;
   margin-top: 22.93px;
-  ${theme.ALIGN.COLUMN_CENTER};
 
   span {
     color: rgba(0, 0, 0, 0.57);

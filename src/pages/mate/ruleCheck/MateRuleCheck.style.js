@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const CenteredContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER}
+  ${theme.ALIGN.COLUMN_CENTER};
 `;
 
 const StyledTitle = styled.span`
@@ -12,7 +12,7 @@ const StyledTitle = styled.span`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-bottom: 47px;
+  margin-bottom: 35px;
 `;
 
 export { CenteredContainer, StyledTitle };

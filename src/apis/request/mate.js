@@ -12,16 +12,27 @@ const getMateLook = () => {
   return axios.get(url);
 };
 
+const getMateManagement = () => {
+  const url = `${API_PATH.MATE_MANAGEMENT}`;
+  return axios.get(url);
+};
+
+const getRuleSearchMate = () => {
+  const url = `${API_PATH.MATE_RULE_INVITE}`;
+  return axios.get(url);
+};
+
 const getRuleCheck = () => {
   const url = `${API_PATH.MATE_RULE_CHECK}`;
   return axios.get(url);
 };
 
-const getMateManagement = () => {
-  const url = `${API_PATH.MATE_MANAGEMENT}`;
-  return axios.get(url);
-};
 // 토큰이 필요한 경우 axios대신, axiosWithToken을 사용하면 됩니다.
 
-export { getMateSearch, getMateLook, getMateManagement, getRuleCheck  };
-
+export {
+  getMateSearch,
+  getMateLook,
+  getMateManagement,
+  getRuleSearchMate,
+  getRuleCheck,
+};

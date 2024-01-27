@@ -1,11 +1,13 @@
-import MateSignature from './MateSignature';
 import MateSignaturePreview from './MateSignaturePreview';
 import * as S from './MateSignatureSection.style';
 
 const MateSignatureSection = ({ text, matesData }) => {
   return (
     <S.ContentsContainer>
-      <MateSignature text={text} />
+      <S.SubWrapper>
+        <span>{text}</span>
+      </S.SubWrapper>
+
       <S.PreviewContainer>
         {matesData.map((mateData, index) => (
           <MateSignaturePreview key={index} mateData={mateData} />
