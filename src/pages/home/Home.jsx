@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './Home.style';
 import { Journey, TravelCalendar } from '@/components';
 import testData from '@/constants/journey';
-import { useMonthlyJourney } from '@/hooks/useMonthlyJourney';
+import { useMonthlyJourney } from '@/hooks/home/useMonthlyJourney';
 
 const HomePage = () => {
   const navigate = useNavigate();
