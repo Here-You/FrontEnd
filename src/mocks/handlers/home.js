@@ -695,12 +695,12 @@ export const HomeHandlers = [
               journey_list: [
                 {
                   journey_id: 1,
-                  journey_title: `${year}년 ${month}서울 여행`,
+                  journey_title: `${year}년 ${month}월 서울 여행`,
                   diary_count: 5,
                 },
                 {
                   journey_id: 2,
-                  journey_title: `${year}년 ${month}부산 소풍`,
+                  journey_title: `${year}년 ${month}월 부산 소풍`,
                   diary_count: 3,
                 },
                 // 추가적인 Journey 항목...

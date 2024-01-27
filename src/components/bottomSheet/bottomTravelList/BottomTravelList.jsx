@@ -1,7 +1,7 @@
 import * as S from './BottomTravelList.style';
 import Location from '/icons/Location.svg';
 
-const BottomTravelList = ({ title, count }) => {
+const BottomTravelList = ({ id, title, count }) => {
   return (
     <S.ListContainer>
       <S.ListWrapper>

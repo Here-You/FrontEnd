@@ -1,9 +1,28 @@
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const HeaderWrapper = styled.div`
   ${theme.ALIGN.COLUMN_CENTER}
+`;
+
+const Button = styled.button`
+  ${theme.ALIGN.ROW_CENTER};
+  background-color: ${theme.COLOR.MAIN.GREEN};
+  border: none;
+  width: 200px;
+  height: 50px;
+  color: ${theme.COLOR.MAIN.WHITE};
+  border-radius: 20px;
+  margin: auto;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: ${FONT_SIZE.XL};
+
+  &:hover {
+    scale: 0.9;
+  }
 `;
 
 const HeaderContainer = styled.div`
@@ -52,6 +71,7 @@ const TextContainer = styled.div`
 
 export {
   HeaderWrapper,
+  Button,
   HeaderContainer,
   Image,
   MarkImage,

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 
 import * as S from './BottomScrollPage.style';
@@ -59,11 +59,11 @@ const BottomScrollPage = () => {
 
   return (
     <>
-      <button onClick={() => setOpen(true)}>Open</button>
+      <S.Button onClick={() => setOpen(true)}>여정 보기</S.Button>
       <BottomSheet
         open={open}
         onDismiss={() => setOpen(false)}
-        blocking={false}
+        blocking={true}
         snapPoints={({ maxHeight }) => [maxHeight * 0 + 500]}
         header={
           <S.HeaderWrapper>
@@ -85,6 +85,7 @@ const BottomScrollPage = () => {
             ({ journey_id, journey_title, diary_count }, idx) => {
               return (
                 <BottomTravelList
+                  id={journey_id}
                   title={journey_title}
                   // startDate={startDate}
                   // endDate={endDate}
