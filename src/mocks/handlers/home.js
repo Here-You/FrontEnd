@@ -10,72 +10,76 @@ export const HomeHandlers = [
     ({ request, params }) => {
       const url = new URL(request.url);
       const year = parseInt(url.searchParams.get('year')) || 0;
-      const month = url.searchParams.get('month') || '';
-      return HttpResponse.json({
-        status: 200,
-        success: true,
-        message: '닉네임 수정 성공',
-        data: {
-          year: 2024,
-          month: 1,
-          monthlyJourneys: [
-            {
-              journeyId: 123,
-              journeyTitle: 'My Journey',
-              schedules: [
-                {
-                  scheduleId: 1,
-                  date: '2024-01-11',
-                  title: 'Day 1 Schedule',
-                  location: {
-                    name: 'Google Location',
-                    latitude: 37.7749,
-                    longitude: -122.4194,
-                  },
-                  detailSchedules: [
-                    {
-                      detailScheduleId: 101,
-                      content: 'Detail for Day 1 Schedule',
+      const month = parseInt(url.searchParams.get('month')) || 0;
+      if (!year || !month) {
+        return new HttpResponse(null, { status: 404 });
+      } else if (year === 2024 && month === 1) {
+        return HttpResponse.json({
+          status: 200,
+          success: true,
+          message: '닉네임 수정 성공',
+          data: {
+            year: 2024,
+            month: 1,
+            monthlyJourneys: [
+              {
+                journeyId: 123,
+                journeyTitle: 'My Journey',
+                schedules: [
+                  {
+                    scheduleId: 1,
+                    date: '2024-01-11',
+                    title: 'Day 1 Schedule',
+                    location: {
+                      name: 'Google Location',
+                      latitude: 37.7749,
+                      longitude: -122.4194,
                     },
-                  ],
-                },
-                {
-                  scheduleId: 2,
-                  date: '2024-01-12',
-                  title: 'Day 2 Schedule',
-                  location: {
-                    name: 'Google Location',
-                    latitude: 37.7749,
-                    longitude: -122.4194,
+                    detailSchedules: [
+                      {
+                        detailScheduleId: 101,
+                        content: 'Detail for Day 1 Schedule',
+                      },
+                    ],
                   },
-                  detailSchedules: [
-                    {
-                      detailScheduleId: 102,
-                      content: 'Detail for Day 2 Schedule',
+                  {
+                    scheduleId: 2,
+                    date: '2024-01-12',
+                    title: 'Day 2 Schedule',
+                    location: {
+                      name: 'Google Location',
+                      latitude: 37.7749,
+                      longitude: -122.4194,
                     },
-                  ],
-                },
-                {
-                  scheduleId: 3,
-                  date: '2024-01-13',
-                  title: 'Day 3 Schedule',
-                  location: {
-                    name: 'Google Location',
-                    latitude: 37.7749,
-                    longitude: -122.4194,
+                    detailSchedules: [
+                      {
+                        detailScheduleId: 102,
+                        content: 'Detail for Day 2 Schedule',
+                      },
+                    ],
                   },
-                  detailSchedules: [
-                    {
-                      detailScheduleId: 103,
-                      content: 'Detail for Day 3 Schedule',
+                  {
+                    scheduleId: 3,
+                    date: '2024-01-13',
+                    title: 'Day 3 Schedule',
+                    location: {
+                      name: 'Google Location',
+                      latitude: 37.7749,
+                      longitude: -122.4194,
                     },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      });
+                    detailSchedules: [
+                      {
+                        detailScheduleId: 103,
+                        content: 'Detail for Day 3 Schedule',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        });
+      }
     },
   ),
   //여정 저장하기
@@ -143,7 +147,7 @@ export const HomeHandlers = [
     const journeyId = params.journeyId;
     if (!journeyId) {
       return new HttpResponse(null, { status: 404 });
-    } else {
+    } else if (journeyId === 1) {
       return HttpResponse.json({
         status: 200,
         success: true,
@@ -214,6 +218,77 @@ export const HomeHandlers = [
           },
         ],
       });
+    } else if (journeyId === 2) {
+      return HttpResponse.json({
+        status: 200,
+        success: true,
+        message: '일정 불러오기 성공',
+        data: [
+          {
+            scheduleId: 1,
+            journeyId: 2,
+            title: 'Exploration',
+            date: '2024-01-11',
+            location: {
+              name: 'Googleplex',
+              latitude: 37.422,
+              longitude: -122.0841,
+            },
+            detailSchedules: [
+              {
+                detailScheduleId: 1,
+                content: 'Morning exploration',
+              },
+              {
+                detailScheduleId: 2,
+                content: 'Afternoon adventure',
+              },
+            ],
+          },
+          {
+            scheduleId: 2,
+            journeyId: 2,
+            title: 'Relaxation',
+            date: '2024-01-12',
+            location: {
+              name: 'Sunny Beach',
+              latitude: 36.7783,
+              longitude: -119.4179,
+            },
+            detailSchedules: [
+              {
+                detailScheduleId: 3,
+                content: 'Beach time',
+              },
+              {
+                detailScheduleId: 4,
+                content: 'Sunset watching',
+              },
+            ],
+          },
+          {
+            scheduleId: 3,
+            journeyId: 2,
+            title: 'City Tour',
+            date: '2024-01-13',
+            location: {
+              name: 'City Center',
+              latitude: 37.7749,
+              longitude: -122.4194,
+            },
+            detailSchedules: [
+              {
+                detailScheduleId: 5,
+                content: 'Visit landmarks',
+              },
+              {
+                detailScheduleId: 6,
+                content: 'Try local cuisine',
+              },
+            ],
+          },
+        ],
+      });
     }
   }),
   //세부 일정 작성하기
@@ -258,6 +333,7 @@ export const HomeHandlers = [
       }
     },
   ),
+  //세부 일정 삭제하기
   http.delete(
     `${baseURL}${API_URL.DELETE_DETAIL_SCHEDULE}`,
     ({ request, params }) => {
@@ -402,28 +478,35 @@ export const HomeHandlers = [
   }),
   //월별 여정 불러오기 (지도)
   http.get(`${baseURL}${API_URL.GET_JOURNEY_MAP}`, ({ request, params }) => {
-    return HttpResponse.json({
-      status: 200,
-      success: true,
-      message: '월별 여정 불러오기 (지도) 성공',
-      data: [
-        {
-          monthly_journey_id: 1,
-          journey_list: [
-            {
-              journey_id: 1,
-              journey_title: '서울 여행',
-              diary_count: 5,
-            },
-            {
-              journey_id: 2,
-              journey_title: '부산 소풍',
-              diary_count: 3,
-            },
-          ],
-        },
-      ],
-    });
+    const url = new URL(request.url);
+    const year = parseInt(url.searchParams.get('year')) || 0;
+    const month = parseInt(url.searchParams.get('month')) || 0;
+    if (!year || !month) {
+      return new HttpResponse(null, { status: 404 });
+    } else if (year === 2024 && month === 1) {
+      return HttpResponse.json({
+        status: 200,
+        success: true,
+        message: '월별 여정 불러오기 (지도) 성공',
+        data: [
+          {
+            monthly_journey_id: 1,
+            journey_list: [
+              {
+                journey_id: 1,
+                journey_title: '서울 여행',
+                diary_count: 5,
+              },
+              {
+                journey_id: 2,
+                journey_title: '부산 소풍',
+                diary_count: 3,
+              },
+            ],
+          },
+        ],
+      });
+    }
   }),
   //여정 불러오기 (지도)
   http.get(`${baseURL}${API_URL.GET_JOURNEY_MAP}`, ({ request, params }) => {
@@ -586,13 +669,82 @@ export const HomeHandlers = [
       const journeyId = params.journeyId;
       if (!journeyId) {
         return new HttpResponse(null, { status: 404 });
-      } else {
+      } else if (journeyId === 1) {
         return HttpResponse.json({
           status: 200,
           success: true,
           message: '지도에서 세부 여정 불러오기 성공',
           data: {
             journey_id: 1,
+            journey_title: '제주도 여행',
+            schedules: [
+              {
+                schedule_id: 1,
+                schedule_title: '첫 번째 일정',
+                schedule_date: '2024-01-11',
+                participant: 'John Doe',
+                location: {
+                  id: 1,
+                  name: '제주 성산일출봉',
+                  latitude: 33.4584,
+                  longitude: 126.9422,
+                  image:
+                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+                },
+                diary_image: {
+                  diary_id: 201,
+                  image_key:
+                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+                },
+              },
+              {
+                schedule_id: 2,
+                schedule_title: '두 번째 일정',
+                schedule_date: '2024-01-11',
+                participant: 'John Doe',
+                location: {
+                  id: 1,
+                  name: '장소 2',
+                  latitude: 35.4584,
+                  longitude: 126.9422,
+                  image:
+                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+                },
+                diary_image: {
+                  diary_id: 201,
+                  image_key:
+                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+                },
+              },
+              {
+                schedule_id: 3,
+                schedule_title: '세 번째 일정',
+                schedule_date: '2024-01-11',
+                participant: 'John Doe',
+                location: {
+                  id: 1,
+                  name: '장소 3',
+                  latitude: 33.4584,
+                  longitude: 128.9422,
+                  image:
+                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+                },
+                diary_image: {
+                  diary_id: 201,
+                  image_key:
+                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+                },
+              },
+            ],
+          },
+        });
+      } else if (journeyId === 2) {
+        return HttpResponse.json({
+          status: 200,
+          success: true,
+          message: '지도에서 2 세부 여정 불러오기 성공',
+          data: {
+            journey_id: 2,
             journey_title: '제주도 여행',
             schedules: [
               {
