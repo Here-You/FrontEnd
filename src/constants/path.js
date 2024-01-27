@@ -89,7 +89,7 @@ const API_URL = {
   SETTING_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/:signatureId`,
   UPLOAD_SIGNATURE_IMAGE: `/api/${VERSION}/${API_BASE.SIGNATURE}/image`,
   PUBLISH_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/new`,
-  // 시그니처 수정, 삭제, 상세보기, 설정 (같은 URL)
+  // 시그니처 수정, 삭제, 상세보기 (같은 URL)
   GET_DETAIL_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/:signatureId`,
   // 좋아요, 좋아요 취소, 좋아요한 사용자 목록
   LIKE_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/:signatureId/like`,
