@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 
 import * as S from './DailyRecordWritePage.style';
 import AddRoundDuotone from '/icons/AddRoundDuotone.svg';
+import IconSelectBox from '@/components/SelectBox/IconSelectBox/IconSelectBox';
+import { MOOD_ICON_LIST, WEATHER_ICON_LIST } from '@/constants/dailyRecord';
 
 const DailyRecordWritePage = () => {
   const [selectedImg, setSelectedImg] = useState();
@@ -56,6 +58,9 @@ const DailyRecordWritePage = () => {
         <S.YearText>{year}</S.YearText>
         <S.DateText>
           {day}, {month}
+          <S.UploadButton type="submit" onClick={handleSubmit(onSubmit)}>
+            저장
+          </S.UploadButton>
         </S.DateText>
       </S.DateContainer>
       <S.RecordContainer>
@@ -88,16 +93,18 @@ const DailyRecordWritePage = () => {
           {...register('title', { required: '제목을 입력해주세요' })}
         />
         <S.WeatherContainer>
-          <S.WeatherText
+          <IconSelectBox iconData={WEATHER_ICON_LIST} />
+          <IconSelectBox iconData={MOOD_ICON_LIST} />
+          {/* <S.WeatherText
             id="weather"
             placeholder="날씨"
             {...register('weather', { required: '날씨를 입력해주세요' })}
-          />
-          <S.FeelingText
+          /> */}
+          {/* <S.FeelingText
             id="feeling"
             placeholder="오늘의 기분"
             {...register('feeling', { required: '기분을 알려주세요' })}
-          />
+          /> */}
         </S.WeatherContainer>
         <S.ContentText
           id="content"
@@ -105,9 +112,6 @@ const DailyRecordWritePage = () => {
           {...register('content', { required: '내용을 입력해주세요' })}
         />
       </S.RecordContainer>
-      <button type="submit" onClick={handleSubmit(onSubmit)}>
-        제출하기
-      </button>
     </S.Container>
   );
 };
