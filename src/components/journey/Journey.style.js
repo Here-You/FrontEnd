@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${theme.ALIGN.COLUMN_CENTER};
   width: 450px;
   position: relative;
   cursor: pointer;
@@ -19,11 +18,14 @@ const MainContainer = styled.div`
   border-radius: 13px;
   padding: 20px 15px;
   justify-content: space-between;
+
+  @media (max-width: 600px) {
+    width: 340px;
+  }
 `;
 
 const RowContainer = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
 `;
 

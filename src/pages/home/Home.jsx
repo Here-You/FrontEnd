@@ -3,10 +3,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './Home.style';
 import { Journey, TravelCalendar } from '@/components';
 import testData from '@/constants/journey';
+import { useMonthlyJourney } from '@/hooks/home/useMonthlyJourney';
 
 const HomePage = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { data, loading, error } = useMonthlyJourney();
+
+  console.log(data, loading, error);
 
   return (
     <S.Container $dataLength={testData.length}>

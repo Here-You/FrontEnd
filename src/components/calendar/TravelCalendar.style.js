@@ -27,6 +27,13 @@ const HeaderWrapper = styled.div`
     font-weight: 900;
     margin: 0;
   }
+
+  @media (max-width: 600px) {
+    gap: 80px;
+    h1 {
+      font-size: 50px;
+    }
+  }
 `;
 
 const FontWrapper = styled.div`

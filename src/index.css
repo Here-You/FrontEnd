@@ -102,6 +102,10 @@
   max-width: 100%;
   border: none;
   line-height: 1.125em;
+
+  @media (max-width: 600px) {
+    width: 300px;
+  }
 }
 
 .react-calendar__month-view__weekdays {
@@ -138,6 +142,12 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+
+    @media (max-width: 600px) {
+      font-size: 11px;
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 
@@ -180,6 +190,11 @@
     align-items: center;
     border-radius: 50%;
     border: 2px solid black !important;
+
+    @media (max-width: 600px) {
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 
@@ -250,6 +265,43 @@
 
 .react-calendar__navigation__label {
   display: none;
+}
+
+.highlight {
+  position: relative;
+  abbr {
+    background-color: white;
+    color: black;
+    border: 2px solid black !important;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+    @media (max-width: 600px) {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.highlight:after {
+  content: '';
+  border: 1px solid black;
+  position: absolute;
+  right: 0;
+  width: 10%;
+}
+
+.highlight::before {
+  content: '';
+  border: 1px solid black;
+  position: absolute;
+  left: 0;
+  width: 10%;
 }
 
 /* react-spring-bottom-sheet */
