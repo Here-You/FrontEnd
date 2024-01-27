@@ -3,7 +3,7 @@ import { HttpResponse, http } from 'msw';
 import { baseURL } from '@/apis/api';
 import { API_URL } from '@/constants/path';
 
-export const mapHandlers = [
+export const HomeHandlers = [
   http.get(`${baseURL}${API_URL.GET_JOURNEY_MAP}`, ({ request, params }) => {
     return HttpResponse.json({
       status: 200,
@@ -23,7 +23,6 @@ export const mapHandlers = [
               journey_title: '부산 소풍',
               diary_count: 3,
             },
-            // 추가적인 Journey 항목...
           ],
         },
       ],

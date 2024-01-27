@@ -1,10 +1,14 @@
 import { PreviewHandlers } from './PreviewHandler';
 import { PreviewHandlers2 } from './PreviewHandlers2';
-import { mapHandlers } from './map';
+import { ExploreHandlers } from './explore';
+import { HomeHandlers } from './home';
+import { MateHandlers } from './mate';
 import { mateLookHandlers } from './mate-look';
 import { mateManagementHandlers } from './mate-management';
 import { mateSearchHandlers } from './mate-search-result';
+import { ProfileHandlers } from './profile';
 import { profileInfoHandlers } from './profile-info';
+import { SignatureHandlers } from './signature';
 import { travelHandlers } from './travel-place';
 
 export const handlers = [
@@ -15,5 +19,9 @@ export const handlers = [
   ...mateManagementHandlers,
   ...profileInfoHandlers,
   ...PreviewHandlers2,
-  ...mapHandlers,
+  ...HomeHandlers,
+  ...ExploreHandlers,
+  ...MateHandlers,
+  ...ProfileHandlers,
+  ...SignatureHandlers,
 ];
