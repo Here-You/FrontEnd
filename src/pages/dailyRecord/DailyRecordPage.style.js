@@ -28,16 +28,15 @@ const slideAnimationReverse = keyframes`
 
 const Container = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  height: 100%;
   overflow: hidden;
   gap: 20px;
 
   @media ${theme.WINDOW_SIZE.TABLET} {
-    height: 100%;
     gap: 0px;
   }
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
+    height: 100%;
     gap: 0px;
   }
 
