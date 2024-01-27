@@ -12,7 +12,6 @@ export const useMateLook = () => {
       try {
         setLoading(true);
         const res = await getMateLook();
-
         const data = res.data;
 
         setData(data);
