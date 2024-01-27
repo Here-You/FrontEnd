@@ -24,12 +24,7 @@ const BASE_PATH = {
   MATE_MANAGEMENT: '/mate/management',
   MATE_RULE_WRITE: '/mate/rule-write',
   MATE_RULE_CHECK: '/mate/rule-check',
-  // MATE_RULE_CHECK: '/mate/rule-check/:teamId',
-  // MATE_MY_RULE: '/mate/rule/mine',
-  // MATE_WRITE_RULE: '/mate/rule/mine/edit',
-  // MATE_OURS_RULE: '/mate/rule/ours',
-  // MATE_OURS_RULE_EDIT: '/mate/rule/ours/edit',
-  // MATE_RULE_TEMPLATE: '/mate/rule/template',
+  MATE_RULE_DETAIL_CHECK: '/mate/rule-check/:ruleId',
   // MY_PAGE
   MY_PAGE: '/mypage',
   MY_PAGE_EDIT: '/mypage/edit',
@@ -51,6 +46,7 @@ const API_PATH = {
   MATE_RULE_WRITE: `${BASE_PATH.MATE_RULE_WRITE}`,
   MATE_RULE_INVITE: `${BASE_PATH.MATE_RULE_WRITE}/invite`,
   MATE_RULE_CHECK: `${BASE_PATH.MATE_RULE_CHECK}`,
+  MATE_RULE_DETAIL_CHECK: `${BASE_PATH.MATE_RULE_DETAIL_CHECK}`,
 
   DAILY_RECORD_WRITE: `${BASE_PATH.DAILY_RECORD_WRITE}`,
   SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import * as S from './RuleBox.style';
 
 const RuleBox = ({
@@ -8,6 +10,16 @@ const RuleBox = ({
   handleClick,
   selectedProfile,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProfileClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <S.InputContainer>
       <S.Topcontainer>
@@ -28,6 +40,8 @@ const RuleBox = ({
         </S.Participant>
       </S.Topcontainer>
       <S.InputBox value={content} onChange={e => setContent(e.target.value)} />
+
+      {isModalOpen && <ParticipantModal onClose={handleCloseModal} />}
     </S.InputContainer>
   );
 };
