@@ -96,7 +96,7 @@ const API_URL = {
   // MATE
   SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
   FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:mateId`,
-  UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/unfollow/:mateId`,
+  UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:mateId`,
   EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/explore/:userId`,
   GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/followList/:userId`,
   GET_MATE_FOLLOWING: `/api/${VERSION}/${API_BASE.MATE}/followingList/:userId`,
