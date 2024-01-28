@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import SearchMap from '../searchMap/SearchMap';
 import * as S from './Journey.style';
@@ -9,6 +10,7 @@ const Journey = ({ data, dataLength }) => {
   const { id, title, date, group, detail } = data;
   const [isToggle, setIsToggle] = useState(false);
   const lastPlan = id === dataLength ? true : false;
+  const scheduleId = 1;
 
   const handleOnToggle = () => {
     setIsToggle(!isToggle);
@@ -26,6 +28,9 @@ const Journey = ({ data, dataLength }) => {
             <S.Image src={Group} />
             <SearchMap />
           </S.Mate>
+          <S.DailyRecordText to={`/dailyrecord/${scheduleId}`}>
+            일지 확인하기
+          </S.DailyRecordText>
         </S.RowContainer>
       </S.MainContainer>
 

@@ -115,7 +115,7 @@ const RecordImageContainer = styled.div`
 
 const WeatherContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  gap: 10px;
+  gap: 20px;
   width: 100%;
 `;
 

@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const Container = styled.div`
@@ -73,7 +75,6 @@ const DetailContainer = styled.div`
   flex-direction: row;
   margin-left: 60px;
   width: 400px;
-  /* background-color: pink; */
 `;
 
 const PlanContainer = styled.div`
@@ -87,7 +88,6 @@ const PlanTextConatiner = styled.div`
   flex-direction: row;
   width: 350px;
   gap: 10px;
-  /* background-color: red; */
 `;
 
 const MarginContainer = styled.div`
@@ -171,6 +171,13 @@ const Image = styled.img`
   width: 20px;
 `;
 
+const DailyRecordText = styled(Link)`
+  margin-left: auto;
+  color: ${theme.COLOR.MAIN.GRAY};
+  font-size: ${FONT_SIZE.SM};
+  cursor: pointer;
+`;
+
 export {
   Container,
   MainContainer,
@@ -193,4 +200,5 @@ export {
   CursorPointer,
   ShortLine,
   Image,
+  DailyRecordText,
 };

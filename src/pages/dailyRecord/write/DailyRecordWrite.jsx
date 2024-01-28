@@ -1,9 +1,10 @@
-import { useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 
 import * as S from './DailyRecordWritePage.style';
 import AddRoundDuotone from '/icons/AddRoundDuotone.svg';
+import { postDiary } from '@/apis/request/home';
 import IconSelectBox from '@/components/SelectBox/IconSelectBox/IconSelectBox';
 import { MOOD_ICON_LIST, WEATHER_ICON_LIST } from '@/constants/dailyRecord';
 
@@ -12,6 +13,8 @@ const DailyRecordWritePage = () => {
   const year = new Date().getFullYear();
   const month = new Date().toLocaleString('en-US', { month: 'short' });
   const day = new Date().getDate();
+  const [weather, setWeather] = useState('');
+  const [mood, setMood] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -26,7 +29,7 @@ const DailyRecordWritePage = () => {
       location: '',
       title: '',
       weather: '',
-      feeling: '',
+      mood: '',
       content: '',
       recordImg: '',
     },
@@ -48,8 +51,34 @@ const DailyRecordWritePage = () => {
     setValue('recordImg', file);
   };
 
+  const handleIconClick = (iconName, type) => {
+    if (type === 'weather') {
+      setWeather(iconName);
+      setValue('weather', iconName);
+    } else if (type === 'mood') {
+      setMood(iconName);
+      setValue('mood', iconName);
+    }
+  };
+
   const onSubmit = async data => {
     console.log('제출된 데이터: ', data);
+    if (!mood || !weather) {
+      alert('오늘의 기분 및 날씨를 선택해주세요');
+    } else {
+      try {
+        setIsLoading(true);
+        const res = await postDiary({ scheduleId: 1, postData: data });
+        if (res) {
+          alert('하루 일지가 작성되었습니다.');
+        }
+      } catch (e) {
+        console.log(e.message);
+        alert('작성 중 에러가 발생했습니다. 나중에 다시 시도해주세요');
+      } finally {
+        setIsLoading(false);
+      }
+    }
   };
 
   return (
@@ -93,18 +122,16 @@ const DailyRecordWritePage = () => {
           {...register('title', { required: '제목을 입력해주세요' })}
         />
         <S.WeatherContainer>
-          <IconSelectBox iconData={WEATHER_ICON_LIST} />
-          <IconSelectBox iconData={MOOD_ICON_LIST} />
-          {/* <S.WeatherText
-            id="weather"
-            placeholder="날씨"
-            {...register('weather', { required: '날씨를 입력해주세요' })}
-          /> */}
-          {/* <S.FeelingText
-            id="feeling"
-            placeholder="오늘의 기분"
-            {...register('feeling', { required: '기분을 알려주세요' })}
-          /> */}
+          <IconSelectBox
+            iconData={WEATHER_ICON_LIST}
+            onClick={handleIconClick}
+            type="weather"
+          />
+          <IconSelectBox
+            iconData={MOOD_ICON_LIST}
+            onClick={handleIconClick}
+            type="mood"
+          />
         </S.WeatherContainer>
         <S.ContentText
           id="content"
