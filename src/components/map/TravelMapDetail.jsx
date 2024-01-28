@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 
 import * as S from './TravelMapDetail.style';
 import Icon from '/icons/Icon.svg';
-import { POSTS } from '@/constants/location';
 import {
   GoogleMap,
   InfoWindowF,
@@ -74,15 +73,15 @@ const TravelMapDetail = ({ journeyInfo }) => {
       onUnmount={onUnmount}>
       {scheduleLocations?.map(post => (
         <MarkerF
-          key={post.diary_image.diary_id}
+          key={post?.diary_image.diary_id}
           position={{
-            lat: post.location.latitude,
-            lng: post.location.longitude,
+            lat: post?.location.latitude,
+            lng: post?.location.longitude,
           }}
           onClick={() =>
             handleMarkerClick(
-              { lat: post.location.latitude, lng: post.location.longitude },
-              post.location.name,
+              { lat: post?.location.latitude, lng: post?.location.longitude },
+              post?.location.name,
             )
           }
           icon={{
@@ -91,16 +90,16 @@ const TravelMapDetail = ({ journeyInfo }) => {
           }}>
           {clicked &&
             selectedMarker.position &&
-            selectedMarker.position.lat === post.location.latitude &&
-            selectedMarker.position.lng === post.location.longitude && (
+            selectedMarker.position.lat === post?.location.latitude &&
+            selectedMarker.position.lng === post?.location.longitude && (
               <InfoWindowF onCloseClick={() => setClicked(false)}>
                 <S.InfoContainer onClick={() => setClicked(false)}>
                   <img
-                    src={post.diary_image.imageKey}
+                    src={post?.diary_image.imageKey}
                     width="50px"
                     height="50px"
                   />
-                  <span>{post.location.name}</span>
+                  <span>{post?.location.name}</span>
                 </S.InfoContainer>
               </InfoWindowF>
             )}

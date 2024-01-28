@@ -8,10 +8,14 @@ const MapDetailPage = () => {
   const { journeyId } = useParams();
   const { data, loading, error } = useGetJourneyMap(journeyId);
 
+  if (loading) {
+    return <h1>로딩중입니다...</h1>;
+  }
+
   return (
     <>
-      <TravelMapDetail journeyInfo={data.journey_info} />
-      <BottomDetailScrollPage journeyInfo={data.journey_info} />
+      <TravelMapDetail journeyInfo={data?.journey_info} />
+      <BottomDetailScrollPage journeyInfo={data?.journey_info} />
     </>
   );
 };
