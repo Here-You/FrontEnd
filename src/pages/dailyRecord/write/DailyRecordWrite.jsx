@@ -12,6 +12,8 @@ const DailyRecordWritePage = () => {
   const year = new Date().getFullYear();
   const month = new Date().toLocaleString('en-US', { month: 'short' });
   const day = new Date().getDate();
+  const [weather, setWeather] = useState('');
+  const [mood, setMood] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -46,6 +48,14 @@ const DailyRecordWritePage = () => {
     // 추가: 파일이 변경될 때 setValue를 사용하여 recordImg 값을 설정
     setSelectedImg(URL.createObjectURL(file));
     setValue('recordImg', file);
+  };
+
+  const handleIconClick = (iconName, type) => {
+    if (type === 'weather') {
+      setWeather(iconName);
+    } else if (type === 'mood') {
+      setMood(iconName);
+    }
   };
 
   const onSubmit = async data => {
@@ -93,18 +103,16 @@ const DailyRecordWritePage = () => {
           {...register('title', { required: '제목을 입력해주세요' })}
         />
         <S.WeatherContainer>
-          <IconSelectBox iconData={WEATHER_ICON_LIST} />
-          <IconSelectBox iconData={MOOD_ICON_LIST} />
-          {/* <S.WeatherText
-            id="weather"
-            placeholder="날씨"
-            {...register('weather', { required: '날씨를 입력해주세요' })}
-          /> */}
-          {/* <S.FeelingText
-            id="feeling"
-            placeholder="오늘의 기분"
-            {...register('feeling', { required: '기분을 알려주세요' })}
-          /> */}
+          <IconSelectBox
+            iconData={WEATHER_ICON_LIST}
+            onClick={handleIconClick}
+            type="weather"
+          />
+          <IconSelectBox
+            iconData={MOOD_ICON_LIST}
+            onClick={handleIconClick}
+            type="mood"
+          />
         </S.WeatherContainer>
         <S.ContentText
           id="content"
