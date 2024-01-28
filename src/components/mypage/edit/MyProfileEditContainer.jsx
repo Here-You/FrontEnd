@@ -1,17 +1,22 @@
-import EditModalPage from './EditModal';
 import * as S from './MyProfileEditContainer.style';
-import ModalPortal from '@/components/ModalPortal';
-import {
-  EDIT_CONTENTS_LIST,
-  EDIT_SECOND_CONTENTS_LIST,
-} from '@/constants/editPage';
+import { EDIT_SECOND_CONTENTS_LIST } from '@/constants/editPage';
+import { useUpdateNickName } from '@/hooks/profile/useUpdateNickname';
+import { NickNameData } from '@/hooks/profile/useUpdateNicknameQuery';
 import editModal from '@/store/editModal';
+import { useQuery } from '@tanstack/react-query';
 
 const MyProfileEditContainer = ({ listName }) => {
   const { onOpen } = editModal();
+  const { data,isPending, isError } = useQuery({
+    queryKey: ['nick'],
+    queryFn: NickNameData,
+  });
+
+  // const { data, error, message } = useUpdateNickName();
+
+  console.log(data);
   return (
     <>
-    
       <S.EditContainer>
         {listName?.map(list => {
           return (
@@ -22,7 +27,11 @@ const MyProfileEditContainer = ({ listName }) => {
                 listName === EDIT_SECOND_CONTENTS_LIST &&
                 (() => onOpen(list.modal, list.modalNum))
               }>
-              <p>{list.title}</p>
+              {listName !== EDIT_SECOND_CONTENTS_LIST ? (
+                <p>{data}</p>
+              ) : (
+                <p>{list.title}</p>
+              )}
               <p>{list.content}</p>
               {listName === EDIT_SECOND_CONTENTS_LIST && (
                 <S.ArrowImg src={list.img}></S.ArrowImg>

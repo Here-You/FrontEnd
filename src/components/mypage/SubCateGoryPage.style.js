@@ -31,8 +31,6 @@ const CategoryContainer = styled.div`
 `;
 
 const Subcategory = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
-
   &:hover {
     background-color: #f4f2f2;
     border-radius: 10px;
