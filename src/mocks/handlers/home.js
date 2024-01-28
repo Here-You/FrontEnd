@@ -730,8 +730,8 @@ export const HomeHandlers = [
                 location: {
                   id: 1,
                   name: '서울 타워',
-                  latitude: 37.5665,
-                  longitude: 126.978,
+                  latitude: 37.552497,
+                  longitude: 127.1333,
                 },
                 diary_image: {
                   diary_id: 102,
@@ -746,8 +746,8 @@ export const HomeHandlers = [
                 location: {
                   id: 2,
                   name: '부산 타워',
-                  latitude: 37.5665,
-                  longitude: 126.978,
+                  latitude: 37.561068,
+                  longitude: 127.160582,
                 },
                 diary_image: {
                   diary_id: 103,
@@ -778,8 +778,8 @@ export const HomeHandlers = [
                 location: {
                   id: 4,
                   name: '안산 야호!',
-                  latitude: 37.5665,
-                  longitude: 126.978,
+                  latitude: 37.3218778,
+                  longitude: 126.8308848,
                 },
                 diary_image: {
                   diary_id: 105,
@@ -794,8 +794,8 @@ export const HomeHandlers = [
                 location: {
                   id: 5,
                   name: '잠실 양홍!',
-                  latitude: 37.5665,
-                  longitude: 126.978,
+                  latitude: 37.531338,
+                  longitude: 127.129174,
                 },
                 diary_image: {
                   diary_id: 106,
