@@ -87,7 +87,7 @@ const DailyRecordPage = () => {
           <S.RecordContainer></S.RecordContainer>
         </div>
       </S.SlideContainer>
-      <S.AddButton to={`/dailyrecord/edit/${scheduleId}/${nowPage}`}>
+      <S.AddButton to={`/dailyrecord/${scheduleId}/edit/${nowPage}`}>
         <S.PenIcon src={PenGreen} />
       </S.AddButton>
     </S.Container>

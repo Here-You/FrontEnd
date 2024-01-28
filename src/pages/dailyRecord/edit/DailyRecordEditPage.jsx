@@ -73,7 +73,7 @@ const DailyRecordEditPage = () => {
   const onSubmit = async data => {
     console.log('제출된 데이터: ', data);
     alert('수정되었습니다');
-    navigate(`/dailyrecord?scheduleid=${scheduleId}&recordid=${recordId}`);
+    navigate(`/dailyrecord/${scheduleId}?recordid=${recordId}`);
   };
 
   return (

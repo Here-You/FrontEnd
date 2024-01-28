@@ -6,9 +6,9 @@ const BASE_PATH = {
   ON_BOARDING: 'onboarding',
   MAP: '/map',
   // DAILYRECORD
-  DAILY_RECORD: '/dailyrecord',
-  DAILY_RECORD_WRITE: '/dailyrecord/write/:scheduleid',
-  DAILY_RECORD_EDIT: '/dailyrecord/edit/:scheduleid/:recordid',
+  DAILY_RECORD: '/dailyrecord/:scheduleid',
+  DAILY_RECORD_WRITE: '/dailyrecord/:scheduleid/write',
+  DAILY_RECORD_EDIT: '/dailyrecord/:scheduleid/edit/:recordid',
   // SIGNATURE
   SIGNATURE: '/signature',
   SIGNATURE_WRITE: '/signature/write',
