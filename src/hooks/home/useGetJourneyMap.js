@@ -11,7 +11,8 @@ export const useGetJourneyMap = journeyId => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getJourneyMap({ journeyId });
+        const res = await getJourneyMap(journeyId);
+        console.log(res.data.data);
         const data = res.data.data;
         setData(data);
       } catch (e) {

@@ -1,38 +1,78 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 
 import * as S from './BottomScrollPage.style';
 import BottomTravelList from './bottomTravelList/BottomTravelList';
 import LeftIcon from '/icons/left.svg';
 import RightIcon from '/icons/right.svg';
-import { TRAVEL } from '@/constants/travel';
+import { useMonthlyJourney } from '@/hooks/home/useMonthlyJourney';
 import 'react-spring-bottom-sheet/dist/style.css';
 
 const BottomScrollPage = () => {
   const [open, setOpen] = useState(false);
-  const [count, setCount] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [year, setYear] = useState(parseInt(searchParams.get('year')));
+  const [month, setMonth] = useState(parseInt(searchParams.get('month')));
+
+  const { data: journey, loading, error } = useMonthlyJourney(year, month);
+
+  if (loading) {
+    return <div>로딩 중 입니다...</div>;
+  }
+
+  if (error) {
+    return <div>Error 발생 {error}</div>;
+  }
 
   const handleDecrease = () => {
-    if (count > 1) setCount(prev => prev - 1);
+    let newMonth, newYear;
+
+    if (month > 1) {
+      newMonth = month - 1;
+      newYear = year;
+    } else {
+      newMonth = 12;
+      newYear = year - 1;
+    }
+
+    setSearchParams({ year: newYear, month: newMonth });
+    setMonth(newMonth);
+    setYear(newYear);
   };
 
   const handleIncrease = () => {
-    if (count < 12) setCount(prev => prev + 1);
+    let newMonth, newYear;
+
+    if (month < 12) {
+      newMonth = month + 1;
+      newYear = year;
+    } else {
+      newMonth = 1;
+      newYear = year + 1;
+    }
+
+    setSearchParams({ year: newYear, month: newMonth });
+    setMonth(newMonth);
+    setYear(newYear);
   };
+
   return (
     <>
-      <button onClick={() => setOpen(true)}>Open</button>
+      <S.Button onClick={() => setOpen(true)}>여정 보기</S.Button>
       <BottomSheet
         open={open}
         onDismiss={() => setOpen(false)}
-        blocking={false}
+        blocking={true}
         snapPoints={({ maxHeight }) => [maxHeight * 0 + 500]}
         header={
           <S.HeaderWrapper>
             <h3>내 여정 리스트</h3>
             <S.HeaderContainer>
               <S.Image src={LeftIcon} onClick={handleDecrease} />
-              <h3>{count}월</h3>
+              <h3>
+                {year}년 {month}월
+              </h3>
               <S.Image src={RightIcon} onClick={handleIncrease} />
             </S.HeaderContainer>
           </S.HeaderWrapper>
@@ -41,16 +81,19 @@ const BottomScrollPage = () => {
           style={{
             height: '100%',
           }}>
-          {TRAVEL.map(({ title, startDate, endDate, count }, idx) => {
-            return (
-              <BottomTravelList
-                title={title}
-                startDate={startDate}
-                endDate={endDate}
-                count={count}
-              />
-            );
-          })}
+          {journey[0]?.journey_list?.map(
+            ({ journey_id, journey_title, diary_count }, idx) => {
+              return (
+                <BottomTravelList
+                  id={journey_id}
+                  title={journey_title}
+                  // startDate={startDate}
+                  // endDate={endDate}
+                  count={diary_count}
+                />
+              );
+            },
+          )}
         </div>
       </BottomSheet>
     </>

@@ -5,6 +5,7 @@ const BASE_PATH = {
   LOGIN: '/login',
   ON_BOARDING: 'onboarding',
   MAP: '/map',
+  MAP_DETAIL: '/map/:journeyId',
   // DAILYRECORD
   DAILY_RECORD: '/dailyrecord',
   DAILY_RECORD_WRITE: '/dailyrecord/write/:scheduleid',
@@ -75,7 +76,7 @@ const API_URL = {
   GET_DIARY: `/api/${VERSION}/${API_BASE.DIARIES}/:scheduleId`,
   // MAP
   GET_MONTHLY_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/monthly-journey`,
-  GET_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/journey/get/:journeyId`,
+  GET_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/journey/get`,
   GET_DIARIES_MAP: `/api/${VERSION}/${API_BASE.MAP}/diaries/get/:journeyId`,
   GET_DETAIL_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/schedules/get/:journeyId`,
   // SIGNATURE

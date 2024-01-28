@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
+import theme from '@/theme';
+
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
@@ -7,6 +10,36 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 40px 0;
+`;
+
+const ButtonContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  margin-top: 40px;
+  border: 1px solid ${theme.COLOR.MAIN.GREEN};
+  border-radius: 40px;
+
+  @media (max-width: 600px) {
+    width: 80%;
+  }
+`;
+
+const Button = styled.button`
+  width: 200px;
+  background-color: #ffffff;
+  padding: 20px;
+  border: ${props =>
+    props.clicked ? `2px solid ${theme.COLOR.MAIN.GREEN}` : 'none'};
+  color: ${props =>
+    props.clicked ? `${theme.COLOR.MAIN.GREEN}` : `${theme.COLOR.MAIN.GRAY}`};
+  font-size: ${FONT_SIZE.SM};
+  font-weight: ${props => (props.clicked ? 'bold' : 'none')};
+  border-radius: 40px;
+  cursor: pointer;
+
+  &:hover {
+    border: 2px solid ${theme.COLOR.MAIN.GREEN};
+    background: ${theme.COLOR.MAIN.GREEN};
+  }
 `;
 
 const HeaderWrapper = styled.div`
@@ -59,4 +92,12 @@ const Circle = styled.div`
   background-color: black;
 `;
 
-export { Wrapper, HeaderWrapper, FontWrapper, CircleWrapper, Circle };
+export {
+  Wrapper,
+  Button,
+  ButtonContainer,
+  HeaderWrapper,
+  FontWrapper,
+  CircleWrapper,
+  Circle,
+};

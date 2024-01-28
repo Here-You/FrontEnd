@@ -17,6 +17,13 @@ const ListWrapper = styled.div`
 
   ${theme.ALIGN.ROW_CENTER};
   gap: 60px;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${theme.COLOR.MAIN.GREEN};
+    color: ${theme.COLOR.MAIN.WHITE};
+  }
 `;
 
 const MarkImage = styled.img`
