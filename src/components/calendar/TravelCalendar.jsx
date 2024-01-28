@@ -1,3 +1,4 @@
+import { Journey } from '..';
 import moment from 'moment';
 import { useState } from 'react';
 import Calendar from 'react-calendar';
@@ -16,7 +17,6 @@ const TravelCalendar = () => {
 
   const year = moment(endDate).format('YYYY');
   const month = moment(endDate).format('MM');
-
   const { data, loading, error } = useLoadMonthlyJourney(year, month);
 
   const changeDate = e => {
@@ -81,6 +81,12 @@ const TravelCalendar = () => {
       />
       {/* <div>출발일: {startDate}</div>
       <div>종료일: {endDate}</div> */}
+      <div>
+        {data?.monthlyJourneys &&
+          data?.monthlyJourneys[0]?.schedules.map(item => (
+            <Journey key={item.id} data={item} dataLength={item.length} />
+          ))}
+      </div>
     </S.Wrapper>
   );
 };

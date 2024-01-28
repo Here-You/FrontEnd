@@ -1,5 +1,7 @@
 import Axios from 'axios';
 
+import { getAuthToken } from '@/utils/auth';
+
 const baseURL = import.meta.env.VITE_API_URL;
 
 const axios = Axios.create({

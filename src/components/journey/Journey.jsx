@@ -7,7 +7,7 @@ import DetailPlan from './detail/DetailPlan';
 import Group from '/icons/Group.svg';
 
 const Journey = ({ data, dataLength }) => {
-  const { id, title, date, group, detail } = data;
+  const { id, title, date, group, detailSchedules } = data;
   const [isToggle, setIsToggle] = useState(false);
   const lastPlan = id === dataLength ? true : false;
   const scheduleId = 1;
@@ -40,7 +40,7 @@ const Journey = ({ data, dataLength }) => {
 
       <DetailPlan
         isToggle={isToggle}
-        detailData={detail}
+        detailData={detailSchedules}
         dataLength={dataLength}
         lastPlan={lastPlan}
       />

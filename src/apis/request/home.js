@@ -1,10 +1,9 @@
-import { axios, axiosWithToken } from '../api';
+import { axiosWithToken } from '../api';
 import { API_BASE, API_URL, VERSION } from '@/constants/path';
 
 const loadMonthlySchedule = (year, month) => {
   const url = `${API_URL.LOAD_MONTHLY_SCHEDULE}?year=${year}&month=${month}`;
-  // axiosWithToken으로 향후에 변경
-  const res = axios.get(url);
+  const res = axiosWithToken.get(url);
   return res;
 };
 
