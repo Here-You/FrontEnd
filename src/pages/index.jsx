@@ -11,6 +11,7 @@ import Home from './home/Home';
 import LoginPage from './login/Login';
 // MAP
 import MapPage from './map/MapPage';
+import MapDetailPage from './map/detail/MapDetailPage';
 // MATE
 import MatePage from './mate/Mate';
 import MateLookPage from './mate/look/MateLook';
@@ -69,4 +70,5 @@ export {
   TravelTypePage,
   TravelTypeResultPage,
   MapPage,
+  MapDetailPage,
 };

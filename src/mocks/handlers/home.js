@@ -711,4 +711,103 @@ export const HomeHandlers = [
       }
     },
   ),
+  http.get(
+    `${baseURL}${API_URL.GET_JOURNEY_MAP}/:journeyId`,
+    ({ request, params }) => {
+      const journeyId = params.journeyId;
+
+      return HttpResponse.json({
+        status: 200,
+        success: true,
+        message: '지도에서 여정 불러오기 성공',
+        data: {
+          journey_info: {
+            journey_title: '서울 여행',
+            schedule_locations: [
+              {
+                schedule_id: 1,
+                schedule_title: '첫 번째 일정',
+                location: {
+                  id: 1,
+                  name: '서울 타워',
+                  latitude: 37.5665,
+                  longitude: 126.978,
+                },
+                diary_image: {
+                  diary_id: 102,
+                  uploaderId: 125,
+                  imageKey:
+                    'https://images.unsplash.com/photo-1510218129079-74e00c5a90ea?q=80&w=2235&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                },
+              },
+              {
+                schedule_id: 2,
+                schedule_title: '두 번째 일정',
+                location: {
+                  id: 2,
+                  name: '부산 타워',
+                  latitude: 37.5665,
+                  longitude: 126.978,
+                },
+                diary_image: {
+                  diary_id: 103,
+                  uploaderId: 125,
+                  imageKey:
+                    'https://images.unsplash.com/photo-1588001832198-c15cff59b078?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                },
+              },
+              {
+                schedule_id: 3,
+                schedule_title: '세 번째 일정',
+                location: {
+                  id: 3,
+                  name: '잠실 타워',
+                  latitude: 37.5665,
+                  longitude: 126.978,
+                },
+                diary_image: {
+                  diary_id: 104,
+                  uploaderId: 125,
+                  imageKey:
+                    'https://images.unsplash.com/photo-1494548162494-384bba4ab999?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                },
+              },
+              {
+                schedule_id: 4,
+                schedule_title: '네 번째 일정',
+                location: {
+                  id: 4,
+                  name: '안산 야호!',
+                  latitude: 37.5665,
+                  longitude: 126.978,
+                },
+                diary_image: {
+                  diary_id: 105,
+                  uploaderId: 125,
+                  imageKey:
+                    'https://images.unsplash.com/photo-1512641406448-6574e777bec6?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D',
+                },
+              },
+              {
+                schedule_id: 5,
+                schedule_title: '다섯 번쨰 이렂ㅇ',
+                location: {
+                  id: 5,
+                  name: '잠실 양홍!',
+                  latitude: 37.5665,
+                  longitude: 126.978,
+                },
+                diary_image: {
+                  diary_id: 106,
+                  uploaderId: 125,
+                  imageKey:
+                    'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                },
+              },
+            ],
+          },
+        },
+      });
+    },
+  ),
 ];

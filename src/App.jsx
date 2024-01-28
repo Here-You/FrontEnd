@@ -9,6 +9,7 @@ import {
   ErrorPage,
   Home,
   LoginPage,
+  MapDetailPage,
   MapPage,
   MateLookPage,
   MateManagementPage,
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: `${BASE_PATH.MAP}`,
         element: <MapPage />,
+      },
+      {
+        path: `${BASE_PATH.MAP_DETAIL}`,
+        element: <MapDetailPage />,
       },
       {
         path: `${BASE_PATH.SIGN_UP}`,
@@ -174,6 +179,22 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.MY_PAGE_CHANGE_PASSWORD}`,
             element: <MyPagePasswordPage />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: `${BASE_PATH.TRAVEL_TYPE}`,
+    children: [
+      {
+        element: <TravelLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <TravelTypePage /> },
+          {
+            path: `${BASE_PATH.TRAVEL_TYPE_RESULT}`,
+            element: <TravelTypeResultPage />,
           },
         ],
       },
