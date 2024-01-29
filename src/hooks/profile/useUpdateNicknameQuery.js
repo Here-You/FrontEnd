@@ -1,9 +1,12 @@
 import { updateNickName } from '@/apis/request/profile';
 
-export const useUpdateNickName = async () => {
-  const res = await updateNickName();
+export const useUpdateNickName = async nickname => {
+  const res = await updateNickName(nickname);
 
-  const data =res.data.data;
-
-  return data;
+  if (res.status === 200) {
+    console.log(res.data);
+    return res.data;
+  } else {
+    throw new Error(`Failed to update nickname. Status: ${res.status}`);
+  }
 };

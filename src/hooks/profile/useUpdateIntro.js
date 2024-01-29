@@ -1,28 +1,12 @@
-import { useEffect, useState } from 'react';
+import { updateIntro } from '@/apis/request/profile';
 
-import { updateIntro} from '@/apis/request/profile';
+export const useUpdateIntro= async intro => {
+  const res = await updateIntro(intro);
 
-export const useUpdateIntro= () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const res = await updateIntro();
-        const data = res.data.data;
-        setData(data);
-      } catch (e) {
-        setError(e.message || '에러가 발생했습니다.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  return { data, loading, error };
+  if (res.status === 200) {
+    console.log(res.data);
+    return res.data;
+  } else {
+    throw new Error(`Failed to update nickname. Status: ${res.status}`);
+  }
 };

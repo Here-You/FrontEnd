@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState, axios } from 'react';
-import { API_URL } from '@/constants/path';
+import { axios, useEffect, useRef, useState } from 'react';
+
 import { EDIT_MODAL, INPUT_EDIT_MODAL } from '../../../constants/editModal';
 import * as S from './EditModalPage.style';
 import { myPageEditImg } from '/public/images/mypage';
+import { useUpdateIntro } from '@/hooks/profile/useUpdateIntro';
+import { useUpdateNickName } from '@/hooks/profile/useUpdateNicknameQuery';
 import editModal from '@/store/editModal';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 const EditModalPage = () => {
   const [nick, setNick] = useState();
@@ -11,10 +14,13 @@ const EditModalPage = () => {
   const [changeValue, setChangeValue] = useState();
   const [modals, setModals] = useState();
 
+  const { mutate, isError } = useMutation({ mutationFn: useUpdateNickName });
+  const { mutate: mutateIntro, isError: isErrorPassword } = useMutation({
+    mutationFn: useUpdateIntro,
+  });
   const [introductions, setIntroductions] = useState();
 
   useEffect(() => {
-
     setModals(modalName === 'EDIT_MODAL' ? EDIT_MODAL : INPUT_EDIT_MODAL);
   }, [modalName]);
 
@@ -29,14 +35,15 @@ const EditModalPage = () => {
 
   const handleButtonClick = async () => {
     onClose();
-  
+
     try {
       if (EDIT_MODAL[modalId].id === 0) {
         setNick(changeValue);
-        const response = await axios.put(API_URL.UPDATE_NICKNAME, { nick });
-        console.log('성공', response);
+        mutate({ nickname: changeValue });
+        console.log('성공');
       } else {
         setIntroductions(changeValue);
+        mutateIntro(changeValue);
       }
     } catch (error) {
       console.log('실패', error);
@@ -45,7 +52,7 @@ const EditModalPage = () => {
     }
   };
   return (
-    <>
+    <form>
       {isOpen && (
         <S.ModalOverlay
           ref={outside}
@@ -95,7 +102,7 @@ const EditModalPage = () => {
           </S.ModalContentContainer>
         </S.ModalOverlay>
       )}
-    </>
+    </form>
   );
 };
 export default EditModalPage;
