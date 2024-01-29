@@ -42,6 +42,11 @@ export const HomeHandlers = [
                         content:
                           'Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1',
                       },
+                      {
+                        detailScheduleId: 102,
+                        content:
+                          'Detail for Day 12 Detail for Day 12 Detail for Day 12 Detail for Day 12 Detail for Day 1',
+                      },
                     ],
                     diary_written: true,
                   },

@@ -21,6 +21,7 @@ const DetailPlan = ({
 }) => {
   const [newPlan, setNewPlan] = useState('');
   const [editPlan, setEditPlan] = useState('');
+  const [editingId, setEditingId] = useState(null);
   const [isOpenInput, setIsOpenInput] = useState(false);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
 
@@ -34,12 +35,14 @@ const DetailPlan = ({
         console.log(res);
         alert('세부 일정이 저장되었습니다');
         setIsOpenInput(false);
+        setNewPlan('');
       }
     }
   };
 
   const handleOnEditPlan = async detailScheduleId => {
     //새로운 할 일 수정 요청
+    setEditingId(null);
     if (!editPlan.trim()) {
       alert('할 일을 작성해주세요!');
     } else {
@@ -52,6 +55,7 @@ const DetailPlan = ({
         console.log(res);
         alert('세부 일정이 수정되었습니다');
         setIsOpenEdit(false);
+        setEditPlan('');
       }
     }
   };
@@ -86,7 +90,7 @@ const DetailPlan = ({
                 ) : (
                   <S.Image src={CheckRing} onClick={handleOnChecked} />
                 )}
-                {isOpenEdit ? (
+                {editingId === detailScheduleId ? (
                   <>
                     <S.Input
                       placeholder="할 일 입력"
@@ -101,11 +105,13 @@ const DetailPlan = ({
                 ) : (
                   <p>{content}</p>
                 )}
-                {!isOpenEdit && (
+                {!isOpenEdit && editingId === null && (
                   <S.PlanMenu>
                     <S.Image
                       src={EditLight}
                       onClick={() => {
+                        setEditPlan(content);
+                        setEditingId(detailScheduleId);
                         setIsOpenEdit(true);
                         setIsOpenInput(false);
                       }}
