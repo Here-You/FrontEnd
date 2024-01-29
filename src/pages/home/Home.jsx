@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import * as S from './Home.style';
-import { Journey, TravelCalendar } from '@/components';
+import { TravelCalendar } from '@/components';
 import testData from '@/constants/journey';
 
 const HomePage = () => {

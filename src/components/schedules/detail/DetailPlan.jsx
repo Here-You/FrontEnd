@@ -31,8 +31,8 @@ const DetailPlan = ({ isToggle, detailData, dataLength, lastPlan }) => {
 
         <S.ScrollContainer>
           {/* 예를 컴포넌트로 빼면 가능할지도.. */}
-          {detailData.map(({ id, content, finish }) => (
-            <S.PlanTextConatiner key={id}>
+          {detailData.map(({ detailScheduleId, content, finish }) => (
+            <S.PlanTextConatiner key={detailScheduleId}>
               <S.PlanText>
                 <S.CursorPointer onClick={handleOnChecked}>
                   {finish ? (

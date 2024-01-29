@@ -42,6 +42,7 @@ export const HomeHandlers = [
                         content: 'Detail for Day 1 Schedule',
                       },
                     ],
+                    diary_written: true,
                   },
                   {
                     scheduleId: 2,
@@ -58,6 +59,7 @@ export const HomeHandlers = [
                         content: 'Detail for Day 2 Schedule',
                       },
                     ],
+                    diary_written: false,
                   },
                   {
                     scheduleId: 3,
@@ -74,6 +76,7 @@ export const HomeHandlers = [
                         content: 'Detail for Day 3 Schedule',
                       },
                     ],
+                    diary_written: false,
                   },
                 ],
               },

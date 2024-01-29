@@ -1,5 +1,4 @@
 import React from 'react';
-import { useMemo } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import usePlacesAutocomplete, {
@@ -18,7 +17,12 @@ import '@reach/combobox/styles.css';
 // import { GoogleMap, MarkerF } from '@react-google-maps/api';
 import { useJsApiLoader } from '@react-google-maps/api';
 
-const SearchMap = () => {
+const SearchMap = ({
+  id,
+  inputValue,
+  placeholder = '주소를 입력해주세요',
+  selectLocation,
+}) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API,
@@ -29,14 +33,28 @@ const SearchMap = () => {
   if (!isLoaded) return <div>loading..</div>;
   return (
     <PlacesContainer>
-      <PlacesAutocomplete setSelected={setSelected} />
+      <PlacesAutocomplete
+        setSelected={setSelected}
+        id={id}
+        inputValue={inputValue}
+        placeholder={placeholder}
+        selectLocation={selectLocation}
+      />
     </PlacesContainer>
   );
 };
 
 export default SearchMap;
 
-const PlacesAutocomplete = ({ setSelected }) => {
+const PlacesAutocomplete = ({
+  setSelected,
+  id,
+  inputValue,
+  placeholder,
+  selectLocation,
+}) => {
+  const [input, setInput] = useState(inputValue);
+
   const {
     ready,
     value,
@@ -45,24 +63,31 @@ const PlacesAutocomplete = ({ setSelected }) => {
     clearSuggestions,
   } = usePlacesAutocomplete();
 
+  const handleInputChange = event => {
+    setValue(event.target.value);
+    setInput(event.target.value);
+  };
+
   const handleSelect = async address => {
     setValue(address, false);
-    console.log(address);
+    setInput(address);
     clearSuggestions();
 
     const results = await getGeocode({ address });
     const { lat, lng } = await getLatLng(results[0]);
     setSelected({ lat, lng });
+    selectLocation({ name: address, latitude: lat, longitude: lng });
   };
 
   return (
     <Combobox onSelect={handleSelect}>
       <ComboboxInput
-        value={value}
-        onChange={e => setValue(e.target.value)}
+        id={id}
+        value={input}
+        onChange={handleInputChange}
         // disabled={!ready}
         style={combobaxInputStyle}
-        placeholder="주소를 입력해주세요"
+        placeholder={placeholder}
       />
       <ComboboxPopover style={comboboxPopoverStyle}>
         <ComboboxList>

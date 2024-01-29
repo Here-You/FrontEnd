@@ -1,4 +1,4 @@
-import { Journey } from '..';
+import { Schedules } from '..';
 import moment from 'moment';
 import { useState } from 'react';
 import Calendar from 'react-calendar';
@@ -72,21 +72,27 @@ const TravelCalendar = () => {
           </S.FontWrapper>
         </S.CircleWrapper>
       </S.HeaderWrapper>
-      <Calendar
-        locale="en"
-        tileClassName={tileClassName}
-        onChange={changeDate}
-        formatDay={(locale, date) => moment(date).format('D')}
-        selectRange={true}
-      />
-      {/* <div>출발일: {startDate}</div>
+      <S.HomeContentContainer>
+        <Calendar
+          locale="en"
+          tileClassName={tileClassName}
+          onChange={changeDate}
+          formatDay={(locale, date) => moment(date).format('D')}
+          selectRange={true}
+        />
+        {/* <div>출발일: {startDate}</div>
       <div>종료일: {endDate}</div> */}
-      <div>
-        {data?.monthlyJourneys &&
-          data?.monthlyJourneys[0]?.schedules.map(item => (
-            <Journey key={item.id} data={item} dataLength={item.length} />
-          ))}
-      </div>
+        <div>
+          {data?.monthlyJourneys &&
+            data?.monthlyJourneys[0]?.schedules.map(item => (
+              <Schedules
+                key={item.scheduleId}
+                data={item}
+                dataLength={data?.monthlyJourneys[0]?.schedules.length}
+              />
+            ))}
+        </div>
+      </S.HomeContentContainer>
     </S.Wrapper>
   );
 };
