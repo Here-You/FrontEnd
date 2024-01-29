@@ -27,11 +27,12 @@ export const ProfileHandlers = [
 
   // 닉네임 수정
   http.put(`${baseURL}${API_URL.UPDATE_NICKNAME}`, ({ request, params }) => {
+    
     return HttpResponse.json({
       status: 200,
       success: true,
       message: '닉네임 수정 성공',
-      data:"닉네임 바뀜",
+      data: '닉네임 바뀜ㄴ',
     });
   }),
 
@@ -39,10 +40,12 @@ export const ProfileHandlers = [
   http.put(
     `${baseURL}${API_URL.UPDATE_PROFILE_INTRO}`,
     ({ request, params }) => {
+  
       return HttpResponse.json({
         status: 200,
         success: true,
-        message: '닉네임 수정 성공',
+        message: '프로필 수정 성공',
+        data: '프로필 수정',
       });
     },
   ),
