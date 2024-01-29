@@ -69,6 +69,7 @@ const Mate = styled.div`
   font-weight: 350;
   font-size: ${FONT_SIZE.LG};
   margin-top: 15px;
+  cursor: pointer;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.XS};

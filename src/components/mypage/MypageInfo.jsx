@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import * as S from './MypageInfo.style';
 import { myPageImg } from '/public/images/mypage/index';
@@ -7,6 +8,11 @@ import theme from '@/theme';
 
 const MyPageInfo = () => {
   const [info, setInfo] = useState([]);
+  const navigate = useNavigate();
+
+  const handleGoMate = () => {
+    navigate('/mate/management');
+  };
   const getInfo = async () => {
     try {
       const res = await getProfileInfo();
@@ -34,7 +40,7 @@ const MyPageInfo = () => {
             <p style={{ color: `${theme.COLOR.MAIN.BLACK}` }}>
               {info.introduction}
             </p>
-            <S.Mate>
+            <S.Mate onClick={handleGoMate}>
               {info.follower}
               <S.NumberOfPeople>32</S.NumberOfPeople> {info.following}
               <S.NumberOfPeople>32</S.NumberOfPeople>

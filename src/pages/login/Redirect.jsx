@@ -4,21 +4,39 @@ import React, { useEffect } from 'react';
 import { API_URL } from '@/constants/path';
 import { usePostSnsLogin } from '@/hooks/login/useSnsLogin';
 import { useMutation } from '@tanstack/react-query';
-import { Navigate } from 'react-router-dom';
 
 const Redirect = () => {
-  const { mutate } = useMutation({
-    mutationFn: usePostSnsLogin,
-  });
+  const code = new URL(window.location.href).searchParams.get('code');
+
+  const getToken = async code => {
+    const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEAY;
+    const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+
+    const response = await fetch(
+      `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&code=${code}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
+      },
+    );
+
+    return response.json();
+  };
+
   useEffect(() => {
-    console.log(API_URL.SNS_LOGIN);
-    axios.post(`${API_URL.SNS_LOGIN}`).then(r => {
-      
-    });
-  }, []);
-  const handleLogin = (formData) =>{
-    mutate({event: formData});
-  }
+    if (code) {
+      getToken(code).then(res => {
+        console.log(res.access_token);
+      });
+    }
+  }, [code]);
+
+  const handleLogin = () => {
+
+    console.log('Login button clicked');
+  };
 
   return (
     <div>

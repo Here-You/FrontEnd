@@ -2,6 +2,7 @@ import { axios, useEffect, useRef, useState } from 'react';
 
 import { EDIT_MODAL, INPUT_EDIT_MODAL } from '../../../constants/editModal';
 import * as S from './EditModalPage.style';
+import { kakaoLogout } from '../../login/KaKaoLogout';
 import { myPageEditImg } from '/public/images/mypage';
 import { useUpdateIntro } from '@/hooks/profile/useUpdateIntro';
 import { useUpdateNickName } from '@/hooks/profile/useUpdateNicknameQuery';
@@ -33,14 +34,13 @@ const EditModalPage = () => {
   };
   const outside = useRef();
 
-  const handleButtonClick = async () => {
+  const handleInputButtonClick = async () => {
     onClose();
-
+    console.log('인풋');
     try {
-      if (EDIT_MODAL[modalId].id === 0) {
+      if (modals[modalId].id === 0) {
         setNick(changeValue);
         mutate({ nickname: changeValue });
-        console.log('성공');
       } else {
         setIntroductions(changeValue);
         mutateIntro(changeValue);
@@ -50,6 +50,14 @@ const EditModalPage = () => {
     } finally {
       console.log('데이터 요청 완료');
     }
+  };
+  const handleModalButtonClick = () => {
+    onClose();
+    const accessToken = "your_access_token_here"; // 여러분이 사용하는 방식에 따라 액세스 토큰을 가져옵니다.
+    
+    kakaoLogout(accessToken);
+
+    console.log('로그아웃');
   };
   return (
     <form>
@@ -78,7 +86,7 @@ const EditModalPage = () => {
                   defaultValue={
                     modals[modalId].id === 0 ? nick : introductions
                   }></S.ModalInput>
-                <S.ModalButton onClick={handleButtonClick}>
+                <S.ModalButton onClick={handleInputButtonClick}>
                   {modals[modalId].button_text}
                 </S.ModalButton>
               </>
@@ -93,7 +101,7 @@ const EditModalPage = () => {
                       borderLeft: '1px solid #EEEEEE',
                       color: '#ff8686',
                     }}
-                    onClick={handleButtonClick}>
+                    onClick={handleModalButtonClick}>
                     {modals[modalId].button_text}
                   </S.SecondButton>
                 </S.ButtonContainer>

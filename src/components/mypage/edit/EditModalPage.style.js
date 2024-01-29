@@ -49,6 +49,7 @@ const CloseImg = styled.img`
   width: 30px;
   align-self: flex-start;
   margin: 10px 0 0 15px;
+  cursor: pointer;
 `;
 
 const ModalButton = styled.button`
@@ -60,6 +61,7 @@ const ModalButton = styled.button`
   background-color: #ffffff;
   width: 100%;
   border-top: 1px solid #eeeeee;
+  cursor: pointer;
 `;
 
 const SecondButton = styled.button`
@@ -70,6 +72,7 @@ const SecondButton = styled.button`
   background-color: #ffffff;
   width: 50%;
   border-top: 1px solid #eeeeee;
+  cursor: pointer;
 `;
 
 const SecondaryButton = styled.div`

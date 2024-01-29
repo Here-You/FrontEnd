@@ -1,20 +1,13 @@
-export async function usePostSnsLogin(eventData) {
-  const response = await fetch(`${baseURL}${API_URL.SNS_LOGIN}`, {
-    method: 'POST',
-    body: JSON.stringify(eventData),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+import { postSnsLogin } from '@/apis/request/profile';
+import TokenErrorPage from '@/pages/signature/TokenErrorPage';
 
-  if (!response.ok) {
-    const error = new Error('An error occurred while creating the event');
-    error.code = response.status;
-    error.info = await response.json();
-    throw error;
+export const usePostSnsLogin = async (type, token) => {
+  const res = await postSnsLogin(type, token);
+
+  if (res.status === 200) {
+    console.log(res.data);
+    return res.data;
+  } else {
+    throw new Error(`Failed to update nickname. Status: ${res.status}`);
   }
-
-  const { data } = await response.json();
-
-  return data;
-}
+};
