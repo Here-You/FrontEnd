@@ -9,6 +9,7 @@ import ErrorPage from './error/ErrorPage';
 import Home from './home/Home';
 // LOGIN
 import LoginPage from './login/Login';
+import Redirect from './login/Redirect';
 // MAP
 import MapPage from './map/MapPage';
 // MATE
@@ -41,6 +42,7 @@ import TravelTypeResultPage from './traveltype/result/TravelTypeResult';
 
 export {
   AppLayout,
+  Redirect,
   Home,
   ErrorPage,
   LoginPage,

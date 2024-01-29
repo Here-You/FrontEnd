@@ -20,6 +20,7 @@ export const ProfileHandlers = [
       success: true,
       message: '로그인 성공',
       token: 'JWT_TOKEN',
+      data: '되나?',
       register_required: false,
     });
   }),
@@ -27,7 +28,6 @@ export const ProfileHandlers = [
 
   // 닉네임 수정
   http.put(`${baseURL}${API_URL.UPDATE_NICKNAME}`, ({ request, params }) => {
-    
     return HttpResponse.json({
       status: 200,
       success: true,
@@ -40,7 +40,6 @@ export const ProfileHandlers = [
   http.put(
     `${baseURL}${API_URL.UPDATE_PROFILE_INTRO}`,
     ({ request, params }) => {
-  
       return HttpResponse.json({
         status: 200,
         success: true,

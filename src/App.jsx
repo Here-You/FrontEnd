@@ -21,6 +21,7 @@ import {
   MyPagePasswordPage,
   MyPageWithdrawPage,
   OnBoardingPage,
+  Redirect,
   SignUpPage,
   SignatureEditPage,
   SignaturePage,
@@ -61,6 +62,20 @@ const router = createBrowserRouter([
       {
         path: `${BASE_PATH.ON_BOARDING}`,
         element: <OnBoardingPage />,
+      },
+    ],
+  },
+  {
+    path: `${BASE_PATH.LOGIN}`,
+    children: [
+      {
+        element: <AppLayout />,
+        children: [
+          {
+            path: `${BASE_PATH.SNS_LOGIN_REDIRCT}`,
+            element: <Redirect />,
+          },
+        ],
       },
     ],
   },

@@ -5,10 +5,7 @@ const getProfileInfo = () => {
   return axios.get(API_PATH.MY_PAGE_INFO);
 };
 
-// const getLogin = () => {
-//   const url = `${API_URL.LOGIN}`;
-//   return axios.post(url);
-// };
+
 const getSnsLogin = () => {
   const url = `${API_URL.SNS_LOGIN}`;
   return axiosWithToken.post(url);

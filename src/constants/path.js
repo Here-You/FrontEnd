@@ -2,7 +2,9 @@ const BASE_PATH = {
   BASE: '/',
   TRAVELS: '/travels',
   SIGN_UP: '/signup',
+  // LOGIN
   LOGIN: '/login',
+  SNS_LOGIN_REDIRCT: '/login/oauth',
   ON_BOARDING: 'onboarding',
   MAP: '/map',
   // DAILYRECORD

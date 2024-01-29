@@ -1,20 +1,20 @@
 import * as S from './MyProfileEditContainer.style';
 import { EDIT_SECOND_CONTENTS_LIST } from '@/constants/editPage';
-import { useUpdateNickName } from '@/hooks/profile/useUpdateNickname';
-import { NickNameData } from '@/hooks/profile/useUpdateNicknameQuery';
+
+import { useUpdateNickName } from '@/hooks/profile/useUpdateNicknameQuery';
 import editModal from '@/store/editModal';
 import { useQuery } from '@tanstack/react-query';
 
 const MyProfileEditContainer = ({ listName }) => {
   const { onOpen } = editModal();
-  const { data,isPending, isError } = useQuery({
+  const { data, isPending, isError } = useQuery({
     queryKey: ['nick'],
-    queryFn: NickNameData,
+    queryFn: useUpdateNickName,
   });
 
   // const { data, error, message } = useUpdateNickName();
 
-  console.log(data);
+  
   return (
     <>
       <S.EditContainer>
