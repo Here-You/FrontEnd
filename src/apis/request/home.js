@@ -53,9 +53,12 @@ const postDetailSchedule = ({ scheduleId, content }) => {
   return res;
 };
 
-const updateDetailSchedule = ({ scheduleId, detailId }) => {
+const updateDetailSchedule = ({ scheduleId, detailId, content }) => {
   const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/${scheduleId}/update/${detailId}`;
-  const res = axiosWithToken.put(url);
+  const res = axiosWithToken.put(url, {
+    content: content,
+  });
+  return res;
 };
 
 const deleteDetailSchedule = ({ scheduleId, detailId }) => {

@@ -112,6 +112,7 @@ const Schedules = ({ data, dataLength }) => {
         detailData={detailSchedules}
         dataLength={dataLength}
         lastPlan={lastPlan}
+        scheduleId={scheduleId}
       />
     </S.Container>
   );
