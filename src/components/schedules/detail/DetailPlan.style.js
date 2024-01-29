@@ -1,8 +1,19 @@
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
+import theme from '@/theme';
+
+const DetailContainer = styled.div`
+  display: ${props => (props.$isToggle === true ? 'flex' : 'none')};
+  width: 100%;
+  justify-content: center;
+  flex-direction: row;
+`;
+
 const LinkLine = styled.div`
   position: relative;
-  width: 30px;
+  padding-left: 20px;
+  margin-left: 20px;
   margin-bottom: ${props =>
     props.$dataLength > 1 && !props.$lastPlan ? '0' : '13px'};
   border-left: 2px dashed #21b69c;
@@ -10,25 +21,20 @@ const LinkLine = styled.div`
     props.$dataLength > 1 && !props.$lastPlan ? '' : '2px dashed #21b69c'};
 `;
 
-const DetailContainer = styled.div`
-  display: ${props => (props.$isToggle === true ? 'flex' : 'none')};
-  flex-direction: row;
-  margin-left: 60px;
-  width: 400px;
-  /* background-color: pink; */
-`;
-
 const PlanContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 10px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 60%;
+  }
 `;
 
 const PlanTextConatiner = styled.div`
   display: flex;
   flex-direction: row;
-  width: 350px;
-  gap: 10px;
   margin-left: 1px;
 `;
 
@@ -39,6 +45,8 @@ const MarginContainer = styled.div`
 const PlanText = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
+  max-width: 400px;
   gap: 10px;
 
   p {
@@ -60,8 +68,8 @@ const Circle = styled.div`
   width: 10px;
   height: 10px;
   position: absolute;
-  top: 88px;
-  right: 23px;
+  top: 90px;
+  right: 15px;
   border-radius: 1000px;
   background-color: #21b69c;
 `;
@@ -69,6 +77,7 @@ const Circle = styled.div`
 const AddDetailPlanContainer = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: 10px;
   gap: 10px;
 `;
 
@@ -99,12 +108,37 @@ const ScrollContainer = styled.div`
   }
 `;
 
-const CursorPointer = styled.div`
+const Image = styled.img`
   cursor: pointer;
+  width: 20px;
 `;
 
-const Image = styled.img`
-  width: 20px;
+const Input = styled.textarea`
+  display: flex;
+  flex: 1;
+  height: 25px;
+
+  border: 0px;
+  background-color: transparent;
+  outline: none;
+  resize: none;
+
+  ::placeholder {
+    color: ${theme.COLOR.MAIN.LIGHT_GRAY};
+  }
+`;
+
+const SaveButton = styled.button`
+  ${theme.ALIGN.COLUMN_CENTER};
+  padding: 5px;
+  margin-left: auto;
+
+  border: 0;
+  border-radius: 10px;
+  background-color: ${theme.COLOR.MAIN.GREEN};
+  color: ${theme.COLOR.MAIN.WHITE};
+  font-size: ${FONT_SIZE.XS};
+  cursor: pointer;
 `;
 
 export {
@@ -119,6 +153,7 @@ export {
   MarginContainer,
   Circle,
   ScrollContainer,
-  CursorPointer,
   Image,
+  Input,
+  SaveButton,
 };

@@ -39,7 +39,8 @@ export const HomeHandlers = [
                     detailSchedules: [
                       {
                         detailScheduleId: 101,
-                        content: 'Detail for Day 1 Schedule',
+                        content:
+                          'Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1',
                       },
                     ],
                     diary_written: true,

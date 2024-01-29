@@ -4,9 +4,9 @@ import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const Container = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
-  width: 450px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
 `;
 

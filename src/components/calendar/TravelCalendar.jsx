@@ -83,14 +83,17 @@ const TravelCalendar = () => {
         {/* <div>출발일: {startDate}</div>
       <div>종료일: {endDate}</div> */}
         <div>
-          {data?.monthlyJourneys &&
+          {data?.monthlyJourneys ? (
             data?.monthlyJourneys[0]?.schedules.map(item => (
               <Schedules
                 key={item.scheduleId}
                 data={item}
                 dataLength={data?.monthlyJourneys[0]?.schedules.length}
               />
-            ))}
+            ))
+          ) : (
+            <div>아직 작성한 여정이 없어요!</div>
+          )}
         </div>
       </S.HomeContentContainer>
     </S.Wrapper>
