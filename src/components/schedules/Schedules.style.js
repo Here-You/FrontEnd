@@ -1,13 +1,12 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const Container = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
-  width: 450px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
 `;
 
@@ -31,16 +30,23 @@ const RowContainer = styled.div`
   align-items: center;
 `;
 
-const Title = styled.p`
+const Title = styled.input`
   color: black;
-  font-size: 25px;
+  font-size: ${FONT_SIZE.TWO_XL};
   font-weight: 700;
+  border: 0;
+  outline: none;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: ${FONT_SIZE.BASE};
+  }
 `;
 
-const Date = styled.div`
+const Date = styled.p`
   display: flex;
   gap: 5px;
   margin-left: auto;
+
   color: black;
   font-size: 14px;
   font-weight: 400;
@@ -171,10 +177,35 @@ const Image = styled.img`
   width: 20px;
 `;
 
-const DailyRecordText = styled(Link)`
+const LeftContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
   margin-left: auto;
-  color: ${theme.COLOR.MAIN.GRAY};
+
+  cursor: pointer;
+
+  color: ${props =>
+    props.$diaryWritten
+      ? `${theme.COLOR.MAIN.GREEN}`
+      : `${theme.COLOR.MAIN.BLACK}`};
   font-size: ${FONT_SIZE.SM};
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: ${FONT_SIZE.XS};
+  }
+`;
+
+const SaveButton = styled.button`
+  ${theme.ALIGN.COLUMN_CENTER};
+  padding: 5px;
+
+  border: 0;
+  border-radius: 10px;
+  background-color: ${theme.COLOR.MAIN.GREEN};
+  color: ${theme.COLOR.MAIN.WHITE};
+  font-size: ${FONT_SIZE.XS};
   cursor: pointer;
 `;
 
@@ -200,5 +231,6 @@ export {
   CursorPointer,
   ShortLine,
   Image,
-  DailyRecordText,
+  LeftContainer,
+  SaveButton,
 };

@@ -5,6 +5,7 @@ import * as S from './DailyRecordPage.style';
 import ExpandLeft from '/icons/ExpandLeft.svg';
 import ExpandRight from '/icons/ExpandRight.svg';
 import PenGreen from '/icons/PenGreen.svg';
+import { MOOD_ICON_LIST, WEATHER_ICON_LIST } from '@/constants/dailyRecord';
 import { useGetDiary } from '@/hooks/home/useGetDiary';
 
 const DailyRecordPage = () => {
@@ -74,8 +75,16 @@ const DailyRecordPage = () => {
               <S.LocationText>{currentVisibleData?.place}</S.LocationText>
               <S.TitleText>{currentVisibleData?.title}</S.TitleText>
               <S.WeatherContainer>
-                <S.WeatherText>{currentVisibleData?.weather}</S.WeatherText>
-                <S.FeelingText>{currentVisibleData?.mood}</S.FeelingText>
+                {WEATHER_ICON_LIST.map(item => {
+                  if (item.iconName === currentVisibleData?.weather) {
+                    return <S.Icon src={item.iconUrl} />;
+                  }
+                })}
+                {MOOD_ICON_LIST.map(item => {
+                  if (item.iconName === currentVisibleData?.mood) {
+                    return <S.Icon src={item.iconUrl} />;
+                  }
+                })}
               </S.WeatherContainer>
               <S.ContentText>{currentVisibleData?.content}</S.ContentText>
             </S.RecordContentsContainer>

@@ -92,6 +92,11 @@ const Circle = styled.div`
   background-color: black;
 `;
 
+const HomeContentContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  gap: 50px;
+`;
+
 export {
   Wrapper,
   Button,
@@ -100,4 +105,5 @@ export {
   FontWrapper,
   CircleWrapper,
   Circle,
+  HomeContentContainer,
 };

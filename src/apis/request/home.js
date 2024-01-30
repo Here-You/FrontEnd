@@ -39,9 +39,10 @@ const createSchedule = ({ journeyId }) => {
   return res;
 };
 
-const getSchedule = ({ journeyId }) => {
-  const url = `/api/${VERSION}/${API_BASE.SCHEDULES}/${journeyId}`;
+const getSchedule = (journeyId, pageParam) => {
+  const url = `/api/${VERSION}/${API_BASE.SCHEDULES}/${journeyId}?cursor=${pageParam}`;
   const res = axiosWithToken.get(url);
+
   return res;
 };
 
@@ -53,9 +54,12 @@ const postDetailSchedule = ({ scheduleId, content }) => {
   return res;
 };
 
-const updateDetailSchedule = ({ scheduleId, detailId }) => {
+const updateDetailSchedule = ({ scheduleId, detailId, content }) => {
   const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/${scheduleId}/update/${detailId}`;
-  const res = axiosWithToken.put(url);
+  const res = axiosWithToken.put(url, {
+    content: content,
+  });
+  return res;
 };
 
 const deleteDetailSchedule = ({ scheduleId, detailId }) => {

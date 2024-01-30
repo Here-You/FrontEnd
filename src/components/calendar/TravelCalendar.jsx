@@ -1,11 +1,14 @@
-import { Journey } from '..';
+import { Schedules } from '..';
 import moment from 'moment';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
+import { useInView } from 'react-intersection-observer';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import * as S from './TravelCalendar.style';
+import { getSchedule } from '@/apis/request/home';
 import { useLoadMonthlyJourney } from '@/hooks/home/useLoadMonthlyJourney';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 moment.locale('en');
 
@@ -18,6 +21,36 @@ const TravelCalendar = () => {
   const year = moment(endDate).format('YYYY');
   const month = moment(endDate).format('MM');
   const { data, loading, error } = useLoadMonthlyJourney(year, month);
+
+  const journeyId = 1;
+
+  const {
+    data: schedulesData,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isError,
+  } = useInfiniteQuery({
+    queryKey: ['schedules', journeyId],
+    queryFn: ({ pageParam = 1 }) => getSchedule(journeyId, pageParam),
+    initialPageParam: 0,
+    getNextPageParam: lastPage => lastPage?.data?.data.at(-1).scheduleId,
+    staleTime: 60 * 1000,
+    // enabled,  // 처리 필요
+  });
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+    delay: 0,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      !isFetching && hasNextPage && fetchNextPage();
+    }
+  }, [inView, isFetching, hasNextPage, fetchNextPage]);
+
+  console.log(schedulesData);
 
   const changeDate = e => {
     const startDateFormat = moment(e[0]).format('YYYY/MM/DD');
@@ -64,7 +97,6 @@ const TravelCalendar = () => {
         <S.Circle />
         <S.CircleWrapper>
           <h1>{moment(startDate).format('MM')}</h1>
-          {/* January 2024 */}
           <S.FontWrapper>
             {moment(startDate).format('MMMM')}
             <br />
@@ -72,21 +104,32 @@ const TravelCalendar = () => {
           </S.FontWrapper>
         </S.CircleWrapper>
       </S.HeaderWrapper>
-      <Calendar
-        locale="en"
-        tileClassName={tileClassName}
-        onChange={changeDate}
-        formatDay={(locale, date) => moment(date).format('D')}
-        selectRange={true}
-      />
-      {/* <div>출발일: {startDate}</div>
-      <div>종료일: {endDate}</div> */}
-      <div>
-        {data?.monthlyJourneys &&
-          data?.monthlyJourneys[0]?.schedules.map(item => (
-            <Journey key={item.id} data={item} dataLength={item.length} />
-          ))}
-      </div>
+      <S.HomeContentContainer>
+        <Calendar
+          locale="en"
+          tileClassName={tileClassName}
+          onChange={changeDate}
+          formatDay={(locale, date) => moment(date).format('D')}
+          selectRange={true}
+        />
+        <div>
+          {schedulesData?.pages?.map(page =>
+            page.data.data.map(schedule => (
+              <Schedules
+                key={schedule.scheduleId}
+                data={schedule}
+                dataLength={
+                  page.data.data.length * schedulesData?.pages?.length
+                }
+              />
+            )),
+          )}
+          {schedulesData?.pages?.length === 0 && (
+            <div>아직 작성한 여정이 없어요!</div>
+          )}
+        </div>
+      </S.HomeContentContainer>
+      <div ref={ref} style={{ height: 50 }}></div>
     </S.Wrapper>
   );
 };

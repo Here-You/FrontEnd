@@ -1,4 +1,4 @@
-import { HttpResponse, http } from 'msw';
+import { HttpResponse, delay, http } from 'msw';
 
 import { baseURL } from '@/apis/api';
 import { API_URL } from '@/constants/path';
@@ -39,9 +39,16 @@ export const HomeHandlers = [
                     detailSchedules: [
                       {
                         detailScheduleId: 101,
-                        content: 'Detail for Day 1 Schedule',
+                        content:
+                          'Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1',
+                      },
+                      {
+                        detailScheduleId: 102,
+                        content:
+                          'Detail for Day 12 Detail for Day 12 Detail for Day 12 Detail for Day 12 Detail for Day 1',
                       },
                     ],
+                    diary_written: true,
                   },
                   {
                     scheduleId: 2,
@@ -58,6 +65,7 @@ export const HomeHandlers = [
                         content: 'Detail for Day 2 Schedule',
                       },
                     ],
+                    diary_written: false,
                   },
                   {
                     scheduleId: 3,
@@ -74,6 +82,7 @@ export const HomeHandlers = [
                         content: 'Detail for Day 3 Schedule',
                       },
                     ],
+                    diary_written: false,
                   },
                 ],
               },
@@ -147,19 +156,22 @@ export const HomeHandlers = [
       },
     });
   }),
-  //일정 불러오기
-  http.get(`${baseURL}${API_URL.GET_SCHEDULE}`, ({ request, params }) => {
+  //일정 불러오기 (커서 기반)
+  http.get(`${baseURL}${API_URL.GET_SCHEDULE}`, async ({ request, params }) => {
+    const url = new URL(request.url);
     const journeyId = params.journeyId;
+    const cursor = parseInt(url.searchParams.get('cursor')) || 0;
     if (!journeyId) {
       return new HttpResponse(null, { status: 404 });
     } else if (journeyId) {
+      await delay(3000);
       return HttpResponse.json({
         status: 200,
         success: true,
         message: '일정 불러오기 성공',
         data: [
           {
-            scheduleId: 1,
+            scheduleId: cursor + 1,
             journeyId: journeyId,
             title: 'Exploration',
             date: '2024-01-11',
@@ -178,9 +190,10 @@ export const HomeHandlers = [
                 content: 'Afternoon adventure',
               },
             ],
+            diary_written: true,
           },
           {
-            scheduleId: 2,
+            scheduleId: cursor + 2,
             journeyId: journeyId,
             title: 'Relaxation',
             date: '2024-01-12',
@@ -199,9 +212,10 @@ export const HomeHandlers = [
                 content: 'Sunset watching',
               },
             ],
+            diary_written: false,
           },
           {
-            scheduleId: 3,
+            scheduleId: cursor + 3,
             journeyId: journeyId,
             title: 'City Tour',
             date: '2024-01-13',
@@ -220,6 +234,51 @@ export const HomeHandlers = [
                 content: 'Try local cuisine',
               },
             ],
+            diary_written: false,
+          },
+          {
+            scheduleId: cursor + 4,
+            journeyId: journeyId,
+            title: 'City Tour',
+            date: '2024-01-13',
+            location: {
+              name: 'City Center',
+              latitude: 37.7749,
+              longitude: -122.4194,
+            },
+            detailSchedules: [
+              {
+                detailScheduleId: 5,
+                content: 'Visit landmarks',
+              },
+              {
+                detailScheduleId: 6,
+                content: 'Try local cuisine',
+              },
+            ],
+            diary_written: false,
+          },
+          {
+            scheduleId: cursor + 5,
+            journeyId: journeyId,
+            title: 'City Tour',
+            date: '2024-01-13',
+            location: {
+              name: 'City Center',
+              latitude: 37.7749,
+              longitude: -122.4194,
+            },
+            detailSchedules: [
+              {
+                detailScheduleId: 5,
+                content: 'Visit landmarks',
+              },
+              {
+                detailScheduleId: 6,
+                content: 'Try local cuisine',
+              },
+            ],
+            diary_written: false,
           },
         ],
       });
@@ -366,10 +425,10 @@ export const HomeHandlers = [
           },
           {
             id: 2,
-            title: 'Diary Title 1',
+            title: 'Diary Title 2',
             place: 'jejodu',
-            weather: 'SUNNY',
-            mood: 'HAPPY',
+            weather: 'CLOUDY',
+            mood: 'SMILE',
             content: 'jejudo ganda ~',
             user_id: 123,
             schedule_id: scheduleId,
@@ -381,16 +440,16 @@ export const HomeHandlers = [
                 'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
               diary_id: 1,
             },
-            created: '2024-01-01T12:34:56Z',
+            created: '2024-01-02T12:34:56Z',
             updated: '2024-01-02T09:00:00Z',
             deleted: null,
           },
           {
             id: 3,
-            title: 'Diary Title 1',
+            title: 'Diary Title 3',
             place: 'jejodu',
-            weather: 'SUNNY',
-            mood: 'HAPPY',
+            weather: 'SNOWY',
+            mood: 'SAD',
             content: 'jejudo ganda ~',
             user_id: 123,
             schedule_id: scheduleId,
@@ -402,7 +461,7 @@ export const HomeHandlers = [
                 'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
               diary_id: 1,
             },
-            created: '2024-01-01T12:34:56Z',
+            created: '2024-01-03T12:34:56Z',
             updated: '2024-01-02T09:00:00Z',
             deleted: null,
           },
