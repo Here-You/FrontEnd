@@ -17,6 +17,11 @@ const deleteUnFollowMate = () => {
   return axiosWithToken.delete(url);
 };
 
+const getExploreMate = () => {
+  const url = `${API_URL.EXPLORE_MATE}`;
+  return axiosWithToken.get(url);
+};
+
 const getMateSearch = () => {
   // const url = `${API_PATH.MATE_SEARCH}`;
   // return axios.get(url);
@@ -48,6 +53,7 @@ export {
   getSearchMate,
   postFollowMate,
   deleteUnFollowMate,
+  getExploreMate,
   getMateSearch,
   getMateLook,
   getMateManagement,
