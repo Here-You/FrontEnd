@@ -5,6 +5,9 @@ import DailyRecordEditPage from './dailyRecord/edit/DailyRecordEditPage';
 import DailyRecordWritePage from './dailyRecord/write/DailyRecordWrite';
 // ERROR
 import ErrorPage from './error/ErrorPage';
+//Explore
+import ExplorePage from './explore/ExplorePage';
+import ExploreSearch from './explore/search/ExploreSearch';
 // HOME
 import Home from './home/Home';
 // LOGIN
@@ -71,4 +74,6 @@ export {
   TravelTypeResultPage,
   MapPage,
   MapDetailPage,
+  ExplorePage,
+  ExploreSearch,
 };
