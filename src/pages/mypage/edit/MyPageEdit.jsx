@@ -6,12 +6,14 @@ import MyProfileEdit from '@/components/mypage/edit/MyProfileEdit';
 import IntroModal from '@/components/mypage/modal/IntroModal';
 import NickNameModal from '@/components/mypage/modal/NickNameModal';
 import WithdrawalModal from '@/components/mypage/modal/WithdrawalModal';
+import TravelModal from '@/components/mypage/modal/TravelModal';
 
 const MyPageEditPage = () => {
   return (
     <>
       <S.EditPageContainer>
         <ModalPortal>
+          <TravelModal />
           <WithdrawalModal />
           <IntroModal />
           <NickNameModal />

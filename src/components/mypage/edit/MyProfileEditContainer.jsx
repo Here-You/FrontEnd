@@ -2,12 +2,14 @@ import * as S from './MyProfileEditContainer.style';
 import { EDIT_SECOND_CONTENTS_LIST } from '@/constants/editPage';
 import useIntroModal from '@/store/useIntroModal';
 import useNickNameModal from '@/store/useNickNameModal';
+import useTravelModal from '@/store/useTravelModal copy';
 import useWithdrawalModal from '@/store/useWithdrawalModal';
 
 const MyProfileEditContainer = ({ listName }) => {
   const { introOnOpen } = useIntroModal();
   const { nickNameOnOpen } = useNickNameModal();
   const { WithdrawalOnOpen } = useWithdrawalModal();
+  const { travelOnOpen } = useTravelModal();
 
   // const { data, error, message } = useUpdateNickName();
 
@@ -20,12 +22,14 @@ const MyProfileEditContainer = ({ listName }) => {
               key={list.id}
               id={list.id}
               onClick={() => {
-                if (list.id === 0) {
-                  nickNameOnOpen();
-                } else if (list.id === 1) {
-                  introOnOpen();
-                } else {
-                  WithdrawalOnOpen();
+                if (listName === EDIT_SECOND_CONTENTS_LIST) {
+                  if (list.id === 0) {
+                    travelOnOpen();
+                  } else if (list.id === 1) {
+                    introOnOpen();
+                  } else {
+                    WithdrawalOnOpen();
+                  }
                 }
               }}>
               <p>{list.title}</p>

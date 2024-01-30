@@ -1,6 +1,6 @@
 import * as S from './SubCateGoryPage.style';
-import editModal from '@/store/editModal';
-import useLogOutModal from '@/store/useIntroModal copy';
+
+import useLogOutModal from '@/store/useLogOutModal';
 
 const SubCateGoryPage = ({ children, listName }) => {
   const { LogOutOnOpen } = useLogOutModal();
