@@ -27,7 +27,8 @@ export const MateHandlers = [
               bio: '안녕하세요 안예원 입니다. 반가워요',
               follower_num: 23,
               following_num: 23,
-              image: 'profile_img_url',
+              image:
+                'https://images.unsplash.com/photo-1706523964433-84c91f9086ca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D',
               is_following: true,
             },
             {
@@ -37,18 +38,9 @@ export const MateHandlers = [
               bio: '안녕하세요 안원 입니다. 반가워요',
               follower_num: 2,
               following_num: 2,
-              image: 'profile_img_url',
+              image:
+                'https://images.unsplash.com/photo-1706523964433-84c91f9086ca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D',
               is_following: false,
-            },
-            {
-              _id: 3,
-              name: '안예',
-              nickname: 'ahnyw',
-              bio: '안녕하세요 안예 입니다. 반가워요',
-              follower_num: 200,
-              following_num: 200,
-              image: 'profile_img_url',
-              is_following: true,
             },
           ],
         },
