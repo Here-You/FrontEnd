@@ -11,7 +11,7 @@ import {
 
 const tabletStyle = {
   height: '100vh',
-  width: '100%',
+  width: '90%',
 };
 
 const myStyles = [

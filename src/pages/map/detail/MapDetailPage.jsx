@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 
+import * as S from './MapDetail.style';
 import BottomDetailScrollPage from '@/components/bottomSheet/BottomDetailScrollPage';
 import TravelMapDetail from '@/components/map/TravelMapDetail';
 import { useGetJourneyMap } from '@/hooks/home/useGetJourneyMap';
@@ -13,10 +14,10 @@ const MapDetailPage = () => {
   }
 
   return (
-    <>
+    <S.Container>
       <TravelMapDetail journeyInfo={data?.journey_info} />
       <BottomDetailScrollPage journeyInfo={data?.journey_info} />
-    </>
+    </S.Container>
   );
 };
 
