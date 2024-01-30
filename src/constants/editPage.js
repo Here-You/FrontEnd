@@ -22,22 +22,22 @@ const EDIT_SECOND_CONTENTS_LIST = [
     id: 0,
     title: '닉네임 수정',
     img: myPageEditImg.RigthArrow,
-    modal: 'INPUT_EDIT_MODAL',
-    modalNum: 0,
+    modalTitle: '변경할 닉네임을 입력해 주세요',
+    button_text: '닉네임 변경',
+    input_type: 'nickname',
   },
   {
     id: 1,
     title: '프로필 소개 수정',
     img: myPageEditImg.RigthArrow,
-    modal: 'INPUT_EDIT_MODAL',
-    modalNum: 1,
+    modalTitle: '변경할 프로필 소개 내용을 입력해 주세요.',
+    button_text: '프로필 소개 변경',
+    input_type: 'intro',
   },
   {
     id: 2,
     title: '여행의 이유 회원 탈퇴',
     img: myPageEditImg.RigthArrow,
-    modal: 'EDIT_MODAL',
-    modalNum: 1,
   },
 ];
 

@@ -52,39 +52,30 @@ const CloseImg = styled.img`
   cursor: pointer;
 `;
 
-const SecondButton = styled.button`
+const ModalButton = styled.button`
   font-size: ${FONT_SIZE.BASE};
+  color: #ff8686;
   font-family: 'Pretendard-regular';
   border: none;
   padding: 15px;
   background-color: #ffffff;
-  width: 50%;
+  width: 100%;
   border-top: 1px solid #eeeeee;
   cursor: pointer;
 `;
 
-const SecondaryButton = styled.div`
-  font-size: ${FONT_SIZE.BASE};
-  font-family: 'Pretendard-regular';
-  border: none;
+const ModalInput = styled.input`
+  width: 90%;
+  border: 1px solid #eeeeee;
+  border-radius: 15px;
   padding: 15px;
-  background-color: #ffffff;
-  width: 50%;
-  border-top: 1px solid #eeeeee;
-  border-left: '1px solid #EEEEEE';
-  color: '#ff8686';
-`;
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  ${theme.ALIGN.ROW_CENTER}
+  margin-bottom: 10px;
 `;
 
 export {
   ModalContentContainer,
   ModalOverlay,
   CloseImg,
-  SecondButton,
-  SecondaryButton,
-  ButtonContainer,
+  ModalButton,
+  ModalInput,
 };

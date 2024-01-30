@@ -2,7 +2,7 @@ import * as S from './SubCateGoryPage.style';
 import editModal from '@/store/editModal';
 
 const SubCateGoryPage = ({ children, listName }) => {
-  const { onOpen } = editModal();
+  const { onOpens } = editModal();
 
   return (
     <S.CategoryContainer>
@@ -11,7 +11,14 @@ const SubCateGoryPage = ({ children, listName }) => {
         return (
           <S.Subcategory
             key={list.id}
-            onClick={() => list.modal && onOpen(list.modal, list.modalNum)}>
+            onClick={() =>
+              list.modal &&
+              onOpens(
+                '여행의 이유 로그아웃',
+                '로그아웃',
+                '로그아웃 하시겠습니까?',
+              )
+            }>
             <S.LinkTo to={list.link}>
               <S.CategoryImg src={list.img} alt={list.title} />
               <p>{list.title}</p>

@@ -11,8 +11,7 @@ const USER_SETTING = [
     id: 1,
     img: myPageImg.Sign_out_squre,
     title: '로그아웃',
-    modal: 'EDIT_MODAL',
-    modalNum: 0,
+    modal: true,
   },
   {
     id: 2,

@@ -32,7 +32,6 @@ export const ProfileHandlers = [
       status: 200,
       success: true,
       message: '닉네임 수정 성공',
-      nickname: '준',
     });
   }),
 
@@ -44,7 +43,6 @@ export const ProfileHandlers = [
         status: 200,
         success: true,
         message: '프로필 수정 성공',
-        intro: '특기는 여행, 취미는 기록',
       });
     },
   ),
