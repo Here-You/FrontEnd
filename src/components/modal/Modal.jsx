@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { kakaoLogout } from '../login/KaKaoLogout';
 import * as S from './Modal.style';
 import { myPageEditImg } from '/public/images/mypage';
-import { updateIntro } from '@/apis/request/profile';
+import { getWithdrawMember, updateIntro } from '@/apis/request/profile';
 import { updateNickName } from '@/apis/request/profile';
 
 const EditModalPage = ({
@@ -35,11 +35,15 @@ const EditModalPage = ({
   };
   const handleModalButtonClick = () => {
     onClose();
-    const accessToken = 'your_access_token_here';
+    if (buttonText === '로그아웃') {
+      const accessToken = 'your_access_token_here';
 
-    kakaoLogout(accessToken);
+      kakaoLogout(accessToken);
 
-    console.log('로그아웃');
+      console.log('로그아웃');
+    } else if (buttonText === '회원탈퇴') {
+      getWithdrawMember();
+    }
   };
   return (
     <>

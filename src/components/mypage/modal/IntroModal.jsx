@@ -12,6 +12,7 @@ const IntroModal = () => {
           inputType="intro"
           onClose={() => onClose()}
           squareDoubleButton
+      
         />
       )}
     </>

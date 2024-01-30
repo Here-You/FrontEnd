@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
-
+import { postSnsLogin } from '@/apis/request/profile';
 
 const Redirect = () => {
   const code = new URL(window.location.href).searchParams.get('code');
-
+ 
   const getToken = async code => {
     const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEAY;
     const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
@@ -24,7 +24,9 @@ const Redirect = () => {
 
   useEffect(() => {
     if (code) {
+
       getToken(code).then(res => {
+        postSnsLogin("KAKAO","OAUTH_TOKEN");
         console.log(res.access_token);
       });
     }

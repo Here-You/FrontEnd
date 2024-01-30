@@ -20,7 +20,6 @@ export const ProfileHandlers = [
       success: true,
       message: '로그인 성공',
       token: 'JWT_TOKEN',
-      data: '되나?',
       register_required: false,
     });
   }),
