@@ -1,39 +1,19 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
+
 import { postSnsLogin } from '@/apis/request/profile';
 
 const Redirect = () => {
   const code = new URL(window.location.href).searchParams.get('code');
  
-  const getToken = async code => {
-    const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEAY;
-    const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
-
-    const response = await fetch(
-      `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&code=${code}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
-        },
-      },
-    );
-
-    return response.json();
-  };
-
   useEffect(() => {
     if (code) {
-
-      getToken(code).then(res => {
-        postSnsLogin("KAKAO","OAUTH_TOKEN");
-        console.log(res.access_token);
-      });
+      postSnsLogin('KAKAO', code);
+ 
     }
   }, [code]);
 
   const handleLogin = () => {
-
     console.log('Login button clicked');
   };
 

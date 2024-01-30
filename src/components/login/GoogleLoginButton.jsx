@@ -2,16 +2,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './SnsLoginButton.style';
-import { useGoogleLogin } from '@react-oauth/google';
 import { postSnsLogin } from '@/apis/request/profile';
+import { useGoogleLogin } from '@react-oauth/google';
 
 const GoogleLoginButton = () => {
   const navigate = useNavigate();
 
   const login = useGoogleLogin({
     onSuccess: tokenResponse => {
-      console.log(tokenResponse);
-      postSnsLogin("GOOGLE","OAUTH_TOKEN");
+      postSnsLogin('GOOGLE', tokenResponse.access_token);
       navigate('/signup');
     },
   });
