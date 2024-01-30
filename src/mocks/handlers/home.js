@@ -1,4 +1,4 @@
-import { HttpResponse, http } from 'msw';
+import { HttpResponse, delay, http } from 'msw';
 
 import { baseURL } from '@/apis/api';
 import { API_URL } from '@/constants/path';
@@ -156,19 +156,22 @@ export const HomeHandlers = [
       },
     });
   }),
-  //일정 불러오기
-  http.get(`${baseURL}${API_URL.GET_SCHEDULE}`, ({ request, params }) => {
+  //일정 불러오기 (커서 기반)
+  http.get(`${baseURL}${API_URL.GET_SCHEDULE}`, async ({ request, params }) => {
+    const url = new URL(request.url);
     const journeyId = params.journeyId;
+    const cursor = parseInt(url.searchParams.get('cursor')) || 0;
     if (!journeyId) {
       return new HttpResponse(null, { status: 404 });
     } else if (journeyId) {
+      await delay(3000);
       return HttpResponse.json({
         status: 200,
         success: true,
         message: '일정 불러오기 성공',
         data: [
           {
-            scheduleId: 1,
+            scheduleId: cursor + 1,
             journeyId: journeyId,
             title: 'Exploration',
             date: '2024-01-11',
@@ -189,7 +192,7 @@ export const HomeHandlers = [
             ],
           },
           {
-            scheduleId: 2,
+            scheduleId: cursor + 2,
             journeyId: journeyId,
             title: 'Relaxation',
             date: '2024-01-12',
@@ -210,7 +213,49 @@ export const HomeHandlers = [
             ],
           },
           {
-            scheduleId: 3,
+            scheduleId: cursor + 3,
+            journeyId: journeyId,
+            title: 'City Tour',
+            date: '2024-01-13',
+            location: {
+              name: 'City Center',
+              latitude: 37.7749,
+              longitude: -122.4194,
+            },
+            detailSchedules: [
+              {
+                detailScheduleId: 5,
+                content: 'Visit landmarks',
+              },
+              {
+                detailScheduleId: 6,
+                content: 'Try local cuisine',
+              },
+            ],
+          },
+          {
+            scheduleId: cursor + 4,
+            journeyId: journeyId,
+            title: 'City Tour',
+            date: '2024-01-13',
+            location: {
+              name: 'City Center',
+              latitude: 37.7749,
+              longitude: -122.4194,
+            },
+            detailSchedules: [
+              {
+                detailScheduleId: 5,
+                content: 'Visit landmarks',
+              },
+              {
+                detailScheduleId: 6,
+                content: 'Try local cuisine',
+              },
+            ],
+          },
+          {
+            scheduleId: cursor + 5,
             journeyId: journeyId,
             title: 'City Tour',
             date: '2024-01-13',

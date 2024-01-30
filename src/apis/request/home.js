@@ -39,9 +39,10 @@ const createSchedule = ({ journeyId }) => {
   return res;
 };
 
-const getSchedule = ({ journeyId }) => {
-  const url = `/api/${VERSION}/${API_BASE.SCHEDULES}/${journeyId}`;
+const getSchedule = (journeyId, pageParam) => {
+  const url = `/api/${VERSION}/${API_BASE.SCHEDULES}/${journeyId}?cursor=${pageParam}`;
   const res = axiosWithToken.get(url);
+
   return res;
 };
 
