@@ -142,6 +142,7 @@ const DetailPlan = ({
               onClick={() => {
                 setIsOpenInput(true);
                 setIsOpenEdit(false);
+                setEditingId(null);
               }}>
               <S.Image src={Add} />
               <p>세부 일정 추가하기</p>
