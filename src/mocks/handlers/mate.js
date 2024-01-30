@@ -227,7 +227,7 @@ export const MateHandlers = [
         mates: [
           {
             _id: 1,
-            name: '안예원',
+            name: '팔로워_안예원',
             nickname: 'ahnyewon',
             bio: '안녕하세요 안예원 입니다. 반가워요',
             image:
@@ -264,7 +264,7 @@ export const MateHandlers = [
         mates: [
           {
             _id: 1,
-            name: '안예원',
+            name: '팔로잉_안예원',
             nickname: 'ahnyewon',
             bio: '안녕하세요 안예원입니다. 반가워요',
             image:
