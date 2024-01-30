@@ -1,4 +1,5 @@
 import GoogleLoginButton from './GoogleLoginButton';
+// import GoogleLogout from './GoogleLogout';
 import KakaoLoginButton from './KakaoLoginButton';
 import * as S from './LoginButton.style';
 import LOGIN_BUTTON_LIST from '@/constants/login';
@@ -10,6 +11,7 @@ const LoginButton = () => {
     <>
     <GoogleOAuthProvider clientId={clientId}>
       <GoogleLoginButton />
+      {/* <GoogleLogout /> */}
     </GoogleOAuthProvider>
     <KakaoLoginButton/>
     </>

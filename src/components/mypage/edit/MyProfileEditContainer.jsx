@@ -1,11 +1,13 @@
 import * as S from './MyProfileEditContainer.style';
 import { EDIT_SECOND_CONTENTS_LIST } from '@/constants/editPage';
-import editModal from '@/store/editModal';
-import inputModal from '@/store/inputModal';
+import useIntroModal from '@/store/useIntroModal';
+import useNickNameModal from '@/store/useNickNameModal';
+import useWithdrawalModal from '@/store/useWithdrawalModal';
 
 const MyProfileEditContainer = ({ listName }) => {
-  const { onOpens } = editModal();
-  const { onOpen } = inputModal();
+  const { introOnOpen } = useIntroModal();
+  const { nickNameOnOpen } = useNickNameModal();
+  const { WithdrawalOnOpen } = useWithdrawalModal();
 
   // const { data, error, message } = useUpdateNickName();
 
@@ -17,22 +19,15 @@ const MyProfileEditContainer = ({ listName }) => {
             <S.EditContentContainer
               key={list.id}
               id={list.id}
-              onClick={
-                listName === EDIT_SECOND_CONTENTS_LIST &&
-                (list.id === 2
-                  ? () =>
-                      onOpens(
-                        '여행의 이유 회원탈퇴',
-                        '회원탈퇴',
-                        '정말 탈퇴하시겟어요? ㅠㅠ',
-                      )
-                  : () =>
-                      onOpen(
-                        list.modalTitle,
-                        list.button_text,
-                        list.input_type,
-                      ))
-              }>
+              onClick={() => {
+                if (list.id === 0) {
+                  nickNameOnOpen();
+                } else if (list.id === 1) {
+                  introOnOpen();
+                } else {
+                  WithdrawalOnOpen();
+                }
+              }}>
               <p>{list.title}</p>
               <p>{list.content}</p>
               {listName === EDIT_SECOND_CONTENTS_LIST && (

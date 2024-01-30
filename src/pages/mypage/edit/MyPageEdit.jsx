@@ -2,17 +2,19 @@ import React from 'react';
 
 import * as S from './MyPageEdit.style';
 import ModalPortal from '@/components/ModalPortal';
-import EditModalPage from '@/components/mypage/edit/EditModal';
 import MyProfileEdit from '@/components/mypage/edit/MyProfileEdit';
-import InputModalPage from '@/components/mypage/edit/InputModal';
+import IntroModal from '@/components/mypage/modal/IntroModal';
+import NickNameModal from '@/components/mypage/modal/NickNameModal';
+import WithdrawalModal from '@/components/mypage/modal/WithdrawalModal';
 
 const MyPageEditPage = () => {
   return (
     <>
       <S.EditPageContainer>
         <ModalPortal>
-          <EditModalPage />
-          <InputModalPage />
+          <WithdrawalModal />
+          <IntroModal />
+          <NickNameModal />
         </ModalPortal>
         <S.UserInfo>유저 정보</S.UserInfo>
         <MyProfileEdit />

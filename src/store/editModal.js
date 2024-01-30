@@ -2,10 +2,8 @@ import { create } from 'zustand';
 
 const editModal = create(set => ({
   isOpen: false,
-  title: '',
-  buttonText: '',
-  secondTitle: '',
-  onOpens: (val, btn, sec) => set({ isOpen: true, title: val, buttonText: btn,secondTitle: sec }),
+
+  onOpens: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));
 

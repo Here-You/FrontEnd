@@ -1,8 +1,9 @@
 import * as S from './SubCateGoryPage.style';
 import editModal from '@/store/editModal';
+import useLogOutModal from '@/store/useIntroModal copy';
 
 const SubCateGoryPage = ({ children, listName }) => {
-  const { onOpens } = editModal();
+  const { LogOutOnOpen } = useLogOutModal();
 
   return (
     <S.CategoryContainer>
@@ -11,14 +12,7 @@ const SubCateGoryPage = ({ children, listName }) => {
         return (
           <S.Subcategory
             key={list.id}
-            onClick={() =>
-              list.modal &&
-              onOpens(
-                '여행의 이유 로그아웃',
-                '로그아웃',
-                '로그아웃 하시겠습니까?',
-              )
-            }>
+            onClick={() => list.modal && LogOutOnOpen()}>
             <S.LinkTo to={list.link}>
               <S.CategoryImg src={list.img} alt={list.title} />
               <p>{list.title}</p>

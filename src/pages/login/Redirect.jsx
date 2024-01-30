@@ -1,9 +1,6 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 
-import { API_URL } from '@/constants/path';
-import { usePostSnsLogin } from '@/hooks/login/useSnsLogin';
-import { useMutation } from '@tanstack/react-query';
 
 const Redirect = () => {
   const code = new URL(window.location.href).searchParams.get('code');

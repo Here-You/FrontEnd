@@ -2,15 +2,14 @@ import * as S from './MyPage.style';
 import ModalPortal from '@/components/ModalPortal';
 import Category from '@/components/mypage/Category';
 import MyPageInfo from '@/components/mypage/MypageInfo';
-import EditModalPage from '@/components/mypage/edit/EditModal';
-import InputModalPage from '@/components/mypage/edit/InputModal';
+import LogOutModal from '@/components/mypage/modal/LogOutModal';
+import ModalPage from '@/components/mypage/modal/Modal';
 
 const MyPage = () => {
   return (
     <>
       <ModalPortal>
-        <EditModalPage />
-        <InputModalPage />
+        <LogOutModal />
       </ModalPortal>
       <S.MypageContainer>
         <MyPageInfo />

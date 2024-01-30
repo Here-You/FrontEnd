@@ -7,7 +7,7 @@ const getProfileInfo = () => {
 
 const postSnsLogin = (type, token) => {
   const url = `${API_URL.SNS_LOGIN}`;
-  const res = axiosWithToken.post(url, {
+  const res = axios.post(url, {
     type: type,
     token: token,
   });
