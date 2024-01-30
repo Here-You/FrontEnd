@@ -36,7 +36,7 @@ const BASE_PATH = {
   TRAVEL_TYPE_RESULT: '/traveltype/result',
   //EXPLORE(탐색)
   EXPLORE: '/explore',
-  EXPLORE_SEARCH: '/explore/search',
+  EXPLORE_SEARCH: '/explore/:value',
 };
 
 const VERSION = 'v1';
