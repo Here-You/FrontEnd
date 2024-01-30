@@ -7,6 +7,16 @@ const getSearchMate = searchTerm => {
   return axiosWithToken.get(url);
 };
 
+const postFollowMate = () => {
+  const url = `${API_URL.FOLLOW_MATE}`;
+  return axiosWithToken.post(url);
+};
+
+const deleteUnFollowMate = () => {
+  const url = `${API_URL.UNFOLLOW_MATE}`;
+  return axiosWithToken.delete(url);
+};
+
 const getMateSearch = () => {
   // const url = `${API_PATH.MATE_SEARCH}`;
   // return axios.get(url);
@@ -36,6 +46,8 @@ const getRuleCheck = () => {
 
 export {
   getSearchMate,
+  postFollowMate,
+  deleteUnFollowMate,
   getMateSearch,
   getMateLook,
   getMateManagement,

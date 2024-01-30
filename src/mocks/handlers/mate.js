@@ -50,7 +50,6 @@ export const MateHandlers = [
 
   //메이트 팔로우
   http.post(`${baseURL}${API_URL.FOLLOW_MATE}`, ({ request, params }) => {
-    // 파라미터 (다이나믹 라우트 :userId)
     const userId = params.userId;
 
     if (!userId) {
