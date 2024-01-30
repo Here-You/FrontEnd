@@ -8,7 +8,7 @@ import { useMateFollowing } from '@/hooks/mate/useMateFollowing';
 const MateManagementPage = () => {
   const { data: dataFollower, loading, error } = useMateFollower();
   const { data: dataFollowing, loadingF, errorF } = useMateFollowing();
-  const [activeTab, setActiveTab] = useState(null);
+  const [activeTab, setActiveTab] = useState('follower');
 
   const handleTabClick = tabName => {
     setActiveTab(tabName);
