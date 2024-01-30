@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import SearchMap from '../searchMap/SearchMap';
 import * as S from './Schedules.style';
 import DetailPlan from './detail/DetailPlan';
+// import { useDeleteSchedule } from './mutations';
 import EditLight from '/icons/EditLight.svg';
 import File from '/icons/File.svg';
 import LocationLight from '/icons/LocationLight.svg';
@@ -22,6 +23,7 @@ const Schedules = ({ data, dataLength }) => {
   const [isToggle, setIsToggle] = useState(false);
   const [locationInfo, setLocationInfo] = useState({});
   const lastPlan = scheduleId === dataLength ? true : false;
+  // const deleteScheduleMutation = useDeleteSchedule();
 
   const handleOnToggle = () => {
     setIsToggle(!isToggle);
@@ -49,6 +51,7 @@ const Schedules = ({ data, dataLength }) => {
   }, [locationInfo]);
 
   const deleteSchedule = async () => {
+    // deleteScheduleMutation.mutateAsync(scheduleId);
     alert('일정이 삭제되었습니다.');
     // 일정 삭제 api 요청
   };

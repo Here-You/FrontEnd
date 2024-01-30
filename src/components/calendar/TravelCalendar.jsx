@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import * as S from './TravelCalendar.style';
-import { getSchedule, loadMonthlySchedule } from '@/apis/request/home';
+import { getSchedule } from '@/apis/request/home';
 import { useLoadMonthlyJourney } from '@/hooks/home/useLoadMonthlyJourney';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
@@ -36,6 +36,7 @@ const TravelCalendar = () => {
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage?.data?.data.at(-1).scheduleId,
     staleTime: 60 * 1000,
+    // enabled,  // 처리 필요
   });
 
   const { ref, inView } = useInView({
