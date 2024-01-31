@@ -18,7 +18,6 @@ const MyPageInfo = () => {
       const res = await getProfileInfo();
       const members = res.data;
       setInfo(members);
-      console.log(info);
     } catch (e) {
       console.log(e);
     }

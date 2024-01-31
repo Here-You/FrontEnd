@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react';
 
-import { kakaoLogout } from '../login/KaKaoLogout';
 import * as S from './Modal.style';
 import { myPageEditImg } from '/public/images/mypage';
 import { getWithdrawMember, updateIntro } from '@/apis/request/profile';
 import { updateNickName } from '@/apis/request/profile';
+import { googleLogout } from '@react-oauth/google';
+import KakaoLogout from '../login/KaKaoLogout';
 
 const EditModalPage = ({
   title,
@@ -21,6 +22,7 @@ const EditModalPage = ({
   bigModal,
 }) => {
   const outside = useRef();
+  const {handleKaKaoLogout} = KakaoLogout();
 
   const [changeValue, setChangeValue] = useState();
 
@@ -36,11 +38,10 @@ const EditModalPage = ({
   const handleModalButtonClick = () => {
     onClose();
     if (buttonText === '로그아웃') {
-      const accessToken = 'your_access_token_here';
-
-      kakaoLogout(accessToken);
-
-      console.log('로그아웃');
+      
+      handleKaKaoLogout();
+      // googleLogout();
+     
     } else if (buttonText === '회원탈퇴') {
       getWithdrawMember();
     }
