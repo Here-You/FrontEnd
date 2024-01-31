@@ -1,33 +1,21 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
+
+const rotateAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+`;
 
 const Container = styled.div`
   ${theme.ALIGN.COLUMN_CENTER}
   gap: ${props => (props.$dataLength > 1 ? '0' : '10px')};
   position: relative;
-`;
-
-const AddButton = styled.button`
-  ${theme.ALIGN.COLUMN_CENTER};
-  padding: 0;
-  margin: auto;
-  background-color: #e8f6ef;
-  border: none;
-  text-align: center;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  color: ${theme.COLOR.MAIN.GREEN};
-  font-size: ${FONT_SIZE.FIVE_XL};
-  position: sticky;
-  bottom: 20px;
-  margin-right: -80px;
-
-  cursor: pointer;
-  z-index: 1;
-  align-self: flex-end;
 `;
 
 const ButtonContainer = styled.div`
@@ -61,7 +49,84 @@ const Button = styled.button`
 `;
 
 const CalendarContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER}
+  ${theme.ALIGN.COLUMN_CENTER};
+  position: relative;
+`;
+
+const JourneyButtonContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+
+  position: sticky;
+  bottom: 20px;
+  margin-right: -80px;
+
+  cursor: pointer;
+  z-index: 1;
+  align-self: flex-end;
+`;
+
+const EditButton = styled.button`
+  padding: 25px 30px;
+  border-top: 1px solid ${theme.COLOR.MAIN.GREEN};
+  border-left: 1px solid ${theme.COLOR.MAIN.GREEN};
+  border-bottom: 1px solid ${theme.COLOR.MAIN.GREEN};
+  border-right: 0px;
+
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+
+  background-color: ${theme.COLOR.MAIN.WHITE};
+  cursor: pointer;
+  &:hover {
+    color: ${theme.COLOR.MAIN.GREEN};
+  }
+`;
+
+const WriteButton = styled.button`
+  padding: 10px 80px 10px 30px;
+  border-top: 1px solid ${theme.COLOR.MAIN.GREEN};
+  border-right: 1px solid ${theme.COLOR.MAIN.GREEN};
+  border-bottom: 1px solid ${theme.COLOR.MAIN.GREEN};
+  border-left: 0px;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+
+  background-color: ${theme.COLOR.MAIN.WHITE};
+  cursor: pointer;
+  &:hover {
+    color: ${theme.COLOR.MAIN.GREEN};
+  }
+`;
+
+const AddButton = styled.button`
+  position: absolute;
+  ${theme.ALIGN.COLUMN_CENTER};
+  padding: 0 0 5px 0;
+  width: 50px;
+  height: 50px;
+  top: 10px;
+  left: 290px;
+
+  text-align: center;
+  background-color: #e8f6ef;
+  border: none;
+  border-radius: 50%;
+  color: ${theme.COLOR.MAIN.GREEN};
+  font-size: ${FONT_SIZE.FOUR_XL};
+
+  cursor: pointer;
+  transform: ${({ $isClicked }) => ($isClicked ? 'rotate(45deg)' : 'none')};
+  transition: transform 0.3s ease;
+`;
+
+const VerticalLine = styled.p`
+  position: absolute;
+  top: 25px;
+  left: 150px;
+  color: ${theme.COLOR.MAIN.GREEN};
+  font-size: ${FONT_SIZE.XL};
 `;
 
 const JourneyWrapper = styled.div``;
@@ -78,4 +143,8 @@ export {
   Button,
   MapContainer,
   AddButton,
+  JourneyButtonContainer,
+  EditButton,
+  WriteButton,
+  VerticalLine,
 };
