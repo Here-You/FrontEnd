@@ -59,24 +59,26 @@ const TravelCalendar = () => {
     setEndDate(endDateFormat);
   };
 
-  const startEndDate = [
-    { startDate: '2024/01/01', endDate: '2024/01/05' },
-    { startDate: '2024/01/13', endDate: '2024/01/15' },
-  ];
+  const startEndDate =
+    data?.dateGroup?.map(({ startDate, endDate }) => ({
+      startDate,
+      endDate,
+    })) || [];
 
   const tileClassName = ({ date }) => {
-    for (const range of startEndDate) {
+    for (let i = 0; i < startEndDate.length; i++) {
+      const range = startEndDate[i];
       const startDate = moment(range.startDate);
       const endDate = moment(range.endDate);
 
       if (moment(date).isBetween(startDate, endDate, null, '[]')) {
-        return 'highlight';
+        const idClass = `id-${i}`;
+        return `highlight ${idClass}`;
       }
     }
 
     return '';
   };
-
   if (loading) {
     return <div>로딩 중</div>;
   }

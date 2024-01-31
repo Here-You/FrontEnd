@@ -3,6 +3,16 @@ import styled from 'styled-components';
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
+const HighlightedElement = styled.abbr`
+  border: 2px solid ${({ randomColor }) => randomColor} !important;
+  background-color: ${({ randomColor }) => randomColor};
+  color: white;
+  font-size: 22px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
@@ -98,6 +108,7 @@ const HomeContentContainer = styled.div`
 `;
 
 export {
+  HighlightedElement,
   Wrapper,
   Button,
   ButtonContainer,
