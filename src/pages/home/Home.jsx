@@ -21,7 +21,7 @@ const HomePage = () => {
     <S.Container $dataLength={testData.length}>
       <S.CalendarContainer>
         <TravelCalendar />
-        <S.JourneyButtonContainer $isClicked={isClicked}>
+        <S.JourneyButtonContainer>
           <S.EditButton $isClicked={isClicked}>여정 확인 및 수정</S.EditButton>
           <S.VerticalLine $isClicked={isClicked}>|</S.VerticalLine>
           <S.WriteButton

@@ -1,16 +1,7 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
-
-const rotateAnimation = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(45deg);
-  }
-`;
 
 const Container = styled.div`
   ${theme.ALIGN.COLUMN_CENTER}
@@ -68,6 +59,8 @@ const JourneyButtonContainer = styled.div`
 `;
 
 const EditButton = styled.button`
+  visibility: ${props => (props.$isClicked ? 'visible' : 'hidden')};
+
   padding: 25px 30px;
   border-top: 1px solid ${theme.COLOR.MAIN.GREEN};
   border-left: 1px solid ${theme.COLOR.MAIN.GREEN};
@@ -85,6 +78,8 @@ const EditButton = styled.button`
 `;
 
 const WriteButton = styled.button`
+  visibility: ${props => (props.$isClicked ? 'visible' : 'hidden')};
+
   padding: 10px 80px 10px 30px;
   border-top: 1px solid ${theme.COLOR.MAIN.GREEN};
   border-right: 1px solid ${theme.COLOR.MAIN.GREEN};
@@ -117,11 +112,12 @@ const AddButton = styled.button`
   font-size: ${FONT_SIZE.FOUR_XL};
 
   cursor: pointer;
-  transform: ${({ $isClicked }) => ($isClicked ? 'rotate(45deg)' : 'none')};
+  transform: ${({ $isClicked }) => ($isClicked ? 'rotate(-45deg)' : 'none')};
   transition: transform 0.3s ease;
 `;
 
 const VerticalLine = styled.p`
+  visibility: ${props => (props.$isClicked ? 'visible' : 'hidden')};
   position: absolute;
   top: 25px;
   left: 150px;
