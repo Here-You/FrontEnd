@@ -27,7 +27,8 @@ export const MateHandlers = [
               bio: '안녕하세요 안예원 입니다. 반가워요',
               follower_num: 23,
               following_num: 23,
-              image: 'profile_img_url',
+              image:
+                'https://images.unsplash.com/photo-1706523964433-84c91f9086ca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D',
               is_following: true,
             },
             {
@@ -37,18 +38,9 @@ export const MateHandlers = [
               bio: '안녕하세요 안원 입니다. 반가워요',
               follower_num: 2,
               following_num: 2,
-              image: 'profile_img_url',
+              image:
+                'https://images.unsplash.com/photo-1706523964433-84c91f9086ca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D',
               is_following: false,
-            },
-            {
-              _id: 3,
-              name: '안예',
-              nickname: 'ahnyw',
-              bio: '안녕하세요 안예 입니다. 반가워요',
-              follower_num: 200,
-              following_num: 200,
-              image: 'profile_img_url',
-              is_following: true,
             },
           ],
         },
@@ -58,7 +50,6 @@ export const MateHandlers = [
 
   //메이트 팔로우
   http.post(`${baseURL}${API_URL.FOLLOW_MATE}`, ({ request, params }) => {
-    // 파라미터 (다이나믹 라우트 :userId)
     const userId = params.userId;
 
     if (!userId) {
@@ -110,6 +101,7 @@ export const MateHandlers = [
           {
             information: {
               user_id: 123456,
+              nickname: '안예원',
               location: '오사카',
             },
             mates: [
@@ -118,20 +110,20 @@ export const MateHandlers = [
                 nickname: '매튜',
                 bio: '안녕하세요',
                 image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 is_following: true,
                 signature: [
                   {
                     _id: 1,
                     title: '뽀똔이와 함께하는 일본 뿌시기',
                     image:
-                      'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                   },
                   {
                     _id: 2,
                     title: '뽀똔이와 함께하는 일본 뿌시기',
                     image:
-                      'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                   },
                 ],
               },
@@ -140,20 +132,73 @@ export const MateHandlers = [
                 nickname: '준',
                 bio: '반가워요',
                 image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                 is_following: false,
                 signature: [
                   {
                     _id: 1,
                     title: '부산 갈매기에게 인형을 빼앗기다',
                     image:
-                      'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                   },
                   {
                     _id: 2,
                     title: '부산 갈매기에게 인형을 빼앗기다',
                     image:
-                      'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            information: {
+              user_id: 123456,
+              nickname: '안예원2',
+              location: '오사카',
+            },
+            mates: [
+              {
+                _id: 1,
+                nickname: '매튜',
+                bio: '안녕하세요',
+                image:
+                  'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                is_following: true,
+                signature: [
+                  {
+                    _id: 1,
+                    title: '뽀똔이와 함께하는 일본 뿌시기',
+                    image:
+                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  },
+                  {
+                    _id: 2,
+                    title: '뽀똔이와 함께하는 일본 뿌시기',
+                    image:
+                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  },
+                ],
+              },
+              {
+                _id: 1,
+                nickname: '준',
+                bio: '반가워요',
+                image:
+                  'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                is_following: false,
+                signature: [
+                  {
+                    _id: 1,
+                    title: '부산 갈매기에게 인형을 빼앗기다',
+                    image:
+                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  },
+                  {
+                    _id: 2,
+                    title: '부산 갈매기에게 인형을 빼앗기다',
+                    image:
+                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                   },
                 ],
               },
@@ -182,7 +227,7 @@ export const MateHandlers = [
         mates: [
           {
             _id: 1,
-            name: '안예원',
+            name: '팔로워_안예원',
             nickname: 'ahnyewon',
             bio: '안녕하세요 안예원 입니다. 반가워요',
             image:
@@ -219,7 +264,7 @@ export const MateHandlers = [
         mates: [
           {
             _id: 1,
-            name: '안예원',
+            name: '팔로잉_안예원',
             nickname: 'ahnyewon',
             bio: '안녕하세요 안예원입니다. 반가워요',
             image:

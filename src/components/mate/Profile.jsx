@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import FollowBox from './FollowBox';
 import FollowButton from './FollowButton';
 import * as S from './Profile.style';
@@ -9,14 +7,15 @@ const Profile = ({ profileData }) => {
     return <div>데이터가 없습니다.</div>;
   }
 
-  const { image, name, nickname, bio, follower_num, following_num } =
-    profileData;
-
-  const [isFollowing, setIsFollowing] = useState(false);
-
-  const handleFollowing = () => {
-    setIsFollowing(!isFollowing);
-  };
+  const {
+    image,
+    name,
+    nickname,
+    bio,
+    follower_num,
+    following_num,
+    is_following,
+  } = profileData;
 
   return (
     <S.CenteredContainer>
@@ -25,11 +24,7 @@ const Profile = ({ profileData }) => {
         <S.TextContainer>
           <S.NameAndFollow>
             <span>{name}</span>
-            <FollowButton
-              isFollowing={isFollowing}
-              onFollowing={handleFollowing}
-              name={name}
-            />
+            <FollowButton isFollowing={is_following} name={name} />
           </S.NameAndFollow>
           <S.UserId>{nickname}</S.UserId>
           <S.UserAbout>{bio}</S.UserAbout>

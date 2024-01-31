@@ -2,25 +2,31 @@ import { useState } from 'react';
 
 import * as S from './FollowButton.style';
 import FollowModal from './FollowModal';
+import { postFollowMate } from '@/apis/request/mate';
+import { deleteUnFollowMate } from '@/apis/request/mate';
 
-const FollowButton = ({ isFollowing, onFollowing, name }) => {
+const FollowButton = ({ isFollowing, name }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    onFollowing();
+  const handleChangeStatus = () => {
+    if (isFollowing) {
+      deleteUnFollowMate();
+    } else {
+      postFollowMate();
+      setIsModalOpen(true);
+    }
   };
 
   return (
     <>
-      <S.FollowButton isFollowing={isFollowing} onClick={handleClick}>
-        {isFollowing ? '팔로잉' : '팔로우'}
-      </S.FollowButton>
-      {isModalOpen && <FollowModal onClose={handleCloseModal} name={name} />}
+      {
+        <S.FollowButton isFollowing={isFollowing} onClick={handleChangeStatus}>
+          {isFollowing ? '언팔로우' : '팔로우'}
+        </S.FollowButton>
+      }
+      {isModalOpen && (
+        <FollowModal onClose={() => setIsModalOpen(false)} name={name} />
+      )}
     </>
   );
 };
