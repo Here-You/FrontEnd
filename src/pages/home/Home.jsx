@@ -12,6 +12,16 @@ const HomePage = () => {
   const { pathname } = useLocation();
   const journeyWriteModal = useJourneyModal();
   const [isClicked, setIsClicked] = useState(false);
+  const [startDate, setStateDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+
+  const handleAddJourney = () => {
+    if (!startDate || !endDate) {
+      alert('먼저 달력에서 기간을 선택해주세요!');
+    } else {
+      journeyWriteModal.onOpen();
+    }
+  };
 
   const handleClickAddButton = () => {
     setIsClicked(!isClicked);
@@ -20,13 +30,14 @@ const HomePage = () => {
   return (
     <S.Container $dataLength={testData.length}>
       <S.CalendarContainer>
-        <TravelCalendar />
+        <TravelCalendar
+          clickStateDtate={setStateDate}
+          clickEndDate={setEndDate}
+        />
         <S.JourneyButtonContainer>
           <S.EditButton $isClicked={isClicked}>여정 확인 및 수정</S.EditButton>
           <S.VerticalLine $isClicked={isClicked}>|</S.VerticalLine>
-          <S.WriteButton
-            onClick={journeyWriteModal.onOpen}
-            $isClicked={isClicked}>
+          <S.WriteButton onClick={handleAddJourney} $isClicked={isClicked}>
             새 여정 추가하기
           </S.WriteButton>
           <S.AddButton onClick={handleClickAddButton} $isClicked={isClicked}>
@@ -34,7 +45,7 @@ const HomePage = () => {
           </S.AddButton>
         </S.JourneyButtonContainer>
       </S.CalendarContainer>
-      <JourneyWriteModal />
+      <JourneyWriteModal startDate={startDate} endDate={endDate} />
     </S.Container>
   );
 };
