@@ -94,36 +94,6 @@ export const HomeHandlers = [
                 startDate: '2024-04-18',
                 endDate: '2024-04-23',
               },
-              {
-                id: 14,
-                startDate: '2024-04-25',
-                endDate: '2024-04-28',
-              },
-              {
-                id: 15,
-                startDate: '2024-04-29',
-                endDate: '2024-04-31',
-              },
-              {
-                id: 16,
-                startDate: '2024-05-01',
-                endDate: '2024-05-05',
-              },
-              {
-                id: 17,
-                startDate: '2024-05-09',
-                endDate: '2024-05-14',
-              },
-              {
-                id: 18,
-                startDate: '2024-05-16',
-                endDate: '2024-05-18',
-              },
-              {
-                id: 19,
-                startDate: '2024-05-20',
-                endDate: '2024-05-24',
-              },
             ],
             monthlyJourneys: [
               {
@@ -877,7 +847,6 @@ export const HomeHandlers = [
     `${baseURL}${API_URL.GET_JOURNEY_MAP}/:journeyId`,
     ({ request, params }) => {
       const journeyId = params.journeyId;
-
       return HttpResponse.json({
         status: 200,
         success: true,
@@ -885,6 +854,11 @@ export const HomeHandlers = [
         data: {
           journey_info: {
             journey_title: '서울 여행',
+            date_group_id: {
+              startDate: '2022-01-01',
+              endDate: '2022-01-10',
+              id: 15,
+            },
             schedule_locations: [
               {
                 schedule_id: 1,

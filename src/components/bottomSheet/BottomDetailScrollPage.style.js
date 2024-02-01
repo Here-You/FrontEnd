@@ -8,10 +8,17 @@ const HeaderWrapper = styled.div`
 `;
 
 const HeaderContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
-  justify-content: space-between;
+  ${theme.ALIGN.COLUMN_CENTER};
+  align-items: flex-start;
   width: 100%;
   padding: 20px;
+`;
+
+const DateContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  gap: 2px;
+  margin-top: 10px;
+  color: ${theme.COLOR.MAIN.GRAY};
 `;
 
 const MarkImage = styled.img`
@@ -109,6 +116,7 @@ export {
   HeaderWrapper,
   Button,
   HeaderContainer,
+  DateContainer,
   Image,
   MarkImage,
   ListWrapper,

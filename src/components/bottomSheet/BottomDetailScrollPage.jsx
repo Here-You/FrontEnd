@@ -12,6 +12,7 @@ const BottomDetailScrollPage = ({ journeyInfo }) => {
 
   const journeyTitle = journeyInfo?.journey_title;
   const scheduleLocations = journeyInfo?.schedule_locations;
+  const { startDate, endDate } = journeyInfo?.date_group_id;
 
   return (
     <>
@@ -25,6 +26,11 @@ const BottomDetailScrollPage = ({ journeyInfo }) => {
           <S.HeaderWrapper>
             <S.HeaderContainer>
               <h3>{journeyTitle}</h3>
+              <S.DateContainer>
+                <p>{startDate}</p>
+                <p>~</p>
+                <p>{endDate}</p>
+              </S.DateContainer>
             </S.HeaderContainer>
           </S.HeaderWrapper>
         }>
@@ -33,14 +39,12 @@ const BottomDetailScrollPage = ({ journeyInfo }) => {
             height: '100%',
           }}>
           <S.ImageContainer>
-            {scheduleLocations?.slice(0, 3).map(s => {
-              return (
-                <S.ImageWrapper>
-                  <S.Image src={s?.diary_image.imageKey} />
-                </S.ImageWrapper>
-              );
-            })}
-            <p>...</p>
+            {scheduleLocations?.slice(0, 3).map((s, index) => (
+              <S.ImageWrapper key={index}>
+                <S.Image src={s?.diary_image.imageKey} />
+              </S.ImageWrapper>
+            ))}
+            {scheduleLocations && scheduleLocations.length > 3 && <p>...</p>}
           </S.ImageContainer>
           <S.ButtonContainer>
             <S.Button onClick={() => navigate(`/dailyrecord/${journeyId}`)}>
