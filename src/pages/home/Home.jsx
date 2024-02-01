@@ -78,18 +78,6 @@ const HomePage = () => {
           setJourneyInfo={setJourneyInfo}
           setMonthlyInfo={setMonthlyInfo}
         />
-        <S.JourneyButtonContainer>
-          <S.EditButton $isClicked={isClicked} onClick={handleEditJourney}>
-            여정 확인 및 수정
-          </S.EditButton>
-          <S.VerticalLine $isClicked={isClicked}>|</S.VerticalLine>
-          <S.WriteButton onClick={handleAddJourney} $isClicked={isClicked}>
-            새 여정 추가하기
-          </S.WriteButton>
-          <S.AddButton onClick={handleClickAddButton} $isClicked={isClicked}>
-            +
-          </S.AddButton>
-        </S.JourneyButtonContainer>
       </S.CalendarContainer>
       <JourneyWriteModal startDate={startDate} endDate={endDate} />
       <JourneyEditModal
@@ -98,6 +86,18 @@ const HomePage = () => {
         startDate={journeyInfo?.dateGroup?.startDate}
         endDate={journeyInfo?.dateGroup?.endDate}
       />
+      <S.JourneyButtonContainer>
+        <S.EditButton $isClicked={isClicked} onClick={handleEditJourney}>
+          여정 확인 및 수정
+        </S.EditButton>
+        <S.VerticalLine $isClicked={isClicked}>|</S.VerticalLine>
+        <S.WriteButton onClick={handleAddJourney} $isClicked={isClicked}>
+          새 여정 추가하기
+        </S.WriteButton>
+        <S.AddButton onClick={handleClickAddButton} $isClicked={isClicked}>
+          +
+        </S.AddButton>
+      </S.JourneyButtonContainer>
     </S.Container>
   );
 };
