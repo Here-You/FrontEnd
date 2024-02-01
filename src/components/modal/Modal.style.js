@@ -13,6 +13,10 @@ const Container = styled.div`
   outline: 2px solid transparent;
   outline-offset: 2px;
   background-color: rgb(82 82 82 / 0.7);
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    padding: 10px;
+  }
 `;
 
 const ModalLayout = styled.div`

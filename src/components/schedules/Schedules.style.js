@@ -48,15 +48,20 @@ const Date = styled.p`
   margin-left: auto;
 
   color: black;
-  font-size: 14px;
+  font-size: ${FONT_SIZE.SM};
   font-weight: 400;
+  white-space: nowrap;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: ${FONT_SIZE.XS};
+  }
 `;
 
 const Mate = styled.div`
   display: flex;
   gap: 5px;
   color: black;
-  font-size: 14px;
+  font-size: ${FONT_SIZE.SM};
   font-weight: 400;
 `;
 
@@ -64,7 +69,7 @@ const AddDailyPost = styled.p`
   display: flex;
   margin-left: auto;
   color: black;
-  font-size: 14px;
+  font-size: ${FONT_SIZE.SM};
   font-weight: 400;
 `;
 
