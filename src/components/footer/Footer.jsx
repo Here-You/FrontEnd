@@ -6,7 +6,7 @@ import Globe from '/images/globe.svg';
 
 const FooterMenu = [
   { icon: Home, name: '홈', to: '/' },
-  { icon: Search, name: '검색', to: '/search' },
+  { icon: Search, name: '탐색', to: '/explore' },
   { icon: Globe, name: '시그니처', to: '/signature' },
   { icon: Group, name: '메이트', to: '/mate' },
 ];
