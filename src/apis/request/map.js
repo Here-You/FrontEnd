@@ -21,7 +21,7 @@ const getDiaryMap = ({ journeyId }) => {
   return res;
 };
 
-const getDetailJourneyMap = ({ journeyId }) => {
+const getDetailJourneyMap = journeyId => {
   const url = `/api/${VERSION}/${API_BASE.MAP}/schedules/get/${journeyId}`;
   const res = axiosWithToken.get(url);
   return res;

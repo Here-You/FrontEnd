@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { Schedules } from '..';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 
 import * as S from './BottomDetailScrollPage.style';
+import { getSchedule } from '@/apis/request/home';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import 'react-spring-bottom-sheet/dist/style.css';
 
 const BottomDetailScrollPage = ({ journeyInfo }) => {
@@ -12,6 +16,38 @@ const BottomDetailScrollPage = ({ journeyInfo }) => {
 
   const journeyTitle = journeyInfo?.journey_title;
   const scheduleLocations = journeyInfo?.schedule_locations;
+  const startDate = journeyInfo?.date_group_id.startDate;
+  const endDate = journeyInfo?.date_group_id.endDate;
+
+  const {
+    data: schedulesData,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isError,
+  } = useInfiniteQuery({
+    queryKey: ['schedules', journeyId],
+    queryFn: ({ pageParam = 1 }) => getSchedule(journeyId, pageParam),
+    initialPageParam: 0,
+    getNextPageParam: lastPage => lastPage?.data?.data.at(-1).scheduleId,
+    staleTime: 60 * 1000,
+    // enabled,  // 처리 필요
+  });
+
+  console.log(schedulesData);
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+    delay: 0,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      !isFetching && hasNextPage && fetchNextPage();
+    }
+  }, [inView, isFetching, hasNextPage, fetchNextPage]);
+
+  console.log(schedulesData);
 
   return (
     <>
@@ -23,35 +59,30 @@ const BottomDetailScrollPage = ({ journeyInfo }) => {
         snapPoints={({ maxHeight }) => [maxHeight * 0 + 500]}
         header={
           <S.HeaderWrapper>
-            <S.HeaderContainer>
-              <h3>{journeyTitle}</h3>
-            </S.HeaderContainer>
+            <S.CloseButton onClick={() => setOpen(false)}>X</S.CloseButton>
           </S.HeaderWrapper>
         }>
         <div
           style={{
             height: '100%',
+            marginTop: '20px',
           }}>
-          <S.ImageContainer>
-            {scheduleLocations?.slice(0, 3).map(s => {
-              return (
-                <S.ImageWrapper>
-                  <S.Image src={s?.diary_image.imageKey} />
-                </S.ImageWrapper>
-              );
-            })}
-            <p>...</p>
-          </S.ImageContainer>
-          <S.ButtonContainer>
-            <S.Button onClick={() => navigate(`/dailyrecord/${journeyId}`)}>
-              작성 일지 확인하기
-            </S.Button>
-            <S.Button>세부 여정 확인하기</S.Button>
-            <S.CancelButton onClick={() => setOpen(prev => !prev)}>
-              취소
-            </S.CancelButton>
-          </S.ButtonContainer>
+          {schedulesData?.pages?.map(page =>
+            page.data.data.map(schedule => (
+              <Schedules
+                key={schedule.scheduleId}
+                data={schedule}
+                dataLength={
+                  page.data.data.length * schedulesData?.pages?.length
+                }
+              />
+            )),
+          )}
+          {schedulesData?.pages?.length === 0 && (
+            <div>아직 작성한 여정이 없어요!</div>
+          )}
         </div>
+        <div ref={ref} style={{ height: 50 }}></div>
       </BottomSheet>
     </>
   );

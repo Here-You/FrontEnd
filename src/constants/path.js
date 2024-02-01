@@ -34,6 +34,8 @@ const BASE_PATH = {
   // App.jsx에서, path 추가할때 사용하시면 됩니다. 예시코드 9번줄
   TRAVEL_TYPE: '/traveltype',
   TRAVEL_TYPE_RESULT: '/traveltype/result',
+  // JOURNEY
+  MAP_JOURNEY_DETAIL: '/map/journey/:journeyId',
 };
 
 const VERSION = 'v1';

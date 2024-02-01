@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import * as S from './MapDetail.style';
-import BottomDetailScrollPage from '@/components/bottomSheet/BottomDetailScrollPage';
+import { BottomJourneyDetailScrollPage } from '@/components';
 import TravelMapDetail from '@/components/map/TravelMapDetail';
 import { useGetJourneyMap } from '@/hooks/home/useGetJourneyMap';
 
@@ -13,10 +13,15 @@ const MapDetailPage = () => {
     return <h1>로딩중입니다...</h1>;
   }
 
+  if (error) {
+    return <h1>에러가 발생했습니다...</h1>;
+  }
+
+  console.log(data);
   return (
     <S.Container>
       <TravelMapDetail journeyInfo={data?.journey_info} />
-      <BottomDetailScrollPage journeyInfo={data?.journey_info} />
+      <BottomJourneyDetailScrollPage journeyInfo={data?.journey_info} />
     </S.Container>
   );
 };

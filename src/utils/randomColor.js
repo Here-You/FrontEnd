@@ -1,3 +1,5 @@
+import theme from '@/theme';
+
 export const generateCSSForID = (id, color) => `
   .highlight.id-${id} abbr {
     border: 2px solid ${color} !important;
@@ -7,6 +9,13 @@ export const generateCSSForID = (id, color) => `
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    ${theme.ALIGN.COLUMN_CENTER}
+
+    @media (max-width: 600px) {
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+    }
   }
 
   .highlight.id-${id}:after,
@@ -15,6 +24,7 @@ export const generateCSSForID = (id, color) => `
     border: 1px solid ${color};
     position: absolute;
     width: 10%;
+
   }
 
   .highlight.id-${id}:after {

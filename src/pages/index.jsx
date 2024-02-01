@@ -7,6 +7,8 @@ import DailyRecordWritePage from './dailyRecord/write/DailyRecordWrite';
 import ErrorPage from './error/ErrorPage';
 // HOME
 import Home from './home/Home';
+// Journey
+import JourneyDetailPage from './journey/JourneyDetail';
 // LOGIN
 import LoginPage from './login/Login';
 // MAP
@@ -71,4 +73,5 @@ export {
   TravelTypeResultPage,
   MapPage,
   MapDetailPage,
+  JourneyDetailPage,
 };

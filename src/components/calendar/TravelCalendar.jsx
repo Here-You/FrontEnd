@@ -60,9 +60,9 @@ const TravelCalendar = () => {
   };
 
   const startEndDate =
-    data?.dateGroup?.map(({ startDate, endDate }) => ({
-      startDate,
-      endDate,
+    data?.monthlyJourneys?.map(({ dateGroup }) => ({
+      startDate: dateGroup.startDate,
+      endDate: dateGroup.endDate,
     })) || [];
 
   const tileClassName = ({ date }) => {
@@ -79,8 +79,13 @@ const TravelCalendar = () => {
 
     return '';
   };
+
+  if (error) {
+    return <h1>에러가 발생했습니다.</h1>;
+  }
+
   if (loading) {
-    return <div>로딩 중</div>;
+    return <h1>로딩중입니다. 잠시만 기다려주세요.</h1>;
   }
 
   return (

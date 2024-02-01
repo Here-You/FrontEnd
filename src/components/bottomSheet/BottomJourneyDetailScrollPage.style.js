@@ -4,25 +4,7 @@ import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const HeaderWrapper = styled.div`
-  text-align: left;
-`;
-
-const HeaderContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
-  align-items: flex-start;
-  width: 100%;
-  padding: 20px;
-`;
-
-const CloseButton = styled.button`
-  background-color: transparent;
-  border: none;
-  font-size: ${FONT_SIZE.THREE_XL};
-  cursor: pointer;
-
-  &:hover {
-    transform: scale(0.9);
-  }
+  ${theme.ALIGN.COLUMN_CENTER}
 `;
 
 const DateContainer = styled.div`
@@ -79,11 +61,6 @@ const Image = styled.img`
   width: 150px;
   height: 150px;
   border-radius: 20px;
-
-  @media (max-width: 600px) {
-    width: 120px;
-    height: 120px;
-  }
 `;
 
 const ButtonContainer = styled.div`
@@ -108,11 +85,6 @@ const Button = styled.button`
   &:hover {
     scale: 0.9;
   }
-
-  @media (max-width: 600px) {
-    width: 300px;
-    height: 50px;
-  }
 `;
 
 const CancelButton = styled.button`
@@ -131,18 +103,11 @@ const CancelButton = styled.button`
   &:hover {
     scale: 0.9;
   }
-
-  @media (max-width: 600px) {
-    width: 300px;
-    height: 50px;
-  }
 `;
 
 export {
   HeaderWrapper,
   Button,
-  CloseButton,
-  HeaderContainer,
   DateContainer,
   Image,
   MarkImage,
