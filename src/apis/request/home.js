@@ -7,25 +7,28 @@ const loadMonthlySchedule = (year, month) => {
   return res;
 };
 
-const saveJourney = ({ title, dates }) => {
-  const url = `${API_URL.SAVE_JOURNEY}`;
-  const res = axiosWithToken.get(url, {
+// 임시
+const saveJourney = ({ title, startDate, endDate }) => {
+  const url = `/api/${VERSION}/${API_BASE.JOURNEY}/create`;
+  const res = axiosWithToken.post(url, {
     title: title,
-    dates: dates,
+    startDate: startDate,
+    endDate: endDate,
   });
   return res;
 };
 
-const updateJourney = ({ journeyId }) => {
+const updateJourney = ({ journeyId, title, startDate, endDate }) => {
   const url = `/api/${VERSION}/${API_BASE.JOURNEY}/update/${journeyId}`;
   const res = axiosWithToken.put(url, {
     title: title,
-    dates: dates,
+    startDate: startDate,
+    endDate: endDate,
   });
   return res;
 };
 
-const deleteJourney = ({ journeyId }) => {
+const deleteJourney = journeyId => {
   const url = `/api/${VERSION}/${API_BASE.JOURNEY}/delete/${journeyId}`;
   const res = axiosWithToken.delete(url);
   return res;
@@ -39,9 +42,10 @@ const createSchedule = ({ journeyId }) => {
   return res;
 };
 
-const getSchedule = ({ journeyId }) => {
-  const url = `/api/${VERSION}/${API_BASE.SCHEDULES}/${journeyId}`;
+const getSchedule = (journeyId, pageParam) => {
+  const url = `/api/${VERSION}/${API_BASE.SCHEDULES}/${journeyId}?cursor=${pageParam}`;
   const res = axiosWithToken.get(url);
+
   return res;
 };
 
@@ -53,9 +57,12 @@ const postDetailSchedule = ({ scheduleId, content }) => {
   return res;
 };
 
-const updateDetailSchedule = ({ scheduleId, detailId }) => {
+const updateDetailSchedule = ({ scheduleId, detailId, content }) => {
   const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/${scheduleId}/update/${detailId}`;
-  const res = axiosWithToken.put(url);
+  const res = axiosWithToken.put(url, {
+    content: content,
+  });
+  return res;
 };
 
 const deleteDetailSchedule = ({ scheduleId, detailId }) => {

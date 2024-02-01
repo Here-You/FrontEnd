@@ -307,6 +307,16 @@ const PenIcon = styled.img`
   }
 `;
 
+const Icon = styled.img`
+  width: 30px;
+  background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
+  border-radius: 10px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 20px;
+  }
+`;
+
 export {
   Container,
   DateText,
@@ -325,4 +335,5 @@ export {
   WeatherText,
   AddButton,
   PenIcon,
+  Icon,
 };

@@ -3,16 +3,27 @@ import { ThemeProvider } from 'styled-components';
 
 import App from './App';
 import './index.css';
-import  worker from './mocks/browser';
+import worker from './mocks/browser';
 import theme from './theme';
+import { generateCSSForIDs } from './utils/randomColor';
 import ReactDOM from 'react-dom/client';
 
-if (import.meta.env.VITE_NODE_ENV === 'development') {
-  worker.start({ onUnhandledRequest: 'bypass' });
+function prepare() {
+  if (import.meta.env.VITE_NODE_ENV === 'development') {
+    return worker.start({ onUnhandledRequest: 'bypass' });
+  }
+  return Promise.resolve();
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <ThemeProvider theme={theme}>
-    <App />
-  </ThemeProvider>,
-);
+const generatedCSS = generateCSSForIDs(0, 100);
+const styleElement = document.createElement('style');
+styleElement.innerHTML = generatedCSS;
+document.head.appendChild(styleElement);
+
+prepare().then(() => {
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>,
+  );
+});

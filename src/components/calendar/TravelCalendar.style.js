@@ -3,6 +3,16 @@ import styled from 'styled-components';
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
+const HighlightedElement = styled.abbr`
+  border: 2px solid ${({ randomColor }) => randomColor} !important;
+  background-color: ${({ randomColor }) => randomColor};
+  color: white;
+  font-size: 22px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
@@ -92,7 +102,13 @@ const Circle = styled.div`
   background-color: black;
 `;
 
+const HomeContentContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  gap: 50px;
+`;
+
 export {
+  HighlightedElement,
   Wrapper,
   Button,
   ButtonContainer,
@@ -100,4 +116,5 @@ export {
   FontWrapper,
   CircleWrapper,
   Circle,
+  HomeContentContainer,
 };

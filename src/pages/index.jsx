@@ -10,6 +10,8 @@ import ExplorePage from './explore/ExplorePage';
 import ExploreSearch from './explore/search/ExploreSearch';
 // HOME
 import Home from './home/Home';
+// Journey
+import JourneyDetailPage from './journey/JourneyDetail';
 // LOGIN
 import LoginPage from './login/Login';
 // MAP
@@ -76,4 +78,5 @@ export {
   MapDetailPage,
   ExplorePage,
   ExploreSearch,
+  JourneyDetailPage,
 };

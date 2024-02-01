@@ -37,6 +37,8 @@ const BASE_PATH = {
   //EXPLORE(탐색)
   EXPLORE: '/explore',
   EXPLORE_SEARCH: '/explore/:value',
+  // JOURNEY
+  MAP_JOURNEY_DETAIL: '/map/journey/:journeyId',
 };
 
 const VERSION = 'v1';

@@ -11,7 +11,7 @@ import {
 
 const tabletStyle = {
   height: '100vh',
-  width: '100%',
+  width: '90%',
 };
 
 const myStyles = [
@@ -24,7 +24,7 @@ const myStyles = [
 
 const TravelMapDetail = ({ journeyInfo }) => {
   const scheduleLocations = journeyInfo?.schedule_locations;
-  console.log(journeyInfo?.schedule_locations);
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API,
