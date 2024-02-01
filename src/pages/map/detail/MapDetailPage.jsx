@@ -13,6 +13,10 @@ const MapDetailPage = () => {
     return <h1>로딩중입니다...</h1>;
   }
 
+  if (error) {
+    return <h1>에러가 발생했습니다...</h1>;
+  }
+
   console.log(data);
   return (
     <S.Container>

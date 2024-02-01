@@ -79,6 +79,11 @@ const Image = styled.img`
   width: 150px;
   height: 150px;
   border-radius: 20px;
+
+  @media (max-width: 600px) {
+    width: 120px;
+    height: 120px;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -103,6 +108,11 @@ const Button = styled.button`
   &:hover {
     scale: 0.9;
   }
+
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 50px;
+  }
 `;
 
 const CancelButton = styled.button`
@@ -120,6 +130,11 @@ const CancelButton = styled.button`
 
   &:hover {
     scale: 0.9;
+  }
+
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 50px;
   }
 `;
 

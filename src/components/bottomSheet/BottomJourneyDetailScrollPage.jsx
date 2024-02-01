@@ -15,8 +15,6 @@ const BottomJourneyDetailScrollPage = ({ journeyInfo }) => {
   const startDate = journeyInfo?.date_group_id.startDate;
   const endDate = journeyInfo?.date_group_id.endDate;
 
-  console.log(journeyInfo);
-
   return (
     <>
       <S.Button onClick={() => setOpen(true)}>여정 보기</S.Button>
