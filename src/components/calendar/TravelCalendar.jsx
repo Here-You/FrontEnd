@@ -12,7 +12,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 moment.locale('en');
 
-const TravelCalendar = ({ clickStateDtate, clickEndDate }) => {
+const TravelCalendar = ({ clickStateDtate, clickEndDate, setJourneyInfo }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const { pathname } = useLocation();

@@ -3,17 +3,29 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import * as S from './Home.style';
 import { TravelCalendar } from '@/components';
-import JourneyWriteModal from '@/components/modal/JourneyModal/JourneyWriteModal';
+import JourneyEditModal from '@/components/modal/journeyEdit/JourneyEditModal';
+import JourneyWriteModal from '@/components/modal/journeyWriteModal/JourneyWriteModal';
 import testData from '@/constants/journey';
-import useJourneyModal from '@/hooks/modal/useJourneyModal';
+import useJourneyEditModal from '@/hooks/modal/useJourneyEditModal';
+import useJourneyWriteModal from '@/hooks/modal/useJourneyWriteModal';
 
 const HomePage = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const journeyWriteModal = useJourneyModal();
+  const journeyWriteModal = useJourneyWriteModal();
+  const journeyEditModal = useJourneyEditModal();
   const [isClicked, setIsClicked] = useState(false);
   const [startDate, setStateDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [journeyInfo, setJourneyInfo] = useState(null);
+
+  const handleEditJourney = () => {
+    if (!journeyInfo) {
+      alert('먼저 달력에서 날짜를 선택해주세요!');
+    } else {
+      journeyEditModal.onOpen();
+    }
+  };
 
   const handleAddJourney = () => {
     if (!startDate || !endDate) {
@@ -33,9 +45,12 @@ const HomePage = () => {
         <TravelCalendar
           clickStateDtate={setStateDate}
           clickEndDate={setEndDate}
+          setJourneyInfo={setJourneyInfo}
         />
         <S.JourneyButtonContainer>
-          <S.EditButton $isClicked={isClicked}>여정 확인 및 수정</S.EditButton>
+          <S.EditButton $isClicked={isClicked} onClick={handleEditJourney}>
+            여정 확인 및 수정
+          </S.EditButton>
           <S.VerticalLine $isClicked={isClicked}>|</S.VerticalLine>
           <S.WriteButton onClick={handleAddJourney} $isClicked={isClicked}>
             새 여정 추가하기
@@ -46,6 +61,7 @@ const HomePage = () => {
         </S.JourneyButtonContainer>
       </S.CalendarContainer>
       <JourneyWriteModal startDate={startDate} endDate={endDate} />
+      <JourneyEditModal journeyInfo={journeyInfo} />
     </S.Container>
   );
 };

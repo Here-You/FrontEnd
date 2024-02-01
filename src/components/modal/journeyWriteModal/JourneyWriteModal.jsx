@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import Modal from '../Modal/Modal';
+import Modal from '../Modal';
 import * as S from './JourneyWriteModal.style';
 import { saveJourney } from '@/apis/request/home';
-import useJourneyModal from '@/hooks/modal/useJourneyModal';
+import useJourneyWriteModal from '@/hooks/modal/useJourneyWriteModal';
 
 const JourneyWriteModal = ({ startDate, endDate }) => {
-  const journeyWriteModal = useJourneyModal();
+  const journeyWriteModal = useJourneyWriteModal();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -80,13 +80,14 @@ const JourneyWriteModal = ({ startDate, endDate }) => {
 
   return (
     <Modal
+      disabled={isLoading}
       isOpen={journeyWriteModal.isOpen}
       onClose={() => {
         journeyWriteModal.onClose();
         reset({});
       }}
       onSubmit={handleSubmit(onSubmit)}
-      actionLabel="새 여정 생성하기"
+      actionLabel="여정 생성하기"
       body={BodyContent}
     />
   );

@@ -18,16 +18,17 @@ const saveJourney = ({ title, startDate, endDate }) => {
   return res;
 };
 
-const updateJourney = ({ journeyId }) => {
+const updateJourney = ({ journeyId, title, startDate, endDate }) => {
   const url = `/api/${VERSION}/${API_BASE.JOURNEY}/update/${journeyId}`;
   const res = axiosWithToken.put(url, {
     title: title,
-    dates: dates,
+    startDate: startDate,
+    endDate: endDate,
   });
   return res;
 };
 
-const deleteJourney = ({ journeyId }) => {
+const deleteJourney = journeyId => {
   const url = `/api/${VERSION}/${API_BASE.JOURNEY}/delete/${journeyId}`;
   const res = axiosWithToken.delete(url);
   return res;

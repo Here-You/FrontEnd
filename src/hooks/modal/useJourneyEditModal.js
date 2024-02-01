@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 import { devtools } from 'zustand/middleware';
 
-const useJourneyModal = create()(
+const useJourneyEditModal = create()(
   devtools(set => ({
     isOpen: false,
     onOpen: () => set({ isOpen: true }),
@@ -10,4 +10,4 @@ const useJourneyModal = create()(
   })),
 );
 
-export default useJourneyModal;
+export default useJourneyEditModal;
