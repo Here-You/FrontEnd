@@ -61,7 +61,7 @@ const HomePage = () => {
         </S.JourneyButtonContainer>
       </S.CalendarContainer>
       <JourneyWriteModal startDate={startDate} endDate={endDate} />
-      <JourneyEditModal journeyInfo={journeyInfo} />
+      <JourneyEditModal journeyData={journeyInfo} />
     </S.Container>
   );
 };
