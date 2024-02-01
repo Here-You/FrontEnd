@@ -12,7 +12,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 moment.locale('en');
 
-const TravelCalendar = () => {
+const TravelCalendar = ({ clickStateDtate, clickEndDate, setJourneyInfo }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const { pathname } = useLocation();
@@ -50,13 +50,13 @@ const TravelCalendar = () => {
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
-  console.log(schedulesData);
-
   const changeDate = e => {
     const startDateFormat = moment(e[0]).format('YYYY/MM/DD');
     const endDateFormat = moment(e[1]).format('YYYY/MM/DD');
     setStartDate(startDateFormat);
     setEndDate(endDateFormat);
+    clickStateDtate(startDateFormat);
+    clickEndDate(endDateFormat);
   };
 
   const startEndDate =
