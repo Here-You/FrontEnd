@@ -83,6 +83,7 @@ const CloseButton = styled.button`
   &:hover {
     opacity: 0.7;
   }
+  z-index: 22;
 `;
 
 const Title = styled.p`
