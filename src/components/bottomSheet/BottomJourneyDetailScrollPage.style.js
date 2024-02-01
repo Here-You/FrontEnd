@@ -4,25 +4,7 @@ import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const HeaderWrapper = styled.div`
-  text-align: left;
-`;
-
-const HeaderContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
-  align-items: flex-start;
-  width: 100%;
-  padding: 20px;
-`;
-
-const CloseButton = styled.button`
-  background-color: transparent;
-  border: none;
-  font-size: ${FONT_SIZE.THREE_XL};
-  cursor: pointer;
-
-  &:hover {
-    transform: scale(0.9);
-  }
+  ${theme.ALIGN.COLUMN_CENTER}
 `;
 
 const DateContainer = styled.div`
@@ -126,8 +108,6 @@ const CancelButton = styled.button`
 export {
   HeaderWrapper,
   Button,
-  CloseButton,
-  HeaderContainer,
   DateContainer,
   Image,
   MarkImage,

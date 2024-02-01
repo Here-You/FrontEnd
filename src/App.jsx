@@ -8,6 +8,7 @@ import {
   DailyRecordWritePage,
   ErrorPage,
   Home,
+  JourneyDetailPage,
   LoginPage,
   MapDetailPage,
   MapPage,
@@ -52,9 +53,14 @@ const router = createBrowserRouter([
         element: <MapPage />,
       },
       {
+        path: `${BASE_PATH.MAP_JOURNEY_DETAIL}`,
+        element: <JourneyDetailPage />,
+      },
+      {
         path: `${BASE_PATH.MAP_DETAIL}`,
         element: <MapDetailPage />,
       },
+
       {
         path: `${BASE_PATH.SIGN_UP}`,
         element: <SignUpPage />,
