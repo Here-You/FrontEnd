@@ -12,7 +12,8 @@ const BottomDetailScrollPage = ({ journeyInfo }) => {
 
   const journeyTitle = journeyInfo?.journey_title;
   const scheduleLocations = journeyInfo?.schedule_locations;
-  const { startDate, endDate } = journeyInfo?.date_group_id;
+  const startDate = journeyInfo?.date_group_id.startDate;
+  const endDate = journeyInfo?.date_group_id.endDate;
 
   return (
     <>
