@@ -22,83 +22,15 @@ export const HomeHandlers = [
           data: {
             year: year,
             month: month,
-            // 이렇게 붙는게 맞나? 월별 일정 불러오기
-            dateGroup: [
-              {
-                id: 1,
-                startDate: '2024-02-05',
-                endDate: '2024-02-06',
-              },
-              {
-                id: 2,
-                startDate: '2024-02-07',
-                endDate: '2024-02-08',
-              },
-              {
-                id: 3,
-                startDate: '2024-02-10',
-                endDate: '2024-02-13',
-              },
-              {
-                id: 4,
-                startDate: '2024-02-15',
-                endDate: '2024-02-18',
-              },
-              {
-                id: 5,
-                startDate: '2024-02-20',
-                endDate: '2024-02-25',
-              },
-              {
-                id: 6,
-                startDate: '2024-02-28',
-                endDate: '2024-02-28',
-              },
-              {
-                id: 7,
-                startDate: '2024-03-01',
-                endDate: '2024-03-03',
-              },
-              {
-                id: 8,
-                startDate: '2024-03-04',
-                endDate: '2024-03-10',
-              },
-              {
-                id: 8,
-                startDate: '2024-03-11',
-                endDate: '2024-03-15',
-              },
-              {
-                id: 9,
-                startDate: '2024-03-16',
-                endDate: '2024-03-20',
-              },
-              {
-                id: 10,
-                startDate: '2024-03-23',
-                endDate: '2024-03-28',
-              },
-              {
-                id: 11,
-                startDate: '2024-03-29',
-                endDate: '2024-04-05',
-              },
-              {
-                id: 12,
-                startDate: '2024-04-06',
-                endDate: '2024-04-15',
-              },
-              {
-                id: 13,
-                startDate: '2024-04-18',
-                endDate: '2024-04-23',
-              },
-            ],
             monthlyJourneys: [
               {
                 journeyId: 123,
                 journeyTitle: 'My Journey',
+                dateGroup: {
+                  id: 1,
+                  startDate: '2024-02-05',
+                  endDate: '2024-02-06',
+                },
                 schedules: [
                   {
                     scheduleId: 1,
@@ -142,6 +74,74 @@ export const HomeHandlers = [
                   },
                   {
                     scheduleId: 3,
+                    date: `${year}-${month}-13`,
+                    title: 'Day 3 Schedule',
+                    location: {
+                      name: 'Google Location',
+                      latitude: 37.7749,
+                      longitude: -122.4194,
+                    },
+                    detailSchedules: [
+                      {
+                        detailScheduleId: 103,
+                        content: 'Detail for Day 3 Schedule',
+                      },
+                    ],
+                    diary_written: false,
+                  },
+                ],
+              },
+              {
+                journeyId: 124,
+                journeyTitle: 'My Journey',
+                dateGroup: {
+                  id: 1,
+                  startDate: '2024-02-08',
+                  endDate: '2024-02-14',
+                },
+                schedules: [
+                  {
+                    scheduleId: 5,
+                    date: `${year}-${month}-11`,
+                    title: 'Day 1 Schedule',
+                    location: {
+                      name: 'Google Location',
+                      latitude: 37.7749,
+                      longitude: -122.4194,
+                    },
+                    detailSchedules: [
+                      {
+                        detailScheduleId: 101,
+                        content:
+                          'Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1',
+                      },
+                      {
+                        detailScheduleId: 102,
+                        content:
+                          'Detail for Day 12 Detail for Day 12 Detail for Day 12 Detail for Day 12 Detail for Day 1',
+                      },
+                    ],
+                    diary_written: true,
+                  },
+                  {
+                    scheduleId: 6,
+                    date: `${year}-${month}-12`,
+                    title: 'Day 2 Schedule',
+                    location: {
+                      name: 'Google Location',
+                      latitude: 37.7749,
+                      longitude: -122.4194,
+                    },
+                    detailSchedules: [
+                      {
+                        detailScheduleId: 102,
+                        content: 'Detail for Day 2 Schedule',
+                      },
+                    ],
+                    diary_written: false,
+                  },
+                  {
+                    scheduleId: 7,
                     date: `${year}-${month}-13`,
                     title: 'Day 3 Schedule',
                     location: {

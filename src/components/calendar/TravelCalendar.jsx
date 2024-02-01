@@ -60,9 +60,9 @@ const TravelCalendar = () => {
   };
 
   const startEndDate =
-    data?.dateGroup?.map(({ startDate, endDate }) => ({
-      startDate,
-      endDate,
+    data?.monthlyJourneys?.map(({ dateGroup }) => ({
+      startDate: dateGroup.startDate,
+      endDate: dateGroup.endDate,
     })) || [];
 
   const tileClassName = ({ date }) => {
