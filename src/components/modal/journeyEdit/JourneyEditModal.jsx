@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Modal from '../Modal';
@@ -6,13 +6,7 @@ import * as S from './JourneyEdit.style';
 import { deleteJourney, updateJourney } from '@/apis/request/home';
 import useJourneyEditModal from '@/hooks/modal/useJourneyEditModal';
 
-const JourneyEditModal = journeyData => {
-  // const { journeyId, journeyTitle, startDate, endDate } = journeyData;
-  const journeyId = 1;
-  const journeyTitle = '제주도 가고싶다';
-  const startDate = '2024/01/02';
-  const endDate = '2024/01/15';
-
+const JourneyEditModal = ({ journeyId, journeyTitle, startDate, endDate }) => {
   const journeyEditModal = useJourneyEditModal();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -32,6 +26,12 @@ const JourneyEditModal = journeyData => {
       endDate: endDate,
     },
   });
+
+  useEffect(() => {
+    setValue('title', journeyTitle);
+    setValue('startDate', startDate);
+    setValue('endDate', endDate);
+  }, [journeyTitle, startDate, endDate]);
 
   const { title } = watch();
 
@@ -58,7 +58,7 @@ const JourneyEditModal = journeyData => {
   );
 
   const onSubmit = async data => {
-    if (!title || !startDate || !endDate) {
+    if (!title) {
       alert('내용을 입력해주세요!');
     } else {
       setIsLoading(true);

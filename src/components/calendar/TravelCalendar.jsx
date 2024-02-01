@@ -12,7 +12,12 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 moment.locale('en');
 
-const TravelCalendar = ({ clickStateDtate, clickEndDate, setJourneyInfo }) => {
+const TravelCalendar = ({
+  clickStateDtate,
+  clickEndDate,
+  setJourneyInfo,
+  setMonthlyInfo,
+}) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const { pathname } = useLocation();
@@ -21,6 +26,15 @@ const TravelCalendar = ({ clickStateDtate, clickEndDate, setJourneyInfo }) => {
   const year = moment(endDate).format('YYYY');
   const month = moment(endDate).format('MM');
   const { data, loading, error } = useLoadMonthlyJourney(year, month);
+
+  useEffect(() => {
+    if (data) {
+      data.monthlyJourneys &&
+        data.monthlyJourneys.forEach(monthlyJourney => {
+          setMonthlyInfo(prev => [...prev, monthlyJourney.dateGroup]);
+        });
+    }
+  }, [data, setMonthlyInfo]);
 
   const journeyId = 1;
 
@@ -57,6 +71,22 @@ const TravelCalendar = ({ clickStateDtate, clickEndDate, setJourneyInfo }) => {
     setEndDate(endDateFormat);
     clickStateDtate(startDateFormat);
     clickEndDate(endDateFormat);
+
+    const startDateFormatFind = moment(e[0]).format('YYYY-MM-DD');
+    const endDateFormatFind = moment(e[1]).format('YYYY-MM-DD');
+
+    if (startDateFormatFind && endDateFormatFind) {
+      const foundJourney = data.monthlyJourneys.find(
+        journeydata =>
+          journeydata.dateGroup.startDate === startDateFormatFind &&
+          journeydata.dateGroup.endDate === endDateFormatFind,
+      );
+      if (foundJourney) {
+        setJourneyInfo(foundJourney);
+      } else {
+        setJourneyInfo(null);
+      }
+    }
   };
 
   const startEndDate =
