@@ -64,7 +64,7 @@ const HeaderWrapper = styled.div`
 
   h1 {
     color: #1c1c1c;
-    font-size: 130px;
+    font-size: 131px;
     font-style: italic;
     font-family: bold;
     font-weight: 900;
