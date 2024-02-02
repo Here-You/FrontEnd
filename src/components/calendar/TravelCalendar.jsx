@@ -12,7 +12,12 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 moment.locale('en');
 
-const TravelCalendar = () => {
+const TravelCalendar = ({
+  clickStateDtate,
+  clickEndDate,
+  setJourneyInfo,
+  setMonthlyInfo,
+}) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const { pathname } = useLocation();
@@ -21,6 +26,15 @@ const TravelCalendar = () => {
   const year = moment(endDate).format('YYYY');
   const month = moment(endDate).format('MM');
   const { data, loading, error } = useLoadMonthlyJourney(year, month);
+
+  useEffect(() => {
+    if (data) {
+      data.monthlyJourneys &&
+        data.monthlyJourneys.forEach(monthlyJourney => {
+          setMonthlyInfo(prev => [...prev, monthlyJourney.dateGroup]);
+        });
+    }
+  }, [data, setMonthlyInfo]);
 
   const journeyId = 1;
 
@@ -50,35 +64,58 @@ const TravelCalendar = () => {
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
-  console.log(schedulesData);
-
   const changeDate = e => {
     const startDateFormat = moment(e[0]).format('YYYY/MM/DD');
     const endDateFormat = moment(e[1]).format('YYYY/MM/DD');
     setStartDate(startDateFormat);
     setEndDate(endDateFormat);
+    clickStateDtate(startDateFormat);
+    clickEndDate(endDateFormat);
+
+    const startDateFormatFind = moment(e[0]).format('YYYY-MM-DD');
+    const endDateFormatFind = moment(e[1]).format('YYYY-MM-DD');
+
+    if (startDateFormatFind && endDateFormatFind) {
+      const foundJourney = data.monthlyJourneys.find(
+        journeydata =>
+          journeydata.dateGroup.startDate === startDateFormatFind &&
+          journeydata.dateGroup.endDate === endDateFormatFind,
+      );
+      if (foundJourney) {
+        setJourneyInfo(foundJourney);
+      } else {
+        setJourneyInfo(null);
+      }
+    }
   };
 
-  const startEndDate = [
-    { startDate: '2024/01/01', endDate: '2024/01/05' },
-    { startDate: '2024/01/13', endDate: '2024/01/15' },
-  ];
+  const startEndDate =
+    data?.monthlyJourneys?.map(({ dateGroup }) => ({
+      startDate: dateGroup.startDate,
+      endDate: dateGroup.endDate,
+    })) || [];
 
   const tileClassName = ({ date }) => {
-    for (const range of startEndDate) {
+    for (let i = 0; i < startEndDate.length; i++) {
+      const range = startEndDate[i];
       const startDate = moment(range.startDate);
       const endDate = moment(range.endDate);
 
       if (moment(date).isBetween(startDate, endDate, null, '[]')) {
-        return 'highlight';
+        const idClass = `id-${i}`;
+        return `highlight ${idClass}`;
       }
     }
 
     return '';
   };
 
+  if (error) {
+    return <h1>에러가 발생했습니다.</h1>;
+  }
+
   if (loading) {
-    return <div>로딩 중</div>;
+    return <h1>로딩중입니다. 잠시만 기다려주세요.</h1>;
   }
 
   return (

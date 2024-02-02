@@ -26,6 +26,11 @@ export const HomeHandlers = [
               {
                 journeyId: 123,
                 journeyTitle: 'My Journey',
+                dateGroup: {
+                  id: 1,
+                  startDate: '2024-02-05',
+                  endDate: '2024-02-06',
+                },
                 schedules: [
                   {
                     scheduleId: 1,
@@ -69,6 +74,74 @@ export const HomeHandlers = [
                   },
                   {
                     scheduleId: 3,
+                    date: `${year}-${month}-13`,
+                    title: 'Day 3 Schedule',
+                    location: {
+                      name: 'Google Location',
+                      latitude: 37.7749,
+                      longitude: -122.4194,
+                    },
+                    detailSchedules: [
+                      {
+                        detailScheduleId: 103,
+                        content: 'Detail for Day 3 Schedule',
+                      },
+                    ],
+                    diary_written: false,
+                  },
+                ],
+              },
+              {
+                journeyId: 124,
+                journeyTitle: 'My Journey',
+                dateGroup: {
+                  id: 1,
+                  startDate: '2024-02-08',
+                  endDate: '2024-02-14',
+                },
+                schedules: [
+                  {
+                    scheduleId: 5,
+                    date: `${year}-${month}-11`,
+                    title: 'Day 1 Schedule',
+                    location: {
+                      name: 'Google Location',
+                      latitude: 37.7749,
+                      longitude: -122.4194,
+                    },
+                    detailSchedules: [
+                      {
+                        detailScheduleId: 101,
+                        content:
+                          'Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1',
+                      },
+                      {
+                        detailScheduleId: 102,
+                        content:
+                          'Detail for Day 12 Detail for Day 12 Detail for Day 12 Detail for Day 12 Detail for Day 1',
+                      },
+                    ],
+                    diary_written: true,
+                  },
+                  {
+                    scheduleId: 6,
+                    date: `${year}-${month}-12`,
+                    title: 'Day 2 Schedule',
+                    location: {
+                      name: 'Google Location',
+                      latitude: 37.7749,
+                      longitude: -122.4194,
+                    },
+                    detailSchedules: [
+                      {
+                        detailScheduleId: 102,
+                        content: 'Detail for Day 2 Schedule',
+                      },
+                    ],
+                    diary_written: false,
+                  },
+                  {
+                    scheduleId: 7,
                     date: `${year}-${month}-13`,
                     title: 'Day 3 Schedule',
                     location: {
@@ -774,7 +847,6 @@ export const HomeHandlers = [
     `${baseURL}${API_URL.GET_JOURNEY_MAP}/:journeyId`,
     ({ request, params }) => {
       const journeyId = params.journeyId;
-
       return HttpResponse.json({
         status: 200,
         success: true,
@@ -782,6 +854,11 @@ export const HomeHandlers = [
         data: {
           journey_info: {
             journey_title: '서울 여행',
+            date_group_id: {
+              startDate: '2022-01-01',
+              endDate: '2022-01-10',
+              id: 15,
+            },
             schedule_locations: [
               {
                 schedule_id: 1,

@@ -1,4 +1,4 @@
-import SubCateGoryPage from './SubCategoryPage';
+import SubCateGoryPage from './SubCateGoryPage';
 import { ETC, SUPPORT, USER_SETTING } from '@/constants/subcategory';
 
 const Category = () => {

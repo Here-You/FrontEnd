@@ -7,7 +7,10 @@ import {
   DailyRecordPage,
   DailyRecordWritePage,
   ErrorPage,
+  ExplorePage,
+  ExploreSearch,
   Home,
+  JourneyDetailPage,
   LoginPage,
   MapDetailPage,
   MapPage,
@@ -52,9 +55,14 @@ const router = createBrowserRouter([
         element: <MapPage />,
       },
       {
+        path: `${BASE_PATH.MAP_JOURNEY_DETAIL}`,
+        element: <JourneyDetailPage />,
+      },
+      {
         path: `${BASE_PATH.MAP_DETAIL}`,
         element: <MapDetailPage />,
       },
+
       {
         path: `${BASE_PATH.SIGN_UP}`,
         element: <SignUpPage />,
@@ -73,7 +81,6 @@ const router = createBrowserRouter([
     path: `${BASE_PATH.DAILY_RECORD}`,
     children: [
       {
-        element: <DailyRecordPage />,
         element: <AppLayout />,
         errorElement: <ErrorPage />,
         children: [
@@ -211,6 +218,22 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.TRAVEL_TYPE_RESULT}`,
             element: <TravelTypeResultPage />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: `${BASE_PATH.EXPLORE}`,
+    children: [
+      {
+        element: <AppLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <ExplorePage /> },
+          {
+            path: `${BASE_PATH.EXPLORE_SEARCH}`,
+            element: <ExploreSearch />,
           },
         ],
       },
