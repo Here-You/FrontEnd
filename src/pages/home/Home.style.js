@@ -51,7 +51,8 @@ const JourneyButtonContainer = styled.div`
 
   position: sticky;
   bottom: 20px;
-  margin-right: -80px;
+  padding: 0 20px;
+  margin-left: auto;
 
   cursor: pointer;
   z-index: 1;
@@ -75,6 +76,10 @@ const EditButton = styled.button`
   &:hover {
     color: ${theme.COLOR.MAIN.GREEN};
   }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    padding: 20px 15px;
+  }
 `;
 
 const WriteButton = styled.button`
@@ -93,6 +98,10 @@ const WriteButton = styled.button`
   &:hover {
     color: ${theme.COLOR.MAIN.GREEN};
   }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    padding: 10px 60px 10px 30px;
+  }
 `;
 
 const AddButton = styled.button`
@@ -102,7 +111,7 @@ const AddButton = styled.button`
   width: 50px;
   height: 50px;
   top: 10px;
-  left: 290px;
+  left: 310px;
 
   text-align: center;
   background-color: #e8f6ef;
@@ -114,15 +123,26 @@ const AddButton = styled.button`
   cursor: pointer;
   transform: ${({ $isClicked }) => ($isClicked ? 'rotate(-45deg)' : 'none')};
   transition: transform 0.3s ease;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 40px;
+    height: 40px;
+    left: ${props => (props.$browserName === 'safari' ? '240px' : '280px')};
+  }
 `;
 
 const VerticalLine = styled.p`
   visibility: ${props => (props.$isClicked ? 'visible' : 'hidden')};
   position: absolute;
   top: 25px;
-  left: 150px;
+  left: 170px;
   color: ${theme.COLOR.MAIN.GREEN};
   font-size: ${FONT_SIZE.XL};
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    top: 20px;
+    left: ${props => (props.$browserName === 'safari' ? '130px' : '145px')};
+  }
 `;
 
 const JourneyWrapper = styled.div``;
