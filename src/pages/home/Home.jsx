@@ -21,6 +21,19 @@ const HomePage = () => {
   const [journeyInfo, setJourneyInfo] = useState(null);
   const [monthlyInfo, setMonthlyInfo] = useState([]);
 
+  const agent = window.navigator.userAgent.toLowerCase();
+  let browserName;
+  switch (true) {
+    case agent.indexOf('chrome') > -1 && !!window.chrome:
+      browserName = 'chrome';
+      break;
+    case agent.indexOf('safari') > -1:
+      browserName = 'safari';
+      break;
+    default:
+      browserName = 'other';
+  }
+
   const checkOverlap = (startDate, endDate, monthlyInfo) => {
     // 선택한 기간을 moment 객체로 변환
     const selectedStart = moment(startDate);
@@ -90,11 +103,16 @@ const HomePage = () => {
         <S.EditButton $isClicked={isClicked} onClick={handleEditJourney}>
           여정 확인 및 수정
         </S.EditButton>
-        <S.VerticalLine $isClicked={isClicked}>|</S.VerticalLine>
+        <S.VerticalLine $isClicked={isClicked} $browserName={browserName}>
+          |
+        </S.VerticalLine>
         <S.WriteButton onClick={handleAddJourney} $isClicked={isClicked}>
           새 여정 추가하기
         </S.WriteButton>
-        <S.AddButton onClick={handleClickAddButton} $isClicked={isClicked}>
+        <S.AddButton
+          onClick={handleClickAddButton}
+          $isClicked={isClicked}
+          $browserName={browserName}>
           +
         </S.AddButton>
       </S.JourneyButtonContainer>

@@ -36,9 +36,11 @@ const Title = styled.input`
   font-weight: 700;
   border: 0;
   outline: none;
+  max-width: 260px;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    font-size: ${FONT_SIZE.BASE};
+    font-size: ${FONT_SIZE.SM};
+    max-width: 160px;
   }
 `;
 
