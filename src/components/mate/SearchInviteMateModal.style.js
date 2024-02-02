@@ -40,7 +40,7 @@ const WrapContainer = styled.div`
   }
 `;
 
-const SearchContainer = styled.div`
+const SearchContainer = styled.form`
   ${theme.ALIGN.ROW_CENTER};
   position: relative;
   width: 240px;
