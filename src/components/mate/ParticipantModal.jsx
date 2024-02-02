@@ -1,39 +1,54 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
+import ParticipantMate from './ParticipantMate';
 import * as S from './ParticipantModal.style';
-import RuleSearchResult from './RuleSearchResult';
-import { getRuleSearchMate } from '@/apis/request/mate';
+import SearchInviteMateModal from './SearchInviteMateModal';
+import { useParticipateTeamMate } from '@/hooks/mate/useParticipateTeamMate';
 
-const ParticipantModal = ({ onClose }) => {
-  const [profilesData, setProfilesData] = useState([]);
+const ParticipantModal = ({ onClose, setSelectedProfiles }) => {
+  const { data: profilesData, loading, error } = useParticipateTeamMate();
+  const [searchMateModal, setSearchMateModal] = useState(false);
 
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        const response = await getRuleSearchMate();
-        setProfilesData(response.data || []);
-      } catch (error) {
-        console.error('프로필 데이터를 가져오는데 실패했습니다.', error);
-      }
-    };
-    fetchProfileData();
-  }, []);
+  const handleSearchMateModal = () => {
+    setSearchMateModal(!searchMateModal);
+  };
+
+  const handlePlusButtonClick = () => {
+    handleSearchMateModal();
+  };
+
+  const handleProfileClick = profileData => {
+    setSelectedProfiles(prevProfiles => [...prevProfiles, profileData]);
+  };
 
   return (
     <S.ModalBase>
       <S.ModalContainer>
         <S.WrapContainer>
-          <span>참여 중인 인원</span>
-          <button></button>
+          <S.StyledTitle>참여 중인 인원</S.StyledTitle>
+          <S.PlusButton onClick={handlePlusButtonClick} />
         </S.WrapContainer>
 
         {profilesData.map((profileData, index) => (
-          <RuleSearchResult
+          <ParticipantMate
             key={index}
             profileData={profileData}
             onClick={() => handleProfileClick(profileData)}
           />
         ))}
+
+        {searchMateModal && (
+          <SearchInviteMateModal
+            onClose={() => {
+              handleSearchMateModal();
+              window.history.replaceState(
+                document.title,
+                window.location.pathname,
+              );
+            }}
+            setSelectedProfiles={setSelectedProfiles}
+          />
+        )}
 
         <S.ButtonContainer>
           <S.CancelButton onClick={onClose}>취소</S.CancelButton>
