@@ -81,7 +81,6 @@ const router = createBrowserRouter([
     path: `${BASE_PATH.DAILY_RECORD}`,
     children: [
       {
-        element: <DailyRecordPage />,
         element: <AppLayout />,
         errorElement: <ErrorPage />,
         children: [
