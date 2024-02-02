@@ -4,13 +4,12 @@ import ExitModal from './ExitModal';
 import * as S from './TeamContainer.style';
 import over from '/images/mate/over.svg';
 
-const TeamContainer = ({ profileData }) => {
-  if (!profileData) {
+const TeamContainer = ({ ruleData }) => {
+  if (!ruleData) {
     return <div>데이터가 없습니다.</div>;
   }
 
-  const { participant_cnt, title, last_updated_date, participants } =
-    profileData;
+  const { participant_cnt, title, last_updated_date, participants } = ruleData;
 
   const [showExitModal, setShowExitModal] = useState(false);
 

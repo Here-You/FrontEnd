@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import ParticipantModal from './ParticipantModal';
 import * as S from './RuleBox.style';
 import SearchInviteMateModal from './SearchInviteMateModal';
 import overIcon from '/images/mate/over.svg';
@@ -13,6 +14,7 @@ const RuleBox = ({
   setSelectedProfiles,
 }) => {
   const [searchMateModal, setSearchMateModal] = useState(false);
+  const [participantModalOpen, setParticipantModalOpen] = useState(false);
 
   const addRule = () => {
     if (rules.length < 10) {
@@ -41,6 +43,10 @@ const RuleBox = ({
     setSearchMateModal(!searchMateModal);
   };
 
+  const handleParticipantClick = () => {
+    setParticipantModalOpen(true);
+  };
+
   return (
     <S.InputContainer>
       <S.Topcontainer>
@@ -52,7 +58,7 @@ const RuleBox = ({
           <S.PlusButton onClick={handleSearchMateModal} />
         </S.LineWrapper>
 
-        <S.Participant>
+        <S.Participant onClick={handleParticipantClick}>
           {selectedProfiles.slice(0, 2).map(profile => (
             <S.ParticipantImg key={profile.id}>
               <img src={profile.image} alt="프로필 이미지" />
@@ -102,6 +108,10 @@ const RuleBox = ({
           }}
           setSelectedProfiles={setSelectedProfiles}
         />
+      )}
+
+      {participantModalOpen && (
+        <ParticipantModal onClose={() => setParticipantModalOpen(false)} />
       )}
     </S.InputContainer>
   );
