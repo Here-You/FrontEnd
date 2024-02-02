@@ -5,6 +5,7 @@ const BASE_PATH = {
   // LOGIN
   LOGIN: '/login',
   SNS_LOGIN_REDIRCT: '/login/oauth',
+  LOGIN_BEFORE_PAGE: '/login/before',
   ON_BOARDING: 'onboarding',
   MAP: '/map',
   // DAILYRECORD
@@ -35,6 +36,8 @@ const BASE_PATH = {
   // App.jsx에서, path 추가할때 사용하시면 됩니다. 예시코드 9번줄
   TRAVEL_TYPE: '/traveltype',
   TRAVEL_TYPE_RESULT: '/traveltype/result',
+  //notification
+  NOTIFICATION_PAGE: '/notification',
 };
 
 const VERSION = 'v1';

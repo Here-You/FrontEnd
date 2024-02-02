@@ -9,6 +9,7 @@ import ErrorPage from './error/ErrorPage';
 import Home from './home/Home';
 // LOGIN
 import LoginPage from './login/Login';
+import LoginBeforePage from './login/LoginBeforePage';
 import Redirect from './login/Redirect';
 // MAP
 import MapPage from './map/MapPage';
@@ -39,6 +40,8 @@ import SignUpPage from './signup/SignUp';
 // TravelType
 import TravelTypePage from './traveltype/TravelType';
 import TravelTypeResultPage from './traveltype/result/TravelTypeResult';
+// notification
+import Notification from './notification/Notification';
 
 export {
   AppLayout,
@@ -46,6 +49,7 @@ export {
   Home,
   ErrorPage,
   LoginPage,
+  LoginBeforePage,
   OnBoardingPage,
   MatePage,
   MateSearchPage,
@@ -71,4 +75,5 @@ export {
   TravelTypePage,
   TravelTypeResultPage,
   MapPage,
+  Notification,
 };

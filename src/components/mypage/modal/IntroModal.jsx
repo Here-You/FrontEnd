@@ -3,6 +3,7 @@ import useIntroModal from '@/store/useIntroModal';
 
 const IntroModal = () => {
   const { isOpen, onClose } = useIntroModal();
+  
   return (
     <>
       {isOpen && (

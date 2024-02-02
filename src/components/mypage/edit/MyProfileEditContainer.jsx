@@ -1,5 +1,8 @@
+import { useEffect } from 'react';
+
 import * as S from './MyProfileEditContainer.style';
 import { EDIT_SECOND_CONTENTS_LIST } from '@/constants/editPage';
+import useModalScrollPreVention from '@/store/modalScrollPrevention';
 import useIntroModal from '@/store/useIntroModal';
 import useNickNameModal from '@/store/useNickNameModal';
 import useTravelModal from '@/store/useTravelModal copy';
@@ -11,7 +14,26 @@ const MyProfileEditContainer = ({ listName }) => {
   const { WithdrawalOnOpen } = useWithdrawalModal();
   const { travelOnOpen } = useTravelModal();
 
-  // const { data, error, message } = useUpdateNickName();
+  const { isOpen, onOpen } = useModalScrollPreVention();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
+
+  const handleOpenModal = list => {
+    onOpen();
+    if (list.id === 0) {
+      travelOnOpen();
+    } else if (list.id === 1) {
+      introOnOpen();
+    } else {
+      WithdrawalOnOpen();
+    }
+  };
 
   return (
     <>
@@ -23,13 +45,7 @@ const MyProfileEditContainer = ({ listName }) => {
               id={list.id}
               onClick={() => {
                 if (listName === EDIT_SECOND_CONTENTS_LIST) {
-                  if (list.id === 0) {
-                    travelOnOpen();
-                  } else if (list.id === 1) {
-                    introOnOpen();
-                  } else {
-                    WithdrawalOnOpen();
-                  }
+                  handleOpenModal(list);
                 }
               }}>
               <p>{list.title}</p>
@@ -44,4 +60,5 @@ const MyProfileEditContainer = ({ listName }) => {
     </>
   );
 };
+
 export default MyProfileEditContainer;

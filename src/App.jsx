@@ -8,6 +8,7 @@ import {
   DailyRecordWritePage,
   ErrorPage,
   Home,
+  LoginBeforePage,
   LoginPage,
   MapPage,
   MateLookPage,
@@ -32,6 +33,7 @@ import {
   SignatureWritePage,
   TravelTypePage,
   TravelTypeResultPage,
+  Notification,
 } from './pages';
 import AppLayout from './pages/AppLayout';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -63,6 +65,10 @@ const router = createBrowserRouter([
         path: `${BASE_PATH.ON_BOARDING}`,
         element: <OnBoardingPage />,
       },
+      {
+        path: `${BASE_PATH.NOTIFICATION_PAGE}`,
+        element: <Notification />,
+      },
     ],
   },
   {
@@ -74,6 +80,11 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.SNS_LOGIN_REDIRCT}`,
             element: <Redirect />,
+          },
+
+          {
+            path: `${BASE_PATH.LOGIN_BEFORE_PAGE}`,
+            element: <LoginBeforePage />,
           },
         ],
       },

@@ -12,6 +12,7 @@ const FooterMenu = [
 ];
 
 const Footer = () => {
+  
   return (
     <S.FooterWrapper>
       {FooterMenu.map((f, index) => (
