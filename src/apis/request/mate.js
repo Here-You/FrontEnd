@@ -8,13 +8,17 @@ const getSearchMate = searchTerm => {
 };
 
 const postFollowMate = () => {
-  const url = `${API_URL.FOLLOW_MATE}`;
-  return axiosWithToken.post(url);
+  const url = `${API_URL.FOLLOW_MATE}/${userId}`;
+  return axiosWithToken.post(url, {
+    followingId: followingId,
+  });
 };
 
 const deleteUnFollowMate = () => {
-  const url = `${API_URL.UNFOLLOW_MATE}`;
-  return axiosWithToken.delete(url);
+  const url = `${API_URL.UNFOLLOW_MATE}/${userId}`;
+  return axiosWithToken.delete(url, {
+    followingId: followingId,
+  });
 };
 
 const getExploreMate = () => {
@@ -29,6 +33,32 @@ const getMateFollower = () => {
 
 const getMateFollowing = () => {
   const url = `${API_URL.GET_MATE_FOLLOWING}`;
+  return axiosWithToken.get(url);
+};
+
+const postCreateMateRule = postData => {
+  const { mainTitle, created, rules, invitedId } = postData;
+  const url = `${API_URL.CREATE_MATE_RULE}`;
+  return axiosWithToken.post(url, {
+    write: {
+      mainTitle: mainTitle,
+      created: created,
+      rules: rules.map(rule => ({
+        ruleTitle: rule.ruleTitle,
+        ruleDetail: rule.ruleDetail,
+      })),
+    },
+    invitations: invitedId.map(id => ({ invitedId: id })),
+  });
+};
+
+const getSearchInviteMate = searchTerm => {
+  const url = `${API_URL.SEARCH_INVITE_MATE}?searchTerm=${searchTerm}`;
+  return axiosWithToken.get(url);
+};
+
+const getParticipateTeamMate = () => {
+  const url = `${API_URL.GET_PARTICIPATE_TEAM_MATE}`;
   return axiosWithToken.get(url);
 };
 
@@ -66,6 +96,9 @@ export {
   getExploreMate,
   getMateFollower,
   getMateFollowing,
+  postCreateMateRule,
+  getSearchInviteMate,
+  getParticipateTeamMate,
   getMateSearch,
   getMateLook,
   getMateManagement,

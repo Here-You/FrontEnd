@@ -19,8 +19,10 @@ const UserImg = styled.img`
   left: 20px;
   top: 50%;
   transform: translateY(-50%);
-  width: 33.24px;
-  height: 33.24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  object-fit: fill;
 `;
 
 const TextContainer = styled.div`
@@ -29,7 +31,7 @@ const TextContainer = styled.div`
   position: absolute;
   left: 70px;
   height: 100%;
-  gap: 2px;
+  gap: 1px;
 
   span {
     color: ${theme.COLOR.MAIN.BLACK};

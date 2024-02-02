@@ -339,18 +339,18 @@ export const MateHandlers = [
           mates: [
             {
               _id: 1,
-              name: '안예원',
+              name: '안예원1',
               nickname: 'ahnyewon',
               bio: '안녕하세요 안예원 입니다. 반가워요',
-              imgae:
+              image:
                 'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
             {
-              _id: 1,
-              name: '안예원',
+              _id: 2,
+              name: '안예원2',
               nickname: 'ahnyewon',
               bio: '안녕하세요 안예원 입니다. 반가워요',
-              imgae:
+              image:
                 'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
           ],

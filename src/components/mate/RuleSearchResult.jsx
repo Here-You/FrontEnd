@@ -4,12 +4,11 @@ import * as S from './RuleSearchResult.style';
 
 const RuleSearchResult = ({ profileData, onClick }) => {
   const { image, name, nickname, bio } = profileData;
-
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {
     setIsActive(!isActive);
-    onClick(profileData);
+    onClick(profileData, !isActive);
   };
 
   return (
@@ -23,4 +22,5 @@ const RuleSearchResult = ({ profileData, onClick }) => {
     </S.ResultContainer>
   );
 };
+
 export default RuleSearchResult;

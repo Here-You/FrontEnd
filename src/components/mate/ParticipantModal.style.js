@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import addIcon from '/images/add-user.svg';
+import addIcon from '/images/mate/add-user.svg';
 import theme from '@/theme';
 
 const ModalBase = styled.div`
@@ -46,7 +46,7 @@ const WrapContainer = styled.div`
     width: 20px;
     height: 20px;
     border: none;
-    background-image: url(${AddUserIcon});
+    background-image: url(${addIcon});
     background-repeat: no-repeat;
     background-size: contain;
     background-color: transparent;
