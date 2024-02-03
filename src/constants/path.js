@@ -2,7 +2,10 @@ const BASE_PATH = {
   BASE: '/',
   TRAVELS: '/travels',
   SIGN_UP: '/signup',
+  // LOGIN
   LOGIN: '/login',
+  SNS_LOGIN_REDIRCT: '/login/oauth',
+  LOGIN_BEFORE_PAGE: '/login/before',
   ON_BOARDING: 'onboarding',
   MAP: '/map',
   MAP_DETAIL: '/map/:journeyId',
@@ -39,6 +42,8 @@ const BASE_PATH = {
   EXPLORE_SEARCH: '/explore/:value',
   // JOURNEY
   MAP_JOURNEY_DETAIL: '/map/journey/:journeyId',
+  //notification
+  NOTIFICATION_PAGE: '/notification',
 };
 
 const VERSION = 'v1';
