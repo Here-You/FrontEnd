@@ -398,73 +398,76 @@ export const MateHandlers = [
   ),
 
   //여행 규칙 확인하기
-  http.get(`${baseURL}${API_URL.GET_TEAM_MATE_RULE}`, ({ request, params }) => {
-    const ruleId = params.rule_id;
-    const cursor = params.cursor;
-    const limit = params.limit;
+  http.get(
+    `${baseURL}${API_URL.GET_TEAM_MATE_RULE}/:ruleId`,
+    ({ request, params }) => {
+      const ruleId = params.ruleId;
+      const cursor = params.cursor;
+      const limit = params.limit;
 
-    if (!ruleId) {
-      return new HttpResponse(null, { status: 404 });
-    }
+      if (!ruleId) {
+        return new HttpResponse(null, { status: 404 });
+      }
 
-    return HttpResponse.json({
-      status: 200,
-      success: true,
-      message: '여행 규칙 확인하기 팀원 ver 성공',
-      data: {
-        rule_box: {
-          _id: 1,
-          main_title: '제주 여행 규칙을 세워보자',
-          rules: [
+      return HttpResponse.json({
+        status: 200,
+        success: true,
+        message: '여행 규칙 확인하기 팀원 ver 성공',
+        data: {
+          rule_box: {
+            _id: 1,
+            main_title: '제주 여행 규칙을 세워보자',
+            rules: [
+              {
+                _id: 1,
+                rule_title: '1. 기상 규칙',
+                rule_detail: '7시까진 무조건 기상하기. 알람은 한개만 맞춰두기',
+              },
+              {
+                _id: 2,
+                rule_title: '2. 회비 규칙',
+                rule_detail: '투명하게 관리하기',
+              },
+            ],
+          },
+          participants: [
             {
-              _id: 1,
-              rule_title: '1. 기상 규칙',
-              rule_detail: '7시까진 무조건 기상하기. 알람은 한개만 맞춰두기',
+              _id: '안예원',
+              image:
+                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
             {
-              _id: 2,
-              rule_title: '2. 회비 규칙',
-              rule_detail: '투명하게 관리하기',
+              _id: '안',
+              image:
+                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
           ],
+          user_image: {
+            image:
+              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          },
+          comments: [
+            {
+              _id: 1234,
+              image:
+                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              comment_text: '완벽한 규칙이네요',
+              created_at: 1675275543,
+            },
+            {
+              _id: 5678,
+              image:
+                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              comment_text: '회비 관련 규칙도 추가해주세요',
+              created_at: 1675275544,
+            },
+          ],
+          cursor: 'eyJjb25kaXRpb25JZCI6MjMsImxpbWl0IjoxMH0=',
+          hasNextPage: true,
         },
-        participants: [
-          {
-            _id: '안예원',
-            image:
-              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-          },
-          {
-            _id: '안',
-            image:
-              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-          },
-        ],
-        user_image: {
-          image:
-            'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        },
-        comments: [
-          {
-            _id: 1234,
-            image:
-              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            comment_text: '완벽한 규칙이네요',
-            created_at: 1675275543,
-          },
-          {
-            _id: 5678,
-            image:
-              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            comment_text: '회비 관련 규칙도 추가해주세요',
-            created_at: 1675275544,
-          },
-        ],
-        cursor: 'eyJjb25kaXRpb25JZCI6MjMsImxpbWl0IjoxMH0=',
-        hasNextPage: true,
-      },
-    });
-  }),
+      });
+    },
+  ),
 
   //여행 규칙 수정하기_글 수정
   http.patch(
@@ -542,39 +545,60 @@ export const MateHandlers = [
   ),
 
   //여행 규칙 전체 리스트
-  http.get(`${baseURL}${API_URL.GET_TEAM_RULE_LIST}`, ({ request, params }) => {
-    const ruleId = params.rule_id;
+  http.get(
+    `${baseURL}${API_URL.GET_TEAM_RULE_LIST}/:userId`,
+    ({ request, params }) => {
+      const userId = params.userId;
 
-    if (!ruleId) {
-      return new HttpResponse(null, { status: 404 });
-    }
+      if (!userId) {
+        return new HttpResponse(null, { status: 404 });
+      }
 
-    return HttpResponse.json({
-      status: 200,
-      success: true,
-      message: '참여 중인 여행 규칙 리스트 불러오기 성공',
-      data: {
-        rules: [
-          {
-            _id: 1,
-            participant_cnt: 3,
-            title: '제주도 여행을 위한 규칙',
-            last_updated_date: 1675275543,
-            participants: [
-              {
-                _id: 345,
-                image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              },
-              {
-                _id: 678,
-                image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              },
-            ],
-          },
-        ],
-      },
-    });
-  }),
+      return HttpResponse.json({
+        status: 200,
+        success: true,
+        message: '참여 중인 여행 규칙 리스트 불러오기 성공',
+        data: {
+          rules: [
+            {
+              _id: 1,
+              participant_cnt: 3,
+              title: '제주도 여행을 위한 규칙',
+              last_updated_date: 1675275543,
+              participants: [
+                {
+                  _id: 345,
+                  image:
+                    'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                },
+                {
+                  _id: 678,
+                  image:
+                    'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                },
+              ],
+            },
+            {
+              _id: 2,
+              participant_cnt: 3,
+              title: '제주도 여행을 위한 규칙',
+              last_updated_date: 1675275543,
+              participants: [
+                {
+                  _id: 345,
+                  image:
+                    'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                },
+                {
+                  _id: 678,
+                  image:
+                    'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                },
+              ],
+            },
+          ],
+        },
+      });
+    },
+  ),
 ];

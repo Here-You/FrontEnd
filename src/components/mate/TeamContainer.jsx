@@ -4,13 +4,12 @@ import ExitModal from './ExitModal';
 import * as S from './TeamContainer.style';
 import over from '/images/mate/over.svg';
 
-const TeamContainer = ({ ruleData }) => {
+const TeamContainer = ({ ruleData, onClick }) => {
   if (!ruleData) {
     return <div>데이터가 없습니다.</div>;
   }
 
   const { participant_cnt, title, last_updated_date, participants } = ruleData;
-
   const [showExitModal, setShowExitModal] = useState(false);
 
   const handleExitButtonClick = () => {
@@ -22,8 +21,17 @@ const TeamContainer = ({ ruleData }) => {
     onClose();
   };
 
+  const changeDate = last_updated_date => {
+    const date = new Date(last_updated_date * 1000);
+    const year = date.getFullYear().toString().slice(2);
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const formattedDate = `${year}.${month}.${day}`;
+    return formattedDate;
+  };
+
   return (
-    <S.TeamContainer>
+    <S.TeamContainer onClick={onClick}>
       <S.TeamInfoContainer>
         <S.ImgContainer>
           {participants.slice(0, 2).map((participant, index) => (
@@ -38,7 +46,7 @@ const TeamContainer = ({ ruleData }) => {
 
       <S.ExitContainer>
         <S.ExitButton onClick={handleExitButtonClick}>나가기</S.ExitButton>
-        <S.WriteDate>{last_updated_date}</S.WriteDate>
+        <S.WriteDate>{changeDate(last_updated_date)}</S.WriteDate>
       </S.ExitContainer>
       {showExitModal && <ExitModal onClose={handleCloseExitModal} />}
     </S.TeamContainer>

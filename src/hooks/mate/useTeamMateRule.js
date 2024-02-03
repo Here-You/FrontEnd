@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { getTeamRuleList } from '@/apis/request/mate';
+import { getTeamMateRule } from '@/apis/request/mate';
 
-export const useTeamMateRule = () => {
+export const useTeamMateRule = ruleId => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -11,9 +11,10 @@ export const useTeamMateRule = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getTeamRuleList();
-        const data = res.data.data.mates;
-        console.log(data);
+        const res = await getTeamMateRule(ruleId);
+        console.log(ruleId);
+        console.log(res);
+        const data = res.data.data.rule_box;
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');
@@ -23,7 +24,7 @@ export const useTeamMateRule = () => {
     };
 
     fetchData();
-  }, []);
+  }, [ruleId]);
 
   return { data, loading, error };
 };
