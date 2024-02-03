@@ -7,24 +7,24 @@ import { EDIT_SECOND_CONTENTS_LIST } from '@/constants/editPage';
 const MyProfileEditContainer = ({ listName }) => {
 
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isOpen]);
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'auto';
+  //   }
+  // }, [isOpen]);
 
-  const handleOpenModal = list => {
-    onOpen();
-    if (list.id === 0) {
-      travelOnOpen();
-    } else if (list.id === 1) {
-      introOnOpen();
-    } else {
-      WithdrawalOnOpen();
-    }
-  };
+  // const handleOpenModal = list => {
+  //   onOpen();
+  //   if (list.id === 0) {
+  //     travelOnOpen();
+  //   } else if (list.id === 1) {
+  //     introOnOpen();
+  //   } else {
+  //     WithdrawalOnOpen();
+  //   }
+  // };
 
   return (
     <>
@@ -36,7 +36,7 @@ const MyProfileEditContainer = ({ listName }) => {
               id={list.id}
               onClick={() => {
                 if (listName === EDIT_SECOND_CONTENTS_LIST) {
-                  handleOpenModal(list);
+                  // handleOpenModal(list);
                 }
               }}>
               <p>{list.title}</p>
