@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { getExploreMate } from '@/apis/request/mate';
 
-export const useExploreMate = () => {
+export const useExploreMate = userId => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -11,7 +11,7 @@ export const useExploreMate = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getExploreMate();
+        const res = await getExploreMate(userId);
         console.log(res);
         const data = res.data.data.recommend_mates;
         console.log(data);
@@ -24,7 +24,7 @@ export const useExploreMate = () => {
     };
 
     fetchData();
-  }, []);
+  }, [userId]);
 
   return { data, loading, error };
 };

@@ -179,7 +179,7 @@ const router = createBrowserRouter([
             element: <MateSearchPage />,
           },
           {
-            path: `${BASE_PATH.MATE_LOOK}`,
+            path: `${BASE_PATH.MATE_LOOK}/:userId`,
             element: <MateLookPage />,
           },
           {

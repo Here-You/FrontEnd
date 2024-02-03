@@ -1,8 +1,8 @@
 import MateSignaturePreview from './MateSignaturePreview';
 import * as S from './MateSignatureSection.style';
 
-const MateSignatureSection = ({ data }) => {
-  return data.map((d, index) => (
+const MateSignatureSection = ({ data, ref }) => {
+  return data?.map((d, index) => (
     <S.ContentsContainer>
       <S.SubWrapper>
         <span>
@@ -14,6 +14,7 @@ const MateSignatureSection = ({ data }) => {
         {d.mates.map((mate, i) => (
           <MateSignaturePreview key={i} mateData={mate} />
         ))}
+        {/* <div ref={ref}></div> */}
       </S.PreviewContainer>
     </S.ContentsContainer>
   ));
