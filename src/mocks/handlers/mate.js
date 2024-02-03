@@ -83,133 +83,162 @@ export const MateHandlers = [
   }),
 
   //메이트 탐색
-  http.get(`${baseURL}${API_URL.EXPLORE_MATE}`, ({ request, params }) => {
-    const userId = params.userId;
-    const cursor = params.cursor;
-    const limit = params.limit;
+  http.get(
+    `${baseURL}${API_URL.EXPLORE_MATE}/:userId`,
+    ({ request, params }) => {
+      const url = new URL(request.url);
+      const userId = params.userId;
+      const cursor = parseInt(url.searchParams.get('cursor')) || 0;
+      const limit = parseInt(url.searchParams.get('limit')) || 0;
 
-    if (!userId) {
-      return new HttpResponse(null, { status: 404 });
-    }
+      if (!userId) {
+        return new HttpResponse(null, { status: 404 });
+      }
 
-    return HttpResponse.json({
-      status: 200,
-      success: true,
-      message: '메이트 탐색 성공',
-      data: {
-        recommend_mates: [
-          {
-            information: {
-              user_id: 123456,
-              nickname: '안예원',
-              location: '오사카',
+      return HttpResponse.json({
+        status: 200,
+        success: true,
+        message: '메이트 탐색 성공',
+        data: {
+          recommend_mates: [
+            {
+              information: {
+                user_id: 123456,
+                nickname: '안예원',
+                location: '오사카',
+              },
+              mates: [
+                {
+                  _id: 1,
+                  mateId: cursor + 1,
+                  nickname: '매튜',
+                  bio: '안녕하세요',
+                  image:
+                    'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  is_following: true,
+                  signature: [
+                    {
+                      _id: 1,
+                      title: '뽀똔이와 함께하는 일본 뿌시기',
+                      image:
+                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                    {
+                      _id: 2,
+                      title: '뽀똔이와 함께하는 일본 뿌시기',
+                      image:
+                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                  ],
+                },
+                {
+                  _id: 2,
+                  mateId: cursor + 2,
+                  nickname: '준',
+                  bio: '반가워요',
+                  image:
+                    'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  is_following: false,
+                  signature: [
+                    {
+                      _id: 1,
+                      title: '부산 갈매기에게 인형을 빼앗기다',
+                      image:
+                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                    {
+                      _id: 2,
+                      title: '부산 갈매기에게 인형을 빼앗기다',
+                      image:
+                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                  ],
+                },
+                {
+                  _id: 3,
+                  mateId: cursor + 3,
+                  nickname: '준',
+                  bio: '반가워요',
+                  image:
+                    'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  is_following: false,
+                  signature: [
+                    {
+                      _id: 1,
+                      title: '부산 갈매기에게 인형을 빼앗기다',
+                      image:
+                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                    {
+                      _id: 2,
+                      title: '부산 갈매기에게 인형을 빼앗기다',
+                      image:
+                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                  ],
+                },
+              ],
             },
-            mates: [
-              {
-                _id: 1,
-                nickname: '매튜',
-                bio: '안녕하세요',
-                image:
-                  'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                is_following: true,
-                signature: [
-                  {
-                    _id: 1,
-                    title: '뽀똔이와 함께하는 일본 뿌시기',
-                    image:
-                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  },
-                  {
-                    _id: 2,
-                    title: '뽀똔이와 함께하는 일본 뿌시기',
-                    image:
-                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  },
-                ],
+            {
+              information: {
+                user_id: 123456,
+                nickname: '안예원2',
+                location: '오사카',
               },
-              {
-                _id: 1,
-                nickname: '준',
-                bio: '반가워요',
-                image:
-                  'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                is_following: false,
-                signature: [
-                  {
-                    _id: 1,
-                    title: '부산 갈매기에게 인형을 빼앗기다',
-                    image:
-                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  },
-                  {
-                    _id: 2,
-                    title: '부산 갈매기에게 인형을 빼앗기다',
-                    image:
-                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            information: {
-              user_id: 123456,
-              nickname: '안예원2',
-              location: '오사카',
+              mates: [
+                {
+                  _id: 1,
+                  nickname: '매튜',
+                  bio: '안녕하세요',
+                  image:
+                    'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  is_following: true,
+                  signature: [
+                    {
+                      _id: 1,
+                      title: '뽀똔이와 함께하는 일본 뿌시기',
+                      image:
+                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                    {
+                      _id: 2,
+                      title: '뽀똔이와 함께하는 일본 뿌시기',
+                      image:
+                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                  ],
+                },
+                {
+                  _id: 1,
+                  nickname: '준',
+                  bio: '반가워요',
+                  image:
+                    'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  is_following: false,
+                  signature: [
+                    {
+                      _id: 1,
+                      title: '부산 갈매기에게 인형을 빼앗기다',
+                      image:
+                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                    {
+                      _id: 2,
+                      title: '부산 갈매기에게 인형을 빼앗기다',
+                      image:
+                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                    },
+                  ],
+                },
+              ],
             },
-            mates: [
-              {
-                _id: 1,
-                nickname: '매튜',
-                bio: '안녕하세요',
-                image:
-                  'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                is_following: true,
-                signature: [
-                  {
-                    _id: 1,
-                    title: '뽀똔이와 함께하는 일본 뿌시기',
-                    image:
-                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  },
-                  {
-                    _id: 2,
-                    title: '뽀똔이와 함께하는 일본 뿌시기',
-                    image:
-                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  },
-                ],
-              },
-              {
-                _id: 1,
-                nickname: '준',
-                bio: '반가워요',
-                image:
-                  'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                is_following: false,
-                signature: [
-                  {
-                    _id: 1,
-                    title: '부산 갈매기에게 인형을 빼앗기다',
-                    image:
-                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  },
-                  {
-                    _id: 2,
-                    title: '부산 갈매기에게 인형을 빼앗기다',
-                    image:
-                      'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-        cursor: 'eyJjb25kaXRpb25JZCI6MjMsImxpbWl0IjoxMH0=',
-        hasNextPage: true,
-      },
-    });
-  }),
+          ],
+          cursor: 'eyJjb25kaXRpb25JZCI6MjMsImxpbWl0IjoxMH0=',
+          hasNextPage: true,
+        },
+      });
+    },
+  ),
 
   //팔로워 목록 불러오기
   http.get(`${baseURL}${API_URL.GET_MATE_FOLLOWER}`, ({ request, params }) => {
