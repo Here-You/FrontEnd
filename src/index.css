@@ -98,13 +98,13 @@
 /* REACT_CALENDAR */
 
 .react-calendar {
-  width: 500px;
+  width: 300px;
   max-width: 100%;
   border: none;
   line-height: 1.125em;
 
-  @media (max-width: 600px) {
-    width: 300px;
+  @media (min-width: 640px) {
+    width: 500px;
   }
 }
 
@@ -134,19 +134,20 @@
   abbr {
     background-color: #1b9c85;
     color: white;
-    font-size: 22px;
-    width: 60px;
-    height: 60px;
+
+    font-size: 11px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
 
-    @media (max-width: 600px) {
-      font-size: 11px;
-      width: 30px;
-      height: 30px;
+    @media (min-width: 640px) {
+      font-size: 22px;
+      width: 60px;
+      height: 60px;
     }
   }
 }
@@ -238,30 +239,30 @@
 .react-calendar__navigation__prev-button {
   position: absolute;
   top: 50%;
-  left: -30px;
-  font-size: 40px;
+  left: -40px;
+  font-size: 25px;
   color: #aaaaaa;
   background-color: transparent;
   border: none;
 
-  @media (max-width: 600px) {
-    left: -40px;
-    font-size: 25px;
+  @media (min-width: 600px) {
+    left: -30px;
+    font-size: 40px;
   }
 }
 
 .react-calendar__navigation__next-button {
   position: absolute;
-  right: -30px;
+  right: -40px;
+  font-size: 25px;
   top: 50%;
-  font-size: 40px;
   color: #aaaaaa;
   background-color: transparent;
   border: none;
 
-  @media (max-width: 600px) {
-    right: -40px;
-    font-size: 25px;
+  @media (min-width: 600px) {
+    right: -30px;
+    font-size: 40px;
   }
 }
 

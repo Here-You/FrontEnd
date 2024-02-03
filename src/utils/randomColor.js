@@ -3,18 +3,19 @@ import theme from '@/theme';
 export const generateCSSForID = (id, color) => `
   .highlight.id-${id} abbr {
     border: 2px solid ${color} !important;
-    background-color: ${color};
+    background-color: ${color} !important;
     color: white;
-    font-size: 22px;
-    width: 60px;
-    height: 60px;
+ 
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
     border-radius: 50%;
     ${theme.ALIGN.COLUMN_CENTER}
 
-    @media (max-width: 600px) {
-      width: 30px;
-      height: 30px;
-      font-size: 18px;
+    @media (min-width: 600px) {
+      font-size: 22px;
+      width: 60px;
+      height: 60px;
     }
   }
 
