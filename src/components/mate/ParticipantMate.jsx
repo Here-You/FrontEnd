@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import * as S from './RuleSearchResult.style';
+import * as S from './ParticipantMate.style';
 
-const RuleSearchResult = ({ profileData, onClick }) => {
+const ParticipantMate = ({ profileData, onClick }) => {
   const { image, name, nickname, bio } = profileData;
   const [isActive, setIsActive] = useState(false);
 
@@ -23,4 +23,4 @@ const RuleSearchResult = ({ profileData, onClick }) => {
   );
 };
 
-export default RuleSearchResult;
+export default ParticipantMate;

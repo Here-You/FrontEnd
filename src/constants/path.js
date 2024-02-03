@@ -98,17 +98,17 @@ const API_URL = {
   SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
   FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:userId`,
   UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:userId`,
-  EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/explore/:userId`,
+  EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/explore`,
   GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/followList/:userId`,
   GET_MATE_FOLLOWING: `/api/${VERSION}/${API_BASE.MATE}/followingList/:userId`,
   CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,
   SEARCH_INVITE_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/searchMate`,
   GET_PARTICIPATE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/participants/:ruleId`,
-  GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/view/:ruleId`,
+  GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/view`,
   UPDATE_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/edit/:ruleId`,
   DELETE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/editMate/:ruleId/:userId`,
   CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule/comment/:ruleId`,
-  GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list/:userId`,
+  GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list`,
 };
 
 const API_PATH = {

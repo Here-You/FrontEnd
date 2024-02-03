@@ -4,7 +4,7 @@ import theme from '@/theme';
 
 const CenteredContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  margin-bottom: 38px;
+  margin-bottom: 30px;
 `;
 
 const ProfileContainer = styled.div`
@@ -23,16 +23,14 @@ const UserImg = styled.img`
   width: 78px;
   height: 78px;
   border-radius: 78px;
-  background-position: 50% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
+  object-fit: cover;
 `;
 
 const TextContainer = styled.div`
   position: absolute;
-  margin-left: 153px;
+  margin-left: 140px;
   margin-top: 30px;
-  width: 113px;
+  width: 120px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -68,7 +66,7 @@ const UserAbout = styled.span`
 
 const FollowContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  gap: 21px;
+  justify-content: space-between;
 `;
 
 const FollowData = styled.div`
@@ -90,6 +88,7 @@ const UserFollowNumber = styled.span`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  width: 25px;
 `;
 
 export {

@@ -5,10 +5,10 @@ import theme from '@/theme';
 
 const SearchContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  margin-bottom: ${props => props.marginBottom || '38px'};
+  margin-bottom: 38px;
 `;
 
-const InputContainer = styled.div`
+const InputContainer = styled.form`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: space-between;
   width: 295px;

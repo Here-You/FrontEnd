@@ -23,9 +23,7 @@ document.head.appendChild(styleElement);
 prepare().then(() => {
   ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <App />
     </ThemeProvider>,
   );
 });

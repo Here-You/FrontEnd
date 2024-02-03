@@ -6,7 +6,7 @@ import theme from '@/theme';
 const InputContainer = styled.div`
   position: relative;
   width: 293px;
-  height: 526px;
+  height: 450px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
   border-radius: 10px;
   background-color: ${theme.COLOR.MAIN.WHITE};
@@ -21,24 +21,19 @@ const Topcontainer = styled.div`
   margin: 20px 0;
 `;
 
-const LineWrapper = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
-`;
-
 const StyledTitle = styled.input`
+  ${theme.ALIGN.ROW_CENTER};
   border: none;
   border-bottom: 1px solid ${theme.COLOR.MAIN.LIGHT_BLACK};
   width: 200px;
   height: 24px;
   padding: 5px;
-
   color: #000;
   text-align: center;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-
   &:focus {
     outline: none;
   }
@@ -67,7 +62,6 @@ const Participant = styled.div`
 
 const ParticipantImg = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-
   img {
     width: 12px;
     height: 12px;
@@ -80,7 +74,6 @@ const ParticipantImg = styled.div`
 const ParticipantName = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   margin-left: 2px;
-
   span {
     color: #aaa;
     text-align: center;
@@ -103,7 +96,6 @@ const InputBox = styled.div`
   border-top: 1px solid ${theme.COLOR.MAIN.LIGHT_GRAY};
   padding: 5px;
   overflow-y: scroll;
-
   div {
     width: 100%;
     height: auto;
@@ -119,7 +111,7 @@ const InputBox = styled.div`
   }
 `;
 
-const InputRuleTitle = styled.textarea`
+const RuleTitle = styled.textarea`
   width: 100%;
   height: auto;
   border: none;
@@ -130,13 +122,12 @@ const InputRuleTitle = styled.textarea`
   }
 `;
 
-const InputRuleDetail = styled.textarea`
+const RuleDetail = styled.textarea`
   width: 100%;
   height: auto;
   min-height: 100px;
   border: none;
   padding: 5px;
-
   &:focus {
     outline: none;
   }
@@ -145,7 +136,6 @@ const InputRuleDetail = styled.textarea`
 export {
   InputContainer,
   Topcontainer,
-  LineWrapper,
   StyledTitle,
   PlusButton,
   Participant,
@@ -153,6 +143,6 @@ export {
   ParticipantName,
   ParticipantOver,
   InputBox,
-  InputRuleTitle,
-  InputRuleDetail,
+  RuleTitle,
+  RuleDetail,
 };

@@ -16,7 +16,7 @@ const ModalBase = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
+  ${theme.ALIGN.ROW_CENTER};
   position: relative;
   width: 277px;
   height: 120px;
@@ -40,6 +40,7 @@ const ModalContainer = styled.div`
 
   span {
     color: ${theme.COLOR.MAIN.GRAY};
+    width: 100%;
     text-align: center;
     font-size: 12px;
     font-style: normal;
