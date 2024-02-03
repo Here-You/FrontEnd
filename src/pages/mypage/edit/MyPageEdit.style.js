@@ -10,12 +10,16 @@ const EditPageContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER}
   text-align: start;
   padding-top: 40px;
+  
 `;
 
 const UserInfo = styled.div`
   color: ${theme.COLOR.MAIN.GRAY};
   width: 90%;
   font-size: ${FONT_SIZE.LG};
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+      font-size: ${FONT_SIZE.SM};
+    }
 `;
 
 export { EditPageContainer, UserInfo };

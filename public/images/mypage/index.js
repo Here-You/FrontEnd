@@ -1,4 +1,4 @@
-import ProfilePicture from '../mypage/MyPageLogo.svg';
+import ProfilePicture from '../mypage/MyPageLogo.jpg';
 import Bug from '../mypage/Bug.svg';
 import Book from '../mypage/Book.svg';
 import Chat from '../mypage/Chat.svg';

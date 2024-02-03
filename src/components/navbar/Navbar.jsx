@@ -12,8 +12,8 @@ const Navbar = () => {
       <S.LinkTo to="/">
         <S.Image src={main} />
       </S.LinkTo>
-      <S.LinkTo>
-        <S.Image src={Bell} />
+      <S.LinkTo to="/notification">
+        <S.Image src={Bell}  />
       </S.LinkTo>
     </S.NavWrapper>
   );

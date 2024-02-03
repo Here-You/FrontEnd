@@ -11,6 +11,7 @@ import {
   ExploreSearch,
   Home,
   JourneyDetailPage,
+  LoginBeforePage,
   LoginPage,
   MapDetailPage,
   MapPage,
@@ -24,7 +25,9 @@ import {
   MyPageEditPage,
   MyPagePasswordPage,
   MyPageWithdrawPage,
+  Notification,
   OnBoardingPage,
+  Redirect,
   SignUpPage,
   SignatureEditPage,
   SignaturePage,
@@ -75,6 +78,10 @@ const router = createBrowserRouter([
         path: `${BASE_PATH.ON_BOARDING}`,
         element: <OnBoardingPage />,
       },
+      {
+        path: `${BASE_PATH.NOTIFICATION_PAGE}`,
+        element: <Notification />,
+      },
     ],
   },
   {
@@ -92,6 +99,25 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.DAILY_RECORD_EDIT}`,
             element: <DailyRecordEditPage />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: `${BASE_PATH.LOGIN}`,
+    children: [
+      {
+        element: <AppLayout />,
+        children: [
+          {
+            path: `${BASE_PATH.SNS_LOGIN_REDIRCT}`,
+            element: <Redirect />,
+          },
+
+          {
+            path: `${BASE_PATH.LOGIN_BEFORE_PAGE}`,
+            element: <LoginBeforePage />,
           },
         ],
       },

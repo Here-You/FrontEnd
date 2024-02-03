@@ -14,6 +14,8 @@ import Home from './home/Home';
 import JourneyDetailPage from './journey/JourneyDetail';
 // LOGIN
 import LoginPage from './login/Login';
+import LoginBeforePage from './login/LoginBeforePage';
+import Redirect from './login/Redirect';
 // MAP
 import MapPage from './map/MapPage';
 import MapDetailPage from './map/detail/MapDetailPage';
@@ -29,6 +31,8 @@ import MyPage from './mypage/MyPage';
 import MyPageEditPage from './mypage/edit/MyPageEdit';
 import MyPagePasswordPage from './mypage/password/MyPagePassword';
 import MyPageWithdrawPage from './mypage/withdraw/MyPageWithdraw';
+// notification
+import Notification from './notification/Notification';
 // ON_BOARDING
 import OnBoardingPage from './onboarding/OnBoardingPage';
 // Signature
@@ -47,6 +51,9 @@ import TravelTypeResultPage from './traveltype/result/TravelTypeResult';
 
 export {
   AppLayout,
+  LoginBeforePage,
+  Redirect,
+  Notification,
   Home,
   ErrorPage,
   LoginPage,

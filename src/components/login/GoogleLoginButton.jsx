@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './SnsLoginButton.style';
+import { postSnsLogin } from '@/apis/request/profile';
 import { useGoogleLogin } from '@react-oauth/google';
 
 const GoogleLoginButton = () => {
@@ -9,7 +10,7 @@ const GoogleLoginButton = () => {
 
   const login = useGoogleLogin({
     onSuccess: tokenResponse => {
-      console.log(tokenResponse);
+      postSnsLogin('GOOGLE', tokenResponse.access_token);
       navigate('/signup');
     },
   });

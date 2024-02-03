@@ -1,27 +1,44 @@
-import EditModalPage from './EditModal';
+import { useEffect } from 'react';
+
 import * as S from './MyProfileEditContainer.style';
-import ModalPortal from '@/components/ModalPortal';
-import {
-  EDIT_CONTENTS_LIST,
-  EDIT_SECOND_CONTENTS_LIST,
-} from '@/constants/editPage';
-import editModal from '@/store/editModal';
+import { EDIT_SECOND_CONTENTS_LIST } from '@/constants/editPage';
+
 
 const MyProfileEditContainer = ({ listName }) => {
-  const { onOpen } = editModal();
+
+
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'auto';
+  //   }
+  // }, [isOpen]);
+
+  // const handleOpenModal = list => {
+  //   onOpen();
+  //   if (list.id === 0) {
+  //     travelOnOpen();
+  //   } else if (list.id === 1) {
+  //     introOnOpen();
+  //   } else {
+  //     WithdrawalOnOpen();
+  //   }
+  // };
+
   return (
     <>
-    
       <S.EditContainer>
         {listName?.map(list => {
           return (
             <S.EditContentContainer
               key={list.id}
               id={list.id}
-              onClick={
-                listName === EDIT_SECOND_CONTENTS_LIST &&
-                (() => onOpen(list.modal, list.modalNum))
-              }>
+              onClick={() => {
+                if (listName === EDIT_SECOND_CONTENTS_LIST) {
+                  // handleOpenModal(list);
+                }
+              }}>
               <p>{list.title}</p>
               <p>{list.content}</p>
               {listName === EDIT_SECOND_CONTENTS_LIST && (
@@ -34,4 +51,5 @@ const MyProfileEditContainer = ({ listName }) => {
     </>
   );
 };
+
 export default MyProfileEditContainer;

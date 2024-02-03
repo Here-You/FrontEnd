@@ -41,7 +41,7 @@ export const ProfileHandlers = [
       return HttpResponse.json({
         status: 200,
         success: true,
-        message: '닉네임 수정 성공',
+        message: '프로필 수정 성공',
       });
     },
   ),
@@ -49,14 +49,11 @@ export const ProfileHandlers = [
   // 알림 (아직 미구현)
 
   // 회원 탈퇴
-  http.delete(
-    `${baseURL}${API_URL.UPDATE_PROFILE_INTRO}`,
-    ({ request, params }) => {
-      return HttpResponse.json({
-        status: 204,
-        success: true,
-        message: '탈퇴 성공',
-      });
-    },
-  ),
+  http.delete(`${baseURL}${API_URL.WITHDRAW_MEMBER}`, ({ request, params }) => {
+    return HttpResponse.json({
+      status: 204,
+      success: true,
+      message: '탈퇴 성공',
+    });
+  }),
 ];

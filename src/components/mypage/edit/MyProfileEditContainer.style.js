@@ -5,11 +5,18 @@ import theme from '@/theme';
 
 const EditContainer = styled.div`
   border-radius: 15px;
-  padding: 20px 20px;
+  padding: 20px;
   width: 85%;
   justify-content: space-between;
   margin: 40px 0;
   background-color: ${theme.COLOR.MAIN.WHITE};
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+      padding: 10px;
+    }
+    @media ${theme.WINDOW_SIZE.PC} {
+      
+    }
+  
 `;
 
 const EditContentContainer = styled.div`
@@ -26,6 +33,14 @@ const EditContentContainer = styled.div`
     padding: 0px 10px;
     color: ${theme.COLOR.MAIN.GRAY};
     font-family: 'Pretendard-light';
+
+    @media ${theme.WINDOW_SIZE.MOBILE} {
+      font-size: ${FONT_SIZE.SM};
+    }
+
+    @media ${theme.WINDOW_SIZE.PC} {
+      font-size: ${FONT_SIZE.SM};
+    }
   }
 
   &:hover {
