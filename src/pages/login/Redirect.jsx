@@ -6,28 +6,19 @@ import { postSnsLogin } from '@/apis/request/profile';
 
 const Redirect = () => {
   const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEAY;
-  const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+  const redirect_uri = import.meta.env.REDIRECT_URI;
   const navigate = useNavigate();
   const code = new URLSearchParams(window.location.search).get('code');
 
-  const getToken = async () => {
-    if (!code) {
-      return {};
+  useEffect(() => {
+    if (code) {
+      postSnsLogin('kakao', code);
     }
-    const param = new searchParams({
-      grant_type : 'authorization_code',
-    })
-    const response = await fetch('https://kauth.kakao.com/oauth/token', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-      },
-      body: par
-    });
-  };
+  }, [code]);
 
   const handleLogin = () => {
     console.log('Login button clicked');
+    navigate('/signup');
   };
 
   return (

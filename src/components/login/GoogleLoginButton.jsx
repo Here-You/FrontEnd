@@ -9,13 +9,18 @@ const GoogleLoginButton = () => {
   const navigate = useNavigate();
 
   const login = useGoogleLogin({
-    onSuccess: tokenResponse => {
-      postSnsLogin('GOOGLE', tokenResponse.access_token);
-      navigate('/signup');
+    onSuccess: async tokenResponse => {
+      await postSnsLogin('GOOGLE', tokenResponse.access_token);
+      console.log(import.meta.env.VITE_REDIRECT_URI);
+      navigate('/login/oauth');
+    },
+    onError: error => {
+      console.error('에러:', error);
     },
   });
+  
 
-  return <S.LoginButton onClick={() => login()}>구글로 계속하기</S.LoginButton>;
+  return <S.LoginButton onClick={login}>구글로 계속하기</S.LoginButton>;
 };
 
 export default GoogleLoginButton;
