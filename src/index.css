@@ -243,16 +243,24 @@
   color: #aaaaaa;
   background-color: transparent;
   border: none;
+
+  @media (max-width: 600px) {
+    left: -60px;
+  }
 }
 
 .react-calendar__navigation__next-button {
   position: absolute;
-  right: -40px;
+  right: -30px;
   top: 50%;
   font-size: 40px;
   color: #aaaaaa;
   background-color: transparent;
   border: none;
+
+  @media (max-width: 600px) {
+    right: -60px;
+  }
 }
 
 .react-calendar__navigation__next2-button {
@@ -284,7 +292,7 @@
     @media (max-width: 600px) {
       width: 30px;
       height: 30px;
-      font-size: 18p;
+      font-size: 18px;
     }
   }
 }
