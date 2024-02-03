@@ -127,7 +127,10 @@ const AddButton = styled.button`
   @media ${theme.WINDOW_SIZE.MOBILE} {
     width: 40px;
     height: 40px;
-    left: ${props => (props.$browserName === 'safari' ? '240px' : '270px')};
+    left: ${props =>
+      props.$browserName === 'safari' || props.$browserName === 'kakaotalk'
+        ? '240px'
+        : '270px'};
   }
 `;
 
@@ -141,7 +144,10 @@ const VerticalLine = styled.p`
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     top: 20px;
-    left: ${props => (props.$browserName === 'safari' ? '130px' : '145px')};
+    left: ${props =>
+      props.$browserName === 'safari' || props.$browserName === 'kakaotalk'
+        ? '130px'
+        : '145px'};
   }
 `;
 

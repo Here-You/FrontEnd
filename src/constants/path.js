@@ -7,9 +7,9 @@ const BASE_PATH = {
   MAP: '/map',
   MAP_DETAIL: '/map/:journeyId',
   // DAILYRECORD
-  DAILY_RECORD: '/dailyrecord/:scheduleid',
-  DAILY_RECORD_WRITE: '/dailyrecord/:scheduleid/write',
-  DAILY_RECORD_EDIT: '/dailyrecord/:scheduleid/edit/:recordid',
+  DAILY_RECORD: '/dailyrecord/:scheduleId',
+  DAILY_RECORD_WRITE: '/dailyrecord/:scheduleId/write',
+  DAILY_RECORD_EDIT: '/dailyrecord/:scheduleId/edit',
   // SIGNATURE
   SIGNATURE: '/signature',
   SIGNATURE_WRITE: '/signature/write',
@@ -79,6 +79,7 @@ const API_URL = {
   DELETE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/:scheduleId/delete/:detailId`,
   CREATE_DIARY: `/api/${VERSION}/${API_BASE.DIARY}/create/:scheduleId`,
   GET_DIARY: `/api/${VERSION}/${API_BASE.DIARIES}/:scheduleId`,
+  UPDATE_DIARY: `/api/${VERSION}/${API_BASE.DIARIES}/update/:diaryId`,
   // MAP
   GET_MONTHLY_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/monthly-journey`,
   GET_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/journey/get`,

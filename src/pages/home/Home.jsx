@@ -30,6 +30,9 @@ const HomePage = () => {
     case agent.indexOf('safari') > -1:
       browserName = 'safari';
       break;
+    case agent.indexOf('kakaotalk') > -1:
+      browserName = 'kakaotalk';
+      break;
     default:
       browserName = 'other';
   }

@@ -86,9 +86,15 @@ const postDiary = ({ scheduleId, postData }) => {
   return res;
 };
 
-const getDiary = ({ scheduleId }) => {
-  const url = `/api/${VERSION}/${API_BASE.DIARIES}/${scheduleId}`;
+const getDiary = nowPage => {
+  const url = `/api/${VERSION}/${API_BASE.DIARIES}/${nowPage}`;
   const res = axiosWithToken.get(url);
+  return res;
+};
+
+const updateDiary = ({ diaryId }) => {
+  const url = `/api/${VERSION}/${API_BASE.DIARIES}/update/${diaryId}`;
+  const res = axiosWithToken.put(url);
   return res;
 };
 
@@ -104,4 +110,5 @@ export {
   deleteDetailSchedule,
   postDiary,
   getDiary,
+  updateDiary,
 };
