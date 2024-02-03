@@ -22,7 +22,7 @@ const HomePage = () => {
   const [monthlyInfo, setMonthlyInfo] = useState([]);
 
   const agent = window.navigator.userAgent.toLowerCase();
-  let browserName;
+  let browserName = 'other';
   switch (true) {
     case agent.indexOf('chrome') > -1 && !!window.chrome:
       browserName = 'chrome';

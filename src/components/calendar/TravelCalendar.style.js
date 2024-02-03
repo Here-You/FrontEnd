@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 40px 0;
+  margin: 20px 0;
 `;
 
 const ButtonContainer = styled.div`
@@ -107,6 +107,20 @@ const HomeContentContainer = styled.div`
   gap: 50px;
 `;
 
+const SchedulesContainer = styled.div`
+  max-height: 400px;
+  overflow: scroll;
+  padding: 0 30px;
+  &::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: ${theme.COLOR.MAIN.LIGHT_GRAY};
+  }
+`;
+
 export {
   HighlightedElement,
   Wrapper,
@@ -117,4 +131,5 @@ export {
   CircleWrapper,
   Circle,
   HomeContentContainer,
+  SchedulesContainer,
 };

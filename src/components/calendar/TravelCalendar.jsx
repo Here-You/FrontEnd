@@ -149,7 +149,7 @@ const TravelCalendar = ({
           formatDay={(locale, date) => moment(date).format('D')}
           selectRange={true}
         />
-        <div>
+        <S.SchedulesContainer>
           {schedulesData?.pages?.map(page =>
             page.data.data.map(schedule => (
               <Schedules
@@ -164,9 +164,8 @@ const TravelCalendar = ({
           {schedulesData?.pages?.length === 0 && (
             <div>아직 작성한 여정이 없어요!</div>
           )}
-        </div>
+        </S.SchedulesContainer>
       </S.HomeContentContainer>
-      <div ref={ref} style={{ height: 50 }}></div>
     </S.Wrapper>
   );
 };

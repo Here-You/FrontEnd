@@ -45,12 +45,12 @@ const CalendarContainer = styled.div`
 `;
 
 const JourneyButtonContainer = styled.div`
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: row;
 
   position: sticky;
-  bottom: 20px;
+  bottom: 40px;
   padding: 0 20px;
   margin-left: auto;
 
@@ -127,7 +127,7 @@ const AddButton = styled.button`
   @media ${theme.WINDOW_SIZE.MOBILE} {
     width: 40px;
     height: 40px;
-    left: ${props => (props.$browserName === 'safari' ? '240px' : '280px')};
+    left: ${props => (props.$browserName === 'safari' ? '240px' : '270px')};
   }
 `;
 
