@@ -6,7 +6,7 @@ import theme from '@/theme';
 const InputContainer = styled.div`
   position: relative;
   width: 293px;
-  height: 526px;
+  height: 450px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
   border-radius: 10px;
   background-color: ${theme.COLOR.MAIN.WHITE};
@@ -21,11 +21,8 @@ const Topcontainer = styled.div`
   margin: 20px 0;
 `;
 
-const LineWrapper = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
-`;
-
 const StyledTitle = styled.input`
+  ${theme.ALIGN.ROW_CENTER};
   border: none;
   border-bottom: 1px solid ${theme.COLOR.MAIN.LIGHT_BLACK};
   width: 200px;
@@ -119,7 +116,7 @@ const InputBox = styled.div`
   }
 `;
 
-const InputRuleTitle = styled.textarea`
+const RuleTitle = styled.textarea`
   width: 100%;
   height: auto;
   border: none;
@@ -131,7 +128,7 @@ const InputRuleTitle = styled.textarea`
   }
 `;
 
-const InputRuleDetail = styled.textarea`
+const RuleDetail = styled.textarea`
   width: 100%;
   height: auto;
   min-height: 100px;
@@ -146,7 +143,6 @@ const InputRuleDetail = styled.textarea`
 export {
   InputContainer,
   Topcontainer,
-  LineWrapper,
   StyledTitle,
   PlusButton,
   Participant,
@@ -154,6 +150,6 @@ export {
   ParticipantName,
   ParticipantOver,
   InputBox,
-  InputRuleTitle,
-  InputRuleDetail,
+  RuleTitle,
+  RuleDetail,
 };

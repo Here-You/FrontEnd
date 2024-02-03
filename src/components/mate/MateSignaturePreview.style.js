@@ -20,6 +20,7 @@ const ProfileContainer = styled.div`
     width: 40px;
     height: 40px;
     border-radius: 40px;
+    object-fit: fill;
   }
 `;
 
@@ -73,7 +74,7 @@ const SignatureContent = styled.div`
   span {
     width: 100%;
     color: ${theme.COLOR.MAIN.BLACK};
-    font-size: 7px;
+    font-size: 8px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;

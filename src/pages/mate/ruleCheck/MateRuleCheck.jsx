@@ -1,25 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './MateRuleCheck.style';
-import { getRuleCheck } from '@/apis/request/mate';
 import TeamContainer from '@/components/mate/TeamContainer';
+import { useTeamRuleList } from '@/hooks/mate/useTeamRuleList';
 
 const MateRuleCheckPage = () => {
-  const [profilesData, setProfilesData] = useState([]);
+  const userId = '1'; //임의로 지정
+  const { data: RulesData, loading, error } = useTeamRuleList(userId);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        const response = await getRuleCheck();
-        setProfilesData(response.data);
-      } catch (error) {
-        console.error('프로필 데이터를 가져오는데 실패했습니다.', error);
-      }
-    };
-    fetchProfileData();
-  }, []);
+    localStorage.setItem('x-access-token', 'adsadsfasdfasdf');
+  });
 
   const handleClick = ruleId => {
     navigate(`/mate/rule-check/${ruleId}`);
@@ -29,11 +22,11 @@ const MateRuleCheckPage = () => {
     <div>
       <S.CenteredContainer>
         <S.StyledTitle>내가 참여 중인 규칙</S.StyledTitle>
-        {profilesData.map((profileData, index) => (
+        {RulesData.map((ruleData, index) => (
           <TeamContainer
             key={index}
-            profileData={profileData}
-            onClick={() => handleClick(profileData.rule_box._id)}
+            ruleData={ruleData}
+            onClick={() => handleClick(ruleData._id)}
           />
         ))}
       </S.CenteredContainer>

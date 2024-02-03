@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import * as S from './MateManagement.style';
-import { getMateManagement } from '@/apis/request/mate';
 import ManagementProfile from '@/components/mate/ManagementProfile';
+import { useMateFollower } from '@/hooks/mate/useMateFollower';
+import { useMateFollowing } from '@/hooks/mate/useMateFollowing';
 
 const MateManagementPage = () => {
-  const [activeTab, setActiveTab] = useState(null);
-
-  const [profilesData, setProfilesData] = useState([]);
+  const { data: dataFollower, loading, error } = useMateFollower();
+  const { data: dataFollowing, loadingF, errorF } = useMateFollowing();
+  const [activeTab, setActiveTab] = useState('follower');
 
   const handleTabClick = tabName => {
     setActiveTab(tabName);
   };
-
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        const response = await getMateManagement();
-        setProfilesData(response.data);
-      } catch (error) {
-        console.error('프로필 데이터를 가져오는데 실패했습니다.', error);
-      }
-    };
-    fetchProfileData();
-  }, []);
 
   return (
     <>
@@ -42,9 +31,13 @@ const MateManagementPage = () => {
         </S.TabContainer>
       </S.CenteredContainer>
 
-      {profilesData.map((profileData, index) => (
-        <ManagementProfile key={index} profileData={profileData} />
-      ))}
+      {activeTab === 'follower'
+        ? dataFollower.map((data, index) => (
+            <ManagementProfile key={index} profileData={data} />
+          ))
+        : dataFollowing.map((data, index) => (
+            <ManagementProfile key={index} profileData={data} />
+          ))}
     </>
   );
 };

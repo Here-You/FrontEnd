@@ -1,38 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import * as S from './MateRuleDetailCheck.style';
-import { getRuleDetailCheck } from '@/apis/request/mate';
-import RuleBox from '@/components/mate/RuleBox';
-import RuleButton from '@/components/mate/RuleButton';
+import RuleBoxCheck from '@/components/mate/RuleBoxCheck';
+import RuleComments from '@/components/mate/RuleComments';
+import { useTeamMateRule } from '@/hooks/mate/useTeamMateRule';
 
 const MateRuleDetailCheckPage = () => {
-  const [ruleData, setRuleData] = useState([]);
-
-  useEffect(() => {
-    const fetchRuleData = async () => {
-      try {
-        const response = await getRuleDetailCheck();
-        setRuleData(response.data);
-      } catch (error) {
-        console.error('프로필 데이터를 가져오는데 실패했습니다.', error);
-      }
-    };
-    fetchRuleData();
-  }, []);
-
-  const handleEditClick = () => {};
+  const { ruleId } = useParams();
+  console.log(ruleId);
+  const { data: RuleboxData, loading, error } = useTeamMateRule(ruleId);
+  const { main_title, rules, participants, user_image, comments } = RuleboxData;
 
   return (
-    <S.CenteredContainer>
-      <RuleBox />
-      <S.ButtonWrapper>
-        <RuleButton
-          text="수정하기"
-          onClick={handleEditClick}
-          ruleData={ruleData}
-        />
-      </S.ButtonWrapper>
-    </S.CenteredContainer>
+    <span>ok</span>
+    // <S.CenteredContainer>
+    //   <RuleBoxCheck
+    //     mainTitle={main_title}
+    //     rules={rules}
+    //     participants={participants}
+    //   />
+    //   <RuleComments userImage={user_image} comments={comments} />
+    // </S.CenteredContainer>
   );
 };
 

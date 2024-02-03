@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import addIcon from '/images/add-user.svg';
+import addIcon from '/images/mate/add-user.svg';
 import theme from '@/theme';
 
 const ModalBase = styled.div`
@@ -29,29 +29,29 @@ const WrapContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   position: absolute;
   top: 38px;
+`;
 
-  span {
-    color: ${theme.COLOR.MAIN.GRAY};
-    text-align: center;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+const StyledTitle = styled.span`
+  color: ${theme.COLOR.MAIN.GRAY};
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
 
-  button {
-    position: absolute;
-    right: 20px;
-    margin-left: 13px;
-    width: 20px;
-    height: 20px;
-    border: none;
-    background-image: url(${AddUserIcon});
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-color: transparent;
-    cursor: pointer;
-  }
+const PlusButton = styled.button`
+  position: absolute;
+  left: 100px;
+  margin-left: 13px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-image: url(${addIcon});
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 const ButtonContainer = styled.div`
@@ -97,6 +97,8 @@ export {
   ModalBase,
   ModalContainer,
   WrapContainer,
+  StyledTitle,
+  PlusButton,
   ButtonContainer,
   CancelButton,
   OkButton,

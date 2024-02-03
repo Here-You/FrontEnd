@@ -1,30 +1,48 @@
+import { useInView } from 'react-intersection-observer';
+
 import * as S from './MateLook.style';
-import mateSearchIcon from '/images/mate/mate_search.svg';
+import { getExploreMate } from '@/apis/request/mate';
 import Banner from '@/components/mate/Banner';
 import MateSignatureSection from '@/components/mate/MateSignatureSection';
-import { useMateLook } from '@/hooks/mate/useMate';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 const MateLookPage = () => {
-  const { data: matesData, loading, error } = useMateLook();
+  const userId = 1;
+  const limit = 10;
+
+  const {
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    data,
+    isError,
+    isLoading,
+  } = useInfiniteQuery({
+    queryKey: ['exploreMate', userId],
+    queryFn: ({ pageParam = 1 }) => getExploreMate(userId, pageParam, limit),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages) => lastPage.nextCursor,
+  });
+
+  const mate = data?.pages[0].data.data.recommend_mates;
+
+  // const { ref, inView, entry } = useInView({
+  // //   delay: 0,
+  //   threshold: 0,
+  // });
+
+  // useEffect(() => {
+  //   if (inView && !isFetchingNextPage && hasNextPage) {
+  //     alert('trigger');
+  //   }
+  // }, [inView, isFetchingNextPage, hasNextPage, fetchNextPage]);
 
   return (
     <S.MateLookContainer>
       <Banner />
       <S.CenteredContainer>
-        {loading ? (
-          <div>로딩중입니다.</div>
-        ) : (
-          <>
-            <MateSignatureSection
-              text="샐리님이 사용한 위치 [#오사카]를 함께 이용 중인 메이트"
-              matesData={matesData}
-            />
-            <MateSignatureSection
-              text="샐리님의 메이트가 작성한 시그니처"
-              matesData={matesData}
-            />
-          </>
-        )}
+        <MateSignatureSection data={mate} />
+        {/* <div ref={ref} style={{ height: 50 }}></div> */}
       </S.CenteredContainer>
     </S.MateLookContainer>
   );
