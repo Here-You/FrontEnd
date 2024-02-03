@@ -4,7 +4,7 @@ import theme from '@/theme';
 
 const BannerContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  width: 375px;
+  width: 100%;
   height: 99px;
   background: rgba(27, 156, 133, 0.16);
   position: relative;
