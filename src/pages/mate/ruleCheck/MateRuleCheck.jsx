@@ -1,16 +1,22 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './MateRuleCheck.style';
 import TeamContainer from '@/components/mate/TeamContainer';
-import { useTeamMateRule } from '@/hooks/mate/useTeamMateRule';
+import { useTeamRuleList } from '@/hooks/mate/useTeamRuleList';
 
 const MateRuleCheckPage = () => {
-  const { data: RulesData, loading, error } = useTeamMateRule();
-  // const navigate = useNavigate();
+  const userId = '1'; //임의로 지정
+  const { data: RulesData, loading, error } = useTeamRuleList(userId);
+  const navigate = useNavigate();
 
-  // const handleClick = ruleId => {
-  //   navigate(`/mate/rule-check/${ruleId}`);
-  // };
+  useEffect(() => {
+    localStorage.setItem('x-access-token', 'adsadsfasdfasdf');
+  });
+
+  const handleClick = ruleId => {
+    navigate(`/mate/rule-check/${ruleId}`);
+  };
 
   return (
     <div>
@@ -20,7 +26,7 @@ const MateRuleCheckPage = () => {
           <TeamContainer
             key={index}
             ruleData={ruleData}
-            // onClick={() => handleClick(ruleData.rule_box._id)}
+            onClick={() => handleClick(ruleData._id)}
           />
         ))}
       </S.CenteredContainer>
