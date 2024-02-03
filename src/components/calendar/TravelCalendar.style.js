@@ -29,7 +29,7 @@ const ButtonContainer = styled.div`
   border-radius: 40px;
 
   @media (max-width: 600px) {
-    width: 80%;
+    width: 280px;
   }
 `;
 

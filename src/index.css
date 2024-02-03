@@ -245,7 +245,8 @@
   border: none;
 
   @media (max-width: 600px) {
-    left: -60px;
+    left: -40px;
+    font-size: 25px;
   }
 }
 
@@ -259,7 +260,8 @@
   border: none;
 
   @media (max-width: 600px) {
-    right: -60px;
+    right: -40px;
+    font-size: 25px;
   }
 }
 
