@@ -35,16 +35,19 @@ const SUPPORT = [
     id: 0,
     img: myPageImg.Question,
     title: '자주 묻는 질문',
+    notion: true,
   },
   {
     id: 1,
     img: myPageImg.Bug,
     title: '버그 및 오류 제보',
+    notion: true,
   },
   {
     id: 2,
     img: myPageImg.Chat,
     title: '의견 보내기',
+    notion: true,
   },
 ];
 
@@ -53,6 +56,7 @@ const ETC = [
     id: 0,
     img: myPageImg.Sertificate,
     title: '개발자 소개',
+    notion: true,
   },
   {
     id: 1,
