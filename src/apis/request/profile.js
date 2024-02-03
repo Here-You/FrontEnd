@@ -47,4 +47,5 @@ export {
   updateIntro,
   updateNickName,
   deleteWithdrawMember,
+  postAddInformation,
 };

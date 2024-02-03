@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Modal from '../Modal';
-import * as S from './NickNameEdit.style';
+import * as S from './IntroEditModal.style';
 import { updateIntro } from '@/apis/request/profile';
 import useIntroEditModal from '@/hooks/modal/useIntroEditModal';
 
