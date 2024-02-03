@@ -8,6 +8,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 20vh;
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    height: 10vh;
+  } 
+
 `;
 
 const ContentContainer = styled.div`
@@ -16,6 +20,13 @@ const ContentContainer = styled.div`
   justify-content: center;
   gap: 30px;
   text-align: center;
+
+`;
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: ${FONT_SIZE.SM};
+
+  align-self: flex-start;
 `;
 
 const Title = styled.p`
@@ -34,4 +45,4 @@ const Date = styled.p`
   font-size: ${FONT_SIZE.TWO_XL};
 `;
 
-export { Container, ContentContainer, Title, Input, Date };
+export { Container, ContentContainer, Title, Input, Date,ErrorMessage };

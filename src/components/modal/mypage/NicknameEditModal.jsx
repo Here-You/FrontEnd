@@ -4,12 +4,14 @@ import { useForm } from 'react-hook-form';
 import Modal from '../Modal';
 import * as S from './NicknameEdit.style';
 import { updateNickName } from '@/apis/request/profile';
+import Schema from '@/components/schema/Schema';
+import { yupResolver } from '@hookform/resolvers/yup';
 import useNicknameEditModal from '@/hooks/modal/useNickameEditModal';
 
 const NicknameEditModal = ({ myNickname }) => {
   const nicknameEditModal = useNicknameEditModal();
   const [isLoading, setIsLoading] = useState(false);
- 
+
   const {
     register,
     handleSubmit,
@@ -18,7 +20,8 @@ const NicknameEditModal = ({ myNickname }) => {
     watch,
     setValue,
   } = useForm({
-    mode: 'onBlur',
+    resolver: yupResolver(Schema),
+    mode: 'onChange',
     defaultValues: {
       nickname: myNickname,
     },
@@ -36,16 +39,17 @@ const NicknameEditModal = ({ myNickname }) => {
         <S.Title>변경할 닉네임을 입력해 주세요.</S.Title>
         <S.Input
           id="nickname"
-          {...register('nickname')}
           value={nickname}
+          {...register('nickname')}
           placeholder="변경할 닉네임을 입력하세요"
         />
+        <S.ErrorMessage>{errors.nickname?.message}</S.ErrorMessage>
       </S.ContentContainer>
     </S.Container>
   );
 
   const handleCloseModal = () => {
-    reset({});
+  
     nicknameEditModal.onClose();
   };
 

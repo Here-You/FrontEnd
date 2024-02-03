@@ -8,6 +8,9 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 20vh;
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    height: 10vh;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -29,9 +32,15 @@ const Input = styled.input`
   outline: none;
 `;
 
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: ${FONT_SIZE.SM};
+
+  align-self: flex-start;
+`;
 const Date = styled.p`
   color: ${theme.COLOR.MAIN.GREEN};
   font-size: ${FONT_SIZE.TWO_XL};
 `;
 
-export { Container, ContentContainer, Title, Input, Date };
+export { Container, ContentContainer, Title, Input, Date, ErrorMessage };

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import SignUpSchema from '../schema/SignUpSchema';
+import Schema from '../schema/Schema';
 import * as S from './SignUpMyInfo.style';
 import { postAddInformation } from '@/apis/request/profile';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -16,40 +16,32 @@ const SignUpMyInfo = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    watch,
-    setValue,
   } = useForm({
-    resolver: yupResolver(SignUpSchema),
+    resolver: yupResolver(Schema),
+    mode: 'onChange',
     defaultValues: {
-      mode: 'onChange',
       nickname: '',
       introduction: '',
     },
   });
 
-  const { nickname, introduction } = watch();
-
   const onSubmit = async data => {
-    reset({});
+    reset();
 
-    if (!nickname || !introduction) {
-      alert('내용을 입력해주세요!');
-    } else {
-      setIsLoading(true);
-      try {
-        const res = postAddInformation(data.nickname, data.introduction);
-        if (res) {
-          alert('정보가 입력되었습니다.');
-          console.log('제출된 데이터: ', data);
-          // navigate('/');
-        }
-      } catch (error) {
-        console.log(error);
-        console.error('서버 내부 오류.', error);
-        alert('서버 내부 오류');
-      } finally {
-        setIsLoading(false);
+    setIsLoading(true);
+    try {
+      const res = postAddInformation(data.nickname, data.introduction);
+      if (res) {
+        alert('정보가 입력되었습니다.');
+        console.log('제출된 데이터: ', data);
+        navigate('/');
       }
+    } catch (error) {
+      console.log(error);
+      console.error('서버 내부 오류.', error);
+      alert('서버 내부 오류');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -69,6 +61,7 @@ const SignUpMyInfo = () => {
           placeholder="닉네임을 입력하세요"
           {...register('introduction')}
         />
+        <S.ErrorMessage>{errors.introduction?.message}</S.ErrorMessage>
         <S.StoreButton type="submit">저장하기</S.StoreButton>
       </S.Container>
     </>

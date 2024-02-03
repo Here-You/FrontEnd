@@ -8,6 +8,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 15vh;
+  height: 20vh;
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    height: 10vh;
+  } 
 `;
 
 const ContentContainer = styled.div`

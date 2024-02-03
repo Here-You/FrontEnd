@@ -4,7 +4,9 @@ import { useForm } from 'react-hook-form';
 import Modal from '../Modal';
 import * as S from './IntroEditModal.style';
 import { updateIntro } from '@/apis/request/profile';
+import Schema from '@/components/schema/Schema';
 import useIntroEditModal from '@/hooks/modal/useIntroEditModal';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const IntroEditModal = ({ myIntro }) => {
   const introEditModal = useIntroEditModal();
@@ -19,44 +21,45 @@ const IntroEditModal = ({ myIntro }) => {
     watch,
     setValue,
   } = useForm({
-    mode: 'onBlur',
+    resolver: yupResolver(Schema),
+    mode: 'onChange',
     defaultValues: {
-      intro: myIntro,
+      introduction: myIntro,
     },
   });
 
   useEffect(() => {
-    setValue('intro', myIntro);
+    setValue('introduction', myIntro);
   }, [myIntro]);
 
-  const { intro } = watch();
+  const { introduction } = watch();
 
   const BodyContent = (
     <S.Container>
       <S.ContentContainer>
         <S.Title>변경할 프로필 소개 내용을 입력해 주세요.</S.Title>
         <S.Input
-          id="intro"
-          {...register('intro')}
-          value={intro}
+          id="introduction"
+          value={introduction}
+          {...register('introduction')}
           placeholder="변경할 프로필 소개 내용을 입력하세요"
         />
+        <S.ErrorMessage>{errors.introduction?.message}</S.ErrorMessage>
       </S.ContentContainer>
     </S.Container>
   );
 
   const handleCloseModal = () => {
-    reset({});
     introEditModal.onClose();
   };
 
   const onSubmit = async data => {
-    if (!intro) {
+    if (!introduction) {
       alert('내용을 입력해주세요!');
     } else {
       setIsLoading(true);
       try {
-        const res = await updateIntro({ ...data, intro });
+        const res = await updateIntro({ ...data, introduction });
         if (res) {
           alert('프로필 소개가 변경 되었습니다.');
           console.log('제출된 데이터: ', data);
