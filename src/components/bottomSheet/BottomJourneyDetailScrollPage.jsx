@@ -9,6 +9,7 @@ const BottomJourneyDetailScrollPage = ({ journeyInfo }) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const { journeyId } = useParams();
+  console.log(journeyInfo);
 
   const journeyTitle = journeyInfo?.journey_title;
   const scheduleLocations = journeyInfo?.schedule_locations;
