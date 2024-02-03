@@ -67,9 +67,12 @@ const API_BASE = {
 const API_URL = {
   // PROFILE
   LOGIN: `/api/${VERSION}/${API_BASE.USER}/login`,
+
+  ADDITIONAL_INFORMATION: `/api/${VERSION}/${API_BASE.USER}/profile`,
   SNS_LOGIN: `/api/${VERSION}/${API_BASE.USER}/login/oauth`,
   UPDATE_NICKNAME: `/api/${VERSION}/${API_BASE.PROFILE}/nickname`,
   UPDATE_PROFILE_INTRO: `/api/${VERSION}/${API_BASE.PROFILE}/intro`,
+
   NOTIFICATION: `/api/${VERSION}/${API_BASE.NOTIFICATION}`,
   WITHDRAW_MEMBER: `/api/${VERSION}/${API_BASE.PROFILE}/delete`,
   // HOME

@@ -18,16 +18,7 @@ const CategoryContainer = styled.div`
     }
   }
 
-  p {
-    color: ${theme.COLOR.MAIN.GRAY};
-    font-size: ${FONT_SIZE.XL};
-    font-family: 'Pretendard-light';
-    margin: 13px 0px;
-
-    @media ${theme.WINDOW_SIZE.MOBILE} {
-      font-size: ${FONT_SIZE.BASE};
-    }
-  }
+ 
 `;
 
 const Subcategory = styled.div`
@@ -46,6 +37,16 @@ const CategoryImg = styled.img`
 const LinkTo = styled(Link)`
   text-decoration-line: none;
   display: flex;
+  p {
+    color: ${theme.COLOR.MAIN.GRAY};
+    font-size: ${FONT_SIZE.XL};
+    font-family: 'Pretendard-light';
+    margin: 13px 0px;
+
+    @media ${theme.WINDOW_SIZE.MOBILE} {
+      font-size: ${FONT_SIZE.BASE};
+    }
+  }
 `;
 
 export { CategoryContainer, Subcategory, CategoryImg, LinkTo };

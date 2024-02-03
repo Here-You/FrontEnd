@@ -22,6 +22,7 @@ const USER_SETTING = [
     id: 3,
     img: myPageImg.Diamond,
     title: '내 시그니처 확인하기',
+    link: '/signature',
   },
   {
     id: 4,
@@ -58,11 +59,11 @@ const ETC = [
     title: '개발자 소개',
     notion: true,
   },
-  {
-    id: 1,
-    img: myPageImg.File,
-    title: '서비스 이용약관',
-  },
+  // {
+  //   id: 1,
+  //   img: myPageImg.File,
+  //   title: '서비스 이용약관',
+  // },
 ];
 
 export { USER_SETTING, SUPPORT, ETC };
