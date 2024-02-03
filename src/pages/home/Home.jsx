@@ -22,13 +22,16 @@ const HomePage = () => {
   const [monthlyInfo, setMonthlyInfo] = useState([]);
 
   const agent = window.navigator.userAgent.toLowerCase();
-  let browserName;
+  let browserName = 'other';
   switch (true) {
     case agent.indexOf('chrome') > -1 && !!window.chrome:
       browserName = 'chrome';
       break;
     case agent.indexOf('safari') > -1:
       browserName = 'safari';
+      break;
+    case agent.indexOf('kakaotalk') > -1:
+      browserName = 'kakaotalk';
       break;
     default:
       browserName = 'other';

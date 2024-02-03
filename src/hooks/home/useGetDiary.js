@@ -22,7 +22,7 @@ export const useGetDiary = scheduleId => {
     };
 
     fetchData();
-  }, []);
+  }, [scheduleId]);
 
   return { data, loading, error };
 };

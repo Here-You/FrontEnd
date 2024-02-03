@@ -467,78 +467,56 @@ export const HomeHandlers = [
   //일지 불러오기
   http.get(`${baseURL}${API_URL.GET_DIARY}`, ({ request, params }) => {
     const scheduleId = params.scheduleId;
-    if (!scheduleId) {
-      return new HttpResponse(null, { status: 404 });
-    } else {
+
+    if (scheduleId) {
       return HttpResponse.json({
         status: 200,
         success: true,
         message: '일지 불러오기 성공',
-        data: [
-          {
-            id: 1,
-            title: 'Diary Title 1',
-            place: 'jejodu',
+        data: {
+          journeyTitle: `${scheduleId}번째 Journey Title`,
+          diaries: {
+            id: `${scheduleId}`,
+            title: `Diary Title ${scheduleId}`,
+            place: `Diary Place ${scheduleId}`,
             weather: 'SUNNY',
             mood: 'HAPPY',
-            content: 'jejudo ganda ~',
-            user_id: 123,
-            schedule_id: scheduleId,
-            location_id: 789,
+            content: `Diary Content ${scheduleId}`,
+            location: 'jeju',
             diary_image: {
               id: 101,
-              uploader_id: 123,
-              image_key:
+              uploaderId: 123,
+              imageKey:
                 'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-              diary_id: 1,
             },
-            created: '2024-01-01T12:34:56Z',
-            updated: '2024-01-02T09:00:00Z',
-            deleted: null,
+            created: '2024-01-11T12:34:56Z',
+            updated: '2024-01-11T12:34:56Z',
           },
-          {
-            id: 2,
-            title: 'Diary Title 2',
-            place: 'jejodu',
-            weather: 'CLOUDY',
-            mood: 'SMILE',
-            content: 'jejudo ganda ~',
-            user_id: 123,
-            schedule_id: scheduleId,
-            location_id: 789,
-            diary_image: {
-              id: 101,
-              uploader_id: 123,
-              image_key:
-                'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-              diary_id: 1,
-            },
-            created: '2024-01-02T12:34:56Z',
-            updated: '2024-01-02T09:00:00Z',
-            deleted: null,
-          },
-          {
-            id: 3,
-            title: 'Diary Title 3',
-            place: 'jejodu',
-            weather: 'SNOWY',
-            mood: 'SAD',
-            content: 'jejudo ganda ~',
-            user_id: 123,
-            schedule_id: scheduleId,
-            location_id: 789,
-            diary_image: {
-              id: 101,
-              uploader_id: 123,
-              image_key:
-                'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-              diary_id: 1,
-            },
-            created: '2024-01-03T12:34:56Z',
-            updated: '2024-01-02T09:00:00Z',
-            deleted: null,
-          },
-        ],
+        },
+      });
+    } else {
+      return HttpResponse.json({
+        status: 400,
+        success: false,
+        message: 'Missing scheduleId parameter',
+        error: 'Bad Request',
+      });
+    }
+  }),
+  //일지 수정하기
+  http.put(`${baseURL}${API_URL.UPDATE_DIARY}`, ({ request, params }) => {
+    const diaryId = params.diaryId;
+    if (!diaryId) {
+      return new HttpResponse(null, {
+        success: false,
+        code: 404,
+        message: '일지가 없습니다.',
+      });
+    } else {
+      return HttpResponse.json({
+        status: 200,
+        success: true,
+        message: '일지 수정하기 성공',
       });
     }
   }),
@@ -671,6 +649,9 @@ export const HomeHandlers = [
                 imageKey:
                   'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
               },
+              created: '2024-01-01T12:34:56Z',
+              updated: '2024-01-02T09:00:00Z',
+              deleted: null,
             },
             {
               id: 2,
@@ -688,14 +669,17 @@ export const HomeHandlers = [
                 imageKey:
                   'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
               },
+              created: '2024-01-02T12:34:56Z',
+              updated: '2024-01-02T09:00:00Z',
+              deleted: null,
             },
             {
               id: 3,
-              title: 'Diary Title 2',
-              place: 'Diary Place 2',
+              title: 'Diary Title 3',
+              place: 'Diary Place 3',
               weather: 'RAINY',
               mood: 'SAD',
-              content: 'Diary Content 2',
+              content: 'Diary Content 3',
               userId: 124,
               scheduleId: 457,
               locationId: 790,
@@ -705,14 +689,17 @@ export const HomeHandlers = [
                 imageKey:
                   'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
               },
+              created: '2024-01-03T12:34:56Z',
+              updated: '2024-01-03T09:00:00Z',
+              deleted: null,
             },
             {
               id: 4,
-              title: 'Diary Title 2',
-              place: 'Diary Place 2',
+              title: 'Diary Title 4',
+              place: 'Diary Place 4',
               weather: 'RAINY',
               mood: 'SAD',
-              content: 'Diary Content 2',
+              content: 'Diary Content 4',
               userId: 124,
               scheduleId: 457,
               locationId: 790,
@@ -722,6 +709,9 @@ export const HomeHandlers = [
                 imageKey:
                   'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
               },
+              created: '2024-01-04T12:34:56Z',
+              updated: '2024-01-04T09:00:00Z',
+              deleted: null,
             },
           ],
         },

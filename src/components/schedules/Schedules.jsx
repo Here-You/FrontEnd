@@ -13,6 +13,7 @@ import Trash from '/icons/Trash.svg';
 
 const Schedules = ({ data, dataLength }) => {
   const {
+    journeyId,
     scheduleId,
     title: scheduleTitle,
     date,
@@ -90,7 +91,7 @@ const Schedules = ({ data, dataLength }) => {
           <Link
             to={
               diary_written
-                ? `/dailyrecord/${scheduleId}`
+                ? `/dailyrecord/${scheduleId}?journeyId=${journeyId}`
                 : `/dailyrecord/${scheduleId}/write`
             }
             style={{

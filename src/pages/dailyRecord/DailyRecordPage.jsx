@@ -1,37 +1,47 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import * as S from './DailyRecordPage.style';
 import ExpandLeft from '/icons/ExpandLeft.svg';
 import ExpandRight from '/icons/ExpandRight.svg';
 import PenGreen from '/icons/PenGreen.svg';
+import { getDiary } from '@/apis/request/home';
 import { MOOD_ICON_LIST, WEATHER_ICON_LIST } from '@/constants/dailyRecord';
-import { useGetDiary } from '@/hooks/home/useGetDiary';
+import { useGetDiaryMap } from '@/hooks/home/useGetDiaryMap';
+import { useQuery } from '@tanstack/react-query';
 
 const DailyRecordPage = () => {
   const { search } = useLocation();
-  const params = new URLSearchParams(search);
+  const { scheduleId } = useParams();
 
-  const scheduleId = params.get('scheduleid');
-  const recordId = params.get('recordid') || 1;
-  const { data, error, loading } = useGetDiary(recordId); //전체 데이터 요청
-  const recordData = data[0];
+  const params = new URLSearchParams(search);
+  const journeyId = params.get('journeyId');
+
+  const { data: diaryData, error, loading } = useGetDiaryMap(journeyId); //전체 데이터 요청
   const [currentVisibleData, setCurrentVisibleData] = useState({}); //현재 화면에 보여주는 데이터
   const [slideDirection, setSlideDirection] = useState(null);
-  const [nowPage, setNowPage] = useState(parseInt(recordId)); //일지 하나당 데이터 id
+  const [nowPage, setNowPage] = useState(parseInt(scheduleId)); //일지 하나당 데이터 id
+
+  const { data } = useQuery({
+    queryKey: ['diaries', nowPage],
+    queryFn: () => getDiary(nowPage),
+  });
 
   const date = useMemo(() => {
-    if (!recordData) {
+    if (!diaryData?.diaries) {
       return null;
     } else {
-      const date = recordData?.created.split('T')[0].split('-');
+      const date = diaryData?.diaries[nowPage - 1]?.created
+        .split('T')[0]
+        .split('-');
       return `${date[0]}년 ${date[1]}월 ${date[2]}일`;
     }
-  }, [recordData]);
+  }, [diaryData?.diaries, nowPage]);
 
   useEffect(() => {
-    setCurrentVisibleData(data[nowPage - 1]);
-  }, [data, nowPage]);
+    diaryData?.diaries &&
+      setCurrentVisibleData(diaryData?.diaries[nowPage - 1]);
+  }, [diaryData, nowPage]);
 
   const handleAnimationEnd = () => {
     setSlideDirection(null);
@@ -47,7 +57,7 @@ const DailyRecordPage = () => {
   };
 
   const nextButtonClick = () => {
-    if (nowPage === data.length) {
+    if (nowPage === diaryData?.diaries.length) {
       alert('이 여정의 가장 마지막 일지입니다!');
     } else {
       setSlideDirection('slide-left');
@@ -69,9 +79,7 @@ const DailyRecordPage = () => {
             <S.RecordContentsContainer
               className={slideDirection}
               onAnimationEnd={handleAnimationEnd}>
-              <S.PreviewImage
-                src={currentVisibleData?.diary_image?.image_key}
-              />
+              <S.PreviewImage src={currentVisibleData?.diary_image?.imageKey} />
               <S.LocationText>{currentVisibleData?.place}</S.LocationText>
               <S.TitleText>{currentVisibleData?.title}</S.TitleText>
               <S.WeatherContainer>
@@ -96,7 +104,7 @@ const DailyRecordPage = () => {
           <S.RecordContainer></S.RecordContainer>
         </div>
       </S.SlideContainer>
-      <S.AddButton to={`/dailyrecord/${scheduleId}/edit/${nowPage}`}>
+      <S.AddButton to={`/dailyrecord/${nowPage}/edit`}>
         <S.PenIcon src={PenGreen} />
       </S.AddButton>
     </S.Container>
