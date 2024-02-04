@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { postSnsLogin } from '@/apis/request/profile';
+import { useLoginToken } from '@/hooks/login/useLoginToken';
 
 const Redirect = () => {
   const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEAY;
@@ -13,6 +14,7 @@ const Redirect = () => {
   useEffect(() => {
     if (code) {
       postSnsLogin('kakao', code);
+      localStorage.setItem('token',code);
     }
   }, [code]);
 

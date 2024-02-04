@@ -12,6 +12,7 @@ import { ProfileHandlers } from './profile';
 import { profileInfoHandlers } from './profile-info';
 import { SignatureHandlers } from './signature';
 import { travelHandlers } from './travel-place';
+import { notificationHandlers } from './notification';
 
 export const handlers = [
   ...travelHandlers,
@@ -28,4 +29,5 @@ export const handlers = [
   ...MateHandlers,
   ...ProfileHandlers,
   ...SignatureHandlers,
+  ...notificationHandlers,
 ];

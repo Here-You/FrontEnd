@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 
 import Modal from '../Modal';
 import * as S from './LogoutModal.style';
-import { deleteWithdrawMember } from '@/apis/request/profile';
+import { useLoginToken } from '@/hooks/login/useLoginToken';
 import useLogoutModal from '@/hooks/modal/useLogoutModal';
+import { googleLogout } from '@react-oauth/google';
 
 const LogoutModal = ({}) => {
   const logoutModal = useLogoutModal();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const { data, loading, error } = useLoginToken();
 
   const BodyContent = (
     <S.Container>
@@ -24,20 +25,17 @@ const LogoutModal = ({}) => {
     logoutModal.onClose();
   };
 
-  const onSubmit = async data => {
-    setIsLoading(true);
+  const onSubmit = async () => {
     try {
-      const res = await deleteWithdrawMember();
-      if (res) {
-        alert('로그아웃 되었습니다.');
-      }
+      setIsLoading(true);
+      console.log(data);
+      googleLogout();
+      handleCloseModal();
     } catch (error) {
-      console.log(error);
-      console.error('서버 내부 오류.', error);
-      alert('서버 내부 오류');
+      console.error('Logout error:', error);
+      setIsError(true);
     } finally {
       setIsLoading(false);
-      handleCloseModal();
     }
   };
 

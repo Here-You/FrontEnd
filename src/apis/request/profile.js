@@ -15,7 +15,7 @@ const postSnsLogin = (type, token) => {
 };
 const postAddInformation = (nickname, introduction) => {
   const url = `${API_URL.ADDITIONAL_INFORMATION}`;
-  const res = axios.post(url, {
+  const res = axiosWithToken.post(url, {
     nickname: nickname,
     introduction: introduction,
   });
@@ -23,14 +23,14 @@ const postAddInformation = (nickname, introduction) => {
 };
 const updateNickName = nickname => {
   const url = `${API_URL.UPDATE_NICKNAME}`;
-  const res = axios.put(url, {
+  const res = axiosWithToken.put(url, {
     nickname: nickname,
   });
   return res;
 };
 const updateIntro = intro => {
   const url = `${API_URL.UPDATE_PROFILE_INTRO}`;
-  const res = axios.put(url, {
+  const res = axiosWithToken.put(url, {
     intro: intro,
   });
   return res;
@@ -38,7 +38,7 @@ const updateIntro = intro => {
 
 const deleteWithdrawMember = () => {
   const url = `${API_URL.WITHDRAW_MEMBER}`;
-  return axios.delete(url);
+  return axiosWithToken.delete(url);
 };
 
 export {
