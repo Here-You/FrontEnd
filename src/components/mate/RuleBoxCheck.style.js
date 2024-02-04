@@ -28,7 +28,6 @@ const StyledTitle = styled.input`
   width: 200px;
   height: 24px;
   padding: 5px;
-
   color: #000;
   text-align: center;
   font-size: 16px;
@@ -134,7 +133,7 @@ const RuleDetail = styled.textarea`
   min-height: 100px;
   border: none;
   padding: 5px;
-
+  
   &:focus {
     outline: none;
   }

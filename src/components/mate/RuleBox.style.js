@@ -125,7 +125,7 @@ const InputRuleTitle = styled.textarea`
   border: none;
   padding: 5px;
   margin-bottom: 5px;
-
+  
   &:focus {
     outline: none;
   }

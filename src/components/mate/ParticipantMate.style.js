@@ -32,7 +32,6 @@ const TextContainer = styled.div`
   left: 70px;
   height: 100%;
   gap: 1px;
-
   span {
     color: ${theme.COLOR.MAIN.BLACK};
     font-size: 8.864px;
@@ -42,7 +41,6 @@ const TextContainer = styled.div`
     letter-spacing: 0.638px;
     padding: 1px;
   }
-
   span:nth-child(2) {
     color: #aaa;
   }
