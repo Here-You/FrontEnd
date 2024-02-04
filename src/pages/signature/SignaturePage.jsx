@@ -12,6 +12,7 @@ export default function SignaturePage() {
   const handleHeaderClick = header => {
     setSelectedHeader(header);
   };
+  const { addPage } = useSignatureWrite();
 
   return (
     <>
