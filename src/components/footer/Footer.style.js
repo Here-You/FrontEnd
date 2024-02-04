@@ -22,7 +22,9 @@ const Image = styled.img`
 const LinkTo = styled(Link)`
   ${theme.ALIGN.COLUMN_CENTER}
   text-decoration: none;
-  color: black;
+
+  color: ${props =>
+    props.active ? theme.COLOR.MAIN.HEAVY_GREEN : theme.COLOR.MAIN.BLACK};
 `;
 
 export { FooterWrapper, Image, LinkTo };
