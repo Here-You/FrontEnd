@@ -5,9 +5,13 @@ const useSignatureWrite = create(set => ({
   title: '',
   pages: [{}],
   currentPageIndex: 0,
+  addTitle: newTitle =>
+    set(state => ({
+      title: newTitle,
+    })),
   addPage: () =>
     set(state => ({
-      pages: [...state.pages, { position: '', content: '', photo: null }],
+      pages: [...state.pages, { location: '', content: '', photo: null }],
       currentPageIndex: state.pages.length,
     })),
   removePage: () =>

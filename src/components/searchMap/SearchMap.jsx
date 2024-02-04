@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import usePlacesAutocomplete, {
@@ -53,7 +53,11 @@ const PlacesAutocomplete = ({
   placeholder,
   selectLocation,
 }) => {
-  const [input, setInput] = useState(inputValue);
+  const [input, setInput] = useState(inputValue || '');
+
+  useEffect(() => {
+    setInput(inputValue);
+  }, [inputValue]);
 
   const {
     ready,

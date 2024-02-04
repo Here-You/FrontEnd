@@ -44,9 +44,15 @@ export default function Editor() {
   };
 
   const handlePublish = () => {
-    if (validatePages()) {
-      // Implement logic to publish the content
-      alert('발행 완료!');
+    for (let i = 0; i < pages.length - 1; i++) {
+      const page = pages[i];
+      if (!page.location || !page.photo || !page.content) {
+        alert('모든 페이지 정보를 입력하세요!');
+        return false;
+      } else {
+        console.log();
+        return true;
+      }
     }
   };
 
@@ -56,18 +62,6 @@ export default function Editor() {
     } else {
       alert(`최대 ${maxPages}개의 페이지까지만 추가할 수 있습니다.`);
     }
-  };
-
-  const validatePages = () => {
-    // Implement validation logic for each page (position, photo, content)
-    for (let i = 0; i < pages.length - 1; i++) {
-      const page = pages[i];
-      if (!page.position || !page.photo || !page.content) {
-        alert('모든 페이지 정보를 입력하세요!');
-        return false;
-      }
-    }
-    return true;
   };
 
   useEffect(() => {
@@ -85,7 +79,7 @@ export default function Editor() {
           <S.Empty />
         )}
         <Page
-          position={pages[currentPageIndex]?.position}
+          location={pages[currentPageIndex]?.location}
           photo={pages[currentPageIndex]?.photo}
           content={pages[currentPageIndex]?.content}
           onImageChange={e => handleImageChange(e, currentPageIndex)}
@@ -104,9 +98,7 @@ export default function Editor() {
           <S.Empty2 />
         )}
 
-        <S.Button /*  enabled={validatePages()}  */ onClick={handlePublish}>
-          발행
-        </S.Button>
+        <S.Button onClick={handlePublish}>발행</S.Button>
       </S.ButtonWrap>
       <div>
         <p>현재 페이지: {currentPageIndex + 1}</p>
