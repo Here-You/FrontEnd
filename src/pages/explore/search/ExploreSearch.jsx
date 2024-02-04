@@ -30,7 +30,6 @@ const ExploreSearch = () => {
           />
           <SearchButton onClick={handleSearchButtonClick} />
         </InputContainer>
-        <div>다양한 관심사를 검색해보세요</div>
       </SearchContainer>
       <Container>
         <ResultsTitle>[{params.value}] 검색 결과</ResultsTitle>
