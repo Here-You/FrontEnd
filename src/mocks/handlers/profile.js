@@ -22,7 +22,17 @@ export const ProfileHandlers = [
       token: 'JWT_TOKEN',
       register_required: false,
     });
-  }),
+  }), // 추가 정보입력
+  http.post(
+    `${baseURL}${API_URL.ADDITIONAL_INFORMATION}`,
+    ({ request, params }) => {
+      return HttpResponse.json({
+        status: 200,
+        success: true,
+        message: '추가정보 입력 성공',
+      });
+    },
+  ),
   // 로그아웃 (JWT 사용시 구현 X)
 
   // 닉네임 수정

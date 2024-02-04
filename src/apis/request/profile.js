@@ -7,9 +7,17 @@ const getProfileInfo = () => {
 
 const postSnsLogin = (type, token) => {
   const url = `${API_URL.SNS_LOGIN}`;
-  const res = axios.post(url, {
+  const res = axiosWithToken.post(url, {
     type: type,
     token: token,
+  });
+  return res;
+};
+const postAddInformation = (nickname, introduction) => {
+  const url = `${API_URL.ADDITIONAL_INFORMATION}`;
+  const res = axios.post(url, {
+    nickname: nickname,
+    introduction: introduction,
   });
   return res;
 };
@@ -28,7 +36,7 @@ const updateIntro = intro => {
   return res;
 };
 
-const getWithdrawMember = () => {
+const deleteWithdrawMember = () => {
   const url = `${API_URL.WITHDRAW_MEMBER}`;
   return axios.delete(url);
 };
@@ -38,5 +46,6 @@ export {
   postSnsLogin,
   updateIntro,
   updateNickName,
-  getWithdrawMember,
+  deleteWithdrawMember,
+  postAddInformation,
 };

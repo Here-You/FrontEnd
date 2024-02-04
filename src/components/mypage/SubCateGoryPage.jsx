@@ -1,17 +1,27 @@
 import * as S from './SubCateGoryPage.style';
-import editModal from '@/store/editModal';
+import useLogoutModal from '@/hooks/modal/useLogoutModal';
+import LogoutModal from '../modal/mypage/LogoutModal';
 
 const SubCateGoryPage = ({ children, listName }) => {
-  const { onOpen } = editModal();
+  const logoutModal = useLogoutModal();
 
+  const handleClick = (list) =>{
+    if(list.modal){
+      logoutModal.onOpen();
+    }else if(list.notion){
+      window.open("https://sally626.notion.site/444bf09f12b54b86932f0ad462dde398?pvs=4");
+    }
+
+  }
   return (
     <S.CategoryContainer>
       <h2>{children}</h2>
+      <LogoutModal/>
       {listName?.map(list => {
         return (
           <S.Subcategory
             key={list.id}
-            onClick={() => list.modal && onOpen(list.modal, list.modalNum)}>
+            onClick={() => handleClick(list)}>
             <S.LinkTo to={list.link}>
               <S.CategoryImg src={list.img} alt={list.title} />
               <p>{list.title}</p>
