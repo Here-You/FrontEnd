@@ -5,36 +5,43 @@ import theme from '@/theme';
 
 const InputContainer = styled.div`
   position: relative;
-  width: 293px;
-  height: 526px;
+  width: 500px;
+  height: 800px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
-  border-radius: 10px;
+  border-radius: 20px 20px 0 0;
   background-color: ${theme.COLOR.MAIN.WHITE};
   margin-top: 10px;
   margin-bottom: 32px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 300px;
+    height: 530px;
+    border-radius: 10px;
+  }
 `;
 
 const Topcontainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   position: relative;
   width: 100%;
-  margin: 20px 0;
+  margin: 20px 0 10px 0;
 `;
 
 const LineWrapper = styled.div`
   ${theme.ALIGN.ROW_CENTER};
+  width: 70%;
 `;
 
 const StyledTitle = styled.input`
   border: none;
   border-bottom: 1px solid ${theme.COLOR.MAIN.LIGHT_BLACK};
-  width: 200px;
-  height: 24px;
+  width: 100%;
+  height: 36px;
   padding: 5px;
 
   color: #000;
   text-align: center;
-  font-size: 16px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -42,81 +49,118 @@ const StyledTitle = styled.input`
   &:focus {
     outline: none;
   }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    height: 24px;
+    font-size: 16px;
+  }
 `;
 
 const PlusButton = styled.button`
+  width: 32px;
+  height: 32px;
   position: absolute;
-  right: 10px;
-  margin-left: 13px;
-  width: 20px;
-  height: 20px;
+  right: 20px;
   border: none;
   background-image: url(${AddUserIcon});
   background-repeat: no-repeat;
   background-size: contain;
   background-color: transparent;
   cursor: pointer;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const Participant = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  width: 200px;
-  margin-top: 10px;
-  height: 15px;
+  width: 100%;
+  margin-top: 20px;
+  height: 30px;
+  background-color: blue;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    margin-top: 10px;
+    height: 20px;
+  }
 `;
 
 const ParticipantImg = styled.div`
   ${theme.ALIGN.ROW_CENTER};
 
   img {
-    width: 12px;
-    height: 12px;
-    border-radius: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
     border: none;
-    margin-left: -4px;
+    margin-left: -8px;
+  }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    img {
+      width: 12px;
+      height: 12px;
+      border-radius: 12px;
+      margin-left: -4px;
+    }
   }
 `;
 
 const ParticipantName = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  margin-left: 2px;
+  margin-left: 10px;
 
   span {
     color: #aaa;
     text-align: center;
-    font-size: 10px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+  }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    margin-left: 6px;
+
+    span {
+      font-size: 12px;
+    }
   }
 `;
 
 const ParticipantOver = styled.img`
   ${theme.ALIGN.ROW_CENTER};
-  margin-left: 2px;
+  width: 16px;
+  margin-left: 10px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 12px;
+    margin-left: 6px;
+  }
 `;
 
 const InputBox = styled.div`
   border: none;
   width: 100%;
-  height: 430px;
+  height: 682px;
   border-top: 1px solid ${theme.COLOR.MAIN.LIGHT_GRAY};
   padding: 5px;
   overflow-y: scroll;
 
-  div {
-    width: 100%;
-    height: auto;
-    color: ${theme.COLOR.MAIN.BLACK};
-    text-align: center;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    font-size: 14px;
-    padding: 5px;
-    margin-bottom: 20px;
-    background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    height: 440px;
   }
+`;
+
+const SmallRule = styled.div`
+  width: 100%;
+  height: auto;
+  color: ${theme.COLOR.MAIN.BLACK};
+  padding: 5px;
+  margin-bottom: 20px;
+  background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
 `;
 
 const InputRuleTitle = styled.textarea`
@@ -125,9 +169,18 @@ const InputRuleTitle = styled.textarea`
   border: none;
   padding: 5px;
   margin-bottom: 5px;
-  
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  font-size: 18px;
+
   &:focus {
     outline: none;
+  }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: 12px;
   }
 `;
 
@@ -138,8 +191,18 @@ const InputRuleDetail = styled.textarea`
   border: none;
   padding: 5px;
 
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  font-size: 18px;
+
   &:focus {
     outline: none;
+  }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: 12px;
   }
 `;
 
@@ -154,6 +217,7 @@ export {
   ParticipantName,
   ParticipantOver,
   InputBox,
+  SmallRule,
   InputRuleTitle,
   InputRuleDetail,
 };

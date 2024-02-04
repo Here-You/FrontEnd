@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import MateContainer from '../MateContainer';
 import * as S from './MateManagement.style';
 import ManagementProfile from '@/components/mate/ManagementProfile';
 import { useMateFollower } from '@/hooks/mate/useMateFollower';
@@ -16,7 +17,7 @@ const MateManagementPage = () => {
 
   return (
     <>
-      <S.CenteredContainer>
+      <MateContainer>
         <S.TabContainer>
           <S.TabElement
             active={activeTab === 'follower'}
@@ -29,7 +30,7 @@ const MateManagementPage = () => {
             팔로잉
           </S.TabElement>
         </S.TabContainer>
-      </S.CenteredContainer>
+      </MateContainer>
 
       {activeTab === 'follower'
         ? dataFollower.map((data, index) => (

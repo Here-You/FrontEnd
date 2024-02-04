@@ -2,10 +2,6 @@ import styled from 'styled-components';
 
 import theme from '@/theme';
 
-const CenteredContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
-`;
-
 const TabContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: space-around;
@@ -33,4 +29,4 @@ const TabElement = styled.div`
   }
 `;
 
-export { CenteredContainer, TabContainer, TabElement };
+export { TabContainer, TabElement };

@@ -2,10 +2,6 @@ import styled from 'styled-components';
 
 import theme from '@/theme';
 
-const CenteredContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
-`;
-
 const PublishButton = styled.button`
   width: 201px;
   height: 51px;
@@ -26,4 +22,4 @@ const PublishButton = styled.button`
   }
 `;
 
-export { CenteredContainer, PublishButton };
+export { PublishButton };

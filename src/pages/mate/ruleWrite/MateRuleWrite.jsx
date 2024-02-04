@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import MateContainer from '../MateContainer';
 import * as S from './MateRuleWrite.style';
 import { postCreateMateRule } from '@/apis/request/mate';
 import RuleBox from '@/components/mate/RuleBox';
@@ -21,7 +22,7 @@ const MateRuleWritePage = () => {
         rules: rules,
         invitedId: selectedProfiles.map(profile => profile.id),
       };
-      const res = await postCreateMateRule(postData);
+      const res = await postCreateMateRule(userId, postData);
       console.log(res);
     } catch (e) {
       setError(e.message || '에러가 발생했습니다.');
@@ -31,7 +32,7 @@ const MateRuleWritePage = () => {
   };
 
   return (
-    <S.CenteredContainer>
+    <MateContainer>
       <RuleBox
         mainTitle={mainTitle}
         setMainTitle={setMainTitle}
@@ -41,7 +42,7 @@ const MateRuleWritePage = () => {
         setSelectedProfiles={setSelectedProfiles}
       />
       <S.PublishButton onClick={handlePublishClick}>발행하기</S.PublishButton>
-    </S.CenteredContainer>
+    </MateContainer>
   );
 };
 

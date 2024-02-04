@@ -35,25 +35,26 @@ const getExploreMate = (userId, pageParam, limit) => {
   return axiosWithToken.get(url);
 };
 
-const getMateFollower = () => {
+const getMateFollower = userId => {
   // GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/followList/:userId`,
   // 백엔드 API : api/v1/mate/followerList/:userId
-  const url = `${API_URL.GET_MATE_FOLLOWER}`;
+  const url = `${API_URL.GET_MATE_FOLLOWER}/${userId}`;
   return axiosWithToken.get(url);
 };
 
-const getMateFollowing = () => {
+const getMateFollowing = userId => {
   // GET_MATE_FOLLOWING: `/api/${VERSION}/${API_BASE.MATE}/followingList/:userId`,
   // 백엔드 API : api/v1/mate/followingList/:userId
-  const url = `${API_URL.GET_MATE_FOLLOWING}`;
+  const url = `${API_URL.GET_MATE_FOLLOWING}/${userId}`;
   return axiosWithToken.get(url);
 };
 
-const postCreateMateRule = postData => {
+const postCreateMateRule = (userId, postData) => {
   // CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,
   // 백엔드 API : api/v1/mate/rule/write
   const { mainTitle, created, rules, invitedId } = postData;
   const url = `${API_URL.CREATE_MATE_RULE}`;
+  console.log(url);
   return axiosWithToken.post(url, {
     write: {
       mainTitle: mainTitle,

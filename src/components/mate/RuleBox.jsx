@@ -74,10 +74,10 @@ const RuleBox = ({
           )}
         </S.Participant>
       </S.Topcontainer>
-      
+
       <S.InputBox>
         {rules.map((rule, index) => (
-          <div key={index}>
+          <S.SmallRule key={index}>
             <S.InputRuleTitle
               placeholder={`규칙${index + 1}의 제목을 입력해주세요.`}
               value={rule.ruleTitle}
@@ -92,7 +92,7 @@ const RuleBox = ({
                 updateRule(index, { ...rule, ruleDetail: e.target.value })
               }
             />
-          </div>
+          </S.SmallRule>
         ))}
       </S.InputBox>
 
