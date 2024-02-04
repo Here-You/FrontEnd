@@ -111,10 +111,12 @@ const SchedulesContainer = styled.div`
   max-height: 400px;
   overflow: scroll;
   padding: 0 30px;
+
   &::-webkit-scrollbar {
     width: 5px;
     background: transparent;
   }
+
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: ${theme.COLOR.MAIN.LIGHT_GRAY};

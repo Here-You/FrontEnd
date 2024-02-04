@@ -15,7 +15,6 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      // Make a POST request to your login endpoint
       const response = await axios.post(
         'https://hereyou.kaaang.dev/api/v1/user/login',
         {
@@ -28,7 +27,6 @@ const LoginPage = () => {
       localStorage.setItem('x-access-token', response.data.token);
       navigate('/');
     } catch (error) {
-      // Handle errors, for example, display an error message
       console.error('Login failed:', error.message);
     }
   };
