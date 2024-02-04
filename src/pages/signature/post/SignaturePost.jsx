@@ -80,12 +80,15 @@ const SignaturePostPage = () => {
                   {detailSignatures.pages[step - 1].location}
                 </h3>
                 <p>{detailSignatures.pages[step - 1].content}</p>
+
+                <S.FunctionButtonContainer>
+                  <S.ModifyButton
+                    onClick={() => navigate(`/signature/edit/${signatureId}`)}>
+                    수정
+                  </S.ModifyButton>
+                  <S.DeleteButton onClick={() => {}}>삭제</S.DeleteButton>
+                </S.FunctionButtonContainer>
               </S.TextContainer>
-              <button
-                onClick={() => navigate(`/signature/edit/${signatureId}`)}>
-                수정
-              </button>
-              <button>삭제</button>
             </>
           </S.SignatureContainer>
         )}

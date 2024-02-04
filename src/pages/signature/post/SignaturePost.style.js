@@ -85,6 +85,40 @@ const TextContainer = styled.div`
   }
 `;
 
+const FunctionButtonContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  gap: 10px;
+  margin-top: 20px;
+`;
+
+const ModifyButton = styled.button`
+  background-color: ${theme.COLOR.MAIN.GRAY};
+  border: none;
+  border-radius: 20px;
+  padding: 2px 8px;
+  color: ${theme.COLOR.MAIN.WHITE};
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+`;
+
+const DeleteButton = styled.button`
+  background-color: red;
+  border: none;
+  border-radius: 20px;
+  padding: 2px 8px;
+  color: ${theme.COLOR.MAIN.WHITE};
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+`;
+
 export {
   TitleContainer,
   ProfileContainer,
@@ -95,4 +129,7 @@ export {
   Button,
   Image,
   TextContainer,
+  FunctionButtonContainer,
+  ModifyButton,
+  DeleteButton,
 };
