@@ -13,9 +13,12 @@ const SignaturePostPage = () => {
 
   const { data: detailSignatures, error, loading } = useGetDetail(signatureId);
 
+  const author = detailSignatures.author;
+  const header = detailSignatures.header;
+
   const [step, setStep] = useState(1);
 
-  const totalPages = detailSignatures ? detailSignatures.length : 0;
+  const totalPages = detailSignatures?.pages?.length || 0;
 
   const handleNextPage = () => {
     if (step < totalPages) {
@@ -39,24 +42,31 @@ const SignaturePostPage = () => {
 
   return (
     <>
-      {detailSignatures && (
-        <S.SignatureContainer>
-          {detailSignatures[step - 1] && (
+      {detailSignatures &&
+        detailSignatures.pages &&
+        detailSignatures.pages[step - 1] && (
+          <S.SignatureContainer>
             <>
+              <S.ProfileContainer>
+                <S.ProfileImg src={author.image} />
+                <h3>{author.name}</h3>
+                <date>{header.date}</date>
+                <button>팔로우</button>
+              </S.ProfileContainer>
               <S.TitleContainer>
-                <h1>제목을 왜 데이터 안주시지...</h1>
+                <h1>{header.title}</h1>
               </S.TitleContainer>
               <S.ButtonContainer>
                 <button>
                   <FaHeart onClick={() => alert('좋아요')} />
                 </button>
-                <h3>22</h3>
+                <h3>{header.like_cnt}</h3>
               </S.ButtonContainer>
               <S.ImageContainer>
                 <S.Button onClick={handlePrevPage} disabled={step === 1}>
                   <GrFormPrevious />
                 </S.Button>
-                <S.Image src={detailSignatures[step - 1].image} />
+                <S.Image src={detailSignatures.pages[step - 1].image} />
                 <S.Button
                   onClick={handleNextPage}
                   disabled={step === totalPages}>
@@ -66,14 +76,13 @@ const SignaturePostPage = () => {
               <S.TextContainer>
                 <h3>
                   <CiLocationOn />
-                  {detailSignatures[step - 1].location}
+                  {detailSignatures.pages[step - 1].location}
                 </h3>
-                <p>{detailSignatures[step - 1].content}</p>
+                <p>{detailSignatures.pages[step - 1].content}</p>
               </S.TextContainer>
             </>
-          )}
-        </S.SignatureContainer>
-      )}
+          </S.SignatureContainer>
+        )}
     </>
   );
 };

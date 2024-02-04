@@ -13,7 +13,7 @@ export const useGetDetail = signatureId => {
       try {
         setLoading(true);
         const res = await getDetail(signatureId);
-        const data = res.data.data.pages;
+        const data = res.data.data;
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

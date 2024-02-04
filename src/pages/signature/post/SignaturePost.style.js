@@ -7,6 +7,17 @@ const SignatureContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
 `;
 
+const ProfileContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  gap: 2px;
+`;
+
+const ProfileImg = styled.img`
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+`;
+
 const TitleContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   font-size: ${FONT_SIZE.XS};
@@ -76,6 +87,8 @@ const TextContainer = styled.div`
 
 export {
   TitleContainer,
+  ProfileContainer,
+  ProfileImg,
   ButtonContainer,
   SignatureContainer,
   ImageContainer,
