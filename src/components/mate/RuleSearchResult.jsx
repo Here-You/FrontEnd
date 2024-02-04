@@ -15,9 +15,9 @@ const RuleSearchResult = ({ profileData, onClick }) => {
     <S.ResultContainer isActive={isActive} onClick={handleClick}>
       <S.UserImg src={image} alt="프로필" />
       <S.TextContainer>
-        <span>{name}</span>
-        <span>{nickname}</span>
-        <span>{bio}</span>
+        <p>{name}</p>
+        <p>{nickname}</p>
+        <p>{bio}</p>
       </S.TextContainer>
     </S.ResultContainer>
   );

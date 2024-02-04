@@ -79,7 +79,6 @@ const Participant = styled.div`
   width: 100%;
   margin-top: 20px;
   height: 30px;
-  background-color: blue;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     margin-top: 10px;
@@ -161,18 +160,18 @@ const SmallRule = styled.div`
   padding: 5px;
   margin-bottom: 20px;
   background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
-`;
 
-const InputRuleTitle = styled.textarea`
-  width: 100%;
-  height: auto;
-  border: none;
-  padding: 5px;
-  margin-bottom: 5px;
   text-align: center;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+`;
+
+const InputRuleTitle = styled.textarea`
+  width: 100%;
+  border: none;
+  padding: 5px;
+  margin-bottom: 5px;
   font-size: 18px;
 
   &:focus {
@@ -190,11 +189,6 @@ const InputRuleDetail = styled.textarea`
   min-height: 100px;
   border: none;
   padding: 5px;
-
-  text-align: center;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
   font-size: 18px;
 
   &:focus {

@@ -40,7 +40,7 @@ const SearchInviteMateModal = ({ onClose, setSelectedProfiles }) => {
     <S.ModalBase>
       <S.ModalContainer>
         <S.WrapContainer>
-          <span>초대할 메이트의 아이디를 입력하세요.</span>
+          <S.Description>초대할 메이트의 아이디를 입력하세요.</S.Description>
           <S.SearchContainer onSubmit={handleSubmitForm}>
             <S.UserInput
               value={inputSearchTerm}

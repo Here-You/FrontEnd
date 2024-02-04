@@ -407,6 +407,14 @@ export const MateHandlers = [
               image:
                 'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
+            {
+              _id: 3,
+              name: '안예원3',
+              nickname: 'ahnyewon',
+              bio: '안녕하세요 안예원 입니다. 반가워요. 또 만나요',
+              image:
+                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            },
           ],
         },
       });

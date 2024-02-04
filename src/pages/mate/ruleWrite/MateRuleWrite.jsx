@@ -13,7 +13,6 @@ const MateRuleWritePage = () => {
   const [error, setError] = useState(false);
 
   const handlePublishClick = async () => {
-    console.log('handlePublishClick called');
     try {
       setLoading(true);
       const postData = {
