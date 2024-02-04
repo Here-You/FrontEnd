@@ -41,13 +41,14 @@ const Wrap = styled.div`
   flex-direction: column;
   justify-content: center;
 `;
+
 const TagWrap = styled.div`
   display: flex;
-
   flex-direction: row;
   width: 95%;
   margin: 0 auto;
 `;
+
 const PreviewWrap = styled.div`
   display: flex;
   flex-direction: row;

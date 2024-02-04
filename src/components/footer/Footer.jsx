@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom';
+
 import * as S from './Footer.style';
 import Group from '/images/Group.svg';
 import Home from '/images/Home.svg';
@@ -12,11 +14,13 @@ const FooterMenu = [
 ];
 
 const Footer = () => {
+  const { pathname } = useLocation();
+
   return (
     <S.FooterWrapper>
       {FooterMenu.map((f, index) => (
-        <S.LinkTo key={index} to={f.to}>
-          <S.Image src={f.icon} />
+        <S.LinkTo key={index} to={f.to} active={pathname === f.to}>
+          <S.Image src={f.icon} color={pathname === f.to ? 'green' : 'black'} />
           <p>{f.name}</p>
         </S.LinkTo>
       ))}

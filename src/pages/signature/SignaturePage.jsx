@@ -8,25 +8,7 @@ import { getSignaturePreview } from '@/apis/request/preview';
 import useSignatureWrite from '@/store/useSignatureWrite';
 
 export default function SignaturePage() {
-  const [data, setData] = useState([]);
   const [selectedHeader, setSelectedHeader] = useState('내 시그니처');
-  const { addPage } = useSignatureWrite();
-
-  const getData = async () => {
-    try {
-      const res = await getSignaturePreview();
-      const mockData = res.data;
-      setData(mockData);
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   const handleHeaderClick = header => {
     setSelectedHeader(header);
   };

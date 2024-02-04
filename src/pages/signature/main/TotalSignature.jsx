@@ -1,5 +1,4 @@
-//하나의 시그니처 전체보기 페이지
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import * as S from './TotalSignature.style';

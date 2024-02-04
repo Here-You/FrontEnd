@@ -49,7 +49,7 @@ const Signature = () => {
     return <NoSignature />;
   }
 
-  return <div>{hasTitle ? <TotalSignature /> : <SignaturePage />}</div>;
+  return <>{hasTitle ? <TotalSignature /> : <SignaturePage />}</>;
 };
 
 export default Signature;
