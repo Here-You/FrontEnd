@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import theme from '@/theme';
@@ -48,7 +49,7 @@ const Title = styled.div`
   line-height: normal;
   margin: 3px 0px;
 `;
-const Open = styled.div`
+const Open = styled(Link)`
   display: flex;
   font-size: 12px;
   cursor: pointer;
