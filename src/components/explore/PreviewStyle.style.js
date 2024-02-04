@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
+import theme from '@/theme';
+
 const PreviewWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -8,34 +11,10 @@ const PreviewWrap = styled.div`
   cursor: pointer;
 `;
 
-const Profile = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const ProfileImg = styled.img`
-  display: flex;
-  max-width: 20px;
-  max-height: 20px;
-  border-radius: 100%;
-  object-fit: cover;
-`;
-
-const Date = styled.div`
-  display: flex;
-  width: 70%;
-  margin-left: 5px;
-  color: #000;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
-
 const PreviewImg = styled.img`
   display: flex;
-  max-width: 140px;
-  max-height: 140px;
+  width: 140px;
+  height: 140px;
   overflow: hidden;
   border-radius: 5px;
   border: 1px solid var(--gray2, #c8c8c8);
@@ -44,35 +23,56 @@ const PreviewImg = styled.img`
 const Title = styled.div`
   display: flex;
   font-family: Pretendard-bold;
-  color: var(--black, #393939);
   font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
   margin: 3px 0px;
+`;
+
+const Profile = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  gap: 5px;
+  justify-content: flex-start;
+`;
+
+const ProfileImg = styled.img`
+  display: flex;
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+const Nickname = styled.div`
+  font-size: ${FONT_SIZE.XS};
+`;
+
+const Date = styled.div`
+  display: flex;
+  width: 70%;
+  color: #000;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+const HeartContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  gap: 2px;
 `;
 
 const Open = styled.div`
   display: flex;
   font-size: 12px;
+
   cursor: pointer;
 `;
 
-const Nickname = styled.div`
-  display: flex;
-  font-size: 10px;
-`;
-
 const Info = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  ${theme.ALIGN.ROW_CENTER};
+  justify-content: flex-start;
   font-size: 10px;
-`;
-
-const HeartContainer = styled.div`
-  display: flex;
+  margin-top: 5px;
 `;
 
 export {

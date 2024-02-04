@@ -8,7 +8,6 @@ import {
   DailyRecordWritePage,
   ErrorPage,
   ExplorePage,
-  ExploreSearch,
   Home,
   JourneyDetailPage,
   LoginBeforePage,
@@ -260,13 +259,7 @@ const router = createBrowserRouter([
       {
         element: <AppLayout />,
         errorElement: <ErrorPage />,
-        children: [
-          { index: true, element: <ExplorePage /> },
-          {
-            path: `${BASE_PATH.EXPLORE_SEARCH}`,
-            element: <ExploreSearch />,
-          },
-        ],
+        children: [{ index: true, element: <ExplorePage /> }],
       },
     ],
   },

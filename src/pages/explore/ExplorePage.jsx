@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './ExplorePage.style';
-import Trending from '@/components/explore/Trending';
+import SignatureSearchSlider from '@/components/explore/SignatureSearchSlider';
 import { useSearchKeyWord } from '@/hooks/search/useSearchKeyWord';
 
 export default function ExplorePage() {
@@ -29,7 +29,7 @@ export default function ExplorePage() {
   }
 
   return (
-    <div>
+    <>
       <S.SearchContainer>
         <S.InputContainer>
           <S.InputText
@@ -42,9 +42,9 @@ export default function ExplorePage() {
       </S.SearchContainer>
 
       <>
-        <Trending data={hotSignature} />
-        <Trending data={newSignature} />
+        <SignatureSearchSlider data={hotSignature} />
+        <SignatureSearchSlider data={newSignature} />
       </>
-    </div>
+    </>
   );
 }

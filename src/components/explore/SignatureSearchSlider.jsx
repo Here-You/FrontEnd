@@ -1,7 +1,7 @@
 import Preview from './Preview';
 import * as S from './Trending.style';
 
-export default function Trending({ data }) {
+const SignatureSearchSlider = ({ data }) => {
   return (
     <S.PageContainer>
       <S.Title>인기 급상승 시그니처🔥</S.Title>
@@ -12,4 +12,6 @@ export default function Trending({ data }) {
       </S.PreviewContainer>
     </S.PageContainer>
   );
-}
+};
+
+export default SignatureSearchSlider;
