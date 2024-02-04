@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './SignaturePost.style';
 import { useGetDetail } from '@/hooks/signature/useGetDetail';
@@ -10,6 +10,7 @@ import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 const SignaturePostPage = () => {
   const params = useParams();
   const { signatureId } = params;
+  const navigate = useNavigate();
 
   const { data: detailSignatures, error, loading } = useGetDetail(signatureId);
 
@@ -80,6 +81,11 @@ const SignaturePostPage = () => {
                 </h3>
                 <p>{detailSignatures.pages[step - 1].content}</p>
               </S.TextContainer>
+              <button
+                onClick={() => navigate(`/signature/edit/${signatureId}`)}>
+                수정
+              </button>
+              <button>삭제</button>
             </>
           </S.SignatureContainer>
         )}
