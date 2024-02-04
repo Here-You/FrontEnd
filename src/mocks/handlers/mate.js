@@ -8,6 +8,8 @@ export const MateHandlers = [
   http.get(`${baseURL}${API_URL.SEARCH_MATE}`, ({ request, params }) => {
     const url = new URL(request.url);
     const searchTerm = url.searchParams.get('searchTerm');
+    // const cursor =;
+    // const take = ;
 
     if (!searchTerm) {
       return new HttpResponse(null, { status: 404 });
@@ -21,66 +23,89 @@ export const MateHandlers = [
         data: {
           mates: [
             {
-              _id: 1,
+              _id: 13,
               name: '안예원',
               nickname: 'ahnyewon',
               bio: '안녕하세요 안예원 입니다. 반가워요',
               follower_num: 23,
               following_num: 23,
               image:
-                'https://images.unsplash.com/photo-1706523964433-84c91f9086ca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D',
+                'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               is_following: true,
             },
             {
-              _id: 2,
-              name: '안예원',
+              _id: 12,
+              name: '안원',
               nickname: 'ahnwon',
               bio: '안녕하세요 안원 입니다. 반가워요',
               follower_num: 2,
               following_num: 2,
               image:
-                'https://images.unsplash.com/photo-1706523964433-84c91f9086ca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D',
+                'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               is_following: false,
             },
+            {
+              _id: 11,
+              name: '안예',
+              nickname: 'ahnyw',
+              bio: '안녕하세요 안예 입니다. 반가워요',
+              follower_num: 200,
+              following_num: 200,
+              image:
+                'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              is_following: true,
+            },
           ],
+          meta: {
+            total: 13,
+            take: 3,
+            hasNextData: true,
+            cursor: 11,
+          },
         },
       });
     }
   }),
 
   //메이트 팔로우
-  http.post(`${baseURL}${API_URL.FOLLOW_MATE}`, ({ request, params }) => {
-    const userId = params.userId;
+  http.post(
+    `${baseURL}${API_URL.FOLLOW_MATE}/:userId`,
+    ({ request, params }) => {
+      const userId = params.userId;
 
-    if (!userId) {
-      return new HttpResponse({
-        status: 500,
-        success: false,
-        message: '서버 내부 오류',
+      if (!userId) {
+        return new HttpResponse({
+          status: 500,
+          success: false,
+          message: '서버 내부 오류',
+        });
+      }
+
+      return HttpResponse.json({
+        status: 200,
+        success: true,
+        message: '팔로우 성공',
       });
-    }
-
-    return HttpResponse.json({
-      status: 200,
-      success: true,
-      message: '팔로우 성공',
-    });
-  }),
+    },
+  ),
 
   //메이트 언팔로우
-  http.delete(`${baseURL}${API_URL.UNFOLLOW_MATE}`, ({ request, params }) => {
-    const userId = params.userId;
+  http.delete(
+    `${baseURL}${API_URL.UNFOLLOW_MATE}/:userId`,
+    ({ request, params }) => {
+      const userId = params.userId;
 
-    if (!userId) {
-      return new HttpResponse(null, { status: 404 });
-    }
+      if (!userId) {
+        return new HttpResponse(null, { status: 404 });
+      }
 
-    return HttpResponse.json({
-      status: 200,
-      success: true,
-      message: '언팔로우 성공',
-    });
-  }),
+      return HttpResponse.json({
+        status: 200,
+        success: true,
+        message: '언팔로우 성공',
+      });
+    },
+  ),
 
   //메이트 탐색
   http.get(

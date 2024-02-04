@@ -1,11 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import * as S from './MateSearch.style';
 import Profile from '@/components/mate/Profile';
 
+const Container = styled.div`
+  margin-top: 30px;
+`;
+
 const MateSearchPage = ({ data }) => {
   return (
-    <div style={{ height: '100%', width: '100%' }}>
+    <Container>
       {data?.length > 0 ? (
         data?.map((d, index) => <Profile key={index} profileData={d} />)
       ) : (
@@ -13,7 +18,7 @@ const MateSearchPage = ({ data }) => {
           <span>해당 이름의 메이트가 존재하지 않아요</span>
         </S.NoResult>
       )}
-    </div>
+    </Container>
   );
 };
 

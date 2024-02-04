@@ -5,30 +5,36 @@ import theme from '@/theme';
 
 const SearchContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  margin-bottom: 38px;
+  width: 100%;
 `;
 
 const InputContainer = styled.form`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: space-between;
-  width: 295px;
-  height: 42.074px;
-  border-radius: 13.941px;
+  width: 70%;
+  min-width: 320px;
+  max-width: 450px;
+  height: 50px;
+  border-radius: 15px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
   background: #fdfdfd;
+
+  ${theme.WINDOW_SIZE.MOBILE} {
+    height: 45px;
+  }
 `;
 
 const InputText = styled.input`
   border: none;
   background: none;
-  padding-left: 17.85px;
+  padding-left: 15px;
 
   ::placeholder {
     color: rgba(0, 0, 0, 0.57);
-    font-size: 12.268px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 42.074px;
+    line-height: 42px;
   }
 
   &:focus {
@@ -37,16 +43,22 @@ const InputText = styled.input`
 `;
 
 const SearchButton = styled.button`
-  width: 41.824px;
-  height: 42.074px;
+  min-width: 41px;
+  max-width: 50px;
+  width: 12%;
+  height: 50px;
   padding-right: 0;
-  border-radius: 0px 13.941px 13.941px 0px;
+  border-radius: 0px 15px 15px 0px;
   border-color: transparent;
   background-color: ${theme.COLOR.MAIN.GREEN};
   background-image: url(${searchIcon});
   background-repeat: no-repeat;
   background-position: center center;
   cursor: pointer;
+
+  ${theme.WINDOW_SIZE.MOBILE} {
+    height: 45px;
+  }
 `;
 
 export { SearchContainer, InputContainer, InputText, SearchButton };

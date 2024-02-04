@@ -12,9 +12,7 @@ export const useSearchMate = searchTerm => {
       try {
         setLoading(true);
         const res = await getSearchMate(searchTerm);
-        console.log(res);
         const data = res.data.data.mates;
-        console.log(data);
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');
@@ -24,7 +22,7 @@ export const useSearchMate = searchTerm => {
     };
 
     fetchData();
-  }, []);
+  }, [searchTerm]);
 
   return { data, loading, error };
 };

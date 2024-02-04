@@ -4,8 +4,8 @@ const FollowModal = ({ onClose, name }) => {
   return (
     <S.ModalBase>
       <S.ModalContainer>
-        <button onClick={onClose}></button>
-        <span>{name}님을 팔로우하였습니다.</span>
+        <S.ModalCloseButton onClick={onClose}></S.ModalCloseButton>
+        <S.ModalContents>{name}님을 팔로우하였습니다.</S.ModalContents>
       </S.ModalContainer>
     </S.ModalBase>
   );

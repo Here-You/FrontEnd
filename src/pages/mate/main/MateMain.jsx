@@ -4,7 +4,6 @@ import mateRuleWriteIcon from '/images/mate/mateRule_write.svg';
 import mateManagementIcon from '/images/mate/mate_management.svg';
 import mateSearchIcon from '/images/mate/mate_search.svg';
 import Card from '@/components/mate/Card';
-import Title from '@/components/mate/Title';
 
 const MY_MATE = [
   {
@@ -50,21 +49,22 @@ const renderCards = data => {
 
 const MateMainPage = () => {
   return (
-    <>
+    <S.Maincontainer>
       <S.SpanWrapper>
         <span>여행의 이유를 함께 찾아줄 친구를</span>
         <span>ID로 추가해보세요!</span>
       </S.SpanWrapper>
-      <S.MainContainer>
-        <Title text="내 메이트" />
-        <S.CardContainer>{renderCards(MY_MATE)}</S.CardContainer>
-      </S.MainContainer>
 
-      <S.MainContainer>
-        <Title text="우리 여행의 규칙은?" />
+      <S.MenuContainer>
+        <S.Title>내 메이트</S.Title>
+        <S.CardContainer>{renderCards(MY_MATE)}</S.CardContainer>
+      </S.MenuContainer>
+
+      <S.MenuContainer>
+        <S.Title>우리 여행의 규칙은?</S.Title>
         <S.CardContainer>{renderCards(OUR_RULE)}</S.CardContainer>
-      </S.MainContainer>
-    </>
+      </S.MenuContainer>
+    </S.Maincontainer>
   );
 };
 

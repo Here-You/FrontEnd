@@ -9,7 +9,7 @@ const getSearchMate = searchTerm => {
   return axiosWithToken.get(url);
 };
 
-const postFollowMate = userId => {
+const postFollowMate = (userId, followingId) => {
   // FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:userId`,
   // 백엔드 API : api/v1/mate/follow/:userId
   const url = `${API_URL.FOLLOW_MATE}/${userId}`;
@@ -18,7 +18,7 @@ const postFollowMate = userId => {
   });
 };
 
-const deleteUnFollowMate = userId => {
+const deleteUnFollowMate = (userId, followingId) => {
   // UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:userId`,
   // 백엔드 API : api/v1/mate/follow/:userId
   const url = `${API_URL.UNFOLLOW_MATE}/${userId}`;
