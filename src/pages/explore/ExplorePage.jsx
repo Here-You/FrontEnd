@@ -40,7 +40,6 @@ export default function ExplorePage() {
         </S.InputContainer>
         <S.Text>다양한 관심사를 검색해보세요</S.Text>
       </S.SearchContainer>
-
       <>
         <SignatureSearchSlider data={hotSignature} />
         <SignatureSearchSlider data={newSignature} />

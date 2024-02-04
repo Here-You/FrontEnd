@@ -1,5 +1,5 @@
 import Preview from './Preview';
-import * as S from './Trending.style';
+import * as S from './SignatureSearchSlider.style';
 
 const SignatureSearchSlider = ({ data }) => {
   return (

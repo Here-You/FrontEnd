@@ -1,13 +1,12 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './PreviewStyle.style';
 import nonHeart from '/images/explore/nonHeart.svg';
 
-export default function Preview({ data }) {
+const Preview = ({ data }) => {
   const navigate = useNavigate();
   return (
-    <S.PreviewWrap onClick={() => navigate(`/explore/${data?._id}`)}>
+    <S.PreviewWrap onClick={() => navigate(`/signature/post/${data?._id}`)}>
       <S.PreviewImg src={data?.image} />
       <S.Title>{data?.title}</S.Title>
       <S.Profile>
@@ -23,4 +22,6 @@ export default function Preview({ data }) {
       </S.Info>
     </S.PreviewWrap>
   );
-}
+};
+
+export default Preview;

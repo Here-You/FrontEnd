@@ -127,7 +127,6 @@ const router = createBrowserRouter([
     path: `${BASE_PATH.SIGNATURE}`,
     children: [
       {
-        element: <SignaturePage />,
         element: <AppLayout />,
         errorElement: <ErrorPage />,
         children: [

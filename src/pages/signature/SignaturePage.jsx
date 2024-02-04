@@ -8,24 +8,7 @@ import Editor from './write/Editor';
 import { getSignaturePreview } from '@/apis/request/preview';
 
 export default function SignaturePage() {
-  const [data, setData] = useState([]);
-  const getData = async () => {
-    try {
-      const res = await getSignaturePreview();
-      const mockData = res.data;
-      setData(mockData);
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   const [selectedHeader, setSelectedHeader] = useState('내 시그니처');
-
   const handleHeaderClick = header => {
     setSelectedHeader(header);
   };
