@@ -93,13 +93,14 @@ const API_URL = {
   // SIGNATURE
   SEARCH_SIGNATURE: `/api/${VERSION}/${API_BASE.SEARCH}`, // 검색탭 메인화면
   GET_MY_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}`,
-  SETTING_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/:signatureId`,
-  UPLOAD_SIGNATURE_IMAGE: `/api/${VERSION}/${API_BASE.SIGNATURE}/image`,
   PUBLISH_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/new`,
   // 시그니처 수정, 삭제, 상세보기 (같은 URL)
   GET_DETAIL_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/:signatureId`,
-  // 좋아요, 좋아요 취소, 좋아요한 사용자 목록
-  LIKE_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/:signatureId/like`,
+  //좋아요, 좋아요 취소,
+  LIKE_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/like/:signatureId`,
+  //좋아요한 사용자 목록
+  LIKELIST_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/:signatureId/like`,
+
   // MATE
   SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
   FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:userId`,
