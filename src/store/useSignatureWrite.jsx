@@ -3,7 +3,7 @@ import create from 'zustand';
 
 const useSignatureWrite = create(set => ({
   title: '',
-  pages: [{}],
+  pages: [],
   currentPageIndex: 0,
   addTitle: newTitle =>
     set(state => ({
@@ -11,7 +11,15 @@ const useSignatureWrite = create(set => ({
     })),
   addPage: () =>
     set(state => ({
-      pages: [...state.pages, { location: '', content: '', photo: null }],
+      pages: [
+        ...state.pages,
+        {
+          location: '',
+          content: '',
+          image: null,
+          page: state.pages.length + 1,
+        },
+      ],
       currentPageIndex: state.pages.length,
     })),
   removePage: () =>

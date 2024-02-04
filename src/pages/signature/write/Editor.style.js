@@ -13,7 +13,10 @@ const PageWrapper = styled.div`
 const EditorContainer = styled.div`
   width: 100%;
   height: 100%;
+  padding: 20px 0;
+  border-bottom: 1px solid ${theme.COLOR.MAIN.LIGHT_BLACK};
 `;
+
 const Title = styled.input`
   outline: none;
   border: none;
@@ -34,6 +37,7 @@ const LocationContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: flex-start;
   margin: 10px 0px;
+  gap: 10px;
 `;
 
 const LocationIcon = styled.img``;
@@ -80,7 +84,6 @@ const SubmitButton = styled.div`
 
 const ButtonWrap = styled.div`
   display: flex;
-  margin-left: 55%;
   font-family: 'Pretendard-bold';
 `;
 
@@ -105,6 +108,7 @@ const Button = styled.button`
   color: white;
   border: none;
   margin-right: 10px;
+  margin-left: auto;
   cursor: pointer;
 `;
 

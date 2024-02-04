@@ -9,16 +9,11 @@ const getMySignaturePreview = () => {
 };
 
 //시그니처 발행하기
-const postNewSignature = ({ postData }) => {
-  const { title, pages, content, location, page, image } = postData;
+const postNewSignature = (title, pages) => {
   const url = `${API_URL.PUBLISH_SIGNATURE}`;
   const res = axiosWithToken.post(url, {
     title: title,
     pages: pages,
-    content: content,
-    location: location,
-    page: page,
-    image: image,
   });
   return res;
 };

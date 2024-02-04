@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import * as S from './Editor.style';
 import Page from './Page';
 import leftIcon from '/icons/leftIcon.svg';
 import rightIcon from '/icons/rightIcon.svg';
+import { postNewSignature } from '@/apis/request/signature';
 import useSignatureWrite from '@/store/useSignatureWrite';
 
 //✍️시그니처 작성하기 로직✍️//
@@ -17,7 +19,7 @@ import useSignatureWrite from '@/store/useSignatureWrite';
 //누를 때마다 GET 요청 보내지 말고, 그냥 한 번에 다 가져와서 위에 상태관리에 넣어버리기
 //2. 이후 로직은 동일
 
-export default function Editor() {
+export default function Editor({ setSelectedHeader }) {
   const {
     title,
     pages,
@@ -29,6 +31,9 @@ export default function Editor() {
     updateTitle,
     updatePage,
   } = useSignatureWrite();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   const fileInputRef = useRef(null);
   const maxPages = 10;
@@ -43,16 +48,33 @@ export default function Editor() {
     updateTitle(newTitle);
   };
 
-  const handlePublish = () => {
-    for (let i = 0; i < pages.length - 1; i++) {
-      const page = pages[i];
-      if (!page.location || !page.photo || !page.content) {
-        alert('모든 페이지 정보를 입력하세요!');
-        return false;
-      } else {
-        console.log();
-        return true;
+  const handlePublish = async () => {
+    let allPagesFilled = true;
+
+    pages.forEach((page, index) => {
+      if (!page.location || !page.content || !page.image) {
+        allPagesFilled = false;
       }
+    });
+
+    if (!allPagesFilled) {
+      alert('모든 페이지 정보를 입력하세요!');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const res = await postNewSignature(title, pages.slice(0, pages.length));
+      if (res) {
+        alert('시그니처가 저장되었습니다.');
+        updateTitle('');
+      }
+      setSelectedHeader('내 시그니처');
+    } catch (e) {
+      setError(e);
+      alert('에러가 발생했습니다.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -63,10 +85,6 @@ export default function Editor() {
       alert(`최대 ${maxPages}개의 페이지까지만 추가할 수 있습니다.`);
     }
   };
-
-  useEffect(() => {
-    console.log('페이지', pages);
-  }, [pages]);
 
   return (
     <S.EditorContainer>
@@ -79,8 +97,7 @@ export default function Editor() {
           <S.Empty />
         )}
         <Page
-          location={pages[currentPageIndex]?.location}
-          photo={pages[currentPageIndex]?.photo}
+          image={pages[currentPageIndex]?.image}
           content={pages[currentPageIndex]?.content}
           onImageChange={e => handleImageChange(e, currentPageIndex)}
         />
@@ -92,19 +109,11 @@ export default function Editor() {
       </S.ContentContainer>
 
       <S.ButtonWrap>
-        {currentPageIndex === pages.length - 1 || pages.length === 1 ? (
-          <S.AddButton onClick={handleAddPage}>페이지 추가</S.AddButton>
-        ) : (
-          <S.Empty2 />
-        )}
-
         <S.Button onClick={handlePublish}>발행</S.Button>
+        {(currentPageIndex === pages.length - 1 || pages.length === 1) && (
+          <S.AddButton onClick={handleAddPage}>페이지 추가</S.AddButton>
+        )}
       </S.ButtonWrap>
-      <div>
-        <p>현재 페이지: {currentPageIndex + 1}</p>
-        <p>총 페이지 개수: {pages.length}</p>
-      </div>
-      <input type="file" ref={fileInputRef} style={{ display: 'none' }} />
     </S.EditorContainer>
   );
 }

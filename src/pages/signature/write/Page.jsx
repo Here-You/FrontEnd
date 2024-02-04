@@ -7,15 +7,12 @@ import addButton from '/images/addButton.svg';
 import SearchMap from '@/components/searchMap/SearchMap';
 import useSignatureWrite from '@/store/useSignatureWrite';
 
-export default function Page({ photo, location, content }) {
+export default function Page({ image, content }) {
   const { title, pages, updatePage, currentPageIndex } = useSignatureWrite();
-  const [locationInfo, setLocationInfo] = useState({});
-
-  console.log(pages[currentPageIndex]);
 
   const handleImageChange = e => {
     const file = e.target.files[0];
-    updatePage(currentPageIndex, { photo: file });
+    updatePage(currentPageIndex, { image: file });
   };
 
   const handleContentChange = e => {
@@ -28,16 +25,16 @@ export default function Page({ photo, location, content }) {
       <S.LocationContainer>
         <S.Icon src={LocationLight} />
         <SearchMap
-          stateInputValue={true}
-          inputValue={location || ''}
+          pageIndex={currentPageIndex}
+          inputValue={pages[currentPageIndex].location}
           selectLocation={info => {
-            setLocationInfo(info);
-            updatePage(currentPageIndex, { location: locationInfo.name });
+            updatePage(currentPageIndex, { location: info.name });
           }}
+          placeholder="위치 입력"
         />
       </S.LocationContainer>
       <S.InputWrap>
-        {photo && <S.Image src={URL.createObjectURL(photo)} />}
+        {image && <S.Image src={URL.createObjectURL(image)} />}
         <S.PhotoButton>
           <img src={addButton} alt="Add Button" />
           <S.ImageInput
