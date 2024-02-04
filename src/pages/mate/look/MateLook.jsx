@@ -39,6 +39,7 @@ const MateLookPage = () => {
     data?.pages[0].data.data.recommend_mates[0].information.nickname;
   const location =
     data?.pages[0].data.data.recommend_mates[0].information.location;
+
   return (
     <S.MateLookContainer>
       <Banner />
@@ -59,6 +60,7 @@ const MateLookPage = () => {
                     <p>{m.bio}</p>
                   </S.TextBox>
                 </S.MateDescriptionBox>
+                
                 <S.ImageContainer>
                   {m.signature.map(s => {
                     return (

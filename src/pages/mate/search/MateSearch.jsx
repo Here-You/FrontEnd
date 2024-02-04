@@ -4,8 +4,6 @@ import * as S from './MateSearch.style';
 import Profile from '@/components/mate/Profile';
 
 const MateSearchPage = ({ data }) => {
-  console.log(data);
-
   return (
     <div style={{ height: '100%', width: '100%' }}>
       {data?.length > 0 ? (

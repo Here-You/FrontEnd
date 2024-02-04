@@ -74,7 +74,7 @@ const RuleBox = ({
           )}
         </S.Participant>
       </S.Topcontainer>
-
+      
       <S.InputBox>
         {rules.map((rule, index) => (
           <div key={index}>
@@ -101,7 +101,6 @@ const RuleBox = ({
           onClose={() => {
             handleSearchMateModal();
             window.history.replaceState(
-              {},
               document.title,
               window.location.pathname,
             );

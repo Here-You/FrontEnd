@@ -1,5 +1,5 @@
 import { axios, axiosWithToken } from '../api';
-import { API_BASE, API_URL } from '@/constants/path';
+import { API_URL } from '@/constants/path';
 
 // 토큰이 필요없는 경우 axios를 쓰면됩니다.
 const getSearchMate = searchTerm => {
