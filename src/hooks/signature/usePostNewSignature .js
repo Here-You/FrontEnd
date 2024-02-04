@@ -13,8 +13,8 @@ export const usePostNewSignature = postData => {
       try {
         setLoading(true);
         const res = await postNewSignature({ postData });
-        const data = res.data.data.pages;
-        console.log(data);
+        const data = res.data.data;
+
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');
