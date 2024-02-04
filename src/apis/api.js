@@ -15,7 +15,7 @@ const axiosWithToken = Axios.create({
 axiosWithToken.interceptors.request.use(config => {
   const accessToken = getAuthToken();
   if (config.headers && accessToken) {
-    config.headers['x-access-token'] = accessToken;
+    config.headers['Authorization'] = `Bearer ${accessToken}`;
   }
   return config;
 });

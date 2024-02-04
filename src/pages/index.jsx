@@ -7,7 +7,6 @@ import DailyRecordWritePage from './dailyRecord/write/DailyRecordWrite';
 import ErrorPage from './error/ErrorPage';
 //Explore
 import ExplorePage from './explore/ExplorePage';
-import ExploreSearch from './explore/search/ExploreSearch';
 // HOME
 import Home from './home/Home';
 // Journey
@@ -37,7 +36,7 @@ import Notification from './notification/Notification';
 // ON_BOARDING
 import OnBoardingPage from './onboarding/OnBoardingPage';
 // Signature
-import SignaturePage from './signature/Signature';
+import SignaturePage from './signature/SignaturePage';
 import SignatureEditPage from './signature/edit/SignatureEdit';
 import SignaturePopularPage from './signature/popular/SignaturePopular';
 import SignaturePostPage from './signature/post/SignaturePost';
@@ -86,6 +85,5 @@ export {
   MapPage,
   MapDetailPage,
   ExplorePage,
-  ExploreSearch,
   JourneyDetailPage,
 };
