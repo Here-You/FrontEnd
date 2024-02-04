@@ -34,7 +34,7 @@ export default function Preview(data) {
 const PreviewWrap = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 150px;
+  width: 150px;
   margin: 3%;
   cursor: pointer;
 `;
