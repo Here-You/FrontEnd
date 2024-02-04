@@ -48,5 +48,6 @@ const PreviewContainer = styled.div`
   overflow: scroll;
   flex-wrap: wrap;
   width: 100%;
+
   margin: 0 auto;
 `;

@@ -14,18 +14,16 @@ const ExploreSearch = () => {
 
   const handleSearchButtonClick = () => {
     setIsValue(true);
-
-    // URL 변경 및 검색어 추가
     navigate(`/explore/${searchTerm}`);
   };
 
   return (
-    <>
+    <div>
       <SearchContainer>
         <InputContainer>
           <InputText
             placeholder="여행지, 시그니처, 관심 키워드 검색"
-            value={params.value}
+            value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
           />
           <SearchButton onClick={handleSearchButtonClick} />
@@ -35,7 +33,7 @@ const ExploreSearch = () => {
         <ResultsTitle>[{params.value}] 검색 결과</ResultsTitle>
         <SearchResult />
       </Container>
-    </>
+    </div>
   );
 };
 

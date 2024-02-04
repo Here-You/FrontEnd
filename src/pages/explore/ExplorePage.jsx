@@ -9,14 +9,10 @@ import Trending from '@/components/explore/Trending';
 import theme from '@/theme';
 
 export default function ExplorePage() {
-  const [isValue, setIsValue] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
   const handleSearchButtonClick = () => {
-    setIsValue(true);
-
-    // URL 변경 및 검색어 추가
     navigate(`/explore/${searchTerm}`);
   };
 
