@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
+import * as S from './Mate.style';
 import MateMainPage from './main/MateMain';
 import MateSearchPage from './search/MateSearch';
 import Search from '@/components/mate/Search';
@@ -13,10 +14,10 @@ const MatePage = () => {
   const { data, loading, error } = useSearchMate(searchTerm);
 
   return (
-    <div style={{ height: '100%' }}>
+    <S.Container>
       <Search />
       {searchTerm ? <MateSearchPage data={data} /> : <MateMainPage />}
-    </div>
+    </S.Container>
   );
 };
 
