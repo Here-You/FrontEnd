@@ -42,7 +42,7 @@ const Signature = () => {
     getData();
   }, []);
 
-  if (!isAuthenticated) {
+  if (isAuthenticated) {
     return <TokenErrorPage />;
   }
   if (data.length == 0) {
@@ -53,4 +53,3 @@ const Signature = () => {
 };
 
 export default Signature;
-

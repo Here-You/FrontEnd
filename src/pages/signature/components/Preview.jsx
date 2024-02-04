@@ -13,9 +13,9 @@ const Preview = ({ signature }) => {
   return (
     <>
       <S.PreviewWrap>
-        <S.Profile>
+        <S.DateWrapper>
           <S.Date>{formattedDate}</S.Date>
-        </S.Profile>
+        </S.DateWrapper>
         <S.PreviewImg src={image} />
         <S.Title>{title}</S.Title>
         <S.Open to={`/signature/post/${id}`}>자세히보기</S.Open>
