@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import usePlacesAutocomplete, {
@@ -14,7 +14,6 @@ import {
   ComboboxPopover,
 } from '@reach/combobox';
 import '@reach/combobox/styles.css';
-// import { GoogleMap, MarkerF } from '@react-google-maps/api';
 import { useJsApiLoader } from '@react-google-maps/api';
 
 const SearchMap = ({
@@ -22,6 +21,7 @@ const SearchMap = ({
   inputValue,
   placeholder = '주소를 입력해주세요',
   selectLocation,
+  pageIndex,
 }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -39,6 +39,7 @@ const SearchMap = ({
         inputValue={inputValue}
         placeholder={placeholder}
         selectLocation={selectLocation}
+        pageIndex={pageIndex}
       />
     </PlacesContainer>
   );
@@ -52,8 +53,13 @@ const PlacesAutocomplete = ({
   inputValue,
   placeholder,
   selectLocation,
+  pageIndex,
 }) => {
   const [input, setInput] = useState(inputValue);
+
+  useEffect(() => {
+    setInput(inputValue);
+  }, [pageIndex]);
 
   const {
     ready,

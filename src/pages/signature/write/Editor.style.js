@@ -13,7 +13,10 @@ const PageWrapper = styled.div`
 const EditorContainer = styled.div`
   width: 100%;
   height: 100%;
+  padding: 20px 0;
+  border-bottom: 1px solid ${theme.COLOR.MAIN.LIGHT_BLACK};
 `;
+
 const Title = styled.input`
   outline: none;
   border: none;
@@ -34,6 +37,7 @@ const LocationContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: flex-start;
   margin: 10px 0px;
+  gap: 10px;
 `;
 
 const LocationIcon = styled.img``;
@@ -80,7 +84,6 @@ const SubmitButton = styled.div`
 
 const ButtonWrap = styled.div`
   display: flex;
-  margin-left: 55%;
   font-family: 'Pretendard-bold';
 `;
 
@@ -99,13 +102,14 @@ const AddButton = styled.button`
 const Button = styled.button`
   display: flex;
   border-radius: 5px;
-  background: ${props => (props.enabled ? 'var(--New-Main, #21b69c)' : '#ccc')};
+  background: var(--New-Main, #21b69c);
   padding: 5px 11px;
   outline: none;
   color: white;
   border: none;
   margin-right: 10px;
-  cursor: ${props => (props.enabled ? 'pointer' : 'not-allowed')};
+  margin-left: auto;
+  cursor: pointer;
 `;
 
 const ContentContainer = styled.div`
@@ -125,10 +129,11 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  gap: 20px;
 `;
 
 const InputWrap = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER}
+  ${theme.ALIGN.COLUMN_CENTER};
 `;
 
 const PhotoButton = styled.label`
@@ -137,6 +142,29 @@ const PhotoButton = styled.label`
   height: 20vh;
   ${theme.ALIGN.COLUMN_CENTER}
   position: relative;
+`;
+
+const Icon = styled.img`
+  width: 15px;
+  background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
+`;
+
+const Image = styled.img`
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  top: 50;
+  left: 50;
+`;
+
+const ImageInput = styled.input`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  cursor: pointer;
 `;
 
 export {
@@ -159,4 +187,7 @@ export {
   PageContainer,
   InputWrap,
   PhotoButton,
+  Icon,
+  Image,
+  ImageInput,
 };
