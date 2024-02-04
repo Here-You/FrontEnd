@@ -6,20 +6,22 @@ const ManagementProfile = ({ profileData }) => {
     return <div>데이터가 없습니다.</div>;
   }
 
-  const { image, name, nickname, bio, is_following } = profileData;
+  const { _id, image, name, nickname, bio, is_following } = profileData;
 
   return (
     <S.CenteredContainer>
       <S.ProfileContainer>
         <S.UserImg src={image} />
+
         <S.TextContainer>
           <S.UserName>{name}</S.UserName>
           <S.UserNickName>{nickname}</S.UserNickName>
-          <S.UserBio>{bio}</S.UserBio>
+          <S.UserBio>
+            <p>{bio}</p>
+          </S.UserBio>
         </S.TextContainer>
-        <S.Wrapper>
-          <FollowButton isFollowing={is_following} name={name} />
-        </S.Wrapper>
+
+        <FollowButton isFollowing={is_following} name={name} />
       </S.ProfileContainer>
     </S.CenteredContainer>
   );

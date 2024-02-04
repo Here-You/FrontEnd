@@ -9,8 +9,10 @@ const CenteredContainer = styled.div`
 const TabContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: space-around;
-  width: 273px;
-  height: 37.2px;
+  width: 70%;
+  min-width: 320px;
+  max-width: 500px;
+  height: 40px;
 `;
 
 const TabElement = styled.div`
@@ -18,13 +20,17 @@ const TabElement = styled.div`
   width: 100%;
   height: 100%;
   text-align: center;
-  font-size: 10.617px;
+  font-size: 16px;
   font-style: normal;
-  font-weight: 500;
-  line-height: 15.167px;
+  font-weight: ${props => (props.active ? '600 ' : '500')};
+  line-height: 16px;
   letter-spacing: 0.076px;
   border-bottom: ${props =>
-    props.active ? '1.517px solid ' + theme.COLOR.MAIN.GREEN : 'none'};
+    props.active ? '3px solid ' + theme.COLOR.MAIN.GREEN : 'none'};
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: 14px;
+  }
 `;
 
 export { CenteredContainer, TabContainer, TabElement };
