@@ -1,93 +1,50 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
-import ExploreSearch from './search/ExploreSearch';
-import searchIcon from '/images/explore/searchIcon.svg';
-import Recent from '@/components/explore/Recent';
+import * as S from './ExplorePage.style';
 import Trending from '@/components/explore/Trending';
-import theme from '@/theme';
+import { useSearchKeyWord } from '@/hooks/search/useSearchKeyWord';
 
 export default function ExplorePage() {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+  const keyWord = useRef(null);
 
   const handleSearchButtonClick = () => {
-    navigate(`/explore/${searchTerm}`);
+    setSearchTerm(keyWord.current.value);
+    navigate(`/explore/?search=${searchTerm}`);
   };
+
+  const { data, loading, error } = useSearchKeyWord(searchTerm);
+
+  const hotSignature = data.hot;
+  const newSignature = data.new;
+
+  if (loading) {
+    return <div>로딩중입니다...</div>;
+  }
+
+  if (error) {
+    return <div>에러가 발생했습니다.</div>;
+  }
 
   return (
     <div>
-      <SearchContainer>
-        <InputContainer>
-          <InputText
+      <S.SearchContainer>
+        <S.InputContainer>
+          <S.InputText
             placeholder="여행지, 시그니처, 관심 키워드 검색"
-            value={searchTerm}
-            onChange={e => setSearchTerm(e.target.value)}
+            ref={keyWord}
           />
-          <SearchButton onClick={handleSearchButtonClick} />
-        </InputContainer>
-        <Text>다양한 관심사를 검색해보세요</Text>
-      </SearchContainer>
+          <S.SearchButton onClick={handleSearchButtonClick} />
+        </S.InputContainer>
+        <S.Text>다양한 관심사를 검색해보세요</S.Text>
+      </S.SearchContainer>
 
-      <div>
-        <Trending />
-        <Recent />
-      </div>
+      <>
+        <Trending data={hotSignature} />
+        <Trending data={newSignature} />
+      </>
     </div>
   );
 }
-
-const SearchContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 15vh;
-`;
-
-const InputContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
-  justify-content: space-between;
-  width: 295px;
-  height: 42.074px;
-  border-radius: 13.941px;
-  border: 1px solid ${theme.COLOR.MAIN.GREEN};
-  background: #fdfdfd;
-  margin-top: 10px;
-`;
-
-const InputText = styled.input`
-  border: none;
-  background: none;
-  padding-left: 17.85px;
-  width: 100%;
-
-  ::placeholder {
-    color: rgba(0, 0, 0, 0.57);
-    font-family: 'Inter';
-    font-size: 12.268px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 42.074px;
-  }
-
-  &:focus {
-    outline: none;
-  }
-`;
-
-const SearchButton = styled.button`
-  width: 41.824px;
-  height: 42.074px;
-  padding-right: 0;
-  border-radius: 0px 13.941px 13.941px 0px;
-  border-color: transparent;
-  background-color: ${theme.COLOR.MAIN.GREEN};
-  background-image: url(${searchIcon});
-  background-repeat: no-repeat;
-  background-position: center center;
-  cursor: pointer;
-`;
-
-const Text = styled.div``;
