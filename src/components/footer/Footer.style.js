@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const FooterWrapper = styled.div`
@@ -13,10 +12,19 @@ const FooterWrapper = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: space-between;
   padding: 0 30px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    height: 50px;
+  }
 `;
 
 const Image = styled.img`
   height: 46px;
+  object-fit: cover;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    height: 25px;
+  }
 `;
 
 const LinkTo = styled(Link)`
@@ -25,6 +33,12 @@ const LinkTo = styled(Link)`
 
   color: ${props =>
     props.active ? theme.COLOR.MAIN.HEAVY_GREEN : theme.COLOR.MAIN.BLACK};
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    p {
+      font-size: 7px;
+    }
+  }
 `;
 
 export { FooterWrapper, Image, LinkTo };
