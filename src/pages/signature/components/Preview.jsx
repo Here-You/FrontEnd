@@ -1,10 +1,12 @@
 import { format } from 'date-fns';
 import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import * as S from './Preview.style';
 
 const Preview = ({ signature }) => {
   const { date, image, title, id } = signature;
+  const navigate = useNavigate();
 
   const formattedDate = useMemo(() => {
     return format(date, 'yy/MM/dd');
@@ -12,7 +14,7 @@ const Preview = ({ signature }) => {
 
   return (
     <>
-      <S.PreviewWrap>
+      <S.PreviewWrap onClick={() => navigate(`/signature/post/${id}`)}>
         <S.DateWrapper>
           <S.Date>{formattedDate}</S.Date>
         </S.DateWrapper>
