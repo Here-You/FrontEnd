@@ -46,10 +46,7 @@ const Title = styled.div`
 `;
 const PreviewContainer = styled.div`
   display: flex;
-  overflow: scroll;
-  flex-wrap: wrap;
+  overflow-x: auto;
 
-  justify-content: center;
-
-  height: 30vh;
+  width: 100%;
 `;

@@ -3,29 +3,62 @@ import { HttpResponse, http } from 'msw';
 import { baseURL } from '@/apis/api';
 import { API_URL } from '@/constants/path';
 
-export const SignatureHandlers = [
-  //시그니처_내 시그니처
-  http.get(`${baseURL}${API_URL.GET_MY_SIGNATURE}`, ({ request, params }) => {
+export const SearchHandlers = [
+  //탐색 메인화면
+  http.get(`${baseURL}${API_URL.SEARCH_SIGNATURE}`, ({ request, params }) => {
     return HttpResponse.json({
       status: 200,
       success: true,
-      message: '내 시그니처 조회 성공',
-      data: [
-        {
-          id: '01',
-          title: '시그니처 제목1',
-          date: '24/01/19',
-          image:
-            'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        },
-        {
-          id: '02',
-          title: '시그니처 제목2',
-          date: '24/01/19',
-          image:
-            'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        },
-      ],
+      message: '탑색탭 메인 불러오기 성공',
+      data: {
+        hot: [
+          {
+            _id: 3,
+            title: '시그니처 제목3',
+            date: '24/01/19',
+            image: 'www.com',
+            like: 5,
+            user: {
+              name: '닉네임',
+              image: '프로필 이미지 url',
+            },
+          },
+          {
+            _id: 4,
+            title: '시그니처 제목4',
+            date: '24/01/19',
+            image: 'www.com',
+            like: 5,
+            user: {
+              name: '닉네임',
+              image: '프로필 이미지 url',
+            },
+          },
+        ],
+        new: [
+          {
+            _id: 1,
+            title: '시그니처 제목1',
+            date: '24/01/19',
+            image: 'www.com',
+            like: 5,
+            user: {
+              name: '닉네임',
+              image: '프로필 이미지 url',
+            },
+          },
+          {
+            _id: 2,
+            title: '시그니처 제목2',
+            date: '24/01/19',
+            image: 'www.com',
+            like: 5,
+            user: {
+              name: '닉네임',
+            },
+          },
+        ],
+      },
     });
   }),
 
@@ -172,6 +205,7 @@ export const SignatureHandlers = [
     },
   ),
   //시그니처_시그니처 좋아요, 좋아요 취소
+  //좋아요만 -> 좋아요 취소 추가해야함
   http.patch(`${baseURL}${API_URL.LIKE_SIGNATURE}`, ({ request, params }) => {
     return HttpResponse.json({
       timestamp: '2024-02-03T07:07:13.749Z',

@@ -22,7 +22,6 @@ export default function SearchResult() {
   }, []);
   return (
     <PageContainer>
-      <Title>검색 결과</Title>
       <PreviewContainer>
         {data.map((item, index) => (
           <Preview key={index} {...item} />
@@ -35,7 +34,7 @@ export default function SearchResult() {
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   justify-content: center;
 `;
@@ -48,6 +47,7 @@ const PreviewContainer = styled.div`
   display: flex;
   overflow: scroll;
   flex-wrap: wrap;
-  width: 94%;
+  width: 100%;
+
   margin: 0 auto;
 `;
