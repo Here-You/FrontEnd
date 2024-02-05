@@ -23,7 +23,7 @@ export const MateHandlers = [
         data: {
           mates: [
             {
-              _id: 13,
+              _id: 1,
               name: '안예원',
               nickname: 'ahnyewon',
               bio: '안녕하세요 안예원 입니다. 반가워요',
@@ -34,7 +34,7 @@ export const MateHandlers = [
               is_following: true,
             },
             {
-              _id: 12,
+              _id: 2,
               name: '안원',
               nickname: 'ahnwon',
               bio: '안녕하세요 안원 입니다. 반가워요',
@@ -45,7 +45,7 @@ export const MateHandlers = [
               is_following: false,
             },
             {
-              _id: 11,
+              _id: 3,
               name: '안예',
               nickname: 'ahnyw',
               bio: '안녕하세요 안예 입니다. 반가워요',
@@ -425,7 +425,7 @@ export const MateHandlers = [
               nickname: 'ahnyewon',
               bio: '안녕하세요 안예원 입니다. 반가워요',
               image:
-                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://images.unsplash.com/photo-1618359057154-e21ae64350b6?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
             {
               _id: 2,
@@ -433,7 +433,7 @@ export const MateHandlers = [
               nickname: 'ahnyewon',
               bio: '안녕하세요 안예원 입니다. 반가워요',
               image:
-                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://images.unsplash.com/photo-1618359057154-e21ae64350b6?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
             {
               _id: 3,
@@ -441,7 +441,7 @@ export const MateHandlers = [
               nickname: 'ahnyewon',
               bio: '안녕하세요 안예원 입니다. 반가워요. 또 만나요',
               image:
-                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://images.unsplash.com/photo-1618359057154-e21ae64350b6?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
           ],
         },

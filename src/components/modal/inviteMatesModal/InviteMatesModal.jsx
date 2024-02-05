@@ -1,16 +1,26 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 import Modal from '../Modal';
 import * as S from './InviteMatesModal.style';
-import { getSearchInviteMate } from '@/apis/request/mate';
 import { useSearchMate } from '@/hooks/mate/useSearchMate';
 import useInviteMatesModal from '@/hooks/modal/useInviteMatesModal';
+import useDebounce from '@/hooks/useDebounce';
+import useMatesStore from '@/store/matesStore';
 
 const InviteMatesModal = () => {
   const InviteMatesModal = useInviteMatesModal();
   const [nickname, setNickname] = useState('');
+  const debouncedNickname = useDebounce(nickname, 2000);
+  const { selectedMates, addSelectedMate, clearSelectedMates } =
+    useMatesStore();
 
-  const { data, loading, error } = useSearchMate(nickname);
+  const mateIds = selectedMates.map(mate => mate._id);
+
+  const { data, loading, error } = useSearchMate(debouncedNickname);
+
+  const handleInviteClick = () => {
+    InviteMatesModal.onClose();
+  };
 
   const BodyContent = (
     <S.Container>
@@ -23,19 +33,41 @@ const InviteMatesModal = () => {
         />
         <S.SearchImage color="black" size="40" />
       </S.InputContainer>
+      <S.MatesContainer>
+        {loading ? (
+          <div>로딩중입니다...</div>
+        ) : (
+          data.map(d => {
+            const isSelected = mateIds.includes(d._id);
+            return (
+              <S.ProfileContainer
+                key={d._id}
+                isSelected={isSelected}
+                onClick={() => {
+                  isSelected ? clearSelectedMates(d._id) : addSelectedMate(d);
+                }}>
+                <S.ProfileImage src={d.image} />
+                <S.TextContainer>
+                  <h2>{d.name}</h2>
+                  <h3>@{d.nickname}</h3>
+                  <h4>{d.bio}</h4>
+                </S.TextContainer>
+              </S.ProfileContainer>
+            );
+          })
+        )}
+      </S.MatesContainer>
     </S.Container>
   );
 
   return (
     <Modal
       isOpen={InviteMatesModal.isOpen}
-      onClose={() => {
-        InviteMatesModal.onClose();
-      }}
-      onSubmit={() => console.log('123')}
+      onClose={InviteMatesModal.onClose}
+      onSubmit={handleInviteClick}
       actionLabel="초대하기"
       body={BodyContent}
-      secondaryAction={() => {}}
+      secondaryAction={InviteMatesModal.onClose}
       secondaryActionLabel="취소"
     />
   );
