@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Modal from '../Modal';
-import * as S from './IntroEditModal.style';
+import * as S from './EditModal.style';
 import { updateIntro } from '@/apis/request/profile';
 import Schema from '@/components/schema/Schema';
 import useIntroEditModal from '@/hooks/modal/useIntroEditModal';
@@ -59,7 +59,7 @@ const IntroEditModal = ({ myIntro }) => {
     } else {
       setIsLoading(true);
       try {
-        const res = await updateIntro({ ...data, introduction });
+        const res = await updateIntro(introduction);
         if (res) {
           alert('프로필 소개가 변경 되었습니다.');
           console.log('제출된 데이터: ', data);

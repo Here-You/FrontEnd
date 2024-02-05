@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Modal from '../Modal';
-import * as S from './LogoutModal.style';
+import * as S from './BasicModal.style';
 import useLogoutModal from '@/hooks/modal/useLogoutModal';
 
 const LogoutModal = ({}) => {
   const logoutModal = useLogoutModal();
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+
   const navigate = useNavigate();
   const BodyContent = (
     <S.Container>
