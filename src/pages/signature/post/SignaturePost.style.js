@@ -7,15 +7,40 @@ const SignatureContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
 `;
 
-const ProfileContainer = styled.div`
+const HeaderContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
+  width: 80%;
+  justify-content: space-between;
+  margin-bottom: 10px;
   gap: 2px;
 `;
 
+const ProfileContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+`;
+
 const ProfileImg = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+`;
+
+const ProfileDesc = styled.div`
+  margin-left: 10px;
+  font-size: 1rem;
+
+  date {
+    font-size: 0.8rem;
+    color: ${theme.COLOR.MAIN.GRAY};
+  }
+`;
+
+const FollowButton = styled.button`
+  color: ${theme.COLOR.MAIN.WHITE};
+  background-color: ${theme.COLOR.MAIN.GREEN};
+  padding: 2px 10px;
+  border: none;
+  border-radius: 10px;
 `;
 
 const TitleContainer = styled.div`
@@ -122,8 +147,11 @@ const DeleteButton = styled.button`
 
 export {
   TitleContainer,
+  HeaderContainer,
   ProfileContainer,
   ProfileImg,
+  ProfileDesc,
+  FollowButton,
   ButtonContainer,
   SignatureContainer,
   ImageContainer,
