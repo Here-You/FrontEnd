@@ -74,6 +74,7 @@ const TextContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   gap: 20px;
   margin-top: 20px;
+  padding: 20px;
 
   h3 {
     ${theme.ALIGN.ROW_CENTER}

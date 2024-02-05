@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './SignaturePost.style';
+import { deleteMySignature } from '@/apis/request/signature';
 import { useGetDetail } from '@/hooks/signature/useGetDetail';
 import { CiLocationOn } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
@@ -30,6 +32,16 @@ const SignaturePostPage = () => {
   const handlePrevPage = () => {
     if (step > 1) {
       setStep(prevStep => prevStep - 1);
+    }
+  };
+
+  const handleDeletePost = async () => {
+    try {
+      await deleteMySignature(signatureId);
+      toast.success('포스트가 정상적으로 삭제되었습니다.');
+      navigate('/signature');
+    } catch (e) {
+      toast.error(e.message);
     }
   };
 
@@ -80,15 +92,14 @@ const SignaturePostPage = () => {
                   {detailSignatures.pages[step - 1].location}
                 </h3>
                 <p>{detailSignatures.pages[step - 1].content}</p>
-
-                <S.FunctionButtonContainer>
-                  <S.ModifyButton
-                    onClick={() => navigate(`/signature/edit/${signatureId}`)}>
-                    수정
-                  </S.ModifyButton>
-                  <S.DeleteButton onClick={() => {}}>삭제</S.DeleteButton>
-                </S.FunctionButtonContainer>
               </S.TextContainer>
+              <S.FunctionButtonContainer>
+                <S.ModifyButton
+                  onClick={() => navigate(`/signature/edit/${signatureId}`)}>
+                  수정
+                </S.ModifyButton>
+                <S.DeleteButton onClick={handleDeletePost}>삭제</S.DeleteButton>
+              </S.FunctionButtonContainer>
             </>
           </S.SignatureContainer>
         )}

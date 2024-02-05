@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -36,6 +37,7 @@ const AppLayout = () => {
       <ContentContainer>
         {!hideNavAndFooter && <Navbar />}
         <OutletContainer>
+          <Toaster />
           <Outlet />
         </OutletContainer>
         {!hideNavAndFooter && <Footer />}
