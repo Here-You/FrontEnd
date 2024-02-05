@@ -78,7 +78,7 @@ const getSearchInviteMate = searchTerm => {
   // SEARCH_INVITE_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/searchMate`,
   // 백엔드 API : api/v1/mate/rule/searchMate
   const url = `${API_URL.SEARCH_INVITE_MATE}?searchTerm=${searchTerm}`;
-  console.log(url);
+
   return axiosWithToken.get(url);
 };
 

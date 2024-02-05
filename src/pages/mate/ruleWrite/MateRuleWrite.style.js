@@ -30,6 +30,10 @@ const Header = styled.div`
     height: 25px;
     margin-bottom: 20px;
     cursor: pointer;
+
+    &:hover {
+      transform: scale(0.9);
+    }
   }
 `;
 

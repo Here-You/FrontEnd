@@ -1,13 +1,18 @@
 import * as S from './MateRuleWrite.style';
 import PlusUser from '/images/mate/add-user.svg';
+import Modal from '@/components/modal/Modal';
+import InviteMatesModal from '@/components/modal/inviteMatesModal/InviteMatesModal';
+import useInviteMatesModal from '@/hooks/modal/useInviteMatesModal';
 
 const MateRuleWritePage = () => {
+  const inviteMatesModal = useInviteMatesModal();
   return (
     <S.Container>
       <S.Wrapper>
         <S.Header>
+          <InviteMatesModal />
           <h1>제주여행을 떠나면</h1>
-          <img src={PlusUser} />
+          <img src={PlusUser} onClick={() => inviteMatesModal.onOpen()} />
         </S.Header>
         <S.Content>
           <S.TitleInput placeholder="1. 규칙 1을 입력해주세요!" />
