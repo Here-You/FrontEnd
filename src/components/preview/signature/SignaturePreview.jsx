@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import clickedHeart from '../../../../public/images/signature/ClickedHeart.svg';
-import noneClickHeart from '../../../../public/images/signature/NoneClickHeart.svg';
+import noneClickHeart from '/images/signature/NoneClickHeart.svg';
 
 //시그니처 글 미리보기
 //Data : 유저 프사, 작성 날짜, 미리보기 사진 이미지, 제목, 하트 수

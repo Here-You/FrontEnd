@@ -1,7 +1,7 @@
 import { HttpResponse, http } from 'msw';
 
 import { baseURL } from '@/apis/api';
-import { API_URL } from '@/constants/path';
+import { API_PATH, API_URL } from '@/constants/path';
 
 export const MateHandlers = [
   //메이트 검색하기
@@ -630,4 +630,100 @@ export const MateHandlers = [
       });
     },
   ),
+
+  // 내가 참여 중인 메이트 규칙 불러오기
+  http.get(`${baseURL}${API_PATH.MATE_RULE_CHECK}`, (req, res, ctx) => {
+    const mates = [
+      {
+        _id: 1,
+        participant_cnt: 3,
+        title: '제주도 여행을 위한 규칙',
+        last_updated_date: '23.10.10',
+        participants: [
+          {
+            _id: 345,
+            image: mateImg,
+          },
+          {
+            _id: 678,
+            image: mateImg,
+          },
+        ],
+      },
+      {
+        _id: 2,
+        participant_cnt: 4,
+        title: '제주도 여행을 위한 규칙',
+        last_updated_date: '23.10.10',
+        participants: [
+          {
+            _id: 345,
+            image: mateImg,
+          },
+          {
+            _id: 678,
+            image: mateImg,
+          },
+          {
+            _id: 678,
+            image: mateImg,
+          },
+        ],
+      },
+    ];
+    return HttpResponse.json(mates);
+  }),
+
+  // 메이트 규칙 상세 확인 데이터 불러오기
+  http.get(`${baseURL}${API_PATH.MATE_RULE_DETAIL_CHECK}`, (req, res, ctx) => {
+    const data = {
+      rule_box: {
+        _id: 1,
+        main_title: '제주 여행 규칙을 세워보자',
+        rules: [
+          {
+            _id: 1,
+            rule_title: '1. 기상 규칙',
+            rule_detail: '7시까진 무조건 기상하기. 알람은 한개만 맞춰두기',
+          },
+          {
+            _id: 2,
+            rule_title: '2. 회비 규칙',
+            rule_detail: '투명하게 관리하기',
+          },
+        ],
+      },
+      participants: [
+        {
+          _id: '안예원',
+          image: mateImg,
+        },
+        {
+          _id: '안',
+          image: mateImg,
+        },
+      ],
+      user_image: {
+        image: 'profile_image_url',
+      },
+      comments: [
+        {
+          _id: 1234,
+          image: mateImg,
+          comment_text: '완벽한 규칙이네요',
+          created_at: 1675275543,
+        },
+        {
+          _id: 5678,
+          image: mateImg,
+          comment_text: '회비 관련 규칙도 추가해주세요',
+          created_at: 1675275544,
+        },
+      ],
+      cursor: 'eyJjb25kaXRpb25JZCI6MjMsImxpbWl0IjoxMH0=',
+      hasNextPage: true,
+    };
+
+    return HttpResponse.json(data);
+  }),
 ];
