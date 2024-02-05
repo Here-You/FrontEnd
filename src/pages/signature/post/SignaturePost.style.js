@@ -7,15 +7,40 @@ const SignatureContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
 `;
 
-const ProfileContainer = styled.div`
+const HeaderContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
+  width: 80%;
+  justify-content: space-between;
+  margin-bottom: 10px;
   gap: 2px;
 `;
 
+const ProfileContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+`;
+
 const ProfileImg = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+`;
+
+const ProfileDesc = styled.div`
+  margin-left: 10px;
+  font-size: 1rem;
+
+  date {
+    font-size: 0.8rem;
+    color: ${theme.COLOR.MAIN.GRAY};
+  }
+`;
+
+const FollowButton = styled.button`
+  color: ${theme.COLOR.MAIN.WHITE};
+  background-color: ${theme.COLOR.MAIN.GREEN};
+  padding: 2px 10px;
+  border: none;
+  border-radius: 10px;
 `;
 
 const TitleContainer = styled.div`
@@ -74,6 +99,7 @@ const TextContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   gap: 20px;
   margin-top: 20px;
+  padding: 20px;
 
   h3 {
     ${theme.ALIGN.ROW_CENTER}
@@ -85,14 +111,54 @@ const TextContainer = styled.div`
   }
 `;
 
+const FunctionButtonContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  gap: 10px;
+  margin-top: 20px;
+`;
+
+const ModifyButton = styled.button`
+  background-color: ${theme.COLOR.MAIN.GRAY};
+  border: none;
+  border-radius: 20px;
+  padding: 2px 8px;
+  color: ${theme.COLOR.MAIN.WHITE};
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+`;
+
+const DeleteButton = styled.button`
+  background-color: red;
+  border: none;
+  border-radius: 20px;
+  padding: 2px 8px;
+  color: ${theme.COLOR.MAIN.WHITE};
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+`;
+
 export {
   TitleContainer,
+  HeaderContainer,
   ProfileContainer,
   ProfileImg,
+  ProfileDesc,
+  FollowButton,
   ButtonContainer,
   SignatureContainer,
   ImageContainer,
   Button,
   Image,
   TextContainer,
+  FunctionButtonContainer,
+  ModifyButton,
+  DeleteButton,
 };

@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './SignaturePost.style';
+import { deleteMySignature } from '@/apis/request/signature';
+import HeartButton from '@/components/HeartButton/HeartButton';
 import { useGetDetail } from '@/hooks/signature/useGetDetail';
 import { CiLocationOn } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
@@ -33,6 +36,24 @@ const SignaturePostPage = () => {
     }
   };
 
+  const handleDeletePost = async () => {
+    try {
+      await deleteMySignature(signatureId);
+      toast.success('포스트가 정상적으로 삭제되었습니다.');
+      navigate('/signature');
+    } catch (e) {
+      toast.error(e.message);
+    }
+  };
+
+  const handleFollow = async () => {
+    try {
+      toast.success('팔로잉 성공');
+    } catch (e) {
+      toast.error(e.message);
+    }
+  };
+
   if (loading) {
     return <div>로딩 중 입니다..</div>;
   }
@@ -40,7 +61,7 @@ const SignaturePostPage = () => {
   if (error) {
     return <div>에러가 발생했습니다...</div>;
   }
-
+  console.log(detailSignatures);
   return (
     <>
       {detailSignatures &&
@@ -48,19 +69,21 @@ const SignaturePostPage = () => {
         detailSignatures.pages[step - 1] && (
           <S.SignatureContainer>
             <>
-              <S.ProfileContainer>
-                <S.ProfileImg src={author.image} />
-                <h3>{author.name}</h3>
-                <date>{header.date}</date>
-                <button>팔로우</button>
-              </S.ProfileContainer>
+              <S.HeaderContainer>
+                <S.ProfileContainer>
+                  <S.ProfileImg src={author.image} />
+                  <S.ProfileDesc>
+                    <h3>{author.name}</h3>
+                    <date>{header.date}</date>
+                  </S.ProfileDesc>
+                </S.ProfileContainer>
+                <S.FollowButton onClick={handleFollow}>팔로우</S.FollowButton>
+              </S.HeaderContainer>
               <S.TitleContainer>
                 <h1>{header.title}</h1>
               </S.TitleContainer>
               <S.ButtonContainer>
-                <button>
-                  <FaHeart onClick={() => alert('좋아요')} />
-                </button>
+                <HeartButton id={header._id} isLiked={header.is_liked} />
                 <h3>{header.like_cnt}</h3>
               </S.ButtonContainer>
               <S.ImageContainer>
@@ -81,11 +104,13 @@ const SignaturePostPage = () => {
                 </h3>
                 <p>{detailSignatures.pages[step - 1].content}</p>
               </S.TextContainer>
-              <button
-                onClick={() => navigate(`/signature/edit/${signatureId}`)}>
-                수정
-              </button>
-              <button>삭제</button>
+              <S.FunctionButtonContainer>
+                <S.ModifyButton
+                  onClick={() => navigate(`/signature/edit/${signatureId}`)}>
+                  수정
+                </S.ModifyButton>
+                <S.DeleteButton onClick={handleDeletePost}>삭제</S.DeleteButton>
+              </S.FunctionButtonContainer>
             </>
           </S.SignatureContainer>
         )}
