@@ -8,12 +8,14 @@ import { MateHandlers } from './mate';
 import { mateLookHandlers } from './mate-look';
 import { mateManagementHandlers } from './mate-management';
 import { mateSearchHandlers } from './mate-search-result';
+import { notificationHandlers } from './notification';
 import { ProfileHandlers } from './profile';
 import { profileInfoHandlers } from './profile-info';
 import { SignatureHandlers } from './signature';
 import { travelHandlers } from './travel-place';
 
 export const handlers = [
+  ...notificationHandlers,
   ...travelHandlers,
   ...mateSearchHandlers,
   ...mateLookHandlers,

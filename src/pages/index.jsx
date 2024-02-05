@@ -13,7 +13,6 @@ import Home from './home/Home';
 import JourneyDetailPage from './journey/JourneyDetail';
 // LOGIN
 import LoginPage from './login/Login';
-import LoginBeforePage from './login/LoginBeforePage';
 import Redirect from './login/Redirect';
 // MAP
 import MapPage from './map/MapPage';
@@ -51,7 +50,6 @@ import TravelTypeResultPage from './traveltype/result/TravelTypeResult';
 
 export {
   AppLayout,
-  LoginBeforePage,
   Redirect,
   Notification,
   Home,

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { postSnsLogin } from '@/apis/request/profile';
+import { getNotification } from '@/apis/request/notification';
 
-export const useKaKaoToken = () => {
+export const useNotification = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -11,9 +11,9 @@ export const useKaKaoToken = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await postSnsLogin();
-        const data = res.data.token;
-
+        const res = await getNotification();
+        const data = res.data.data;
+        console.log(data);
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

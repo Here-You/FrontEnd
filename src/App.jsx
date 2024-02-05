@@ -10,7 +10,6 @@ import {
   ExplorePage,
   Home,
   JourneyDetailPage,
-  LoginBeforePage,
   LoginPage,
   MapDetailPage,
   MapPage,
@@ -113,11 +112,6 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.SNS_LOGIN_REDIRCT}`,
             element: <Redirect />,
-          },
-
-          {
-            path: `${BASE_PATH.LOGIN_BEFORE_PAGE}`,
-            element: <LoginBeforePage />,
           },
         ],
       },
