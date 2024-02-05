@@ -110,7 +110,11 @@ const RuleBox = ({
       )}
 
       {participantModalOpen && (
-        <ParticipantModal onClose={() => setParticipantModalOpen(false)} />
+        <ParticipantModal
+          onClose={() => setParticipantModalOpen(false)}
+          setSelectedProfiles={setSelectedProfiles}
+          selectedProfiles={selectedProfiles}
+        />
       )}
     </S.InputContainer>
   );

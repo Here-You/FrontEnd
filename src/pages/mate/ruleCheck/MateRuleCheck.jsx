@@ -1,36 +1,36 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import MateContainer from '../MateContainer';
 import * as S from './MateRuleCheck.style';
+import { deleteTeamRuleList } from '@/apis/request/mate';
 import TeamContainer from '@/components/mate/TeamContainer';
 import { useTeamRuleList } from '@/hooks/mate/useTeamRuleList';
 
 const MateRuleCheckPage = () => {
-  const userId = '1'; //임의로 지정
-  const { data: RulesData, loading, error } = useTeamRuleList(userId);
+  const { data: RulesData, loading, error } = useTeamRuleList();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    localStorage.setItem('x-access-token', 'adsadsfasdfasdf');
-  });
-
-  const handleClick = ruleId => {
-    navigate(`/mate/rule-check/${ruleId}`);
+  const handleExitClick = async ruleId => {
+    try {
+      await deleteTeamRuleList(ruleId);
+    } catch (error) {
+      setError(e.message || '에러가 발생했습니다.');
+    }
   };
 
   return (
-    <div>
-      <S.CenteredContainer>
-        <S.StyledTitle>내가 참여 중인 규칙</S.StyledTitle>
-        {RulesData.map((ruleData, index) => (
-          <TeamContainer
-            key={index}
-            ruleData={ruleData}
-            onClick={() => handleClick(ruleData._id)}
-          />
-        ))}
-      </S.CenteredContainer>
-    </div>
+    <MateContainer>
+      <S.StyledTitle>내가 참여 중인 규칙</S.StyledTitle>
+      {RulesData.map((ruleData, index) => (
+        <TeamContainer
+          key={index}
+          ruleData={ruleData}
+          onClick={() => navigate(`/mate/rule-check/${ruleData.id}`)}
+          onExitClick={() => handleExitClick(ruleData.id)}
+        />
+      ))}
+    </MateContainer>
   );
 };
 

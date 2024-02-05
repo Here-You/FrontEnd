@@ -4,45 +4,69 @@ import theme from '@/theme';
 
 const ResultContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  position: relative;
-  width: 240px;
-  height: 60px;
+  justify-content: space-evenly;
+  width: 320px;
+  height: 90px;
   flex-shrink: 0;
   border: 1px solid #eee;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: ${props => (props.isActive ? '#eee' : 'transparent')};
+  border-radius: 10px;
+  /* cursor: pointer;
+  background-color: ${props => (props.isActive ? '#eee' : 'transparent')}; */
+  margin-top: 20px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 240px;
+    height: 60px;
+    border-radius: 5px;
+    margin-top: 15px;
+  }
 `;
 
 const UserImg = styled.img`
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
+  width: 56px;
+  height: 56px;
+  border-radius: 56px;
   object-fit: fill;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+  }
 `;
 
 const TextContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   align-items: start;
-  position: absolute;
-  left: 70px;
-  height: 100%;
-  gap: 1px;
-  span {
+  width: 160px;
+  gap: 4px;
+
+  p {
+    width: 100%;
     color: ${theme.COLOR.MAIN.BLACK};
-    font-size: 8.864px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     letter-spacing: 0.638px;
     padding: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
   }
-  span:nth-child(2) {
+  p:nth-child(2) {
     color: #aaa;
+  }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    border-radius: 40px;
+    width: 110px;
+    gap: 2px;
+
+    p {
+      font-size: 9px;
+    }
   }
 `;
 

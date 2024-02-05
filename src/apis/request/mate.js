@@ -1,32 +1,34 @@
 import { axios, axiosWithToken } from '../api';
 import { API_URL } from '@/constants/path';
 
-// 토큰이 필요없는 경우 axios를 쓰면됩니다.
+//무한스크롤
 const getSearchMate = searchTerm => {
   // SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
   // 백엔드 API : api/v1/mate/search
   const url = `${API_URL.SEARCH_MATE}?searchTerm=${searchTerm}`;
+  console.log(url);
   return axiosWithToken.get(url);
 };
 
-const postFollowMate = (userId, followingId) => {
-  // FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:userId`,
-  // 백엔드 API : api/v1/mate/follow/:userId
-  const url = `${API_URL.FOLLOW_MATE}/${userId}`;
-  return axiosWithToken.post(url, {
-    followingId: followingId,
-  });
+const postFollowMate = followId => {
+  // FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
+  // 백엔드 API : api/v1/mate/search
+  const url = `${API_URL.FOLLOW_MATE}?followId=${followId}`;
+  console.log(url);
+  return axiosWithToken.post(url);
 };
 
-const deleteUnFollowMate = (userId, followingId) => {
-  // UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:userId`,
-  // 백엔드 API : api/v1/mate/follow/:userId
-  const url = `${API_URL.UNFOLLOW_MATE}/${userId}`;
+const deleteUnFollowMate = followId => {
+  // UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
+  // 백엔드 API : api/v1/mate/follow/:followId
+  const url = `${API_URL.UNFOLLOW_MATE}/${followId}`;
+  console.log(url);
   return axiosWithToken.delete(url, {
-    followingId: followingId,
+    followId: followId,
   });
 };
 
+//무한스크롤
 const getExploreMate = (userId, pageParam, limit) => {
   // EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/explore/:userId`,
   // 백엔드 API : api/v1/mate/explore/:userId
@@ -35,24 +37,27 @@ const getExploreMate = (userId, pageParam, limit) => {
   return axiosWithToken.get(url);
 };
 
-const getMateFollower = userId => {
-  // GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/followList/:userId`,
-  // 백엔드 API : api/v1/mate/followerList/:userId
-  const url = `${API_URL.GET_MATE_FOLLOWER}/${userId}`;
+const getMateFollower = () => {
+  // GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/followerList`,
+  // 백엔드 API : api/v1/mate/followerList
+  const url = `${API_URL.GET_MATE_FOLLOWER}`;
+  console.log(url);
   return axiosWithToken.get(url);
 };
 
-const getMateFollowing = userId => {
-  // GET_MATE_FOLLOWING: `/api/${VERSION}/${API_BASE.MATE}/followingList/:userId`,
+const getMateFollowing = () => {
+  // GET_MATE_FOLLOWING: `/api/${VERSION}/${API_BASE.MATE}/followingList`,
   // 백엔드 API : api/v1/mate/followingList/:userId
-  const url = `${API_URL.GET_MATE_FOLLOWING}/${userId}`;
+  const url = `${API_URL.GET_MATE_FOLLOWING}`;
+  console.log(url);
   return axiosWithToken.get(url);
 };
 
-const postCreateMateRule = (userId, postData) => {
+const postCreateMateRule = postData => {
   // CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,
   // 백엔드 API : api/v1/mate/rule/write
   const { mainTitle, created, rules, invitedId } = postData;
+  console.log(invitedId);
   const url = `${API_URL.CREATE_MATE_RULE}`;
   console.log(url);
   return axiosWithToken.post(url, {
@@ -68,59 +73,77 @@ const postCreateMateRule = (userId, postData) => {
   });
 };
 
+//무한스크롤
 const getSearchInviteMate = searchTerm => {
   // SEARCH_INVITE_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/searchMate`,
   // 백엔드 API : api/v1/mate/rule/searchMate
   const url = `${API_URL.SEARCH_INVITE_MATE}?searchTerm=${searchTerm}`;
+  console.log(url);
   return axiosWithToken.get(url);
 };
 
-const getParticipateTeamMate = () => {
-  // GET_PARTICIPATE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/participants/:ruleId`,
+const getParticipateTeamMate = ruleId => {
+  // GET_PARTICIPATE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/participants`,
   // 백엔드 API : api/v1/mate/rule/participants/:ruleId
-  const url = `${API_URL.GET_PARTICIPATE_TEAM_MATE}`;
+  const url = `${API_URL.GET_PARTICIPATE_TEAM_MATE}/${ruleId}`;
+  console.log(url);
   return axiosWithToken.get(url);
 };
 
+//무한스크롤
 const getTeamMateRule = ruleId => {
-  // GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/view/:ruleId`,
-  // 백엔드 API : api/v1/mate/rule/view/:ruleId
+  // GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/view`,
+  // 백엔드 API : api/v1/mate/rule/detail/:ruleId/:cursor/:take
   const url = `${API_URL.GET_TEAM_MATE_RULE}/${ruleId}`;
   console.log(url);
   return axiosWithToken.get(url);
 };
 
-const patchTeamMateRule = () => {
+const patchTeamMateRule = (ruleId, editData) => {
   // UPDATE_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/edit/:ruleId`,
   // 백엔드 API : api/v1/mate/rule/edit/:ruleId
-  const url = `${API_URL.UPDATE_TEAM_MATE_RULE}`;
+  const { mainTitle, rules } = editData;
+  const url = `${API_URL.UPDATE_TEAM_MATE_RULE}/${ruleId}`;
+  console.log(url);
   return axiosWithToken.patch(url, {
-    title: title,
-    contents: contents,
+    mainTitle: mainTitle,
+    rules: rules.map(rule => ({
+      ruleTitle: rule.ruleTitle,
+      ruleDetail: rule.ruleDetail,
+    })),
   });
 };
 
-const deleteTeamMate = () => {
+const deleteTeamMate = (ruleId, userId) => {
   // DELETE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/editMate/:ruleId/:userId`,
   // 백엔드 API : api/v1/mate/rule/editMate/:ruleId/:mateId
-  const url = `${API_URL.DELETE_TEAM_MATE}`;
+  const url = `${API_URL.DELETE_TEAM_MATE}/${ruleId}/${userId}`;
+  console.log(url);
   return axiosWithToken.delete(url);
 };
 
-const postMateruleComment = () => {
-  // CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule/comment/:ruleId`,
-  // 백엔드 API : /api/v1/rules/:ruleId/comments/:userId
-  const url = `${API_URL.CREATE_MATE_RULE_COMMENT}`;
+const postMateruleComment = ruleId => {
+  // CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule`,
+  // 백엔드 API : /api/v1/mate/rule/:ruleId
+  const url = `${API_URL.CREATE_MATE_RULE_COMMENT}/${ruleId}`;
+  console.log(url);
   return axiosWithToken.post(url);
 };
 
-const getTeamRuleList = userId => {
-  // GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list/:userId`,
-  // 백엔드 API : api/v1/mate/rule/list/:userId
-  // const url = `${API_BASE.MATE}/rule/list/${userId}`;
-  const url = `${API_URL.GET_TEAM_RULE_LIST}/${userId}`;
+const getTeamRuleList = () => {
+  // GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list`,
+  // 백엔드 API : api/v1/mate/rule/list
+  const url = `${API_URL.GET_TEAM_RULE_LIST}`;
   console.log(url);
   return axiosWithToken.get(url);
+};
+
+const deleteTeamRuleList = ruleId => {
+  // DELETE_TEAM_RULE_LIST : `/api/${VERSION}/${API_BASE.MATE}/rule/list`,
+  // 백엔드 API : api/v1/mate/rule/list/:ruleId
+  const url = `${API_URL.DELETE_TEAM_MATE}/${ruleId}`;
+  console.log(url);
+  return axiosWithToken.delete(url);
 };
 
 export {
@@ -138,4 +161,5 @@ export {
   deleteTeamMate,
   postMateruleComment,
   getTeamRuleList,
+  deleteTeamRuleList,
 };

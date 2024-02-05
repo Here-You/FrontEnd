@@ -16,30 +16,30 @@ const MateManagementPage = () => {
   };
 
   return (
-    <>
-      <MateContainer>
-        <S.TabContainer>
-          <S.TabElement
-            active={activeTab === 'follower'}
-            onClick={() => handleTabClick('follower')}>
-            팔로워
-          </S.TabElement>
-          <S.TabElement
-            active={activeTab === 'following'}
-            onClick={() => handleTabClick('following')}>
-            팔로잉
-          </S.TabElement>
-        </S.TabContainer>
-      </MateContainer>
+    <MateContainer>
+      <S.TabContainer>
+        <S.TabElement
+          active={activeTab === 'follower'}
+          onClick={() => handleTabClick('follower')}>
+          팔로워
+        </S.TabElement>
+        <S.TabElement
+          active={activeTab === 'following'}
+          onClick={() => handleTabClick('following')}>
+          팔로잉
+        </S.TabElement>
+      </S.TabContainer>
 
-      {activeTab === 'follower'
-        ? dataFollower.map((data, index) => (
-            <ManagementProfile key={index} profileData={data} />
-          ))
-        : dataFollowing.map((data, index) => (
-            <ManagementProfile key={index} profileData={data} />
-          ))}
-    </>
+      <S.ProfileContainer>
+        {activeTab === 'follower'
+          ? dataFollower.map((data, index) => (
+              <ManagementProfile key={index} profileData={data} />
+            ))
+          : dataFollowing.map((data, index) => (
+              <ManagementProfile key={index} profileData={data} />
+            ))}
+      </S.ProfileContainer>
+    </MateContainer>
   );
 };
 

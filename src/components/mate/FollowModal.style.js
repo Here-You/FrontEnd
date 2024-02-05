@@ -52,17 +52,13 @@ const ModalCloseButton = styled.button`
   }
 `;
 
-const ModalContents = styled.span`
-  color: ${theme.COLOR.MAIN.GRAY};
+const ModalContents = styled.p`
   width: 100%;
   text-align: center;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  font-size: 18px;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    font-size: 12px;
+    font-size: 14px;
   }
 `;
 

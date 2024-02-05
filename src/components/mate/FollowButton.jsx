@@ -5,15 +5,14 @@ import FollowModal from './FollowModal';
 import { postFollowMate } from '@/apis/request/mate';
 import { deleteUnFollowMate } from '@/apis/request/mate';
 
-const FollowButton = ({ isFollowing, name, followingId }) => {
-  const userId = 1; //임의로 지정
+const FollowButton = ({ isFollowing, name, followId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleChangeStatus = () => {
     if (isFollowing) {
-      deleteUnFollowMate(userId, followingId);
+      deleteUnFollowMate(followId);
     } else {
-      postFollowMate(userId, followingId);
+      postFollowMate(followId);
       setIsModalOpen(true);
     }
   };

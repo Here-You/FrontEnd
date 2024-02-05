@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import MateContainer from '../MateContainer';
 import * as S from './MateRuleWrite.style';
@@ -11,6 +12,9 @@ const MateRuleWritePage = () => {
   const [selectedProfiles, setSelectedProfiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
+
+  console.log(selectedProfiles);
 
   const handlePublishClick = async () => {
     try {
@@ -19,10 +23,10 @@ const MateRuleWritePage = () => {
         mainTitle: mainTitle,
         created: new Date(),
         rules: rules,
-        invitedId: selectedProfiles.map(profile => profile.id),
+        invitedId: selectedProfiles?.map(profile => profile?._id),
       };
-      const res = await postCreateMateRule(userId, postData);
-      console.log(res);
+      const res = await postCreateMateRule(postData);
+      navigate(`/mate/rule-check/${res.data._id}`);
     } catch (e) {
       setError(e.message || '에러가 발생했습니다.');
     } finally {

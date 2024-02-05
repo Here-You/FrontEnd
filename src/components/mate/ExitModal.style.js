@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import searchIcon from '/images/mate/mateSearch.svg';
 import theme from '@/theme';
 
 const ModalBase = styled.div`
@@ -18,32 +17,38 @@ const ModalBase = styled.div`
 const ModalContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   position: relative;
-  width: 277px;
-  height: 174px;
-  border-radius: 10px;
+  width: 400px;
+  height: 240px;
+  border-radius: 15px;
   border-color: transparent;
   background-color: ${theme.COLOR.MAIN.WHITE};
 
-  span {
+  /* span {
     color: ${theme.COLOR.MAIN.GRAY};
     text-align: center;
-    font-size: 12px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+  } */
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 277px;
+    height: 174px;
+    border-radius: 10px;
   }
 `;
 
 const SpanContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   position: absolute;
-  top: 62px;
-  gap: 7px;
+  top: 72px;
+  gap: 10px;
 
   span {
     color: ${theme.COLOR.MAIN.GRAY};
     text-align: center;
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -51,6 +56,13 @@ const SpanContainer = styled.div`
 
   span:last-child {
     font-weight: 500;
+  }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    top: 62px;
+    gap: 7px;
+    border-radius: 10px;
+    font-size: 12px;
   }
 `;
 
@@ -72,10 +84,14 @@ const CancelButton = styled.button`
 
   color: ${theme.COLOR.MAIN.GRAY};
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: 12px;
+  }
 `;
 
 const OkButton = styled.button`
@@ -87,10 +103,14 @@ const OkButton = styled.button`
 
   color: #ff8686;
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: 12px;
+  }
 `;
 
 export {

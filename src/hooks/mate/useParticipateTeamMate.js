@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { getParticipateTeamMate } from '@/apis/request/mate';
 
-export const useParticipateTeamMate = () => {
+export const useParticipateTeamMate = ruleId => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -11,7 +11,7 @@ export const useParticipateTeamMate = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getParticipateTeamMate();
+        const res = await getParticipateTeamMate(ruleId);
         const data = res.data.data.mates;
         console.log(data);
         setData(data);
@@ -23,7 +23,7 @@ export const useParticipateTeamMate = () => {
     };
 
     fetchData();
-  }, []);
+  }, [ruleId]);
 
   return { data, loading, error };
 };

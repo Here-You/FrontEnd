@@ -5,8 +5,15 @@ import RuleSearchResult from './RuleSearchResult';
 import * as S from './SearchInviteMateModal.style';
 import { useSearchInviteMate } from '@/hooks/mate/useSearchInviteMate';
 
-const SearchInviteMateModal = ({ onClose, setSelectedProfiles }) => {
-  const [localSelectedProfile, setLocalSelectedProfile] = useState(null);
+//
+// updateInvitations,
+
+const SearchInviteMateModal = ({
+  onClose,
+  selectedProfiles,
+  setSelectedProfiles,
+}) => {
+  // const [localSelectedProfile, setLocalSelectedProfile] = useState(null);
   const [inputSearchTerm, setInputSearchTerm] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,18 +28,26 @@ const SearchInviteMateModal = ({ onClose, setSelectedProfiles }) => {
     );
   };
 
+  // const handleProfileClick = profile => {
+  //   setLocalSelectedProfile(profile);
+  //   setIsactive(!isactive);
+  // };
+  // const handleInviteClick = async () => {
+  //   if (localSelectedProfile) {
+  //     setSelectedProfiles(prevProfiles => [
+  //       ...prevProfiles,
+  //       localSelectedProfile,
+  //     ]);
+  //   }
+  //   onClose();
+  // };
+
   const handleProfileClick = profile => {
-    setLocalSelectedProfile(profile);
-    setIsactive(!isactive);
+    setSelectedProfiles(prevProfiles => [...prevProfiles, profile]);
   };
 
   const handleInviteClick = async () => {
-    if (localSelectedProfile) {
-      setSelectedProfiles(prevProfiles => [
-        ...prevProfiles,
-        localSelectedProfile,
-      ]);
-    }
+    // updateInvitations(selectedProfiles);
     onClose();
   };
 
@@ -40,7 +55,9 @@ const SearchInviteMateModal = ({ onClose, setSelectedProfiles }) => {
     <S.ModalBase>
       <S.ModalContainer>
         <S.WrapContainer>
-          <S.Description>초대할 메이트의 아이디를 입력하세요.</S.Description>
+          <S.Description>
+            초대할 메이트의 이름 혹은 닉네임을 입력하세요.
+          </S.Description>
           <S.SearchContainer onSubmit={handleSubmitForm}>
             <S.UserInput
               value={inputSearchTerm}

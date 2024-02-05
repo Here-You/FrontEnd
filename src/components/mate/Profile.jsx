@@ -28,7 +28,7 @@ const Profile = ({ profileData }) => {
             <FollowButton
               isFollowing={is_following}
               name={name}
-              followingId={_id}
+              followId={_id}
             />
           </S.NameAndFollow>
 

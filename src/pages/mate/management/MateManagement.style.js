@@ -29,4 +29,8 @@ const TabElement = styled.div`
   }
 `;
 
-export { TabContainer, TabElement };
+const ProfileContainer = styled.div`
+  overflow-y: scroll;
+`;
+
+export { TabContainer, TabElement, ProfileContainer };
