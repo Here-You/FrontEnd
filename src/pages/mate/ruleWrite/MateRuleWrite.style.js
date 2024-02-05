@@ -1,29 +1,80 @@
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
-const PublishButton = styled.button`
-  width: 250px;
-  height: 60px;
-  border-radius: 50px;
-  border: none;
-  background: ${theme.COLOR.MAIN.HEAVY_GREEN};
-  cursor: pointer;
+const Container = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+`;
 
-  color: ${theme.COLOR.MAIN.WHITE};
-  text-align: center;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 0.864px;
+const Wrapper = styled.div`
+  width: 80%;
+  height: 900px;
+  overflow-y: scroll;
 
-  @media ${theme.WINDOW_SIZE.MOBILE} {
-    width: 201px;
-    height: 51px;
-    border-radius: 50px;
-    font-size: 16px;
+  border: 2px solid ${theme.COLOR.MAIN.HEAVY_GREEN};
+  border-radius: 20px;
+  padding: 20px;
+`;
+
+const Header = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  gap: 20px;
+
+  h1 {
+    ${theme.ALIGN.ROW_CENTER};
+  }
+
+  img {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 20px;
+    cursor: pointer;
   }
 `;
 
-export { PublishButton };
+const Content = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+`;
+
+const TitleInput = styled.input`
+  width: 80%;
+  padding: 10px;
+  border: none;
+  font-size: 1rem;
+`;
+
+const TextInput = styled.textarea`
+  width: 80%;
+  padding: 9px;
+  border: none;
+  resize: none;
+  font-size: 0.8rem;
+  color: ${theme.COLOR.MAIN.GRAY};
+`;
+
+const SubmitBtn = styled.button`
+  border: none;
+  width: 200px;
+  height: 50px;
+  margin-top: 20px;
+  background-color: ${theme.COLOR.MAIN.HEAVY_GREEN};
+  color: white;
+  font-size: ${FONT_SIZE.XL};
+  border-radius: 20px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+`;
+
+export {
+  Container,
+  Wrapper,
+  Header,
+  Content,
+  TitleInput,
+  TextInput,
+  SubmitBtn,
+};
