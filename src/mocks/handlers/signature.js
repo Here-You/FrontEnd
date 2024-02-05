@@ -165,7 +165,7 @@ export const SignatureHandlers = [
   ),
 
   //시그니처_시그니처 수정하기
-  http.post(
+  http.patch(
     `${baseURL}${API_URL.GET_DETAIL_SIGNATURE}`,
     ({ request, params }) => {
       return HttpResponse.json({

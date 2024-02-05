@@ -1,23 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import * as S from './Editor.style';
 import Page from './Page';
+import * as S from './SignatureEdit.style';
 import leftIcon from '/icons/leftIcon.svg';
 import rightIcon from '/icons/rightIcon.svg';
-import { postNewSignature } from '@/apis/request/signature';
-import useSignatureWrite from '@/store/useSignatureWrite';
+import { updateMySignature } from '@/apis/request/signature';
+import useSignatureEdit from '@/store/useSignatureEdit';
 
-//✍️시그니처 작성하기 로직✍️//
-//1. Page 컴포넌트 그대로
-//2. 상태관리 라이브러리로 페이지 index별 변경 사항 있을 때마다 업데이트
-//3. 발행 누르면 API POST 요청
-
-//🔥참고사항🔥
-//1. 시그니처-수정할 때도 이거 그대로 띄울 건데, 그때 첫 렌더링 시 1페이지, 이전, 다음 버튼
-//누를 때마다 GET 요청 보내지 말고, 그냥 한 번에 다 가져와서 위에 상태관리에 넣어버리기
-//2. 이후 로직은 동일
-
-export default function Editor({ setSelectedHeader }) {
+const Editor = ({ signatureId }) => {
   const {
     title,
     pages,
@@ -26,10 +17,10 @@ export default function Editor({ setSelectedHeader }) {
     goToPreviousPage,
     goToNextPage,
     updateTitle,
-  } = useSignatureWrite();
+  } = useSignatureEdit();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
+  const navigate = useNavigate();
   const maxPages = 10;
 
   const handleTitleChange = e => {
@@ -53,12 +44,15 @@ export default function Editor({ setSelectedHeader }) {
 
     try {
       setLoading(true);
-      const res = await postNewSignature(title, pages.slice(0, pages.length));
+      const res = await updateMySignature(
+        signatureId,
+        title,
+        pages.slice(0, pages.length),
+      );
       if (res) {
-        alert('시그니처가 저장되었습니다.');
-        updateTitle('');
+        alert('시그니처가 수정되었습니다.');
+        navigate(`/signature/post/${signatureId}`);
       }
-      setSelectedHeader('내 시그니처');
     } catch (e) {
       setError(e);
       alert('에러가 발생했습니다.');
@@ -104,4 +98,6 @@ export default function Editor({ setSelectedHeader }) {
       </S.ButtonWrap>
     </S.EditorContainer>
   );
-}
+};
+
+export default Editor;
