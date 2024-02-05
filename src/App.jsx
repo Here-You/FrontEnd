@@ -22,8 +22,6 @@ import {
   MateSearchPage,
   MyPage,
   MyPageEditPage,
-  MyPagePasswordPage,
-  MyPageWithdrawPage,
   Notification,
   OnBoardingPage,
   Redirect,
@@ -201,14 +199,6 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.MY_PAGE_EDIT}`,
             element: <MyPageEditPage />,
-          },
-          {
-            path: `${BASE_PATH.MY_PAGE_WITHDRAW}`,
-            element: <MyPageWithdrawPage />,
-          },
-          {
-            path: `${BASE_PATH.MY_PAGE_CHANGE_PASSWORD}`,
-            element: <MyPagePasswordPage />,
           },
         ],
       },

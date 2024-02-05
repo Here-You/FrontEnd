@@ -28,8 +28,6 @@ import MateSearchPage from './mate/search/MateSearch';
 // MY_PAGE
 import MyPage from './mypage/MyPage';
 import MyPageEditPage from './mypage/edit/MyPageEdit';
-import MyPagePasswordPage from './mypage/password/MyPagePassword';
-import MyPageWithdrawPage from './mypage/withdraw/MyPageWithdraw';
 // notification
 import Notification from './notification/Notification';
 // ON_BOARDING
@@ -65,8 +63,6 @@ export {
   MateRuleWritePage,
   MyPage,
   MyPageEditPage,
-  MyPagePasswordPage,
-  MyPageWithdrawPage,
   SignaturePage,
   SignatureEditPage,
   SignaturePopularPage,
