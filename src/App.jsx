@@ -28,10 +28,7 @@ import {
   SignUpPage,
   SignatureEditPage,
   SignaturePage,
-  SignaturePopularPage,
   SignaturePostPage,
-  SignatureRecommendPage,
-  SignatureSearchPage,
   SignatureWritePage,
   TravelTypePage,
   TravelTypeResultPage,
@@ -132,20 +129,8 @@ const router = createBrowserRouter([
             element: <SignatureWritePage />,
           },
           {
-            path: `${BASE_PATH.SIGNATURE_SEARCH}`,
-            element: <SignatureSearchPage />,
-          },
-          {
             path: `${BASE_PATH.SIGNATURE_EDIT}`,
             element: <SignatureEditPage />,
-          },
-          {
-            path: `${BASE_PATH.SIGNATURE_POPULAR}`,
-            element: <SignaturePopularPage />,
-          },
-          {
-            path: `${BASE_PATH.SIGNATURE_RECOMMEND}`,
-            element: <SignatureRecommendPage />,
           },
         ],
       },

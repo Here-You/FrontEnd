@@ -35,10 +35,7 @@ import OnBoardingPage from './onboarding/OnBoardingPage';
 // Signature
 import SignaturePage from './signature/SignaturePage';
 import SignatureEditPage from './signature/edit/SignatureEdit';
-import SignaturePopularPage from './signature/popular/SignaturePopular';
 import SignaturePostPage from './signature/post/SignaturePost';
-import SignatureRecommendPage from './signature/recommend/SignatureRecommend';
-import SignatureSearchPage from './signature/search/SignatureSearch';
 import SignatureWritePage from './signature/write/SignatureWrite';
 // SignUp
 import SignUpPage from './signup/SignUp';
@@ -65,9 +62,6 @@ export {
   MyPageEditPage,
   SignaturePage,
   SignatureEditPage,
-  SignaturePopularPage,
-  SignatureRecommendPage,
-  SignatureSearchPage,
   SignUpPage,
   SignaturePostPage,
   SignatureWritePage,

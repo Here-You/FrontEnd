@@ -1,5 +1,5 @@
-import Preview from '../components/Preview';
 import * as S from './MySignaturePage.style';
+import Preview from '@/components/preview/Preview';
 import { useSignaturePreview } from '@/hooks/signature/useSignaturePreview ';
 
 const MySignaturePage = () => {

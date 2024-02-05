@@ -1,7 +1,7 @@
 import { HttpResponse, http } from 'msw';
 
 import { baseURL } from '@/apis/api';
-import { API_URL } from '@/constants/path';
+import { API_PATH, API_URL } from '@/constants/path';
 
 export const ProfileHandlers = [
   // 로그인
@@ -57,12 +57,37 @@ export const ProfileHandlers = [
   ),
 
   // 알림 (아직 미구현)
+  http.get(`${baseURL}${API_URL.NOTIFICATION}`, () => {
+    return HttpResponse.json({
+      status: 200,
+      success: true,
+      message: '알림 조회 성공',
+      data: [
+        {
+          id: 1,
+          type: 'LIKE',
+          content: '상추부자, 이녕12님 외 10명이 내 시그니처에 좋아요',
+        },
+        {
+          id: 2,
+          type: 'COMMENT',
+          content: '상추부자, 이녕12님 외 10명이 내 시그니처에 좋아요',
+        },
+        {
+          id: 3,
+          type: 'INVITE',
+          content: '상추부자, 이녕12님 외 10명이 내 시그니처에 좋아요',
+        },
+      ],
+    });
+  }),
+
   http.put(`${baseURL}${API_URL.PUBLIC_SCOPE}`, ({ request, params }) => {
     return HttpResponse.json({
       status: 200,
       success: true,
       message: '공개범위 설정 성공',
-    });
+     });
   }),
 
   // 회원 탈퇴
@@ -72,5 +97,18 @@ export const ProfileHandlers = [
       success: true,
       message: '탈퇴 성공',
     });
+  }),
+
+  // 프로필 정보 가져오기
+  http.get(`${baseURL}${API_PATH.MY_PAGE_INFO}`, (req, res, ctx) => {
+    const profile = {
+      nickname: '닉네임',
+      type: '🐯',
+      email: 'abcde@naver.com',
+      introduction: '특기는 여행, 취미는 기록: >',
+      follower: '팔로워',
+      following: '팔로잉',
+    };
+    return HttpResponse.json(profile);
   }),
 ];
