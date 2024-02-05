@@ -64,7 +64,7 @@ const PublicScopeModal = ({ myVisibility }) => {
   };
 
   const onSubmit = async data => {
-   ㄴ if (!visibility) {
+    if (!visibility) {
       alert('내용을 입력해주세요!');
     } else {
       setIsLoading(true);
