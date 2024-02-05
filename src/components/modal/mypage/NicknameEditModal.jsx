@@ -5,8 +5,8 @@ import Modal from '../Modal';
 import * as S from './NicknameEdit.style';
 import { updateNickName } from '@/apis/request/profile';
 import Schema from '@/components/schema/Schema';
-import { yupResolver } from '@hookform/resolvers/yup';
 import useNicknameEditModal from '@/hooks/modal/useNickameEditModal';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const NicknameEditModal = ({ myNickname }) => {
   const nicknameEditModal = useNicknameEditModal();
@@ -49,7 +49,7 @@ const NicknameEditModal = ({ myNickname }) => {
   );
 
   const handleCloseModal = () => {
-  
+    console.log('안녕');
     nicknameEditModal.onClose();
   };
 
@@ -82,6 +82,7 @@ const NicknameEditModal = ({ myNickname }) => {
       onClose={handleCloseModal}
       onSubmit={handleSubmit(onSubmit)}
       actionLabel="변경"
+      secondButtonColor="red"
       body={BodyContent}
       secondaryAction={handleCloseModal}
       secondaryActionLabel="취소"

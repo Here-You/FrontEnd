@@ -82,6 +82,7 @@ const IntroEditModal = ({ myIntro }) => {
       onClose={handleCloseModal}
       onSubmit={handleSubmit(onSubmit)}
       actionLabel="변경"
+      secondButtonColor="red"
       body={BodyContent}
       secondaryAction={handleCloseModal}
       secondaryActionLabel="취소"

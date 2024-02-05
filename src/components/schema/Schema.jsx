@@ -9,7 +9,7 @@ const Schema = yup.object().shape({
   introduction: yup
     .string()
     .min(3, '3자 이상 입력해주세요!')
-    .max(12, '프로필 소개는 최대 12글자입니다!'),
+    .max(20, '프로필 소개는 최대 20글자입니다!'),
 });
 
 export default Schema;

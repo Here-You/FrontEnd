@@ -47,6 +47,7 @@ const WithDrawalModal = () => {
       onClose={handleCloseModal}
       onSubmit={onSubmit}
       actionLabel="회원탈퇴"
+      secondButtonColor="red"
       body={BodyContent}
       secondaryAction={handleCloseModal}
       secondaryActionLabel="취소"

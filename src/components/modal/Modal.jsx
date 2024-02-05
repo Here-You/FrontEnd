@@ -11,6 +11,7 @@ const Modal = ({
   disabled,
   secondaryAction,
   secondaryActionLabel,
+  secondButtonColor,
 }) => {
   const [showModal, setShowModal] = useState(!isOpen);
 
@@ -62,6 +63,7 @@ const Modal = ({
                 </S.Button>
               )}
               <S.Button
+                buttonColor={secondButtonColor}
                 disabled={disabled}
                 label={actionLabel}
                 onClick={handleSubmit}>
