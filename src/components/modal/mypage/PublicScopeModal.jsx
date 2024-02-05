@@ -51,11 +51,7 @@ const PublicScopeModal = ({ myVisibility }) => {
           <label>
             <div>
               <p>모두 공개</p>
-              <input
-                type="radio"
-                value="EVERYONE"
-                {...register('visibility')}
-              />
+              <input type="radio" value="PUBLIC" {...register('visibility')} />
             </div>
           </label>
         </S.RadioContainer>
