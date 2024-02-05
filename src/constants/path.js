@@ -67,7 +67,7 @@ const API_BASE = {
 const API_URL = {
   // PROFILE
   LOGIN: `/api/${VERSION}/${API_BASE.USER}/login`,
-
+  PUBLIC_SCOPE: `/api/${VERSION}/${API_BASE.USER}/profile/visibility`,
   ADDITIONAL_INFORMATION: `/api/${VERSION}/${API_BASE.USER}/profile`,
   SNS_LOGIN: `/api/${VERSION}/${API_BASE.USER}/login/oauth`,
   UPDATE_NICKNAME: `/api/${VERSION}/${API_BASE.PROFILE}/nickname`,

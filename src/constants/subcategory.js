@@ -23,6 +23,7 @@ const USER_SETTING = [
     id: 3,
     img: myPageImg.Lock,
     title: '공개범위 설정',
+    modal: true,
   },
 ];
 

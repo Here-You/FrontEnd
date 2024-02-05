@@ -49,6 +49,14 @@ const deleteWithdrawMember = () => {
   return axiosWithToken.delete(url);
 };
 
+// 공개 범위 설정
+const putPublicScope = visivility => {
+  const url = `${API_URL.PUBLIC_SCOPE}`;
+  const res = axiosWithToken.put(url, {
+    visivility: visivility,
+  });
+  return res;
+};
 export {
   getProfileInfo,
   postSnsLogin,
@@ -56,4 +64,5 @@ export {
   updateNickName,
   deleteWithdrawMember,
   postAddInformation,
+  putPublicScope,
 };

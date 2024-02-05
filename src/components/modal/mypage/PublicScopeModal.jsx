@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Modal from '../Modal';
-import * as S from './EditModal.style';
-import { updateIntro } from '@/apis/request/profile';
+import * as S from './PublicScope.style';
+import { putPublicScope } from '@/apis/request/profile';
 import Schema from '@/components/schema/Schema';
-import useIntroEditModal from '@/hooks/modal/useIntroEditModal';
-import { yupResolver } from '@hookform/resolvers/yup';
+import usePublicScopeModal from '@/hooks/modal/usePublicScopeModal';
 
-const IntroEditModal = ({ myIntro }) => {
-  const introEditModal = useIntroEditModal();
+const PublicScopeModal = ({ myVisibility }) => {
+  const publicScopeModal = usePublicScopeModal();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -17,51 +16,62 @@ const IntroEditModal = ({ myIntro }) => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
     watch,
     setValue,
   } = useForm({
-    resolver: yupResolver(Schema),
     mode: 'onChange',
     defaultValues: {
-      introduction: myIntro,
+      visibility: myVisibility,
     },
   });
 
   useEffect(() => {
-    setValue('introduction', myIntro);
-  }, [myIntro]);
+    setValue(myVisibility);
+  }, [myVisibility]);
 
-  const { introduction } = watch();
+  const { visibility } = watch();
 
   const BodyContent = (
     <S.Container>
       <S.ContentContainer>
-        <S.Title>변경할 프로필 소개 내용을 입력해 주세요.</S.Title>
-        <S.Input
-          id="introduction"
-          value={introduction}
-          {...register('introduction')}
-          placeholder="변경할 프로필 소개 내용을 입력하세요"
-        />
-        <S.ErrorMessage>{errors.introduction?.message}</S.ErrorMessage>
+        <S.Title>공개범위를 설정해 주세요.</S.Title>
+        <S.RadioContainer>
+          <label>
+            <div>
+              <p>나만보기</p>
+              <input type="radio" value="PRIVATE" {...register('visibility')} />
+            </div>
+          </label>
+          <label>
+            <div>
+              <p>메이트만</p>
+              <input type="radio" value="MATE" {...register('visibility')} />
+            </div>
+          </label>
+          <label>
+            <div>
+              <p>모두 공개</p>
+              <input type="radio" value="PUBLIC" {...register('visibility')} />
+            </div>
+          </label>
+        </S.RadioContainer>
       </S.ContentContainer>
     </S.Container>
   );
 
   const handleCloseModal = () => {
-    introEditModal.onClose();
+    publicScopeModal.onClose();
   };
 
   const onSubmit = async data => {
-    if (!introduction) {
+    if (!visibility) {
       alert('내용을 입력해주세요!');
     } else {
       setIsLoading(true);
       try {
-        const res = await updateIntro(introduction);
+        const res = await putPublicScope(visibility);
         if (res) {
-          alert('프로필 소개가 변경 되었습니다.');
+          alert('공개범위가 설정되었습니다.');
           console.log('제출된 데이터: ', data);
         }
       } catch (error) {
@@ -78,10 +88,10 @@ const IntroEditModal = ({ myIntro }) => {
   return (
     <Modal
       disabled={isLoading}
-      isOpen={introEditModal.isOpen}
+      isOpen={publicScopeModal.isOpen}
       onClose={handleCloseModal}
       onSubmit={handleSubmit(onSubmit)}
-      actionLabel="변경"
+      actionLabel="설정"
       secondButtonColor="red"
       body={BodyContent}
       secondaryAction={handleCloseModal}
@@ -90,4 +100,4 @@ const IntroEditModal = ({ myIntro }) => {
   );
 };
 
-export default IntroEditModal;
+export default PublicScopeModal;

@@ -11,7 +11,7 @@ const Redirect = () => {
     const fetchData = async () => {
       if (code) {
         try {
-          const response = await postSnsLogin('kakao', code);
+          const response = await postSnsLogin('KAKAO', code);
           const token = response.data.token;
           localStorage.setItem('x-access-token', token);
           const register_required = response.data.register_required;

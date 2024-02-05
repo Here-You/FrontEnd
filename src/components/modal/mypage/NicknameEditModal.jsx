@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Modal from '../Modal';
-import * as S from './NicknameEdit.style';
+import * as S from './EditModal.style';
 import { updateNickName } from '@/apis/request/profile';
 import Schema from '@/components/schema/Schema';
 import useNicknameEditModal from '@/hooks/modal/useNickameEditModal';
@@ -16,7 +16,7 @@ const NicknameEditModal = ({ myNickname }) => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+
     watch,
     setValue,
   } = useForm({
@@ -49,7 +49,6 @@ const NicknameEditModal = ({ myNickname }) => {
   );
 
   const handleCloseModal = () => {
-    console.log('안녕');
     nicknameEditModal.onClose();
   };
 
@@ -59,7 +58,7 @@ const NicknameEditModal = ({ myNickname }) => {
     } else {
       setIsLoading(true);
       try {
-        const res = await updateNickName({ ...data, nickname });
+        const res = await updateNickName(nickname);
         if (res) {
           alert('닉네임이 변경 되었습니다.');
           console.log('제출된 데이터: ', data);

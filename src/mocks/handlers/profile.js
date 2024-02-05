@@ -82,6 +82,14 @@ export const ProfileHandlers = [
     });
   }),
 
+  http.put(`${baseURL}${API_URL.PUBLIC_SCOPE}`, ({ request, params }) => {
+    return HttpResponse.json({
+      status: 200,
+      success: true,
+      message: '공개범위 설정 성공',
+     });
+  }),
+
   // 회원 탈퇴
   http.delete(`${baseURL}${API_URL.WITHDRAW_MEMBER}`, ({ request, params }) => {
     return HttpResponse.json({
