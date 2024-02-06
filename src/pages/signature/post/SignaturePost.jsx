@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './SignaturePost.style';
+import Logo from '/images/mypage/MyPageLogo.svg';
 import { deleteMySignature } from '@/apis/request/signature';
 import HeartButton from '@/components/HeartButton/HeartButton';
 import { useGetDetail } from '@/hooks/signature/useGetDetail';
@@ -68,6 +69,7 @@ const SignaturePostPage = () => {
   if (error) {
     return <div>에러가 발생했습니다...</div>;
   }
+  console.log(author);
 
   return (
     <>
@@ -78,7 +80,11 @@ const SignaturePostPage = () => {
             <>
               <S.HeaderContainer>
                 <S.ProfileContainer>
-                  <S.ProfileImg src={author?.image} />
+                  {author?.image ? (
+                    <S.ProfileImg src={author?.image} />
+                  ) : (
+                    <S.ProfileImg src={Logo} />
+                  )}
                   <S.ProfileDesc>
                     <h3>{author?.name}</h3>
                     <date>{header.date}</date>
@@ -102,7 +108,7 @@ const SignaturePostPage = () => {
                 <S.Button onClick={handlePrevPage} disabled={step === 1}>
                   <GrFormPrevious />
                 </S.Button>
-                <S.Image src={detailSignatures.pages[step - 1].image} />
+                <S.Image src={detailSignatures.pages[step - 1].image || Logo} />
                 <S.Button
                   onClick={handleNextPage}
                   disabled={step === totalPages}>
