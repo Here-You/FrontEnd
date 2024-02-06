@@ -154,7 +154,7 @@ const router = createBrowserRouter([
             element: <MateSearchPage />,
           },
           {
-            path: `${BASE_PATH.MATE_LOOK}/:userId`,
+            path: `${BASE_PATH.MATE_LOOK}`,
             element: <MateLookPage />,
           },
           {

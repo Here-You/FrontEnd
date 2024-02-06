@@ -2,35 +2,31 @@ import { axios, axiosWithToken } from '../api';
 import { API_URL } from '@/constants/path';
 
 // 토큰이 필요없는 경우 axios를 쓰면됩니다.
-const getSearchMate = searchTerm => {
+const getSearchMate = (searchTerm, cursor, take) => {
   // SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
   // 백엔드 API : api/v1/mate/search
-  const url = `${API_URL.SEARCH_MATE}?searchTerm=${searchTerm}`;
+  const url = `${API_URL.SEARCH_MATE}?searchTerm=${searchTerm}&cursor=${cursor}&take=${take}`;
   return axiosWithToken.get(url);
 };
 
 const postFollowMate = userId => {
   // FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:userId`,
   // 백엔드 API : api/v1/mate/follow/:userId
-  const url = `${API_URL.FOLLOW_MATE}/${userId}`;
-  return axiosWithToken.post(url, {
-    followingId: followingId,
-  });
+  const url = `${API_URL.FOLLOW_MATE}?followId=${userId}`;
+  return axiosWithToken.post(url);
 };
 
 const deleteUnFollowMate = userId => {
   // UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:userId`,
   // 백엔드 API : api/v1/mate/follow/:userId
   const url = `${API_URL.UNFOLLOW_MATE}/${userId}`;
-  return axiosWithToken.delete(url, {
-    followingId: followingId,
-  });
+  return axiosWithToken.delete(url);
 };
 
-const getExploreMate = (userId, pageParam, limit) => {
+const getExploreMate = (pageParam, take) => {
   // EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/explore/:userId`,
   // 백엔드 API : api/v1/mate/explore/:userId
-  const url = `${API_URL.EXPLORE_MATE}/${userId}?limit=${limit}&cursor=${pageParam}`;
+  const url = `${API_URL.EXPLORE_MATE}/?take=${take}&cursor=${pageParam}`;
   console.log(userId, pageParam, limit);
   return axiosWithToken.get(url);
 };
@@ -50,6 +46,7 @@ const getMateFollowing = () => {
 };
 
 const postCreateMateRule = postData => {
+  console.log(postData);
   // CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,
   // 백엔드 API : api/v1/mate/rule/write
   const { mainTitle, created, rules, invitedId } = postData;
@@ -58,12 +55,9 @@ const postCreateMateRule = postData => {
     write: {
       mainTitle: mainTitle,
       created: created,
-      rules: rules.map(rule => ({
-        ruleTitle: rule.ruleTitle,
-        ruleDetail: rule.ruleDetail,
-      })),
+      rules: rules,
     },
-    invitations: invitedId.map(id => ({ invitedId: id })),
+    invitations: invitedId,
   });
 };
 

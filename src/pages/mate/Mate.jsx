@@ -10,12 +10,15 @@ const MatePage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const searchTerm = searchParams.get('searchTerm') || '';
-  const { data, loading, error } = useSearchMate(searchTerm);
 
   return (
     <S.Container>
       <Search />
-      {searchTerm ? <MateSearchPage data={data} /> : <MateMainPage />}
+      {searchTerm ? (
+        <MateSearchPage searchTerm={searchTerm} />
+      ) : (
+        <MateMainPage />
+      )}
     </S.Container>
   );
 };

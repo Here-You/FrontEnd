@@ -67,6 +67,7 @@ export default function Editor({ setSelectedHeader }) {
       setSelectedHeader('내 시그니처');
     } catch (e) {
       setError(e);
+      console.log(e);
       alert('에러가 발생했습니다.');
     } finally {
       setLoading(false);
@@ -80,10 +81,6 @@ export default function Editor({ setSelectedHeader }) {
       alert(`최대 ${maxPages}개의 페이지까지만 추가할 수 있습니다.`);
     }
   };
-
-  useEffect(() => {
-    resetData();
-  }, []);
 
   return (
     <S.EditorContainer>

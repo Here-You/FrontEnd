@@ -6,10 +6,11 @@ const useSignatureWrite = create(set => ({
   pages: [],
   currentPageIndex: 0,
   resetData: () =>
-    set({
+    set(() => ({
       title: '',
       pages: [],
-    }),
+      currentPageIndex: 0,
+    })),
   addTitle: newTitle =>
     set(state => ({
       title: newTitle,
