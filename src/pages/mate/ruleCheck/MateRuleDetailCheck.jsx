@@ -8,6 +8,7 @@ import { useTeamMateRule } from '@/hooks/mate/useTeamMateRule';
 const MateRuleDetailCheckPage = () => {
   const { ruleId } = useParams();
   const { data, loading, error } = useTeamMateRule(ruleId);
+  // 본인이 해당 게시글의 유저인지 validation 하는 로직 필요.
 
   return (
     <S.Container>
