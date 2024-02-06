@@ -11,12 +11,10 @@ const getMySignaturePreview = () => {
 //시그니처 발행하기
 const postNewSignature = (title, pages) => {
   const url = `${API_URL.PUBLISH_SIGNATURE}`;
-  console.log(pages);
   const res = axiosWithToken.post(url, {
     title: title,
     pages: pages,
   });
-
   return res;
 };
 
@@ -34,7 +32,6 @@ const updateMySignature = (signatureId, title, pages) => {
     title: title,
     pages: pages,
   });
-  console.log(pages);
   return res;
 };
 
@@ -46,9 +43,12 @@ const deleteMySignature = signatureId => {
 };
 
 //시그니처 좋아요, 좋아요 취소
-const likeSignature = signatureId => {
+const likeSignature = (signatureId, liked) => {
   const url = `${API_URL.GET_MY_SIGNATURE}/like/${signatureId}`;
-  const res = axiosWithToken.patch(url);
+  const res = axiosWithToken.patch(url, {
+    liked: liked,
+    signatureId: signatureId,
+  });
   return res;
 };
 
