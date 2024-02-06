@@ -512,61 +512,60 @@ export const MateHandlers = [
         success: true,
         message: '여행 규칙 확인하기 팀원 ver 성공',
         data: {
-          rule_box: {
-            _id: 1,
-            main_title: '제주 여행 규칙을 세워보자',
-            rules: [
+          detailPage: {
+            detailRule: {
+              id: 1,
+              mainTitle: '제주 여행 규칙을 세워보자',
+              rulePairs: [
+                {
+                  id: 1,
+                  ruleTitle: '1. 기상 규칙',
+                  ruleDetail: '7시까진 무조건 기상하기. 알람은 한개만 맞춰두기',
+                },
+                {
+                  id: 2,
+                  ruleTitle: '2. 회비 규칙',
+                  ruleDetail: '투명하게 관리하기',
+                },
+              ],
+            },
+            detailMembers: [
               {
-                _id: 1,
-                rule_title: '1. 기상 규칙',
-                rule_detail: '7시까진 무조건 기상하기. 알람은 한개만 맞춰두기',
+                memberId: 1,
+                name: '김용민',
+                image:
+                  'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               },
               {
-                _id: 2,
-                rule_title: '2. 회비 규칙',
-                rule_detail: '투명하게 관리하기',
+                memberId: 12,
+                name: '매튜',
+                image:
+                  'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               },
             ],
+            comments: [
+              {
+                id: 1234,
+                image:
+                  'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                text: '완벽한 규칙이네요',
+                created: 1675275543,
+              },
+              {
+                id: 124,
+                image:
+                  'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                text: '완벽한 규칙이네요',
+                created: 1675275543,
+              },
+            ],
+            metaToBack: {
+              total: 3,
+              take: 2,
+              cursor: 1,
+              hasNextData: true,
+            },
           },
-          participants: [
-            {
-              _id: '안예원',
-              image:
-                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            },
-            {
-              _id: '안',
-              image:
-                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            },
-            {
-              _id: '안',
-              image:
-                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            },
-          ],
-          user_image: {
-            image:
-              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-          },
-          comments: [
-            {
-              _id: 1234,
-              image:
-                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              comment_text: '완벽한 규칙이네요',
-              created_at: 1675275543,
-            },
-            {
-              _id: 5678,
-              image:
-                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              comment_text: '회비 관련 규칙도 추가해주세요',
-              created_at: 1675275544,
-            },
-          ],
-          cursor: 'eyJjb25kaXRpb25JZCI6MjMsImxpbWl0IjoxMH0=',
-          hasNextPage: true,
         },
       });
     },

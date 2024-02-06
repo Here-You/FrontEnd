@@ -84,7 +84,7 @@ const getTeamMateRule = ruleId => {
   // GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/view`,
   // 백엔드 API : api/v1/mate/rule/detail/:ruleId/:cursor/:take
   const url = `${API_URL.GET_TEAM_MATE_RULE}/${ruleId}`;
-  console.log(url);
+
   return axiosWithToken.get(url);
 };
 
