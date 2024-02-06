@@ -20,7 +20,7 @@ const OutLineHeart = styled(AiOutlineHeart)`
 `;
 
 const FillHeart = styled(AiFillHeart)`
-  fill: ${props => (props.isLiked ? 'red' : 'red')};
+  fill: ${props => (props.isLiked ? 'red' : 'gray')};
 `;
 
 export { Container, FillHeart, OutLineHeart };

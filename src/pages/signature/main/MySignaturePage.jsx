@@ -9,7 +9,7 @@ const MySignaturePage = () => {
     <S.PageContainer>
       <S.PreviewContainer>
         {signaturePreview.map((s, _) => (
-          <Preview key={s.id} signature={s} />
+          <Preview key={s._id} signature={s} />
         ))}
       </S.PreviewContainer>
     </S.PageContainer>

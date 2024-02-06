@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './Preview.style';
 
 const Preview = ({ signature }) => {
-  const { date, image, title, id } = signature;
+  const { date, image, title, _id } = signature;
   const navigate = useNavigate();
 
   const formattedDate = useMemo(() => {
@@ -14,13 +14,13 @@ const Preview = ({ signature }) => {
 
   return (
     <>
-      <S.PreviewWrap onClick={() => navigate(`/signature/post/${id}`)}>
+      <S.PreviewWrap onClick={() => navigate(`/signature/post/${_id}`)}>
         <S.DateWrapper>
           <S.Date>{formattedDate}</S.Date>
         </S.DateWrapper>
         <S.PreviewImg src={image} />
         <S.Title>{title}</S.Title>
-        <S.Open to={`/signature/post/${id}`}>자세히보기</S.Open>
+        <S.Open to={`/signature/post/${_id}`}>자세히보기</S.Open>
       </S.PreviewWrap>
     </>
   );

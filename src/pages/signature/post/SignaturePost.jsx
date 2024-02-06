@@ -7,7 +7,6 @@ import { deleteMySignature } from '@/apis/request/signature';
 import HeartButton from '@/components/HeartButton/HeartButton';
 import { useGetDetail } from '@/hooks/signature/useGetDetail';
 import { CiLocationOn } from 'react-icons/ci';
-import { FaHeart } from 'react-icons/fa';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const SignaturePostPage = () => {
@@ -17,7 +16,7 @@ const SignaturePostPage = () => {
 
   const { data: detailSignatures, error, loading } = useGetDetail(signatureId);
 
-  const author = detailSignatures.author;
+  const author = detailSignatures?.author;
   const header = detailSignatures.header;
 
   const [step, setStep] = useState(1);
@@ -61,7 +60,7 @@ const SignaturePostPage = () => {
   if (error) {
     return <div>에러가 발생했습니다...</div>;
   }
-  console.log(detailSignatures);
+  console.log(header);
   return (
     <>
       {detailSignatures &&
@@ -71,9 +70,9 @@ const SignaturePostPage = () => {
             <>
               <S.HeaderContainer>
                 <S.ProfileContainer>
-                  <S.ProfileImg src={author.image} />
+                  <S.ProfileImg src={author?.image} />
                   <S.ProfileDesc>
-                    <h3>{author.name}</h3>
+                    <h3>{author?.name}</h3>
                     <date>{header.date}</date>
                   </S.ProfileDesc>
                 </S.ProfileContainer>
