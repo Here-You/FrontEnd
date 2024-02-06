@@ -53,6 +53,7 @@ const Editor = ({ signatureId }) => {
         alert('시그니처가 수정되었습니다.');
         navigate(`/signature/post/${signatureId}`);
       }
+      console.log(res);
     } catch (e) {
       setError(e);
       alert('에러가 발생했습니다.');

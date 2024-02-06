@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import * as S from './Editor.style';
 import Page from './Page';
@@ -26,6 +26,8 @@ export default function Editor({ setSelectedHeader }) {
     goToPreviousPage,
     goToNextPage,
     updateTitle,
+    resetData,
+    updatePage,
   } = useSignatureWrite();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -35,6 +37,9 @@ export default function Editor({ setSelectedHeader }) {
   const handleTitleChange = e => {
     const newTitle = e.target.value;
     updateTitle(newTitle);
+    if (currentPageIndex === 0) {
+      updatePage(currentPageIndex, { page: 1 });
+    }
   };
 
   const handlePublish = async () => {
@@ -74,6 +79,10 @@ export default function Editor({ setSelectedHeader }) {
       alert(`최대 ${maxPages}개의 페이지까지만 추가할 수 있습니다.`);
     }
   };
+
+  useEffect(() => {
+    resetData();
+  }, []);
 
   return (
     <S.EditorContainer>

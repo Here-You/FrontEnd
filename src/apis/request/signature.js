@@ -11,10 +11,12 @@ const getMySignaturePreview = () => {
 //시그니처 발행하기
 const postNewSignature = (title, pages) => {
   const url = `${API_URL.PUBLISH_SIGNATURE}`;
+  console.log(pages);
   const res = axiosWithToken.post(url, {
     title: title,
     pages: pages,
   });
+
   return res;
 };
 
@@ -32,6 +34,7 @@ const updateMySignature = (signatureId, title, pages) => {
     title: title,
     pages: pages,
   });
+  console.log(pages);
   return res;
 };
 

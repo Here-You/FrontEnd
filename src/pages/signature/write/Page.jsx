@@ -1,5 +1,5 @@
 // Page.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import * as S from './Editor.style';
 import LocationLight from '/icons/LocationLight.svg';
@@ -12,7 +12,10 @@ export default function Page({ image, content }) {
 
   const handleImageChange = e => {
     const file = e.target.files[0];
-    updatePage(currentPageIndex, { image: file });
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      updatePage(currentPageIndex, { image: imageUrl });
+    }
   };
 
   const handleContentChange = e => {
@@ -26,7 +29,7 @@ export default function Page({ image, content }) {
         <S.Icon src={LocationLight} />
         <SearchMap
           pageIndex={currentPageIndex}
-          inputValue={pages[currentPageIndex].location}
+          inputValue={pages[currentPageIndex]?.location}
           selectLocation={info => {
             updatePage(currentPageIndex, { location: info.name });
           }}
@@ -34,7 +37,7 @@ export default function Page({ image, content }) {
         />
       </S.LocationContainer>
       <S.InputWrap>
-        {image && <S.Image src={URL.createObjectURL(image)} />}
+        {image && <S.Image src={image} />}
         <S.PhotoButton>
           <img src={addButton} alt="Add Button" />
           <S.ImageInput
@@ -46,7 +49,7 @@ export default function Page({ image, content }) {
       </S.InputWrap>
       <S.ContentInput
         placeholder="오늘의 시그니처를 기록해보세요!"
-        value={content || pages[currentPageIndex].content}
+        value={content || pages[currentPageIndex]?.content}
         onChange={handleContentChange}
       />
     </S.PageContainer>

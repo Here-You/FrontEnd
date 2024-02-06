@@ -14,10 +14,18 @@ const SignaturePostPage = () => {
   const { signatureId } = params;
   const navigate = useNavigate();
 
-  const { data: detailSignatures, error, loading } = useGetDetail(signatureId);
+  const {
+    data: detailSignatures,
+    error,
+    loading,
+    like,
+    count,
+    setCount,
+    setLike,
+  } = useGetDetail(signatureId);
 
   const author = detailSignatures?.author;
-  const header = detailSignatures.header;
+  const header = detailSignatures?.header;
 
   const [step, setStep] = useState(1);
 
@@ -60,7 +68,7 @@ const SignaturePostPage = () => {
   if (error) {
     return <div>에러가 발생했습니다...</div>;
   }
-  console.log(header);
+
   return (
     <>
       {detailSignatures &&
@@ -82,8 +90,8 @@ const SignaturePostPage = () => {
                 <h1>{header.title}</h1>
               </S.TitleContainer>
               <S.ButtonContainer>
-                <HeartButton id={header._id} isLiked={header.is_liked} />
-                <h3>{header.like_cnt}</h3>
+                <HeartButton id={header._id} isLiked={like} />
+                <h3>{count}</h3>
               </S.ButtonContainer>
               <S.ImageContainer>
                 <S.Button onClick={handlePrevPage} disabled={step === 1}>
