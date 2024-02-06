@@ -29,7 +29,7 @@ export const useGetDetail = signatureId => {
     };
 
     fetchData();
-  }, [signatureId]);
+  }, [signatureId, setLike, setCount]);
 
   return { data, loading, error, like, count, setLike, setCount };
 };

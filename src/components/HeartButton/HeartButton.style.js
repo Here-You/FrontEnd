@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
+import theme from '@/theme';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 const Container = styled.div`
   position: relative;
   cursor: pointer;
+  ${theme.ALIGN.ROW_CENTER};
+  gap: 10px;
 
   &:hover {
     opacity: 0.8;

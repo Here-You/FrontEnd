@@ -90,8 +90,13 @@ const SignaturePostPage = () => {
                 <h1>{header.title}</h1>
               </S.TitleContainer>
               <S.ButtonContainer>
-                <HeartButton id={header._id} isLiked={like} />
-                <h3>{count}</h3>
+                <HeartButton
+                  id={header._id}
+                  like={like}
+                  setLike={setLike}
+                  count={count}
+                  setCount={setCount}
+                />
               </S.ButtonContainer>
               <S.ImageContainer>
                 <S.Button onClick={handlePrevPage} disabled={step === 1}>
