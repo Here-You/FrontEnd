@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from './TravelCalendar.style';
 import { getSchedule } from '@/apis/request/home';
 import { useLoadMonthlyJourney } from '@/hooks/home/useLoadMonthlyJourney';
+import { ErrorPage } from '@/pages';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 moment.locale('en');
@@ -111,7 +112,7 @@ const TravelCalendar = ({
   };
 
   if (error) {
-    return <h1>에러가 발생했습니다.</h1>;
+    return <ErrorPage />;
   }
 
   if (loading) {

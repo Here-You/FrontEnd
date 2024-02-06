@@ -35,7 +35,7 @@ export default function Page({ image, content }) {
           pageIndex={currentPageIndex}
           inputValue={pages[currentPageIndex]?.location}
           selectLocation={info => {
-            updatePage(currentPageIndex, { location: info.name });
+            updatePage(currentPageIndex, { location: info?.name });
           }}
           placeholder="위치 입력"
         />
