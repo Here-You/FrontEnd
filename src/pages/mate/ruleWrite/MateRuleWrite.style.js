@@ -26,6 +26,14 @@ const Header = styled.div`
   }
 `;
 
+const TitleInput = styled.input`
+  padding: 20px;
+  width: 80%;
+  border: none;
+  text-align: center;
+  font-size: ${FONT_SIZE.TWO_XL};
+`;
+
 const PlusSvg = styled.img`
   width: 25px;
   height: 25px;
@@ -61,13 +69,6 @@ const TextContainer = styled.div`
   position: relative;
 `;
 
-const TitleInput = styled.input`
-  width: 80%;
-  padding: 10px;
-  border: none;
-  font-size: 1rem;
-`;
-
 const DeleteRuleButton = styled.button`
   position: absolute;
   top: 23px;
@@ -86,7 +87,14 @@ const DeleteRuleButton = styled.button`
   }
 `;
 
-const TextInput = styled.textarea`
+const ContentTitleInput = styled.input`
+  width: 80%;
+  padding: 10px;
+  border: none;
+  font-size: 1rem;
+`;
+
+const ContentTextInput = styled.textarea`
   width: 80%;
   padding: 9px;
   border: none;
@@ -139,7 +147,8 @@ export {
   ContentBox,
   TextContainer,
   TitleInput,
-  TextInput,
+  ContentTextInput,
+  ContentTitleInput,
   DeleteRuleButton,
   AddButtonWrapper,
   AddQuestionButton,

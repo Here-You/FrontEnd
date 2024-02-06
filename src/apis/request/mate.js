@@ -56,21 +56,10 @@ const getMateFollowing = () => {
 const postCreateMateRule = postData => {
   // CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,
   // 백엔드 API : api/v1/mate/rule/write
-  const { mainTitle, created, rules, invitedId } = postData;
-  console.log(invitedId);
+
   const url = `${API_URL.CREATE_MATE_RULE}`;
-  console.log(url);
-  return axiosWithToken.post(url, {
-    write: {
-      mainTitle: mainTitle,
-      created: created,
-      rules: rules.map(rule => ({
-        ruleTitle: rule.ruleTitle,
-        ruleDetail: rule.ruleDetail,
-      })),
-    },
-    invitations: invitedId.map(id => ({ invitedId: id })),
-  });
+  console.log(postData);
+  return axiosWithToken.post(url, postData);
 };
 
 //무한스크롤

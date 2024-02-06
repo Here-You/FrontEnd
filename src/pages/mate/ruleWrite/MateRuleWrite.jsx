@@ -1,14 +1,19 @@
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 import * as S from './MateRuleWrite.style';
 import PlusUser from '/images/mate/add-user.svg';
+import { postCreateMateRule } from '@/apis/request/mate';
 import InviteMatesModal from '@/components/modal/inviteMatesModal/InviteMatesModal';
 import useInviteMatesModal from '@/hooks/modal/useInviteMatesModal';
 import useMatesStore from '@/store/matesStore';
 
 const MateRuleWritePage = () => {
+  const navigate = useNavigate();
   const inviteMatesModal = useInviteMatesModal();
   const selectedMates = useMatesStore(state => state.selectedMates);
+  const [title, setTitle] = useState('');
   const [rules, setRules] = useState([{ ruleTitle: '', ruleDetail: '' }]);
 
   const handleAddRule = () => {
@@ -21,12 +26,35 @@ const MateRuleWritePage = () => {
     setRules(prevRules => prevRules.filter((_, index) => index !== item));
   };
 
+  const handleSubmitRule = () => {
+    const postData = {
+      mainTitle: title,
+      // created 시간을 우리가 넣어줘야하나요..?
+      // 유저아이디도? (이건 토큰이 해줄텐데?)
+      created: new Date().toISOString(),
+      rules: rules,
+      invitedId: selectedMates.map(mate => mate._id),
+    };
+
+    postCreateMateRule(postData)
+      .then(() => {
+        toast.success('규칙을 성공적으로 작성하였습니다.');
+        navigate('/mate');
+      })
+      .catch(error => {
+        toast.error(error.message);
+      });
+  };
   return (
     <S.Container>
       <InviteMatesModal />
       <S.Wrapper>
         <S.Header>
-          <h1>제주여행을 떠나면</h1>
+          <S.TitleInput
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            placeholder="규칙 제목을 입력해주세요."
+          />
           <S.PlusSvg src={PlusUser} onClick={() => inviteMatesModal.onOpen()} />
         </S.Header>
         <S.MatesContainer>
@@ -40,7 +68,7 @@ const MateRuleWritePage = () => {
           {rules.map((rule, index) => (
             <S.ContentBox key={index}>
               <S.TextContainer>
-                <S.TitleInput
+                <S.ContentTitleInput
                   placeholder={`규칙 ${index + 1}을 입력해주세요!`}
                   value={rule.ruleTitle}
                   onChange={e => {
@@ -49,7 +77,7 @@ const MateRuleWritePage = () => {
                     setRules(newRules);
                   }}
                 />
-                <S.TextInput
+                <S.ContentTextInput
                   placeholder={`규칙 ${index + 1} 내용을 입력해주세요!`}
                   value={rule.ruleDetail}
                   onChange={e => {
@@ -75,7 +103,7 @@ const MateRuleWritePage = () => {
           )}
         </S.AddButtonWrapper>
       </S.Wrapper>
-      <S.SubmitBtn>발행하기</S.SubmitBtn>
+      <S.SubmitBtn onClick={handleSubmitRule}>발행하기</S.SubmitBtn>
     </S.Container>
   );
 };
