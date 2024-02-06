@@ -26,9 +26,9 @@ export default function Page({ image, content }) {
         <S.Icon src={LocationLight} />
         <SearchMap
           pageIndex={currentPageIndex}
-          inputValue={pages[currentPageIndex].location}
+          inputValue={pages[currentPageIndex]?.location}
           selectLocation={info => {
-            updatePage(currentPageIndex, { location: info.name });
+            updatePage(currentPageIndex, { location: info?.name });
           }}
           placeholder="위치 입력"
         />
@@ -46,7 +46,7 @@ export default function Page({ image, content }) {
       </S.InputWrap>
       <S.ContentInput
         placeholder="오늘의 시그니처를 기록해보세요!"
-        value={content || pages[currentPageIndex].content}
+        value={content || pages[currentPageIndex]?.content}
         onChange={handleContentChange}
       />
     </S.PageContainer>
