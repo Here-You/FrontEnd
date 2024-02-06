@@ -2,12 +2,12 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import * as S from './MateRuleDetailCheck.style';
+import { Comment } from '@/components';
 import { useTeamMateRule } from '@/hooks/mate/useTeamMateRule';
 
 const MateRuleDetailCheckPage = () => {
   const { ruleId } = useParams();
   const { data, loading, error } = useTeamMateRule(ruleId);
-  console.log(data);
 
   return (
     <S.Container>
@@ -34,6 +34,10 @@ const MateRuleDetailCheckPage = () => {
         </S.Content>
       </S.Wrapper>
       <S.UpdateBtn>수정하기</S.UpdateBtn>
+
+      {data?.comments?.map(comment => (
+        <Comment comment={comment} key={comment.id} />
+      ))}
     </S.Container>
   );
 };
