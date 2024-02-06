@@ -16,13 +16,15 @@ const MateRuleWritePage = () => {
       <S.Wrapper>
         <S.Header>
           <h1>제주여행을 떠나면</h1>
-          <img src={PlusUser} onClick={() => inviteMatesModal.onOpen()} />
-          <div>
-            {selectedMates.map(s => (
-              <img src={s.image} />
-            ))}
-          </div>
+          <S.PlusSvg src={PlusUser} onClick={() => inviteMatesModal.onOpen()} />
         </S.Header>
+        <S.MatesContainer>
+          {selectedMates.map(s => (
+            <>
+              <S.MatesImages src={s.image} />
+            </>
+          ))}
+        </S.MatesContainer>
         <S.Content>
           <S.TitleInput placeholder="1. 규칙 1을 입력해주세요!" />
           <S.TextInput

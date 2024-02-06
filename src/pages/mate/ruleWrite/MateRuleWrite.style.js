@@ -24,17 +24,29 @@ const Header = styled.div`
   h1 {
     ${theme.ALIGN.ROW_CENTER};
   }
+`;
 
-  img {
-    width: 25px;
-    height: 25px;
-    margin-bottom: 20px;
-    cursor: pointer;
+const PlusSvg = styled.img`
+  width: 25px;
+  height: 25px;
+  margin-bottom: 20px;
+  cursor: pointer;
 
-    &:hover {
-      transform: scale(0.9);
-    }
+  &:hover {
+    transform: scale(0.9);
   }
+`;
+
+const MatesContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  gap: 2px;
+`;
+
+const MatesImages = styled.img`
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
 `;
 
 const Content = styled.div`
@@ -76,6 +88,9 @@ const SubmitBtn = styled.button`
 export {
   Container,
   Wrapper,
+  PlusSvg,
+  MatesContainer,
+  MatesImages,
   Header,
   Content,
   TitleInput,
