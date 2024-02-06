@@ -7,7 +7,7 @@ const SearchContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
 `;
 
-const InputContainer = styled.div`
+const InputContainer = styled.form`
   ${theme.ALIGN.ROW_CENTER};
 
   width: 295px;

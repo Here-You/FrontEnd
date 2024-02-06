@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import theme from '@/theme';
+
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -8,6 +10,13 @@ const PageContainer = styled.div`
   width: 95%;
   margin: 0 auto;
   margin-bottom: 20px;
+`;
+
+const EmptyContainer = styled.div`
+  margin: auto;
+  height: 400px;
+  ${theme.ALIGN.COLUMN_CENTER};
+  gap: 20px;
 `;
 
 const Title = styled.div`
@@ -22,4 +31,4 @@ const PreviewContainer = styled.div`
   overflow-x: scroll;
 `;
 
-export { PageContainer, Title, PreviewContainer };
+export { PageContainer, EmptyContainer, Title, PreviewContainer };

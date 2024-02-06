@@ -41,12 +41,13 @@ export default function Editor({ setSelectedHeader }) {
       updatePage(currentPageIndex, { page: 1 });
     }
   };
+  console.log(pages);
 
   const handlePublish = async () => {
     let allPagesFilled = true;
 
     pages.forEach((page, index) => {
-      if (!page.location || !page.content || !page.image) {
+      if (!page?.location || !page?.content || !page?.image) {
         allPagesFilled = false;
       }
     });

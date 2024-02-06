@@ -23,7 +23,7 @@ export const useSearchKeyWord = keyword => {
     };
 
     fetchData();
-  }, [keyword]);
+  }, []);
 
   return { data, loading, error };
 };
