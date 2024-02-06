@@ -60,6 +60,15 @@ const TitleInput = styled.input`
   font-size: 1rem;
 `;
 
+const DeleteRuleButton = styled.button`
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
+  border-radius: 10px;
+  text-align: center;
+`;
+
 const TextInput = styled.textarea`
   width: 80%;
   padding: 9px;
@@ -67,6 +76,23 @@ const TextInput = styled.textarea`
   resize: none;
   font-size: 0.8rem;
   color: ${theme.COLOR.MAIN.GRAY};
+`;
+
+const AddButtonWrapper = styled.div`
+  ${theme.ALIGN.ROW_CENTER}
+`;
+
+const AddQuestionButton = styled.button`
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.9);
+  }
 `;
 
 const SubmitBtn = styled.button`
@@ -95,5 +121,8 @@ export {
   Content,
   TitleInput,
   TextInput,
+  DeleteRuleButton,
+  AddButtonWrapper,
+  AddQuestionButton,
   SubmitBtn,
 };
