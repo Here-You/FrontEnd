@@ -18,10 +18,9 @@ const MateRuleWritePage = () => {
   };
 
   const handleRemoveRule = item => {
-    setRules(prevRules => prevRules.filter((rule, index) => index !== item));
+    setRules(prevRules => prevRules.filter((_, index) => index !== item));
   };
 
-  console.log(rules);
   return (
     <S.Container>
       <InviteMatesModal />
@@ -39,14 +38,8 @@ const MateRuleWritePage = () => {
         </S.MatesContainer>
         <S.Content>
           {rules.map((rule, index) => (
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              key={index}>
-              <div>
+            <S.ContentBox key={index}>
+              <S.TextContainer>
                 <S.TitleInput
                   placeholder={`규칙 ${index + 1}을 입력해주세요!`}
                   value={rule.ruleTitle}
@@ -67,11 +60,11 @@ const MateRuleWritePage = () => {
                   rows="5"
                   columns="2"
                 />
-              </div>
-              <S.DeleteRuleButton onClick={() => handleRemoveRule(index)}>
-                X
-              </S.DeleteRuleButton>
-            </div>
+                <S.DeleteRuleButton onClick={() => handleRemoveRule(index)}>
+                  X
+                </S.DeleteRuleButton>
+              </S.TextContainer>
+            </S.ContentBox>
           ))}
         </S.Content>
         <S.AddButtonWrapper>

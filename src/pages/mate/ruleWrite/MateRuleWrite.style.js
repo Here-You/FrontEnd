@@ -53,6 +53,14 @@ const Content = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
 `;
 
+const ContentBox = styled.div`
+  ${theme.ALIGN.ROW_CENTER}
+`;
+
+const TextContainer = styled.div`
+  position: relative;
+`;
+
 const TitleInput = styled.input`
   width: 80%;
   padding: 10px;
@@ -61,12 +69,21 @@ const TitleInput = styled.input`
 `;
 
 const DeleteRuleButton = styled.button`
+  position: absolute;
+  top: 23px;
+  right: -10px;
+
   width: 30px;
   height: 30px;
   border: none;
   background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
   border-radius: 10px;
   text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.9);
+  }
 `;
 
 const TextInput = styled.textarea`
@@ -119,6 +136,8 @@ export {
   MatesImages,
   Header,
   Content,
+  ContentBox,
+  TextContainer,
   TitleInput,
   TextInput,
   DeleteRuleButton,
