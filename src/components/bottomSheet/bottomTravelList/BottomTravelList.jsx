@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './BottomTravelList.style';
 import Location from '/icons/Location.svg';
 
-const BottomTravelList = ({ id, title, count }) => {
+const BottomTravelList = ({ id, title, count, startDate, endDate }) => {
   const navigate = useNavigate();
   return (
     <S.ListContainer>
@@ -13,9 +13,9 @@ const BottomTravelList = ({ id, title, count }) => {
           <h2>{title}</h2>
           <S.TextContainer>
             <p>작성 일지 {count}개</p>
-            {/* <date>
+            <date>
               {startDate}~{endDate}
-            </date> */}
+            </date>
           </S.TextContainer>
         </S.ListDescriptionContainer>
       </S.ListWrapper>

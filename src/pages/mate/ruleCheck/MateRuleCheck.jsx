@@ -1,9 +1,7 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import MateContainer from '../MateContainer';
 import * as S from './MateRuleCheck.style';
-import { deleteTeamRuleList } from '@/apis/request/mate';
 import TeamContainer from '@/components/mate/TeamContainer';
 import { useTeamRuleList } from '@/hooks/mate/useTeamRuleList';
 
@@ -13,7 +11,7 @@ const MateRuleCheckPage = () => {
 
   const handleExitClick = async ruleId => {
     try {
-      await deleteTeamRuleList(ruleId);
+      // await deleteTeamRuleList(ruleId);
     } catch (error) {
       setError(e.message || '에러가 발생했습니다.');
     }

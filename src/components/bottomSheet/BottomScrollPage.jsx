@@ -12,10 +12,11 @@ import 'react-spring-bottom-sheet/dist/style.css';
 const BottomScrollPage = () => {
   const [open, setOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [year, setYear] = useState(parseInt(searchParams.get('year')));
-  const [month, setMonth] = useState(parseInt(searchParams.get('month')));
+  const [year, setYear] = useState(parseInt(searchParams.get('year')) || 2024);
+  const [month, setMonth] = useState(parseInt(searchParams.get('month')) || 2);
 
   const { data: journey, loading, error } = useMonthlyJourney(year, month);
+  console.log(journey);
 
   if (loading) {
     return <div>로딩 중 입니다...</div>;
@@ -81,14 +82,14 @@ const BottomScrollPage = () => {
           style={{
             height: '100%',
           }}>
-          {journey[0]?.journey_list?.map(
-            ({ journey_id, journey_title, diary_count }, idx) => {
+          {journey?.map(
+            ({ journeyId, title, diary_count, startDate, endDate }, idx) => {
               return (
                 <BottomTravelList
-                  id={journey_id}
-                  title={journey_title}
-                  // startDate={startDate}
-                  // endDate={endDate}
+                  id={journeyId}
+                  title={title}
+                  startDate={startDate}
+                  endDate={endDate}
                   count={diary_count}
                 />
               );
