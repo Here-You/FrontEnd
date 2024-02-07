@@ -560,7 +560,7 @@ export const HomeHandlers = [
               diaryImage: {
                 id: 1,
                 imageUrl:
-                  'http://here-you.s3-website.ap-northeast-2.amazonaws.com591a0e19-6d09-4d2c-8061-893d5f373592.png',
+                  'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
               },
             },
             {
@@ -573,7 +573,7 @@ export const HomeHandlers = [
               diaryImage: {
                 id: 2,
                 imageUrl:
-                  'http://here-you.s3-website.ap-northeast-2.amazonaws.com75e60cd3-ce5e-49ab-bd02-7c6591605564.png',
+                  'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
               },
             },
           ],
@@ -596,6 +596,46 @@ export const HomeHandlers = [
             journeyId: journeyId,
             date: '2022-03-20',
             diary: {
+              id: 1,
+              title: '일지',
+              place: '내 집',
+              weather: 'SUNNY',
+              mood: 'HAPPY',
+              content: '5번째 일지를 작성했습니다...',
+              created: '2024-02-06T20:07:47.266Z',
+              updated: '2024-02-06T20:07:47.266Z',
+              deleted: null,
+            },
+            diaryImage: {
+              id: 1,
+              imageUrl:
+                'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+            },
+          },
+          {
+            journeyId: journeyId,
+            date: '2022-03-21',
+            diary: {
+              id: 2,
+              title: '일지',
+              place: '내 집',
+              weather: 'SUNNY',
+              mood: 'HAPPY',
+              content: '5번째 일지를 작성했습니다...',
+              created: '2024-02-06T20:07:47.266Z',
+              updated: '2024-02-06T20:07:47.266Z',
+              deleted: null,
+            },
+            diaryImage: {
+              id: 2,
+              imageUrl:
+                'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+            },
+          },
+          {
+            journeyId: journeyId,
+            date: '2022-03-22',
+            diary: {
               id: 3,
               title: '일지',
               place: '내 집',
@@ -609,7 +649,27 @@ export const HomeHandlers = [
             diaryImage: {
               id: 3,
               imageUrl:
-                'http://here-you.s3-website.ap-northeast-2.amazonaws.come9e9c94b-684a-4b4f-bdbe-c5696275b098.png',
+                'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+            },
+          },
+          {
+            journeyId: journeyId,
+            date: '2022-03-23',
+            diary: {
+              id: 4,
+              title: '일지',
+              place: '내 집',
+              weather: 'SUNNY',
+              mood: 'HAPPY',
+              content: '5번째 일지를 작성했습니다...',
+              created: '2024-02-06T20:07:47.266Z',
+              updated: '2024-02-06T20:07:47.266Z',
+              deleted: null,
+            },
+            diaryImage: {
+              id: 4,
+              imageUrl:
+                'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
             },
           },
         ],

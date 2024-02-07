@@ -1,7 +1,7 @@
 import { axiosWithToken } from '../api';
 import { API_BASE, VERSION } from '@/constants/path';
 
-// 월별 일정 불러오기 (확정 X, 무한스크롤)
+// 월별 일정 불러오기 (확정 X)
 const loadMonthlySchedule = (year, month) => {
   const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/monthly/${year}/${month}`;
   const res = axiosWithToken.get(url);

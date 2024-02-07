@@ -15,8 +15,8 @@ const DailyRecordEditPage = () => {
   const { scheduleId } = useParams();
   const [selectedImg, setSelectedImg] = useState();
   const cache = useQueryClient();
-  const data = cache.getQueryData(['diaries', parseInt(scheduleId)]).data.data
-    .diaries;
+  const data = cache.getQueryData(['diaries', parseInt(scheduleId)]).data
+    ?.data[0];
   const [diaryWeather, setDiaryWeather] = useState('');
   const [dairyMood, setdairyMood] = useState('');
   const [lodaing, setLoading] = useState(false);
@@ -37,12 +37,12 @@ const DailyRecordEditPage = () => {
     mode: 'onBlur',
     // resolver: zodResolver(schema),
     defaultValues: {
-      place: data.location,
+      place: data.place,
       title: data.title,
       weather: data.weather,
       mood: data.mood,
       content: data.content,
-      image: data.diary_image.imageKey,
+      image: data.diary_image?.image_key,
     },
   });
 
@@ -67,7 +67,7 @@ const DailyRecordEditPage = () => {
   const onSubmit = async data => {
     try {
       setLoading(true);
-      const res = await updateDiary({ id: data.id, ...data });
+      const res = await updateDiary({ id: data.id, postData: data });
       if (res) {
         console.log('제출된 데이터: ', data);
         alert('수정되었습니다');
@@ -75,6 +75,7 @@ const DailyRecordEditPage = () => {
       }
     } catch (e) {
       setError(e);
+      console.log(e);
       alert('일지 수정 중에 에러가 발생했습니다. 다시 시도해주세요');
     } finally {
       setLoading(false);
