@@ -11,6 +11,7 @@ const FollowButton = ({ isFollowing, name, id }) => {
   const handleChangeStatus = () => {
     if (isFollowing) {
       deleteUnFollowMate(id);
+      setIsModalOpen(true);
     } else {
       postFollowMate(id);
       setIsModalOpen(true);
@@ -25,7 +26,11 @@ const FollowButton = ({ isFollowing, name, id }) => {
         </S.FollowButton>
       }
       {isModalOpen && (
-        <FollowModal onClose={() => setIsModalOpen(false)} name={name} />
+        <FollowModal
+          onClose={() => setIsModalOpen(false)}
+          name={name}
+          isFollowing={isFollowing}
+        />
       )}
     </>
   );
