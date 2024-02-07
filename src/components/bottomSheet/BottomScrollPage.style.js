@@ -69,6 +69,15 @@ const TextContainer = styled.div`
   justify-content: space-between;
 `;
 
+const BottomAlertMessage = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  margin-top: 30%;
+  p {
+    font-size: ${FONT_SIZE.XL};
+    color: ${theme.COLOR.MAIN.HEAVY_GREEN};
+  }
+`;
+
 export {
   HeaderWrapper,
   Button,
@@ -79,4 +88,5 @@ export {
   ListContainer,
   TextContainer,
   ListDescriptionContainer,
+  BottomAlertMessage,
 };

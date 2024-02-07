@@ -111,9 +111,9 @@ const TravelCalendar = ({
     return '';
   };
 
-  if (error) {
-    return <ErrorPage />;
-  }
+  // if (error) {
+  //   return <ErrorPage />;
+  // }
 
   if (loading) {
     return <h1>로딩중입니다. 잠시만 기다려주세요.</h1>;
@@ -162,9 +162,8 @@ const TravelCalendar = ({
               />
             )),
           )}
-          {schedulesData?.pages?.length === 0 && (
-            <div>아직 작성한 여정이 없어요!</div>
-          )}
+          {schedulesData?.pages?.length === 0 ||
+            (!schedulesData && <div>아직 작성한 여정이 없어요!</div>)}
         </S.SchedulesContainer>
       </S.HomeContentContainer>
     </S.Wrapper>

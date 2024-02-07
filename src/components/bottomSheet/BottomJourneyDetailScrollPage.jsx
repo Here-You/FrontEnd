@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 
@@ -56,7 +57,12 @@ const BottomJourneyDetailScrollPage = ({ journeyInfo }) => {
             {validImageCount > 3 && <p>...</p>}
           </S.ImageContainer>
           <S.ButtonContainer>
-            <S.Button onClick={() => navigate(`/dailyrecord/${journeyId}`)}>
+            <S.Button
+              onClick={() =>
+                validImageCount === 0
+                  ? toast('아직 작성한 일지가 없어요!')
+                  : navigate(`/dailyrecord/${journeyId}`)
+              }>
               작성 일지 확인하기
             </S.Button>
             <S.Button onClick={() => navigate(`/map/journey/${journeyId}`)}>
