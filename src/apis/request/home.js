@@ -1,47 +1,14 @@
 import { axiosWithToken } from '../api';
-import { API_BASE, API_URL, VERSION } from '@/constants/path';
+import { API_BASE, VERSION } from '@/constants/path';
 
+// 월별 일정 불러오기 (확정 X)
 const loadMonthlySchedule = (year, month) => {
-  const url = `${API_URL.LOAD_MONTHLY_SCHEDULE}?year=${year}&month=${month}`;
+  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/monthly/${year}/${month}`;
   const res = axiosWithToken.get(url);
   return res;
 };
 
-// 임시
-const saveJourney = ({ title, startDate, endDate }) => {
-  const url = `/api/${VERSION}/${API_BASE.JOURNEY}/create`;
-  const res = axiosWithToken.post(url, {
-    title: title,
-    startDate: startDate,
-    endDate: endDate,
-  });
-  return res;
-};
-
-const updateJourney = ({ journeyId, title, startDate, endDate }) => {
-  const url = `/api/${VERSION}/${API_BASE.JOURNEY}/update/${journeyId}`;
-  const res = axiosWithToken.put(url, {
-    title: title,
-    startDate: startDate,
-    endDate: endDate,
-  });
-  return res;
-};
-
-const deleteJourney = journeyId => {
-  const url = `/api/${VERSION}/${API_BASE.JOURNEY}/delete/${journeyId}`;
-  const res = axiosWithToken.delete(url);
-  return res;
-};
-
-const createSchedule = ({ journeyId }) => {
-  const url = `${API_URL.CREATE_SCHEDULE}`;
-  const res = axiosWithToken.post(url, {
-    journeyId: journeyId,
-  });
-  return res;
-};
-
+// 일정 불러오기 (확정 x, 무한스크롤)
 const getSchedule = (journeyId, pageParam) => {
   const url = `/api/${VERSION}/${API_BASE.SCHEDULES}/${journeyId}?cursor=${pageParam}`;
   const res = axiosWithToken.get(url);
@@ -49,30 +16,87 @@ const getSchedule = (journeyId, pageParam) => {
   return res;
 };
 
-const postDetailSchedule = ({ scheduleId, content }) => {
-  const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/${scheduleId}`;
+// 임시
+// 여정 저장하기
+const saveJourney = ({ title, startDate, endDate }) => {
+  const url = `/api/${VERSION}/${API_BASE.JOURNEY}/create/`;
+  const res = axiosWithToken.post(url, {
+    title: title,
+    startDate: startDate,
+    endDate: endDate,
+  });
+  return res;
+};
+
+// 여정 수정하기
+const updateJourney = ({ journeyId, title }) => {
+  const url = `/api/${VERSION}/${API_BASE.JOURNEY}/update/${journeyId}`;
+  const res = axiosWithToken.put(url, {
+    title: title,
+  });
+  return res;
+};
+
+// 여정 삭제하기
+const deleteJourney = journeyId => {
+  const url = `/api/${VERSION}/${API_BASE.JOURNEY}/delete/${journeyId}`;
+  const res = axiosWithToken.delete(url);
+  return res;
+};
+
+// 일정 작성하기
+const createSchedule = ({ scheduleId, title, latitude, longitude }) => {
+  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/update-title/${scheduleId}`;
+  const res = axiosWithToken.put(url, {
+    title: title,
+    latitude: latitude,
+    longitude: longitude,
+  });
+  return res;
+};
+
+// 일정 삭제하기
+const deleteSchedule = ({ scheduleId }) => {
+  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/delete/${scheduleId}`;
+  const res = axiosWithToken.delete(url);
+  return res;
+};
+
+// 세부 일정 추가하기
+const addDetailSchedule = ({ scheduleId, content }) => {
+  const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/create/${scheduleId}`;
   const res = axiosWithToken.post(url, {
     content: content,
   });
   return res;
 };
 
-const updateDetailSchedule = ({ scheduleId, detailId, content }) => {
-  const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/${scheduleId}/update/${detailId}`;
+// 세부 일정 작성하기 (수정하기)
+const postDetailSchedule = ({ detailId, content }) => {
+  const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/update/${detailId}`;
   const res = axiosWithToken.put(url, {
     content: content,
   });
   return res;
 };
 
-const deleteDetailSchedule = ({ scheduleId, detailId }) => {
-  const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/${scheduleId}/delete/${detailId}`;
+// 세부 일정 삭제하기
+const deleteDetailSchedule = ({ detailId }) => {
+  const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/delete/${detailId}`;
   const res = axiosWithToken.delete(url);
   return res;
 };
 
+// 세부 일정 상태 변경하기
+const changeDetailScheduleStatus = ({ detailId }) => {
+  const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/update-status/${detailId}`;
+  const res = axiosWithToken.patch(url);
+  return res;
+};
+
+// 일지 작성하기
 const postDiary = ({ scheduleId, postData }) => {
-  const { title, place, weather, mood, content, userId, images } = postData;
+  const { title, place, weather, mood, content, images } = postData;
   const url = `/api/${VERSION}/${API_BASE.DIARY}/create/${scheduleId}`;
   const res = axiosWithToken.post(url, {
     title: title,
@@ -80,21 +104,30 @@ const postDiary = ({ scheduleId, postData }) => {
     weather: weather,
     mood: mood,
     content: content,
-    userId: userId,
-    images: images,
+    fileName: images,
   });
   return res;
 };
 
+// 일지 불러오기 (한개만)
 const getDiary = nowPage => {
   const url = `/api/${VERSION}/${API_BASE.DIARIES}/${nowPage}`;
   const res = axiosWithToken.get(url);
   return res;
 };
 
-const updateDiary = ({ diaryId }) => {
+// 일지 수정하기
+const updateDiary = ({ diaryId, postData }) => {
+  const { title, place, weather, mood, content, images } = postData;
   const url = `/api/${VERSION}/${API_BASE.DIARIES}/update/${diaryId}`;
-  const res = axiosWithToken.put(url);
+  const res = axiosWithToken.put(url, {
+    title: title,
+    place: place,
+    weather: weather,
+    mood: mood,
+    content: content,
+    fileName: images,
+  });
   return res;
 };
 
@@ -105,9 +138,11 @@ export {
   deleteJourney,
   createSchedule,
   getSchedule,
+  deleteSchedule,
+  addDetailSchedule,
   postDetailSchedule,
-  updateDetailSchedule,
   deleteDetailSchedule,
+  changeDetailScheduleStatus,
   postDiary,
   getDiary,
   updateDiary,

@@ -17,11 +17,10 @@ const MapDetailPage = () => {
     return <h1>에러가 발생했습니다...</h1>;
   }
 
-  console.log(data);
   return (
     <S.Container>
-      <TravelMapDetail journeyInfo={data?.journey_info} />
-      <BottomJourneyDetailScrollPage journeyInfo={data?.journey_info} />
+      <TravelMapDetail journeyInfo={data} />
+      <BottomJourneyDetailScrollPage journeyInfo={data} />
     </S.Container>
   );
 };

@@ -81,19 +81,26 @@ const BottomScrollPage = () => {
         <div
           style={{
             height: '100%',
+            position: 'relative',
           }}>
-          {journey?.map(
-            ({ journeyId, title, diary_count, startDate, endDate }, idx) => {
-              return (
-                <BottomTravelList
-                  id={journeyId}
-                  title={title}
-                  startDate={startDate}
-                  endDate={endDate}
-                  count={diary_count}
-                />
-              );
-            },
+          {journey ? (
+            journey?.map(
+              ({ journeyId, title, diaryCount, startDate, endDate }, idx) => {
+                return (
+                  <BottomTravelList
+                    id={journeyId}
+                    title={title}
+                    startDate={startDate}
+                    endDate={endDate}
+                    count={diaryCount}
+                  />
+                );
+              },
+            )
+          ) : (
+            <S.BottomAlertMessage>
+              <p>아직 작성한 여정이 없습니다!</p>
+            </S.BottomAlertMessage>
           )}
         </div>
       </BottomSheet>

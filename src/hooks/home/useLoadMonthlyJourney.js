@@ -14,9 +14,9 @@ export const useLoadMonthlyJourney = (year, month) => {
         setLoading(true);
         const res = await loadMonthlySchedule(year, month);
         const data = res.data.data;
-
         setData(data);
       } catch (e) {
+        console.log(e);
         setError(e.message || '에러가 발생했습니다.');
       } finally {
         setLoading(false);

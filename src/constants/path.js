@@ -1,11 +1,9 @@
 const BASE_PATH = {
   BASE: '/',
-  TRAVELS: '/travels',
   SIGN_UP: '/signup',
   // LOGIN
   LOGIN: '/login',
   SNS_LOGIN_REDIRCT: '/login/oauth',
-  LOGIN_BEFORE_PAGE: '/login/before',
   ON_BOARDING: 'onboarding',
   MAP: '/map',
   MAP_DETAIL: '/map/:journeyId',
@@ -16,10 +14,7 @@ const BASE_PATH = {
   // SIGNATURE
   SIGNATURE: '/signature',
   SIGNATURE_WRITE: '/signature/write',
-  SIGNATURE_SEARCH: '/signature/search',
   SIGNATURE_EDIT: '/signature/edit/:signatureId',
-  SIGNATURE_POPULAR: '/signature/popular',
-  SIGNATURE_RECOMMEND: '/signature/recommend/:tag',
   SIGNATURE_POST_PAGE: '/signature/post/:signatureId',
   // MATE
   MATE: '/mate',
@@ -32,14 +27,10 @@ const BASE_PATH = {
   // MY_PAGE
   MY_PAGE: '/mypage',
   MY_PAGE_EDIT: '/mypage/edit',
-  MY_PAGE_CHANGE_PASSWORD: '/mypage/password',
-  MY_PAGE_WITHDRAW: '/mypage/withdraw',
-  // App.jsx에서, path 추가할때 사용하시면 됩니다. 예시코드 9번줄
   TRAVEL_TYPE: '/traveltype',
   TRAVEL_TYPE_RESULT: '/traveltype/result',
   //EXPLORE(탐색)
   EXPLORE: '/explore',
-  EXPLORE_SEARCH: '/explore/:value',
   // JOURNEY
   MAP_JOURNEY_DETAIL: '/map/journey/:journeyId',
   //notification
@@ -72,27 +63,30 @@ const API_URL = {
   SNS_LOGIN: `/api/${VERSION}/${API_BASE.USER}/login/oauth`,
   UPDATE_NICKNAME: `/api/${VERSION}/${API_BASE.PROFILE}/nickname`,
   UPDATE_PROFILE_INTRO: `/api/${VERSION}/${API_BASE.PROFILE}/intro`,
+  GET_ALL_DIARY: `/api/${VERSION}/${API_BASE.USER}/diaries`,
 
   NOTIFICATION: `/api/${VERSION}/${API_BASE.NOTIFICATION}`,
   WITHDRAW_MEMBER: `/api/${VERSION}/${API_BASE.PROFILE}/delete`,
   // HOME
-  LOAD_MONTHLY_SCHEDULE: `/api/${VERSION}/${API_BASE.SCHEDULES}/monthly`,
-  SAVE_JOURNEY: `/api/${VERSION}/${API_BASE.JOURNEY}/create`,
+  LOAD_MONTHLY_SCHEDULE: `/api/${VERSION}/${API_BASE.SCHEDULE}/monthly/:year/:month`,
+  SAVE_JOURNEY: `/api/${VERSION}/${API_BASE.JOURNEY}/create/`,
   UPDATE_JOURNEY: `/api/${VERSION}/${API_BASE.JOURNEY}/update/:journeyId`,
   DELETE_JOURNEY: `/api/${VERSION}/${API_BASE.JOURNEY}/delete/:journeyId`,
-  CREATE_SCHEDULE: `/api/${VERSION}/${API_BASE.SCHEDULE}/create`,
-  GET_SCHEDULE: `/api/${VERSION}/${API_BASE.SCHEDULES}/:journeyId`,
-  CREATE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/:scheduleId`,
-  UPDATE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/:scheduleId/update/:detailId`,
-  DELETE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/:scheduleId/delete/:detailId`,
+  CREATE_SCHEDULE: `/api/${VERSION}/${API_BASE.SCHEDULE}/update-title/:scheduleId`,
+  GET_SCHEDULE: `/api/${VERSION}/${API_BASE.SCHEDULE}/:journeyId`,
+  DELETE_SCHEDULE: `/api/${VERSION}/${API_BASE.SCHEDULE}/delete/:scheduleId`,
+  CREATE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/create/:scheduleId`,
+  UPDATE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/update/:detailId`,
+  CHANGE_DETAIL_SCHEDULE: `api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/update-status/:detailId`,
+  DELETE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/delete/:detailId`,
   CREATE_DIARY: `/api/${VERSION}/${API_BASE.DIARY}/create/:scheduleId`,
-  GET_DIARY: `/api/${VERSION}/${API_BASE.DIARIES}/:scheduleId`,
+  GET_DIARY: `/api/${VERSION}/${API_BASE.DIARIES}/:diaryId`,
   UPDATE_DIARY: `/api/${VERSION}/${API_BASE.DIARIES}/update/:diaryId`,
   // MAP
-  GET_MONTHLY_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/monthly-journey`,
-  GET_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/journey/get`,
-  GET_DIARIES_MAP: `/api/${VERSION}/${API_BASE.MAP}/diaries/get/:journeyId`,
-  GET_DETAIL_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/schedules/get/:journeyId`,
+  GET_MONTHLY_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/get-monthly-journey/:year/:month`,
+  GET_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/get-journey/:journeyId`,
+  GET_DIARIES_MAP: `/api/${VERSION}/${API_BASE.MAP}/get-diaries/:journeyId`,
+  GET_DETAIL_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/get-schedules/:journeyId`,
   // SIGNATURE
   SEARCH_SIGNATURE: `/api/${VERSION}/${API_BASE.SEARCH}`, // 검색탭 메인화면
   GET_MY_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}`,
@@ -123,20 +117,16 @@ const API_URL = {
 };
 
 const API_PATH = {
-  FAVORITE_TRAVELS: `${BASE_PATH.TRAVELS}/favorite`,
-  SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,
   MY_PAGE_INFO: `${BASE_PATH.MY_PAGE}`,
 
   MATE_SEARCH: `${BASE_PATH.MATE_SEARCH}`,
   MATE_LOOK: `${BASE_PATH.MATE_LOOK}`,
   MATE_MANAGEMENT: `${BASE_PATH.MATE_MANAGEMENT}`,
   MATE_RULE_WRITE: `${BASE_PATH.MATE_RULE_WRITE}`,
-  MATE_RULE_INVITE: `${BASE_PATH.MATE_RULE_WRITE}/invite`,
   MATE_RULE_CHECK: `${BASE_PATH.MATE_RULE_CHECK}`,
   MATE_RULE_DETAIL_CHECK: `${BASE_PATH.MATE_RULE_DETAIL_CHECK}`,
 
   DAILY_RECORD_WRITE: `${BASE_PATH.DAILY_RECORD_WRITE}`,
-  SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,
   MONTHLY_SCHEDULE: `${BASE_PATH.BASE}`,
 };
 

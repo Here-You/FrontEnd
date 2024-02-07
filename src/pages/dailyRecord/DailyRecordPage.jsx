@@ -28,19 +28,16 @@ const DailyRecordPage = () => {
   });
 
   const date = useMemo(() => {
-    if (!diaryData?.diaries) {
+    if (!diaryData) {
       return null;
     } else {
-      const date = diaryData?.diaries[nowPage - 1]?.created
-        .split('T')[0]
-        .split('-');
-      return `${date[0]}년 ${date[1]}월 ${date[2]}일`;
+      const date = diaryData?.[nowPage - 1]?.date.split('T')[0].split('-');
+      return date && `${date[0]}년 ${date[1]}월 ${date[2]}일`;
     }
-  }, [diaryData?.diaries, nowPage]);
+  }, [diaryData, nowPage]);
 
   useEffect(() => {
-    diaryData?.diaries &&
-      setCurrentVisibleData(diaryData?.diaries[nowPage - 1]);
+    diaryData && setCurrentVisibleData(diaryData[nowPage - 1]);
   }, [diaryData, nowPage]);
 
   const handleAnimationEnd = () => {
@@ -57,7 +54,7 @@ const DailyRecordPage = () => {
   };
 
   const nextButtonClick = () => {
-    if (nowPage === diaryData?.diaries.length) {
+    if (nowPage === diaryData?.length) {
       alert('이 여정의 가장 마지막 일지입니다!');
     } else {
       setSlideDirection('slide-left');
@@ -79,22 +76,26 @@ const DailyRecordPage = () => {
             <S.RecordContentsContainer
               className={slideDirection}
               onAnimationEnd={handleAnimationEnd}>
-              <S.PreviewImage src={currentVisibleData?.diary_image?.imageKey} />
-              <S.LocationText>{currentVisibleData?.place}</S.LocationText>
-              <S.TitleText>{currentVisibleData?.title}</S.TitleText>
+              <S.PreviewImage src={currentVisibleData?.diaryImage?.imageUrl} />
+              <S.LocationText>
+                {currentVisibleData?.diary?.place}
+              </S.LocationText>
+              <S.TitleText>{currentVisibleData?.diary?.title}</S.TitleText>
               <S.WeatherContainer>
                 {WEATHER_ICON_LIST.map(item => {
-                  if (item.iconName === currentVisibleData?.weather) {
+                  if (item.iconName === currentVisibleData?.diary?.weather) {
                     return <S.Icon src={item.iconUrl} />;
                   }
                 })}
                 {MOOD_ICON_LIST.map(item => {
-                  if (item.iconName === currentVisibleData?.mood) {
+                  if (item.iconName === currentVisibleData?.diary?.mood) {
                     return <S.Icon src={item.iconUrl} />;
                   }
                 })}
               </S.WeatherContainer>
-              <S.ContentText>{currentVisibleData?.content}</S.ContentText>
+              <S.ContentText>
+                {currentVisibleData?.diary?.content}
+              </S.ContentText>
             </S.RecordContentsContainer>
 
             <S.RightButton src={ExpandRight} onClick={nextButtonClick} />
