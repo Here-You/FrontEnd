@@ -8,8 +8,7 @@ import Subtract from '/icons/Subtract.svg';
 import Trash from '/icons/Trash.svg';
 import {
   deleteDetailSchedule,
-  postDetailSchedule,
-  updateDetailSchedule,
+  postDetailSchedule, // updateDetailSchedule,
 } from '@/apis/request/home';
 
 const DetailPlan = ({
@@ -40,25 +39,25 @@ const DetailPlan = ({
     }
   };
 
-  const handleOnEditPlan = async detailScheduleId => {
-    //새로운 할 일 수정 요청
-    setEditingId(null);
-    if (!editPlan.trim()) {
-      alert('할 일을 작성해주세요!');
-    } else {
-      const res = await updateDetailSchedule({
-        scheduleId,
-        detailScheduleId,
-        editPlan,
-      });
-      if (res) {
-        console.log(res);
-        alert('세부 일정이 수정되었습니다');
-        setIsOpenEdit(false);
-        setEditPlan('');
-      }
-    }
-  };
+  // const handleOnEditPlan = async detailScheduleId => {
+  //   //새로운 할 일 수정 요청
+  //   setEditingId(null);
+  //   if (!editPlan.trim()) {
+  //     alert('할 일을 작성해주세요!');
+  //   } else {
+  //     const res = await updateDetailSchedule({
+  //       scheduleId,
+  //       detailScheduleId,
+  //       editPlan,
+  //     });
+  //     if (res) {
+  //       console.log(res);
+  //       alert('세부 일정이 수정되었습니다');
+  //       setIsOpenEdit(false);
+  //       setEditPlan('');
+  //     }
+  //   }
+  // };
 
   const deletePlan = async detailScheduleId => {
     // 해당 할 일 삭제 요청

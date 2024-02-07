@@ -4,13 +4,12 @@ import { baseURL } from '@/apis/api';
 import { API_URL } from '@/constants/path';
 
 export const HomeHandlers = [
-  //월별 여정 불러오기
+  //월별 일정 불러오기 (확정x)
   http.get(
     `${baseURL}${API_URL.LOAD_MONTHLY_SCHEDULE}`,
     ({ request, params }) => {
-      const url = new URL(request.url);
-      const year = parseInt(url.searchParams.get('year')) || 0;
-      const month = parseInt(url.searchParams.get('month')) || 0;
+      const year = params.year;
+      const month = params.month;
 
       if (!year || !month) {
         return new HttpResponse(null, { status: 404 });
@@ -185,11 +184,12 @@ export const HomeHandlers = [
       return new HttpResponse(null, { status: 404 });
     } else {
       return HttpResponse.json({
-        status: 200,
         success: true,
-        message: '여정 수정하기 성공',
+        code: 200,
+        message: '여정이 성공적으로 수정되었습니다.',
         data: {
-          journeyId: journeyId,
+          id: 1,
+          journey_title: '수정된 여정의 제목',
         },
       });
     }
@@ -201,35 +201,32 @@ export const HomeHandlers = [
       return new HttpResponse(null, { status: 404 });
     } else {
       return HttpResponse.json({
-        status: 200,
         success: true,
-        message: '여정 삭제하기 성공',
-        data: {
-          journeyId: journeyId,
-        },
+        code: 200,
+        message: '여정을 삭제했습니다.',
+        data: null,
       });
     }
   }),
-  //일정 생성하기
-  http.post(`${baseURL}${API_URL.CREATE_SCHEDULE}`, ({ request, params }) => {
+  //일정 작성하기
+  http.put(`${baseURL}${API_URL.CREATE_SCHEDULE}`, ({ request, params }) => {
     return HttpResponse.json({
-      status: 200,
       success: true,
-      message: '일정 생성하기 성공',
-      data: {
-        scheduleId: 1,
-        journeyId: 1,
-        title: 'Exploration',
-        date: '2024-01-11',
-        location: {
-          name: 'Googleplex',
-          latitude: 37.422,
-          longitude: -122.0841,
-        },
-      },
+      code: 201,
+      message: '일정을 작성했습니다.',
+      data: null,
     });
   }),
-  //일정 불러오기 (커서 기반)
+  //일정 삭제하기
+  http.delete(`${baseURL}${API_URL.DELETE_SCHEDULE}`, ({ request, params }) => {
+    return HttpResponse.json({
+      success: true,
+      code: 200,
+      message: '일정을 삭제했습니다.',
+      data: null,
+    });
+  }),
+  //일정 불러오기 (커서 기반)  -> 확정 안됨
   http.get(`${baseURL}${API_URL.GET_SCHEDULE}`, async ({ request, params }) => {
     const url = new URL(request.url);
     const journeyId = params.journeyId;
@@ -357,7 +354,7 @@ export const HomeHandlers = [
       });
     }
   }),
-  //세부 일정 작성하기
+  //세부 일정 추가하기
   http.post(
     `${baseURL}${API_URL.CREATE_DETAIL_SCHEDULE}`,
     ({ reqeust, params }) => {
@@ -366,19 +363,15 @@ export const HomeHandlers = [
         return new HttpResponse(null, { status: 404 });
       } else {
         return HttpResponse.json({
-          status: 200,
           success: true,
-          message: '세부 일정 작성하기 성공',
-          data: {
-            id: 1,
-            content: 'Meeting',
-            scheduleId: scheduleId,
-          },
+          code: 201,
+          message: '세부 일정을 추가했습니다.',
+          data: null,
         });
       }
     },
   ),
-  //세부 일정 수정하기
+  //세부 일정 작성하기(수정하기)
   http.put(
     `${baseURL}${API_URL.UPDATE_DETAIL_SCHEDULE}`,
     ({ request, params }) => {
@@ -399,23 +392,36 @@ export const HomeHandlers = [
       }
     },
   ),
+  //세부 일정 상태 변경하기
+  http.patch(
+    `${baseURL}${API_URL.CHANGE_DETAIL_SCHEDULE}`,
+    (request, params) => {
+      const detailId = params.detailId;
+      if (!detailId) {
+        return new HttpResponse(null, { status: 404 });
+      } else {
+        return HttpResponse.json({
+          success: true,
+          code: 200,
+          message: '세부 일정 상태를 변경했습니다',
+          data: false,
+        });
+      }
+    },
+  ),
   //세부 일정 삭제하기
   http.delete(
     `${baseURL}${API_URL.DELETE_DETAIL_SCHEDULE}`,
     ({ request, params }) => {
-      const scheduleId = params.scheduleId;
-      if (!scheduleId) {
+      const detailId = params.detailId;
+      if (!detailId) {
         return new HttpResponse(null, { status: 404 });
       } else {
         return HttpResponse.json({
-          status: 200,
           success: true,
-          message: '세부 일정 삭제하기 성공',
-          data: {
-            id: 1,
-            content: 'Meeting',
-            scheduleId: scheduleId,
-          },
+          code: 200,
+          message: '세부 일정을 삭제했습니다.',
+          data: null,
         });
       }
     },
@@ -427,72 +433,45 @@ export const HomeHandlers = [
       return new HttpResponse(null, { status: 404 });
     } else {
       return HttpResponse.json({
-        status: 200,
         success: true,
-        message: '일지 작성하기 성공',
-        data: {
-          id: 789, // 새로 생성된 Diary의 ID
-          title: '오늘의 일기',
-          place: '제주도',
-          weather: 'SUNNY',
-          mood: 'HAPPY',
-          content: '오늘은 좋은 날이었어요.',
-          user: {
-            id: 123,
-            name: '사용자 이름',
-          },
-          schedule: {
-            id: scheduleId,
-            date: '2024-01-11',
-            title: '일정 제목',
-          },
-          location: {
-            id: 789,
-            name: '장소 이름',
-            latitude: 37.123456,
-            longitude: 127.123456,
-          },
-          image: {
-            id: 101,
-            uploader_id: 123,
-            image_key:
-              'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-          },
-          created: '2024-01-11T12:34:56Z',
-          updated: '2024-01-11T12:34:56Z',
-        },
+        code: 201,
+        message: '일지를 작성했습니다.',
+        data: null,
       });
     }
   }),
   //일지 불러오기
   http.get(`${baseURL}${API_URL.GET_DIARY}`, ({ request, params }) => {
-    const scheduleId = params.scheduleId;
+    const diaryId = params.diaryId;
 
-    if (scheduleId) {
+    if (diaryId) {
       return HttpResponse.json({
         status: 200,
         success: true,
         message: '일지 불러오기 성공',
-        data: {
-          journeyTitle: `${scheduleId}번째 Journey Title`,
-          diaries: {
-            id: `${scheduleId}`,
-            title: `Diary Title ${scheduleId}`,
-            place: `Diary Place ${scheduleId}`,
+        data: [
+          {
+            id: diaryId,
+            title: 'Diary Title 1',
+            place: 'jejodu',
             weather: 'SUNNY',
             mood: 'HAPPY',
-            content: `Diary Content ${scheduleId}`,
-            location: 'jeju',
+            content: 'jejudo ganda ~',
+            user_id: 123,
+            schedule_id: 456,
+            location_id: 789,
             diary_image: {
               id: 101,
-              uploaderId: 123,
-              imageKey:
+              uploader_id: 123,
+              image_key:
                 'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+              diary_id: 1,
             },
-            created: '2024-01-11T12:34:56Z',
-            updated: '2024-01-11T12:34:56Z',
+            created: '2024-01-01T12:34:56Z',
+            updated: '2024-01-02T09:00:00Z',
+            deleted: null,
           },
-        },
+        ],
       });
     } else {
       return HttpResponse.json({
@@ -521,37 +500,38 @@ export const HomeHandlers = [
     }
   }),
   //월별 여정 불러오기 (지도)
-  http.get(`${baseURL}${API_URL.GET_JOURNEY_MAP}`, ({ request, params }) => {
-    const url = new URL(request.url);
-    const year = parseInt(url.searchParams.get('year')) || 0;
-    const month = parseInt(url.searchParams.get('month')) || 0;
-    if (!year || !month) {
-      return new HttpResponse(null, { status: 404 });
-    } else if (year && month) {
-      return HttpResponse.json({
-        status: 200,
-        success: true,
-        message: '월별 여정 불러오기 (지도) 성공',
-        data: [
-          {
-            monthly_journey_id: 1,
-            journey_list: [
-              {
-                journey_id: 1,
-                journey_title: '서울 여행',
-                diary_count: 5,
-              },
-              {
-                journey_id: 2,
-                journey_title: '부산 소풍',
-                diary_count: 3,
-              },
-            ],
-          },
-        ],
-      });
-    }
-  }),
+  http.get(
+    `${baseURL}${API_URL.GET_MONTHLY_JOURNEY_MAP}`,
+    ({ request, params }) => {
+      const year = params.year;
+      const month = params.month;
+      if (!year || !month) {
+        return new HttpResponse(null, { status: 404 });
+      } else if (year && month) {
+        return HttpResponse.json({
+          success: true,
+          code: 200,
+          message: '월별 여정을 불러오는데 성공했습니다.',
+          data: [
+            {
+              journeyId: 1,
+              title: '예윤잉',
+              startDate: '2022-04-28',
+              endDate: '2022-05-02',
+              diaryCount: 2,
+            },
+            {
+              journeyId: 2,
+              title: '예윤잉',
+              startDate: '2022-04-22',
+              endDate: '2022-04-23',
+              diaryCount: 0,
+            },
+          ],
+        });
+      }
+    },
+  ),
   //여정 불러오기 (지도)
   http.get(`${baseURL}${API_URL.GET_JOURNEY_MAP}`, ({ request, params }) => {
     const journeyId = params.journeyId;
@@ -559,63 +539,44 @@ export const HomeHandlers = [
       return new HttpResponse(null, { status: 404 });
     } else {
       return HttpResponse.json({
-        status: 200,
         success: true,
-        message: '지도에서 여정 불러오기 성공',
+        code: 200,
+        message: '여정을 불러오는데 성공했습니다.',
         data: {
-          journey_info: {
-            journey_title: '서울 여행',
-            schedule_locations: [
-              {
-                schedule_id: 1,
-                schedule_title: '첫 번째 일정',
-                location: {
-                  id: 1,
-                  name: '서울 타워',
-                  latitude: 37.5665,
-                  longitude: 126.978,
-                },
-                diary_image: {
-                  diary_id: 101,
-                  uploaderId: 125,
-                  imageKey:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-                },
-              },
-              {
-                schedule_id: 2,
-                schedule_title: '두 번째 일정',
-                location: {
-                  id: 2,
-                  name: '장소 2',
-                  latitude: 35.5665,
-                  longitude: 127.978,
-                },
-                diary_image: {
-                  diary_id: 101,
-                  uploaderId: 125,
-                  imageKey:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-                },
-              },
-              {
-                schedule_id: 3,
-                schedule_title: '세 번째 일정',
-                location: {
-                  id: 3,
-                  name: '장소 3',
-                  latitude: 35.5665,
-                  longitude: 128.978,
-                },
-                diary_image: {
-                  diary_id: 101,
-                  uploaderId: 125,
-                  imageKey:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-                },
-              },
-            ],
+          journey: {
+            id: 1,
+            title: '예윤잉',
+            startDate: '2022-03-31',
+            endDate: '2022-04-01',
           },
+          locationList: [
+            {
+              date: '2022-03-31',
+              location: {
+                id: 1,
+                latitude: '40.000000',
+                longitude: '30.000000',
+              },
+              diaryImage: {
+                id: 1,
+                imageUrl:
+                  'http://here-you.s3-website.ap-northeast-2.amazonaws.com591a0e19-6d09-4d2c-8061-893d5f373592.png',
+              },
+            },
+            {
+              date: '2022-04-01',
+              location: {
+                id: 1,
+                latitude: '40.000000',
+                longitude: '30.000000',
+              },
+              diaryImage: {
+                id: 2,
+                imageUrl:
+                  'http://here-you.s3-website.ap-northeast-2.amazonaws.com75e60cd3-ce5e-49ab-bd02-7c6591605564.png',
+              },
+            },
+          ],
         },
       });
     }
@@ -627,94 +588,31 @@ export const HomeHandlers = [
       return new HttpResponse(null, { status: 404 });
     } else {
       return HttpResponse.json({
-        status: 200,
         success: true,
-        message: '지도에서 일지 불러오기 성공',
-        data: {
-          journeyTitle: 'Journey Title',
-          diaries: [
-            {
-              id: 1,
-              title: 'Diary Title 1',
-              place: 'Diary Place 1',
+        code: 200,
+        message: '일지를 불러오는데 성공했습니다.',
+        data: [
+          {
+            journeyId: journeyId,
+            date: '2022-03-20',
+            diary: {
+              id: 3,
+              title: '일지',
+              place: '내 집',
               weather: 'SUNNY',
               mood: 'HAPPY',
-              content: 'Diary Content 1',
-              userId: 123,
-              scheduleId: 456,
-              locationId: 789,
-              diary_image: {
-                id: 101,
-                uploaderId: 123,
-                imageKey:
-                  'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-              },
-              created: '2024-01-01T12:34:56Z',
-              updated: '2024-01-02T09:00:00Z',
+              content: '5번째 일지를 작성했습니다...',
+              created: '2024-02-06T20:07:47.266Z',
+              updated: '2024-02-06T20:07:47.266Z',
               deleted: null,
             },
-            {
-              id: 2,
-              title: 'Diary Title 2',
-              place: 'Diary Place 2',
-              weather: 'RAINY',
-              mood: 'SAD',
-              content: 'Diary Content 2',
-              userId: 124,
-              scheduleId: 457,
-              locationId: 790,
-              diary_image: {
-                id: 103,
-                uploaderId: 125,
-                imageKey:
-                  'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-              },
-              created: '2024-01-02T12:34:56Z',
-              updated: '2024-01-02T09:00:00Z',
-              deleted: null,
-            },
-            {
+            diaryImage: {
               id: 3,
-              title: 'Diary Title 3',
-              place: 'Diary Place 3',
-              weather: 'RAINY',
-              mood: 'SAD',
-              content: 'Diary Content 3',
-              userId: 124,
-              scheduleId: 457,
-              locationId: 790,
-              diary_image: {
-                id: 104,
-                uploaderId: 125,
-                imageKey:
-                  'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-              },
-              created: '2024-01-03T12:34:56Z',
-              updated: '2024-01-03T09:00:00Z',
-              deleted: null,
+              imageUrl:
+                'http://here-you.s3-website.ap-northeast-2.amazonaws.come9e9c94b-684a-4b4f-bdbe-c5696275b098.png',
             },
-            {
-              id: 4,
-              title: 'Diary Title 4',
-              place: 'Diary Place 4',
-              weather: 'RAINY',
-              mood: 'SAD',
-              content: 'Diary Content 4',
-              userId: 124,
-              scheduleId: 457,
-              locationId: 790,
-              diary_image: {
-                id: 105,
-                uploaderId: 125,
-                imageKey:
-                  'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-              },
-              created: '2024-01-04T12:34:56Z',
-              updated: '2024-01-04T09:00:00Z',
-              deleted: null,
-            },
-          ],
-        },
+          },
+        ],
       });
     }
   }),
@@ -735,60 +633,48 @@ export const HomeHandlers = [
             journey_title: '제주도 여행',
             schedules: [
               {
-                schedule_id: 1,
+                schedule_id: 101,
                 schedule_title: '첫 번째 일정',
                 schedule_date: '2024-01-11',
-                participant: 'John Doe',
                 location: {
                   id: 1,
-                  name: '제주 성산일출봉',
                   latitude: 33.4584,
                   longitude: 126.9422,
-                  image:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
                 },
                 diary_image: {
                   diary_id: 201,
                   image_key:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+                    'http://here-you.s3-website.ap-northeast-2.amazonaws.come9e9c94b-684a-4b4f-bdbe-c5696275b098.png',
                 },
               },
               {
-                schedule_id: 2,
+                schedule_id: 102,
                 schedule_title: '두 번째 일정',
                 schedule_date: '2024-01-11',
-                participant: 'John Doe',
                 location: {
                   id: 1,
-                  name: '장소 2',
-                  latitude: 35.4584,
+                  latitude: 33.4584,
                   longitude: 126.9422,
-                  image:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
                 },
                 diary_image: {
                   diary_id: 201,
                   image_key:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+                    'http://here-you.s3-website.ap-northeast-2.amazonaws.come9e9c94b-684a-4b4f-bdbe-c5696275b098.png',
                 },
               },
               {
-                schedule_id: 3,
+                schedule_id: 103,
                 schedule_title: '세 번째 일정',
                 schedule_date: '2024-01-11',
-                participant: 'John Doe',
                 location: {
                   id: 1,
-                  name: '장소 3',
                   latitude: 33.4584,
-                  longitude: 128.9422,
-                  image:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+                  longitude: 126.9422,
                 },
                 diary_image: {
                   diary_id: 201,
                   image_key:
-                    'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
+                    'http://here-you.s3-website.ap-northeast-2.amazonaws.come9e9c94b-684a-4b4f-bdbe-c5696275b098.png',
                 },
               },
             ],
@@ -797,143 +683,59 @@ export const HomeHandlers = [
       }
     },
   ),
-  http.get(
-    `${baseURL}${API_URL.GET_MONTHLY_JOURNEY_MAP}`,
-    ({ request, params }) => {
-      const url = new URL(request.url);
-      const year = parseInt(url.searchParams.get('year')) || 0;
-      const month = parseInt(url.searchParams.get('month')) || 0;
 
-      if (!year & !month) {
-        return new HttpResponse(null, { status: 404 });
-      } else {
-        return HttpResponse.json({
-          status: 200,
-          success: true,
-          message: '월별 여정 불러오기 성공',
-          data: [
-            {
-              monthly_journey_id: 1,
-              journey_list: [
-                {
-                  journey_id: 1,
-                  journey_title: `${year}년 ${month}월 서울 여행`,
-                  diary_count: 5,
-                },
-                {
-                  journey_id: 2,
-                  journey_title: `${year}년 ${month}월 부산 소풍`,
-                  diary_count: 3,
-                },
-                // 추가적인 Journey 항목...
-              ],
+  // 전체 일지 불러오기 (마이페이지)
+  http.get(`${baseURL}${API_URL.GET_ALL_DIARY}`, ({ params, request }) => {
+    return HttpResponse.json({
+      status: 200,
+      success: true,
+      message: '지도에서 일지 불러오기 성공',
+      data: {
+        diaries: [
+          {
+            id: 1,
+            title: 'Diary Title 1',
+            place: 'Diary Place 1',
+            weather: 'SUNNY',
+            mood: 'HAPPY',
+            content: 'Diary Content 1',
+            location: 'JEJU',
+            diary_image: {
+              id: 101,
+              uploaderId: 123,
+              imageKey: 'image_key_1.jpg',
             },
-          ],
-        });
-      }
-    },
-  ),
-  http.get(
-    `${baseURL}${API_URL.GET_JOURNEY_MAP}/:journeyId`,
-    ({ request, params }) => {
-      const journeyId = params.journeyId;
-      return HttpResponse.json({
-        status: 200,
-        success: true,
-        message: '지도에서 여정 불러오기 성공',
-        data: {
-          journey_info: {
-            journey_title: '서울 여행',
-            date_group_id: {
-              startDate: '2022-01-01',
-              endDate: '2022-01-10',
-              id: 15,
-            },
-            schedule_locations: [
-              {
-                schedule_id: 1,
-                schedule_title: '첫 번째 일정',
-                location: {
-                  id: 1,
-                  name: '서울 타워',
-                  latitude: 37.552497,
-                  longitude: 127.1333,
-                },
-                diary_image: {
-                  diary_id: 102,
-                  uploaderId: 125,
-                  imageKey:
-                    'https://images.unsplash.com/photo-1510218129079-74e00c5a90ea?q=80&w=2235&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                },
-              },
-              {
-                schedule_id: 2,
-                schedule_title: '두 번째 일정',
-                location: {
-                  id: 2,
-                  name: '부산 타워',
-                  latitude: 37.561068,
-                  longitude: 127.160582,
-                },
-                diary_image: {
-                  diary_id: 103,
-                  uploaderId: 125,
-                  imageKey:
-                    'https://images.unsplash.com/photo-1588001832198-c15cff59b078?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                },
-              },
-              {
-                schedule_id: 3,
-                schedule_title: '세 번째 일정',
-                location: {
-                  id: 3,
-                  name: '잠실 타워',
-                  latitude: 37.5665,
-                  longitude: 126.978,
-                },
-                diary_image: {
-                  diary_id: 104,
-                  uploaderId: 125,
-                  imageKey:
-                    'https://images.unsplash.com/photo-1494548162494-384bba4ab999?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                },
-              },
-              {
-                schedule_id: 4,
-                schedule_title: '네 번째 일정',
-                location: {
-                  id: 4,
-                  name: '안산 야호!',
-                  latitude: 37.3218778,
-                  longitude: 126.8308848,
-                },
-                diary_image: {
-                  diary_id: 105,
-                  uploaderId: 125,
-                  imageKey:
-                    'https://images.unsplash.com/photo-1512641406448-6574e777bec6?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D',
-                },
-              },
-              {
-                schedule_id: 5,
-                schedule_title: '다섯 번쨰 이렂ㅇ',
-                location: {
-                  id: 5,
-                  name: '잠실 양홍!',
-                  latitude: 37.531338,
-                  longitude: 127.129174,
-                },
-                diary_image: {
-                  diary_id: 106,
-                  uploaderId: 125,
-                  imageKey:
-                    'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                },
-              },
-            ],
           },
-        },
-      });
-    },
-  ),
+          {
+            id: 2,
+            title: 'Diary Title 2',
+            place: 'Diary Place 2',
+            weather: 'RAINY',
+            mood: 'SAD',
+            content: 'Diary Content 2',
+            location: 'JeJU',
+            diary_image: {
+              id: 103,
+              uploaderId: 125,
+              imageKey: 'image_key_3.jpg',
+            },
+          },
+          {
+            id: 3,
+            title: 'Diary Title 3',
+            place: 'Diary Place 3',
+            weather: 'RAINY',
+            mood: 'SAD',
+            content: 'Diary Content 2',
+            location: 'JeJU',
+            diary_image: {
+              id: 103,
+              uploaderId: 125,
+              imageKey: 'image_key_3.jpg',
+            },
+          },
+        ],
+      },
+    });
+  }),
 ];
