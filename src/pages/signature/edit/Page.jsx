@@ -1,3 +1,4 @@
+import imageCompression from 'browser-image-compression';
 import React, { useState } from 'react';
 
 import * as S from './SignatureEdit.style';
@@ -10,14 +11,28 @@ const Page = ({ image, content }) => {
   const { pages, updatePage, currentPageIndex } = useSignatureEdit();
   const [imageUrl, setImageUrl] = useState(null);
 
-  const handleImageChange = e => {
+  const handleImageChange = async e => {
     const file = e.target.files[0];
-    updatePage(currentPageIndex, { image: URL.createObjectURL(file) });
 
-    const imageUrl = URL.createObjectURL(file);
-    setImageUrl(imageUrl);
+    try {
+      const compressedFile = await imageCompression(file, {
+        maxWidthOrHeight: 800,
+        maxSizeMB: 1,
+        fileType: 'image/jpeg',
+      });
+
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const base64Image = reader.result.split(',')[1]; // 'data:image/jpeg;base64,' 부분 제거
+        updatePage(currentPageIndex, { image: base64Image });
+      };
+
+      reader.readAsDataURL(compressedFile);
+    } catch (error) {
+      console.error('이미지 압축 실패:', error);
+    }
   };
-
   const handleContentChange = e => {
     const newContent = e.target.value;
     updatePage(currentPageIndex, { content: newContent });
