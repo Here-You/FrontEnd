@@ -68,39 +68,44 @@ export const MateHandlers = [
   }),
 
   //메이트 팔로우
-  http.post(`${baseURL}${API_URL.FOLLOW_MATE}`, ({ request, params }) => {
-    const url = new URL(request.url);
-    const followId = parseInt(url.searchParams.get('followId')) || 0;
+  http.post(
+    `${baseURL}${API_URL.FOLLOW_MATE}/:userId`,
+    ({ request, params }) => {
+      const userId = params.userId;
 
-    if (!followId) {
-      return new HttpResponse({
-        status: 500,
-        success: false,
-        message: '서버 내부 오류',
+      if (!userId) {
+        return new HttpResponse({
+          status: 500,
+          success: false,
+          message: '서버 내부 오류',
+        });
+      }
+
+      return HttpResponse.json({
+        status: 200,
+        success: true,
+        message: '팔로우 성공',
       });
-    }
-
-    return HttpResponse.json({
-      status: 200,
-      success: true,
-      message: '팔로우 성공',
-    });
-  }),
+    },
+  ),
 
   //메이트 언팔로우
-  http.delete(`${baseURL}${API_URL.UNFOLLOW_MATE}`, ({ request, params }) => {
-    const followId = params.followId;
+  http.delete(
+    `${baseURL}${API_URL.UNFOLLOW_MATE}/:userId`,
+    ({ request, params }) => {
+      const userId = params.userId;
 
-    if (!followId) {
-      return new HttpResponse(null, { status: 404 });
-    }
+      if (!userId) {
+        return new HttpResponse(null, { status: 404 });
+      }
 
-    return HttpResponse.json({
-      status: 200,
-      success: true,
-      message: '언팔로우 성공',
-    });
-  }),
+      return HttpResponse.json({
+        status: 200,
+        success: true,
+        message: '언팔로우 성공',
+      });
+    },
+  ),
 
   //메이트 탐색
   http.get(`${baseURL}${API_URL.EXPLORE_MATE}`, ({ request, params }) => {

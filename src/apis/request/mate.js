@@ -12,7 +12,7 @@ const getSearchMate = (searchTerm, cursor, take) => {
 const postFollowMate = userId => {
   // FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:userId`,
   // 백엔드 API : api/v1/mate/follow/:userId
-  const url = `${API_URL.FOLLOW_MATE}?followId=${userId}`;
+  const url = `${API_URL.FOLLOW_MATE}/${userId}`;
   return axiosWithToken.post(url);
 };
 

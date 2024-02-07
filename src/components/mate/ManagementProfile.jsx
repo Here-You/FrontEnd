@@ -12,16 +12,14 @@ const ManagementProfile = ({ profileData }) => {
     <S.CenteredContainer>
       <S.ProfileContainer>
         <S.UserImg src={image} />
-
         <S.TextContainer>
           <S.UserName>{name}</S.UserName>
           <S.UserNickName>{nickname}</S.UserNickName>
-          <S.UserBio>
-            <p>{bio}</p>
-          </S.UserBio>
+          <S.UserBio>{bio}</S.UserBio>
         </S.TextContainer>
-
-        <FollowButton isFollowing={is_following} name={name} />
+        <S.Wrapper>
+          <FollowButton isFollowing={is_following} name={name} id={_id} />
+        </S.Wrapper>
       </S.ProfileContainer>
     </S.CenteredContainer>
   );

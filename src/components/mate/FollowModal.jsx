@@ -1,11 +1,15 @@
 import * as S from './FollowModal.style';
 
-const FollowModal = ({ onClose, name }) => {
+const FollowModal = ({ onClose, name, isFollowing }) => {
   return (
     <S.ModalBase>
       <S.ModalContainer>
-        <S.ModalCloseButton onClick={onClose}></S.ModalCloseButton>
-        <S.ModalContents>{name}님을 팔로우하였습니다.</S.ModalContents>
+        <button onClick={onClose}></button>
+        {isFollowing ? (
+          <span>{name}님을 언팔로우하였습니다.</span>
+        ) : (
+          <span>{name}님을 팔로우하였습니다.</span>
+        )}
       </S.ModalContainer>
     </S.ModalBase>
   );
