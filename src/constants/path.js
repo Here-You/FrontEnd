@@ -1,11 +1,9 @@
 const BASE_PATH = {
   BASE: '/',
-  TRAVELS: '/travels',
   SIGN_UP: '/signup',
   // LOGIN
   LOGIN: '/login',
   SNS_LOGIN_REDIRCT: '/login/oauth',
-  LOGIN_BEFORE_PAGE: '/login/before',
   ON_BOARDING: 'onboarding',
   MAP: '/map',
   MAP_DETAIL: '/map/:journeyId',
@@ -16,10 +14,7 @@ const BASE_PATH = {
   // SIGNATURE
   SIGNATURE: '/signature',
   SIGNATURE_WRITE: '/signature/write',
-  SIGNATURE_SEARCH: '/signature/search',
   SIGNATURE_EDIT: '/signature/edit/:signatureId',
-  SIGNATURE_POPULAR: '/signature/popular',
-  SIGNATURE_RECOMMEND: '/signature/recommend/:tag',
   SIGNATURE_POST_PAGE: '/signature/post/:signatureId',
   // MATE
   MATE: '/mate',
@@ -32,14 +27,10 @@ const BASE_PATH = {
   // MY_PAGE
   MY_PAGE: '/mypage',
   MY_PAGE_EDIT: '/mypage/edit',
-  MY_PAGE_CHANGE_PASSWORD: '/mypage/password',
-  MY_PAGE_WITHDRAW: '/mypage/withdraw',
-  // App.jsx에서, path 추가할때 사용하시면 됩니다. 예시코드 9번줄
   TRAVEL_TYPE: '/traveltype',
   TRAVEL_TYPE_RESULT: '/traveltype/result',
   //EXPLORE(탐색)
   EXPLORE: '/explore',
-  EXPLORE_SEARCH: '/explore/:value',
   // JOURNEY
   MAP_JOURNEY_DETAIL: '/map/journey/:journeyId',
   //notification
@@ -126,20 +117,16 @@ const API_URL = {
 };
 
 const API_PATH = {
-  FAVORITE_TRAVELS: `${BASE_PATH.TRAVELS}/favorite`,
-  SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,
   MY_PAGE_INFO: `${BASE_PATH.MY_PAGE}`,
 
   MATE_SEARCH: `${BASE_PATH.MATE_SEARCH}`,
   MATE_LOOK: `${BASE_PATH.MATE_LOOK}`,
   MATE_MANAGEMENT: `${BASE_PATH.MATE_MANAGEMENT}`,
   MATE_RULE_WRITE: `${BASE_PATH.MATE_RULE_WRITE}`,
-  MATE_RULE_INVITE: `${BASE_PATH.MATE_RULE_WRITE}/invite`,
   MATE_RULE_CHECK: `${BASE_PATH.MATE_RULE_CHECK}`,
   MATE_RULE_DETAIL_CHECK: `${BASE_PATH.MATE_RULE_DETAIL_CHECK}`,
 
   DAILY_RECORD_WRITE: `${BASE_PATH.DAILY_RECORD_WRITE}`,
-  SIGNATURE_PREVIEW: `${BASE_PATH.SIGNATURE}/preview`,
   MONTHLY_SCHEDULE: `${BASE_PATH.BASE}`,
 };
 
