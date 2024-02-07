@@ -11,6 +11,12 @@ const ProfileContainer = styled.div`
   width: 375px;
   height: 85px;
   position: relative;
+  cursor: pointer;
+  border-radius: 20px;
+
+  &:hover {
+    background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
+  }
 `;
 
 const UserImg = styled.img`
