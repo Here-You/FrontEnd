@@ -84,7 +84,11 @@ export default function Editor({ setSelectedHeader }) {
 
   return (
     <S.EditorContainer>
-      <S.Title placeholder="제목" value={title} onChange={handleTitleChange} />
+      <S.Title
+        placeholder="제목"
+        value={title || ''}
+        onChange={handleTitleChange}
+      />
       <S.Divider />
       <S.ContentContainer>
         {currentPageIndex > 0 ? (

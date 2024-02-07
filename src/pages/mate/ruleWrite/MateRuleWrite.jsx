@@ -29,12 +29,10 @@ const MateRuleWritePage = () => {
   const handleSubmitRule = () => {
     const postData = {
       mainTitle: title,
-      // created 시간을 우리가 넣어줘야하나요..?
-      // 유저아이디도? (이건 토큰이 해줄텐데?)
-      created: new Date().toISOString(),
-      rules: rules,
+      rulePairs: rules,
       invitedId: selectedMates.map(mate => mate._id),
     };
+    console.log(postData);
 
     postCreateMateRule(postData)
       .then(() => {
@@ -45,6 +43,7 @@ const MateRuleWritePage = () => {
         toast.error(error.message);
       });
   };
+
   return (
     <S.Container>
       <InviteMatesModal />

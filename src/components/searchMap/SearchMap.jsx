@@ -16,6 +16,8 @@ import {
 import '@reach/combobox/styles.css';
 import { useJsApiLoader } from '@react-google-maps/api';
 
+const libraries = ['places'];
+
 const SearchMap = ({
   id,
   inputValue,
@@ -26,7 +28,7 @@ const SearchMap = ({
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API,
-    libraries: ['places'],
+    libraries: libraries,
   });
   const [selected, setSelected] = useState(null);
 
@@ -36,7 +38,7 @@ const SearchMap = ({
       <PlacesAutocomplete
         setSelected={setSelected}
         id={id}
-        inputValue={inputValue}
+        inputValue={inputValue || ''}
         placeholder={placeholder}
         selectLocation={selectLocation}
         pageIndex={pageIndex}

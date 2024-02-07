@@ -6,13 +6,12 @@ export const useTeamRuleList = userId => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  console.log('useTeamRuleList');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getTeamRuleList(userId);
+        const res = await getTeamRuleList();
         const data = res.data.data.rules;
         setData(data);
       } catch (e) {

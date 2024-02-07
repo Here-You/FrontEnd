@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ExitModal from './ExitModal';
 import * as S from './TeamContainer.style';
 import over from '/images/mate/over.svg';
+import { deleteTeamRuleList } from '@/apis/request/mate';
 
 const TeamContainer = ({ ruleData, onClick, onExitClick }) => {
   if (!ruleData) {
@@ -12,15 +13,6 @@ const TeamContainer = ({ ruleData, onClick, onExitClick }) => {
   const { id, memberCnt, title, updated, participants } = ruleData;
   const [showExitModal, setShowExitModal] = useState(false);
 
-  const handleExitButtonClick = () => {
-    setShowExitModal(true);
-  };
-
-  const handleCloseExitModal = () => {
-    setShowExitModal(false);
-    onClose();
-  };
-
   const changeDate = updated => {
     const date = new Date(updated * 1000);
     const year = date.getFullYear().toString().slice(2);
@@ -28,6 +20,15 @@ const TeamContainer = ({ ruleData, onClick, onExitClick }) => {
     const day = date.getDate().toString().padStart(2, '0');
     const formattedDate = `${year}.${month}.${day}`;
     return formattedDate;
+  };
+
+  const handleDeleteRule = async e => {
+    try {
+      console.log('나가기');
+      await deleteTeamRuleList(id);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -45,7 +46,7 @@ const TeamContainer = ({ ruleData, onClick, onExitClick }) => {
       <S.TeamTitle>{title}</S.TeamTitle>
 
       <S.ExitContainer>
-        <S.ExitButton onClick={handleExitButtonClick}>나가기</S.ExitButton>
+        <S.ExitButton onClick={handleDeleteRule}>나가기</S.ExitButton>
         <S.WriteDate>{changeDate(updated)}</S.WriteDate>
       </S.ExitContainer>
       {showExitModal && <ExitModal onClose={handleCloseExitModal} />}

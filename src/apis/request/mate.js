@@ -79,7 +79,6 @@ const getTeamMateRule = ruleId => {
   // GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/view/:ruleId`,
   // 백엔드 API : api/v1/mate/rule/view/:ruleId
   const url = `${API_URL.GET_TEAM_MATE_RULE}/${ruleId}`;
-  console.log(url);
   return axiosWithToken.get(url);
 };
 
@@ -107,13 +106,18 @@ const postMateruleComment = () => {
   return axiosWithToken.post(url);
 };
 
-const getTeamRuleList = userId => {
+const getTeamRuleList = () => {
   // GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list/:userId`,
   // 백엔드 API : api/v1/mate/rule/list/:userId
   // const url = `${API_BASE.MATE}/rule/list/${userId}`;
-  const url = `${API_URL.GET_TEAM_RULE_LIST}/${userId}`;
-  console.log(url);
+  const url = `${API_URL.GET_TEAM_RULE_LIST}`;
   return axiosWithToken.get(url);
+};
+
+const deleteTeamRuleList = ruleId => {
+  const url = `${API_URL.GET_TEAM_RULE_LIST}/${ruleId}`;
+  console.log(url);
+  return axiosWithToken.delete(url);
 };
 
 export {
@@ -131,4 +135,5 @@ export {
   deleteTeamMate,
   postMateruleComment,
   getTeamRuleList,
+  deleteTeamRuleList,
 };

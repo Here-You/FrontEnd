@@ -543,10 +543,6 @@ export const MateHandlers = [
 
   //여행 규칙 전체 리스트
   http.get(`${baseURL}${API_URL.GET_TEAM_RULE_LIST}`, ({ request, params }) => {
-    if (!userId) {
-      return new HttpResponse(null, { status: 404 });
-    }
-
     return HttpResponse.json({
       status: 200,
       success: true,
@@ -613,15 +609,20 @@ export const MateHandlers = [
   }),
 
   // 여행 규칙 참여에서 나가기
-  http.delete(`${API_URL.EXIT_TEAM_RULE}`, ({ request, params }) => {
-    if (!ruleId) {
-      return new HttpResponse(null, { status: 404 });
-    }
+  http.delete(
+    `${API_URL.GET_TEAM_RULE_LIST}/:ruleId`,
+    ({ request, params }) => {
+      const ruleId = params.ruleId;
+      console.log(ruleId);
+      if (!ruleId) {
+        return new HttpResponse(null, { status: 404 });
+      }
 
-    return HttpResponse.json({
-      status: 204,
-      success: true,
-      message: '여행 규칙에서 나가기 성공',
-    });
-  }),
+      return HttpResponse.json({
+        status: 204,
+        success: true,
+        message: '여행 규칙에서 나가기 성공',
+      });
+    },
+  ),
 ];
