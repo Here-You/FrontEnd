@@ -36,7 +36,7 @@ export const ProfileHandlers = [
   // 로그아웃 (JWT 사용시 구현 X)
 
   // 닉네임 수정
-  http.put(`${baseURL}${API_URL.UPDATE_NICKNAME}`, ({ request, params }) => {
+  http.post(`${baseURL}${API_URL.UPDATE_NICKNAME}`, ({ request, params }) => {
     return HttpResponse.json({
       status: 200,
       success: true,
@@ -45,7 +45,7 @@ export const ProfileHandlers = [
   }),
 
   // 프로필 소개 수정
-  http.put(
+  http.post(
     `${baseURL}${API_URL.UPDATE_PROFILE_INTRO}`,
     ({ request, params }) => {
       return HttpResponse.json({
@@ -82,12 +82,13 @@ export const ProfileHandlers = [
     });
   }),
 
-  http.put(`${baseURL}${API_URL.PUBLIC_SCOPE}`, ({ request, params }) => {
+  // 공개범위 설정
+  http.post(`${baseURL}${API_URL.PUBLIC_SCOPE}`, ({ request, params }) => {
     return HttpResponse.json({
       status: 200,
       success: true,
       message: '공개범위 설정 성공',
-     });
+    });
   }),
 
   // 회원 탈퇴

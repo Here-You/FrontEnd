@@ -8,6 +8,7 @@ import theme from '@/theme';
 
 const MyPageInfo = () => {
   const [info, setInfo] = useState([]);
+  const [isLogin, setIsLogin] = useState();
   const navigate = useNavigate();
 
   const handleGoMate = () => {
@@ -23,13 +24,15 @@ const MyPageInfo = () => {
     }
   };
   useEffect(() => {
+    setIsLogin(localStorage.getItem('x-access-token'));
+
     getInfo();
   }, []);
   return (
     <S.ProfileContainer>
       <S.ProfilePicture src={myPageImg.ProfilePicture} alt="아" />
       <S.ProfileInfoContainer>
-        {info.nickname ? (
+        {isLogin ? (
           <>
             <S.NickNameTypeContainer>
               <h3> {info.nickname}</h3>

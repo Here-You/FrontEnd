@@ -56,6 +56,7 @@ const NicknameEditModal = ({ myNickname }) => {
     if (!nickname) {
       alert('내용을 입력해주세요!');
     } else {
+      console.log(nickname);
       setIsLoading(true);
       try {
         const res = await updateNickName(nickname);

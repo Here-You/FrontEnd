@@ -28,7 +28,7 @@ const postAddInformation = (nickname, introduction) => {
 // 닉네임 수정
 const updateNickName = nickname => {
   const url = `${API_URL.UPDATE_NICKNAME}`;
-  const res = axiosWithToken.put(url, {
+  const res = axiosWithToken.post(url, {
     nickname: nickname,
   });
   return res;
@@ -37,7 +37,7 @@ const updateNickName = nickname => {
 // 한줄 소개 수정
 const updateIntro = intro => {
   const url = `${API_URL.UPDATE_PROFILE_INTRO}`;
-  const res = axiosWithToken.put(url, {
+  const res = axiosWithToken.post(url, {
     intro: intro,
   });
   return res;
@@ -52,7 +52,7 @@ const deleteWithdrawMember = () => {
 // 공개 범위 설정
 const putPublicScope = visivility => {
   const url = `${API_URL.PUBLIC_SCOPE}`;
-  const res = axiosWithToken.put(url, {
+  const res = axiosWithToken.post(url, {
     visivility: visivility,
   });
   return res;
