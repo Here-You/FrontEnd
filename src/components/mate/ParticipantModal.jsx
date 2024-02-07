@@ -3,10 +3,14 @@ import { useState } from 'react';
 import ParticipantMate from './ParticipantMate';
 import * as S from './ParticipantModal.style';
 import SearchInviteMateModal from './SearchInviteMateModal';
-import { useParticipateTeamMate } from '@/hooks/mate/useParticipateTeamMate';
 
-const ParticipantModal = ({ onClose, setSelectedProfiles }) => {
-  const { data: profilesData, loading, error } = useParticipateTeamMate();
+// updateInvitations,
+//
+const ParticipantModal = ({
+  onClose,
+  setSelectedProfiles,
+  selectedProfiles,
+}) => {
   const [searchMateModal, setSearchMateModal] = useState(false);
 
   const handleSearchMateModal = () => {
@@ -17,9 +21,9 @@ const ParticipantModal = ({ onClose, setSelectedProfiles }) => {
     handleSearchMateModal();
   };
 
-  const handleProfileClick = profileData => {
-    setSelectedProfiles(prevProfiles => [...prevProfiles, profileData]);
-  };
+  // const handleProfileClick = profileData => {
+  //   setSelectedProfiles(prevProfiles => [...prevProfiles, profileData]);
+  // };            updateInvitations={updateInvitations}
 
   return (
     <S.ModalBase>
@@ -29,24 +33,35 @@ const ParticipantModal = ({ onClose, setSelectedProfiles }) => {
           <S.PlusButton onClick={handlePlusButtonClick} />
         </S.WrapContainer>
 
-        {profilesData.map((profileData, index) => (
-          <ParticipantMate
-            key={index}
-            profileData={profileData}
-            onClick={() => handleProfileClick(profileData)}
-          />
-        ))}
+        <S.FixedContainer>
+          {selectedProfiles.length === 0 ? (
+            <S.NoParticipantsMessage>
+              메이트를 초대해보세요.
+            </S.NoParticipantsMessage>
+          ) : (
+            <S.ParticipantWrap>
+              {selectedProfiles.map((profileData, index) => (
+                <ParticipantMate
+                  key={profileData._id}
+                  profileData={profileData}
+                  // onClick={() => handleProfileClick(profileData)}
+                />
+              ))}
+            </S.ParticipantWrap>
+          )}
+        </S.FixedContainer>
 
         {searchMateModal && (
           <SearchInviteMateModal
+            selectedProfiles={selectedProfiles}
+            setSelectedProfiles={setSelectedProfiles}
             onClose={() => {
-              handleSearchMateModal();
+              setSearchMateModal(false);
               window.history.replaceState(
                 document.title,
                 window.location.pathname,
               );
             }}
-            setSelectedProfiles={setSelectedProfiles}
           />
         )}
 

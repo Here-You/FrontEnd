@@ -49,7 +49,7 @@ const TravelCalendar = ({
     queryKey: ['schedules', journeyId],
     queryFn: ({ pageParam = 1 }) => getSchedule(journeyId, pageParam),
     initialPageParam: 0,
-    getNextPageParam: lastPage => lastPage?.data?.data.at(-1).scheduleId,
+    getNextPageParam: lastPage => lastPage?.data?.data?.at(-1).scheduleId,
     staleTime: 60 * 1000,
     // enabled,  // 처리 필요
   });
@@ -152,7 +152,7 @@ const TravelCalendar = ({
         />
         <S.SchedulesContainer>
           {schedulesData?.pages?.map(page =>
-            page.data.data.map(schedule => (
+            page?.data?.data?.map(schedule => (
               <Schedules
                 key={schedule.scheduleId}
                 data={schedule}

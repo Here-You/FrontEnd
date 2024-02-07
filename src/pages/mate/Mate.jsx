@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-import * as S from './Mate.style';
+import MateContainer from './MateContainer';
 import MateMainPage from './main/MateMain';
 import MateSearchPage from './search/MateSearch';
 import Search from '@/components/mate/Search';
@@ -10,16 +10,15 @@ const MatePage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const searchTerm = searchParams.get('searchTerm') || '';
+  const { data, loading, error } = useSearchMate(searchTerm);
+  console.log(searchTerm);
+  console.log(data);
 
   return (
-    <S.Container>
+    <MateContainer>
       <Search />
-      {searchTerm ? (
-        <MateSearchPage searchTerm={searchTerm} />
-      ) : (
-        <MateMainPage />
-      )}
-    </S.Container>
+      {searchTerm ? <MateSearchPage data={data} /> : <MateMainPage />}
+    </MateContainer>
   );
 };
 

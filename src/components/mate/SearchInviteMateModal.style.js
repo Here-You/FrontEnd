@@ -18,36 +18,57 @@ const ModalBase = styled.div`
 const ModalContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   position: relative;
-  width: 277px;
-  height: 300px;
-  border-radius: 10px;
+  width: 440px;
+  height: 480px;
+  border-radius: 20px;
   border-color: transparent;
   background-color: ${theme.COLOR.MAIN.WHITE};
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 280px;
+    height: 300px;
+    border-radius: 10px;
+  }
 `;
 
 const WrapContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   position: absolute;
-  top: 38px;
+  top: 60px;
 
-  span {
-    color: ${theme.COLOR.MAIN.GRAY};
-    text-align: center;
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    top: 38px;
+  }
+`;
+
+const Description = styled.span`
+  color: ${theme.COLOR.MAIN.GRAY};
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
   }
 `;
 
 const SearchContainer = styled.form`
   ${theme.ALIGN.ROW_CENTER};
   position: relative;
-  width: 240px;
-  height: 35px;
-  border-radius: 10px;
+  width: 300px;
+  height: 50px;
+  border-radius: 15px;
   border: 1px solid #eee;
-  margin-top: 16px;
+  margin-top: 22px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 200px;
+    height: 35px;
+    border-radius: 10px;
+    margin-top: 16px;
+  }
 `;
 
 const UserInput = styled.input`
@@ -59,7 +80,7 @@ const UserInput = styled.input`
 
   span {
     color: ${theme.COLOR.MAIN.GRAY};
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -68,45 +89,66 @@ const UserInput = styled.input`
   &:focus {
     outline: none;
   }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: 12px;
+  }
 `;
 
 const SearchButton = styled.button`
-  width: 34.793px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   position: absolute;
   right: 0;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 15px 15px 0px;
   border-color: transparent;
   background-color: #eee;
   background-image: url(${searchIcon});
   background-repeat: no-repeat;
   background-position: center center;
   cursor: pointer;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 35px;
+    height: 35px;
+    border-radius: 0px 10px 10px 0px;
+  }
 `;
 
 const PlusContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   width: 100%;
-  max-height: 130px;
+  height: 265px;
   position: absolute;
-  top: 110px;
-  gap: 5px;
-  overflow-y: auto;
+  top: 160px;
+  padding: 20px 0;
+  gap: 16px;
+  overflow-y: scroll;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    height: 140px;
+    top: 110px;
+    gap: 10px;
+  }
 `;
 
 const NoResult = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   width: 100%;
-  height: 100%;
-  margin-top: 50px;
 
   span {
     color: rgba(0, 0, 0, 0.57);
     text-align: center;
-    font-size: 12.268px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+  }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    span {
+      font-size: 12px;
+    }
   }
 `;
 
@@ -114,8 +156,12 @@ const ButtonContainer = styled.div`
   position: absolute;
   bottom: 0px;
   width: 100%;
-  height: 48px;
+  height: 54px;
   border-top: 0.5px solid #eee;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    height: 48px;
+  }
 `;
 
 const CancelButton = styled.button`
@@ -128,10 +174,14 @@ const CancelButton = styled.button`
 
   color: ${theme.COLOR.MAIN.GRAY};
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: 12px;
+  }
 `;
 
 const OkButton = styled.button`
@@ -143,16 +193,21 @@ const OkButton = styled.button`
 
   color: #ff8686;
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: 12px;
+  }
 `;
 
 export {
   ModalBase,
   ModalContainer,
   WrapContainer,
+  Description,
   SearchContainer,
   UserInput,
   SearchButton,

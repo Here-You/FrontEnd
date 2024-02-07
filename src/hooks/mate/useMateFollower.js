@@ -22,6 +22,7 @@ export const useMateFollower = () => {
     };
 
     fetchData();
+    // }, [userId]);
   }, []);
 
   return { data, loading, error };

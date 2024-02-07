@@ -1,47 +1,110 @@
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 import * as S from './MateRuleWrite.style';
+import PlusUser from '/images/mate/add-user.svg';
 import { postCreateMateRule } from '@/apis/request/mate';
-import RuleBox from '@/components/mate/RuleBox';
+import InviteMatesModal from '@/components/modal/inviteMatesModal/InviteMatesModal';
+import useInviteMatesModal from '@/hooks/modal/useInviteMatesModal';
+import useMatesStore from '@/store/matesStore';
 
 const MateRuleWritePage = () => {
-  const [mainTitle, setMainTitle] = useState('');
+  const navigate = useNavigate();
+  const inviteMatesModal = useInviteMatesModal();
+  const selectedMates = useMatesStore(state => state.selectedMates);
+  const [title, setTitle] = useState('');
   const [rules, setRules] = useState([{ ruleTitle: '', ruleDetail: '' }]);
-  const [selectedProfiles, setSelectedProfiles] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
-  const handlePublishClick = async () => {
-    console.log('handlePublishClick called');
-    try {
-      setLoading(true);
-      const postData = {
-        mainTitle: mainTitle,
-        created: new Date(),
-        rules: rules,
-        invitedId: selectedProfiles.map(profile => profile.id),
-      };
-      const res = await postCreateMateRule(postData);
-      console.log(res);
-    } catch (e) {
-      setError(e.message || '에러가 발생했습니다.');
-    } finally {
-      setLoading(false);
+  const handleAddRule = () => {
+    if (rules.length < 10) {
+      setRules([...rules, { ruleTitle: '', ruleDetail: '' }]);
     }
   };
 
+  const handleRemoveRule = item => {
+    setRules(prevRules => prevRules.filter((_, index) => index !== item));
+  };
+
+  const handleSubmitRule = () => {
+    const postData = {
+      mainTitle: title,
+      // created 시간을 우리가 넣어줘야하나요..?
+      // 유저아이디도? (이건 토큰이 해줄텐데?)
+      created: new Date().toISOString(),
+      rules: rules,
+      invitedId: selectedMates.map(mate => mate._id),
+    };
+
+    postCreateMateRule(postData)
+      .then(() => {
+        toast.success('규칙을 성공적으로 작성하였습니다.');
+        navigate('/mate');
+      })
+      .catch(error => {
+        toast.error(error.message);
+      });
+  };
   return (
-    <S.CenteredContainer>
-      <RuleBox
-        mainTitle={mainTitle}
-        setMainTitle={setMainTitle}
-        rules={rules}
-        setRules={setRules}
-        selectedProfiles={selectedProfiles}
-        setSelectedProfiles={setSelectedProfiles}
-      />
-      <S.PublishButton onClick={handlePublishClick}>발행하기</S.PublishButton>
-    </S.CenteredContainer>
+    <S.Container>
+      <InviteMatesModal />
+      <S.Wrapper>
+        <S.Header>
+          <S.TitleInput
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            placeholder="규칙 제목을 입력해주세요."
+          />
+          <S.PlusSvg src={PlusUser} onClick={() => inviteMatesModal.onOpen()} />
+        </S.Header>
+        <S.MatesContainer>
+          {selectedMates.map(s => (
+            <>
+              <S.MatesImages src={s.image} />
+            </>
+          ))}
+        </S.MatesContainer>
+        <S.Content>
+          {rules.map((rule, index) => (
+            <S.ContentBox key={index}>
+              <S.TextContainer>
+                <S.ContentTitleInput
+                  placeholder={`규칙 ${index + 1}을 입력해주세요!`}
+                  value={rule.ruleTitle}
+                  onChange={e => {
+                    const newRules = [...rules];
+                    newRules[index].ruleTitle = e.target.value;
+                    setRules(newRules);
+                  }}
+                />
+                <S.ContentTextInput
+                  placeholder={`규칙 ${index + 1} 내용을 입력해주세요!`}
+                  value={rule.ruleDetail}
+                  onChange={e => {
+                    const newRules = [...rules];
+                    newRules[index].ruleDetail = e.target.value;
+                    setRules(newRules);
+                  }}
+                  rows="5"
+                  columns="2"
+                />
+                <S.DeleteRuleButton onClick={() => handleRemoveRule(index)}>
+                  X
+                </S.DeleteRuleButton>
+              </S.TextContainer>
+            </S.ContentBox>
+          ))}
+        </S.Content>
+        <S.AddButtonWrapper>
+          {rules.length < 10 && (
+            <S.AddQuestionButton onClick={handleAddRule}>
+              규칙 추가하기
+            </S.AddQuestionButton>
+          )}
+        </S.AddButtonWrapper>
+      </S.Wrapper>
+      <S.SubmitBtn onClick={handleSubmitRule}>발행하기</S.SubmitBtn>
+    </S.Container>
   );
 };
 

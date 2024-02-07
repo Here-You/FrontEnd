@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import MateContainer from '../MateContainer';
 import * as S from './MateManagement.style';
 import ManagementProfile from '@/components/mate/ManagementProfile';
 import { useMateFollower } from '@/hooks/mate/useMateFollower';
@@ -15,30 +16,30 @@ const MateManagementPage = () => {
   };
 
   return (
-    <>
-      <S.CenteredContainer>
-        <S.TabContainer>
-          <S.TabElement
-            active={activeTab === 'follower'}
-            onClick={() => handleTabClick('follower')}>
-            팔로워
-          </S.TabElement>
-          <S.TabElement
-            active={activeTab === 'following'}
-            onClick={() => handleTabClick('following')}>
-            팔로잉
-          </S.TabElement>
-        </S.TabContainer>
-      </S.CenteredContainer>
+    <MateContainer>
+      <S.TabContainer>
+        <S.TabElement
+          active={activeTab === 'follower'}
+          onClick={() => handleTabClick('follower')}>
+          팔로워
+        </S.TabElement>
+        <S.TabElement
+          active={activeTab === 'following'}
+          onClick={() => handleTabClick('following')}>
+          팔로잉
+        </S.TabElement>
+      </S.TabContainer>
 
-      {activeTab === 'follower'
-        ? dataFollower.map((data, index) => (
-            <ManagementProfile key={index} profileData={data} />
-          ))
-        : dataFollowing.map((data, index) => (
-            <ManagementProfile key={index} profileData={data} />
-          ))}
-    </>
+      <S.ProfileContainer>
+        {activeTab === 'follower'
+          ? dataFollower.map((data, index) => (
+              <ManagementProfile key={index} profileData={data} />
+            ))
+          : dataFollowing.map((data, index) => (
+              <ManagementProfile key={index} profileData={data} />
+            ))}
+      </S.ProfileContainer>
+    </MateContainer>
   );
 };
 
