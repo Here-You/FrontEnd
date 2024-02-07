@@ -26,6 +26,7 @@ const MateLookPage = () => {
     delay: 0,
     threshold: 0,
   });
+  console.log(data);
 
   useEffect(() => {
     if (inView) {
