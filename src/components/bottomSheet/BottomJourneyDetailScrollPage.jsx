@@ -9,12 +9,15 @@ const BottomJourneyDetailScrollPage = ({ journeyInfo }) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const { journeyId } = useParams();
-  console.log(journeyInfo);
 
-  const journeyTitle = journeyInfo?.journey_title;
-  const scheduleLocations = journeyInfo?.schedule_locations;
-  const startDate = journeyInfo?.date_group_id.startDate;
-  const endDate = journeyInfo?.date_group_id.endDate;
+  const journeyTitle = journeyInfo?.journey?.title;
+  const scheduleLocations = journeyInfo?.scheduleList;
+  const startDate = journeyInfo?.journey?.startDate;
+  const endDate = journeyInfo?.journey?.endDate;
+
+  const validImageCount = scheduleLocations?.filter(
+    s => s.diaryImage && s.diaryImage.imageUrl,
+  ).length;
 
   return (
     <>
@@ -41,12 +44,16 @@ const BottomJourneyDetailScrollPage = ({ journeyInfo }) => {
             height: '100%',
           }}>
           <S.ImageContainer>
-            {scheduleLocations?.slice(0, 3).map((s, index) => (
-              <S.ImageWrapper key={index}>
-                <S.Image src={s?.diary_image.imageKey} />
-              </S.ImageWrapper>
-            ))}
-            {scheduleLocations && scheduleLocations.length > 3 && <p>...</p>}
+            {scheduleLocations?.slice(0, 3).map((s, index) => {
+              s.diaryImage === null ? (
+                <></>
+              ) : (
+                <S.ImageWrapper key={index}>
+                  <S.Image src={s?.diaryImage?.imageUrl} />
+                </S.ImageWrapper>
+              );
+            })}
+            {validImageCount > 3 && <p>...</p>}
           </S.ImageContainer>
           <S.ButtonContainer>
             <S.Button onClick={() => navigate(`/dailyrecord/${journeyId}`)}>

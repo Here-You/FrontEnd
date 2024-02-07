@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import * as S from './Map.style';
 import { TravelMap } from '@/components';
 import BottomScrollPage from '@/components/bottomSheet/BottomScrollPage';
 import testData from '@/constants/journey';
-import { useMonthlyJourney } from '@/hooks/home/useMonthlyJourney';
 
 const MapPage = () => {
   const navigate = useNavigate();
