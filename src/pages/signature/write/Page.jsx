@@ -1,4 +1,3 @@
-// Page.js
 import imageCompression from 'browser-image-compression';
 import React, { useEffect, useState } from 'react';
 
@@ -16,20 +15,26 @@ export default function Page({ image, content }) {
     const file = e.target.files[0];
 
     try {
-      const compressedFile = await imageCompression(file, {
-        maxWidthOrHeight: 800,
-        maxSizeMB: 1,
-        fileType: 'image/jpeg',
-      });
-
       const reader = new FileReader();
 
-      reader.onloadend = () => {
-        const base64Image = reader.result.split(',')[1]; // 'data:image/jpeg;base64,' 부분 제거
-        updatePage(currentPageIndex, { image: base64Image });
+      reader.onloadend = async () => {
+        const compressedFile = await imageCompression(file, {
+          maxWidthOrHeight: 800,
+          maxSizeMB: 1,
+          fileType: 'image/jpeg',
+        });
+
+        const compressedReader = new FileReader();
+
+        compressedReader.onloadend = () => {
+          const base64Image = compressedReader.result.split(',')[1];
+          updatePage(currentPageIndex, { image: base64Image });
+        };
+
+        compressedReader.readAsDataURL(compressedFile);
       };
 
-      reader.readAsDataURL(compressedFile);
+      reader.readAsDataURL(file);
     } catch (error) {
       console.error('이미지 압축 실패:', error);
     }
@@ -59,7 +64,7 @@ export default function Page({ image, content }) {
         />
       </S.LocationContainer>
       <S.InputWrap>
-        {image && <S.Image src={image} />}
+        {image && <S.Image src={`data:image/jpeg;base64,${image}`} />}
         <S.PhotoButton>
           <img src={addButton} alt="Add Button" />
           <S.ImageInput
