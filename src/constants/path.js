@@ -17,10 +17,10 @@ const BASE_PATH = {
   SIGNATURE: '/signature',
   SIGNATURE_WRITE: '/signature/write',
   SIGNATURE_SEARCH: '/signature/search',
-  SIGNATURE_EDIT: '/signature/edit',
+  SIGNATURE_EDIT: '/signature/edit/:signatureId',
   SIGNATURE_POPULAR: '/signature/popular',
   SIGNATURE_RECOMMEND: '/signature/recommend/:tag',
-  SIGNATURE_POST_PAGE: '/signature/:userId/:title',
+  SIGNATURE_POST_PAGE: '/signature/post/:signatureId',
   // MATE
   MATE: '/mate',
   MATE_SEARCH: '/mate/search',
@@ -67,7 +67,7 @@ const API_BASE = {
 const API_URL = {
   // PROFILE
   LOGIN: `/api/${VERSION}/${API_BASE.USER}/login`,
-
+  PUBLIC_SCOPE: `/api/${VERSION}/${API_BASE.USER}/profile/visibility`,
   ADDITIONAL_INFORMATION: `/api/${VERSION}/${API_BASE.USER}/profile`,
   SNS_LOGIN: `/api/${VERSION}/${API_BASE.USER}/login/oauth`,
   UPDATE_NICKNAME: `/api/${VERSION}/${API_BASE.PROFILE}/nickname`,
@@ -106,20 +106,20 @@ const API_URL = {
 
   // MATE
   SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
-  FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
-  UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
-  EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/explore`,
-  GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/followerList`,
+  FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search/followId`,
+  UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search/:followId`,
+  EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/signature`,
+  GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/followList`,
   GET_MATE_FOLLOWING: `/api/${VERSION}/${API_BASE.MATE}/followingList`,
   CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,
   SEARCH_INVITE_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/searchMate`,
-  GET_PARTICIPATE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/participants`,
-  GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail`,
-  UPDATE_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/edit`,
-  DELETE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/editMate`,
-  CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule`,
+  GET_PARTICIPATE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/member/:ruleId`,
+  GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail/:ruleId/:cursor/:take`,
+  UPDATE_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/edit/:ruleId`,
+  DELETE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/editMate/:ruleId/:mateId`,
+  CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule/:ruleId`,
   GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list`,
-  DELETE_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list`,
+  EXIT_TEAM_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/list/:ruleId`,
 };
 
 const API_PATH = {

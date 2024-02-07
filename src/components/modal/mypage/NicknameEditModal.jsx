@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Modal from '../Modal';
-import * as S from './NicknameEdit.style';
+import * as S from './EditModal.style';
 import { updateNickName } from '@/apis/request/profile';
 import Schema from '@/components/schema/Schema';
-import { yupResolver } from '@hookform/resolvers/yup';
 import useNicknameEditModal from '@/hooks/modal/useNickameEditModal';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const NicknameEditModal = ({ myNickname }) => {
   const nicknameEditModal = useNicknameEditModal();
@@ -16,7 +16,7 @@ const NicknameEditModal = ({ myNickname }) => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+
     watch,
     setValue,
   } = useForm({
@@ -49,7 +49,6 @@ const NicknameEditModal = ({ myNickname }) => {
   );
 
   const handleCloseModal = () => {
-  
     nicknameEditModal.onClose();
   };
 
@@ -59,7 +58,7 @@ const NicknameEditModal = ({ myNickname }) => {
     } else {
       setIsLoading(true);
       try {
-        const res = await updateNickName({ ...data, nickname });
+        const res = await updateNickName(nickname);
         if (res) {
           alert('닉네임이 변경 되었습니다.');
           console.log('제출된 데이터: ', data);
@@ -82,6 +81,7 @@ const NicknameEditModal = ({ myNickname }) => {
       onClose={handleCloseModal}
       onSubmit={handleSubmit(onSubmit)}
       actionLabel="변경"
+      secondButtonColor="red"
       body={BodyContent}
       secondaryAction={handleCloseModal}
       secondaryActionLabel="취소"

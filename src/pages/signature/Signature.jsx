@@ -42,15 +42,14 @@ const Signature = () => {
     getData();
   }, []);
 
-  if (!isAuthenticated) {
+  if (isAuthenticated) {
     return <TokenErrorPage />;
   }
   if (data.length == 0) {
     return <NoSignature />;
   }
 
-  return <div>{hasTitle ? <TotalSignature /> : <SignaturePage />}</div>;
+  return <>{hasTitle ? <TotalSignature /> : <SignaturePage />}</>;
 };
 
 export default Signature;
-

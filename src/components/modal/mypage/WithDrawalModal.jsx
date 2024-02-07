@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 
 import Modal from '../Modal';
-import * as S from './WithDrawalModal.style';
+import * as S from './BasicModal.style';
 import { deleteWithdrawMember } from '@/apis/request/profile';
 import useWithdrawalModal from '@/hooks/modal/useWithdrawalModal';
 
@@ -47,6 +46,7 @@ const WithDrawalModal = () => {
       onClose={handleCloseModal}
       onSubmit={onSubmit}
       actionLabel="회원탈퇴"
+      secondButtonColor="red"
       body={BodyContent}
       secondaryAction={handleCloseModal}
       secondaryActionLabel="취소"

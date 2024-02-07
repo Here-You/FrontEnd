@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './SnsLoginButton.style';
@@ -10,15 +10,18 @@ const GoogleLoginButton = () => {
 
   const login = useGoogleLogin({
     onSuccess: async tokenResponse => {
-      await postSnsLogin('GOOGLE', tokenResponse.access_token);
-      console.log(import.meta.env.VITE_REDIRECT_URI);
-      navigate('/login/oauth');
+      console.log(tokenResponse);
+      const response = await postSnsLogin('GOOGLE', tokenResponse.access_token);
+      const token = response.data.token;
+      localStorage.setItem('x-access-token', token);
+      const register_required = response.data.register_required;
+      register_required ? navigate('/signup') : navigate('/');
+      alert('로그인 성공');
     },
     onError: error => {
       console.error('에러:', error);
     },
   });
-  
 
   return <S.LoginButton onClick={login}>구글로 계속하기</S.LoginButton>;
 };

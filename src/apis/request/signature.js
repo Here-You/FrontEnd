@@ -1,5 +1,5 @@
-import { axios, axiosWithToken } from '../api';
-import { API_PATH, API_URL } from '@/constants/path';
+import { axiosWithToken } from '../api';
+import { API_BASE, API_URL, VERSION } from '@/constants/path';
 
 //내 시그니처
 const getMySignaturePreview = () => {
@@ -9,16 +9,11 @@ const getMySignaturePreview = () => {
 };
 
 //시그니처 발행하기
-const postNewSignature = ({ postData }) => {
-  const { title, pages, content, location, page, image } = postData;
+const postNewSignature = (title, pages) => {
   const url = `${API_URL.PUBLISH_SIGNATURE}`;
   const res = axiosWithToken.post(url, {
     title: title,
     pages: pages,
-    content: content,
-    location: location,
-    page: page,
-    image: image,
   });
   return res;
 };
@@ -31,16 +26,11 @@ const getDetail = signatureId => {
 };
 
 //시그니처 수정하기
-const updateMySignature = (signatureId, { patchData }) => {
-  const { title, pages, content, location, page, image } = patchData;
-  const url = `${API_URL.GET_MY_SIGNATURE}/${signatureId}`;
+const updateMySignature = (signatureId, title, pages) => {
+  const url = `/api/${VERSION}/${API_BASE.SIGNATURE}/${signatureId}`;
   const res = axiosWithToken.patch(url, {
     title: title,
     pages: pages,
-    content: content,
-    location: location,
-    page: page,
-    image: image,
   });
   return res;
 };
@@ -53,9 +43,12 @@ const deleteMySignature = signatureId => {
 };
 
 //시그니처 좋아요, 좋아요 취소
-const likeSignature = signatureId => {
+const likeSignature = (signatureId, liked) => {
   const url = `${API_URL.GET_MY_SIGNATURE}/like/${signatureId}`;
-  const res = axiosWithToken.patch(url);
+  const res = axiosWithToken.patch(url, {
+    liked: liked,
+    signatureId: signatureId,
+  });
   return res;
 };
 

@@ -1,35 +1,19 @@
-import React, { useEffect, useState } from 'react';
-
-import Preview from '../components/Preview';
 import * as S from './MySignaturePage.style';
-import NoSignature from './NoSignature';
-import { getSignaturePreview } from '@/apis/request/preview';
+import Preview from '@/components/preview/Preview';
+import { useSignaturePreview } from '@/hooks/signature/useSignaturePreview ';
 
-export default function MySignaturePage() {
-  const [data, setData] = useState([]);
-
-  const getData = async () => {
-    try {
-      const res = await getSignaturePreview();
-      const mockData = res.data;
-      setData(mockData);
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
+const MySignaturePage = () => {
+  const { data: signaturePreview, loading, error } = useSignaturePreview();
 
   return (
     <S.PageContainer>
       <S.PreviewContainer>
-        {data.map((item, index) => (
-          <Preview key={index} {...item} />
+        {signaturePreview.map((s, _) => (
+          <Preview key={s._id} signature={s} />
         ))}
       </S.PreviewContainer>
     </S.PageContainer>
   );
-}
+};
+
+export default MySignaturePage;

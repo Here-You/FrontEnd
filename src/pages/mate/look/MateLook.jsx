@@ -8,13 +8,12 @@ import MateSignatureSection from '@/components/mate/MateSignatureSection';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 const MateLookPage = () => {
-  const userId = 1;
   const limit = 10;
 
   const { fetchNextPage, hasNextPage, isFetching, data, isError, isLoading } =
     useInfiniteQuery({
-      queryKey: ['exploreMate', userId],
-      queryFn: ({ pageParam = 0 }) => getExploreMate(userId, pageParam, limit),
+      queryKey: ['exploreMate'],
+      queryFn: ({ pageParam = 0 }) => getExploreMate(pageParam, limit),
       initialPageParam: 0,
       getNextPageParam: (lastPage, allPages) => {
         const lastMate =
@@ -33,7 +32,9 @@ const MateLookPage = () => {
       hasNextPage && fetchNextPage();
     }
   }, [inView, hasNextPage, fetchNextPage]);
-  console.log(data?.pages[0].data.data.recommend_mates[0].information.nickname);
+
+  console.log(data);
+  // console.log(data?.pages[0].data.data.recommend_mates[0].information.nickname);
 
   const nickname =
     data?.pages[0].data.data.recommend_mates[0].information.nickname;
@@ -60,7 +61,7 @@ const MateLookPage = () => {
                     <p>{m.bio}</p>
                   </S.TextBox>
                 </S.MateDescriptionBox>
-                
+
                 <S.ImageContainer>
                   {m.signature.map(s => {
                     return (

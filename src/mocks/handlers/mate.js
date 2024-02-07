@@ -8,14 +8,14 @@ export const MateHandlers = [
   http.get(`${baseURL}${API_URL.SEARCH_MATE}`, ({ request, params }) => {
     const url = new URL(request.url);
     const searchTerm = url.searchParams.get('searchTerm');
-    // const cursor =;
-    // const take = ;
+    const cursor = url.searchParams.get('cursor');
+    const take = url.searchParams.get('take');
 
     if (!searchTerm) {
       return new HttpResponse(null, { status: 404 });
     }
 
-    if (searchTerm === '안예원') {
+    if (searchTerm === 'ahnyewon') {
       return HttpResponse.json({
         status: 200,
         success: true,
@@ -23,44 +23,44 @@ export const MateHandlers = [
         data: {
           mates: [
             {
-              _id: 1,
+              _id: 13,
               name: '안예원',
               nickname: 'ahnyewon',
               bio: '안녕하세요 안예원 입니다. 반가워요',
               follower_num: 23,
               following_num: 23,
               image:
-                'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
               is_following: true,
             },
             {
-              _id: 2,
+              _id: 12,
               name: '안원',
               nickname: 'ahnwon',
               bio: '안녕하세요 안원 입니다. 반가워요',
               follower_num: 2,
               following_num: 2,
               image:
-                'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
               is_following: false,
             },
             {
-              _id: 3,
+              _id: 11,
               name: '안예',
               nickname: 'ahnyw',
               bio: '안녕하세요 안예 입니다. 반가워요',
               follower_num: 200,
               following_num: 200,
               image:
-                'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
               is_following: true,
             },
           ],
           meta: {
             total: 13,
-            take: 3,
+            take: take,
             hasNextData: true,
-            cursor: 11,
+            cursor: cursor,
           },
         },
       });
@@ -69,15 +69,14 @@ export const MateHandlers = [
 
   //메이트 팔로우
   http.post(`${baseURL}${API_URL.FOLLOW_MATE}`, ({ request, params }) => {
-    const userId = params.userId;
     const url = new URL(request.url);
-    const followId = url.searchParams.get('followId');
+    const followId = parseInt(url.searchParams.get('followId')) || 0;
 
     if (!followId) {
       return new HttpResponse({
-        status: 404,
+        status: 500,
         success: false,
-        message: '팔로우 실패 (사용자를 찾을 수 없습니다)',
+        message: '서버 내부 오류',
       });
     }
 
@@ -89,185 +88,122 @@ export const MateHandlers = [
   }),
 
   //메이트 언팔로우
-  http.delete(
-    `${baseURL}${API_URL.UNFOLLOW_MATE}/:followId`,
-    ({ request, params }) => {
-      const userId = params.userId;
-      const followId = params.followId;
+  http.delete(`${baseURL}${API_URL.UNFOLLOW_MATE}`, ({ request, params }) => {
+    const followId = params.followId;
 
-      if (!followId) {
-        return new HttpResponse({
-          status: 200,
-          success: true,
-          message: '언팔로우 성공',
-        });
-      }
+    if (!followId) {
+      return new HttpResponse(null, { status: 404 });
+    }
 
-      return HttpResponse.json({
-        status: 200,
-        success: true,
-        message: '언팔로우 성공',
-      });
-    },
-  ),
+    return HttpResponse.json({
+      status: 200,
+      success: true,
+      message: '언팔로우 성공',
+    });
+  }),
 
   //메이트 탐색
-  http.get(
-    `${baseURL}${API_URL.EXPLORE_MATE}/:userId`,
-    ({ request, params }) => {
-      const url = new URL(request.url);
-      const userId = params.userId;
-      const cursor = parseInt(url.searchParams.get('cursor')) || 0;
-      const limit = parseInt(url.searchParams.get('limit')) || 0;
+  http.get(`${baseURL}${API_URL.EXPLORE_MATE}`, ({ request, params }) => {
+    const url = new URL(request.url);
+    const cursor = parseInt(url.searchParams.get('cursor')) || 0;
+    const take = parseInt(url.searchParams.get('take')) || 0;
 
-      if (!userId) {
-        return new HttpResponse(null, { status: 404 });
-      }
-
-      return HttpResponse.json({
-        status: 200,
-        success: true,
-        message: '메이트 탐색 성공',
-        data: {
-          recommend_mates: [
+    return HttpResponse.json({
+      status: 200,
+      success: true,
+      message: '메이트 탐색 성공',
+      data: {
+        userId: 123456,
+        location: '오사카',
+        first: {
+          boxes: [
             {
-              information: {
-                user_id: 123456,
-                nickname: '안예원',
-                location: '오사카',
+              mateInform: {
+                id: cursor + 1,
+                name: '추천 메이트 이름1',
+                image:
+                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
+                location: '건대',
+                isFollowing: 'true',
+                introduction: '안녕하세요',
               },
-              mates: [
-                {
-                  _id: 1,
-                  mateId: cursor + 1,
-                  nickname: '매튜',
-                  bio: '안녕하세요',
-                  image:
-                    'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  is_following: true,
-                  signature: [
-                    {
-                      _id: 1,
-                      title: '뽀똔이와 함께하는 일본 뿌시기',
-                      image:
-                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                    {
-                      _id: 2,
-                      title: '뽀똔이와 함께하는 일본 뿌시기',
-                      image:
-                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                  ],
-                },
-                {
-                  _id: 2,
-                  mateId: cursor + 2,
-                  nickname: '준',
-                  bio: '반가워요',
-                  image:
-                    'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  is_following: false,
-                  signature: [
-                    {
-                      _id: 1,
-                      title: '부산 갈매기에게 인형을 빼앗기다',
-                      image:
-                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                    {
-                      _id: 2,
-                      title: '부산 갈매기에게 인형을 빼앗기다',
-                      image:
-                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                  ],
-                },
-                {
-                  _id: 3,
-                  mateId: cursor + 3,
-                  nickname: '준',
-                  bio: '반가워요',
-                  image:
-                    'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  is_following: false,
-                  signature: [
-                    {
-                      _id: 1,
-                      title: '부산 갈매기에게 인형을 빼앗기다',
-                      image:
-                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                    {
-                      _id: 2,
-                      title: '부산 갈매기에게 인형을 빼앗기다',
-                      image:
-                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                  ],
-                },
-              ],
+              signature: {
+                id: cursor + 1,
+                title: '시그니처 제목1',
+                image:
+                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
+                introduction: '안녕하세요',
+              },
             },
             {
-              information: {
-                user_id: 123456,
-                nickname: '안예원2',
-                location: '오사카',
+              mateInform: {
+                id: cursor + 2,
+                name: '추천 메이트 이름2',
+                image:
+                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
+                location: '건대',
+                isFollowing: 'true',
               },
-              mates: [
-                {
-                  _id: 1,
-                  nickname: '매튜',
-                  bio: '안녕하세요',
-                  image:
-                    'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  is_following: true,
-                  signature: [
-                    {
-                      _id: 1,
-                      title: '뽀똔이와 함께하는 일본 뿌시기',
-                      image:
-                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                    {
-                      _id: 2,
-                      title: '뽀똔이와 함께하는 일본 뿌시기',
-                      image:
-                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                  ],
-                },
-                {
-                  _id: 1,
-                  nickname: '준',
-                  bio: '반가워요',
-                  image:
-                    'https://plus.unsplash.com/premium_photo-1673512198690-6439132f3187?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  is_following: false,
-                  signature: [
-                    {
-                      _id: 1,
-                      title: '부산 갈매기에게 인형을 빼앗기다',
-                      image:
-                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                    {
-                      _id: 2,
-                      title: '부산 갈매기에게 인형을 빼앗기다',
-                      image:
-                        'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    },
-                  ],
-                },
-              ],
+              signature: {
+                id: cursor + 2,
+                title: '시그니처 제목2',
+                image:
+                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
+              },
             },
           ],
-          cursor: 'eyJjb25kaXRpb25JZCI6MjMsImxpbWl0IjoxMH0=',
-          hasNextPage: true,
+          meta: {
+            total: 10,
+            take: take,
+            hasNextData: 'true',
+            cursor: cursor,
+          },
         },
-      });
-    },
-  ),
+        second: {
+          boxes: [
+            {
+              mateInform: {
+                id: cursor + 1,
+                name: '추천 메이트 이름1',
+                image:
+                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
+                location: '건대',
+                isFollowing: 'true',
+              },
+              signature: {
+                id: cursor + 1,
+                title: '시그니처 제목',
+                image:
+                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
+              },
+            },
+            {
+              mateInform: {
+                id: cursor + 2,
+                name: '추천 메이트 이름1',
+                image:
+                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
+                location: '건대',
+                isFollowing: 'true',
+              },
+              signature: {
+                id: cursor + 2,
+                title: '시그니처 제목',
+                image:
+                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
+              },
+            },
+          ],
+          meta: {
+            total: 10,
+            take: take,
+            hasNextData: 'true',
+            cursor: cursor,
+          },
+        },
+      },
+    });
+  }),
 
   //팔로워 목록 불러오기
   http.get(`${baseURL}${API_URL.GET_MATE_FOLLOWER}`, ({ request, params }) => {
@@ -279,56 +215,20 @@ export const MateHandlers = [
         mates: [
           {
             _id: 1,
-            name: '안예원11',
-            nickname: 'ahnyewon',
-            bio: '안녕하세요 안예원 입니다. 반가워요',
-            image:
-              'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            followId: 123,
-          },
-          {
-            _id: 2,
-            name: '안예',
-            nickname: 'ahnyw',
-            bio: '안녕하세요 안예 입니다. 반가워요',
-            image:
-              'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            followId: 'null',
-          },
-          {
-            _id: 1,
             name: '안예원',
             nickname: 'ahnyewon',
-            bio: '안녕하세요 안예원 입니다. 반가워요',
+            introduction: '안녕하세요 안예원 입니다. 반가워요',
             image:
-              'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
             followId: 123,
           },
           {
             _id: 2,
             name: '안예',
             nickname: 'ahnyw',
-            bio: '안녕하세요 안예 입니다. 반가워요',
+            introduction: '안녕하세요 안예 입니다. 반가워요',
             image:
-              'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            followId: 'null',
-          },
-          {
-            _id: 1,
-            name: '안예원',
-            nickname: 'ahnyewon',
-            bio: '안녕하세요 안예원 입니다. 반가워요',
-            image:
-              'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            followId: 123,
-          },
-          {
-            _id: 2,
-            name: '안예',
-            nickname: 'ahnyw',
-            bio: '안녕하세요 안예 입니다. 반가워요',
-            image:
-              'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
             followId: 'null',
           },
         ],
@@ -346,11 +246,11 @@ export const MateHandlers = [
         mates: [
           {
             _id: 1,
-            name: '안예원',
+            name: '팔로잉_안예원',
             nickname: 'ahnyewon',
             bio: '안녕하세요 안예원입니다. 반가워요',
             image:
-              'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             is_following: true,
           },
           {
@@ -359,7 +259,7 @@ export const MateHandlers = [
             nickname: 'ahnyw',
             bio: '안녕하세요 안예입니다. 반가워요',
             image:
-              'https://plus.unsplash.com/premium_photo-1701163818401-bae17da24ec8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             is_following: false,
           },
         ],
@@ -375,34 +275,22 @@ export const MateHandlers = [
       message: '여행 규칙 작성 및 메이트 초대 성공',
       data: {
         write: {
-          _id: 1,
-          main_title: '제주 여행 규칙을 세워보자',
-          timestamp: 1643142400,
+          id: 1,
+          mainTitle: '제주 여행 규칙을 세워보자',
+          created: 1643142400,
+          userId: 12,
           rules: [
             {
-              _id: 1,
-              rule_title: '1. 기상 규칙',
-              rule_detail: '7시까진 무조건 기상하기. 알람은 한개만 맞춰두기',
+              ruleTitle: '1. 기상 규칙',
+              ruleDetail: '7시까진 무조건 기상하기. 알람은 한개만 맞춰두기',
             },
             {
-              _id: 2,
-              rule_title: '2. 회비 규칙',
-              rule_detail: '투명하게 관리하기',
+              ruleTitle: '2. 회비 규칙',
+              ruleDetail: '투명하게 관리하기',
             },
           ],
         },
-        invitations: [
-          {
-            _id: 1,
-            inviter_id: 23,
-            invited_id: 12,
-          },
-          {
-            _id: 1,
-            inviter_id: 23,
-            invited_id: 12,
-          },
-        ],
+        invitedId: [12, 123, 124],
       },
     });
   }),
@@ -411,39 +299,47 @@ export const MateHandlers = [
   http.get(`${baseURL}${API_URL.SEARCH_INVITE_MATE}`, ({ request, params }) => {
     const url = new URL(request.url);
     const searchTerm = url.searchParams.get('searchTerm');
+    const cursor = url.searchParams.get('cursor');
+    const take = url.searchParams.get('take');
 
-    if (searchTerm === '안예원') {
+    if (searchTerm === 'ahnyewon') {
       return HttpResponse.json({
         status: 200,
         success: true,
-        message: '검색어를 통한 메이트 검색 성공',
+        message: '여행 규칙 작성에 초대할 메이트 검색 성공',
         data: {
           mates: [
             {
-              _id: 1,
-              name: '안예원1',
+              id: cursor + 1,
+              name: '안예원',
               nickname: 'ahnyewon',
-              bio: '안녕하세요 안예원 입니다. 반가워요',
+              introduction: '안녕하세요 안예원 입니다. 반가워요',
               image:
-                'https://images.unsplash.com/photo-1618359057154-e21ae64350b6?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
             {
-              _id: 2,
-              name: '안예원2',
-              nickname: 'ahnyewon',
-              bio: '안녕하세요 안예원 입니다. 반가워요',
+              id: cursor + 2,
+              name: '안원',
+              nickname: 'ahnwon',
+              introduction: '안녕하세요 안원 입니다. 반가워요',
               image:
-                'https://images.unsplash.com/photo-1618359057154-e21ae64350b6?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
             {
-              _id: 3,
-              name: '안예원3',
-              nickname: 'ahnyewon',
-              bio: '안녕하세요 안예원 입니다. 반가워요. 또 만나요',
+              id: cursor + 3,
+              name: '예원',
+              nickname: 'yewon',
+              introduction: '안녕하세요 예원 입니다. 반가워요',
               image:
-                'https://images.unsplash.com/photo-1618359057154-e21ae64350b6?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
           ],
+          meta: {
+            total: 13,
+            take: take,
+            hasNextData: true,
+            cursor: cursor,
+          },
         },
       });
     }
@@ -453,14 +349,10 @@ export const MateHandlers = [
   http.get(
     `${baseURL}${API_URL.GET_PARTICIPATE_TEAM_MATE}`,
     ({ request, params }) => {
-      const ruleId = params.rule_id;
+      const ruleId = params.ruleId;
 
       if (!ruleId) {
-        return new HttpResponse({
-          status: 500,
-          success: false,
-          message: '서버 내부 오류',
-        });
+        return new HttpResponse(null, { status: 404 });
       }
 
       return HttpResponse.json({
@@ -470,18 +362,18 @@ export const MateHandlers = [
         data: {
           mates: [
             {
-              _id: 1,
+              id: 1,
               name: '안예원',
               nickname: 'ahnyewon',
-              bio: '안녕하세요 안예원 입니다. 반가워요',
+              introduction: '안녕하세요 안예원 입니다. 반가워요',
               image:
                 'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
             {
-              _id: 2,
+              id: 2,
               name: '안예',
               nickname: 'ahnyw',
-              bio: '안녕하세요 안예 입니다. 반가워요',
+              introduction: '안녕하세요 안예 입니다. 반가워요',
               image:
                 'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
@@ -492,104 +384,110 @@ export const MateHandlers = [
   ),
 
   //여행 규칙 확인하기
-  http.get(
-    `${baseURL}${API_URL.GET_TEAM_MATE_RULE}/:ruleId`,
-    ({ request, params }) => {
-      const ruleId = params.ruleId;
-      const cursor = params.cursor;
-      const limit = params.limit;
+  http.get(`${baseURL}${API_URL.GET_TEAM_MATE_RULE}`, ({ request, params }) => {
+    const ruleId = params.ruleId;
+    const cursor = params.cursor;
+    const take = params.take;
 
-      if (!ruleId) {
-        return new HttpResponse({
-          status: 500,
-          success: false,
-          message: '서버 내부 오류',
-        });
-      }
+    if (!ruleId) {
+      return new HttpResponse(null, { status: 404 });
+    }
 
-      return HttpResponse.json({
-        status: 200,
-        success: true,
-        message: '여행 규칙 확인하기 팀원 ver 성공',
-        data: {
-          detailPage: {
-            detailRule: {
-              id: 1,
-              mainTitle: '제주 여행 규칙을 세워보자',
-              rulePairs: [
-                {
-                  id: 1,
-                  ruleTitle: '1. 기상 규칙',
-                  ruleDetail: '7시까진 무조건 기상하기. 알람은 한개만 맞춰두기',
-                },
-                {
-                  id: 2,
-                  ruleTitle: '2. 회비 규칙',
-                  ruleDetail: '투명하게 관리하기',
-                },
-              ],
-            },
-            detailMembers: [
+    return HttpResponse.json({
+      status: 200,
+      success: true,
+      message: '여행 규칙 확인하기 팀원 ver 성공',
+      data: {
+        detailPage: {
+          detailRule: {
+            id: 1,
+            mainTitle: '제주 여행 규칙을 세워보자',
+            rulePairs: [
               {
-                memberId: 1,
-                name: '김용민',
-                image:
-                  'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                id: 1,
+                ruleTitle: '1. 기상 규칙',
+                ruleDetail: '7시까진 무조건 기상하기. 알람은 한개만 맞춰두기',
               },
               {
-                memberId: 12,
-                name: '매튜',
-                image:
-                  'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                id: 2,
+                ruleTitle: '2. 회비 규칙',
+                ruleDetail: '투명하게 관리하기',
               },
             ],
-            comments: [
-              {
-                id: 1234,
-                image:
-                  'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                text: '완벽한 규칙이네요',
-                created: 1675275543,
-              },
-              {
-                id: 124,
-                image:
-                  'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                text: '완벽한 규칙이네요',
-                created: 1675275543,
-              },
-            ],
-            metaToBack: {
-              total: 3,
-              take: 2,
-              cursor: 1,
-              hasNextData: true,
+          },
+          detailMembers: [
+            {
+              memberId: 123,
+              name: '닉네임',
+              image:
+                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
+            {
+              memberId: 123,
+              name: '닉네임',
+              image:
+                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            },
+          ],
+          comments: [
+            {
+              id: 1234,
+              image:
+                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              text: '완벽한 규칙이네요',
+              created: 1675275543,
+            },
+            {
+              id: 124,
+              image:
+                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              text: '완벽한 규칙이네요',
+              created: 1675275543,
+            },
+          ],
+          metaToBack: {
+            total: 3,
+            take: take,
+            cursor: cursor,
+            hasNextData: true,
           },
         },
-      });
-    },
-  ),
+      },
+    });
+  }),
 
   //여행 규칙 수정하기_글 수정
   http.patch(
     `${baseURL}${API_URL.UPDATE_TEAM_MATE_RULE}`,
     ({ request, params }) => {
-      const ruleId = params.rule_id;
+      const ruleId = params.ruleId;
 
       if (!ruleId) {
         return new HttpResponse(null, { status: 404 });
       }
 
       return HttpResponse.json({
-        status: 200,
+        status: 201,
         success: true,
         message: '여행 규칙 수정 성공',
         data: {
-          _id: 123,
-          title: '수정된 여행 규칙 제목',
-          content: '수정된 여행 규칙 본문 내용입니다',
-          alignment: 'center',
+          write: {
+            id: 1,
+            mainTitle: '제주 여행 규칙을 세워보자',
+            updated: 1643142400,
+            rules: [
+              {
+                id: 1,
+                ruleTitle: '1. 기상 규칙',
+                ruleDetail: '7시까진 무조건 기상하기. 알람은 한개만 맞춰두기',
+              },
+              {
+                id: 2,
+                ruleTitle: '2. 회비 규칙',
+                ruleDetail: '투명하게 관리하기',
+              },
+            ],
+          },
         },
       });
     },
@@ -599,10 +497,9 @@ export const MateHandlers = [
   http.delete(
     `${baseURL}${API_URL.DELETE_TEAM_MATE}`,
     ({ request, params }) => {
-      const ruleId = params.rule_id;
-      const mateId = params.ruleId.mateId;
+      const ruleId = params.ruleId;
       const inviterId = params.inviter_id;
-      const invitedId = params.invited_id;
+      const invitedId = params.mateId;
 
       if (!ruleId || !mateId) {
         return new HttpResponse(null, { status: 404 });
@@ -623,10 +520,9 @@ export const MateHandlers = [
 
   //여행 규칙 코멘트 남기기
   http.post(
-    `${baseURL}${API_URL.CREATE_MATE_RULE_COMMENT}/:ruleId`,
+    `${baseURL}${API_URL.CREATE_MATE_RULE_COMMENT}`,
     ({ request, params }) => {
-      const ruleId = params.rule_id;
-      const userId = params.user_id;
+      const ruleId = params.ruleId;
 
       if (!ruleId) {
         return new HttpResponse(null, { status: 404 });
@@ -642,6 +538,10 @@ export const MateHandlers = [
 
   //여행 규칙 전체 리스트
   http.get(`${baseURL}${API_URL.GET_TEAM_RULE_LIST}`, ({ request, params }) => {
+    if (!userId) {
+      return new HttpResponse(null, { status: 404 });
+    }
+
     return HttpResponse.json({
       status: 200,
       success: true,
@@ -682,8 +582,21 @@ export const MateHandlers = [
                 image:
                   'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               },
+            ],
+          },
+          {
+            id: 3,
+            memberCnt: 3,
+            title: '제주도 여행을 위한 규칙',
+            updated: 1675275543,
+            participants: [
               {
-                id: 675,
+                id: 345,
+                image:
+                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              },
+              {
+                id: 678,
                 image:
                   'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               },
@@ -694,15 +607,16 @@ export const MateHandlers = [
     });
   }),
 
-  //여행 규칙 전체 리스트에서 나가기
-  http.delete(
-    `${baseURL}${API_URL.GET_TEAM_RULE_LIST}`,
-    ({ request, params }) => {
-      return HttpResponse.json({
-        status: 204,
-        success: true,
-        message: '여행 규칙에서 나가기 성공',
-      });
-    },
-  ),
+  // 여행 규칙 참여에서 나가기
+  http.delete(`${API_URL.EXIT_TEAM_RULE}`, ({ request, params }) => {
+    if (!ruleId) {
+      return new HttpResponse(null, { status: 404 });
+    }
+
+    return HttpResponse.json({
+      status: 204,
+      success: true,
+      message: '여행 규칙에서 나가기 성공',
+    });
+  }),
 ];

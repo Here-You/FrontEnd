@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Modal from '../Modal';
-import * as S from './LogoutModal.style';
-import { deleteWithdrawMember } from '@/apis/request/profile';
+import * as S from './BasicModal.style';
 import useLogoutModal from '@/hooks/modal/useLogoutModal';
 
 const LogoutModal = ({}) => {
   const logoutModal = useLogoutModal();
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
 
+  const navigate = useNavigate();
   const BodyContent = (
     <S.Container>
       <S.ContentContainer>
@@ -24,21 +23,12 @@ const LogoutModal = ({}) => {
     logoutModal.onClose();
   };
 
-  const onSubmit = async data => {
+  const onSubmit = () => {
     setIsLoading(true);
-    try {
-      const res = await deleteWithdrawMember();
-      if (res) {
-        alert('로그아웃 되었습니다.');
-      }
-    } catch (error) {
-      console.log(error);
-      console.error('서버 내부 오류.', error);
-      alert('서버 내부 오류');
-    } finally {
-      setIsLoading(false);
-      handleCloseModal();
-    }
+    localStorage.removeItem('x-access-token');
+    handleCloseModal();
+    navigate('/');
+    toast.success('로그아웃 성공');
   };
 
   return (
@@ -48,6 +38,7 @@ const LogoutModal = ({}) => {
       onClose={handleCloseModal}
       onSubmit={onSubmit}
       actionLabel="로그아웃"
+      secondButtonColor="red"
       body={BodyContent}
       secondaryAction={handleCloseModal}
       secondaryActionLabel="취소"

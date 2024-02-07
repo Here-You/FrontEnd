@@ -8,10 +8,8 @@ import {
   DailyRecordWritePage,
   ErrorPage,
   ExplorePage,
-  ExploreSearch,
   Home,
   JourneyDetailPage,
-  LoginBeforePage,
   LoginPage,
   MapDetailPage,
   MapPage,
@@ -24,18 +22,13 @@ import {
   MateSearchPage,
   MyPage,
   MyPageEditPage,
-  MyPagePasswordPage,
-  MyPageWithdrawPage,
   Notification,
   OnBoardingPage,
   Redirect,
   SignUpPage,
   SignatureEditPage,
   SignaturePage,
-  SignaturePopularPage,
   SignaturePostPage,
-  SignatureRecommendPage,
-  SignatureSearchPage,
   SignatureWritePage,
   TravelTypePage,
   TravelTypeResultPage,
@@ -115,11 +108,6 @@ const router = createBrowserRouter([
             path: `${BASE_PATH.SNS_LOGIN_REDIRCT}`,
             element: <Redirect />,
           },
-
-          {
-            path: `${BASE_PATH.LOGIN_BEFORE_PAGE}`,
-            element: <LoginBeforePage />,
-          },
         ],
       },
     ],
@@ -128,7 +116,6 @@ const router = createBrowserRouter([
     path: `${BASE_PATH.SIGNATURE}`,
     children: [
       {
-        element: <SignaturePage />,
         element: <AppLayout />,
         errorElement: <ErrorPage />,
         children: [
@@ -142,20 +129,8 @@ const router = createBrowserRouter([
             element: <SignatureWritePage />,
           },
           {
-            path: `${BASE_PATH.SIGNATURE_SEARCH}`,
-            element: <SignatureSearchPage />,
-          },
-          {
             path: `${BASE_PATH.SIGNATURE_EDIT}`,
             element: <SignatureEditPage />,
-          },
-          {
-            path: `${BASE_PATH.SIGNATURE_POPULAR}`,
-            element: <SignaturePopularPage />,
-          },
-          {
-            path: `${BASE_PATH.SIGNATURE_RECOMMEND}`,
-            element: <SignatureRecommendPage />,
           },
         ],
       },
@@ -179,7 +154,7 @@ const router = createBrowserRouter([
             element: <MateSearchPage />,
           },
           {
-            path: `${BASE_PATH.MATE_LOOK}/:userId`,
+            path: `${BASE_PATH.MATE_LOOK}`,
             element: <MateLookPage />,
           },
           {
@@ -209,14 +184,6 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.MY_PAGE_EDIT}`,
             element: <MyPageEditPage />,
-          },
-          {
-            path: `${BASE_PATH.MY_PAGE_WITHDRAW}`,
-            element: <MyPageWithdrawPage />,
-          },
-          {
-            path: `${BASE_PATH.MY_PAGE_CHANGE_PASSWORD}`,
-            element: <MyPagePasswordPage />,
           },
         ],
       },
@@ -260,13 +227,7 @@ const router = createBrowserRouter([
       {
         element: <AppLayout />,
         errorElement: <ErrorPage />,
-        children: [
-          { index: true, element: <ExplorePage /> },
-          {
-            path: `${BASE_PATH.EXPLORE_SEARCH}`,
-            element: <ExploreSearch />,
-          },
-        ],
+        children: [{ index: true, element: <ExplorePage /> }],
       },
     ],
   },
