@@ -18,6 +18,7 @@ import {
   MatePage,
   MateRuleCheckPage,
   MateRuleDetailCheckPage,
+  MateRuleEditPage,
   MateRuleWritePage,
   MateSearchPage,
   MyPage,
@@ -164,6 +165,10 @@ const router = createBrowserRouter([
           {
             path: `${BASE_PATH.MATE_RULE_DETAIL_CHECK}`,
             element: <MateRuleDetailCheckPage />,
+          },
+          {
+            path: `${BASE_PATH.MATE_RULE_DETAIL_EDIT}`,
+            element: <MateRuleEditPage />,
           },
           {
             path: `${BASE_PATH.MATE_RULE_WRITE}`,

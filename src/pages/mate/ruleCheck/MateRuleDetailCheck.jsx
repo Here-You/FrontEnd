@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './MateRuleDetailCheck.style';
 import { Comment } from '@/components';
@@ -13,6 +13,7 @@ const MateRuleDetailCheckPage = () => {
   const { data, loading, error } = useTeamMateRulePost(ruleId);
   const titleRefs = useRef([]);
   const detailRefs = useRef([]);
+  const navigate = useNavigate();
 
   console.log(titleRefs.current[1]);
 
@@ -81,7 +82,10 @@ const MateRuleDetailCheckPage = () => {
           저장하기
         </S.UpdateBtn>
       ) : (
-        <S.UpdateBtn onClick={() => setEditMode(true)}>수정하기</S.UpdateBtn>
+        // <S.UpdateBtn onClick={() => setEditMode(true)}>수정하기</S.UpdateBtn>
+        <S.UpdateBtn onClick={() => navigate(`/mate/rule-edit/${ruleId}`)}>
+          수정하기
+        </S.UpdateBtn>
       )}
 
       {data?.comments?.map(comment => (

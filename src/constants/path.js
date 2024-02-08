@@ -24,6 +24,7 @@ const BASE_PATH = {
   MATE_RULE_WRITE: '/mate/rule-write',
   MATE_RULE_CHECK: '/mate/rule-check',
   MATE_RULE_DETAIL_CHECK: '/mate/rule-check/:ruleId',
+  MATE_RULE_DETAIL_EDIT: '/mate/rule-edit/:ruleId',
   // MY_PAGE
   MY_PAGE: '/mypage',
   MY_PAGE_EDIT: '/mypage/edit',
