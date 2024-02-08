@@ -109,17 +109,17 @@ const postDiary = ({ scheduleId, postData }) => {
   return res;
 };
 
-// 일지 불러오기 (한개만)
-const getDiary = nowPage => {
-  const url = `/api/${VERSION}/${API_BASE.DIARIES}/${nowPage}`;
+// 일지 불러오기 (캘린더)(한개만 불러옴)
+const getDiary = scheduleId => {
+  const url = `/api/${VERSION}/${API_BASE.DIARY}/get/${scheduleId}`;
   const res = axiosWithToken.get(url);
   return res;
 };
 
 // 일지 수정하기
-const updateDiary = ({ diaryId, postData }) => {
+const updateDiary = (diaryId, postData) => {
   const { title, place, weather, mood, content, images } = postData;
-  const url = `/api/${VERSION}/${API_BASE.DIARIES}/update/${diaryId}`;
+  const url = `/api/${VERSION}/${API_BASE.DIARY}/update/${diaryId}`;
   const res = axiosWithToken.put(url, {
     title: title,
     place: place,

@@ -4,6 +4,7 @@ import { BASE_PATH } from './constants/path';
 import { TravelLayout } from './layout';
 import {
   DailyRecordEditPage,
+  DailyRecordListPage,
   DailyRecordPage,
   DailyRecordWritePage,
   ErrorPage,
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
           { index: true, element: <DailyRecordPage /> },
+          {
+            path: `${BASE_PATH.DAILY_RECORD_LIST}`,
+            element: <DailyRecordListPage />,
+          },
           {
             path: `${BASE_PATH.DAILY_RECORD_WRITE}`,
             element: <DailyRecordWritePage />,

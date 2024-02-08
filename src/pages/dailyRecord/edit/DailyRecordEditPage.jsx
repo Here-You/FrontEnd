@@ -1,29 +1,32 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './DailyRecordEdit.style';
 import { updateDiary } from '@/apis/request/home';
 import IconSelectBox from '@/components/SelectBox/IconSelectBox/IconSelectBox';
 import { MOOD_ICON_LIST, WEATHER_ICON_LIST } from '@/constants/dailyRecord';
+import { useGetDiary } from '@/hooks/home/useGetDiary';
 import { useQueryClient } from '@tanstack/react-query';
 
 const DailyRecordEditPage = () => {
   const navigate = useNavigate();
-  const { scheduleId } = useParams();
+  const { diaryId } = useParams();
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const scheduleId = params.get('scheduleId');
   const [selectedImg, setSelectedImg] = useState();
-  const cache = useQueryClient();
-  const data = cache.getQueryData(['diaries', parseInt(scheduleId)]).data
-    ?.data[0];
-  const [diaryWeather, setDiaryWeather] = useState('');
-  const [dairyMood, setdairyMood] = useState('');
+  // const cache = useQueryClient();
+  const { data } = useGetDiary(scheduleId);
+  // const data = cache.getQueryData(['diaries', parseInt(scheduleId)]).data
+  //   ?.data[0];
   const [lodaing, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const Date = useMemo(() => {
-    const date = data?.created.split('T')[0].split('-');
+    const date = data?.date?.split('-');
     return { date };
   }, [data]);
 
@@ -33,20 +36,32 @@ const DailyRecordEditPage = () => {
     formState: { errors },
     setValue,
     watch,
+    getValues,
   } = useForm({
     mode: 'onBlur',
     // resolver: zodResolver(schema),
     defaultValues: {
-      place: data.place,
-      title: data.title,
-      weather: data.weather,
-      mood: data.mood,
-      content: data.content,
-      image: data.diary_image?.image_key,
+      place: '',
+      title: '',
+      weather: '',
+      mood: '',
+      content: '',
+      image: '',
     },
   });
 
   const { place, title, weather, mood, content, image } = watch();
+
+  useEffect(() => {
+    if (data) {
+      setValue('place', data.place);
+      setValue('title', data.title);
+      setValue('weather', data.weather);
+      setValue('mood', data.mood);
+      setValue('content', data.content);
+      setValue('image', data.imageUrl);
+    }
+  }, [data, setValue]);
 
   const textRef = useRef();
   const handleResizeHeight = useCallback(() => {
@@ -67,11 +82,11 @@ const DailyRecordEditPage = () => {
   const onSubmit = async data => {
     try {
       setLoading(true);
-      const res = await updateDiary({ id: data.id, postData: data });
+      const res = await updateDiary(diaryId, data);
       if (res) {
         console.log('제출된 데이터: ', data);
         alert('수정되었습니다');
-        navigate(`/dailyrecord/${scheduleId}`);
+        navigate(`/dailyrecord?scheduleId=${scheduleId}`);
       }
     } catch (e) {
       setError(e);
@@ -84,10 +99,8 @@ const DailyRecordEditPage = () => {
 
   const handleIconClick = (iconName, type) => {
     if (type === 'weather') {
-      setDiaryWeather(iconName);
       setValue('weather', iconName);
     } else if (type === 'mood') {
-      setdairyMood(iconName);
       setValue('mood', iconName);
     }
   };
@@ -95,9 +108,9 @@ const DailyRecordEditPage = () => {
   return (
     <S.Container>
       <S.DateContainer>
-        <S.YearText>{Date.date[0]}</S.YearText>
+        <S.YearText>{Date.date && Date.date[0]}</S.YearText>
         <S.DateText>
-          {Date.date[1]}, {Date.date[2]}
+          {Date.date && Date.date[1]}, {Date.date && Date.date[2]}
           <S.UploadButton type="submit" onClick={handleSubmit(onSubmit)}>
             수정
           </S.UploadButton>
@@ -135,13 +148,13 @@ const DailyRecordEditPage = () => {
             iconData={WEATHER_ICON_LIST}
             onClick={handleIconClick}
             type="weather"
-            value={data.weather}
+            value={weather}
           />
           <IconSelectBox
             iconData={MOOD_ICON_LIST}
             onClick={handleIconClick}
             type="mood"
-            value={data.mood}
+            value={mood}
           />
         </S.WeatherContainer>
         <S.ContentText

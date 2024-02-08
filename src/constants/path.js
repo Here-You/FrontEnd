@@ -8,9 +8,10 @@ const BASE_PATH = {
   MAP: '/map',
   MAP_DETAIL: '/map/:journeyId',
   // DAILYRECORD
-  DAILY_RECORD: '/dailyrecord/:scheduleId',
+  DAILY_RECORD: '/dailyrecord',
+  DAILY_RECORD_LIST: '/dailyrecord/:journeyId',
   DAILY_RECORD_WRITE: '/dailyrecord/:scheduleId/write',
-  DAILY_RECORD_EDIT: '/dailyrecord/:scheduleId/edit',
+  DAILY_RECORD_EDIT: '/dailyrecord/:diaryId/edit',
   // SIGNATURE
   SIGNATURE: '/signature',
   SIGNATURE_WRITE: '/signature/write',

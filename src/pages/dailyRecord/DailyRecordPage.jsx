@@ -1,111 +1,62 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import * as S from './DailyRecordPage.style';
-import ExpandLeft from '/icons/ExpandLeft.svg';
-import ExpandRight from '/icons/ExpandRight.svg';
 import PenGreen from '/icons/PenGreen.svg';
-import { getDiary } from '@/apis/request/home';
 import { MOOD_ICON_LIST, WEATHER_ICON_LIST } from '@/constants/dailyRecord';
-import { useGetDiaryMap } from '@/hooks/home/useGetDiaryMap';
-import { useQuery } from '@tanstack/react-query';
+import { useGetDiary } from '@/hooks/home/useGetDiary';
 
 const DailyRecordPage = () => {
   const { search } = useLocation();
-  const { scheduleId } = useParams();
-
   const params = new URLSearchParams(search);
-  const journeyId = params.get('journeyId');
+  const scheduleId = params.get('scheduleId');
+  const { data: diaryData, loading, error } = useGetDiary(scheduleId);
 
-  const { data: diaryData, error, loading } = useGetDiaryMap(journeyId); //전체 데이터 요청
-  const [currentVisibleData, setCurrentVisibleData] = useState({}); //현재 화면에 보여주는 데이터
-  const [slideDirection, setSlideDirection] = useState(null);
-  const [nowPage, setNowPage] = useState(parseInt(scheduleId)); //일지 하나당 데이터 id
+  const Date = useMemo(() => {
+    const date = diaryData?.date?.split('-');
+    return { date };
+  }, [diaryData]);
 
-  const { data } = useQuery({
-    queryKey: ['diaries', nowPage],
-    queryFn: () => getDiary(nowPage),
-  });
+  if (loading) {
+    return <div>로딩 중입니다..</div>;
+  }
 
-  const date = useMemo(() => {
-    if (!diaryData) {
-      return null;
-    } else {
-      const date = diaryData?.[nowPage - 1]?.date.split('T')[0].split('-');
-      return date && `${date[0]}년 ${date[1]}월 ${date[2]}일`;
-    }
-  }, [diaryData, nowPage]);
-
-  useEffect(() => {
-    diaryData && setCurrentVisibleData(diaryData[nowPage - 1]);
-  }, [diaryData, nowPage]);
-
-  const handleAnimationEnd = () => {
-    setSlideDirection(null);
-  };
-
-  const prevButtonClick = () => {
-    if (nowPage === 1) {
-      alert('이 여정의 가장 첫 일지입니다!');
-    } else {
-      setSlideDirection('slide-right');
-      setNowPage(prevPage => prevPage - 1);
-    }
-  };
-
-  const nextButtonClick = () => {
-    if (nowPage === diaryData?.length) {
-      alert('이 여정의 가장 마지막 일지입니다!');
-    } else {
-      setSlideDirection('slide-left');
-      setNowPage(prevPage => prevPage + 1);
-    }
-  };
+  if (error) {
+    return <div>에러가 발생했습니다!</div>;
+  }
 
   return (
     <S.Container>
-      <S.DateText>{date}의 일지</S.DateText>
-      <S.SlideContainer>
-        <div>
-          <S.RecordContainer></S.RecordContainer>
-        </div>
-        <div>
-          <S.MainRecordContainer>
-            <S.LeftButton src={ExpandLeft} onClick={prevButtonClick} />
+      <S.DateContainer>
+        <S.YearText>{Date.date && Date?.date[0]}</S.YearText>
+        <S.DateText>
+          {Date.date && Date?.date[1]}, {Date.date && Date?.date[2]}
+        </S.DateText>
+      </S.DateContainer>
+      <S.RecordContainer>
+        <S.RecordImageContainer>
+          <S.PreviewImage src={diaryData?.imageUrl} />
+        </S.RecordImageContainer>
+        <S.LocationText>{diaryData?.place}</S.LocationText>
+        <S.TitleText>{diaryData?.title}</S.TitleText>
 
-            <S.RecordContentsContainer
-              className={slideDirection}
-              onAnimationEnd={handleAnimationEnd}>
-              <S.PreviewImage src={currentVisibleData?.diaryImage?.imageUrl} />
-              <S.LocationText>
-                {currentVisibleData?.diary?.place}
-              </S.LocationText>
-              <S.TitleText>{currentVisibleData?.diary?.title}</S.TitleText>
-              <S.WeatherContainer>
-                {WEATHER_ICON_LIST.map(item => {
-                  if (item.iconName === currentVisibleData?.diary?.weather) {
-                    return <S.Icon src={item.iconUrl} />;
-                  }
-                })}
-                {MOOD_ICON_LIST.map(item => {
-                  if (item.iconName === currentVisibleData?.diary?.mood) {
-                    return <S.Icon src={item.iconUrl} />;
-                  }
-                })}
-              </S.WeatherContainer>
-              <S.ContentText>
-                {currentVisibleData?.diary?.content}
-              </S.ContentText>
-            </S.RecordContentsContainer>
+        <S.WeatherContainer>
+          {WEATHER_ICON_LIST.map(item => {
+            if (item.iconName === diaryData?.weather) {
+              return <S.Icon src={item.iconUrl} />;
+            }
+          })}
+          {MOOD_ICON_LIST.map(item => {
+            if (item.iconName === diaryData?.mood) {
+              return <S.Icon src={item.iconUrl} />;
+            }
+          })}
+        </S.WeatherContainer>
+        <S.ContentText>{diaryData?.content}</S.ContentText>
+      </S.RecordContainer>
 
-            <S.RightButton src={ExpandRight} onClick={nextButtonClick} />
-          </S.MainRecordContainer>
-        </div>
-        <div>
-          <S.RecordContainer></S.RecordContainer>
-        </div>
-      </S.SlideContainer>
-      <S.AddButton to={`/dailyrecord/${nowPage}/edit`}>
+      <S.AddButton
+        to={`/dailyrecord/${diaryData?.id}/edit?scheduleId=${scheduleId}`}>
         <S.PenIcon src={PenGreen} />
       </S.AddButton>
     </S.Container>

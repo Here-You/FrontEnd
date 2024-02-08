@@ -1,6 +1,7 @@
 import AppLayout from './AppLayout';
 // DailyRecord
 import DailyRecordPage from './dailyRecord/DailyRecordPage';
+import DailyRecordListPage from './dailyRecord/List/DailyRecordListPage';
 import DailyRecordEditPage from './dailyRecord/edit/DailyRecordEditPage';
 import DailyRecordWritePage from './dailyRecord/write/DailyRecordWrite';
 // ERROR
@@ -66,6 +67,7 @@ export {
   SignaturePostPage,
   SignatureWritePage,
   DailyRecordPage,
+  DailyRecordListPage,
   DailyRecordEditPage,
   DailyRecordWritePage,
   TravelTypePage,

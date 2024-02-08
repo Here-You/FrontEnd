@@ -11,7 +11,7 @@ const IconSelectBox = ({ iconData, onClick, type, value }) => {
 
   useEffect(() => {
     setSelectedIcon(value);
-  }, []);
+  }, [value]);
 
   return (
     <S.Container>

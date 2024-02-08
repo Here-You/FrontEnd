@@ -91,7 +91,7 @@ const Schedules = ({ data, dataLength }) => {
           <Link
             to={
               diary_written
-                ? `/dailyrecord/${scheduleId}?journeyId=${journeyId}`
+                ? `/dailyrecord?scheduleId=${scheduleId}`
                 : `/dailyrecord/${scheduleId}/write`
             }
             style={{

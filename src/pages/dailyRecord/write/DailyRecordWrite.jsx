@@ -1,3 +1,4 @@
+import imageCompression from 'browser-image-compression';
 import { useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
@@ -42,13 +43,34 @@ const DailyRecordWritePage = () => {
     }
   }, []);
 
-  const handleFileChange = event => {
+  const handleFileChange = async event => {
     const file = event.target.files[0];
-    console.log(file);
-
-    // 추가: 파일이 변경될 때 setValue를 사용하여 recordImg 값을 설정
     setSelectedImg(URL.createObjectURL(file));
-    setValue('recordImg', file);
+
+    try {
+      const reader = new FileReader();
+
+      reader.onloadend = async () => {
+        const compressedFile = await imageCompression(file, {
+          maxWidthOrHeight: 800,
+          maxSizeMB: 2,
+          fileType: 'image/jpeg',
+        });
+
+        const compressedReader = new FileReader();
+
+        compressedReader.onloadend = () => {
+          const base64Image = compressedReader.result.split(',')[1];
+          setValue('recordImg', base64Image);
+        };
+
+        compressedReader.readAsDataURL(compressedFile);
+      };
+
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.error('이미지 압축 실패:', error);
+    }
   };
 
   const handleIconClick = (iconName, type) => {
