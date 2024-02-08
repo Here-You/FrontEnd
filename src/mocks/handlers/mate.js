@@ -301,13 +301,13 @@ export const MateHandlers = [
   }),
 
   //여행 규칙 초대할 메이트 검색하기
-  http.get(`${baseURL}${API_URL.SEARCH_INVITE_MATE}`, ({ request, params }) => {
+  http.get(`${baseURL}${API_URL.SEARCH_MATE}`, ({ request, params }) => {
     const url = new URL(request.url);
     const searchTerm = url.searchParams.get('searchTerm');
     const cursor = url.searchParams.get('cursor');
     const take = url.searchParams.get('take');
 
-    if (searchTerm === 'ahnyewon') {
+    if (searchTerm === '안예원') {
       return HttpResponse.json({
         status: 200,
         success: true,
@@ -315,7 +315,7 @@ export const MateHandlers = [
         data: {
           mates: [
             {
-              id: cursor + 1,
+              id: 123,
               name: '안예원',
               nickname: 'ahnyewon',
               introduction: '안녕하세요 안예원 입니다. 반가워요',
@@ -323,7 +323,7 @@ export const MateHandlers = [
                 'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
             {
-              id: cursor + 2,
+              id: 1234,
               name: '안원',
               nickname: 'ahnwon',
               introduction: '안녕하세요 안원 입니다. 반가워요',
@@ -331,7 +331,7 @@ export const MateHandlers = [
                 'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
             {
-              id: cursor + 3,
+              id: 1235,
               name: '예원',
               nickname: 'yewon',
               introduction: '안녕하세요 예원 입니다. 반가워요',
@@ -410,15 +410,27 @@ export const MateHandlers = [
             detailMembers: [
               {
                 id: 123,
-                name: '제이슨',
+                name: '안예원',
+                nickname: 'ahnyewon',
+                introduction: '안녕하세요 안예원 입니다. 반가워요',
                 image:
-                  'https://plus.unsplash.com/premium_photo-1674777843203-da3ebb9fbca0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               },
               {
-                id: 123,
-                name: '매튜',
+                id: 1234,
+                name: '안원',
+                nickname: 'ahnwon',
+                introduction: '안녕하세요 안원 입니다. 반가워요',
                 image:
-                  'https://plus.unsplash.com/premium_photo-1674777843203-da3ebb9fbca0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              },
+              {
+                id: 1235,
+                name: '예원',
+                nickname: 'yewon',
+                introduction: '안녕하세요 예원 입니다. 반가워요',
+                image:
+                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               },
             ],
             rulePairs: [
@@ -627,20 +639,17 @@ export const MateHandlers = [
   }),
 
   // 여행 규칙 참여에서 나가기
-  http.delete(
-    `${API_URL.GET_TEAM_RULE_LIST}/:ruleId`,
-    ({ request, params }) => {
-      const ruleId = params.ruleId;
-      console.log(ruleId);
-      if (!ruleId) {
-        return new HttpResponse(null, { status: 404 });
-      }
+  http.delete(`${API_URL.EXIT_TEAM_RULE}`, ({ request, params }) => {
+    const ruleId = params.ruleId;
 
-      return HttpResponse.json({
-        status: 204,
-        success: true,
-        message: '여행 규칙에서 나가기 성공',
-      });
-    },
-  ),
+    if (!ruleId) {
+      return new HttpResponse(null, { status: 404 });
+    }
+
+    return HttpResponse.json({
+      status: 204,
+      success: true,
+      message: '여행 규칙에서 나가기 성공',
+    });
+  }),
 ];

@@ -22,13 +22,7 @@ const MateRuleCheckPage = () => {
     <MateContainer>
       <S.StyledTitle>내가 참여 중인 규칙</S.StyledTitle>
       {rulesData.map((ruleData, _) => (
-        <TeamContainer
-          key={ruleData.id}
-          ruleData={ruleData}
-          onClick={e => {
-            navigate(`/mate/rule-check/${ruleData.id}}`);
-          }}
-        />
+        <TeamContainer key={ruleData.id} ruleData={ruleData} />
       ))}
     </MateContainer>
   );

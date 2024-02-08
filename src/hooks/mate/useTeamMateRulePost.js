@@ -12,6 +12,7 @@ export const useTeamMateRulePost = ruleId => {
       try {
         setLoading(true);
         const res = await getTeamMateRulePost(ruleId);
+
         const data = res.data.data;
 
         setData(data);

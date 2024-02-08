@@ -24,12 +24,14 @@ const RuleEditPage = () => {
     invitedId: [],
   });
 
+  console.log(postData);
+
   useEffect(() => {
     if (initialData) {
       setPostData({
         mainTitle: initialData.mainTitle || '',
         rulePairs: initialData.rulePairs || [],
-        invitedId: selectedMates.map(mate => mate.id) || [],
+        invitedId: initialData.detailMembers || [],
       });
     }
   }, [initialData, selectedMates]);
@@ -51,10 +53,9 @@ const RuleEditPage = () => {
   };
 
   const handleSubmitRule = () => {
-    // 이게 아니라, 이제 수정되었습니다로 가야함.
     postCreateMateRule(postData)
       .then(() => {
-        toast.success('규칙을 성공적으로 작성하였습니다.');
+        toast.success('규칙을 성공적으로 수정하였습니다.');
         navigate(`/mate/${ruleId}`);
       })
       .catch(error => {
