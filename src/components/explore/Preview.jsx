@@ -5,7 +5,6 @@ import nonHeart from '/images/explore/nonHeart.svg';
 
 const Preview = ({ data }) => {
   const navigate = useNavigate();
-  console.log(data);
 
   return (
     <>

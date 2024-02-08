@@ -1,44 +1,17 @@
-import imageCompression from 'browser-image-compression';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import * as S from './Editor.style';
 import LocationLight from '/icons/LocationLight.svg';
 import addButton from '/images/addButton.svg';
 import SearchMap from '@/components/searchMap/SearchMap';
+import useHandleImageChange from '@/hooks/image/useHandleImageChange';
 import useSignatureWrite from '@/store/useSignatureWrite';
 
 export default function Page({ image, content }) {
   const { title, pages, updatePage, currentPageIndex, resetData } =
     useSignatureWrite();
 
-  const handleImageChange = async e => {
-    const file = e.target.files[0];
-
-    try {
-      const reader = new FileReader();
-
-      reader.onloadend = async () => {
-        const compressedFile = await imageCompression(file, {
-          maxWidthOrHeight: 800,
-          maxSizeMB: 1,
-          fileType: 'image/jpeg',
-        });
-
-        const compressedReader = new FileReader();
-
-        compressedReader.onloadend = () => {
-          const base64Image = compressedReader.result.split(',')[1];
-          updatePage(currentPageIndex, { image: base64Image });
-        };
-
-        compressedReader.readAsDataURL(compressedFile);
-      };
-
-      reader.readAsDataURL(file);
-    } catch (error) {
-      console.error('이미지 압축 실패:', error);
-    }
-  };
+  const handleImageChange = useHandleImageChange(currentPageIndex, updatePage);
 
   const handleContentChange = e => {
     const newContent = e.target.value;

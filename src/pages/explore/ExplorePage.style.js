@@ -51,6 +51,10 @@ const SearchButton = styled.button`
   cursor: pointer;
 `;
 
-const Text = styled.div``;
+const Text = styled.h1`
+  font-size: 20px;
+  color: ${theme.COLOR.MAIN.HEAVY_GREEN};
+  padding: 50px;
+`;
 
 export { SearchContainer, InputContainer, InputText, SearchButton, Text };
