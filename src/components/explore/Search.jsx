@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import searchIcon from '/images/explore/searchIcon.svg';
+import useDebounce from '@/hooks/useDebounce';
 import theme from '@/theme';
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 2000);
   const navigate = useNavigate();
 
   return (
@@ -14,7 +16,7 @@ const Search = () => {
       <InputContainer>
         <InputText
           placeholder="여행지, 시그니처, 관심 키워드 검색"
-          value={searchTerm}
+          value={debouncedSearchTerm}
           onChange={e => setSearchTerm(e.target.value)}
         />
         <SearchButton />

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { getSearchKeyWord } from '@/apis/request/search';
+import { getSearchExploreKeyword } from '@/apis/request/search';
 
-export const useSearchKeyWord = keyword => {
+export const useSearchExploreKeyword = keyword => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -11,7 +11,7 @@ export const useSearchKeyWord = keyword => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getSearchKeyWord(keyword);
+        const res = await getSearchExploreKeyword(keyword);
         const data = res.data.data;
 
         setData(data);
@@ -23,7 +23,7 @@ export const useSearchKeyWord = keyword => {
     };
 
     fetchData();
-  }, []);
+  }, [keyword]);
 
   return { data, loading, error };
 };

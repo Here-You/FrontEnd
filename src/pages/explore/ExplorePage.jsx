@@ -1,23 +1,21 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import * as S from './ExplorePage.style';
 import SignatureSearchSlider from '@/components/explore/SignatureSearchSlider';
-import { useSearchKeyWord } from '@/hooks/search/useSearchKeyWord';
+import { useSearchExploreKeyword } from '@/hooks/search/useSearchExploreKeyword';
+import { useSearchExploreMain } from '@/hooks/search/useSearchExploreMain';
+import useDebounce from '@/hooks/useDebounce';
 
 const ExplorePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate();
+  const debouncedSearchTerm = useDebounce(searchTerm, 1000);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    navigate(`/explore/?search=${searchTerm}`);
-  };
-
-  const { data, loading, error } = useSearchKeyWord(searchTerm);
-
-  const hotSignature = data.hot;
-  const newSignature = data.new;
+  const { data, loading, error } = useSearchExploreMain();
+  const {
+    data: keyData,
+    loading: keyLoading,
+    error: keyError,
+  } = useSearchExploreKeyword(debouncedSearchTerm);
 
   if (loading) {
     return <div>로딩중입니다...</div>;
@@ -27,12 +25,10 @@ const ExplorePage = () => {
     return <div>에러가 발생했습니다.</div>;
   }
 
-  console.log(data);
-
   return (
     <>
       <S.SearchContainer>
-        <S.InputContainer onSubmit={handleSubmit}>
+        <S.InputContainer>
           <S.InputText
             placeholder="여행지, 시그니처, 관심 키워드 검색"
             value={searchTerm}
@@ -42,10 +38,18 @@ const ExplorePage = () => {
         </S.InputContainer>
         <S.Text>다양한 관심사를 검색해보세요</S.Text>
       </S.SearchContainer>
-      <>
-        <SignatureSearchSlider data={hotSignature} type="hot" />
-        <SignatureSearchSlider data={newSignature} type="new" />
-      </>
+      {debouncedSearchTerm ? (
+        <SignatureSearchSlider
+          data={keyData}
+          type="search"
+          searchTerm={debouncedSearchTerm}
+        />
+      ) : (
+        <>
+          <SignatureSearchSlider data={data?.hot} type="hot" />
+          <SignatureSearchSlider data={data?.new} type="new" />
+        </>
+      )}
     </>
   );
 };
