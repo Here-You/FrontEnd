@@ -1,43 +1,16 @@
-import imageCompression from 'browser-image-compression';
 import React from 'react';
 
 import * as S from './SignatureEdit.style';
 import LocationLight from '/icons/LocationLight.svg';
 import addButton from '/images/addButton.svg';
 import SearchMap from '@/components/searchMap/SearchMap';
+import useHandleImageChange from '@/hooks/image/useHandleImageChange';
 import useSignatureEdit from '@/store/useSignatureEdit';
 
 const Page = ({ image, content }) => {
   const { pages, updatePage, currentPageIndex } = useSignatureEdit();
 
-  const handleImageChange = async e => {
-    const file = e.target.files[0];
-
-    try {
-      const reader = new FileReader();
-
-      reader.onloadend = async () => {
-        const compressedFile = await imageCompression(file, {
-          maxWidthOrHeight: 800,
-          maxSizeMB: 1,
-          fileType: 'image/jpeg',
-        });
-
-        const compressedReader = new FileReader();
-
-        compressedReader.onloadend = () => {
-          const base64Image = compressedReader.result.split(',')[1];
-          updatePage(currentPageIndex, { image: base64Image });
-        };
-
-        compressedReader.readAsDataURL(compressedFile);
-      };
-
-      reader.readAsDataURL(file);
-    } catch (error) {
-      console.error('이미지 압축 실패:', error);
-    }
-  };
+  const handleImageChange = useHandleImageChange(currentPageIndex, updatePage);
 
   const handleContentChange = e => {
     const newContent = e.target.value;
@@ -58,7 +31,8 @@ const Page = ({ image, content }) => {
         />
       </S.LocationContainer>
       <S.InputWrap>
-        {image && <S.Image src={`data:image/jpeg;base64,${image}`} />}
+        {/* data:image/jpeg;base64, */}
+        {image && <S.Image src={`${image}`} />}
         <S.PhotoButton>
           <img src={addButton} alt="Add Button" />
           <S.ImageInput
