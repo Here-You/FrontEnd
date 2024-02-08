@@ -101,9 +101,7 @@ const DetailPlan = ({
   const handleOnChecked = async detailScheduleId => {
     try {
       setLoading(true);
-      const res = await changeDetailScheduleStatus({
-        detailId: detailScheduleId,
-      });
+      const res = await changeDetailScheduleStatus(detailScheduleId);
       if (res) toast('할 일 체크');
     } catch (e) {
       setError(true);

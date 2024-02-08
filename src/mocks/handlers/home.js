@@ -401,15 +401,18 @@ export const HomeHandlers = [
   //세부 일정 상태 변경하기
   http.patch(
     `${baseURL}${API_URL.CHANGE_DETAIL_SCHEDULE}`,
-    (request, params) => {
+    ({ request, params }) => {
       const detailId = params.detailId;
-
-      return HttpResponse.json({
-        success: true,
-        code: 200,
-        message: '세부 일정 상태를 변경했습니다',
-        data: false,
-      });
+      if (!detailId) {
+        return new HttpResponse(null, { status: 404 });
+      } else {
+        return HttpResponse.json({
+          success: true,
+          code: 200,
+          message: '세부 일정 상태를 변경했습니다',
+          data: null,
+        });
+      }
     },
   ),
   //세부 일정 삭제하기

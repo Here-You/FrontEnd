@@ -88,10 +88,9 @@ const deleteDetailSchedule = ({ detailId }) => {
 };
 
 // 세부 일정 상태 변경하기
-const changeDetailScheduleStatus = ({ detailId }) => {
+const changeDetailScheduleStatus = detailId => {
   const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/update-status/${detailId}`;
   const res = axiosWithToken.patch(url);
-  console.log(res);
   return res;
 };
 
