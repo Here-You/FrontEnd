@@ -1,7 +1,8 @@
 import imageCompression from 'browser-image-compression';
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './DailyRecordWritePage.style';
 import AddRoundDuotone from '/icons/AddRoundDuotone.svg';
@@ -10,31 +11,39 @@ import IconSelectBox from '@/components/SelectBox/IconSelectBox/IconSelectBox';
 import { MOOD_ICON_LIST, WEATHER_ICON_LIST } from '@/constants/dailyRecord';
 
 const DailyRecordWritePage = () => {
+  const navigate = useNavigate();
+  const { scheduleId } = useParams();
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const date = params.get('date');
   const [selectedImg, setSelectedImg] = useState();
-  const year = new Date().getFullYear();
-  const month = new Date().toLocaleString('en-US', { month: 'short' });
-  const day = new Date().getDate();
-  const [weather, setWeather] = useState('');
-  const [mood, setMood] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const Date = useMemo(() => {
+    if (date) {
+      const recordDate = date?.split('-');
+      return { recordDate };
+    }
+  }, [date]);
+
   const {
+    watch,
     register,
     handleSubmit,
     formState: { errors },
     setValue,
   } = useForm({
     mode: 'onBlur',
-    // resolver: zodResolver(schema),
     defaultValues: {
-      location: '',
+      place: '',
       title: '',
       weather: '',
       mood: '',
       content: '',
-      recordImg: '',
+      fileName: '',
     },
   });
+  const { place, title, weather, mood, content, fileName } = watch();
 
   const textRef = useRef();
   const handleResizeHeight = useCallback(() => {
@@ -49,24 +58,19 @@ const DailyRecordWritePage = () => {
 
     try {
       const reader = new FileReader();
-
       reader.onloadend = async () => {
         const compressedFile = await imageCompression(file, {
           maxWidthOrHeight: 800,
           maxSizeMB: 2,
           fileType: 'image/jpeg',
         });
-
         const compressedReader = new FileReader();
-
         compressedReader.onloadend = () => {
           const base64Image = compressedReader.result.split(',')[1];
-          setValue('recordImg', base64Image);
+          setValue('fileName', base64Image);
         };
-
         compressedReader.readAsDataURL(compressedFile);
       };
-
       reader.readAsDataURL(file);
     } catch (error) {
       console.error('이미지 압축 실패:', error);
@@ -75,41 +79,45 @@ const DailyRecordWritePage = () => {
 
   const handleIconClick = (iconName, type) => {
     if (type === 'weather') {
-      setWeather(iconName);
       setValue('weather', iconName);
     } else if (type === 'mood') {
-      setMood(iconName);
       setValue('mood', iconName);
     }
   };
 
   const onSubmit = async data => {
-    console.log('제출된 데이터: ', data);
-    if (!mood || !weather) {
-      alert('오늘의 기분 및 날씨를 선택해주세요');
-    } else {
-      try {
-        setIsLoading(true);
-        const res = await postDiary({ scheduleId: 1, postData: data });
-        if (res) {
-          alert('하루 일지가 작성되었습니다.');
-        }
-      } catch (e) {
-        console.log(e.message);
-        alert('작성 중 에러가 발생했습니다. 나중에 다시 시도해주세요');
-      } finally {
-        setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const res = await postDiary({ scheduleId: scheduleId, postData: data });
+      if (res) {
+        console.log('제출된 데이터: ', data);
+        alert('하루 일지가 작성되었습니다.');
+        navigate('/');
       }
+    } catch (e) {
+      console.log(e.message);
+      alert('작성 중 에러가 발생했습니다. 나중에 다시 시도해주세요');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <S.Container>
       <S.DateContainer>
-        <S.YearText>{year}</S.YearText>
+        <S.YearText>{Date?.recordDate && Date.recordDate[0]}</S.YearText>
         <S.DateText>
-          {day}, {month}
-          <S.UploadButton type="submit" onClick={handleSubmit(onSubmit)}>
+          {Date?.recordDate && Date.recordDate[1]},{' '}
+          {Date?.recordDate && Date.recordDate[2]}
+          <S.UploadButton
+            type="submit"
+            disabled={
+              !content || !fileName || !mood || !place || !title || !weather
+            }
+            $errors={
+              !content || !fileName || !mood || !place || !title || !weather
+            }
+            onClick={handleSubmit(onSubmit)}>
             저장
           </S.UploadButton>
         </S.DateText>
@@ -117,26 +125,26 @@ const DailyRecordWritePage = () => {
       <S.RecordContainer>
         <S.RecordImageContainer $selectedImg={selectedImg}>
           {selectedImg && (
-            <label htmlFor="recordImg">
+            <label htmlFor="fileName">
               <S.PreviewImage src={selectedImg} />
             </label>
           )}
-          <label htmlFor="recordImg">
+          <label htmlFor="fileName">
             <S.ImageUploadButton src={AddRoundDuotone} />
           </label>
           <S.ImageInput
-            id="recordImg"
+            id="fileName"
             type="file"
             accept="image/jpeg, image/webp, image/svg, image/png"
             onChange={handleFileChange}
           />
         </S.RecordImageContainer>
         <S.LocationText
-          id="location"
+          id="place"
           placeholder="오늘의 위치"
           ref={textRef}
           onInput={handleResizeHeight}
-          {...register('location', { required: '위치를 입력해주세요' })}
+          {...register('place', { required: '위치를 입력해주세요' })}
         />
         <S.TitleText
           id="title"

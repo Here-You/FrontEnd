@@ -1,3 +1,4 @@
+import { ErrorPage } from '..';
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -22,7 +23,7 @@ const DailyRecordPage = () => {
   }
 
   if (error) {
-    return <div>에러가 발생했습니다!</div>;
+    return <ErrorPage />;
   }
 
   return (
@@ -43,12 +44,12 @@ const DailyRecordPage = () => {
         <S.WeatherContainer>
           {WEATHER_ICON_LIST.map(item => {
             if (item.iconName === diaryData?.weather) {
-              return <S.Icon src={item.iconUrl} />;
+              return <S.Icon key={item.id} src={item.iconUrl} />;
             }
           })}
           {MOOD_ICON_LIST.map(item => {
             if (item.iconName === diaryData?.mood) {
-              return <S.Icon src={item.iconUrl} />;
+              return <S.Icon key={item.id} src={item.iconUrl} />;
             }
           })}
         </S.WeatherContainer>

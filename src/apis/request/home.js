@@ -10,7 +10,7 @@ const loadMonthlySchedule = (year, month) => {
 
 // 일정 불러오기 (확정 x, 무한스크롤)
 const getSchedule = (journeyId, pageParam) => {
-  const url = `/api/${VERSION}/${API_BASE.SCHEDULES}/${journeyId}?cursor=${pageParam}`;
+  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/${journeyId}?cursor=${pageParam}`;
   const res = axiosWithToken.get(url);
 
   return res;
@@ -56,7 +56,7 @@ const createSchedule = ({ scheduleId, title, latitude, longitude }) => {
 };
 
 // 일정 삭제하기
-const deleteSchedule = ({ scheduleId }) => {
+const deleteSchedule = scheduleId => {
   const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/delete/${scheduleId}`;
   const res = axiosWithToken.delete(url);
   return res;
@@ -91,6 +91,7 @@ const deleteDetailSchedule = ({ detailId }) => {
 const changeDetailScheduleStatus = ({ detailId }) => {
   const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/update-status/${detailId}`;
   const res = axiosWithToken.patch(url);
+  console.log(res);
   return res;
 };
 

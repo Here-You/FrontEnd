@@ -1,3 +1,4 @@
+import imageCompression from 'browser-image-compression';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,7 +10,6 @@ import { updateDiary } from '@/apis/request/home';
 import IconSelectBox from '@/components/SelectBox/IconSelectBox/IconSelectBox';
 import { MOOD_ICON_LIST, WEATHER_ICON_LIST } from '@/constants/dailyRecord';
 import { useGetDiary } from '@/hooks/home/useGetDiary';
-import { useQueryClient } from '@tanstack/react-query';
 
 const DailyRecordEditPage = () => {
   const navigate = useNavigate();
@@ -18,10 +18,7 @@ const DailyRecordEditPage = () => {
   const params = new URLSearchParams(search);
   const scheduleId = params.get('scheduleId');
   const [selectedImg, setSelectedImg] = useState();
-  // const cache = useQueryClient();
   const { data } = useGetDiary(scheduleId);
-  // const data = cache.getQueryData(['diaries', parseInt(scheduleId)]).data
-  //   ?.data[0];
   const [lodaing, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -64,19 +61,35 @@ const DailyRecordEditPage = () => {
   }, [data, setValue]);
 
   const textRef = useRef();
+
   const handleResizeHeight = useCallback(() => {
     if (textRef.current) {
       textRef.current.style.height = textRef.current.scrollHeight + 10 + 'px';
     }
   }, []);
 
-  const handleFileChange = event => {
+  const handleFileChange = async event => {
     const file = event.target.files[0];
-    console.log(file);
-
-    // 추가: 파일이 변경될 때 setValue를 사용하여 recordImg 값을 설정
     setSelectedImg(URL.createObjectURL(file));
-    setValue('recordImg', file);
+    try {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const compressedFile = await imageCompression(file, {
+          maxWidthOrHeight: 800,
+          maxSizeMB: 2,
+          fileType: 'image/jpeg',
+        });
+        const compressedReader = new FileReader();
+        compressedReader.onloadend = () => {
+          const base64Image = compressedReader.result.split(',')[1];
+          setValue('recordImg', base64Image);
+        };
+        compressedReader.readAsDataURL(compressedFile);
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.error('이미지 압축 실패:', error);
+    }
   };
 
   const onSubmit = async data => {
