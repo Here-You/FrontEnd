@@ -8,6 +8,7 @@ import { useTeamRuleList } from '@/hooks/mate/useTeamRuleList';
 const MateRuleCheckPage = () => {
   const { data: rulesData, loading, error } = useTeamRuleList();
   const navigate = useNavigate();
+  console.log(rulesData);
 
   if (loading) {
     return <div>Loading...</div>;

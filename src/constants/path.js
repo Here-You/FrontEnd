@@ -108,7 +108,7 @@ const API_URL = {
   CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,
   SEARCH_INVITE_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/searchMate`,
   GET_PARTICIPATE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/member/:ruleId`,
-  GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail/:ruleId/:cursor/:take`,
+  GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail`,
   UPDATE_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/edit/:ruleId`,
   DELETE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/editMate/:ruleId/:mateId`,
   CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule/:ruleId`,

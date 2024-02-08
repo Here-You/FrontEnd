@@ -40,7 +40,7 @@ const MateRuleWritePage = () => {
         navigate('/mate');
       })
       .catch(error => {
-        toast.error(error.message);
+        console.log(error);
       });
   };
 

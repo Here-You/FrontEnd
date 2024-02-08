@@ -62,6 +62,7 @@ export default function Editor({ setSelectedHeader }) {
       const res = await postNewSignature(title, pages.slice(0, pages.length));
       if (res) {
         alert('시그니처가 저장되었습니다.');
+        console.log(res);
         updateTitle('');
       }
       setSelectedHeader('내 시그니처');
