@@ -37,14 +37,20 @@ const MateCommentList = ({ ruleId }) => {
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
   return (
-    <S.Container>
-      {commentList?.pages?.map(page =>
-        page?.data?.data[0]?.comments.map(data => (
-          <MateCommentView key={data.id} commentData={data} />
-        )),
+    <>
+      {commentList?.pages?.length > 0 ? (
+        <S.Container>
+          {commentList?.pages?.map(page =>
+            page?.data?.data[0]?.comments.map(data => (
+              <MateCommentView key={data.id} commentData={data} />
+            )),
+          )}
+          <div ref={ref} style={{ height: 10 }}></div>
+        </S.Container>
+      ) : (
+        <></>
       )}
-      <div ref={ref}></div>
-    </S.Container>
+    </>
   );
 };
 

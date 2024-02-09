@@ -116,9 +116,11 @@ const UpdateBtn = styled.button`
 `;
 
 const CommentsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
-  height: 400px;
-  overflow: scroll;
+  padding: 20px 40px;
 `;
 
 export {
