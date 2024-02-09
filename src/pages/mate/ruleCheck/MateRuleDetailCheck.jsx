@@ -1,24 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './MateRuleDetailCheck.style';
-import { Comment } from '@/components';
-import { useTeamMateRuleComment } from '@/hooks/mate/useTeamMateRuleComment';
+import MateCommentList from '@/components/comment/mate/MateCommentList';
+import MateCommentInput from '@/components/comment/mate/commentInput/MateCommentInput';
 import { useTeamMateRulePost } from '@/hooks/mate/useTeamMateRulePost';
 
 const MateRuleDetailCheckPage = () => {
   const [editMode, setEditMode] = useState(false);
   const { ruleId } = useParams();
-  // post 요청
   const { data, loading, error } = useTeamMateRulePost(ruleId);
   const titleRefs = useRef([]);
   const detailRefs = useRef([]);
   const navigate = useNavigate();
 
-  console.log(titleRefs.current[1]);
+  // console.log(titleRefs.current[1]);
 
-  // 댓글
-  // const {data, loading, error} = useTeamMateRuleComment(ruleId, cursor, take)
   if (loading) {
     return <div>로딩 중 입니다..</div>;
   }
@@ -87,10 +84,10 @@ const MateRuleDetailCheckPage = () => {
           수정하기
         </S.UpdateBtn>
       )}
-
-      {data?.comments?.map(comment => (
-        <Comment comment={comment} key={comment.id} />
-      ))}
+      <MateCommentInput ruleId={ruleId} />
+      <S.CommentsContainer>
+        <MateCommentList ruleId={ruleId} />
+      </S.CommentsContainer>
     </S.Container>
   );
 };

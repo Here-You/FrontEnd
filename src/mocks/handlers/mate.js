@@ -453,9 +453,13 @@ export const MateHandlers = [
 
   //여행 규칙 확인하기 (댓글)
   http.get(
-    `${API_URL.GET_TEAM_MATE_RULE}/:ruleId/comments/:cursor/:take`,
+    `${API_URL.GET_TEAM_MATE_RULE}/:ruleId/comments`,
     ({ request, params }) => {
       const ruleId = params.ruleId;
+      const url = new URL(request.url);
+      const cursor = parseInt(url.searchParams.get('cursor')) || 0;
+      const take = parseInt(url.searchParams.get('take')) || 0;
+
       if (!ruleId) {
         return new HttpResponse(null, { status: 404 });
       }
@@ -469,22 +473,45 @@ export const MateHandlers = [
           {
             comments: [
               {
-                id: 1234,
-                image: 'image_url',
-                text: '댓글 내용',
+                id: cursor + 1,
+                image:
+                  'https://images.unsplash.com/photo-1677441564461-1b3e5bff781c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8',
+                text: `${cursor} 댓글 내용 1`,
                 created: '2024-02-07T12:22:00.453Z',
               },
               {
-                id: 123,
-                image: 'image_url',
-                text: '댓글 내용',
+                id: cursor + 2,
+                image:
+                  'https://images.unsplash.com/photo-1677441564461-1b3e5bff781c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8',
+                text: `${cursor} 댓글 내용 2`,
+                created: '2024-02-07T12:22:00.453Z',
+              },
+              {
+                id: cursor + 3,
+                image:
+                  'https://images.unsplash.com/photo-1677441564461-1b3e5bff781c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8',
+                text: `${cursor} 댓글 내용 3`,
+                created: '2024-02-07T12:22:00.453Z',
+              },
+              {
+                id: cursor + 4,
+                image:
+                  'https://images.unsplash.com/photo-1677441564461-1b3e5bff781c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8',
+                text: `${cursor} 댓글 내용 4`,
+                created: '2024-02-07T12:22:00.453Z',
+              },
+              {
+                id: cursor + 5,
+                image:
+                  'https://images.unsplash.com/photo-1677441564461-1b3e5bff781c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8',
+                text: `${cursor} 댓글 내용 5`,
                 created: '2024-02-07T12:22:00.453Z',
               },
             ],
             total: 13,
-            take: 3,
+            take: take,
             hasNextData: true,
-            cursor: 11,
+            cursor: cursor,
           },
         ],
       });
@@ -555,9 +582,11 @@ export const MateHandlers = [
 
   //여행 규칙 코멘트 남기기
   http.post(
-    `${baseURL}${API_URL.CREATE_MATE_RULE_COMMENT}`,
+    `${baseURL}${API_URL.CREATE_MATE_RULE_COMMENT}/:ruleId`,
     ({ request, params }) => {
       const ruleId = params.ruleId;
+
+      console.log(ruleId);
 
       if (!ruleId) {
         return new HttpResponse(null, { status: 404 });

@@ -115,6 +115,12 @@ const UpdateBtn = styled.button`
   }
 `;
 
+const CommentsContainer = styled.div`
+  width: 100%;
+  height: 400px;
+  overflow: scroll;
+`;
+
 export {
   Container,
   Wrapper,
@@ -129,4 +135,5 @@ export {
   AddButtonWrapper,
   AddQuestionButton,
   UpdateBtn,
+  CommentsContainer,
 };
