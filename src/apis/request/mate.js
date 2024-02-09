@@ -78,7 +78,7 @@ const getTeamMateRulePost = ruleId => {
 
 // 여행 규칙 확인하기 (댓글)
 const getTeamMateRuleComment = (ruleId, cursor, take) => {
-  const url = `${API_URL.GET_TEAM_MATE_RULE}/${ruleId}/comments?cursor=${cursor}&take=${take}`;
+  const url = `${API_URL.GET_TEAM_MATE_RULE}/${ruleId}/comments?ruleId=${ruleId}&cursor=${cursor}&take=${take}`;
   return axiosWithToken.get(url);
 };
 
@@ -99,11 +99,13 @@ const deleteTeamMate = () => {
   return axiosWithToken.delete(url);
 };
 
-const postMateruleComment = () => {
+const postMateruleComment = (ruleId, content) => {
   // CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule/comment/:ruleId`,
   // 백엔드 API : /api/v1/rules/:ruleId/comments/:userId
-  const url = `${API_URL.CREATE_MATE_RULE_COMMENT}`;
-  return axiosWithToken.post(url);
+  const url = `${API_URL.CREATE_MATE_RULE_COMMENT}/${ruleId}`;
+  return axiosWithToken.post(url, {
+    content: content,
+  });
 };
 
 const getTeamRuleList = () => {
