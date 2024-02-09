@@ -10,18 +10,11 @@ const getSearchMate = (searchTerm, cursor, take) => {
   return axiosWithToken.get(url);
 };
 
-const postFollowMate = userId => {
-  // FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:userId`,
-  // 백엔드 API : api/v1/mate/follow/:userId
-  const url = `${API_URL.FOLLOW_MATE}/${userId}`;
-  return axiosWithToken.post(url);
-};
-
-const deleteUnFollowMate = userId => {
-  // UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:userId`,
-  // 백엔드 API : api/v1/mate/follow/:userId
-  const url = `${API_URL.UNFOLLOW_MATE}/${userId}`;
-  return axiosWithToken.delete(url);
+const postFollowMate = followId => {
+  // FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:followId`,
+  // 백엔드 API : api/v1/mate/follow/:followId
+  const url = `${API_URL.FOLLOW_MATE}/${followId}`;
+  return axiosWithToken.patch(url);
 };
 
 const getExploreMate = (take, { pageParam }) => {
@@ -130,7 +123,6 @@ const deleteTeamRuleList = ruleId => {
 export {
   getSearchMate,
   postFollowMate,
-  deleteUnFollowMate,
   getExploreMate,
   getMateFollower,
   getMateFollowing,

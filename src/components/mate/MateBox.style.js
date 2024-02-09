@@ -12,6 +12,22 @@ const MateBox = styled.div`
   gap: 10px;
 `;
 
+const Button = styled.button`
+  border: none;
+  background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
+  color: ${theme.COLOR.MAIN.GRAY};
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 12px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+`;
+
 const MateDescriptionBox = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   gap: 10px;
@@ -31,7 +47,7 @@ const ImageContainer = styled.div`
 `;
 
 const TextBox = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
+  ${theme.ALIGN.ROW_CENTER};
   align-items: flex-start;
 
   h1 {
@@ -41,6 +57,11 @@ const TextBox = styled.div`
   p {
     font-size: 0.8rem;
   }
+`;
+
+const TextContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  align-items: flex-start;
 `;
 
 const MateImage = styled.img`
@@ -72,8 +93,10 @@ const SignatureImage = styled.img`
 
 export {
   MateDescriptionBox,
+  Button,
   MateBox,
   TextBox,
+  TextContainer,
   MateImage,
   SignatureContainer,
   SignatureImage,

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import MateContainer from '../MateContainer';
 import * as S from './MateManagement.style';
-import ManagementProfile from '@/components/mate/ManagementProfile';
+// import ManagementProfile from '@/components/mate/ManagementProfile'
 import { useMateFollower } from '@/hooks/mate/useMateFollower';
 import { useMateFollowing } from '@/hooks/mate/useMateFollowing';
 

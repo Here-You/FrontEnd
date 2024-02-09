@@ -3,7 +3,8 @@ import { useState } from 'react';
 import * as S from './FollowButton.style';
 import FollowModal from './FollowModal';
 import { postFollowMate } from '@/apis/request/mate';
-import { deleteUnFollowMate } from '@/apis/request/mate';
+
+// import { deleteUnFollowMate } from '@/apis/request/mate';
 
 const FollowButton = ({ isFollowing, name, id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
