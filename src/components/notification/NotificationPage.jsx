@@ -8,7 +8,7 @@ import { useNotification } from '@/hooks/notification/useNotification';
 
 const NotificationPage = () => {
   const { data, loading, error } = useNotification();
-  console.log(loading);
+
   return (
     <S.Container>
       {data?.map(list => {
