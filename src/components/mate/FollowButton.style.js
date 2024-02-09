@@ -2,17 +2,20 @@ import styled from 'styled-components';
 
 import theme from '@/theme';
 
-const FollowButton = styled.button`
-  width: 50px;
-  height: 24px;
-  text-align: center;
-  border-radius: 10px;
+const Button = styled.button`
   border: none;
-  background-color: ${props =>
-    props.isFollowing ? theme.COLOR.MAIN.GRAY : theme.COLOR.MAIN.GREEN};
-  color: ${theme.COLOR.MAIN.WHITE};
+  background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
+  color: ${theme.COLOR.MAIN.GRAY};
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 12px;
   cursor: pointer;
-  font-size: 10px;
+
+  &:hover {
+    transform: scale(0.9);
+  }
 `;
 
-export { FollowButton };
+export { Button };

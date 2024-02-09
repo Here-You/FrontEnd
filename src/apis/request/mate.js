@@ -41,7 +41,7 @@ const getMateFollower = () => {
 const getMateFollowing = () => {
   // GET_MATE_FOLLOWING: `/api/${VERSION}/${API_BASE.MATE}/followingList/:userId`,
   // 백엔드 API : api/v1/mate/followingList/:userId
-  const url = `${API_URL.GET_MATE_FOLLOWING}`;
+  const url = `${API_URL.GET_MATE_FOLLOW}`;
   return axiosWithToken.get(url);
 };
 

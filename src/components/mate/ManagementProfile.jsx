@@ -1,28 +1,27 @@
-// import FollowButton from './FollowButton';
-// import * as S from './ManagementProfile.style';
+import * as S from './ManagementProfile.style';
 
-// const ManagementProfile = ({ profileData }) => {
-//   if (!profileData) {
-//     return <div>데이터가 없습니다.</div>;
-//   }
+const ManagementProfile = ({ profileData }) => {
+  const { email, image, introduction, isFollowing, mateId, nickName } =
+    profileData;
+  return (
+    <S.CenteredContainer>
+      <S.ProfileContainer>
+        <S.UserImg src={image} />
+        <S.TextContainer>
+          <S.UserName>{nickName}</S.UserName>
+          <S.UserNickName>{email}</S.UserNickName>
+          <S.UserBio>{introduction}</S.UserBio>
+        </S.TextContainer>
+        <S.Wrapper>
+          {/* mateId, mate.isFollowing */}
+          <div>팔로우버튼</div>
+        </S.Wrapper>
+      </S.ProfileContainer>
+    </S.CenteredContainer>
+  );
+};
 
-//   const { _id, image, name, nickname, bio, is_following } = profileData;
+export default ManagementProfile;
 
-//   return (
-//     <S.CenteredContainer>
-//       <S.ProfileContainer>
-//         <S.UserImg src={image} />
-//         <S.TextContainer>
-//           <S.UserName>{name}</S.UserName>
-//           <S.UserNickName>{nickname}</S.UserNickName>
-//           <S.UserBio>{bio}</S.UserBio>
-//         </S.TextContainer>
-//         <S.Wrapper>
-//           <FollowButton isFollowing={is_following} name={name} id={_id} />
-//         </S.Wrapper>
-//       </S.ProfileContainer>
-//     </S.CenteredContainer>
-//   );
-// };
-
-// export default ManagementProfile;
+{
+}

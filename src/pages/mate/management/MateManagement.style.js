@@ -28,4 +28,6 @@ const TabElement = styled.div`
   color: ${props => (props.active ? theme.COLOR.MAIN.GREEN : 'none')};
 `;
 
-export { CenteredContainer, TabContainer, TabElement };
+const ProfileContainer = styled.div``;
+
+export { CenteredContainer, TabContainer, TabElement, ProfileContainer };
