@@ -409,17 +409,17 @@ export const MateHandlers = [
             mainTitle: '제주도 여행',
             detailMembers: [
               {
-                id: 123,
-                name: '안예원',
-                nickname: 'ahnyewon',
+                id: 1234,
+                name: '김용민',
+                nickname: 'dydals3440',
                 introduction: '안녕하세요 안예원 입니다. 반가워요',
                 image:
                   'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               },
               {
-                id: 1234,
-                name: '안원',
-                nickname: 'ahnwon',
+                id: 12345,
+                name: '다인',
+                nickname: 'chakk',
                 introduction: '안녕하세요 안원 입니다. 반가워요',
                 image:
                   'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
