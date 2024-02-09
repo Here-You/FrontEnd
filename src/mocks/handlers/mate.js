@@ -301,13 +301,13 @@ export const MateHandlers = [
   }),
 
   //여행 규칙 초대할 메이트 검색하기
-  http.get(`${baseURL}${API_URL.SEARCH_INVITE_MATE}`, ({ request, params }) => {
+  http.get(`${baseURL}${API_URL.SEARCH_MATE}`, ({ request, params }) => {
     const url = new URL(request.url);
     const searchTerm = url.searchParams.get('searchTerm');
     const cursor = url.searchParams.get('cursor');
     const take = url.searchParams.get('take');
 
-    if (searchTerm === 'ahnyewon') {
+    if (searchTerm === '안예원') {
       return HttpResponse.json({
         status: 200,
         success: true,
@@ -315,7 +315,7 @@ export const MateHandlers = [
         data: {
           mates: [
             {
-              id: cursor + 1,
+              id: 123,
               name: '안예원',
               nickname: 'ahnyewon',
               introduction: '안녕하세요 안예원 입니다. 반가워요',
@@ -323,7 +323,7 @@ export const MateHandlers = [
                 'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
             {
-              id: cursor + 2,
+              id: 1234,
               name: '안원',
               nickname: 'ahnwon',
               introduction: '안녕하세요 안원 입니다. 반가워요',
@@ -331,7 +331,7 @@ export const MateHandlers = [
                 'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             },
             {
-              id: cursor + 3,
+              id: 1235,
               name: '예원',
               nickname: 'yewon',
               introduction: '안녕하세요 예원 입니다. 반가워요',
@@ -388,78 +388,108 @@ export const MateHandlers = [
     },
   ),
 
-  //여행 규칙 확인하기
-  http.get(`${baseURL}${API_URL.GET_TEAM_MATE_RULE}`, ({ request, params }) => {
-    const ruleId = params.ruleId;
-    const cursor = params.cursor;
-    const take = params.take;
+  //여행 규칙 확인하기 (게시글)
+  http.get(
+    `${baseURL}${API_URL.GET_TEAM_MATE_RULE}/:ruleId`,
+    ({ request, params }) => {
+      const ruleId = params.ruleId;
 
-    if (!ruleId) {
-      return new HttpResponse(null, { status: 404 });
-    }
+      if (!ruleId) {
+        return new HttpResponse(null, { status: 404 });
+      }
 
-    return HttpResponse.json({
-      status: 200,
-      success: true,
-      message: '여행 규칙 확인하기 팀원 ver 성공',
-      data: {
-        detailPage: {
-          detailRule: {
-            id: 1,
-            mainTitle: '제주 여행 규칙을 세워보자',
-            rulePairs: [
+      return HttpResponse.json({
+        timestamp: '2024-02-08T12:15:07.069Z',
+        code: 'OK',
+        success: true,
+        message: '여행 규칙 불러오기 성공',
+        data: [
+          {
+            id: 123,
+            mainTitle: '제주도 여행',
+            detailMembers: [
               {
-                id: 1,
-                ruleTitle: '1. 기상 규칙',
-                ruleDetail: '7시까진 무조건 기상하기. 알람은 한개만 맞춰두기',
+                id: 1234,
+                name: '김용민',
+                nickname: 'dydals3440',
+                introduction: '안녕하세요 안예원 입니다. 반가워요',
+                image:
+                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               },
               {
-                id: 2,
-                ruleTitle: '2. 회비 규칙',
-                ruleDetail: '투명하게 관리하기',
+                id: 12345,
+                name: '다인',
+                nickname: 'chakk',
+                introduction: '안녕하세요 안원 입니다. 반가워요',
+                image:
+                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              },
+              {
+                id: 1235,
+                name: '예원',
+                nickname: 'yewon',
+                introduction: '안녕하세요 예원 입니다. 반가워요',
+                image:
+                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+              },
+            ],
+            rulePairs: [
+              {
+                id: 123,
+                ruleTitle: '규칙 제목1',
+                ruleDetail: '세부 내용1',
+              },
+              {
+                id: 124,
+                ruleTitle: '규칙 제목2',
+                ruleDetail: '세부 내용2',
               },
             ],
           },
-          detailMembers: [
-            {
-              memberId: 123,
-              name: '닉네임',
-              image:
-                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            },
-            {
-              memberId: 123,
-              name: '닉네임',
-              image:
-                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            },
-          ],
-          comments: [
-            {
-              id: 1234,
-              image:
-                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              text: '완벽한 규칙이네요',
-              created: 1675275543,
-            },
-            {
-              id: 124,
-              image:
-                'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              text: '완벽한 규칙이네요',
-              created: 1675275543,
-            },
-          ],
-          metaToBack: {
-            total: 3,
-            take: take,
-            cursor: cursor,
+        ],
+      });
+    },
+  ),
+
+  //여행 규칙 확인하기 (댓글)
+  http.get(
+    `${API_URL.GET_TEAM_MATE_RULE}/:ruleId/comments/:cursor/:take`,
+    ({ request, params }) => {
+      const ruleId = params.ruleId;
+      if (!ruleId) {
+        return new HttpResponse(null, { status: 404 });
+      }
+
+      return HttpResponse.json({
+        timestamp: '2024-02-08T12:15:07.069Z',
+        code: 'OK',
+        success: true,
+        message: '여행 댓글 불러오기 성공',
+        data: [
+          {
+            comments: [
+              {
+                id: 1234,
+                image: 'image_url',
+                text: '댓글 내용',
+                created: '2024-02-07T12:22:00.453Z',
+              },
+              {
+                id: 123,
+                image: 'image_url',
+                text: '댓글 내용',
+                created: '2024-02-07T12:22:00.453Z',
+              },
+            ],
+            total: 13,
+            take: 3,
             hasNextData: true,
+            cursor: 11,
           },
-        },
-      },
-    });
-  }),
+        ],
+      });
+    },
+  ),
 
   //여행 규칙 수정하기_글 수정
   http.patch(
@@ -609,20 +639,17 @@ export const MateHandlers = [
   }),
 
   // 여행 규칙 참여에서 나가기
-  http.delete(
-    `${API_URL.GET_TEAM_RULE_LIST}/:ruleId`,
-    ({ request, params }) => {
-      const ruleId = params.ruleId;
-      console.log(ruleId);
-      if (!ruleId) {
-        return new HttpResponse(null, { status: 404 });
-      }
+  http.delete(`${API_URL.EXIT_TEAM_RULE}`, ({ request, params }) => {
+    const ruleId = params.ruleId;
 
-      return HttpResponse.json({
-        status: 204,
-        success: true,
-        message: '여행 규칙에서 나가기 성공',
-      });
-    },
-  ),
+    if (!ruleId) {
+      return new HttpResponse(null, { status: 404 });
+    }
+
+    return HttpResponse.json({
+      status: 204,
+      success: true,
+      message: '여행 규칙에서 나가기 성공',
+    });
+  }),
 ];

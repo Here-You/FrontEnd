@@ -7,7 +7,7 @@ const useMatesStore = create(set => ({
     set(state => ({
       selectedMates: [
         ...state.selectedMates.filter(
-          selectedMate => selectedMate._id !== mate._id,
+          selectedMate => selectedMate.id !== mate.id,
         ),
         mate,
       ],
@@ -16,7 +16,7 @@ const useMatesStore = create(set => ({
   clearSelectedMates: mateId =>
     set(state => ({
       selectedMates: state.selectedMates.filter(
-        selectedMate => selectedMate._id !== mateId,
+        selectedMate => selectedMate.id !== mateId,
       ),
     })),
 }));

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { getSearchMate } from '@/apis/request/mate';
+import { getTeamMateRuleComment } from '@/apis/request/mate';
 
-export const useSearchMate = (searchTerm, cursor, take) => {
+export const useTeamMateRuleComment = (ruleId, cursor, take) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -11,9 +11,8 @@ export const useSearchMate = (searchTerm, cursor, take) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getSearchMate(searchTerm, cursor, take);
-        console.log(res.data);
-        const data = res.data.data.mates;
+        const res = await getTeamMateRuleComment(ruleId, cursor, take);
+        const data = res.data.data;
 
         setData(data);
       } catch (e) {
@@ -24,7 +23,7 @@ export const useSearchMate = (searchTerm, cursor, take) => {
     };
 
     fetchData();
-  }, [searchTerm, cursor, take]);
+  }, [ruleId]);
 
   return { data, loading, error };
 };

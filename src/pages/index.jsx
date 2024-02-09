@@ -23,6 +23,7 @@ import MateLookPage from './mate/look/MateLook';
 import MateManagementPage from './mate/management/MateManagement';
 import MateRuleCheckPage from './mate/ruleCheck/MateRuleCheck';
 import MateRuleDetailCheckPage from './mate/ruleCheck/MateRuleDetailCheck';
+import MateRuleEditPage from './mate/ruleEdit/RuleEdit';
 import MateRuleWritePage from './mate/ruleWrite/MateRuleWrite';
 import MateSearchPage from './mate/search/MateSearch';
 // MY_PAGE
@@ -53,6 +54,7 @@ export {
   OnBoardingPage,
   MatePage,
   MateSearchPage,
+  MateRuleEditPage,
   MateManagementPage,
   MateLookPage,
   MateRuleCheckPage,

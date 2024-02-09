@@ -6,6 +6,7 @@ const getSearchMate = (searchTerm, cursor, take) => {
   // SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
   // 백엔드 API : api/v1/mate/search
   const url = `${API_URL.SEARCH_MATE}?searchTerm=${searchTerm}&cursor=${cursor}&take=${take}`;
+  console.log(url);
   return axiosWithToken.get(url);
 };
 
@@ -49,16 +50,9 @@ const postCreateMateRule = postData => {
   console.log(postData);
   // CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,
   // 백엔드 API : api/v1/mate/rule/write
-  const { mainTitle, created, rules, invitedId } = postData;
+
   const url = `${API_URL.CREATE_MATE_RULE}`;
-  return axiosWithToken.post(url, {
-    write: {
-      mainTitle: mainTitle,
-      created: created,
-      rules: rules,
-    },
-    invitations: invitedId,
-  });
+  return axiosWithToken.post(url, postData);
 };
 
 const getSearchInviteMate = searchTerm => {
@@ -75,10 +69,17 @@ const getParticipateTeamMate = () => {
   return axiosWithToken.get(url);
 };
 
-const getTeamMateRule = ruleId => {
+// 여행 규칙 확인하기 (게시글)
+const getTeamMateRulePost = ruleId => {
   // GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/view/:ruleId`,
   // 백엔드 API : api/v1/mate/rule/view/:ruleId
   const url = `${API_URL.GET_TEAM_MATE_RULE}/${ruleId}`;
+  return axiosWithToken.get(url);
+};
+
+// 여행 규칙 확인하기 (댓글)
+const getTeamMateRuleComment = (ruleId, cursor, take) => {
+  const url = `${API_URL.GET_TEAM_MATE_RULE}/${ruleId}/comments?cursor=${cursor}&take=${take}`;
   return axiosWithToken.get(url);
 };
 
@@ -116,7 +117,7 @@ const getTeamRuleList = () => {
 
 const deleteTeamRuleList = ruleId => {
   const url = `${API_URL.GET_TEAM_RULE_LIST}/${ruleId}`;
-  console.log(url);
+
   return axiosWithToken.delete(url);
 };
 
@@ -130,7 +131,8 @@ export {
   postCreateMateRule,
   getSearchInviteMate,
   getParticipateTeamMate,
-  getTeamMateRule,
+  getTeamMateRulePost,
+  getTeamMateRuleComment,
   patchTeamMateRule,
   deleteTeamMate,
   postMateruleComment,

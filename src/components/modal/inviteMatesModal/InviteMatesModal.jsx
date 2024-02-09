@@ -14,9 +14,10 @@ const InviteMatesModal = () => {
   const { selectedMates, addSelectedMate, clearSelectedMates } =
     useMatesStore();
 
-  const mateIds = selectedMates.map(mate => mate._id);
+  const mateIds = selectedMates.map(mate => mate.id);
 
-  const { data, loading, error } = useSearchMate(debouncedNickname);
+  const { data, loading, error } = useSearchMate(debouncedNickname, 1, 1);
+  console.log(data);
 
   const handleInviteClick = () => {
     InviteMatesModal.onClose();
@@ -38,19 +39,19 @@ const InviteMatesModal = () => {
           <div>로딩중입니다...</div>
         ) : (
           data.map(d => {
-            const isSelected = mateIds.includes(d._id);
+            const isSelected = mateIds.includes(d.id);
             return (
               <S.ProfileContainer
-                key={d._id}
+                key={d.id}
                 isSelected={isSelected}
                 onClick={() => {
-                  isSelected ? clearSelectedMates(d._id) : addSelectedMate(d);
+                  isSelected ? clearSelectedMates(d.id) : addSelectedMate(d);
                 }}>
                 <S.ProfileImage src={d.image} />
                 <S.TextContainer>
                   <h2>{d.name}</h2>
                   <h3>@{d.nickname}</h3>
-                  <h4>{d.bio}</h4>
+                  <h4>{d.introduction}</h4>
                 </S.TextContainer>
               </S.ProfileContainer>
             );

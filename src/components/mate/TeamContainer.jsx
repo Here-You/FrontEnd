@@ -1,38 +1,35 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import ExitModal from './ExitModal';
 import * as S from './TeamContainer.style';
 import over from '/images/mate/over.svg';
 import { deleteTeamRuleList } from '@/apis/request/mate';
+import { formatDate } from '@/utils/date';
 
-const TeamContainer = ({ ruleData, onClick, onExitClick }) => {
+const TeamContainer = ({ ruleData, onExitClick }) => {
+  const navigate = useNavigate();
   if (!ruleData) {
     return <div>데이터가 없습니다.</div>;
   }
 
   const { id, memberCnt, title, updated, participants } = ruleData;
-  const [showExitModal, setShowExitModal] = useState(false);
-
-  const changeDate = updated => {
-    const date = new Date(updated * 1000);
-    const year = date.getFullYear().toString().slice(2);
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    const formattedDate = `${year}.${month}.${day}`;
-    return formattedDate;
-  };
 
   const handleDeleteRule = async e => {
+    e.stopPropagation();
     try {
-      console.log('나가기');
-      await deleteTeamRuleList(id);
+      const confirm = window.confirm(
+        '정말 참여중인 규칙 방에서 나가시겠습니까?',
+      );
+      confirm ? deleteTeamRuleList(id) : null;
     } catch (e) {
       console.log(e);
     }
   };
 
   return (
-    <S.TeamContainer onClick={onClick}>
+    <S.TeamContainer
+      onClick={() => navigate(`/mate/rule-check/${ruleData.id}`)}>
       <S.TeamInfoContainer>
         <S.ImgContainer>
           {participants.slice(0, 2).map((participant, index) => (
@@ -47,9 +44,8 @@ const TeamContainer = ({ ruleData, onClick, onExitClick }) => {
 
       <S.ExitContainer>
         <S.ExitButton onClick={handleDeleteRule}>나가기</S.ExitButton>
-        <S.WriteDate>{changeDate(updated)}</S.WriteDate>
+        <S.WriteDate>{formatDate(updated)}</S.WriteDate>
       </S.ExitContainer>
-      {showExitModal && <ExitModal onClose={handleCloseExitModal} />}
     </S.TeamContainer>
   );
 };
