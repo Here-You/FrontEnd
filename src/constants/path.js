@@ -101,11 +101,12 @@ const API_URL = {
 
   // MATE
   SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
-  FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
+  FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search/follow`,
   UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
-  EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/signature`,
-  GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/followList`,
-  GET_MATE_FOLLOWING: `/api/${VERSION}/${API_BASE.MATE}/followingList`,
+  EXPLORE_RANDOM_MATE: `/api/${VERSION}/${API_BASE.MATE}/random`,
+  LOCATION_MATE: `/api/${VERSION}/${API_BASE.MATE}/location`,
+  GET_MATE_FOLLOW: `/api/${VERSION}/${API_BASE.MATE}/search/followList`,
+  GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/search/followerList`,
   CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,
   SEARCH_INVITE_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
   GET_PARTICIPATE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/member/:ruleId`,

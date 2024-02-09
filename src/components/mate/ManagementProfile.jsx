@@ -1,24 +1,21 @@
 import FollowButton from './FollowButton';
 import * as S from './ManagementProfile.style';
+import Logo from '/images/mypage/MyPageLogo.svg';
 
 const ManagementProfile = ({ profileData }) => {
-  if (!profileData) {
-    return <div>데이터가 없습니다.</div>;
-  }
-
-  const { _id, image, name, nickname, bio, is_following } = profileData;
-
+  const { email, image, introduction, isFollowing, mateId, nickName } =
+    profileData;
   return (
     <S.CenteredContainer>
       <S.ProfileContainer>
-        <S.UserImg src={image} />
+        <S.UserImg src={image ? image : Logo} />
         <S.TextContainer>
-          <S.UserName>{name}</S.UserName>
-          <S.UserNickName>{nickname}</S.UserNickName>
-          <S.UserBio>{bio}</S.UserBio>
+          <S.UserName>{nickName}</S.UserName>
+          <S.UserNickName>{email}</S.UserNickName>
+          <S.UserBio>{introduction}</S.UserBio>
         </S.TextContainer>
         <S.Wrapper>
-          <FollowButton isFollowing={is_following} name={name} id={_id} />
+          <FollowButton initialFollowState={isFollowing} id={mateId} />
         </S.Wrapper>
       </S.ProfileContainer>
     </S.CenteredContainer>
@@ -26,3 +23,6 @@ const ManagementProfile = ({ profileData }) => {
 };
 
 export default ManagementProfile;
+
+{
+}

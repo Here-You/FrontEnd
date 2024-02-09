@@ -3,7 +3,6 @@ import { useState } from 'react';
 import ParticipantModal from './ParticipantModal';
 import * as S from './RuleBoxCheck.style';
 import overIcon from '/images/mate/over.svg';
-import { patchTeamMateRule } from '@/apis/request/mate';
 
 const RuleBoxCheck = ({ ruleboxData, participantsData }) => {
   const [participantModalOpen, setParticipantModalOpen] = useState(false);

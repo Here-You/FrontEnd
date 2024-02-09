@@ -7,9 +7,12 @@ import { useMateFollower } from '@/hooks/mate/useMateFollower';
 import { useMateFollowing } from '@/hooks/mate/useMateFollowing';
 
 const MateManagementPage = () => {
-  const { data: dataFollower, loading, error } = useMateFollower();
-  const { data: dataFollowing, loadingF, errorF } = useMateFollowing();
+  const { data: follower, loading, error } = useMateFollower();
+
+  const { data: following, loadingF, errorF } = useMateFollowing();
   const [activeTab, setActiveTab] = useState('follower');
+
+  console.log(following, follower);
 
   const handleTabClick = tabName => {
     setActiveTab(tabName);
@@ -32,10 +35,10 @@ const MateManagementPage = () => {
 
       <S.ProfileContainer>
         {activeTab === 'follower'
-          ? dataFollower.map((data, index) => (
+          ? follower?.map((data, index) => (
               <ManagementProfile key={index} profileData={data} />
             ))
-          : dataFollowing.map((data, index) => (
+          : following?.map((data, index) => (
               <ManagementProfile key={index} profileData={data} />
             ))}
       </S.ProfileContainer>

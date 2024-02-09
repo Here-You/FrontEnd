@@ -2,81 +2,49 @@ import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import * as S from './MateLook.style';
-import { getExploreMate } from '@/apis/request/mate';
 import Banner from '@/components/mate/Banner';
-import MateSignatureSection from '@/components/mate/MateSignatureSection';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import MateBox from '@/components/mate/MateBox';
+import { useRandomInfiniteMate } from '@/hooks/mate/queries/useRandomInfiniteMate';
+import { useGetLocationMate } from '@/hooks/mate/useGetLocationMate';
 
 const MateLookPage = () => {
-  const limit = 10;
+  const { data: locationMate, loading, error } = useGetLocationMate();
+  const { mateProfiles, userName, location } = locationMate;
 
-  const { fetchNextPage, hasNextPage, isFetching, data, isError, isLoading } =
-    useInfiniteQuery({
-      queryKey: ['exploreMate'],
-      queryFn: ({ pageParam = 0 }) => getExploreMate(pageParam, limit),
-      initialPageParam: 0,
-      getNextPageParam: (lastPage, allPages) => {
-        const lastMate =
-          lastPage.data.data.recommend_mates[0].mates.slice(-1)[0];
-        return lastMate ? lastMate._id : undefined;
-      },
-    });
-
+  const { data, isFetching, hasNextPage, fetchNextPage, isLoading } =
+    useRandomInfiniteMate();
+  const randomMates = data?.pages;
   const { ref, inView } = useInView({
-    delay: 0,
     threshold: 0,
   });
-  console.log(data);
 
   useEffect(() => {
     if (inView) {
-      hasNextPage && fetchNextPage();
+      !isFetching && hasNextPage && fetchNextPage();
     }
-  }, [inView, hasNextPage, fetchNextPage]);
-
-  console.log(data);
-  // console.log(data?.pages[0].data.data.recommend_mates[0].information.nickname);
-
-  const nickname =
-    data?.pages[0].data.data.recommend_mates[0].information.nickname;
-  const location =
-    data?.pages[0].data.data.recommend_mates[0].information.location;
+  }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
   return (
     <S.MateLookContainer>
       <Banner />
-      <S.Title>
-        {nickname}님이 사용한 위치 [#{location}]를 함께 이용 중인 메이트
-      </S.Title>
-
+      <S.Title>오늘의 랜덤 메이트 추천</S.Title>
       <S.CenteredContainer>
-        {data?.pages.map(d => (
-          <S.MateContainer>
-            {console.log(d)}
-            {d?.data.data.recommend_mates[0].mates.map(m => (
-              <S.MateBox>
-                <S.MateDescriptionBox>
-                  <S.MateImage src={m.image} />
-                  <S.TextBox>
-                    <h1>{m.nickname}</h1>
-                    <p>{m.bio}</p>
-                  </S.TextBox>
-                </S.MateDescriptionBox>
-
-                <S.ImageContainer>
-                  {m.signature.map(s => {
-                    return (
-                      <S.SignatureContainer key={s._id}>
-                        <S.SignatureImage src={s.image} />
-                        <p>{s.title}</p>
-                      </S.SignatureContainer>
-                    );
-                  })}
-                  <div ref={ref} style={{ width: '10px' }}></div>
-                </S.ImageContainer>
-              </S.MateBox>
-            ))}
-          </S.MateContainer>
+        {randomMates?.map(mateData =>
+          mateData?.data.data.data.map(mate => (
+            <MateBox key={mate._id} mate={mate} />
+          )),
+        )}
+        <div
+          ref={ref}
+          style={{
+            width: '40px',
+            height: '20px',
+          }}></div>
+      </S.CenteredContainer>
+      <S.Title>{`${userName}이 사용한 위치 [${location}]을 함께 이용중인 메이트들`}</S.Title>
+      <S.CenteredContainer>
+        {mateProfiles?.map(mate => (
+          <MateBox key={mate._id} mate={mate} />
         ))}
       </S.CenteredContainer>
     </S.MateLookContainer>

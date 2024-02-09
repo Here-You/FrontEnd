@@ -12,7 +12,7 @@ export const useMateFollower = () => {
       try {
         setLoading(true);
         const res = await getMateFollower();
-        const data = res.data.data.mates;
+        const data = res.data.data;
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

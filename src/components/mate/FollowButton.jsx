@@ -1,38 +1,33 @@
 import { useState } from 'react';
 
 import * as S from './FollowButton.style';
-import FollowModal from './FollowModal';
 import { postFollowMate } from '@/apis/request/mate';
-import { deleteUnFollowMate } from '@/apis/request/mate';
 
-const FollowButton = ({ isFollowing, name, id }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const FollowButton = ({ initialFollowState, id }) => {
+  const [follow, setFollow] = useState(initialFollowState);
 
-  const handleChangeStatus = () => {
-    if (isFollowing) {
-      deleteUnFollowMate(id);
-      setIsModalOpen(true);
-    } else {
-      postFollowMate(id);
-      setIsModalOpen(true);
+  const handleChangeFollowState = async () => {
+    try {
+      if (follow === true) {
+        const res = await postFollowMate(id);
+        console.log(res);
+        alert('팔로우가 취소되었습니다.');
+        setFollow(false);
+      } else {
+        const res = await postFollowMate(id);
+        console.log(res);
+        alert('팔로잉되었습니다.');
+        setFollow(true);
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
   return (
-    <>
-      {
-        <S.FollowButton isFollowing={isFollowing} onClick={handleChangeStatus}>
-          {isFollowing ? '언팔로우' : '팔로우'}
-        </S.FollowButton>
-      }
-      {isModalOpen && (
-        <FollowModal
-          onClose={() => setIsModalOpen(false)}
-          name={name}
-          isFollowing={isFollowing}
-        />
-      )}
-    </>
+    <S.Button onClick={handleChangeFollowState}>
+      {follow ? '언팔로우' : '팔로우'}
+    </S.Button>
   );
 };
 

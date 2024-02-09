@@ -107,108 +107,63 @@ export const MateHandlers = [
     },
   ),
 
-  //메이트 탐색
-  http.get(`${baseURL}${API_URL.EXPLORE_MATE}`, ({ request, params }) => {
-    const url = new URL(request.url);
-    const cursor = parseInt(url.searchParams.get('cursor')) || 0;
-    const take = parseInt(url.searchParams.get('take')) || 0;
+  //메이트 탐색1
+  http.get(
+    `${baseURL}${API_URL.EXPLORE_RANDOM_MATE}`,
+    ({ request, params }) => {
+      const url = new URL(request.url);
+      const cursorId = parseInt(url.searchParams.get('cursor')) || 0;
+      const take = parseInt(url.searchParams.get('take')) || 0;
 
-    return HttpResponse.json({
-      status: 200,
-      success: true,
-      message: '메이트 탐색 성공',
-      data: {
-        userId: 123456,
-        location: '오사카',
-        first: {
-          boxes: [
+      return HttpResponse.json({
+        timestamp: '2024-02-09T12:13:45.477Z',
+        code: 'OK',
+        success: true,
+        message: '랜덤 메이트 추천 데이터 생성 성공',
+        data: {
+          data: [
             {
-              mateInform: {
-                id: cursor + 1,
-                name: '추천 메이트 이름1',
-                image:
-                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
-                location: '건대',
-                isFollowing: 'true',
-                introduction: '안녕하세요',
-              },
-              signature: {
-                id: cursor + 1,
-                title: '시그니처 제목1',
-                image:
-                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
-                introduction: '안녕하세요',
-              },
+              _id: 4,
+              userName: '감감감',
+              introduction: '사용자 소개',
+              is_followed: false,
+              userImage: null,
+              signatures: [],
             },
             {
-              mateInform: {
-                id: cursor + 2,
-                name: '추천 메이트 이름2',
-                image:
-                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
-                location: '건대',
-                isFollowing: 'true',
-              },
-              signature: {
-                id: cursor + 2,
-                title: '시그니처 제목2',
-                image:
-                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
-              },
+              _id: 3,
+              userName: '고고고',
+              introduction: '사용자 소개',
+              is_followed: false,
+              userImage: null,
+              signatures: [
+                {
+                  _id: 22,
+                  title: '강남역근처',
+                  image:
+                    'https://hereyou-cdn.kaaang.dev/signature/07f8c65c-5966-4b2e-9d96-08d5d084d013.png',
+                },
+              ],
+            },
+            {
+              _id: 2,
+              userName: '카카카',
+              introduction: '사용자 소개',
+              is_followed: false,
+              userImage: null,
+              signatures: [],
             },
           ],
           meta: {
-            total: 10,
-            take: take,
-            hasNextData: 'true',
-            cursor: cursor,
+            take: '3',
+            total: 4,
+            hasNextData: true,
+            cursor: 2,
           },
         },
-        second: {
-          boxes: [
-            {
-              mateInform: {
-                id: cursor + 1,
-                name: '추천 메이트 이름1',
-                image:
-                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
-                location: '건대',
-                isFollowing: 'true',
-              },
-              signature: {
-                id: cursor + 1,
-                title: '시그니처 제목',
-                image:
-                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
-              },
-            },
-            {
-              mateInform: {
-                id: cursor + 2,
-                name: '추천 메이트 이름1',
-                image:
-                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
-                location: '건대',
-                isFollowing: 'true',
-              },
-              signature: {
-                id: cursor + 2,
-                title: '시그니처 제목',
-                image:
-                  'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
-              },
-            },
-          ],
-          meta: {
-            total: 10,
-            take: take,
-            hasNextData: 'true',
-            cursor: cursor,
-          },
-        },
-      },
-    });
-  }),
+      });
+    },
+  ),
 
   //팔로워 목록 불러오기
   http.get(`${baseURL}${API_URL.GET_MATE_FOLLOWER}`, ({ request, params }) => {

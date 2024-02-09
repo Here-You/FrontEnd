@@ -17,7 +17,6 @@ const InviteMatesModal = () => {
   const mateIds = selectedMates.map(mate => mate.id);
 
   const { data, loading, error } = useSearchMate(debouncedNickname, 1, 1);
-  console.log(data);
 
   const handleInviteClick = () => {
     InviteMatesModal.onClose();
