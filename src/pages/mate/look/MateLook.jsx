@@ -1,17 +1,19 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useNavigate } from 'react-router-dom';
 
 import * as S from './MateLook.style';
-import Logo from '/images/mypage/MyPageLogo.svg';
 import Banner from '@/components/mate/Banner';
+import MateBox from '@/components/mate/MateBox';
 import { useRandomInfiniteMate } from '@/hooks/mate/queries/useRandomInfiniteMate';
+import { useGetLocationMate } from '@/hooks/mate/useGetLocationMate';
 
 const MateLookPage = () => {
+  const { data: locationMate, loading, error } = useGetLocationMate();
+  const { mateProfiles, userName, location } = locationMate;
+
   const { data, isFetching, hasNextPage, fetchNextPage, isLoading } =
     useRandomInfiniteMate();
   const randomMates = data?.pages;
-  const navigate = useNavigate();
   const { ref, inView } = useInView({
     threshold: 0,
   });
@@ -25,44 +27,25 @@ const MateLookPage = () => {
   return (
     <S.MateLookContainer>
       <Banner />
+      <S.Title>오늘의 랜덤 메이트 추천</S.Title>
       <S.CenteredContainer>
         {randomMates?.map(mateData =>
-          mateData?.data.data.data.map(mate => {
-            return (
-              <S.MateBox key={mate._id}>
-                <S.MateDescriptionBox>
-                  <S.MateImage src={mate.mateImage ? mate.mateImage : Logo} />
-                  <S.TextBox>
-                    <h1>{mate.mateName}</h1>
-                    <p>{mate.introduction}</p>
-                    <p>{mate.is_followed}</p>
-                  </S.TextBox>
-                </S.MateDescriptionBox>
-                <S.ImageContainer>
-                  {mate?.signatures?.map(signature => (
-                    <S.SignatureContainer key={signature._id}>
-                      <S.SignatureImage
-                        onClick={() =>
-                          navigate(`/signature/post/${signature._id}`)
-                        }
-                        src={signature.image ? signature.image : Logo}
-                      />
-                      <p>{signature.title}</p>
-                    </S.SignatureContainer>
-                  ))}
-                </S.ImageContainer>
-              </S.MateBox>
-            );
-          }),
+          mateData?.data.data.data.map(mate => (
+            <MateBox key={mate._id} mate={mate} />
+          )),
         )}
         <div
           ref={ref}
           style={{
-            width: '20px',
+            width: '40px',
             height: '20px',
-          }}>
-          1
-        </div>
+          }}></div>
+      </S.CenteredContainer>
+      <S.Title>{`${userName}이 사용한 위치 [${location}]을 함께 이용중인 메이트들`}</S.Title>
+      <S.CenteredContainer>
+        {mateProfiles?.map(mate => (
+          <MateBox key={mate._id} mate={mate} />
+        ))}
       </S.CenteredContainer>
     </S.MateLookContainer>
   );

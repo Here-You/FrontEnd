@@ -88,9 +88,7 @@ const MateRuleDetailCheckPage = () => {
         </S.UpdateBtn>
       )}
 
-      {data?.comments?.map(comment => (
-        <Comment comment={comment} key={comment.id} />
-      ))}
+      <CommentForm />
     </S.Container>
   );
 };

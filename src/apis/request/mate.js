@@ -28,7 +28,13 @@ const getExploreMate = (take, { pageParam }) => {
   // EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/explore/:userId`,
   // 백엔드 API : api/v1/mate/random?take=3&cursorId=3
   const url = `${API_URL.EXPLORE_RANDOM_MATE}/?take=${take}&cursorId=${pageParam}`;
-  console.log(url);
+
+  return axiosWithToken.get(url);
+};
+
+const getLocationMate = () => {
+  const url = `${API_URL.LOCATION_MATE}`;
+
   return axiosWithToken.get(url);
 };
 
@@ -134,6 +140,7 @@ export {
   getTeamMateRulePost,
   getTeamMateRuleComment,
   patchTeamMateRule,
+  getLocationMate,
   deleteTeamMate,
   postMateruleComment,
   getTeamRuleList,
