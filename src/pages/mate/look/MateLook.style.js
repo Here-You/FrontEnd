@@ -17,8 +17,7 @@ const CenteredContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 20px;
-  width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
   margin-top: 20px;
   padding: 0 20px;
 `;
@@ -31,7 +30,7 @@ const MateContainer = styled.div`
 const MateBox = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   position: relative;
-  width: 250px;
+  width: 1000px;
   height: 250px;
   border: 1px solid ${theme.COLOR.MAIN.LIGHT_BLACK};
   border-radius: 20px;
@@ -49,7 +48,7 @@ const MateDescriptionBox = styled.div`
 const ImageContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 250px;
   padding: 10px;
   margin-left: 15px;
   margin-top: 60px;
@@ -89,6 +88,11 @@ const SignatureImage = styled.img`
   height: 100px;
   object-fit: cover;
   border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.01);
+  }
 `;
 
 export {

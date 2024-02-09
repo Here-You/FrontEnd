@@ -103,7 +103,7 @@ const API_URL = {
   SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
   FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
   UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
-  EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/signature`,
+  EXPLORE_RANDOM_MATE: `/api/${VERSION}/${API_BASE.MATE}/random`,
   GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/followList`,
   GET_MATE_FOLLOWING: `/api/${VERSION}/${API_BASE.MATE}/followingList`,
   CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,

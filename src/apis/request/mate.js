@@ -24,11 +24,11 @@ const deleteUnFollowMate = userId => {
   return axiosWithToken.delete(url);
 };
 
-const getExploreMate = (pageParam, take) => {
+const getExploreMate = (take, { pageParam }) => {
   // EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/explore/:userId`,
-  // 백엔드 API : api/v1/mate/explore/:userId
-  const url = `${API_URL.EXPLORE_MATE}/?take=${take}&cursor=${pageParam}`;
-  console.log(userId, pageParam, limit);
+  // 백엔드 API : api/v1/mate/random?take=3&cursorId=3
+  const url = `${API_URL.EXPLORE_RANDOM_MATE}/?take=${take}&cursorId=${pageParam}`;
+  console.log(url);
   return axiosWithToken.get(url);
 };
 
