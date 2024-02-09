@@ -9,11 +9,13 @@ const FollowButton = ({ initialFollowState, id }) => {
   const handleChangeFollowState = async () => {
     try {
       if (follow === true) {
-        await postFollowMate(id);
+        const res = await postFollowMate(id);
+        console.log(res);
         alert('팔로우가 취소되었습니다.');
         setFollow(false);
       } else {
-        await postFollowMate(id);
+        const res = await postFollowMate(id);
+        console.log(res);
         alert('팔로잉되었습니다.');
         setFollow(true);
       }

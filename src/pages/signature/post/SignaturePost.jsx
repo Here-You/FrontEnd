@@ -6,6 +6,7 @@ import * as S from './SignaturePost.style';
 import Logo from '/images/mypage/MyPageLogo.svg';
 import { deleteMySignature } from '@/apis/request/signature';
 import HeartButton from '@/components/HeartButton/HeartButton';
+import FollowButton from '@/components/mate/FollowButton';
 import { useGetDetail } from '@/hooks/signature/useGetDetail';
 import { CiLocationOn } from 'react-icons/ci';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
@@ -25,7 +26,7 @@ const SignaturePostPage = () => {
     setLike,
   } = useGetDetail(signatureId);
 
-  const author = detailSignatures?.author;
+  const author = detailSignatures.author;
   const header = detailSignatures?.header;
 
   const [step, setStep] = useState(1);
@@ -69,7 +70,6 @@ const SignaturePostPage = () => {
   if (error) {
     return <div>에러가 발생했습니다...</div>;
   }
-  console.log(author);
 
   return (
     <>
@@ -90,7 +90,10 @@ const SignaturePostPage = () => {
                     <date>{header.date}</date>
                   </S.ProfileDesc>
                 </S.ProfileContainer>
-                <S.FollowButton onClick={handleFollow}>팔로우</S.FollowButton>
+                <FollowButton
+                  initialFollowState={author?.is_followed}
+                  id={author?._id}
+                />
               </S.HeaderContainer>
               <S.TitleContainer>
                 <h1>{header.title}</h1>
