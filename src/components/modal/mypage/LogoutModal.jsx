@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 import Modal from '../Modal';
@@ -27,7 +28,7 @@ const LogoutModal = ({}) => {
     setIsLoading(true);
     localStorage.removeItem('x-access-token');
     handleCloseModal();
-    navigate('/');
+    navigate('/login');
     toast.success('로그아웃 성공');
   };
 

@@ -12,16 +12,29 @@ const SubCateGoryPage = ({ children, listName }) => {
   const publicScopeModal = usePublicScopeModal();
 
   const handleClick = list => {
-    if (list.modal) {
-      if (list.id === 1) {
-        logoutModal.onOpen();
-      } else if (list.id === 3) {
-        publicScopeModal.onOpen();
+    if (isLogin) {
+      if (list.modal) {
+        if (list.id === 1) {
+          logoutModal.onOpen();
+        } else if (list.id === 3) {
+          publicScopeModal.onOpen();
+        }
+      } else if (list.notion) {
+        window.open(
+          'https://sally626.notion.site/444bf09f12b54b86932f0ad462dde398?pvs=4',
+        );
       }
-    } else if (list.notion) {
-      window.open(
-        'https://sally626.notion.site/444bf09f12b54b86932f0ad462dde398?pvs=4',
-      );
+    } else {
+      if (!list.notion) {
+        if (list.id === 1) {
+        } else {
+          alert('로그인 후 이용해주세요');
+        }
+      } else {
+        window.open(
+          'https://sally626.notion.site/444bf09f12b54b86932f0ad462dde398?pvs=4',
+        );
+      }
     }
   };
 
@@ -35,17 +48,17 @@ const SubCateGoryPage = ({ children, listName }) => {
       <LogoutModal />
       <PublicScopeModal />
       {listName?.map(list => {
-        const dynamicTitle = list.title
-          ? list.title
-          : isLogin
-            ? '로그아웃'
-            : '로그인';
-
         return (
           <S.Subcategory key={list.id} onClick={() => handleClick(list)}>
             <S.LinkTo to={list.link}>
               <S.CategoryImg src={list.img} alt={list.title} />
-              <p>{dynamicTitle}</p>
+              {list.title ? (
+                <p>{list.title}</p>
+              ) : isLogin ? (
+                <p>로그아웃</p>
+              ) : (
+                <p>로그인</p>
+              )}
             </S.LinkTo>
           </S.Subcategory>
         );
@@ -53,6 +66,5 @@ const SubCateGoryPage = ({ children, listName }) => {
     </S.CategoryContainer>
   );
 };
-ㄴ;
 
 export default SubCateGoryPage;

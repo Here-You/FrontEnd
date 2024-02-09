@@ -5,25 +5,35 @@ const USER_SETTING = [
     id: 0,
     img: myPageImg.User,
     title: '프로필 변경',
-    link: localStorage.getItem('x-access-token') && '/mypage/edit',
+    get link() {
+      return localStorage.getItem('x-access-token') ? '/mypage/edit' : null;
+    },
   },
   {
     id: 1,
     img: myPageImg.Sign_out_squre,
-    modal: localStorage.getItem('x-access-token') ? true : false,
-    link: !localStorage.getItem('x-access-token') && '/login',
+    get modal() {
+      return localStorage.getItem('x-access-token') ? true : false;
+    },
+    get link() {
+      return !localStorage.getItem('x-access-token') ? '/login' : null;
+    },
   },
   {
     id: 2,
     img: myPageImg.Diamond,
     title: '내 시그니처 확인하기',
-    link: localStorage.getItem('x-access-token') && '/signature',
+    get link() {
+      return localStorage.getItem('x-access-token') ? '/signature' : null;
+    },
   },
   {
     id: 3,
     img: myPageImg.Lock,
     title: '공개범위 설정',
-    modal: localStorage.getItem('x-access-token') ? true : false,
+    get modal() {
+      return localStorage.getItem('x-access-token') ? true : false;
+    },
   },
 ];
 
