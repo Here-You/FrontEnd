@@ -112,7 +112,7 @@ const API_URL = {
   GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail`,
   UPDATE_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/edit/:ruleId`,
   DELETE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/editMate/:ruleId/:mateId`,
-  CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule/:ruleId`,
+  CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule`,
   GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list`,
   EXIT_TEAM_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/list/:ruleId`,
 };
