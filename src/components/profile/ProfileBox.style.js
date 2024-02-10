@@ -3,12 +3,17 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const ProfileContainer = styled.div`
-  width: 80%;
+  width: 84%;
+  margin-top: 20px;
   height: 200px;
   padding: 20px;
   background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
   ${theme.ALIGN.COLUMN_CENTER};
   border-radius: 20px;
+  border: 0.1px solid white;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    0 13px 10px rgba(0, 0, 0, 0.02);
 `;
 
 const ImageContainer = styled.div`
