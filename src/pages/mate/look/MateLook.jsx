@@ -37,8 +37,7 @@ const MateLookPage = () => {
         <div
           ref={ref}
           style={{
-            width: '40px',
-            height: '20px',
+            width: '20px',
           }}></div>
       </S.CenteredContainer>
       <S.Title>{`${userName}이 사용한 위치 [${location}]을 함께 이용중인 메이트들`}</S.Title>

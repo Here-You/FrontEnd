@@ -21,9 +21,9 @@ const MateDescriptionBox = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 250px;
+  ${theme.ALIGN.ROW_CENTER};
+  width: 300px;
+  height: 100%;
   padding: 10px;
   margin-left: 15px;
   margin-top: 60px;
@@ -31,15 +31,22 @@ const ImageContainer = styled.div`
 `;
 
 const TextBox = styled.div`
+  width: 200px;
   ${theme.ALIGN.ROW_CENTER};
-  align-items: flex-start;
+  justify-content: space-between;
 
   h1 {
-    font-size: 1.4rem;
+    font-size: 0.8rem;
+    margin-bottom: 3px;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   p {
     font-size: 0.8rem;
+    color: ${theme.COLOR.MAIN.GRAY};
   }
 `;
 
@@ -58,13 +65,20 @@ const MateImage = styled.img`
 const SignatureContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100px;
+
   p {
     font-size: 0.8rem;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: ${theme.COLOR.MAIN.GRAY};
   }
 `;
 
 const SignatureImage = styled.img`
-  width: 100px;
+  width: 100%;
   height: 100px;
   object-fit: cover;
   border-radius: 5px;
