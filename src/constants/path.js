@@ -25,6 +25,7 @@ const BASE_PATH = {
   MATE_RULE_CHECK: '/mate/rule-check',
   MATE_RULE_DETAIL_CHECK: '/mate/rule-check/:ruleId',
   MATE_RULE_DETAIL_EDIT: '/mate/rule-edit/:ruleId',
+  MATE_PROFILE_SEARCH: '/mate/:userId',
   // MY_PAGE
   MY_PAGE: '/mypage',
   MY_PAGE_EDIT: '/mypage/edit',
@@ -36,6 +37,8 @@ const BASE_PATH = {
   MAP_JOURNEY_DETAIL: '/map/journey/:journeyId',
   //notification
   NOTIFICATION_PAGE: '/notification',
+  // profile
+  PROFILE_PAGE: '/profile/:userId',
 };
 
 const VERSION = 'v1';
@@ -116,6 +119,7 @@ const API_URL = {
   CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule`,
   GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list`,
   EXIT_TEAM_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/list/:ruleId`,
+  MATE_PROFILE_SEARCH: `/api/${VERSION}/${API_BASE.MATE}`,
 };
 
 const API_PATH = {

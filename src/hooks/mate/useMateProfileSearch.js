@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { getMySignaturePreview } from '@/apis/request/signature';
+import { getMateProfile } from '@/apis/request/mate';
 
-//내 시그니처
-export const useSignaturePreview = () => {
+export const useMateProfileSearch = userId => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -12,9 +11,8 @@ export const useSignaturePreview = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getMySignaturePreview();
+        const res = await getMateProfile(userId);
         const data = res.data.data;
-
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

@@ -33,6 +33,8 @@ import MyPageEditPage from './mypage/edit/MyPageEdit';
 import Notification from './notification/Notification';
 // ON_BOARDING
 import OnBoardingPage from './onboarding/OnBoardingPage';
+//Profile
+import ProfilePage from './profile/ProfilePage';
 // Signature
 import SignaturePage from './signature/SignaturePage';
 import SignatureEditPage from './signature/edit/SignatureEdit';
@@ -76,4 +78,5 @@ export {
   MapDetailPage,
   ExplorePage,
   JourneyDetailPage,
+  ProfilePage,
 };

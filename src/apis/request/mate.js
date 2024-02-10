@@ -122,6 +122,12 @@ const deleteTeamRuleList = ruleId => {
   return axiosWithToken.delete(url);
 };
 
+const getMateProfile = userId => {
+  const url = `${API_URL.MATE_PROFILE_SEARCH}/${userId}`;
+
+  return axiosWithToken.get(url);
+};
+
 export {
   getSearchMate,
   postFollowMate,
@@ -139,4 +145,5 @@ export {
   postMateRuleComment,
   getTeamRuleList,
   deleteTeamRuleList,
+  getMateProfile,
 };

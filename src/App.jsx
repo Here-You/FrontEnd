@@ -25,6 +25,7 @@ import {
   MyPageEditPage,
   Notification,
   OnBoardingPage,
+  ProfilePage,
   Redirect,
   SignUpPage,
   SignatureEditPage,
@@ -191,6 +192,16 @@ const router = createBrowserRouter([
             element: <MyPageEditPage />,
           },
         ],
+      },
+    ],
+  },
+  {
+    path: `${BASE_PATH.PROFILE_PAGE}`,
+    children: [
+      {
+        element: <AppLayout />,
+        errorElement: <ErrorPage />,
+        children: [{ index: true, element: <ProfilePage /> }],
       },
     ],
   },
