@@ -14,11 +14,9 @@ const LinkLine = styled.div`
   position: relative;
   padding-left: 20px;
   margin-left: 20px;
-  margin-bottom: ${props =>
-    props.$dataLength > 1 && !props.$lastPlan ? '0' : '13px'};
+  margin-bottom: ${props => (!props.$lastPlan ? '0' : '13px')};
   border-left: 2px dashed #21b69c;
-  border-bottom: ${props =>
-    props.$dataLength > 1 && !props.$lastPlan ? '' : '2px dashed #21b69c'};
+  border-bottom: ${props => (!props.$lastPlan ? '' : '2px dashed #21b69c')};
 `;
 
 const PlanContainer = styled.div`
@@ -63,8 +61,7 @@ const PlanMenu = styled.div`
 `;
 
 const Circle = styled.div`
-  display: ${props =>
-    props.$dataLength > 1 && !props.$lastPlan ? 'none' : 'block'};
+  display: ${props => (!props.$lastPlan ? 'none' : 'block')};
   width: 10px;
   height: 10px;
   position: absolute;

@@ -11,15 +11,15 @@ import {
   addDetailSchedule,
   changeDetailScheduleStatus,
   deleteDetailSchedule,
-  postDetailSchedule, // updateDetailSchedule,
+  postDetailSchedule,
 } from '@/apis/request/home';
 
 const DetailPlan = ({
   scheduleId,
   isToggle,
   detailData,
-  dataLength,
   lastPlan,
+  refetch,
 }) => {
   const [newPlan, setNewPlan] = useState('');
   const [editPlan, setEditPlan] = useState('');
@@ -30,17 +30,14 @@ const DetailPlan = ({
   const [error, setError] = useState(false);
 
   const handleOnSaveNewPlan = async () => {
-    // 새로운 할 일 저장 요청
     if (!newPlan.trim()) {
       alert('할 일을 작성해주세요!');
     } else {
       try {
         setLoading(true);
-        const res = await addDetailSchedule({
-          scheduleId: scheduleId,
-          content: newPlan,
-        });
+        const res = await addDetailSchedule(scheduleId, newPlan);
         if (res) {
+          refetch({ refetchPage: (page, index) => index === 0 });
           toast('할 일이 저장되었습니다');
           setIsOpenInput(false);
           setNewPlan('');
@@ -48,26 +45,24 @@ const DetailPlan = ({
       } catch (e) {
         setError(true);
         console.log(e);
-        toast('할 일 저장 중 오류가 발생했습니다.');
+        toast.error('할 일 저장 중 오류가 발생했습니다.');
       } finally {
         setLoading(false);
       }
     }
   };
 
-  const handleOnEditPlan = async detailScheduleId => {
+  const handleOnEditPlan = async id => {
     setEditingId(null);
     if (!editPlan.trim()) {
       alert('할 일을 작성해주세요!');
     } else {
       try {
         setLoading(true);
-        const res = await postDetailSchedule({
-          detailId: detailScheduleId,
-          content: editPlan,
-        });
+        const res = await postDetailSchedule(id, editPlan);
         if (res) {
-          toast('할 일이 수정되었습니다');
+          refetch({ refetchPage: (page, index) => index === 0 });
+          alert('할 일이 수정되었습니다');
           setIsOpenEdit(false);
           setEditPlan('');
         }
@@ -81,15 +76,15 @@ const DetailPlan = ({
     }
   };
 
-  const deletePlan = async detailScheduleId => {
-    // 해당 할 일 삭제 요청
+  const deletePlan = async id => {
     try {
       setLoading(true);
-      const res = await deleteDetailSchedule({ detailId: detailScheduleId });
+      const res = await deleteDetailSchedule(id);
       if (res) {
-        toast('할 일이 삭제되었습니다');
+        toast('세부 일정이 삭제되었습니다');
       }
     } catch (e) {
+      refetch({ refetchPage: (page, index) => index === 0 });
       setError(true);
       console.log(e);
       toast('할 일 삭제 중 오류가 발생했습니다.');
@@ -97,12 +92,15 @@ const DetailPlan = ({
       setLoading(false);
     }
   };
-
-  const handleOnChecked = async detailScheduleId => {
+  
+  const handleOnChecked = async id => {
     try {
       setLoading(true);
-      const res = await changeDetailScheduleStatus(detailScheduleId);
-      if (res) toast('할 일 체크');
+      const res = await changeDetailScheduleStatus(id);
+      if (res) {
+        refetch({ refetchPage: (page, index) => index === 0 });
+        return;
+      }
     } catch (e) {
       setError(true);
       console.log(e);
@@ -114,36 +112,32 @@ const DetailPlan = ({
 
   return (
     <S.DetailContainer $isToggle={isToggle}>
-      <S.LinkLine $dataLength={dataLength} $lastPlan={lastPlan}>
-        <S.Circle $dataLength={dataLength} $lastPlan={lastPlan} />
+      <S.LinkLine $lastPlan={lastPlan}>
+        <S.Circle $lastPlan={lastPlan} />
       </S.LinkLine>
       <S.PlanContainer>
         <S.MarginContainer />
 
         <S.ScrollContainer>
-          {detailData.map(({ detailScheduleId, content, isDone }) => (
-            <S.PlanTextConatiner key={detailScheduleId}>
+          {detailData[0].map(({ id, content, isDone }) => (
+            <S.PlanTextConatiner key={id}>
               <S.PlanText>
                 {isDone ? (
-                  <S.CheckImg
-                    src={Subtract}
-                    onClick={() => handleOnChecked(detailScheduleId)}
-                  />
+                  <S.Image src={Subtract} onClick={() => handleOnChecked(id)} />
                 ) : (
                   <S.Image
                     src={CheckRing}
-                    onClick={() => handleOnChecked(detailScheduleId)}
+                    onClick={() => handleOnChecked(id)}
                   />
                 )}
-                {editingId === detailScheduleId ? (
+                {editingId === id ? (
                   <>
                     <S.Input
                       placeholder="할 일 입력"
                       value={editPlan}
                       onChange={e => setEditPlan(e.target.value)}
                     />
-                    <S.SaveButton
-                      onClick={() => handleOnEditPlan(detailScheduleId)}>
+                    <S.SaveButton onClick={() => handleOnEditPlan(id)}>
                       저장
                     </S.SaveButton>
                   </>
@@ -156,15 +150,12 @@ const DetailPlan = ({
                       src={EditLight}
                       onClick={() => {
                         setEditPlan(content);
-                        setEditingId(detailScheduleId);
+                        setEditingId(id);
                         setIsOpenEdit(true);
                         setIsOpenInput(false);
                       }}
                     />
-                    <S.Image
-                      src={Trash}
-                      onClick={() => deletePlan(detailScheduleId)}
-                    />
+                    <S.Image src={Trash} onClick={() => deletePlan(id)} />
                   </S.PlanMenu>
                 )}
               </S.PlanText>

@@ -109,7 +109,6 @@ const HomeContentContainer = styled.div`
 
 const SchedulesContainer = styled.div`
   max-height: 400px;
-  overflow: scroll;
   padding: 0 30px;
 
   &::-webkit-scrollbar {

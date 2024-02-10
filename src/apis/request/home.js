@@ -8,9 +8,9 @@ const loadMonthlySchedule = (year, month) => {
   return res;
 };
 
-// 일정 불러오기 (확정 x, 무한스크롤)
-const getSchedule = (journeyId, pageParam) => {
-  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/${journeyId}?cursor=${pageParam}`;
+// 월별 일정 불러오기 (무한스크롤)
+const getSchedule = (date, pageParam, pageSize) => {
+  const url = `/api/${VERSION}/${API_BASE.MAP}/get-monthly-schedule/${date}?cursor=${pageParam}&pageSize=${pageSize}`;
   const res = axiosWithToken.get(url);
 
   return res;
@@ -45,10 +45,12 @@ const deleteJourney = journeyId => {
 };
 
 // 일정 작성하기
-const createSchedule = ({ scheduleId, title, latitude, longitude }) => {
-  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/update-title/${scheduleId}`;
+const createSchedule = (scheduleId, title, location, latitude, longitude) => {
+  console.log(latitude, longitude);
+  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/update/${scheduleId}`;
   const res = axiosWithToken.put(url, {
     title: title,
+    location: location,
     latitude: latitude,
     longitude: longitude,
   });
@@ -57,13 +59,14 @@ const createSchedule = ({ scheduleId, title, latitude, longitude }) => {
 
 // 일정 삭제하기
 const deleteSchedule = scheduleId => {
-  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/delete/${scheduleId}`;
-  const res = axiosWithToken.delete(url);
+  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/reset/${scheduleId}`;
+  const res = axiosWithToken.put(url);
   return res;
 };
 
 // 세부 일정 추가하기
-const addDetailSchedule = ({ scheduleId, content }) => {
+const addDetailSchedule = (scheduleId, content) => {
+  console.log(content);
   const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/create/${scheduleId}`;
   const res = axiosWithToken.post(url, {
     content: content,
@@ -72,7 +75,7 @@ const addDetailSchedule = ({ scheduleId, content }) => {
 };
 
 // 세부 일정 작성하기 (수정하기)
-const postDetailSchedule = ({ detailId, content }) => {
+const postDetailSchedule = (detailId, content) => {
   const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/update/${detailId}`;
   const res = axiosWithToken.put(url, {
     content: content,
@@ -81,7 +84,7 @@ const postDetailSchedule = ({ detailId, content }) => {
 };
 
 // 세부 일정 삭제하기
-const deleteDetailSchedule = ({ detailId }) => {
+const deleteDetailSchedule = detailId => {
   const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/delete/${detailId}`;
   const res = axiosWithToken.delete(url);
   return res;

@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -12,21 +13,22 @@ import LocationLight from '/icons/LocationLight.svg';
 import Trash from '/icons/Trash.svg';
 import { createSchedule, deleteSchedule } from '@/apis/request/home';
 
-const Schedules = ({ data, dataLength }) => {
+const Schedules = ({ data, endDate, refetch }) => {
   const {
-    journeyId,
     scheduleId,
     title: scheduleTitle,
     date,
     detailSchedules,
     location: locationData,
-    diary_written,
+    diary,
   } = data;
   const [isToggle, setIsToggle] = useState(false);
   const [locationInfo, setLocationInfo] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const lastPlan = scheduleId === dataLength ? true : false;
+  const newDate = new Date(endDate);
+  const formattedEndDate = format(newDate, 'yyyy-MM-dd');
+  const lastPlan = date === formattedEndDate ? true : false;
 
   const handleOnToggle = () => {
     setIsToggle(!isToggle);
@@ -57,31 +59,39 @@ const Schedules = ({ data, dataLength }) => {
     try {
       setLoading(true);
       const res = await deleteSchedule(scheduleId);
-      if (res) toast('일정이 삭제되었습니다.');
+      if (res) {
+        refetch({ refetchPage: (page, index) => index === 0 });
+        toast('일정이 초기화되었습니다.');
+      }
     } catch (e) {
       setError(true);
       console.log(e);
-      toast.error('일정 삭제 중 오류가 발생했습니다.');
+      toast.error('일정 초기화 중 에러가 발생했습니다.');
     } finally {
       setLoading(false);
     }
   };
 
   const onSubmit = async data => {
-    const { title, location } = data;
     try {
       setLoading(true);
-      const res = await createSchedule({
-        scheduleId: scheduleId,
-        title: title,
-        latitude: location.latitude,
-        longitude: location.longitude,
-      });
-      if (res) toast('일정이 저장되었습니다.');
+      const res = await createSchedule(
+        scheduleId,
+        title,
+        location.name,
+        location.latitude,
+        location.longitude,
+      );
+
+      if (res) {
+        console.log('제출된 데이터: ', data);
+        refetch({ refetchPage: (page, index) => index === 0 });
+        alert('일정이 저장되었습니다.');
+      }
     } catch (e) {
       setError(true);
       console.log(e);
-      toast.error('일정 저장 중 오류가 발생했습니다.');
+      toast.error('일정 작성 중 에러가 발생했습니다.');
     } finally {
       setLoading(false);
     }
@@ -107,40 +117,38 @@ const Schedules = ({ data, dataLength }) => {
           <S.Mate>
             <S.Image src={LocationLight} />
             <SearchMap
-              inputValue={locationData.name}
+              inputValue={locationData[0].name}
               register={register}
               selectLocation={setLocationInfo}
             />
           </S.Mate>
           <Link
             to={
-              diary_written
-                ? `/dailyrecord?scheduleId=${scheduleId}`
-                : `/dailyrecord/${scheduleId}/write?date=${date}`
+              diary[0]
+                ? `/dailyrecord/${scheduleId}?journeyId=${journeyId}`
+                : `/dailyrecord/${scheduleId}/write`
             }
             style={{
               marginLeft: 'auto',
               textDecoration: 'none',
               cursor: 'pointer',
             }}>
-            <S.LeftContainer $diaryWritten={diary_written}>
-              {diary_written ? '일지 확인' : '일지 작성'}
-              <S.Image src={diary_written ? File : EditLight} />
+            <S.LeftContainer $diaryWritten={diary[0]}>
+              {diary[0] ? '일지 확인' : '일지 작성'}
+              <S.Image src={diary[0] ? File : EditLight} />
             </S.LeftContainer>
           </Link>
         </S.RowContainer>
       </S.MainContainer>
 
-      {dataLength > 1 && dataLength !== scheduleId && (
-        <S.ShortLine $isToggle={isToggle} />
-      )}
+      {formattedEndDate !== date && <S.ShortLine $isToggle={isToggle} />}
 
       <DetailPlan
         isToggle={isToggle}
         detailData={detailSchedules}
-        dataLength={dataLength}
         lastPlan={lastPlan}
         scheduleId={scheduleId}
+        refetch={refetch}
       />
     </S.Container>
   );
