@@ -71,7 +71,8 @@ const SignaturePostPage = () => {
           <S.SignatureContainer>
             <>
               <S.HeaderContainer>
-                <S.ProfileContainer>
+                <S.ProfileContainer
+                  onClick={() => navigate(`/profile/${author._id}`)}>
                   {author?.image ? (
                     <S.ProfileImg src={author?.image} />
                   ) : (

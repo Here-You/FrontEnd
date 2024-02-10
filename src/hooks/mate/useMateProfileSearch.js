@@ -22,7 +22,7 @@ export const useMateProfileSearch = userId => {
     };
 
     fetchData();
-  }, []);
+  }, [userId]);
 
   return { data, loading, error };
 };

@@ -128,6 +128,12 @@ const getMateProfile = userId => {
   return axiosWithToken.get(url);
 };
 
+const getMateInfiniteSignatureList = (mateId, take, { pageParam }) => {
+  const url = `api/v1/mate/signature/${mateId}?take=${take}&cursorId=${pageParam}`;
+  console.log(url);
+  return axiosWithToken.get(url);
+};
+
 export {
   getSearchMate,
   postFollowMate,
@@ -146,4 +152,5 @@ export {
   getTeamRuleList,
   deleteTeamRuleList,
   getMateProfile,
+  getMateInfiniteSignatureList,
 };
