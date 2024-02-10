@@ -1,3 +1,4 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
@@ -11,7 +12,7 @@ const PreviewWrap = styled.div`
   cursor: pointer;
 `;
 
-const PreviewImg = styled.img`
+const PreviewImg = styled(LazyLoadImage)`
   display: flex;
   width: 140px;
   height: 140px;
@@ -33,7 +34,7 @@ const Profile = styled.div`
   justify-content: flex-start;
 `;
 
-const ProfileImg = styled.img`
+const ProfileImg = styled(LazyLoadImage)`
   display: flex;
   width: 25px;
   height: 25px;
