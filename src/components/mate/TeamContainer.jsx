@@ -1,19 +1,18 @@
-import { useState } from 'react';
+import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
-import ExitModal from './ExitModal';
 import * as S from './TeamContainer.style';
 import over from '/images/mate/over.svg';
+import Logo from '/images/mypage/MyPageLogo.svg';
 import { deleteTeamRuleList } from '@/apis/request/mate';
-import { formatDate } from '@/utils/date';
 
-const TeamContainer = ({ ruleData, onExitClick }) => {
+const TeamContainer = ({ ruleData }) => {
   const navigate = useNavigate();
   if (!ruleData) {
     return <div>데이터가 없습니다.</div>;
   }
 
-  const { id, memberCnt, title, updated, participants } = ruleData;
+  const { id, memberCnt, title, memberPairs, updated } = ruleData;
 
   const handleDeleteRule = async e => {
     e.stopPropagation();
@@ -28,12 +27,11 @@ const TeamContainer = ({ ruleData, onExitClick }) => {
   };
 
   return (
-    <S.TeamContainer
-      onClick={() => navigate(`/mate/rule-check/${ruleData.id}`)}>
+    <S.TeamContainer onClick={() => navigate(`/mate/rule-check/${id}`)}>
       <S.TeamInfoContainer>
         <S.ImgContainer>
-          {participants.slice(0, 2).map((participant, index) => (
-            <S.TeammateImg key={index} src={participant.image} index={index} />
+          {memberPairs?.map(({ id, image }, _) => (
+            <S.TeammateImg key={id} src={image ? image : Logo} />
           ))}
           {memberCnt >= 4 && <S.OverImg src={over} alt="over" />}
         </S.ImgContainer>
@@ -44,7 +42,7 @@ const TeamContainer = ({ ruleData, onExitClick }) => {
 
       <S.ExitContainer>
         <S.ExitButton onClick={handleDeleteRule}>나가기</S.ExitButton>
-        <S.WriteDate>{formatDate(updated)}</S.WriteDate>
+        <S.WriteDate>{format(updated, 'yy-MM-dd')}</S.WriteDate>
       </S.ExitContainer>
     </S.TeamContainer>
   );

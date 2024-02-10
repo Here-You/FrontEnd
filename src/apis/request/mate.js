@@ -109,9 +109,9 @@ const postMateRuleComment = (ruleId, content) => {
 };
 
 const getTeamRuleList = () => {
-  // GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list/:userId`,
-  // 백엔드 API : api/v1/mate/rule/list/:userId
-  // const url = `${API_BASE.MATE}/rule/list/${userId}`;
+  // GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list`,
+  // 백엔드 API : api/v1/mate/rule/list
+  // const url = `${API_BASE.MATE}/rule/list`;
   const url = `${API_URL.GET_TEAM_RULE_LIST}`;
   return axiosWithToken.get(url);
 };
