@@ -22,7 +22,7 @@ const Preview = ({ data }) => {
           <S.ProfileImg
             height={'fit-content'}
             effect="blur"
-            width={'230px'}
+            width={'25px'}
             src={data?.userImage ? data?.userImage : Logo}
           />
           <S.Nickname>{data?.userName}</S.Nickname>
