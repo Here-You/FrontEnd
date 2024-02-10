@@ -22,10 +22,16 @@ const PreviewImg = styled(LazyLoadImage)`
 `;
 
 const Title = styled.div`
-  display: flex;
   font-family: Pretendard-bold;
   font-size: 12px;
   margin: 3px 0px;
+  width: 140px;
+
+  // flex는 말줄임표가 적용이 안됨. (block & inline-block)
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const Profile = styled.div`
@@ -59,6 +65,8 @@ const Date = styled.div`
 
 const HeartContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
+  margin-left: 40px;
+  width: 140px;
   gap: 2px;
 `;
 
