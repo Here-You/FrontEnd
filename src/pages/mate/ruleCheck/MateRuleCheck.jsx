@@ -21,7 +21,7 @@ const MateRuleCheckPage = () => {
   return (
     <MateContainer>
       <S.StyledTitle>내가 참여 중인 규칙</S.StyledTitle>
-      {rulesData.map((ruleData, _) => (
+      {rulesData?.map((ruleData, _) => (
         <TeamContainer key={ruleData.id} ruleData={ruleData} />
       ))}
     </MateContainer>
