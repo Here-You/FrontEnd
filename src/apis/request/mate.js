@@ -99,7 +99,7 @@ const deleteTeamMate = () => {
   return axiosWithToken.delete(url);
 };
 
-const postMateruleComment = (ruleId, content) => {
+const postMateRuleComment = (ruleId, content) => {
   // CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule/comment/:ruleId`,
   // 백엔드 API : /api/v1/rules/:ruleId/comments/:userId
   const url = `${API_URL.CREATE_MATE_RULE_COMMENT}/${ruleId}`;
@@ -136,7 +136,7 @@ export {
   patchTeamMateRule,
   getLocationMate,
   deleteTeamMate,
-  postMateruleComment,
+  postMateRuleComment,
   getTeamRuleList,
   deleteTeamRuleList,
 };

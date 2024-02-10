@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
 import * as S from './MateCommentInput.style';
-import { postMateruleComment } from '@/apis/request/mate';
+import { postMateRuleComment } from '@/apis/request/mate';
 
 const MateCommentInput = ({ ruleId }) => {
   const [loading, setLoading] = useState(false);
@@ -38,7 +38,7 @@ const MateCommentInput = ({ ruleId }) => {
     } else {
       try {
         setLoading(true);
-        const res = await postMateruleComment(ruleId, content);
+        const res = await postMateRuleComment(ruleId, content);
         if (res) {
           toast('댓글 작성');
           reset();

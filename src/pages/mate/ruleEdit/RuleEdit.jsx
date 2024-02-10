@@ -14,14 +14,14 @@ const RuleEditPage = () => {
   const navigate = useNavigate();
   const { ruleId } = useParams();
   const { data, loading, error } = useTeamMateRulePost(ruleId);
-  const initialData = data[0];
+  const initialData = data;
 
   const inviteMatesModal = useInviteMatesModal();
   const selectedMates = useMatesStore(state => state.selectedMates);
   const [postData, setPostData] = useState({
     mainTitle: '',
     rulePairs: [],
-    invitedId: [],
+    membersId: [],
   });
 
   console.log(postData);
@@ -31,7 +31,7 @@ const RuleEditPage = () => {
       setPostData({
         mainTitle: initialData.mainTitle || '',
         rulePairs: initialData.rulePairs || [],
-        invitedId: initialData.detailMembers || [],
+        membersId: initialData.detailMembers || [],
       });
     }
   }, [initialData, selectedMates]);
