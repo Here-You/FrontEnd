@@ -98,9 +98,9 @@ const HomePage = () => {
       <JourneyWriteModal startDate={startDate} endDate={endDate} />
       <JourneyEditModal
         journeyId={journeyInfo?.journeyId}
-        journeyTitle={journeyInfo?.journeyTitle}
-        startDate={journeyInfo?.dateGroup?.startDate}
-        endDate={journeyInfo?.dateGroup?.endDate}
+        journeyTitle={journeyInfo?.title}
+        startDate={journeyInfo?.startDate}
+        endDate={journeyInfo?.endDate}
       />
       <S.JourneyButtonContainer>
         <S.EditButton $isClicked={isClicked} onClick={handleEditJourney}>

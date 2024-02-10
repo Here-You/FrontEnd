@@ -1,15 +1,12 @@
-import { Schedules } from '..';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
-import { useInView } from 'react-intersection-observer';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import SchedulesView from '../schedules/SchedulesView';
 import * as S from './TravelCalendar.style';
-import { getSchedule } from '@/apis/request/home';
-import { useLoadMonthlyJourney } from '@/hooks/home/useLoadMonthlyJourney';
+import { useMonthlyJourney } from '@/hooks/home/useMonthlyJourney';
 import { ErrorPage } from '@/pages';
-import { useInfiniteQuery } from '@tanstack/react-query';
 
 moment.locale('en');
 
@@ -21,49 +18,28 @@ const TravelCalendar = ({
 }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const pageSize = 5;
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const year = moment(endDate).format('YYYY');
   const month = moment(endDate).format('MM');
-  const { data, loading, error } = useLoadMonthlyJourney(year, month);
+  const { data, loading, error } = useMonthlyJourney(year, month);
 
   useEffect(() => {
     if (data) {
-      data.monthlyJourneys &&
-        data.monthlyJourneys.forEach(monthlyJourney => {
-          setMonthlyInfo(prev => [...prev, monthlyJourney.dateGroup]);
+      data &&
+        data.forEach(monthlyJourney => {
+          setMonthlyInfo(prev => [
+            ...prev,
+            {
+              startDate: monthlyJourney.startDate,
+              endDate: monthlyJourney.endDate,
+            },
+          ]);
         });
     }
   }, [data, setMonthlyInfo]);
-
-  const journeyId = 1;
-
-  const {
-    data: schedulesData,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isError,
-  } = useInfiniteQuery({
-    queryKey: ['schedules', journeyId],
-    queryFn: ({ pageParam = 1 }) => getSchedule(journeyId, pageParam),
-    initialPageParam: 0,
-    getNextPageParam: lastPage => lastPage?.data?.data?.at(-1).scheduleId,
-    staleTime: 60 * 1000,
-    // enabled,  // 처리 필요
-  });
-
-  const { ref, inView } = useInView({
-    threshold: 0,
-    delay: 0,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      !isFetching && hasNextPage && fetchNextPage();
-    }
-  }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
   const changeDate = e => {
     const startDateFormat = moment(e[0]).format('YYYY/MM/DD');
@@ -77,10 +53,10 @@ const TravelCalendar = ({
     const endDateFormatFind = moment(e[1]).format('YYYY-MM-DD');
 
     if (startDateFormatFind && endDateFormatFind) {
-      const foundJourney = data.monthlyJourneys.find(
+      const foundJourney = data.find(
         journeydata =>
-          journeydata.dateGroup.startDate === startDateFormatFind &&
-          journeydata.dateGroup.endDate === endDateFormatFind,
+          journeydata.startDate === startDateFormatFind &&
+          journeydata.endDate === endDateFormatFind,
       );
       if (foundJourney) {
         setJourneyInfo(foundJourney);
@@ -91,7 +67,7 @@ const TravelCalendar = ({
   };
 
   const startEndDate =
-    data?.monthlyJourneys?.map(({ dateGroup }) => ({
+    data?.map(dateGroup => ({
       startDate: dateGroup.startDate,
       endDate: dateGroup.endDate,
     })) || [];
@@ -150,21 +126,11 @@ const TravelCalendar = ({
           formatDay={(locale, date) => moment(date).format('D')}
           selectRange={true}
         />
-        <S.SchedulesContainer>
-          {schedulesData?.pages?.map(page =>
-            page?.data?.data?.map(schedule => (
-              <Schedules
-                key={schedule.scheduleId}
-                data={schedule}
-                dataLength={
-                  page.data.data.length * schedulesData?.pages?.length
-                }
-              />
-            )),
-          )}
-          {schedulesData?.pages?.length === 0 ||
-            (!schedulesData && <div>아직 작성한 여정이 없어요!</div>)}
-        </S.SchedulesContainer>
+        {startDate ? (
+          <SchedulesView startDate={startDate} />
+        ) : (
+          <div>일정을 보려면 달력에서 날짜를 선택하세요</div>
+        )}
       </S.HomeContentContainer>
     </S.Wrapper>
   );

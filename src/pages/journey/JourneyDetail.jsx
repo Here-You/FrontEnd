@@ -21,6 +21,8 @@ const JourneyDetailPage = () => {
     return <h1>로딩중입니다...</h1>;
   }
 
+  console.log(data);
+
   return (
     <S.Container>
       <TravelMapDetail journeyInfo={data?.journey_info} />

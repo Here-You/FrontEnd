@@ -8,9 +8,9 @@ const loadMonthlySchedule = (year, month) => {
   return res;
 };
 
-// 일정 불러오기 (확정 x, 무한스크롤)
-const getSchedule = (journeyId, pageParam) => {
-  const url = `/api/${VERSION}/${API_BASE.SCHEDULES}/${journeyId}?cursor=${pageParam}`;
+// 월별 일정 불러오기 (무한스크롤)
+const getSchedule = (date, pageParam, pageSize) => {
+  const url = `/api/${VERSION}/${API_BASE.MAP}/get-monthly-schedule/${date}?cursor=${pageParam}&pageSize=${pageSize}`;
   const res = axiosWithToken.get(url);
 
   return res;
@@ -45,8 +45,9 @@ const deleteJourney = journeyId => {
 };
 
 // 일정 작성하기
-const createSchedule = ({ scheduleId, title, latitude, longitude }) => {
-  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/update-title/${scheduleId}`;
+const createSchedule = (scheduleId, title, latitude, longitude) => {
+  console.log(latitude, longitude);
+  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/update/${scheduleId}`;
   const res = axiosWithToken.put(url, {
     title: title,
     latitude: latitude,
