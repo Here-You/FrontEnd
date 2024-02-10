@@ -1,3 +1,4 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
 
 import theme from '@/theme';
@@ -149,7 +150,7 @@ const Icon = styled.img`
   background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
 `;
 
-const Image = styled.img`
+const Image = styled(LazyLoadImage)`
   position: absolute;
   width: 230px;
   height: 230px;

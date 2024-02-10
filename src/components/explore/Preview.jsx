@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './PreviewStyle.style';
 import Logo from '/images/mypage/MyPageLogo.svg';
 import nonHeart from '/images/signature/ClickedHeart.svg';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Preview = ({ data }) => {
   const navigate = useNavigate();
@@ -10,10 +11,20 @@ const Preview = ({ data }) => {
   return (
     <>
       <S.PreviewWrap onClick={() => navigate(`/signature/post/${data?._id}`)}>
-        <S.PreviewImg src={data?.image} />
+        <S.PreviewImg
+          height={'fit-content'}
+          effect="blur"
+          width={'140px'}
+          src={data?.image}
+        />
         <S.Title>{data?.title}</S.Title>
         <S.Profile>
-          <S.ProfileImg src={data?.userImage ? data?.userImage : Logo} />
+          <S.ProfileImg
+            height={'fit-content'}
+            effect="blur"
+            width={'25px'}
+            src={data?.userImage ? data?.userImage : Logo}
+          />
           <S.Nickname>{data?.userName}</S.Nickname>
         </S.Profile>
         <S.Info>

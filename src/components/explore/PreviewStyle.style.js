@@ -1,3 +1,4 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
@@ -11,7 +12,7 @@ const PreviewWrap = styled.div`
   cursor: pointer;
 `;
 
-const PreviewImg = styled.img`
+const PreviewImg = styled(LazyLoadImage)`
   display: flex;
   width: 140px;
   height: 140px;
@@ -21,10 +22,16 @@ const PreviewImg = styled.img`
 `;
 
 const Title = styled.div`
-  display: flex;
   font-family: Pretendard-bold;
   font-size: 12px;
   margin: 3px 0px;
+  width: 140px;
+
+  // flex는 말줄임표가 적용이 안됨. (block & inline-block)
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const Profile = styled.div`
@@ -33,7 +40,7 @@ const Profile = styled.div`
   justify-content: flex-start;
 `;
 
-const ProfileImg = styled.img`
+const ProfileImg = styled(LazyLoadImage)`
   display: flex;
   width: 25px;
   height: 25px;
@@ -58,6 +65,8 @@ const Date = styled.div`
 
 const HeartContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
+  margin-left: 40px;
+  width: 140px;
   gap: 2px;
 `;
 

@@ -23,6 +23,3 @@ const ManagementProfile = ({ profileData }) => {
 };
 
 export default ManagementProfile;
-
-{
-}

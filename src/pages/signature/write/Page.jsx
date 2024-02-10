@@ -6,6 +6,7 @@ import addButton from '/images/addButton.svg';
 import SearchMap from '@/components/searchMap/SearchMap';
 import useHandleImageChange from '@/hooks/image/useHandleImageChange';
 import useSignatureWrite from '@/store/useSignatureWrite';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function Page({ image, content }) {
   const { title, pages, updatePage, currentPageIndex, resetData } =
@@ -37,7 +38,14 @@ export default function Page({ image, content }) {
         />
       </S.LocationContainer>
       <S.InputWrap>
-        {image && <S.Image src={`data:image/jpeg;base64,${image}`} />}
+        {image && (
+          <S.Image
+            height={'fit-content'}
+            effect="blur"
+            width={'230px'}
+            src={`data:image/jpeg;base64,${image}`}
+          />
+        )}
         <S.PhotoButton>
           <img src={addButton} alt="Add Button" />
           <S.ImageInput

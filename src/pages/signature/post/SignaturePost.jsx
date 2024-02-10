@@ -55,14 +55,6 @@ const SignaturePostPage = () => {
     }
   };
 
-  const handleFollow = async () => {
-    try {
-      toast.success('팔로잉 성공');
-    } catch (e) {
-      toast.error(e.message);
-    }
-  };
-
   if (loading) {
     return <div>로딩 중 입니다..</div>;
   }
@@ -86,14 +78,20 @@ const SignaturePostPage = () => {
                     <S.ProfileImg src={Logo} />
                   )}
                   <S.ProfileDesc>
-                    <h3>{author?.name}</h3>
+                    {author?.name === null ? (
+                      <h3>탈퇴한 회원</h3>
+                    ) : (
+                      <h3>{author?.name}</h3>
+                    )}
                     <date>{header.date}</date>
                   </S.ProfileDesc>
                 </S.ProfileContainer>
-                <FollowButton
-                  initialFollowState={author?.is_followed}
-                  id={author?._id}
-                />
+                {author?.is_followed !== null && (
+                  <FollowButton
+                    initialFollowState={author?.is_followed}
+                    id={author?._id}
+                  />
+                )}
               </S.HeaderContainer>
               <S.TitleContainer>
                 <h1>{header.title}</h1>
