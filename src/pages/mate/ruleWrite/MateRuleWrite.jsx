@@ -30,7 +30,7 @@ const MateRuleWritePage = () => {
     const postData = {
       mainTitle: title,
       rulePairs: rules,
-      invitedId: selectedMates.map(mate => mate._id),
+      membersId: selectedMates.map(mate => mate.id),
     };
     console.log(postData);
 
