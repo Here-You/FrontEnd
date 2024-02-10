@@ -11,13 +11,7 @@ import {
   postDetailSchedule, // updateDetailSchedule,
 } from '@/apis/request/home';
 
-const DetailPlan = ({
-  scheduleId,
-  isToggle,
-  detailData,
-  dataLength,
-  lastPlan,
-}) => {
+const DetailPlan = ({ scheduleId, isToggle, detailData, lastPlan }) => {
   const [newPlan, setNewPlan] = useState('');
   const [editPlan, setEditPlan] = useState('');
   const [editingId, setEditingId] = useState(null);
@@ -74,8 +68,8 @@ const DetailPlan = ({
 
   return (
     <S.DetailContainer $isToggle={isToggle}>
-      <S.LinkLine $dataLength={dataLength} $lastPlan={lastPlan}>
-        <S.Circle $dataLength={dataLength} $lastPlan={lastPlan} />
+      <S.LinkLine $lastPlan={lastPlan}>
+        <S.Circle $lastPlan={lastPlan} />
       </S.LinkLine>
       <S.PlanContainer>
         <S.MarginContainer />

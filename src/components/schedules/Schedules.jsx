@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -10,9 +11,9 @@ import EditLight from '/icons/EditLight.svg';
 import File from '/icons/File.svg';
 import LocationLight from '/icons/LocationLight.svg';
 import Trash from '/icons/Trash.svg';
-import { createSchedule } from '@/apis/request/home';
+import { createSchedule, deleteSchedule } from '@/apis/request/home';
 
-const Schedules = ({ data, dataLength }) => {
+const Schedules = ({ data, endDate }) => {
   const {
     scheduleId,
     title: scheduleTitle,
@@ -25,7 +26,9 @@ const Schedules = ({ data, dataLength }) => {
   const [locationInfo, setLocationInfo] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const lastPlan = scheduleId === dataLength ? true : false;
+  const newDate = new Date(endDate);
+  const formattedEndDate = format(newDate, 'yyyy-MM-dd');
+  const lastPlan = date === formattedEndDate ? true : false;
 
   const handleOnToggle = () => {
     setIsToggle(!isToggle);
@@ -46,15 +49,13 @@ const Schedules = ({ data, dataLength }) => {
     },
   });
 
-  console.log(data);
-
   const { title, location } = watch();
 
   useEffect(() => {
     setValue('location', locationInfo);
   }, [locationInfo]);
 
-  const deleteSchedule = async () => {
+  const handleDeleteSchedule = async () => {
     try {
       setLoading(true);
       const res = await deleteSchedule(scheduleId);
@@ -104,7 +105,7 @@ const Schedules = ({ data, dataLength }) => {
           />
           <S.LeftContainer>
             <S.Date>{date}</S.Date>
-            <S.Image src={Trash} onClick={deleteSchedule} />
+            <S.Image src={Trash} onClick={handleDeleteSchedule} />
             <S.SaveButton onClick={handleSubmit(onSubmit)}>저장</S.SaveButton>
           </S.LeftContainer>
         </S.RowContainer>
@@ -136,14 +137,11 @@ const Schedules = ({ data, dataLength }) => {
         </S.RowContainer>
       </S.MainContainer>
 
-      {dataLength > 1 && dataLength !== scheduleId && (
-        <S.ShortLine $isToggle={isToggle} />
-      )}
+      {endDate && endDate !== date && <S.ShortLine $isToggle={isToggle} />}
 
       <DetailPlan
         isToggle={isToggle}
         detailData={detailSchedules}
-        dataLength={dataLength}
         lastPlan={lastPlan}
         scheduleId={scheduleId}
       />

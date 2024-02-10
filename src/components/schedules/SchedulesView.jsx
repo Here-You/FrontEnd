@@ -7,7 +7,7 @@ import * as S from './SchedulesView.style';
 import { getSchedule } from '@/apis/request/home';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-const SchedulesView = ({ startDate }) => {
+const SchedulesView = ({ startDate, endDate }) => {
   const pageSize = 5;
   const date = new Date(startDate);
   const formattedDate = format(date, 'yyyy-MM-dd');
@@ -53,7 +53,7 @@ const SchedulesView = ({ startDate }) => {
                 <Schedules
                   key={scheduleData.scheduleId}
                   data={scheduleData}
-                  dataLength={data?.scheduleList.length}
+                  endDate={endDate}
                 />
               )),
             )

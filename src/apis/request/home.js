@@ -57,9 +57,9 @@ const createSchedule = (scheduleId, title, latitude, longitude) => {
 };
 
 // 일정 삭제하기
-const deleteSchedule = ({ scheduleId }) => {
-  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/delete/${scheduleId}`;
-  const res = axiosWithToken.delete(url);
+const deleteSchedule = scheduleId => {
+  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/reset/${scheduleId}`;
+  const res = axiosWithToken.put(url);
   return res;
 };
 
