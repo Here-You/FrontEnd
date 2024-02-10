@@ -4,6 +4,7 @@ import theme from '@/theme';
 
 const CenteredContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
+  margin-bottom: 10px;
 `;
 
 const ProfileContainer = styled.div`

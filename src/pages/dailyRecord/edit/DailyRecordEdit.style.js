@@ -30,22 +30,6 @@ const PreviewImage = styled.img`
   }
 `;
 
-const ImageUploadButton = styled.img`
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
-
-  @media ${theme.WINDOW_SIZE.TABLET} {
-    width: 35px;
-    height: 35px;
-  }
-
-  @media ${theme.WINDOW_SIZE.MOBILE} {
-    width: 35px;
-    height: 35px;
-  }
-`;
-
 const ImageInput = styled.input`
   display: none;
   color: transparent;
@@ -178,23 +162,6 @@ const TitleText = styled.input`
   }
 `;
 
-const WeatherText = styled.input`
-  color: #1b9c85;
-  font-size: ${FONT_SIZE.SM};
-  font-weight: 700;
-  text-align: center;
-  border: none;
-
-  &::placeholder {
-    color: #aaa;
-  }
-  &:focus {
-    outline: none;
-  }
-`;
-
-const FeelingText = styled(WeatherText)``;
-
 const ContentText = styled.textarea`
   color: ${theme.COLOR.MAIN.BLACK};
   font-size: ${FONT_SIZE.LG};
@@ -267,11 +234,8 @@ export {
   RecordImageContainer,
   TitleText,
   LocationText,
-  FeelingText,
-  WeatherText,
   WeatherContainer,
   ContentText,
-  ImageUploadButton,
   ImageInput,
   PreviewImage,
   UploadButton,

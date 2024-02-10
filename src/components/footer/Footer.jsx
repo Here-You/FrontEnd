@@ -4,7 +4,7 @@ import * as S from './Footer.style';
 import Group from '/images/Group.svg';
 import Home from '/images/Home.svg';
 import Search from '/images/Search.svg';
-import Globe from '/images/globe.svg';
+import Globe from '/images/footerSignature.svg';
 
 const FooterMenu = [
   { icon: Home, name: '홈', to: '/' },

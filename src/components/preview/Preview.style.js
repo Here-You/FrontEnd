@@ -1,3 +1,4 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -23,7 +24,7 @@ const Date = styled.div`
   font-size: 12px;
 `;
 
-const PreviewImg = styled.img`
+const PreviewImg = styled(LazyLoadImage)`
   width: 150px;
   height: 150px;
   object-fit: cover;

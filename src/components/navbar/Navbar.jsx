@@ -7,13 +7,13 @@ const Navbar = () => {
   return (
     <S.NavWrapper>
       <S.LinkTo to="/mypage">
-        <S.Image src={User} />
+        <S.ImageIcon src={User} />
       </S.LinkTo>
       <S.LinkTo to="/">
         <S.Image src={main} />
       </S.LinkTo>
       <S.LinkTo to="/notification">
-        <S.Image src={Bell}  />
+        <S.ImageIcon src={Bell} />
       </S.LinkTo>
     </S.NavWrapper>
   );

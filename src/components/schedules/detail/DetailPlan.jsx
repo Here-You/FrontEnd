@@ -92,7 +92,7 @@ const DetailPlan = ({
       setLoading(false);
     }
   };
-
+  
   const handleOnChecked = async id => {
     try {
       setLoading(true);
