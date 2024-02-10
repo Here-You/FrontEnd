@@ -10,6 +10,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 const SchedulesView = ({ startDate, endDate }) => {
   const pageSize = 5;
   const date = new Date(startDate);
+
   const formattedDate = format(date, 'yyyy-MM-dd');
   const {
     data: schedulesData,
@@ -17,6 +18,7 @@ const SchedulesView = ({ startDate, endDate }) => {
     hasNextPage,
     isFetching,
     isError,
+    refetch,
   } = useInfiniteQuery({
     queryKey: ['schedules', startDate],
     queryFn: ({ pageParam = 1 }) =>
@@ -54,6 +56,7 @@ const SchedulesView = ({ startDate, endDate }) => {
                   key={scheduleData.scheduleId}
                   data={scheduleData}
                   endDate={endDate}
+                  refetch={refetch}
                 />
               )),
             )

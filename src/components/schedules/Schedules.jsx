@@ -12,8 +12,10 @@ import File from '/icons/File.svg';
 import LocationLight from '/icons/LocationLight.svg';
 import Trash from '/icons/Trash.svg';
 import { createSchedule, deleteSchedule } from '@/apis/request/home';
+import { QueryClient } from '@tanstack/react-query';
 
-const Schedules = ({ data, endDate }) => {
+const Schedules = ({ data, endDate, refetch }) => {
+  const queryClient = new QueryClient();
   const {
     scheduleId,
     title: scheduleTitle,
@@ -60,6 +62,7 @@ const Schedules = ({ data, endDate }) => {
       setLoading(true);
       const res = await deleteSchedule(scheduleId);
       if (res) {
+        refetch({ refetchPage: (page, index) => index === 0 });
         toast('일정이 초기화되었습니다.');
       }
     } catch (e) {
@@ -80,8 +83,10 @@ const Schedules = ({ data, endDate }) => {
         location.latitude,
         location.longitude,
       );
+
       if (res) {
         console.log('제출된 데이터: ', data);
+        refetch({ refetchPage: (page, index) => index === 0 });
         alert('일정이 저장되었습니다.');
       }
     } catch (e) {
