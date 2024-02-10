@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
 import SearchMap from '../searchMap/SearchMap';
 import * as S from './Schedules.style';
 import DetailPlan from './detail/DetailPlan';
-// import { useDeleteSchedule } from './mutations';
 import EditLight from '/icons/EditLight.svg';
 import File from '/icons/File.svg';
 import LocationLight from '/icons/LocationLight.svg';
 import Trash from '/icons/Trash.svg';
+import { createSchedule, deleteSchedule } from '@/apis/request/home';
 
 const Schedules = ({ data, dataLength }) => {
   const {
@@ -23,8 +24,9 @@ const Schedules = ({ data, dataLength }) => {
   } = data;
   const [isToggle, setIsToggle] = useState(false);
   const [locationInfo, setLocationInfo] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const lastPlan = scheduleId === dataLength ? true : false;
-  // const deleteScheduleMutation = useDeleteSchedule();
 
   const handleOnToggle = () => {
     setIsToggle(!isToggle);
@@ -51,16 +53,38 @@ const Schedules = ({ data, dataLength }) => {
     setValue('location', locationInfo);
   }, [locationInfo]);
 
-  const deleteSchedule = async () => {
-    // deleteScheduleMutation.mutateAsync(scheduleId);
-    alert('일정이 삭제되었습니다.');
-    // 일정 삭제 api 요청
+  const handleDeleteSchedule = async () => {
+    try {
+      setLoading(true);
+      const res = await deleteSchedule(scheduleId);
+      if (res) toast('일정이 삭제되었습니다.');
+    } catch (e) {
+      setError(true);
+      console.log(e);
+      toast.error('일정 삭제 중 오류가 발생했습니다.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const onSubmit = async data => {
-    alert('일정이 저장되었습니다.');
-    console.log('제출된 데이터: ', data);
-    // 일정 수정 api 요청
+    const { title, location } = data;
+    try {
+      setLoading(true);
+      const res = await createSchedule({
+        scheduleId: scheduleId,
+        title: title,
+        latitude: location.latitude,
+        longitude: location.longitude,
+      });
+      if (res) toast('일정이 저장되었습니다.');
+    } catch (e) {
+      setError(true);
+      console.log(e);
+      toast.error('일정 저장 중 오류가 발생했습니다.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -75,7 +99,7 @@ const Schedules = ({ data, dataLength }) => {
           />
           <S.LeftContainer>
             <S.Date>{date}</S.Date>
-            <S.Image src={Trash} onClick={deleteSchedule} />
+            <S.Image src={Trash} onClick={handleDeleteSchedule} />
             <S.SaveButton onClick={handleSubmit(onSubmit)}>저장</S.SaveButton>
           </S.LeftContainer>
         </S.RowContainer>
@@ -91,8 +115,8 @@ const Schedules = ({ data, dataLength }) => {
           <Link
             to={
               diary_written
-                ? `/dailyrecord/${scheduleId}?journeyId=${journeyId}`
-                : `/dailyrecord/${scheduleId}/write`
+                ? `/dailyrecord?scheduleId=${scheduleId}`
+                : `/dailyrecord/${scheduleId}/write?date=${date}`
             }
             style={{
               marginLeft: 'auto',

@@ -11,7 +11,7 @@ export const useGetDiary = scheduleId => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getDiary({ scheduleId });
+        const res = await getDiary(scheduleId);
         const data = res.data.data;
         setData(data);
       } catch (e) {

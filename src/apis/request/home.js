@@ -10,7 +10,7 @@ const loadMonthlySchedule = (year, month) => {
 
 // 일정 불러오기 (확정 x, 무한스크롤)
 const getSchedule = (journeyId, pageParam) => {
-  const url = `/api/${VERSION}/${API_BASE.SCHEDULES}/${journeyId}?cursor=${pageParam}`;
+  const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/${journeyId}?cursor=${pageParam}`;
   const res = axiosWithToken.get(url);
 
   return res;
@@ -56,7 +56,7 @@ const createSchedule = ({ scheduleId, title, latitude, longitude }) => {
 };
 
 // 일정 삭제하기
-const deleteSchedule = ({ scheduleId }) => {
+const deleteSchedule = scheduleId => {
   const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/delete/${scheduleId}`;
   const res = axiosWithToken.delete(url);
   return res;
@@ -88,7 +88,7 @@ const deleteDetailSchedule = ({ detailId }) => {
 };
 
 // 세부 일정 상태 변경하기
-const changeDetailScheduleStatus = ({ detailId }) => {
+const changeDetailScheduleStatus = detailId => {
   const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/update-status/${detailId}`;
   const res = axiosWithToken.patch(url);
   return res;
@@ -109,17 +109,17 @@ const postDiary = ({ scheduleId, postData }) => {
   return res;
 };
 
-// 일지 불러오기 (한개만)
-const getDiary = nowPage => {
-  const url = `/api/${VERSION}/${API_BASE.DIARIES}/${nowPage}`;
+// 일지 불러오기 (캘린더)(한개만 불러옴)
+const getDiary = scheduleId => {
+  const url = `/api/${VERSION}/${API_BASE.DIARY}/get/${scheduleId}`;
   const res = axiosWithToken.get(url);
   return res;
 };
 
 // 일지 수정하기
-const updateDiary = ({ diaryId, postData }) => {
+const updateDiary = (diaryId, postData) => {
   const { title, place, weather, mood, content, images } = postData;
-  const url = `/api/${VERSION}/${API_BASE.DIARIES}/update/${diaryId}`;
+  const url = `/api/${VERSION}/${API_BASE.DIARY}/update/${diaryId}`;
   const res = axiosWithToken.put(url, {
     title: title,
     place: place,

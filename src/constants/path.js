@@ -8,9 +8,10 @@ const BASE_PATH = {
   MAP: '/map',
   MAP_DETAIL: '/map/:journeyId',
   // DAILYRECORD
-  DAILY_RECORD: '/dailyrecord/:scheduleId',
+  DAILY_RECORD: '/dailyrecord',
+  DAILY_RECORD_LIST: '/dailyrecord/:journeyId',
   DAILY_RECORD_WRITE: '/dailyrecord/:scheduleId/write',
-  DAILY_RECORD_EDIT: '/dailyrecord/:scheduleId/edit',
+  DAILY_RECORD_EDIT: '/dailyrecord/:diaryId/edit',
   // SIGNATURE
   SIGNATURE: '/signature',
   SIGNATURE_WRITE: '/signature/write',
@@ -78,7 +79,7 @@ const API_URL = {
   DELETE_SCHEDULE: `/api/${VERSION}/${API_BASE.SCHEDULE}/delete/:scheduleId`,
   CREATE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/create/:scheduleId`,
   UPDATE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/update/:detailId`,
-  CHANGE_DETAIL_SCHEDULE: `api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/update-status/:detailId`,
+  CHANGE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/update-status/:detailId`,
   DELETE_DETAIL_SCHEDULE: `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/delete/:detailId`,
   CREATE_DIARY: `/api/${VERSION}/${API_BASE.DIARY}/create/:scheduleId`,
   GET_DIARY: `/api/${VERSION}/${API_BASE.DIARIES}/:diaryId`,

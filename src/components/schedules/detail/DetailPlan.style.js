@@ -110,7 +110,13 @@ const ScrollContainer = styled.div`
 
 const Image = styled.img`
   cursor: pointer;
-  width: 20px;
+  width: 18px;
+  align-self: flex-start;
+`;
+
+const CheckImg = styled(Image)`
+  width: 16px;
+  margin-left: 1px;
 `;
 
 const Input = styled.textarea`
@@ -154,6 +160,7 @@ export {
   Circle,
   ScrollContainer,
   Image,
+  CheckImg,
   Input,
   SaveButton,
 };

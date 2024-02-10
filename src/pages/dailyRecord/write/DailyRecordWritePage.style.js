@@ -247,10 +247,13 @@ const UploadButton = styled.button`
 
   border: 0;
   border-radius: 10px;
-  background-color: ${theme.COLOR.MAIN.GREEN};
+  background-color: ${props =>
+    props.$errors
+      ? `${theme.COLOR.MAIN.GRAY}`
+      : `${theme.COLOR.MAIN.MEDIUM_GREEN}`};
   color: ${theme.COLOR.MAIN.WHITE};
   font-size: ${FONT_SIZE.BASE};
-  cursor: pointer;
+  cursor: ${props => (props.$errors ? 'not-allowed' : 'pointer')};
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     padding: 5px;

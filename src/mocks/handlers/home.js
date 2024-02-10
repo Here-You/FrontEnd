@@ -254,10 +254,12 @@ export const HomeHandlers = [
               {
                 detailScheduleId: 1,
                 content: 'Morning exploration',
+                isDone: false,
               },
               {
                 detailScheduleId: 2,
                 content: 'Afternoon adventure',
+                isDone: true,
               },
             ],
             diary_written: true,
@@ -276,10 +278,12 @@ export const HomeHandlers = [
               {
                 detailScheduleId: 3,
                 content: 'Beach time',
+                isDone: false,
               },
               {
                 detailScheduleId: 4,
                 content: 'Sunset watching',
+                isDone: true,
               },
             ],
             diary_written: false,
@@ -298,10 +302,12 @@ export const HomeHandlers = [
               {
                 detailScheduleId: 5,
                 content: 'Visit landmarks',
+                isDone: false,
               },
               {
                 detailScheduleId: 6,
                 content: 'Try local cuisine',
+                isDone: false,
               },
             ],
             diary_written: false,
@@ -320,10 +326,12 @@ export const HomeHandlers = [
               {
                 detailScheduleId: 5,
                 content: 'Visit landmarks',
+                isDone: false,
               },
               {
                 detailScheduleId: 6,
                 content: 'Try local cuisine',
+                isDone: false,
               },
             ],
             diary_written: false,
@@ -342,10 +350,12 @@ export const HomeHandlers = [
               {
                 detailScheduleId: 5,
                 content: 'Visit landmarks',
+                isDone: false,
               },
               {
                 detailScheduleId: 6,
                 content: 'Try local cuisine',
+                isDone: false,
               },
             ],
             diary_written: false,
@@ -375,19 +385,15 @@ export const HomeHandlers = [
   http.put(
     `${baseURL}${API_URL.UPDATE_DETAIL_SCHEDULE}`,
     ({ request, params }) => {
-      const scheduleId = params.scheduleId;
-      if (!scheduleId) {
+      const detailId = params.detailId;
+      if (!detailId) {
         return new HttpResponse(null, { status: 404 });
       } else {
         return HttpResponse.json({
-          status: 200,
           success: true,
-          message: '세부 일정 수정하기 성공',
-          data: {
-            id: 1,
-            content: 'Meeting',
-            scheduleId: scheduleId,
-          },
+          code: 201,
+          message: '세부 일정을 작성했습니다.',
+          data: null,
         });
       }
     },
@@ -395,7 +401,7 @@ export const HomeHandlers = [
   //세부 일정 상태 변경하기
   http.patch(
     `${baseURL}${API_URL.CHANGE_DETAIL_SCHEDULE}`,
-    (request, params) => {
+    ({ request, params }) => {
       const detailId = params.detailId;
       if (!detailId) {
         return new HttpResponse(null, { status: 404 });
@@ -404,7 +410,7 @@ export const HomeHandlers = [
           success: true,
           code: 200,
           message: '세부 일정 상태를 변경했습니다',
-          data: false,
+          data: null,
         });
       }
     },
