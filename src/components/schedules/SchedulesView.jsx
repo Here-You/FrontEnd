@@ -41,7 +41,6 @@ const SchedulesView = ({ startDate, endDate }) => {
   useEffect(() => {
     if (inView) {
       !isFetching && hasNextPage && fetchNextPage();
-      console.log('인뷰 들어옴');
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 

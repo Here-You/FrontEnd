@@ -9,15 +9,11 @@ import { getSchedule } from '@/apis/request/home';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import 'react-spring-bottom-sheet/dist/style.css';
 
-const BottomDetailScrollPage = ({ journeyInfo }) => {
+const BottomDetailScrollPage = ({ startDate, endDate }) => {
+  const pageSize = 10;
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const { journeyId } = useParams();
-
-  const journeyTitle = journeyInfo?.journey_title;
-  const scheduleLocations = journeyInfo?.schedule_locations;
-  const startDate = journeyInfo?.date_group_id.startDate;
-  const endDate = journeyInfo?.date_group_id.endDate;
 
   const {
     data: schedulesData,
@@ -25,13 +21,14 @@ const BottomDetailScrollPage = ({ journeyInfo }) => {
     hasNextPage,
     isFetching,
     isError,
+    refetch,
   } = useInfiniteQuery({
-    queryKey: ['schedules', journeyId],
-    queryFn: ({ pageParam = 1 }) => getSchedule(journeyId, pageParam),
+    queryKey: ['schedules', startDate],
+    queryFn: ({ pageParam = 1 }) => getSchedule(startDate, pageParam, pageSize),
     initialPageParam: 0,
-    getNextPageParam: lastPage => lastPage?.data?.data.at(-1).scheduleId,
+    getNextPageParam: lastPage =>
+      lastPage?.data?.data?.data.nextCursor + 1 || 0,
     staleTime: 60 * 1000,
-    // enabled,  // 처리 필요
   });
 
   console.log(schedulesData);
@@ -47,8 +44,6 @@ const BottomDetailScrollPage = ({ journeyInfo }) => {
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
-  console.log(schedulesData);
-
   return (
     <>
       <S.Button onClick={() => setOpen(true)}>여정 보기</S.Button>
@@ -62,26 +57,27 @@ const BottomDetailScrollPage = ({ journeyInfo }) => {
             <S.CloseButton onClick={() => setOpen(false)}>X</S.CloseButton>
           </S.HeaderWrapper>
         }>
-        <div
+        {/* <div
           style={{
             height: '100%',
             marginTop: '20px',
-          }}>
-          {schedulesData?.pages?.map(page =>
-            page.data.data.map(schedule => (
+          }}> */}
+        {schedulesData?.pages?.map(page =>
+          page?.data?.data?.data?.map(data =>
+            data?.scheduleList.map(scheduleData => (
               <Schedules
-                key={schedule.scheduleId}
-                data={schedule}
-                dataLength={
-                  page.data.data.length * schedulesData?.pages?.length
-                }
+                key={scheduleData.scheduleId}
+                data={scheduleData}
+                endDate={endDate}
+                refetch={refetch}
               />
             )),
-          )}
-          {schedulesData?.pages?.length === 0 && (
-            <div>아직 작성한 여정이 없어요!</div>
-          )}
-        </div>
+          ),
+        )}
+        {schedulesData?.pages?.length === 0 && (
+          <div>아직 작성한 여정이 없어요!</div>
+        )}
+        {/* </div> */}
         <div ref={ref} style={{ height: 50 }}></div>
       </BottomSheet>
     </>

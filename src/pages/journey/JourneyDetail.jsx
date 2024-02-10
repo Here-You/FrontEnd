@@ -15,18 +15,17 @@ const JourneyDetailPage = () => {
     error: jError,
   } = useGetDetailJourneyMap(journeyId);
 
-  console.log(jData);
-
   if (loading) {
     return <h1>로딩중입니다...</h1>;
   }
 
-  console.log(data);
-
   return (
     <S.Container>
       <TravelMapDetail journeyInfo={data?.journey_info} />
-      <BottomDetailScrollPage journeyInfo={jData?.journey_info} />
+      <BottomDetailScrollPage
+        startDate={data?.journey?.startDate}
+        endDate={data?.journey?.endDate}
+      />
     </S.Container>
   );
 };

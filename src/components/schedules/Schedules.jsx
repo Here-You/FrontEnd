@@ -12,10 +12,8 @@ import File from '/icons/File.svg';
 import LocationLight from '/icons/LocationLight.svg';
 import Trash from '/icons/Trash.svg';
 import { createSchedule, deleteSchedule } from '@/apis/request/home';
-import { QueryClient } from '@tanstack/react-query';
 
 const Schedules = ({ data, endDate, refetch }) => {
-  const queryClient = new QueryClient();
   const {
     scheduleId,
     title: scheduleTitle,
@@ -80,6 +78,7 @@ const Schedules = ({ data, endDate, refetch }) => {
       const res = await createSchedule(
         scheduleId,
         title,
+        location.name,
         location.latitude,
         location.longitude,
       );
@@ -118,7 +117,7 @@ const Schedules = ({ data, endDate, refetch }) => {
           <S.Mate>
             <S.Image src={LocationLight} />
             <SearchMap
-              inputValue={locationData[0].latitude}
+              inputValue={locationData[0].name}
               register={register}
               selectLocation={setLocationInfo}
             />
@@ -142,13 +141,14 @@ const Schedules = ({ data, endDate, refetch }) => {
         </S.RowContainer>
       </S.MainContainer>
 
-      {endDate && endDate !== date && <S.ShortLine $isToggle={isToggle} />}
+      {formattedEndDate !== date && <S.ShortLine $isToggle={isToggle} />}
 
       <DetailPlan
         isToggle={isToggle}
         detailData={detailSchedules}
         lastPlan={lastPlan}
         scheduleId={scheduleId}
+        refetch={refetch}
       />
     </S.Container>
   );
