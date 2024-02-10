@@ -26,7 +26,7 @@ const MateRuleWritePage = () => {
     setRules(prevRules => prevRules.filter((_, index) => index !== item));
   };
 
-  const handleSubmitRule = () => {
+  const handleSubmitRule = async () => {
     const postData = {
       mainTitle: title,
       rulePairs: rules,
@@ -34,8 +34,9 @@ const MateRuleWritePage = () => {
     };
     console.log(postData);
 
-    postCreateMateRule(postData)
+    const res = await postCreateMateRule(postData)
       .then(() => {
+        console.log(res);
         toast.success('규칙을 성공적으로 작성하였습니다.');
         navigate('/mate');
       })
