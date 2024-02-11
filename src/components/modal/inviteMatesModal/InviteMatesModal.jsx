@@ -38,7 +38,7 @@ const InviteMatesModal = () => {
         {loading ? (
           <div>로딩중입니다...</div>
         ) : (
-          data.map(d => {
+          data?.map(d => {
             const isSelected = mateIds.includes(d.id);
             return (
               <S.ProfileContainer

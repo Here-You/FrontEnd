@@ -24,8 +24,6 @@ const RuleEditPage = () => {
     membersId: [],
   });
 
-  console.log(postData);
-
   useEffect(() => {
     if (initialData) {
       setPostData({
@@ -40,7 +38,10 @@ const RuleEditPage = () => {
     if (postData.rulePairs.length < 10) {
       setPostData(prevData => ({
         ...prevData,
-        rulePairs: [...prevData.rulePairs, { ruleTitle: '', ruleDetail: '' }],
+        rulePairs: [
+          ...prevData.rulePairs,
+          { ruleTitle: '', ruleDetail: '', id: null },
+        ],
       }));
     }
   };
@@ -53,7 +54,21 @@ const RuleEditPage = () => {
   };
 
   const handleSubmitRule = () => {
-    postCreateMateRule(postData)
+    const ruleData = postData.rulePairs.map(rule => ({
+      ruleTitle: rule.ruleTitle,
+      ruleDetail: rule.ruleDetail,
+      id: rule.id,
+    }));
+
+    const postDataWithId = {
+      mainTitle: postData.mainTitle,
+      rulePairs: ruleData,
+      membersId: postData.membersId,
+    };
+
+    console.log(postDataWithId);
+
+    postCreateMateRule(postDataWithId)
       .then(() => {
         toast.success('규칙을 성공적으로 수정하였습니다.');
         navigate(`/mate/${ruleId}`);

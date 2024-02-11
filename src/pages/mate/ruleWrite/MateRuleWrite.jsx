@@ -36,7 +36,6 @@ const MateRuleWritePage = () => {
 
     await postCreateMateRule(postData)
       .then(() => {
-        console.log(res);
         toast.success('규칙을 성공적으로 작성하였습니다.');
         navigate('/mate');
       })
