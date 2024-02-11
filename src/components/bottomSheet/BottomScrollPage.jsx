@@ -16,7 +16,6 @@ const BottomScrollPage = () => {
   const [month, setMonth] = useState(parseInt(searchParams.get('month')) || 2);
 
   const { data: journey, loading, error } = useMonthlyJourney(year, month);
-  console.log(journey);
 
   if (loading) {
     return <div>로딩 중 입니다...</div>;

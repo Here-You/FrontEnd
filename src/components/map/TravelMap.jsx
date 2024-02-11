@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 
 import * as S from './TravelMap.style';
 import Icon from '/icons/Icon.svg';
-import { POSTS } from '@/constants/location';
+// import { POSTS } from '@/constants/location';
 import {
   GoogleMap,
   InfoWindowF,
@@ -23,7 +23,7 @@ const myStyles = [
   },
 ];
 
-const TravelMap = () => {
+const TravelMap = ({ mapDataList }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API,
@@ -70,33 +70,48 @@ const TravelMap = () => {
       zoom={10}
       onLoad={onLoad}
       onUnmount={onUnmount}>
-      {POSTS.slice(0, 30).map(post => (
-        <MarkerF
-          key={post.title}
-          position={{ lat: post.latitude, lng: post.longitude }}
-          onClick={() =>
-            handleMarkerClick(
-              { lat: post.latitude, lng: post.longitude },
-              post.title,
-            )
-          }
-          icon={{
-            url: Icon,
-            scaledSize: new window.google.maps.Size(32, 32),
-          }}>
-          {clicked &&
-            selectedMarker.position &&
-            selectedMarker.position.lat === post.latitude &&
-            selectedMarker.position.lng === post.longitude && (
-              <InfoWindowF onCloseClick={() => setClicked(false)}>
-                <S.InfoContainer onClick={() => setClicked(false)}>
-                  <img src={post.image} width="50px" height="50px" />
-                  <span>{post.title}</span>
-                </S.InfoContainer>
-              </InfoWindowF>
-            )}
-        </MarkerF>
-      ))}
+      {mapDataList &&
+        mapDataList.map(post => (
+          <MarkerF
+            key={post?.location?.name}
+            position={{
+              lat: parseFloat(post?.location?.latitude),
+              lng: parseFloat(post?.location?.longitude),
+            }}
+            onClick={() =>
+              handleMarkerClick(
+                {
+                  lat: parseFloat(post?.location?.latitude),
+                  lng: parseFloat(post?.location?.longitude),
+                },
+                post?.location?.name,
+              )
+            }
+            icon={{
+              url: Icon,
+              scaledSize: new window.google.maps.Size(32, 32),
+            }}>
+            {clicked &&
+              selectedMarker.position &&
+              selectedMarker.position.lat ===
+                parseFloat(post?.location?.latitude) &&
+              selectedMarker.position.lng ===
+                parseFloat(post?.location?.longitude) && (
+                <InfoWindowF onCloseClick={() => setClicked(false)}>
+                  <S.InfoContainer onClick={() => setClicked(false)}>
+                    {post.diaryImage && (
+                      <img
+                        src={post?.diaryImage?.imageUrl}
+                        width="50px"
+                        height="50px"
+                      />
+                    )}
+                    <span>{post?.location?.name}</span>
+                  </S.InfoContainer>
+                </InfoWindowF>
+              )}
+          </MarkerF>
+        ))}
     </GoogleMap>
   ) : (
     <></>

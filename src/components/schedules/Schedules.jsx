@@ -125,8 +125,8 @@ const Schedules = ({ data, endDate, refetch }) => {
           <Link
             to={
               diary[0]
-                ? `/dailyrecord/${scheduleId}?journeyId=${journeyId}`
-                : `/dailyrecord/${scheduleId}/write`
+                ? `/dailyrecord?scheduleId=${scheduleId}`
+                : `/dailyrecord/${scheduleId}/write?date=${date}`
             }
             style={{
               marginLeft: 'auto',
