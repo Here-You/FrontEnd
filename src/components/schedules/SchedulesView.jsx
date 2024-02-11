@@ -12,6 +12,7 @@ const SchedulesView = ({ startDate, endDate }) => {
   const date = new Date(startDate);
 
   const formattedDate = format(date, 'yyyy-MM-dd');
+
   const {
     data: schedulesData,
     fetchNextPage,
@@ -47,12 +48,12 @@ const SchedulesView = ({ startDate, endDate }) => {
   return (
     <>
       <S.Container $showContainer={dataExists}>
-        {schedulesData?.pages?.map(page =>
+        {schedulesData?.pages?.map((page, pageIndex) =>
           page?.data?.data?.data && Array.isArray(page?.data?.data?.data) ? (
             page?.data?.data?.data?.map(data =>
               data?.scheduleList.map(scheduleData => (
                 <Schedules
-                  key={scheduleData.scheduleId}
+                  key={scheduleData?.scheduleId}
                   data={scheduleData}
                   endDate={endDate}
                   refetch={refetch}
@@ -60,7 +61,7 @@ const SchedulesView = ({ startDate, endDate }) => {
               )),
             )
           ) : (
-            <></>
+            <div key={pageIndex}></div>
           ),
         )}
       </S.Container>

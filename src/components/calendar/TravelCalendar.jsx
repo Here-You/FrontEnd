@@ -18,7 +18,6 @@ const TravelCalendar = ({
 }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const pageSize = 5;
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -98,11 +97,11 @@ const TravelCalendar = ({
   return (
     <S.Wrapper>
       <S.ButtonContainer>
-        <S.Button clicked={pathname === '/'} onClick={() => navigate('/')}>
+        <S.Button $clicked={pathname === '/'} onClick={() => navigate('/')}>
           캘린더로 보기
         </S.Button>
         <S.Button
-          clicked={pathname === '/map'}
+          $clicked={pathname === '/map'}
           onClick={() => navigate(`/map?year=${year}&month=${month}`)}>
           지도로 보기
         </S.Button>

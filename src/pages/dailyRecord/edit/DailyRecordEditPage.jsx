@@ -56,7 +56,7 @@ const DailyRecordEditPage = () => {
       setValue('weather', data.weather);
       setValue('mood', data.mood);
       setValue('content', data.content);
-      setValue('fileName', data.fileName);
+      setValue('fileName', data.imageUrl);
     }
   }, [data, setValue]);
 
