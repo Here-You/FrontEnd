@@ -124,13 +124,12 @@ const deleteTeamRuleList = ruleId => {
 
 const getMateProfile = userId => {
   const url = `${API_URL.MATE_PROFILE_SEARCH}/${userId}`;
-
   return axiosWithToken.get(url);
 };
 
 const getMateInfiniteSignatureList = (mateId, take, { pageParam }) => {
   const url = `api/v1/mate/signature/${mateId}?take=${take}&cursorId=${pageParam}`;
-  console.log(url);
+
   return axiosWithToken.get(url);
 };
 

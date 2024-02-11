@@ -21,6 +21,7 @@ import {
   MateRuleEditPage,
   MateRuleWritePage,
   MateSearchPage,
+  MyDiary,
   MyPage,
   MyPageEditPage,
   Notification,
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: `${BASE_PATH.NOTIFICATION_PAGE}`,
         element: <Notification />,
+      },
+      {
+        path: `${BASE_PATH.MY_DIARY}`,
+        element: <MyDiary />,
       },
     ],
   },

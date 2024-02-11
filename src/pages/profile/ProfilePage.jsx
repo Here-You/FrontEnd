@@ -7,11 +7,14 @@ import Heart from '/images/signature/ClickedHeart.svg';
 import { ProfileBox } from '@/components';
 import { useMateProfileSearch } from '@/hooks/mate/useMateProfileSearch';
 import { useInfiniteSignatureList } from '@/hooks/profile/queries/useInfiniteSignatureList';
+import { useProfileData } from '@/hooks/profile/queries/useProfileData';
 
 const ProfilePage = () => {
   const [hoveredSignature, setHoveredSignature] = useState(null);
   const { userId } = useParams();
-  const { data, loading, error } = useMateProfileSearch(userId);
+  const { data, isPending, isError } = useProfileData(userId);
+  const profileData = data?.data?.data;
+
   const navigate = useNavigate();
 
   const {
@@ -44,7 +47,7 @@ const ProfilePage = () => {
 
   return (
     <S.Container>
-      <ProfileBox profile={data} />
+      <ProfileBox profile={profileData} />
       {/* <S.Title>{data?.nickname}님의 시그니처 포스트</S.Title> */}
       <S.GridContainer>
         {signaturesList?.map(signature => {

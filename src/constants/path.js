@@ -31,6 +31,7 @@ const BASE_PATH = {
   MY_PAGE_EDIT: '/mypage/edit',
   TRAVEL_TYPE: '/traveltype',
   TRAVEL_TYPE_RESULT: '/traveltype/result',
+  MY_DIARY: '/mydiary',
   //EXPLORE(탐색)
   EXPLORE: '/explore',
   // JOURNEY

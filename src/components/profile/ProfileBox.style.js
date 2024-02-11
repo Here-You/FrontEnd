@@ -38,6 +38,19 @@ const TextContainer = styled.div`
   }
 `;
 
+const Button = styled.button`
+  background: ${theme.COLOR.MAIN.LIGHT_GREEN};
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+`;
+
 const InfoContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   white-space: nowrap;
@@ -63,6 +76,7 @@ export {
   ImageContainer,
   Image,
   TextContainer,
+  Button,
   InfoContainer,
   CountContainer,
   Intro,

@@ -28,6 +28,7 @@ import MateRuleWritePage from './mate/ruleWrite/MateRuleWrite';
 import MateSearchPage from './mate/search/MateSearch';
 // MY_PAGE
 import MyPage from './mypage/MyPage';
+import MyDiary from './mypage/diary/MyDiary';
 import MyPageEditPage from './mypage/edit/MyPageEdit';
 // notification
 import Notification from './notification/Notification';
@@ -55,6 +56,7 @@ export {
   LoginPage,
   OnBoardingPage,
   MatePage,
+  MyDiary,
   MateSearchPage,
   MateRuleEditPage,
   MateManagementPage,
