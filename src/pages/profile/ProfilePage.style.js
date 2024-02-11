@@ -7,13 +7,25 @@ const Container = styled.div`
   background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
 `;
 
+const Title = styled.h1`
+  margin: 20px 0;
+  font-size: 20px;
+  align-items: flex-start;
+`;
+
 const ImageContainer = styled.div`
   position: relative;
+  width: 170px;
+  height: 170px;
+  border-radius: 20px;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.1),
+    0 13px 10px rgba(0, 0, 0, 0.02);
 `;
 
 const Image = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 170px;
   border-radius: 20px;
   cursor: pointer;
 
@@ -24,8 +36,8 @@ const Image = styled.img`
 
 const DescriptionContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 170px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
@@ -57,6 +69,7 @@ const GridContainer = styled.div`
 
 export {
   Container,
+  Title,
   ImageContainer,
   Image,
   DescriptionContainer,

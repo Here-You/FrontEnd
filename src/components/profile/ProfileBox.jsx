@@ -1,9 +1,11 @@
 import { CountInfo } from '..';
 
+import FollowButton from '../mate/FollowButton';
 import * as S from './ProfileBox.style';
 import Logo from '/images/mypage/MyPageLogo.svg';
 
 const ProfileBox = ({ profile }) => {
+  console.log(profile?.is_followed, profile?._id);
   return (
     <S.ProfileContainer>
       <S.InfoContainer>
@@ -14,6 +16,12 @@ const ProfileBox = ({ profile }) => {
           />
           <S.TextContainer>
             <h1>{profile?.nickname}</h1>
+            {profile?.is_followed !== null && (
+              <FollowButton
+                initialFollowState={profile?.is_followed}
+                id={profile?._id}
+              />
+            )}
           </S.TextContainer>
         </S.ImageContainer>
         <S.CountContainer>
@@ -22,7 +30,7 @@ const ProfileBox = ({ profile }) => {
           <CountInfo title="팔로잉" count={profile?.following} />
         </S.CountContainer>
       </S.InfoContainer>
-      <S.Intro>{profile?.introduction}123123123123</S.Intro>
+      <S.Intro>{profile?.introduction}</S.Intro>
     </S.ProfileContainer>
   );
 };

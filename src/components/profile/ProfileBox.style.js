@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const ProfileContainer = styled.div`
-  width: 84%;
+  width: 95%;
   margin-top: 20px;
   height: 200px;
   padding: 20px;
@@ -30,8 +30,12 @@ const Image = styled.img`
 `;
 
 const TextContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
+  ${theme.ALIGN.ROW_CENTER};
   margin-top: 30px;
+
+  h1 {
+    font-size: 1.8rem;
+  }
 `;
 
 const InfoContainer = styled.div`
