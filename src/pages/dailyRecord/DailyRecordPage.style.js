@@ -18,7 +18,6 @@ const PreviewImage = styled.img`
   height: 300px;
   border-radius: 20px;
   object-fit: cover;
-  cursor: pointer;
 
   @media ${theme.WINDOW_SIZE.TABLET} {
     width: 200px;
@@ -167,6 +166,8 @@ const ContentText = styled.p`
   text-align: center;
   border: none;
   resize: none;
+  white-space: pre-wrap;
+  overflow: scroll;
 
   &::placeholder {
     color: #aaa;

@@ -61,8 +61,8 @@ const DailyRecordWritePage = () => {
       const reader = new FileReader();
       reader.onloadend = async () => {
         const compressedFile = await imageCompression(file, {
-          maxWidthOrHeight: 50,
-          maxSizeMB: 0.5,
+          maxWidthOrHeight: 500,
+          maxSizeMB: 2,
           fileType: 'image/jpeg',
         });
         const compressedReader = new FileReader();

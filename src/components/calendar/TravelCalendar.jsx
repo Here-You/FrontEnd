@@ -52,15 +52,17 @@ const TravelCalendar = ({
     const endDateFormatFind = moment(e[1]).format('YYYY-MM-DD');
 
     if (startDateFormatFind && endDateFormatFind) {
-      const foundJourney = data.find(
-        journeydata =>
-          journeydata.startDate === startDateFormatFind &&
-          journeydata.endDate === endDateFormatFind,
-      );
-      if (foundJourney) {
-        setJourneyInfo(foundJourney);
-      } else {
-        setJourneyInfo(null);
+      if (data) {
+        const foundJourney = data.find(
+          journeydata =>
+            journeydata.startDate === startDateFormatFind &&
+            journeydata.endDate === endDateFormatFind,
+        );
+        if (foundJourney) {
+          setJourneyInfo(foundJourney);
+        } else {
+          setJourneyInfo(null);
+        }
       }
     }
   };

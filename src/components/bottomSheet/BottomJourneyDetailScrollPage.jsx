@@ -16,9 +16,9 @@ const BottomJourneyDetailScrollPage = ({ journeyInfo }) => {
   const startDate = journeyInfo?.journey?.startDate;
   const endDate = journeyInfo?.journey?.endDate;
 
-  const validImageCount = scheduleLocations?.filter(
+  const validImageList = scheduleLocations?.filter(
     s => s.diaryImage && s.diaryImage.imageUrl,
-  ).length;
+  );
 
   return (
     <>
@@ -45,21 +45,18 @@ const BottomJourneyDetailScrollPage = ({ journeyInfo }) => {
             height: '100%',
           }}>
           <S.ImageContainer>
-            {scheduleLocations?.slice(0, 3).map((s, index) => {
-              s.diaryImage === null ? (
-                <></>
-              ) : (
+            {validImageList &&
+              validImageList?.slice(0, 3).map((s, index) => (
                 <S.ImageWrapper key={index}>
                   <S.Image src={s?.diaryImage?.imageUrl} />
                 </S.ImageWrapper>
-              );
-            })}
-            {validImageCount > 3 && <p>...</p>}
+              ))}
+            {validImageList?.length > 3 && <p>...</p>}
           </S.ImageContainer>
           <S.ButtonContainer>
             <S.Button
               onClick={() =>
-                validImageCount === 0
+                validImageList?.length === 0
                   ? toast('아직 작성한 일지가 없어요!')
                   : navigate(`/dailyrecord/${journeyId}`)
               }>
