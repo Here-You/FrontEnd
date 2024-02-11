@@ -43,11 +43,11 @@ const DailyRecordEditPage = () => {
       weather: '',
       mood: '',
       content: '',
-      image: '',
+      fileName: '',
     },
   });
 
-  const { place, title, weather, mood, content, image } = watch();
+  const { place, title, weather, mood, content, fileName } = watch();
 
   useEffect(() => {
     if (data) {
@@ -56,7 +56,7 @@ const DailyRecordEditPage = () => {
       setValue('weather', data.weather);
       setValue('mood', data.mood);
       setValue('content', data.content);
-      setValue('image', data.imageUrl);
+      setValue('fileName', data.fileName);
     }
   }, [data, setValue]);
 
@@ -75,14 +75,14 @@ const DailyRecordEditPage = () => {
       const reader = new FileReader();
       reader.onloadend = async () => {
         const compressedFile = await imageCompression(file, {
-          maxWidthOrHeight: 800,
-          maxSizeMB: 2,
+          maxWidthOrHeight: 50,
+          maxSizeMB: 0.5,
           fileType: 'image/jpeg',
         });
         const compressedReader = new FileReader();
         compressedReader.onloadend = () => {
           const base64Image = compressedReader.result.split(',')[1];
-          setValue('recordImg', base64Image);
+          setValue('fileName', base64Image);
         };
         compressedReader.readAsDataURL(compressedFile);
       };
@@ -131,11 +131,11 @@ const DailyRecordEditPage = () => {
       </S.DateContainer>
       <S.RecordContainer>
         <S.RecordImageContainer $selectedImg={selectedImg}>
-          <label htmlFor="image">
-            <S.PreviewImage src={selectedImg ? selectedImg : image} />
+          <label htmlFor="fileName">
+            <S.PreviewImage src={selectedImg ? selectedImg : fileName} />
           </label>
           <S.ImageInput
-            id="image"
+            id="fileName"
             type="file"
             accept="image/jpeg, image/webp, image/svg, image/png"
             onChange={handleFileChange}

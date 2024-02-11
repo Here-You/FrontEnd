@@ -61,14 +61,13 @@ const DailyRecordWritePage = () => {
       const reader = new FileReader();
       reader.onloadend = async () => {
         const compressedFile = await imageCompression(file, {
-          maxWidthOrHeight: 100,
-          maxSizeMB: 1,
+          maxWidthOrHeight: 50,
+          maxSizeMB: 0.5,
           fileType: 'image/jpeg',
         });
         const compressedReader = new FileReader();
         compressedReader.onloadend = () => {
           const base64Image = compressedReader.result.split(',')[1];
-          console.log(base64Image);
           setValue('fileName', base64Image);
         };
         compressedReader.readAsDataURL(compressedFile);

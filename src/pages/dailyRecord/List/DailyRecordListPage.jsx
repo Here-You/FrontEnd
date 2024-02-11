@@ -18,8 +18,6 @@ const DailyRecordListPage = () => {
   const [slideDirection, setSlideDirection] = useState(null);
   const [nowPage, setNowPage] = useState(0);
 
-  const scheduleId = 2; // diaryData에 scheduleId 데이터 추가될 예정
-
   const date = useMemo(() => {
     if (!validDiaryData) {
       return null;
@@ -30,7 +28,7 @@ const DailyRecordListPage = () => {
   }, [validDiaryData, nowPage]);
 
   useEffect(() => {
-    const validData = diaryData?.filter(s => s !== null);
+    const validData = diaryData?.diaryList?.filter(s => s !== null);
     // console.log('실제로 존재하는 일지: ', validData);
     setValidDiaryData(validData);
   }, [diaryData]);
@@ -60,8 +58,6 @@ const DailyRecordListPage = () => {
       setNowPage(prevPage => prevPage + 1);
     }
   };
-
-  console.log(validDiaryData);
 
   if (!validDiaryData) {
     return <div>로딩 중입니다..</div>;
@@ -111,7 +107,7 @@ const DailyRecordListPage = () => {
         </div>
       </S.SlideContainer>
       <S.AddButton
-        to={`/dailyrecord/${currentVisibleData?.diary?.id}/edit?scheduleId=${scheduleId}`}>
+        to={`/dailyrecord/${currentVisibleData?.diary?.id}/edit?scheduleId=${currentVisibleData?.scheduleId}`}>
         <S.PenIcon src={PenGreen} />
       </S.AddButton>
     </S.Container>
