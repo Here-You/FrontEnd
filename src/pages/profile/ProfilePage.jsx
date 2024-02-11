@@ -48,19 +48,19 @@ const ProfilePage = () => {
       {/* <S.Title>{data?.nickname}님의 시그니처 포스트</S.Title> */}
       <S.GridContainer>
         {signaturesList?.map(signature => {
-          return signature.data.data.data.map(s => (
+          return signature?.data?.data?.data?.map(s => (
             <S.ImageContainer
-              key={s._id}
-              onMouseOver={() => handleMouseOver(s._id)}
+              key={s?._id}
+              onMouseOver={() => handleMouseOver(s?._id)}
               onMouseOut={handleMouseOut}>
-              <S.Image src={s.image} alt={s.title} />
+              <S.Image src={s?.image} alt={s?.title} />
               {hoveredSignature === s._id && (
                 <S.DescriptionContainer
-                  onClick={() => navigate(`/signature/post/${s._id}`)}>
-                  <h1>{s.title}</h1>
+                  onClick={() => navigate(`/signature/post/${s?._id}`)}>
+                  <h1>{s?.title}</h1>
                   <div>
                     <img src={Heart} />
-                    {s.liked}
+                    {s?.liked}
                   </div>
                 </S.DescriptionContainer>
               )}

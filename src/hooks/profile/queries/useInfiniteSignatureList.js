@@ -8,9 +8,9 @@ const useInfiniteSignatureList = mateId => {
       getMateInfiniteSignatureList(mateId, 4, { pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages, lastPageParam) => {
-      const { hasNextData, cursor } = lastPage.data.data.meta;
-      if (hasNextData) {
-        return cursor;
+      const meta = lastPage?.data?.data?.meta;
+      if (meta && meta.hasNextData) {
+        return meta.cursor;
       } else {
         return null;
       }

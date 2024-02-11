@@ -5,7 +5,6 @@ import * as S from './ProfileBox.style';
 import Logo from '/images/mypage/MyPageLogo.svg';
 
 const ProfileBox = ({ profile }) => {
-  console.log(profile?.is_followed, profile?._id);
   return (
     <S.ProfileContainer>
       <S.InfoContainer>
@@ -25,7 +24,7 @@ const ProfileBox = ({ profile }) => {
           </S.TextContainer>
         </S.ImageContainer>
         <S.CountContainer>
-          <CountInfo title="게시물" count="37" />
+          <CountInfo title="게시물" count={profile?.signatures} />
           <CountInfo title="팔로워" count={profile?.follower} />
           <CountInfo title="팔로잉" count={profile?.following} />
         </S.CountContainer>
