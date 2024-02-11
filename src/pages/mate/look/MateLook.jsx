@@ -51,5 +51,3 @@ const MateLookPage = () => {
 };
 
 export default MateLookPage;
-
-lastPage.data.data.meta;
