@@ -40,7 +40,7 @@ export default function LoginBanner() {
         ) : (
           <>
             <S.Img src={profileImg} />
-            <S.TextWrapper>
+            <S.TextWrapper onClick={() => navigate('/login')}>
               <S.Text3>3초만에 로그인하고 여행의 이유 찾으러 가기 </S.Text3>
             </S.TextWrapper>
           </>
