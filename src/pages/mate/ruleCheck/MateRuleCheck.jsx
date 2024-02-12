@@ -3,8 +3,6 @@ import * as S from './MateRuleCheck.style';
 import { getTeamRuleList } from '@/apis/request/mate';
 import TeamContainer from '@/components/mate/TeamContainer';
 import { useGetTeamRuleList } from '@/hooks/mate/queries/useGetTeamRuleList';
-import { useTeamRuleList } from '@/hooks/mate/useTeamRuleList';
-import { useProfileData } from '@/hooks/profile/queries/useProfileData';
 import { ErrorPage } from '@/pages';
 
 const MateRuleCheckPage = () => {

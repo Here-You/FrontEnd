@@ -3,24 +3,25 @@ import { format } from 'date-fns';
 import * as S from './MateCommentView.style';
 import Pen from '/icons/Pen.svg';
 import Trash from '/icons/Trash.svg';
+import Logo from '/images/mypage/MyPageLogo.svg';
 
 const MateCommentView = commentData => {
-  const { id, created, image, text } = commentData.commentData;
-  const date = new Date(created);
-  const formattedDate = format(date, 'yy.MM.dd');
+  const { content, id, image, name, updated } = commentData.commentData;
+  const formattedDate = format(updated, 'yy.MM.dd');
+  console.log(commentData);
 
   return (
     <S.Container>
-      <S.Avatar src={image} />
+      <S.Avatar src={image ? image : Logo} />
       <S.CommentViewContainer>
         <S.CommentContentContainer>
-          <p>이름</p>
+          <p>{name}</p>
           <S.LeftContent>
             <p>{formattedDate}</p>
           </S.LeftContent>
         </S.CommentContentContainer>
         <S.CommentContentContainer>
-          <p>{text}</p>
+          <p>{content}</p>
           <S.LeftContent>
             <S.Icon src={Pen} />
             <S.Icon src={Trash} />

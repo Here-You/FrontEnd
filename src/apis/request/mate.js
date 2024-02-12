@@ -133,6 +133,12 @@ const getMateInfiniteSignatureList = (mateId, take, { pageParam }) => {
   return axiosWithToken.get(url);
 };
 
+const updateTeamMateRule = (ruleId, { postDataWithId }) => {
+  const url = `${API_URL.UPDATE_TEAM_MATE_RULE}/${ruleId}`;
+  console.log(postDataWithId);
+  return axiosWithToken.patch(url, postDataWithId);
+};
+
 export {
   getSearchMate,
   postFollowMate,
@@ -152,4 +158,5 @@ export {
   deleteTeamRuleList,
   getMateProfile,
   getMateInfiniteSignatureList,
+  updateTeamMateRule,
 };

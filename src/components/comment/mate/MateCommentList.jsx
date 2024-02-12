@@ -3,18 +3,13 @@ import { useInView } from 'react-intersection-observer';
 
 import * as S from './MateCommentList.style';
 import MateCommentView from './commentView/MateCommentView';
-import { getTeamMateRuleComment } from '@/apis/request/mate';
 import { useGetComments } from '@/hooks/mate/queries/useGetComments';
-import { useInfiniteQuery } from '@tanstack/react-query';
 
 const MateCommentList = ({ ruleId }) => {
-  const take = 10;
-
   const { data, fetchNextPage, hasNextPage, isFetching, isError } =
     useGetComments(ruleId);
 
   const commentsList = data?.pages;
-  console.log(commentsList);
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -29,9 +24,25 @@ const MateCommentList = ({ ruleId }) => {
 
   return (
     <>
-      {/* {commentList?.pages?.length > 0 ? (
+      {commentsList?.map(page =>
+        page?.data?.data?.data.map(comment => (
+          <MateCommentView key={comment.id} commentData={comment} />
+        )),
+      )}
+    </>
+  );
+};
+
+export default MateCommentList;
+
+{
+  /* */
+}
+
+{
+  /* {commentsList?.pages?.length > 0 ? (
         <S.Container>
-          {commentList?.pages?.map(page =>
+          {commentsList?.pages?.map(page =>
             page?.data?.data[0]?.comments.map(data => (
               <MateCommentView key={data.id} commentData={data} />
             )),
@@ -40,9 +51,6 @@ const MateCommentList = ({ ruleId }) => {
         </S.Container>
       ) : (
         <></>
-      )} */}
-    </>
-  );
-};
-
-export default MateCommentList;
+      )}
+    </> */
+}

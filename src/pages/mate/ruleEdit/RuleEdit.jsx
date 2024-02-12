@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 // assuming toast is imported
 import * as S from './RuleEdit.style';
 import PlusUser from '/images/mate/add-user.svg';
+import { updateTeamMateRule } from '@/apis/request/mate';
 import InviteMatesModal from '@/components/modal/inviteMatesModal/InviteMatesModal';
 import { useTeamMateRulePost } from '@/hooks/mate/useTeamMateRulePost';
 import useInviteMatesModal from '@/hooks/modal/useInviteMatesModal';
@@ -60,18 +61,20 @@ const RuleEditPage = () => {
       id: rule.id,
     }));
 
+    const extractMembersId = postData.membersId.map(member => member.id);
+
     const postDataWithId = {
       mainTitle: postData.mainTitle,
       rulePairs: ruleData,
-      membersId: postData.membersId,
+      membersId: extractMembersId,
     };
 
     console.log(postDataWithId);
 
-    postCreateMateRule(postDataWithId)
+    updateTeamMateRule(ruleId, { postDataWithId })
       .then(() => {
         toast.success('규칙을 성공적으로 수정하였습니다.');
-        navigate(`/mate/${ruleId}`);
+        navigate(`/mate/rule-check/${ruleId}`);
       })
       .catch(error => {
         console.log(error);

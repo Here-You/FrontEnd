@@ -12,6 +12,8 @@ const MateRuleDetailCheckPage = () => {
   const { ruleId } = useParams();
   const { data, loading, error } = useTeamMateRulePost(ruleId);
 
+  console.log(data);
+
   const navigate = useNavigate();
 
   if (loading) {
