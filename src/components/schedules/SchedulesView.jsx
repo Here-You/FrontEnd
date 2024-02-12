@@ -30,9 +30,7 @@ const SchedulesView = ({ startDate, endDate }) => {
     staleTime: 60 * 1000,
   });
 
-  const dataExists = schedulesData?.pages?.some(
-    page => page?.data?.data?.data && Array.isArray(page?.data?.data?.data),
-  );
+  const dataExists = schedulesData?.pages?.some(page => page?.data?.data?.data);
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -49,20 +47,14 @@ const SchedulesView = ({ startDate, endDate }) => {
     <>
       <S.Container $showContainer={dataExists}>
         {schedulesData?.pages?.map((page, pageIndex) =>
-          page?.data?.data?.data && Array.isArray(page?.data?.data?.data) ? (
-            page?.data?.data?.data?.map(data =>
-              data?.scheduleList.map(scheduleData => (
-                <Schedules
-                  key={scheduleData?.scheduleId}
-                  data={scheduleData}
-                  endDate={endDate}
-                  refetch={refetch}
-                />
-              )),
-            )
-          ) : (
-            <div key={pageIndex}></div>
-          ),
+          page?.data?.data?.data?.scheduleList.map(scheduleData => (
+            <Schedules
+              key={scheduleData?.scheduleId}
+              data={scheduleData}
+              endDate={endDate}
+              refetch={refetch}
+            />
+          )),
         )}
       </S.Container>
 

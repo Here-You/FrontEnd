@@ -134,7 +134,7 @@ const Schedules = ({ data, endDate, refetch }) => {
               cursor: 'pointer',
             }}>
             <S.LeftContainer $diaryWritten={diary[0]}>
-              {diary[0] ? '일지 확인' : '일지 작성'}
+              {diary && diary[0] ? '일지 확인' : '일지 작성'}
               <S.Image src={diary[0] ? File : EditLight} />
             </S.LeftContainer>
           </Link>

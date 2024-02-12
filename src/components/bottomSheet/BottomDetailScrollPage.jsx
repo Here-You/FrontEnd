@@ -1,7 +1,6 @@
 import { Schedules } from '..';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useNavigate, useParams } from 'react-router-dom';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 
 import * as S from './BottomDetailScrollPage.style';
@@ -12,8 +11,6 @@ import 'react-spring-bottom-sheet/dist/style.css';
 const BottomDetailScrollPage = ({ startDate, endDate }) => {
   const pageSize = 5;
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
-  const { journeyId } = useParams();
 
   const {
     data: schedulesData,
@@ -59,26 +56,20 @@ const BottomDetailScrollPage = ({ startDate, endDate }) => {
             height: '100%',
             marginTop: '20px',
           }}>
-          {schedulesData?.pages?.map(
-            page =>
-              page?.data?.data?.data &&
-              Array.isArray(page?.data?.data?.data) &&
-              page?.data?.data?.data?.map(data =>
-                data?.scheduleList.map(scheduleData => (
-                  <Schedules
-                    key={scheduleData.scheduleId}
-                    data={scheduleData}
-                    endDate={endDate}
-                    refetch={refetch}
-                  />
-                )),
-              ),
+          {schedulesData?.pages?.map(page =>
+            page?.data?.data?.data?.scheduleList.map(scheduleData => (
+              <Schedules
+                key={scheduleData.scheduleId}
+                data={scheduleData}
+                endDate={endDate}
+                refetch={refetch}
+              />
+            )),
           )}
           {schedulesData?.pages?.length === 0 && (
             <div>아직 작성한 여정이 없어요!</div>
           )}
         </div>
-        <div ref={ref} style={{ height: 50 }}></div>
       </BottomSheet>
     </>
   );
