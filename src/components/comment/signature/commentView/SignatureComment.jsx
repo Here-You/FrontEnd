@@ -5,28 +5,31 @@ import Pen from '/icons/Pen.svg';
 import Trash from '/icons/Trash.svg';
 
 const SignatureComment = ({ data }) => {
-  const { id, text, created, image, name } = data;
-  const newDate = new Date(created);
-  const formattedEndDate = format(newDate, 'yyyy-MM-dd HH:mm:ss');
+  const { _id, content, parentId, is_edited, writer, date } = data;
+  const formattedEndDate = format(date, 'yyyy-MM-dd HH:mm:ss');
 
-  const handleComemntEdit = () => {};
-
+  const handleCommentEdit = () => {};
   const handleCommentDelete = () => {};
 
+  const indentationLevel = parentId === _id ? 0 : 1;
+
   return (
-    <S.Container>
-      <S.Avatar src={image} />
-      <S.ConentContainer>
+    <S.Container indentationLevel={indentationLevel}>
+      <S.Avatar src={writer?.image} />
+      <S.ContentContainer>
         <S.NameContainer>
-          <S.Name>{name}</S.Name>
+          <S.Name>{writer?.name}</S.Name>
           <S.LeftContent>
-            <S.Icon src={Pen} onClick={handleComemntEdit} />
+            <S.Icon src={Pen} onClick={handleCommentEdit} />
             <S.Icon src={Trash} onClick={handleCommentDelete} />
           </S.LeftContent>
         </S.NameContainer>
-        <S.Content>{text}</S.Content>
+        <S.ContentInner>
+          <S.Content>{content}</S.Content>
+          <h3>{!is_edited === true ? '수정됨' : null}</h3>
+        </S.ContentInner>
         <S.Content>{formattedEndDate}</S.Content>
-      </S.ConentContainer>
+      </S.ContentContainer>
     </S.Container>
   );
 };

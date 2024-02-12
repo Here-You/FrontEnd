@@ -18,7 +18,7 @@ export const useGetDetail = signatureId => {
         const res = await getDetail(signatureId);
         const data = res.data.data;
         const header = data.header;
-        console.log(res.data);
+
         setData(data);
         setLike(header.is_liked);
         setCount(header.like_cnt);

@@ -9,8 +9,10 @@ const Container = styled.div`
   justify-content: center;
   width: 90%;
   padding: 10px;
-
   gap: 20px;
+  margin-left: ${props => (props.indentationLevel ? '40px' : 0)};
+  border-left: ${props => (props.indentationLevel ? '2px solid #ccc' : 'none')};
+  padding-left: ${props => (props.indentationLevel ? '10px' : '0')};
 `;
 
 const Avatar = styled.img`
@@ -19,13 +21,17 @@ const Avatar = styled.img`
   border-radius: 100px;
 `;
 
-const ConentContainer = styled.div`
+const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
   width: 80%;
   gap: 10px;
   border-bottom: 1px solid ${theme.COLOR.MAIN.LIGHT_GRAY};
+`;
+
+const ContentInner = styled.div`
+  ${theme.ALIGN.ROW_CENTER}
 `;
 
 const Name = styled.p`
@@ -62,7 +68,8 @@ const Icon = styled.img`
 export {
   Container,
   Avatar,
-  ConentContainer,
+  ContentContainer,
+  ContentInner,
   Name,
   Content,
   NameContainer,
