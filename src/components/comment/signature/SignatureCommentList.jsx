@@ -1,5 +1,5 @@
 import * as S from './SignatureCommentList.style';
-import SignatureComment from './commentView/signatureComment';
+import SignatureComment from './commentView/SignatureComment';
 
 const PrifleImg =
   'https://images.unsplash.com/photo-1707638121353-c6853aae5725?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D';
