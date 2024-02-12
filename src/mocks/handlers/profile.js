@@ -67,6 +67,9 @@ export const ProfileHandlers = [
           id: 1,
           type: 'LIKE',
           content: '상추부자, 이녕12님 외 10명이 내 시그니처에 좋아요',
+          itemId: 10,
+          isRead: false,
+          created: '2024-02-11T14:52:14.240Z',
         },
         {
           id: 2,

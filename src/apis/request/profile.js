@@ -6,11 +6,12 @@ const getProfileInfo = () => {
   return axios.get(API_PATH.MY_PAGE_INFO);
 };
 // sns
-const postSnsLogin = (type, token) => {
+const postSnsLogin = (type, token, redirect_uri) => {
   const url = `${API_URL.SNS_LOGIN}`;
   const res = axiosWithToken.post(url, {
     type: type,
     token: token,
+    redirect_uri: redirect_uri,
   });
   return res;
 };

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,24 +10,38 @@ import theme from '@/theme';
 const MyPageInfo = () => {
   const [info, setInfo] = useState([]);
   const [isLogin, setIsLogin] = useState();
+  const [user_id, setUserId] = useState();
+  const [nickName, setNickName] = useState();
+  const [profileImage, setProfileImage] = useState();
+
   const navigate = useNavigate();
 
   const handleGoMate = () => {
     navigate('/mate/management');
   };
-  const getInfo = async () => {
+
+  const getProfile = async () => {
+    const ACCESS_TOKEN = localStorage.getItem('x-access-token');
+    console.log(ACCESS_TOKEN);
     try {
-      const res = await getProfileInfo();
-      const members = res.data;
-      setInfo(members);
-    } catch (e) {
-      console.log(e);
+      const response = await fetch('https://kapi.kakao.com/v2/user/me', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
+          'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
+      });
+
+      const data = await response.json();
+
+      console.log(data);
+    } catch (error) {
+      console.error('프로필을 가져오는 중 오류 발생:', error);
     }
   };
   useEffect(() => {
     setIsLogin(localStorage.getItem('x-access-token'));
-
-    getInfo();
+    getProfile();
   }, []);
   return (
     <S.ProfileContainer>
@@ -35,16 +50,14 @@ const MyPageInfo = () => {
         {isLogin ? (
           <>
             <S.NickNameTypeContainer>
-              <h3> {info.nickname}</h3>
-              <h3> {info.type}</h3>
+              <h3> {user_id}</h3>
+              <h3> {nickName}</h3>
             </S.NickNameTypeContainer>
-            <p> {info.email}</p>
-            <p style={{ color: `${theme.COLOR.MAIN.BLACK}` }}>
-              {info.introduction}
-            </p>
+            <p> 이메일</p>
+            <p style={{ color: `${theme.COLOR.MAIN.BLACK}` }}>소개</p>
             <S.Mate onClick={handleGoMate}>
-              {info.follower}
-              <S.NumberOfPeople>32</S.NumberOfPeople> {info.following}
+              팔로워
+              <S.NumberOfPeople>32</S.NumberOfPeople> 팔로잉
               <S.NumberOfPeople>32</S.NumberOfPeople>
             </S.Mate>
           </>
