@@ -37,6 +37,8 @@ const BASE_PATH = {
   MAP_JOURNEY_DETAIL: '/map/journey/:journeyId',
   //notification
   NOTIFICATION_PAGE: '/notification',
+  //newMain
+  MAIN_PAGE: 'main',
 };
 
 const VERSION = 'v1';

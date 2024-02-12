@@ -12,6 +12,7 @@ import {
   Home,
   JourneyDetailPage,
   LoginPage,
+  MainPage,
   MapDetailPage,
   MapPage,
   MateLookPage,
@@ -238,6 +239,16 @@ const router = createBrowserRouter([
         element: <AppLayout />,
         errorElement: <ErrorPage />,
         children: [{ index: true, element: <ExplorePage /> }],
+      },
+    ],
+  },
+  {
+    path: `${BASE_PATH.MAIN_PAGE}`,
+    children: [
+      {
+        element: <AppLayout />,
+        errorElement: <ErrorPage />,
+        children: [{ index: true, element: <MainPage /> }],
       },
     ],
   },
