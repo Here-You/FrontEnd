@@ -37,7 +37,7 @@ export default function Editor({ setSelectedHeader }) {
     let allPagesFilled = true;
 
     pages.forEach((page, index) => {
-      if (!page?.location || !page?.content || !page?.image) {
+      if (!title || !page?.location || !page?.content || !page?.image) {
         allPagesFilled = false;
       }
     });

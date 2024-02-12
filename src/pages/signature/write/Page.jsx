@@ -43,15 +43,11 @@ export default function Page({ image, content }) {
         />
       </S.LocationContainer>
       <S.InputWrap>
-        {image && (
-          <S.Image
-            height={'fit-content'}
-            effect="blur"
-            src={`data:image/jpeg;base64,${image}`}
-          />
-        )}
-        <S.PhotoButton>
-          <img src={addButton} alt="Add Button" />
+        <S.PhotoButton $image={image}>
+          {image && (
+            <S.Image effect="blur" src={`data:image/jpeg;base64,${image}`} />
+          )}
+          <S.ImageAddButton src={addButton} alt="Add Button" $image={image} />
           <S.ImageInput
             type="file"
             accept="image/*"
