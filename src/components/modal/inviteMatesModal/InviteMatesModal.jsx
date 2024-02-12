@@ -14,8 +14,7 @@ const InviteMatesModal = () => {
   const InviteMatesModal = useInviteMatesModal();
   const [nickname, setNickname] = useState('');
   const debouncedNickname = useDebounce(nickname, 2000);
-  const { ruleId } = useParams();
-  console.log(ruleId);
+
   const { selectedMates, addSelectedMate, clearSelectedMates } =
     useMatesStore();
 
