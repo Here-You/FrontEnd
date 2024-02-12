@@ -33,6 +33,14 @@ const TextContainer = styled.div`
   margin-left: 5%;
   line-height: 1.5;
 `;
+const TextWrapper = styled.div`
+  display: flex;
+  margin-left: 10px;
+  flex-direction: column;
+  color: white;
+  justify-content: center;
+  align-items: center;
+`;
 const Text1 = styled.div`
   font-size: 18px;
   font-style: normal;
@@ -40,6 +48,10 @@ const Text1 = styled.div`
 `;
 const Text2 = styled.div`
   font-size: 15px;
+`;
+const Text3 = styled.div`
+  font-size: 18px;
+  color: ${theme.COLOR.MAIN.WHITE};
 `;
 
 export {
@@ -50,4 +62,6 @@ export {
   TextContainer,
   Text1,
   Text2,
+  Text3,
+  TextWrapper,
 };
