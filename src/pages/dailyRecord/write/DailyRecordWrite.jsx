@@ -18,6 +18,7 @@ const DailyRecordWritePage = () => {
   const date = params.get('date');
   const [selectedImg, setSelectedImg] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const Date = useMemo(() => {
     if (date) {
@@ -60,7 +61,7 @@ const DailyRecordWritePage = () => {
       const reader = new FileReader();
       reader.onloadend = async () => {
         const compressedFile = await imageCompression(file, {
-          maxWidthOrHeight: 800,
+          maxWidthOrHeight: 500,
           maxSizeMB: 2,
           fileType: 'image/jpeg',
         });
@@ -95,7 +96,8 @@ const DailyRecordWritePage = () => {
         navigate('/');
       }
     } catch (e) {
-      console.log(e.message);
+      setIsError(true);
+      console.log(e);
       alert('작성 중 에러가 발생했습니다. 나중에 다시 시도해주세요');
     } finally {
       setIsLoading(false);

@@ -67,6 +67,7 @@ const JourneyEditModal = ({ journeyId, journeyTitle, startDate, endDate }) => {
         if (res) {
           alert('여정이 수정되었습니다.');
           console.log('제출된 데이터: ', data);
+          window.location.reload();
         }
       } catch (error) {
         setIsError(true);
@@ -82,6 +83,7 @@ const JourneyEditModal = ({ journeyId, journeyTitle, startDate, endDate }) => {
     try {
       const res = await deleteJourney(journeyId);
       if (res) alert('여정이 삭제되었습니다.');
+      window.location.reload();
     } catch (error) {
       setIsError(true);
       alert('여정 삭제 중에 오류가 발생했습니다. 다시 시도해주세요');
