@@ -99,7 +99,7 @@ const changeDetailScheduleStatus = detailId => {
 
 // 일지 작성하기
 const postDiary = ({ scheduleId, postData }) => {
-  const { title, place, weather, mood, content, images } = postData;
+  const { title, place, weather, mood, content, fileName } = postData;
   const url = `/api/${VERSION}/${API_BASE.DIARY}/create/${scheduleId}`;
   const res = axiosWithToken.post(url, {
     title: title,
@@ -107,7 +107,7 @@ const postDiary = ({ scheduleId, postData }) => {
     weather: weather,
     mood: mood,
     content: content,
-    fileName: images,
+    fileName: fileName,
   });
   return res;
 };
@@ -121,7 +121,7 @@ const getDiary = scheduleId => {
 
 // 일지 수정하기
 const updateDiary = (diaryId, postData) => {
-  const { title, place, weather, mood, content, images } = postData;
+  const { title, place, weather, mood, content, fileName } = postData;
   const url = `/api/${VERSION}/${API_BASE.DIARY}/update/${diaryId}`;
   const res = axiosWithToken.put(url, {
     title: title,
@@ -129,7 +129,7 @@ const updateDiary = (diaryId, postData) => {
     weather: weather,
     mood: mood,
     content: content,
-    fileName: images,
+    fileName: fileName,
   });
   return res;
 };

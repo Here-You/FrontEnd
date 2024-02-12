@@ -12,6 +12,7 @@ const SchedulesView = ({ startDate, endDate }) => {
   const date = new Date(startDate);
 
   const formattedDate = format(date, 'yyyy-MM-dd');
+
   const {
     data: schedulesData,
     fetchNextPage,
@@ -24,14 +25,17 @@ const SchedulesView = ({ startDate, endDate }) => {
     queryFn: ({ pageParam = 1 }) =>
       getSchedule(formattedDate, pageParam, pageSize),
     initialPageParam: 0,
-    getNextPageParam: lastPage =>
-      lastPage?.data?.data?.data.nextCursor + 1 || 0,
+    getNextPageParam: lastPage => {
+      if (!lastPage?.data?.data?.data?.meta?.hasNextData) {
+        return null;
+      } else {
+        return lastPage?.data?.data?.data?.meta?.cursor + 1;
+      }
+    },
     staleTime: 60 * 1000,
   });
 
-  const dataExists = schedulesData?.pages?.some(
-    page => page?.data?.data?.data && Array.isArray(page?.data?.data?.data),
-  );
+  const dataExists = schedulesData?.pages?.some(page => page?.data?.data?.data);
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -47,22 +51,17 @@ const SchedulesView = ({ startDate, endDate }) => {
   return (
     <>
       <S.Container $showContainer={dataExists}>
-        {schedulesData?.pages?.map(page =>
-          page?.data?.data?.data && Array.isArray(page?.data?.data?.data) ? (
-            page?.data?.data?.data?.map(data =>
-              data?.scheduleList.map(scheduleData => (
-                <Schedules
-                  key={scheduleData.scheduleId}
-                  data={scheduleData}
-                  endDate={endDate}
-                  refetch={refetch}
-                />
-              )),
-            )
-          ) : (
-            <></>
-          ),
+        {schedulesData?.pages?.map((page, pageIndex) =>
+          page?.data?.data?.data?.paginatedSchedules.map(scheduleData => (
+            <Schedules
+              key={scheduleData?.scheduleId}
+              data={scheduleData}
+              endDate={endDate}
+              refetch={refetch}
+            />
+          )),
         )}
+        <div style={{ height: 10 }} ref={ref}></div>
       </S.Container>
 
       {!dataExists && <div>아직 작성한 여정이 없어요!</div>}

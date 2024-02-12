@@ -45,7 +45,7 @@ const CalendarContainer = styled.div`
 `;
 
 const JourneyButtonContainer = styled.div`
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: row;
 
@@ -127,10 +127,7 @@ const AddButton = styled.button`
   @media ${theme.WINDOW_SIZE.MOBILE} {
     width: 40px;
     height: 40px;
-    left: ${props =>
-      props.$browserName === 'safari' || props.$browserName === 'kakaotalk'
-        ? '240px'
-        : '270px'};
+    left: ${props => (props.$browserName === 'safari' ? '265px' : '270px')};
   }
 `;
 
@@ -143,11 +140,8 @@ const VerticalLine = styled.p`
   font-size: ${FONT_SIZE.XL};
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    top: 20px;
-    left: ${props =>
-      props.$browserName === 'safari' || props.$browserName === 'kakaotalk'
-        ? '130px'
-        : '145px'};
+    top: 18px;
+    left: ${props => (props.$browserName === 'safari' ? '150px' : '145px')};
   }
 `;
 

@@ -23,7 +23,7 @@ const myStyles = [
 ];
 
 const TravelMapDetail = ({ journeyInfo }) => {
-  const scheduleLocations = journeyInfo?.schedule_locations;
+  const scheduleLocations = journeyInfo?.scheduleList;
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -71,40 +71,48 @@ const TravelMapDetail = ({ journeyInfo }) => {
       zoom={10}
       onLoad={onLoad}
       onUnmount={onUnmount}>
-      {scheduleLocations?.map(post => (
-        <MarkerF
-          key={post?.diary_image.diary_id}
-          position={{
-            lat: post?.location.latitude,
-            lng: post?.location.longitude,
-          }}
-          onClick={() =>
-            handleMarkerClick(
-              { lat: post?.location.latitude, lng: post?.location.longitude },
-              post?.location.name,
-            )
-          }
-          icon={{
-            url: Icon,
-            scaledSize: new window.google.maps.Size(32, 32),
-          }}>
-          {clicked &&
-            selectedMarker.position &&
-            selectedMarker.position.lat === post?.location.latitude &&
-            selectedMarker.position.lng === post?.location.longitude && (
-              <InfoWindowF onCloseClick={() => setClicked(false)}>
-                <S.InfoContainer onClick={() => setClicked(false)}>
-                  <img
-                    src={post?.diary_image.imageKey}
-                    width="50px"
-                    height="50px"
-                  />
-                  <span>{post?.location.name}</span>
-                </S.InfoContainer>
-              </InfoWindowF>
-            )}
-        </MarkerF>
-      ))}
+      {scheduleLocations &&
+        scheduleLocations?.map(post => (
+          <MarkerF
+            key={post?.location?.locationId}
+            position={{
+              lat: parseFloat(post?.location?.latitude),
+              lng: parseFloat(post?.location?.longitude),
+            }}
+            onClick={() =>
+              handleMarkerClick(
+                {
+                  lat: parseFloat(post?.location?.latitude),
+                  lng: parseFloat(post?.location?.longitude),
+                },
+                post?.location?.name,
+              )
+            }
+            icon={{
+              url: Icon,
+              scaledSize: new window.google.maps.Size(32, 32),
+            }}>
+            {clicked &&
+              selectedMarker.position &&
+              selectedMarker.position.lat ==
+                parseFloat(post?.location?.latitude) &&
+              selectedMarker.position.lng ==
+                parseFloat(post?.location?.longitude) && (
+                <InfoWindowF onCloseClick={() => setClicked(false)}>
+                  <S.InfoContainer onClick={() => setClicked(false)}>
+                    {post?.diaryImage?.imageUrl && (
+                      <img
+                        src={post?.diaryImage?.imageUrl}
+                        width="50px"
+                        height="50px"
+                      />
+                    )}
+                    <span>{post?.location?.name}</span>
+                  </S.InfoContainer>
+                </InfoWindowF>
+              )}
+          </MarkerF>
+        ))}
     </GoogleMap>
   ) : (
     <></>

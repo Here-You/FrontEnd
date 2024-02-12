@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { getTeamRuleList } from '@/apis/request/mate';
 
-export const useTeamRuleList = userId => {
+export const useTeamRuleList = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -12,7 +12,7 @@ export const useTeamRuleList = userId => {
       try {
         setLoading(true);
         const res = await getTeamRuleList();
-        const data = res.data.data.rules;
+        const data = res.data.data;
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');
@@ -22,7 +22,7 @@ export const useTeamRuleList = userId => {
     };
 
     fetchData();
-  }, [userId]);
+  }, []);
 
   return { data, loading, error };
 };

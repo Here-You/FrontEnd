@@ -17,6 +17,14 @@ const HeaderContainer = styled.div`
 
 const ProfileContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 20px;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
+  }
 `;
 
 const ProfileImg = styled.img`
@@ -145,6 +153,15 @@ const DeleteButton = styled.button`
   }
 `;
 
+const CommentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  gap: 20px;
+  width: 100%;
+`;
+
 export {
   TitleContainer,
   HeaderContainer,
@@ -161,4 +178,5 @@ export {
   FunctionButtonContainer,
   ModifyButton,
   DeleteButton,
+  CommentContainer,
 };

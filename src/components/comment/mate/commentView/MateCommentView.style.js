@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
+import theme from '@/theme';
 
 const Container = styled.div`
   display: flex;
@@ -21,9 +22,23 @@ const CommentViewContainer = styled.div`
   }
 `;
 
+const UpdateButton = styled.button`
+  border-radius: 10px;
+  border: none;
+  background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
+  font-size: 0.5rem;
+  padding: 5px 7px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+`;
+
 const CommentContentContainer = styled.div`
-  display: flex;
-  flex-direction: row;
+  ${theme.ALIGN.ROW_CENTER};
   gap: 10px;
 `;
 
@@ -53,6 +68,7 @@ export {
   Container,
   Avatar,
   CommentViewContainer,
+  UpdateButton,
   CommentContentContainer,
   LeftContent,
   Icon,

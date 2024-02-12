@@ -6,6 +6,8 @@ import * as S from './SignaturePost.style';
 import Logo from '/images/mypage/MyPageLogo.svg';
 import { deleteMySignature } from '@/apis/request/signature';
 import HeartButton from '@/components/HeartButton/HeartButton';
+import SignatureCommentList from '@/components/comment/signature/SignatureCommentList';
+import SignatureCommentInput from '@/components/comment/signature/commentInput/SignatureCommentInput';
 import FollowButton from '@/components/mate/FollowButton';
 import { useGetDetail } from '@/hooks/signature/useGetDetail';
 import { CiLocationOn } from 'react-icons/ci';
@@ -71,7 +73,8 @@ const SignaturePostPage = () => {
           <S.SignatureContainer>
             <>
               <S.HeaderContainer>
-                <S.ProfileContainer>
+                <S.ProfileContainer
+                  onClick={() => navigate(`/profile/${author._id}`)}>
                   {author?.image ? (
                     <S.ProfileImg src={author?.image} />
                   ) : (
@@ -131,6 +134,10 @@ const SignaturePostPage = () => {
                 <S.DeleteButton onClick={handleDeletePost}>삭제</S.DeleteButton>
               </S.FunctionButtonContainer>
             </>
+            <S.CommentContainer>
+              <SignatureCommentInput />
+              <SignatureCommentList />
+            </S.CommentContainer>
           </S.SignatureContainer>
         )}
     </>

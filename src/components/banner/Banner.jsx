@@ -1,5 +1,3 @@
-import React from 'react';
-
 import * as S from './Banner.style';
 import space from '/images/spacelogo.svg';
 

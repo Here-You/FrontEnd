@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
-// assuming toast is imported
 import * as S from './RuleEdit.style';
 import PlusUser from '/images/mate/add-user.svg';
+import Logo from '/images/mypage/MyPageLogo.svg';
+import { updateTeamMateRule } from '@/apis/request/mate';
 import InviteMatesModal from '@/components/modal/inviteMatesModal/InviteMatesModal';
 import { useTeamMateRulePost } from '@/hooks/mate/useTeamMateRulePost';
 import useInviteMatesModal from '@/hooks/modal/useInviteMatesModal';
@@ -24,8 +25,6 @@ const RuleEditPage = () => {
     membersId: [],
   });
 
-  console.log(postData);
-
   useEffect(() => {
     if (initialData) {
       setPostData({
@@ -36,11 +35,19 @@ const RuleEditPage = () => {
     }
   }, [initialData, selectedMates]);
 
+  useEffect(() => {
+    const membersIdArray = selectedMates.map(mate => mate.id);
+    setPostData(prevData => ({ ...prevData, membersId: membersIdArray }));
+  }, [selectedMates]);
+
   const handleAddRule = () => {
     if (postData.rulePairs.length < 10) {
       setPostData(prevData => ({
         ...prevData,
-        rulePairs: [...prevData.rulePairs, { ruleTitle: '', ruleDetail: '' }],
+        rulePairs: [
+          ...prevData.rulePairs,
+          { ruleTitle: '', ruleDetail: '', id: null },
+        ],
       }));
     }
   };
@@ -52,11 +59,31 @@ const RuleEditPage = () => {
     }));
   };
 
-  const handleSubmitRule = () => {
-    postCreateMateRule(postData)
+  const handleSubmitRule = async () => {
+    const postData = {
+      mainTitle: title,
+      rulePairs: rules.map((rule, index) => ({
+        ruleNumber: index + 1,
+        id: rule.id,
+        ruleTitle: rule.ruleTitle,
+        ruleDetail: rule.ruleDetail,
+      })),
+      membersId: selectedMates.map(mate => mate.id),
+    };
+
+    const extractMembersId = postData.membersId.map(member => member.id);
+
+    const postDataWithId = {
+      mainTitle: postData.mainTitle,
+      rulePairs: ruleData,
+      membersId: extractMembersId,
+    };
+
+    updateTeamMateRule(ruleId, { postDataWithId })
       .then(() => {
         toast.success('규칙을 성공적으로 수정하였습니다.');
-        navigate(`/mate/${ruleId}`);
+        navigate(`/mate/rule-check/${ruleId}`);
+        console.log(postDataWithId);
       })
       .catch(error => {
         console.log(error);
@@ -79,7 +106,7 @@ const RuleEditPage = () => {
         </S.Header>
         <S.MatesContainer>
           {selectedMates.map(s => (
-            <S.MatesImages key={s.id} src={s.image} />
+            <S.MatesImages key={s.id} src={s.image ? s.image : Logo} />
           ))}
         </S.MatesContainer>
         <S.Content>

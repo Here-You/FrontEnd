@@ -14,8 +14,8 @@ const SignatureSearchSlider = ({ data, type, searchTerm }) => {
       <S.PreviewContainer>
         {data?.length === 0 ? (
           <S.EmptyContainer>
-            <h1>현재 팔로우한 친구가 없습니다.</h1>
-            <h3>친구를 팔로우해주세요!</h3>
+            <h1>해당 검색어에 해당하는 컨텐츠가 없습니다.</h1>
+            <h3>먼저, 작성해보시는건 어떠신가요?</h3>
           </S.EmptyContainer>
         ) : (
           data?.map((d, _) => {

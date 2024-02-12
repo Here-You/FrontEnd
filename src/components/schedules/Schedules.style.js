@@ -65,6 +65,10 @@ const Mate = styled.div`
   color: black;
   font-size: ${FONT_SIZE.SM};
   font-weight: 400;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 200px;
+  }
 `;
 
 const AddDailyPost = styled.p`

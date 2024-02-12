@@ -66,6 +66,7 @@ const JourneyWriteModal = ({ startDate, endDate }) => {
         if (res) {
           alert('여정이 저장되었습니다.');
           console.log('제출된 데이터: ', data);
+          window.location.reload();
         }
       } catch (error) {
         setIsError(true);

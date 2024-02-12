@@ -1,29 +1,16 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { ClipLoader } from 'react-spinners';
 
 import * as S from './MateCommentList.style';
 import MateCommentView from './commentView/MateCommentView';
-import { getTeamMateRuleComment } from '@/apis/request/mate';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useGetComments } from '@/hooks/mate/queries/useGetComments';
 
 const MateCommentList = ({ ruleId }) => {
-  const take = 10;
+  const { data, fetchNextPage, hasNextPage, isFetching, isError } =
+    useGetComments(ruleId);
 
-  const {
-    data: commentList,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isError,
-  } = useInfiniteQuery({
-    queryKey: ['mateComments', ruleId],
-    queryFn: ({ pageParam = 1 }) =>
-      getTeamMateRuleComment(ruleId, pageParam, take),
-    initialPageParam: 0,
-    getNextPageParam: lastPage => lastPage?.data?.data[0]?.cursor + 1,
-
-    staleTime: 60 * 1000,
-  });
+  const commentsList = data?.pages;
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -37,20 +24,17 @@ const MateCommentList = ({ ruleId }) => {
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
   return (
-    <>
-      {commentList?.pages?.length > 0 ? (
-        <S.Container>
-          {commentList?.pages?.map(page =>
-            page?.data?.data[0]?.comments.map(data => (
-              <MateCommentView key={data.id} commentData={data} />
-            )),
-          )}
-          <div ref={ref} style={{ height: 10 }}></div>
-        </S.Container>
-      ) : (
-        <></>
+    <S.Container>
+      {commentsList?.map(page =>
+        page?.data?.data?.data.map(comment => (
+          <MateCommentView key={comment.id} commentData={comment} />
+        )),
       )}
-    </>
+      <S.LoadingWrapper>
+        {isFetching && <ClipLoader size={50} color={'#1B9C85'} />}
+      </S.LoadingWrapper>
+      <div ref={ref} style={{ height: 5 }}></div>
+    </S.Container>
   );
 };
 

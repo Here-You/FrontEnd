@@ -1,7 +1,6 @@
 import { Schedules } from '..';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useNavigate, useParams } from 'react-router-dom';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 
 import * as S from './BottomDetailScrollPage.style';
@@ -10,10 +9,8 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import 'react-spring-bottom-sheet/dist/style.css';
 
 const BottomDetailScrollPage = ({ startDate, endDate }) => {
-  const pageSize = 10;
+  const pageSize = 5;
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
-  const { journeyId } = useParams();
 
   const {
     data: schedulesData,
@@ -26,12 +23,15 @@ const BottomDetailScrollPage = ({ startDate, endDate }) => {
     queryKey: ['schedules', startDate],
     queryFn: ({ pageParam = 1 }) => getSchedule(startDate, pageParam, pageSize),
     initialPageParam: 0,
-    getNextPageParam: lastPage =>
-      lastPage?.data?.data?.data.nextCursor + 1 || 0,
+    getNextPageParam: lastPage => {
+      if (!lastPage?.data?.data?.data?.meta?.hasNextData) {
+        return null;
+      } else {
+        return lastPage?.data?.data?.data?.meta?.cursor + 1;
+      }
+    },
     staleTime: 60 * 1000,
   });
-
-  console.log(schedulesData);
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -57,14 +57,13 @@ const BottomDetailScrollPage = ({ startDate, endDate }) => {
             <S.CloseButton onClick={() => setOpen(false)}>X</S.CloseButton>
           </S.HeaderWrapper>
         }>
-        {/* <div
+        <div
           style={{
             height: '100%',
             marginTop: '20px',
-          }}> */}
-        {schedulesData?.pages?.map(page =>
-          page?.data?.data?.data?.map(data =>
-            data?.scheduleList.map(scheduleData => (
+          }}>
+          {schedulesData?.pages?.map(page =>
+            page?.data?.data?.data?.paginatedSchedules.map(scheduleData => (
               <Schedules
                 key={scheduleData.scheduleId}
                 data={scheduleData}
@@ -72,13 +71,12 @@ const BottomDetailScrollPage = ({ startDate, endDate }) => {
                 refetch={refetch}
               />
             )),
-          ),
-        )}
-        {schedulesData?.pages?.length === 0 && (
-          <div>아직 작성한 여정이 없어요!</div>
-        )}
-        {/* </div> */}
-        <div ref={ref} style={{ height: 50 }}></div>
+          )}
+          <div style={{ height: 10 }} ref={ref}></div>
+          {schedulesData?.pages?.length === 0 && (
+            <div>아직 작성한 여정이 없어요!</div>
+          )}
+        </div>
       </BottomSheet>
     </>
   );

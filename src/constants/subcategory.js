@@ -16,11 +16,17 @@ const USER_SETTING = [
   {
     id: 2,
     img: myPageImg.Diamond,
+    title: '내 하루일지 확인하기',
+    link: '/mydiary',
+  },
+  {
+    id: 3,
+    img: myPageImg.Diamond,
     title: '내 시그니처 확인하기',
     link: '/signature',
   },
   {
-    id: 3,
+    id: 4,
     img: myPageImg.Lock,
     title: '공개범위 설정',
     modal: true,

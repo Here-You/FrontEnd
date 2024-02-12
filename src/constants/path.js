@@ -26,19 +26,26 @@ const BASE_PATH = {
   MATE_RULE_CHECK: '/mate/rule-check',
   MATE_RULE_DETAIL_CHECK: '/mate/rule-check/:ruleId',
   MATE_RULE_DETAIL_EDIT: '/mate/rule-edit/:ruleId',
+  MATE_PROFILE_SEARCH: '/mate/:userId',
   // MY_PAGE
   MY_PAGE: '/mypage',
   MY_PAGE_EDIT: '/mypage/edit',
   TRAVEL_TYPE: '/traveltype',
   TRAVEL_TYPE_RESULT: '/traveltype/result',
+  MY_DIARY: '/mydiary',
   //EXPLORE(탐색)
   EXPLORE: '/explore',
   // JOURNEY
   MAP_JOURNEY_DETAIL: '/map/journey/:journeyId',
   //notification
   NOTIFICATION_PAGE: '/notification',
+
   //newMain
   MAIN_PAGE: 'main',
+
+  // profile
+  PROFILE_PAGE: '/profile/:userId',
+
 };
 
 const VERSION = 'v1';
@@ -103,22 +110,24 @@ const API_URL = {
   LIKELIST_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/:signatureId/like`,
 
   // MATE
-  SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
-  FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search/follow`,
-  UNFOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
+  SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail/search`,
+  FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow`,
   EXPLORE_RANDOM_MATE: `/api/${VERSION}/${API_BASE.MATE}/random`,
   LOCATION_MATE: `/api/${VERSION}/${API_BASE.MATE}/location`,
-  GET_MATE_FOLLOW: `/api/${VERSION}/${API_BASE.MATE}/search/followList`,
-  GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/search/followerList`,
-  CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,
+  GET_MATE_FOLLOW: `/api/${VERSION}/${API_BASE.MATE}/follow/followList`,
+  GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/follow/followerList`,
+  CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail`,
   SEARCH_INVITE_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
+  SEARCH_NICKNAME_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/search`,
   GET_PARTICIPATE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/member/:ruleId`,
   GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail`,
-  UPDATE_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/edit/:ruleId`,
+  UPDATE_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail`,
   DELETE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/editMate/:ruleId/:mateId`,
-  CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule`,
-  GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule/list`,
-  EXIT_TEAM_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/list/:ruleId`,
+  CREATE_MATE_RULE_COMMENT: `/api/${VERSION}/${API_BASE.MATE}/rule/detail/comment`,
+  DELETE_MATE_RULE_COMMENT: `api/${VERSION}/${API_BASE.MATE}/rule/detail/comment`,
+  GET_TEAM_RULE_LIST: `/api/${VERSION}/${API_BASE.MATE}/rule`,
+  EXIT_TEAM_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule`,
+  MATE_PROFILE_SEARCH: `/api/${VERSION}/${API_BASE.MATE}`,
 };
 
 const API_PATH = {
