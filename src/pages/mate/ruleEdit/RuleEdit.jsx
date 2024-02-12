@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 // assuming toast is imported
 import * as S from './RuleEdit.style';
 import PlusUser from '/images/mate/add-user.svg';
+import Logo from '/images/mypage/MyPageLogo.svg';
 import { updateTeamMateRule } from '@/apis/request/mate';
 import InviteMatesModal from '@/components/modal/inviteMatesModal/InviteMatesModal';
 import { useTeamMateRulePost } from '@/hooks/mate/useTeamMateRulePost';
@@ -101,7 +102,7 @@ const RuleEditPage = () => {
         </S.Header>
         <S.MatesContainer>
           {selectedMates.map(s => (
-            <S.MatesImages key={s.id} src={s.image} />
+            <S.MatesImages key={s.id} src={s.image ? s.image : Logo} />
           ))}
         </S.MatesContainer>
         <S.Content>
