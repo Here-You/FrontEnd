@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import Modal from '../Modal';
 import * as S from './InviteMatesModal.style';
+import { useGetSearchInfiniteMate } from '@/hooks/mate/queries/useGetSearchInfiniteMate';
 import { useSearchMate } from '@/hooks/mate/useSearchMate';
 import useInviteMatesModal from '@/hooks/modal/useInviteMatesModal';
 import useDebounce from '@/hooks/useDebounce';
@@ -11,12 +13,21 @@ const InviteMatesModal = () => {
   const InviteMatesModal = useInviteMatesModal();
   const [nickname, setNickname] = useState('');
   const debouncedNickname = useDebounce(nickname, 2000);
+  const { ruleId } = useParams();
+  console.log(ruleId);
   const { selectedMates, addSelectedMate, clearSelectedMates } =
     useMatesStore();
 
   const mateIds = selectedMates.map(mate => mate.id);
 
   const { data, loading, error } = useSearchMate(debouncedNickname, 1, 1);
+
+  const {
+    data: search,
+    isLoading,
+    isError,
+  } = useGetSearchInfiniteMate(debouncedNickname, 3);
+  console.log(search);
 
   const handleInviteClick = () => {
     InviteMatesModal.onClose();

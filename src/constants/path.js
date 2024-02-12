@@ -112,6 +112,7 @@ const API_URL = {
   GET_MATE_FOLLOWER: `/api/${VERSION}/${API_BASE.MATE}/follow/followerList`,
   CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail`,
   SEARCH_INVITE_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
+  SEARCH_NICKNAME_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/search`,
   GET_PARTICIPATE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/member/:ruleId`,
   GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail`,
   UPDATE_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail`,

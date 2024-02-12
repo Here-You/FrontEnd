@@ -2,10 +2,10 @@ import { axios, axiosWithToken } from '../api';
 import { API_URL } from '@/constants/path';
 
 // 토큰이 필요없는 경우 axios를 쓰면됩니다.
-const getSearchMate = (searchTerm, cursor, take) => {
+const getSearchMate = (searchTerm, take, { pageParam }) => {
   // SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
   // 백엔드 API : api/v1/mate/search
-  const url = `${API_URL.SEARCH_MATE}?searchTerm=${searchTerm}&cursor=${cursor}&take=${take}`;
+  const url = `${API_URL.SEARCH_MATE}?searchTerm=${searchTerm}&cursor=${pageParam}&take=${take}`;
   console.log(url);
   return axiosWithToken.get(url);
 };
@@ -58,6 +58,12 @@ const getSearchInviteMate = searchTerm => {
   // SEARCH_INVITE_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/searchMate`,
   // 백엔드 API : api/v1/mate/rule/searchMate
   const url = `${API_URL.SEARCH_INVITE_MATE}?searchTerm=${searchTerm}`;
+  return axiosWithToken.get(url);
+};
+
+const getSearchNickname = (searchTerm, take, { pageParam }) => {
+  const url = `${API_URL.SEARCH_NICKNAME_MATE}?searchTerm=${searchTerm}&sort&take=${take}&cursorId=${pageParam}`;
+  console.log(url);
   return axiosWithToken.get(url);
 };
 
@@ -161,6 +167,7 @@ export {
   getMateFollowing,
   postCreateMateRule,
   getSearchInviteMate,
+  getSearchNickname,
   getParticipateTeamMate,
   getTeamMateRulePost,
   getTeamMateRuleComment,
