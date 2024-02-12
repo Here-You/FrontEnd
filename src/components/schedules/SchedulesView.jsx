@@ -25,10 +25,17 @@ const SchedulesView = ({ startDate, endDate }) => {
     queryFn: ({ pageParam = 1 }) =>
       getSchedule(formattedDate, pageParam, pageSize),
     initialPageParam: 0,
-    getNextPageParam: lastPage =>
-      lastPage?.data?.data?.data.nextCursor + 1 || 0,
+    getNextPageParam: lastPage => {
+      if (lastPage?.data?.data?.nextCursor === 0) {
+        return null;
+      } else {
+        return lastPage?.data?.data?.nextCursor + 1;
+      }
+    },
     staleTime: 60 * 1000,
   });
+
+  console.log(schedulesData);
 
   const dataExists = schedulesData?.pages?.some(page => page?.data?.data?.data);
 
@@ -47,7 +54,7 @@ const SchedulesView = ({ startDate, endDate }) => {
     <>
       <S.Container $showContainer={dataExists}>
         {schedulesData?.pages?.map((page, pageIndex) =>
-          page?.data?.data?.data?.scheduleList.map(scheduleData => (
+          page?.data?.data?.data?.paginatedSchedules.map(scheduleData => (
             <Schedules
               key={scheduleData?.scheduleId}
               data={scheduleData}
@@ -56,6 +63,7 @@ const SchedulesView = ({ startDate, endDate }) => {
             />
           )),
         )}
+        <div style={{ height: 10 }} ref={ref}></div>
       </S.Container>
 
       {!dataExists && <div>아직 작성한 여정이 없어요!</div>}

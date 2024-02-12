@@ -23,7 +23,13 @@ const BottomDetailScrollPage = ({ startDate, endDate }) => {
     queryKey: ['schedules', startDate],
     queryFn: ({ pageParam = 1 }) => getSchedule(startDate, pageParam, pageSize),
     initialPageParam: 0,
-    getNextPageParam: lastPage => lastPage?.data?.nextCursor || null,
+    getNextPageParam: lastPage => {
+      if (lastPage?.data?.data?.nextCursor === 0) {
+        return null;
+      } else {
+        return lastPage?.data?.data?.nextCursor + 1;
+      }
+    },
     staleTime: 60 * 1000,
   });
 
@@ -57,7 +63,7 @@ const BottomDetailScrollPage = ({ startDate, endDate }) => {
             marginTop: '20px',
           }}>
           {schedulesData?.pages?.map(page =>
-            page?.data?.data?.data?.scheduleList.map(scheduleData => (
+            page?.data?.data?.data?.paginatedSchedules.map(scheduleData => (
               <Schedules
                 key={scheduleData.scheduleId}
                 data={scheduleData}
@@ -66,6 +72,7 @@ const BottomDetailScrollPage = ({ startDate, endDate }) => {
               />
             )),
           )}
+          <div style={{ height: 10 }} ref={ref}></div>
           {schedulesData?.pages?.length === 0 && (
             <div>아직 작성한 여정이 없어요!</div>
           )}
