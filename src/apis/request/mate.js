@@ -6,7 +6,6 @@ const getSearchMate = (searchTerm, take, { pageParam }) => {
   // SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
   // 백엔드 API : api/v1/mate/search
   const url = `${API_URL.SEARCH_MATE}?searchTerm=${searchTerm}&cursorId=${pageParam}&take=${take}&sort`;
-  console.log(url);
   return axiosWithToken.get(url);
 };
 
@@ -21,13 +20,11 @@ const getExploreMate = (take, { pageParam }) => {
   // EXPLORE_MATE: `/api/${VERSION}/${API_BASE.MATE}/explore/:userId`,
   // 백엔드 API : api/v1/mate/random?take=3&cursorId=3
   const url = `${API_URL.EXPLORE_RANDOM_MATE}/?take=${take}&cursorId=${pageParam}`;
-
   return axiosWithToken.get(url);
 };
 
 const getLocationMate = () => {
   const url = `${API_URL.LOCATION_MATE}`;
-
   return axiosWithToken.get(url);
 };
 
@@ -46,10 +43,8 @@ const getMateFollowing = () => {
 };
 
 const postCreateMateRule = postData => {
-  console.log(postData);
   // CREATE_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/write`,
   // 백엔드 API : api/v1/mate/rule/write
-
   const url = `${API_URL.CREATE_MATE_RULE}`;
   return axiosWithToken.post(url, postData);
 };
@@ -63,7 +58,6 @@ const getSearchInviteMate = searchTerm => {
 
 const getSearchNickname = (searchTerm, take, { pageParam }) => {
   const url = `${API_URL.SEARCH_NICKNAME_MATE}?searchTerm=${searchTerm}&sort&take=${take}&cursorId=${pageParam}`;
-  console.log(url);
   return axiosWithToken.get(url);
 };
 
@@ -116,13 +110,11 @@ const postMateRuleComment = ({ ruleId, content }) => {
 
 const deleteMateRuleComment = ({ ruleId, id }) => {
   const url = `${API_URL.DELETE_MATE_RULE_COMMENT}/${ruleId}/${id}`;
-  console.log(url);
   return axiosWithToken.delete(url);
 };
 
 const updateMateRuleComment = ({ ruleId, id, content }) => {
   const url = `${API_URL.DELETE_MATE_RULE_COMMENT}/${ruleId}/${id}`;
-  console.log(url, content);
   return axiosWithToken.patch(url, {
     content: content,
   });
@@ -138,7 +130,6 @@ const getTeamRuleList = () => {
 
 const deleteTeamRuleList = ruleId => {
   const url = `${API_URL.EXIT_TEAM_RULE}/${ruleId}`;
-
   return axiosWithToken.delete(url);
 };
 
@@ -149,13 +140,11 @@ const getMateProfile = userId => {
 
 const getMateInfiniteSignatureList = (mateId, take, { pageParam }) => {
   const url = `api/v1/mate/signature/${mateId}?take=${take}&cursorId=${pageParam}`;
-
   return axiosWithToken.get(url);
 };
 
 const updateTeamMateRule = (ruleId, { postDataWithId }) => {
   const url = `${API_URL.UPDATE_TEAM_MATE_RULE}/${ruleId}`;
-  console.log(postDataWithId);
   return axiosWithToken.patch(url, postDataWithId);
 };
 
