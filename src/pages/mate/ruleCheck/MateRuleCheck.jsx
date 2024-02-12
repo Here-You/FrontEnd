@@ -1,17 +1,21 @@
 import MateContainer from '../MateContainer';
 import * as S from './MateRuleCheck.style';
+import { getTeamRuleList } from '@/apis/request/mate';
 import TeamContainer from '@/components/mate/TeamContainer';
+import { useGetTeamRuleList } from '@/hooks/mate/queries/useGetTeamRuleList';
 import { useTeamRuleList } from '@/hooks/mate/useTeamRuleList';
+import { useProfileData } from '@/hooks/profile/queries/useProfileData';
 import { ErrorPage } from '@/pages';
 
 const MateRuleCheckPage = () => {
-  const { data: rulesData, loading, error } = useTeamRuleList();
-
-  if (loading) {
+  const { data, isPending, isError } = useGetTeamRuleList();
+  const rulesData = data?.data?.data;
+  console.log(rulesData);
+  if (isPending) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
+  if (isError) {
     return <ErrorPage />;
   }
 

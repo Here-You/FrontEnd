@@ -5,9 +5,22 @@ import * as S from './TeamContainer.style';
 import over from '/images/mate/over.svg';
 import Logo from '/images/mypage/MyPageLogo.svg';
 import { deleteTeamRuleList } from '@/apis/request/mate';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const TeamContainer = ({ ruleData }) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { mutateAsync } = useMutation({
+    mutationFn: deleteTeamRuleList,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['teamRule']);
+    },
+    onError: () => {
+      console.error('규칙 나가기 실패:', error);
+      alert('규칙 나가기에 실패했습니다. 나중에 다시 시도해주세요.');
+    },
+  });
+
   if (!ruleData) {
     return <div>데이터가 없습니다.</div>;
   }
@@ -20,9 +33,9 @@ const TeamContainer = ({ ruleData }) => {
       const confirm = window.confirm(
         '정말 참여중인 규칙 방에서 나가시겠습니까?',
       );
-      confirm ? deleteTeamRuleList(id) : null;
+      confirm ? await mutateAsync(id) : null;
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
