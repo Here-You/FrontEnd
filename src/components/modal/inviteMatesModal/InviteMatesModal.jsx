@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { useParams } from 'react-router-dom';
 
 import Modal from '../Modal';
 import * as S from './InviteMatesModal.style';
+import Logo from '/images/mypage/MyPageLogo.svg';
 import { useGetSearchInfiniteMate } from '@/hooks/mate/queries/useGetSearchInfiniteMate';
-import { useSearchMate } from '@/hooks/mate/useSearchMate';
 import useInviteMatesModal from '@/hooks/modal/useInviteMatesModal';
 import useDebounce from '@/hooks/useDebounce';
 import useMatesStore from '@/store/matesStore';
@@ -20,18 +21,30 @@ const InviteMatesModal = () => {
 
   const mateIds = selectedMates.map(mate => mate.id);
 
-  const { data, loading, error } = useSearchMate(debouncedNickname, 1, 1);
-
   const {
     data: search,
     isLoading,
     isError,
-  } = useGetSearchInfiniteMate(debouncedNickname, 3);
-  console.log(search);
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+  } = useGetSearchInfiniteMate(debouncedNickname, 5);
+
+  const searchMates = search?.pages;
 
   const handleInviteClick = () => {
     InviteMatesModal.onClose();
   };
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      !isFetching && hasNextPage && fetchNextPage();
+    }
+  }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
   const BodyContent = (
     <S.Container>
@@ -42,31 +55,42 @@ const InviteMatesModal = () => {
           onChange={e => setNickname(e.target.value)}
           placeholder="닉네임을 입력하세요."
         />
+
         <S.SearchImage color="black" size="40" />
       </S.InputContainer>
       <S.MatesContainer>
-        {loading ? (
+        {isLoading ? (
           <div>로딩중입니다...</div>
         ) : (
-          data?.map(d => {
-            const isSelected = mateIds.includes(d.id);
-            return (
-              <S.ProfileContainer
-                key={d.id}
-                isSelected={isSelected}
-                onClick={() => {
-                  isSelected ? clearSelectedMates(d.id) : addSelectedMate(d);
-                }}>
-                <S.ProfileImage src={d.image} />
-                <S.TextContainer>
-                  <h2>{d.name}</h2>
-                  <h3>@{d.nickname}</h3>
-                  <h4>{d.introduction}</h4>
-                </S.TextContainer>
-              </S.ProfileContainer>
-            );
-          })
+          // 검색된 메이트 목록을 렌더링
+          searchMates?.map(searchMate =>
+            searchMate?.data?.data?.data.map(mate => {
+              const isSelected = mateIds.includes(mate.id);
+              return (
+                <S.ProfileContainer
+                  key={mate.id}
+                  isSelected={isSelected}
+                  onClick={() => {
+                    isSelected
+                      ? clearSelectedMates(mate.id)
+                      : addSelectedMate(mate);
+                  }}>
+                  <S.ProfileImage src={mate.image ? mate.image : Logo} />
+                  <S.TextContainer>
+                    <h2>{mate.name}</h2>
+                    <h3>@{mate.email}</h3>
+                    <h4>{mate.introduction}</h4>
+                  </S.TextContainer>
+                </S.ProfileContainer>
+              );
+            }),
+          )
         )}
+        <div
+          ref={ref}
+          style={{
+            height: '5px',
+          }}></div>
       </S.MatesContainer>
     </S.Container>
   );
@@ -85,3 +109,25 @@ const InviteMatesModal = () => {
 };
 
 export default InviteMatesModal;
+
+{
+  /* data?.map(d => {
+            const isSelected = mateIds.includes(d.id);
+            return (
+              <S.ProfileContainer
+                key={d.id}
+                isSelected={isSelected}
+                onClick={() => {
+                  isSelected ? clearSelectedMates(d.id) : addSelectedMate(d);
+                }}>
+                <S.ProfileImage src={d.image} />
+                <S.TextContainer>
+                  <h2>{d.name}</h2>
+                  <h3>@{d.nickname}</h3>
+                  <h4>{d.introduction}</h4>
+                </S.TextContainer>
+              </S.ProfileContainer>
+            );
+          })
+        )} */
+}

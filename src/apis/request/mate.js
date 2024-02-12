@@ -5,7 +5,7 @@ import { API_URL } from '@/constants/path';
 const getSearchMate = (searchTerm, take, { pageParam }) => {
   // SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
   // 백엔드 API : api/v1/mate/search
-  const url = `${API_URL.SEARCH_MATE}?searchTerm=${searchTerm}&cursor=${pageParam}&take=${take}`;
+  const url = `${API_URL.SEARCH_MATE}?searchTerm=${searchTerm}&cursorId=${pageParam}&take=${take}&sort`;
   console.log(url);
   return axiosWithToken.get(url);
 };

@@ -104,7 +104,7 @@ const API_URL = {
   LIKELIST_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}/:signatureId/like`,
 
   // MATE
-  SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/search`,
+  SEARCH_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/detail/search`,
   FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow`,
   EXPLORE_RANDOM_MATE: `/api/${VERSION}/${API_BASE.MATE}/random`,
   LOCATION_MATE: `/api/${VERSION}/${API_BASE.MATE}/location`,

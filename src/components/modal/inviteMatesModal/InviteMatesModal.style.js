@@ -39,6 +39,8 @@ const SearchImage = styled(IoSearchOutline)`
 const MatesContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   width: 100%;
+  height: 400px;
+  overflow-y: scroll;
 `;
 
 const ProfileContainer = styled.div`
