@@ -32,7 +32,11 @@ const Page = ({ image, content, location }) => {
       </S.LocationContainer>
       <S.InputWrap>
         {/* data:image/jpeg;base64, */}
-        {image && <S.Image src={`${image}`} />}
+        {image && image.startsWith('https://hereyou-cdn.kaaang.dev/') ? (
+          <S.Image src={image} />
+        ) : (
+          <S.Image src={`data:image/jpeg;base64,${image}`} />
+        )}
         <S.PhotoButton>
           <img src={addButton} alt="Add Button" />
           <S.ImageInput

@@ -97,10 +97,9 @@ const Button = styled.button`
 `;
 
 const Image = styled.img`
-  width: 50%;
-  height: 50%;
-
-  object-fit: cover;
+  width: 300px;
+  height: 500px;
+  object-fit: contain;
 `;
 
 const TextContainer = styled.div`
@@ -163,6 +162,8 @@ const CommentContainer = styled.div`
   width: 100%;
 `;
 
+const PageCount = styled.p``;
+
 export {
   TitleContainer,
   HeaderContainer,
@@ -180,4 +181,5 @@ export {
   ModifyButton,
   DeleteButton,
   CommentContainer,
+  PageCount,
 };
