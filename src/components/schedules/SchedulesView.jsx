@@ -26,16 +26,14 @@ const SchedulesView = ({ startDate, endDate }) => {
       getSchedule(formattedDate, pageParam, pageSize),
     initialPageParam: 0,
     getNextPageParam: lastPage => {
-      if (lastPage?.data?.data?.nextCursor === 0) {
+      if (!lastPage?.data?.data?.data?.meta?.hasNextData) {
         return null;
       } else {
-        return lastPage?.data?.data?.nextCursor + 1;
+        return lastPage?.data?.data?.data?.meta?.cursor + 1;
       }
     },
     staleTime: 60 * 1000,
   });
-
-  console.log(schedulesData);
 
   const dataExists = schedulesData?.pages?.some(page => page?.data?.data?.data);
 

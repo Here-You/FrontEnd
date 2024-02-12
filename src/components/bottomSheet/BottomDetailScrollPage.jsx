@@ -24,10 +24,10 @@ const BottomDetailScrollPage = ({ startDate, endDate }) => {
     queryFn: ({ pageParam = 1 }) => getSchedule(startDate, pageParam, pageSize),
     initialPageParam: 0,
     getNextPageParam: lastPage => {
-      if (lastPage?.data?.data?.nextCursor === 0) {
+      if (!lastPage?.data?.data?.data?.meta?.hasNextData) {
         return null;
       } else {
-        return lastPage?.data?.data?.nextCursor + 1;
+        return lastPage?.data?.data?.data?.meta?.cursor + 1;
       }
     },
     staleTime: 60 * 1000,
