@@ -74,7 +74,7 @@ const MateCommentView = ({ commentData }) => {
           </p>
           <S.LeftContent>
             {editMode ? (
-              <div
+              <S.UpdateButton
                 onClick={async () => {
                   try {
                     await updateComment({
@@ -88,7 +88,7 @@ const MateCommentView = ({ commentData }) => {
                   }
                 }}>
                 수정완료
-              </div>
+              </S.UpdateButton>
             ) : (
               <S.Icon
                 src={Pen}
