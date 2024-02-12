@@ -5,7 +5,7 @@ const useGetComments = ruleId => {
   return useInfiniteQuery({
     queryKey: ['comments', { ruleId }],
     queryFn: ({ pageParam = 0 }) =>
-      getTeamMateRuleComment(ruleId, 10, { pageParam }),
+      getTeamMateRuleComment(ruleId, 50, { pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages, lastPageParam) => {
       //   const { hasNextData, cursor } = lastPage.data.data.meta;

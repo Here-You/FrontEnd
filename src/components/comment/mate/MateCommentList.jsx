@@ -16,6 +16,8 @@ const MateCommentList = ({ ruleId }) => {
     delay: 0,
   });
 
+  console.log(commentsList);
+
   useEffect(() => {
     if (inView) {
       !isFetching && hasNextPage && fetchNextPage();
