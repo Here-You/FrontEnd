@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { SyncLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 
 import * as S from './MateCommentList.style';
 import MateCommentView from './commentView/MateCommentView';
@@ -32,8 +32,10 @@ const MateCommentList = ({ ruleId }) => {
           <MateCommentView key={comment.id} commentData={comment} />
         )),
       )}
-
-      <div ref={ref} style={{ height: 10 }}></div>
+      <S.LoadingWrapper>
+        {isFetching && <ClipLoader size={50} color={'#1B9C85'} />}
+      </S.LoadingWrapper>
+      <div ref={ref} style={{ height: 5 }}></div>
     </S.Container>
   );
 };
