@@ -7,7 +7,7 @@ import SearchMap from '@/components/searchMap/SearchMap';
 import useHandleImageChange from '@/hooks/image/useHandleImageChange';
 import useSignatureEdit from '@/store/useSignatureEdit';
 
-const Page = ({ image, content }) => {
+const Page = ({ image, content, location }) => {
   const { pages, updatePage, currentPageIndex } = useSignatureEdit();
 
   const handleImageChange = useHandleImageChange(currentPageIndex, updatePage);
@@ -23,7 +23,7 @@ const Page = ({ image, content }) => {
         <S.Icon src={LocationLight} />
         <SearchMap
           pageIndex={currentPageIndex}
-          inputValue={pages[currentPageIndex]?.location}
+          inputValue={location}
           selectLocation={info => {
             updatePage(currentPageIndex, { location: info.name });
           }}

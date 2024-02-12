@@ -81,6 +81,7 @@ const Editor = ({ signatureId }) => {
           <S.Empty />
         )}
         <Page
+          location={pages[currentPageIndex]?.location}
           image={pages[currentPageIndex]?.image}
           content={pages[currentPageIndex]?.content}
         />
