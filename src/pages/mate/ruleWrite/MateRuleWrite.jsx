@@ -30,10 +30,13 @@ const MateRuleWritePage = () => {
   const handleSubmitRule = async () => {
     const postData = {
       mainTitle: title,
-      rulePairs: rules,
+      rulePairs: rules.map((rule, index) => ({
+        ruleNumber: index + 1,
+        ruleTitle: rule.ruleTitle,
+        ruleDetail: rule.ruleDetail,
+      })),
       membersId: selectedMates.map(mate => mate.id),
     };
-    console.log(postData);
 
     await postCreateMateRule(postData)
       .then(() => {
