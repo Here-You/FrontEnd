@@ -81,6 +81,7 @@ const DetailPlan = ({
       setLoading(true);
       const res = await deleteDetailSchedule(id);
       if (res) {
+        refetch({ refetchPage: (page, index) => index === 0 });
         toast('세부 일정이 삭제되었습니다');
       }
     } catch (e) {
@@ -92,7 +93,7 @@ const DetailPlan = ({
       setLoading(false);
     }
   };
-  
+
   const handleOnChecked = async id => {
     try {
       setLoading(true);
