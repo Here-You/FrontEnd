@@ -110,12 +110,13 @@ const TextContainer = styled.div`
   padding: 20px;
 
   h3 {
-    ${theme.ALIGN.ROW_CENTER}
+    ${theme.ALIGN.ROW_CENTER};
     gap: 5px;
   }
 
   p {
     color: ${theme.COLOR.MAIN.GRAY};
+    white-space: pre-wrap;
   }
 `;
 
