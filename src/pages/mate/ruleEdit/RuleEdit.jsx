@@ -35,6 +35,11 @@ const RuleEditPage = () => {
     }
   }, [initialData, selectedMates]);
 
+  useEffect(() => {
+    const membersIdArray = selectedMates.map(mate => mate.id);
+    setPostData(prevData => ({ ...prevData, membersId: membersIdArray }));
+  }, [selectedMates]);
+
   const handleAddRule = () => {
     if (postData.rulePairs.length < 10) {
       setPostData(prevData => ({
@@ -69,12 +74,11 @@ const RuleEditPage = () => {
       membersId: extractMembersId,
     };
 
-    console.log(postDataWithId);
-
     updateTeamMateRule(ruleId, { postDataWithId })
       .then(() => {
         toast.success('규칙을 성공적으로 수정하였습니다.');
         navigate(`/mate/rule-check/${ruleId}`);
+        console.log(postDataWithId);
       })
       .catch(error => {
         console.log(error);

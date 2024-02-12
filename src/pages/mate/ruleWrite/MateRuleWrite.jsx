@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import * as S from './MateRuleWrite.style';
 import PlusUser from '/images/mate/add-user.svg';
+import Logo from '/images/mypage/MyPageLogo.svg';
 import { postCreateMateRule } from '@/apis/request/mate';
 import InviteMatesModal from '@/components/modal/inviteMatesModal/InviteMatesModal';
 import useInviteMatesModal from '@/hooks/modal/useInviteMatesModal';
@@ -12,7 +13,7 @@ import useMatesStore from '@/store/matesStore';
 const MateRuleWritePage = () => {
   const navigate = useNavigate();
   const inviteMatesModal = useInviteMatesModal();
-  const selectedMates = useMatesStore(state => state.selectedMates);
+  const { selectedMates, clearSelectedMates } = useMatesStore();
   const [title, setTitle] = useState('');
   const [rules, setRules] = useState([{ ruleTitle: '', ruleDetail: '' }]);
 
@@ -37,6 +38,7 @@ const MateRuleWritePage = () => {
     await postCreateMateRule(postData)
       .then(() => {
         toast.success('규칙을 성공적으로 작성하였습니다.');
+        clearSelectedMates();
         navigate('/mate');
       })
       .catch(error => {
@@ -59,7 +61,7 @@ const MateRuleWritePage = () => {
         <S.MatesContainer>
           {selectedMates.map(s => (
             <>
-              <S.MatesImages src={s.image} />
+              <S.MatesImages src={s.image ? s.image : Logo} />
             </>
           ))}
         </S.MatesContainer>

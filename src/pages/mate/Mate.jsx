@@ -19,7 +19,6 @@ const MatePage = () => {
     useGetSearchInfiniteNickname(debouncedValue, 2);
 
   const searchMembers = data?.pages;
-  console.log(data);
 
   const { ref, inView } = useInView({
     threshold: 0,

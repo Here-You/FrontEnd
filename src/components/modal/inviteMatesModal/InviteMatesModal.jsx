@@ -19,6 +19,8 @@ const InviteMatesModal = () => {
   const { selectedMates, addSelectedMate, clearSelectedMates } =
     useMatesStore();
 
+  console.log(selectedMates);
+
   const mateIds = selectedMates.map(mate => mate.id);
 
   const {
