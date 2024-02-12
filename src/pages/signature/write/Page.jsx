@@ -26,7 +26,6 @@ export default function Page({ image, content }) {
 
   useEffect(() => {
     resetData();
-    console.log(currentPageIndex);
   }, []);
 
   return (
@@ -34,6 +33,7 @@ export default function Page({ image, content }) {
       <S.LocationContainer>
         <S.Icon src={LocationLight} />
         <SearchMap
+          currentPageIndex={currentPageIndex}
           inputValue={pages[currentPageIndex]?.location}
           selectLocation={info => {
             updatePage(currentPageIndex, { location: info?.name });

@@ -23,6 +23,7 @@ const SearchMap = ({
   inputValue,
   placeholder = '주소를 입력해주세요',
   selectLocation,
+  currentPageIndex,
 }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -40,6 +41,7 @@ const SearchMap = ({
         inputValue={inputValue}
         placeholder={placeholder}
         selectLocation={selectLocation}
+        currentPageIndex={currentPageIndex}
       />
     </PlacesContainer>
   );
@@ -53,11 +55,20 @@ const PlacesAutocomplete = ({
   inputValue,
   placeholder,
   selectLocation,
+  currentPageIndex,
 }) => {
   const [input, setInput] = useState(inputValue || '');
 
   useEffect(() => {
-    setInput(inputValue);
+    if (currentPageIndex) {
+      setInput(inputValue);
+    }
+  }, [currentPageIndex]);
+
+  useEffect(() => {
+    if (inputValue) {
+      setInput(inputValue);
+    }
   }, [inputValue]);
 
   const {
