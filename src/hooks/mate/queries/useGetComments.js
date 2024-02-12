@@ -5,15 +5,15 @@ const useGetComments = ruleId => {
   return useInfiniteQuery({
     queryKey: ['comments', { ruleId }],
     queryFn: ({ pageParam = 0 }) =>
-      getTeamMateRuleComment(ruleId, 50, { pageParam }),
+      getTeamMateRuleComment(ruleId, 3, { pageParam }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages, lastPageParam) => {
-      //   const { hasNextData, cursor } = lastPage.data.data.meta;
-      //   if (hasNextData) {
-      //     return cursor;
-      //   } else {
-      //     return null;
-      //   }
+      const { hasNextData, cursor } = lastPage.data.data.meta;
+      if (hasNextData) {
+        return cursor;
+      } else {
+        return null;
+      }
     },
     staleTime: 60 * 1000,
   });

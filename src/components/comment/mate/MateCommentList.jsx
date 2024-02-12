@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { SyncLoader } from 'react-spinners';
 
 import * as S from './MateCommentList.style';
 import MateCommentView from './commentView/MateCommentView';
@@ -25,34 +26,16 @@ const MateCommentList = ({ ruleId }) => {
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
   return (
-    <>
+    <S.Container>
       {commentsList?.map(page =>
         page?.data?.data?.data.map(comment => (
           <MateCommentView key={comment.id} commentData={comment} />
         )),
       )}
-    </>
+
+      <div ref={ref} style={{ height: 10 }}></div>
+    </S.Container>
   );
 };
 
 export default MateCommentList;
-
-{
-  /* */
-}
-
-{
-  /* {commentsList?.pages?.length > 0 ? (
-        <S.Container>
-          {commentsList?.pages?.map(page =>
-            page?.data?.data[0]?.comments.map(data => (
-              <MateCommentView key={data.id} commentData={data} />
-            )),
-          )}
-          <div ref={ref} style={{ height: 10 }}></div>
-        </S.Container>
-      ) : (
-        <></>
-      )}
-    </> */
-}
