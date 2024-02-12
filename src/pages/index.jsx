@@ -29,11 +29,14 @@ import MateRuleWritePage from './mate/ruleWrite/MateRuleWrite';
 import MateSearchPage from './mate/search/MateSearch';
 // MY_PAGE
 import MyPage from './mypage/MyPage';
+import MyDiary from './mypage/diary/MyDiary';
 import MyPageEditPage from './mypage/edit/MyPageEdit';
 // notification
 import Notification from './notification/Notification';
 // ON_BOARDING
 import OnBoardingPage from './onboarding/OnBoardingPage';
+//Profile
+import ProfilePage from './profile/ProfilePage';
 // Signature
 import SignaturePage from './signature/SignaturePage';
 import SignatureEditPage from './signature/edit/SignatureEdit';
@@ -54,6 +57,7 @@ export {
   LoginPage,
   OnBoardingPage,
   MatePage,
+  MyDiary,
   MateSearchPage,
   MateRuleEditPage,
   MateManagementPage,
@@ -78,4 +82,5 @@ export {
   MapDetailPage,
   ExplorePage,
   JourneyDetailPage,
+  ProfilePage,
 };

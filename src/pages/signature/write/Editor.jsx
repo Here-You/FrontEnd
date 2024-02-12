@@ -41,7 +41,6 @@ export default function Editor({ setSelectedHeader }) {
       updatePage(currentPageIndex, { page: 1 });
     }
   };
-  console.log(pages);
 
   const handlePublish = async () => {
     let allPagesFilled = true;

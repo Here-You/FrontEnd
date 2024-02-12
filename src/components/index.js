@@ -4,6 +4,8 @@ import Comment from './comment/Comment';
 import Footer from './footer/Footer';
 import TravelMap from './map/TravelMap';
 import Navbar from './navbar/Navbar';
+import CountInfo from './profile/CountInfo';
+import ProfileBox from './profile/ProfileBox';
 import Schedules from './schedules/Schedules';
 
 export {
@@ -12,6 +14,8 @@ export {
   TravelCalendar,
   Schedules,
   TravelMap,
+  ProfileBox,
   BottomJourneyDetailScrollPage,
   Comment,
+  CountInfo,
 };

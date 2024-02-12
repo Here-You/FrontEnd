@@ -19,6 +19,8 @@ const MateManagementPage = () => {
     error: followingError,
   } = useMateFollowing();
 
+  console.log(following);
+
   const [activeTab, setActiveTab] = useState('following');
 
   const handleTabClick = tabName => {

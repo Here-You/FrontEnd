@@ -1,19 +1,31 @@
-import { useState } from 'react';
+import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
-import ExitModal from './ExitModal';
 import * as S from './TeamContainer.style';
 import over from '/images/mate/over.svg';
+import Logo from '/images/mypage/MyPageLogo.svg';
 import { deleteTeamRuleList } from '@/apis/request/mate';
-import { formatDate } from '@/utils/date';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-const TeamContainer = ({ ruleData, onExitClick }) => {
+const TeamContainer = ({ ruleData }) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { mutateAsync } = useMutation({
+    mutationFn: deleteTeamRuleList,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['teamRule']);
+    },
+    onError: () => {
+      console.error('규칙 나가기 실패:', error);
+      alert('규칙 나가기에 실패했습니다. 나중에 다시 시도해주세요.');
+    },
+  });
+
   if (!ruleData) {
     return <div>데이터가 없습니다.</div>;
   }
 
-  const { id, memberCnt, title, updated, participants } = ruleData;
+  const { id, memberCnt, title, memberPairs, updated } = ruleData;
 
   const handleDeleteRule = async e => {
     e.stopPropagation();
@@ -21,19 +33,18 @@ const TeamContainer = ({ ruleData, onExitClick }) => {
       const confirm = window.confirm(
         '정말 참여중인 규칙 방에서 나가시겠습니까?',
       );
-      confirm ? deleteTeamRuleList(id) : null;
+      confirm ? await mutateAsync(id) : null;
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
   return (
-    <S.TeamContainer
-      onClick={() => navigate(`/mate/rule-check/${ruleData.id}`)}>
+    <S.TeamContainer onClick={() => navigate(`/mate/rule-check/${id}`)}>
       <S.TeamInfoContainer>
         <S.ImgContainer>
-          {participants.slice(0, 2).map((participant, index) => (
-            <S.TeammateImg key={index} src={participant.image} index={index} />
+          {memberPairs?.map(({ id, image }, _) => (
+            <S.TeammateImg key={id} src={image ? image : Logo} />
           ))}
           {memberCnt >= 4 && <S.OverImg src={over} alt="over" />}
         </S.ImgContainer>
@@ -44,7 +55,7 @@ const TeamContainer = ({ ruleData, onExitClick }) => {
 
       <S.ExitContainer>
         <S.ExitButton onClick={handleDeleteRule}>나가기</S.ExitButton>
-        <S.WriteDate>{formatDate(updated)}</S.WriteDate>
+        <S.WriteDate>{format(updated, 'yy-MM-dd')}</S.WriteDate>
       </S.ExitContainer>
     </S.TeamContainer>
   );

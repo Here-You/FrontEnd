@@ -1,21 +1,20 @@
-import { useNavigate } from 'react-router-dom';
-
 import MateContainer from '../MateContainer';
 import * as S from './MateRuleCheck.style';
+import { getTeamRuleList } from '@/apis/request/mate';
 import TeamContainer from '@/components/mate/TeamContainer';
-import { useTeamRuleList } from '@/hooks/mate/useTeamRuleList';
+import { useGetTeamRuleList } from '@/hooks/mate/queries/useGetTeamRuleList';
+import { ErrorPage } from '@/pages';
 
 const MateRuleCheckPage = () => {
-  const { data: rulesData, loading, error } = useTeamRuleList();
-  const navigate = useNavigate();
-  console.log(rulesData);
+  const { data, isPending, isError } = useGetTeamRuleList();
+  const rulesData = data?.data?.data;
 
-  if (loading) {
+  if (isPending) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error...</div>;
+  if (isError) {
+    return <ErrorPage />;
   }
 
   return (

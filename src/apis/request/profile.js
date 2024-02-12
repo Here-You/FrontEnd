@@ -57,6 +57,19 @@ const putPublicScope = visivility => {
   });
   return res;
 };
+
+// 전체 일지 불러오기
+const getMyDiary = ({ pageParam }) => {
+  let url;
+  if (pageParam === 0) {
+    url = API_URL.GET_ALL_DIARY;
+  } else {
+    url = `${API_URL.GET_ALL_DIARY}?cursor=${pageParam}`;
+  }
+  console.log(url);
+  return axiosWithToken.get(url);
+};
+
 export {
   getProfileInfo,
   postSnsLogin,
@@ -65,4 +78,5 @@ export {
   deleteWithdrawMember,
   postAddInformation,
   putPublicScope,
+  getMyDiary,
 };

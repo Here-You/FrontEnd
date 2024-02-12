@@ -17,6 +17,14 @@ const HeaderContainer = styled.div`
 
 const ProfileContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 20px;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
+  }
 `;
 
 const ProfileImg = styled.img`

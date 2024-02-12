@@ -22,10 +22,12 @@ import {
   MateRuleEditPage,
   MateRuleWritePage,
   MateSearchPage,
+  MyDiary,
   MyPage,
   MyPageEditPage,
   Notification,
   OnBoardingPage,
+  ProfilePage,
   Redirect,
   SignUpPage,
   SignatureEditPage,
@@ -77,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: `${BASE_PATH.NOTIFICATION_PAGE}`,
         element: <Notification />,
+      },
+      {
+        path: `${BASE_PATH.MY_DIARY}`,
+        element: <MyDiary />,
       },
     ],
   },
@@ -196,6 +202,16 @@ const router = createBrowserRouter([
             element: <MyPageEditPage />,
           },
         ],
+      },
+    ],
+  },
+  {
+    path: `${BASE_PATH.PROFILE_PAGE}`,
+    children: [
+      {
+        element: <AppLayout />,
+        errorElement: <ErrorPage />,
+        children: [{ index: true, element: <ProfilePage /> }],
       },
     ],
   },
