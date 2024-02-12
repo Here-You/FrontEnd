@@ -153,6 +153,15 @@ const DeleteButton = styled.button`
   }
 `;
 
+const CommentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  gap: 20px;
+  width: 100%;
+`;
+
 export {
   TitleContainer,
   HeaderContainer,
@@ -169,4 +178,5 @@ export {
   FunctionButtonContainer,
   ModifyButton,
   DeleteButton,
+  CommentContainer,
 };
