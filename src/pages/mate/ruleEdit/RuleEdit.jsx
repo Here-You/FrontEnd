@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
-// assuming toast is imported
 import * as S from './RuleEdit.style';
 import PlusUser from '/images/mate/add-user.svg';
 import Logo from '/images/mypage/MyPageLogo.svg';

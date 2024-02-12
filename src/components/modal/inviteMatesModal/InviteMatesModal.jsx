@@ -19,8 +19,6 @@ const InviteMatesModal = () => {
   const { selectedMates, addSelectedMate, clearSelectedMates } =
     useMatesStore();
 
-  console.log(selectedMates);
-
   const mateIds = selectedMates.map(mate => mate.id);
 
   const {
@@ -30,7 +28,7 @@ const InviteMatesModal = () => {
     isFetching,
     hasNextPage,
     fetchNextPage,
-  } = useGetSearchInfiniteMate(debouncedNickname, 5);
+  } = useGetSearchInfiniteMate(debouncedNickname, 2);
 
   const searchMates = search?.pages;
 
@@ -64,7 +62,6 @@ const InviteMatesModal = () => {
         {isLoading ? (
           <div>로딩중입니다...</div>
         ) : (
-          // 검색된 메이트 목록을 렌더링
           searchMates?.map(searchMate =>
             searchMate?.data?.data?.data.map(mate => {
               const isSelected = mateIds.includes(mate.id);
@@ -111,25 +108,3 @@ const InviteMatesModal = () => {
 };
 
 export default InviteMatesModal;
-
-{
-  /* data?.map(d => {
-            const isSelected = mateIds.includes(d.id);
-            return (
-              <S.ProfileContainer
-                key={d.id}
-                isSelected={isSelected}
-                onClick={() => {
-                  isSelected ? clearSelectedMates(d.id) : addSelectedMate(d);
-                }}>
-                <S.ProfileImage src={d.image} />
-                <S.TextContainer>
-                  <h2>{d.name}</h2>
-                  <h3>@{d.nickname}</h3>
-                  <h4>{d.introduction}</h4>
-                </S.TextContainer>
-              </S.ProfileContainer>
-            );
-          })
-        )} */
-}
