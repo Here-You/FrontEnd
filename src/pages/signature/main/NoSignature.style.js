@@ -7,7 +7,7 @@ const PageContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 70%;
-  height: 100%;
+  height: 40vh;
   margin: 0 auto;
 `;
 const ContentContainer = styled.div`
@@ -15,7 +15,6 @@ const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 50%;
 `;
 
 const Text = styled.div`

@@ -12,12 +12,6 @@ export default function NoSignature() {
       <S.ContentContainer>
         <img src={bookImg} />
         <S.Text>아직 작성한 시그니처가 없어요!</S.Text>
-        <S.Button
-          onClick={() => {
-            navigate('write');
-          }}>
-          작성하기
-        </S.Button>
       </S.ContentContainer>
     </S.PageContainer>
   );

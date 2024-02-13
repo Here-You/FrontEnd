@@ -9,13 +9,13 @@ const SignatureSearchSlider = ({ data, type, searchTerm }) => {
       ) : type === 'new' ? (
         <S.Title>최신 시그니처🔥</S.Title>
       ) : (
-        <S.Title>{searchTerm}에 관한 시그니처🔥</S.Title>
+        <S.Title>"{searchTerm}" 에 관한 시그니처⭐</S.Title>
       )}
       <S.PreviewContainer>
         {data?.length === 0 ? (
           <S.EmptyContainer>
-            <h1>해당 검색어에 해당하는 컨텐츠가 없습니다.</h1>
-            <h3>먼저, 작성해보시는건 어떠신가요?</h3>
+            <S.Text>해당 검색어에 해당하는 컨텐츠가 없습니다.</S.Text>
+            <S.Text>가장 먼저 해당 키워드의 작성자가 되어보세요!</S.Text>
           </S.EmptyContainer>
         ) : (
           data?.map((d, _) => {

@@ -13,6 +13,7 @@ const PageContainer = styled.div`
 `;
 
 const EmptyContainer = styled.div`
+  width: 80%;
   margin: auto;
   height: 400px;
   ${theme.ALIGN.COLUMN_CENTER};
@@ -22,7 +23,6 @@ const EmptyContainer = styled.div`
 const Title = styled.div`
   display: flex;
   margin-left: 10px;
-
   font-family: 'Pretendard-bold';
 `;
 
@@ -31,4 +31,11 @@ const PreviewContainer = styled.div`
   overflow-x: scroll;
 `;
 
-export { PageContainer, EmptyContainer, Title, PreviewContainer };
+const Text = styled.div`
+  display: flex;
+  font-family: 'Pretendard-bold';
+  font-size: 16px;
+  text-align: center;
+`;
+
+export { PageContainer, EmptyContainer, Title, PreviewContainer, Text };

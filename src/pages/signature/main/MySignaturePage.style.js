@@ -4,9 +4,10 @@ import theme from '@/theme';
 
 const PageContainer = styled.div`
   margin-top: 20px;
-  ${theme.ALIGN.COLUMN_CENTER};
 `;
 const PreviewContainer = styled.div`
+  width: 95%;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
