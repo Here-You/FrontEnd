@@ -138,11 +138,16 @@ const InputWrap = styled.div`
 `;
 
 const PhotoButton = styled.label`
-  border: 1px dashed #393939;
+  position: relative;
+  border: ${props => (props.$image ? 'none' : '1px dashed #393939')};
   width: 20vh;
   height: 20vh;
-  ${theme.ALIGN.COLUMN_CENTER}
-  position: relative;
+`;
+
+const ImageAddButton = styled.img`
+  position: absolute;
+  top: ${props => (props.$image ? '50%' : '45%')};
+  left: ${props => (props.$image ? '45%' : '45%')};
 `;
 
 const Icon = styled.img`
@@ -152,10 +157,10 @@ const Icon = styled.img`
 
 const Image = styled(LazyLoadImage)`
   position: absolute;
-  width: 230px;
-  height: 230px;
-  top: 50;
-  left: 50;
+  width: 20vh;
+  height: 20vh;
+  top: 0px;
+  left: 0px;
 `;
 
 const ImageInput = styled.input`
@@ -163,7 +168,7 @@ const ImageInput = styled.input`
   width: 100%;
   height: 100%;
   opacity: 0;
-  top: 0;
+  bottom: 0;
   left: 0;
   cursor: pointer;
 `;
@@ -191,4 +196,5 @@ export {
   Icon,
   Image,
   ImageInput,
+  ImageAddButton,
 };

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 import * as S from './Editor.style';
 import Page from './Page';
@@ -6,16 +7,6 @@ import leftIcon from '/icons/leftIcon.svg';
 import rightIcon from '/icons/rightIcon.svg';
 import { postNewSignature } from '@/apis/request/signature';
 import useSignatureWrite from '@/store/useSignatureWrite';
-
-//✍️시그니처 작성하기 로직✍️//
-//1. Page 컴포넌트 그대로
-//2. 상태관리 라이브러리로 페이지 index별 변경 사항 있을 때마다 업데이트
-//3. 발행 누르면 API POST 요청
-
-//🔥참고사항🔥
-//1. 시그니처-수정할 때도 이거 그대로 띄울 건데, 그때 첫 렌더링 시 1페이지, 이전, 다음 버튼
-//누를 때마다 GET 요청 보내지 말고, 그냥 한 번에 다 가져와서 위에 상태관리에 넣어버리기
-//2. 이후 로직은 동일
 
 export default function Editor({ setSelectedHeader }) {
   const {
@@ -46,13 +37,13 @@ export default function Editor({ setSelectedHeader }) {
     let allPagesFilled = true;
 
     pages.forEach((page, index) => {
-      if (!page?.location || !page?.content || !page?.image) {
+      if (!title || !page?.location || !page?.content || !page?.image) {
         allPagesFilled = false;
       }
     });
 
     if (!allPagesFilled) {
-      alert('모든 페이지 정보를 입력하세요!');
+      toast('모든 페이지 정보를 입력하세요!');
       return;
     }
 
@@ -75,10 +66,18 @@ export default function Editor({ setSelectedHeader }) {
   };
 
   const handleAddPage = () => {
-    if (pages.length < maxPages) {
-      addPage();
+    if (
+      !pages[currentPageIndex]?.image ||
+      !pages[currentPageIndex]?.content ||
+      !pages[currentPageIndex]?.location
+    ) {
+      toast('모든 페이지 내용을 작성해주세요!');
     } else {
-      alert(`최대 ${maxPages}개의 페이지까지만 추가할 수 있습니다.`);
+      if (pages.length < maxPages) {
+        addPage();
+      } else {
+        alert(`최대 ${maxPages}개의 페이지까지만 추가할 수 있습니다.`);
+      }
     }
   };
 
@@ -92,7 +91,16 @@ export default function Editor({ setSelectedHeader }) {
       <S.Divider />
       <S.ContentContainer>
         {currentPageIndex > 0 ? (
-          <img src={leftIcon} onClick={goToPreviousPage} />
+          <img
+            src={leftIcon}
+            onClick={() =>
+              goToPreviousPage(
+                pages[currentPageIndex]?.image,
+                pages[currentPageIndex]?.content,
+                pages[currentPageIndex]?.location,
+              )
+            }
+          />
         ) : (
           <S.Empty />
         )}
@@ -101,7 +109,16 @@ export default function Editor({ setSelectedHeader }) {
           content={pages[currentPageIndex]?.content}
         />
         {currentPageIndex < pages.length - 1 ? (
-          <img src={rightIcon} onClick={goToNextPage} />
+          <img
+            src={rightIcon}
+            onClick={() =>
+              goToNextPage(
+                pages[currentPageIndex]?.image,
+                pages[currentPageIndex]?.content,
+                pages[currentPageIndex]?.location,
+              )
+            }
+          />
         ) : (
           <S.Empty />
         )}

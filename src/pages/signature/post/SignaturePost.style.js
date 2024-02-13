@@ -97,10 +97,9 @@ const Button = styled.button`
 `;
 
 const Image = styled.img`
-  width: 50%;
-  height: 50%;
-
-  object-fit: cover;
+  width: 300px;
+  height: 500px;
+  object-fit: contain;
 `;
 
 const TextContainer = styled.div`
@@ -110,12 +109,13 @@ const TextContainer = styled.div`
   padding: 20px;
 
   h3 {
-    ${theme.ALIGN.ROW_CENTER}
+    ${theme.ALIGN.ROW_CENTER};
     gap: 5px;
   }
 
   p {
     color: ${theme.COLOR.MAIN.GRAY};
+    white-space: pre-wrap;
   }
 `;
 
@@ -162,6 +162,8 @@ const CommentContainer = styled.div`
   width: 100%;
 `;
 
+const PageCount = styled.p``;
+
 export {
   TitleContainer,
   HeaderContainer,
@@ -179,4 +181,5 @@ export {
   ModifyButton,
   DeleteButton,
   CommentContainer,
+  PageCount,
 };

@@ -28,7 +28,7 @@ const SignaturePostPage = () => {
     setLike,
   } = useGetDetail(signatureId);
 
-  const author = detailSignatures.author;
+  const author = detailSignatures?.author;
   const header = detailSignatures?.header;
 
   const [step, setStep] = useState(1);
@@ -42,18 +42,29 @@ const SignaturePostPage = () => {
   };
 
   const handlePrevPage = () => {
+    console.log('첫 번째 페이지입니다.');
     if (step > 1) {
       setStep(prevStep => prevStep - 1);
     }
   };
 
-  const handleDeletePost = async () => {
+  const deleteSignature = async () => {
     try {
       await deleteMySignature(signatureId);
       toast.success('포스트가 정상적으로 삭제되었습니다.');
       navigate('/signature');
     } catch (e) {
       toast.error(e.message);
+    }
+  };
+
+  const handleDeletePost = async e => {
+    e.stopPropagation();
+    try {
+      const confirm = window.confirm('정말 이 시그니처를 삭제할까요?');
+      confirm ? await deleteSignature() : null;
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -68,13 +79,13 @@ const SignaturePostPage = () => {
   return (
     <>
       {detailSignatures &&
-        detailSignatures.pages &&
-        detailSignatures.pages[step - 1] && (
+        detailSignatures?.pages &&
+        detailSignatures?.pages[step - 1] && (
           <S.SignatureContainer>
             <>
               <S.HeaderContainer>
                 <S.ProfileContainer
-                  onClick={() => navigate(`/profile/${author._id}`)}>
+                  onClick={() => navigate(`/profile/${author?._id}`)}>
                   {author?.image ? (
                     <S.ProfileImg src={author?.image} />
                   ) : (
@@ -86,7 +97,7 @@ const SignaturePostPage = () => {
                     ) : (
                       <h3>{author?.name}</h3>
                     )}
-                    <date>{header.date}</date>
+                    <date>{header?.date}</date>
                   </S.ProfileDesc>
                 </S.ProfileContainer>
                 {author?.is_followed !== null && (
@@ -97,11 +108,11 @@ const SignaturePostPage = () => {
                 )}
               </S.HeaderContainer>
               <S.TitleContainer>
-                <h1>{header.title}</h1>
+                <h1>{header?.title}</h1>
               </S.TitleContainer>
               <S.ButtonContainer>
                 <HeartButton
-                  id={header._id}
+                  id={header?._id}
                   like={like}
                   setLike={setLike}
                   count={count}
@@ -112,7 +123,9 @@ const SignaturePostPage = () => {
                 <S.Button onClick={handlePrevPage} disabled={step === 1}>
                   <GrFormPrevious />
                 </S.Button>
-                <S.Image src={detailSignatures.pages[step - 1].image || Logo} />
+                <S.Image
+                  src={detailSignatures?.pages[step - 1]?.image || Logo}
+                />
                 <S.Button
                   onClick={handleNextPage}
                   disabled={step === totalPages}>
@@ -122,10 +135,13 @@ const SignaturePostPage = () => {
               <S.TextContainer>
                 <h3>
                   <CiLocationOn />
-                  {detailSignatures.pages[step - 1].location}
+                  {detailSignatures?.pages[step - 1]?.location}
                 </h3>
-                <p>{detailSignatures.pages[step - 1].content}</p>
+                <p>{detailSignatures?.pages[step - 1]?.content}</p>
               </S.TextContainer>
+              <S.PageCount>
+                {step}/{totalPages}
+              </S.PageCount>
               <S.FunctionButtonContainer>
                 <S.ModifyButton
                   onClick={() => navigate(`/signature/edit/${signatureId}`)}>
