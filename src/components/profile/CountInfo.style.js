@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const Container = styled.div`
@@ -12,6 +13,10 @@ const Container = styled.div`
 
   h4 {
     color: ${theme.COLOR.MAIN.GRAY};
+  }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: ${FONT_SIZE.XS};
   }
 `;
 

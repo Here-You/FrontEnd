@@ -15,6 +15,14 @@ const Wrapper = styled.div`
   border: 2px solid ${theme.COLOR.MAIN.HEAVY_GREEN};
   border-radius: 20px;
   padding: 20px;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #ccc;
+  }
 `;
 
 const Header = styled.div`
@@ -32,6 +40,10 @@ const Title = styled.h1`
   border: none;
   text-align: center;
   font-size: ${FONT_SIZE.TWO_XL};
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: ${FONT_SIZE.XL};
+  }
 `;
 
 const ProfileContainer = styled.div`
@@ -43,7 +55,7 @@ const ProfileBox = styled.div`
   margin-right: 10px;
 
   h3 {
-    font-size: 15px;
+    font-size: ${FONT_SIZE.XS};
     white-space: nowrap;
   }
 `;
@@ -58,6 +70,7 @@ const ProfileImages = styled.img`
 
 const Content = styled.div`
   text-align: left;
+  margin-top: 20px;
 `;
 
 const TextContainer = styled.div`
@@ -70,6 +83,16 @@ const TextContainer = styled.div`
   p {
     margin-top: 20px;
     color: ${theme.COLOR.MAIN.GRAY};
+
+    @media ${theme.WINDOW_SIZE.MOBILE} {
+      font-size: ${FONT_SIZE.SM};
+    }
+  }
+
+  h3 {
+    @media ${theme.WINDOW_SIZE.MOBILE} {
+      font-size: ${FONT_SIZE.BASE};
+    }
   }
 `;
 
