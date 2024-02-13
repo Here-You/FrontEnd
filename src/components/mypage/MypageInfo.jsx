@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 import * as S from './MypageInfo.style';
 import { myPageImg } from '/public/images/mypage/index';
-import { getProfileInfo } from '@/apis/request/profile';
+import useUser from '@/store/useUser';
 import theme from '@/theme';
 
 const MyPageInfo = () => {
-  const [info, setInfo] = useState([]);
   const [isLogin, setIsLogin] = useState();
   const [user_id, setUserId] = useState();
   const [nickName, setNickName] = useState();
   const [profileImage, setProfileImage] = useState();
+  const { userInfo } = useUser();
 
   const navigate = useNavigate();
 
@@ -20,28 +20,8 @@ const MyPageInfo = () => {
     navigate('/mate/management');
   };
 
-  const getProfile = async () => {
-    const ACCESS_TOKEN = localStorage.getItem('x-access-token');
-    console.log(ACCESS_TOKEN);
-    try {
-      const response = await fetch('https://kapi.kakao.com/v2/user/me', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-          'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-        },
-      });
-
-      const data = await response.json();
-
-      console.log(data);
-    } catch (error) {
-      console.error('프로필을 가져오는 중 오류 발생:', error);
-    }
-  };
   useEffect(() => {
     setIsLogin(localStorage.getItem('x-access-token'));
-    getProfile();
   }, []);
   return (
     <S.ProfileContainer>
@@ -50,11 +30,12 @@ const MyPageInfo = () => {
         {isLogin ? (
           <>
             <S.NickNameTypeContainer>
-              <h3> {user_id}</h3>
-              <h3> {nickName}</h3>
+              <h3> {userInfo.nickname}</h3>
             </S.NickNameTypeContainer>
-            <p> 이메일</p>
-            <p style={{ color: `${theme.COLOR.MAIN.BLACK}` }}>소개</p>
+            <p> {userInfo.email}</p>
+            <p style={{ color: `${theme.COLOR.MAIN.BLACK}` }}>
+              {userInfo.introduction}
+            </p>
             <S.Mate onClick={handleGoMate}>
               팔로워
               <S.NumberOfPeople>32</S.NumberOfPeople> 팔로잉

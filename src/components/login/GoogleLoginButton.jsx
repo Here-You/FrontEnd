@@ -15,7 +15,7 @@ const GoogleLoginButton = () => {
       const token = response.data.token;
       localStorage.setItem('x-access-token', token);
       const register_required = response.data.register_required;
-      register_required ? navigate('/signup') : navigate('/');
+      // register_required ? navigate('/signup') : navigate('/');
       alert('로그인 성공');
     },
     onError: error => {

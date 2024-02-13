@@ -25,7 +25,7 @@ const LoginPage = () => {
 
       console.log(response);
       localStorage.setItem('x-access-token', response.data.token);
-      navigate('/');
+      // navigate('/');
     } catch (error) {
       console.error('Login failed:', error.message);
     }
@@ -35,7 +35,7 @@ const LoginPage = () => {
     <S.LoginContainer>
       <S.LogoImg src={Logo} />
       <S.ButtonWrap>
-        <LoginButton />
+        {/* <LoginButton /> */}
         <form onSubmit={handleSubmit}>
           <input
             type="email"
