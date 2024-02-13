@@ -11,10 +11,11 @@ const PreviewContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
+  justify-items: center;
 
   @media ${theme.WINDOW_SIZE.TABLET} {
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    gap: 15px;
   }
 
   @media ${theme.WINDOW_SIZE.MOBILE} {

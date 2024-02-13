@@ -7,9 +7,8 @@ import theme from '@/theme';
 const PreviewWrap = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
   height: 100%;
-
+  width: 100%;
   cursor: pointer;
 `;
 
@@ -37,7 +36,7 @@ const Title = styled.h1`
   font-family: Pretendard-bold;
   font-size: 14px;
   margin: 3px 0px;
-
+  width: 60%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
