@@ -50,9 +50,7 @@ const TeamContainer = ({ ruleData }) => {
         </S.ImgContainer>
         <S.TeammateNum>{memberCnt}명</S.TeammateNum>
       </S.TeamInfoContainer>
-
       <S.TeamTitle>{title}</S.TeamTitle>
-
       <S.ExitContainer>
         <S.ExitButton onClick={handleDeleteRule}>나가기</S.ExitButton>
         <S.WriteDate>{format(updated, 'yy-MM-dd')}</S.WriteDate>

@@ -59,17 +59,13 @@ const RuleEditPage = () => {
     }));
   };
 
-  const handleSubmitRule = async () => {
-    const postData = {
-      mainTitle: title,
-      rulePairs: rules.map((rule, index) => ({
-        ruleNumber: index + 1,
-        id: rule.id,
-        ruleTitle: rule.ruleTitle,
-        ruleDetail: rule.ruleDetail,
-      })),
-      membersId: selectedMates.map(mate => mate.id),
-    };
+  const handleSubmitRule = () => {
+    const ruleData = postData.rulePairs.map((rule, index) => ({
+      ruleNumber: index + 1,
+      id: rule.id,
+      ruleTitle: rule.ruleTitle,
+      ruleDetail: rule.ruleDetail,
+    }));
 
     const extractMembersId = postData.membersId.map(member => member.id);
 

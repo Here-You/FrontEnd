@@ -59,6 +59,29 @@ const getLikeList = signatureId => {
   return res;
 };
 
+// 시그니처 댓글 / 답글 불러오기 (무한 스크롤)
+const getSignatureComments = (signatureId, take, { pageParam }) => {
+  const url = `api/v1/signature/${signatureId}/comment?take${take}&cursorId=${pageParam}`;
+  console.log(url);
+  return axiosWithToken.get(url);
+};
+
+// 시그니처 댓글 생성
+const postSignatureComment = ({ signatureId, content }) => {
+  const url = `/api/v1/signature/${signatureId}/comment`;
+  return axiosWithToken.post(url, {
+    content: content,
+  });
+};
+
+// 시그니처 답글 생성
+const postSignatureReComment = ({ signatureId, parentId, content }) => {
+  const url = `/api/v1/signature/${signatureId}/comment/${parentId}`;
+  return axiosWithToken.post(url, {
+    content: content,
+  });
+};
+
 export {
   getMySignaturePreview,
   postNewSignature,
@@ -67,4 +90,7 @@ export {
   deleteMySignature,
   likeSignature,
   getLikeList,
+  getSignatureComments,
+  postSignatureComment,
+  postSignatureReComment,
 };
