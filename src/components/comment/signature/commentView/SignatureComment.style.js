@@ -21,6 +21,26 @@ const Avatar = styled.img`
   border-radius: 100px;
 `;
 
+const ReplyContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+`;
+
+const Button = styled.button`
+  background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
+  border: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-left: 10px;
+`;
+
+const Input = styled.input`
+  padding: 10px;
+  border: 3px solid ${theme.COLOR.MAIN.LIGHT_GREEN};
+  border-radius: 10px;
+  width: 70%;
+  flex: 1;
+`;
+
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -77,6 +97,9 @@ export {
   Container,
   Avatar,
   ContentContainer,
+  Button,
+  Input,
+  ReplyContainer,
   ContentInner,
   Name,
   Content,

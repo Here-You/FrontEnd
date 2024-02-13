@@ -46,7 +46,7 @@ const SignatureComment = ({ data }) => {
           <S.Name>{writer?.name}</S.Name>
           {isParentComment && (
             <S.LeftContent>
-              <button onClick={handleReplyToggle}>답글</button>
+              <S.Button onClick={handleReplyToggle}>답글</S.Button>
               <S.Icon src={Pen} onClick={handleCommentEdit} />
               <S.Icon src={Trash} onClick={handleCommentDelete} />
             </S.LeftContent>
@@ -58,14 +58,14 @@ const SignatureComment = ({ data }) => {
           <S.EditContent>{is_edited === true ? '수정됨' : null}</S.EditContent>
         </S.ContentInner>
         {isReplying && (
-          <div>
-            <input
+          <S.ReplyContainer>
+            <S.Input
               type="text"
               placeholder="답글을 작성하세요..."
               value={replyComment}
               onChange={e => setReplyComment(e.target.value)}
             />
-            <button
+            <S.Button
               onClick={async () => {
                 try {
                   postReComment({
@@ -78,9 +78,9 @@ const SignatureComment = ({ data }) => {
                   console.log(e);
                 }
               }}>
-              댓글 작성
-            </button>
-          </div>
+              답글 작성
+            </S.Button>
+          </S.ReplyContainer>
         )}
       </S.ContentContainer>
     </S.Container>

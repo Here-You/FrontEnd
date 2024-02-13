@@ -1,6 +1,4 @@
 import { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 
 import * as S from './MateCommentInput.style';
 import { postMateRuleComment } from '@/apis/request/mate';
