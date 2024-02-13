@@ -4,7 +4,7 @@ import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const HeaderWrapper = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER}
+  ${theme.ALIGN.COLUMN_CENTER};
 `;
 
 const Button = styled.button`

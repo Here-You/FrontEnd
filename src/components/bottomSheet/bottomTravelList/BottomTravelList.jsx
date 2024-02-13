@@ -13,9 +13,9 @@ const BottomTravelList = ({ id, title, count, startDate, endDate }) => {
           <h2>{title}</h2>
           <S.TextContainer>
             <p>작성 일지 {count}개</p>
-            <date>
+            <p>
               {startDate}~{endDate}
-            </date>
+            </p>
           </S.TextContainer>
         </S.ListDescriptionContainer>
       </S.ListWrapper>
