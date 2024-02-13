@@ -1,34 +1,49 @@
-import { format } from 'date-fns';
-import { useState } from 'react';
+import { format, formatDistance } from 'date-fns';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import * as S from './SignatureComment.style';
 import Pen from '/icons/Pen.svg';
 import Trash from '/icons/Trash.svg';
 import Logo from '/images/mypage/MyPageLogo.svg';
-import { postSignatureReComment } from '@/apis/request/signature';
+import {
+  deleteSignatureReComment,
+  postSignatureReComment,
+  updateSignatureReComment,
+} from '@/apis/request/signature';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { ko } from 'date-fns/locale';
 
 const SignatureComment = ({ data }) => {
   const { signatureId } = useParams();
-
   const queryClient = useQueryClient();
   const { _id, content, parentId, is_edited, writer, date } = data;
-  const formattedEndDate = format(date, 'yyyy-MM-dd HH:mm:ss');
+
+  const currentTime = new Date();
+  const timeAgo = formatDistance(date, currentTime, {
+    addSuffix: true,
+    locale: ko,
+  });
+
   const [editMode, setEditMode] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
   const [replyComment, setReplyComment] = useState('');
-  console.log(replyComment);
+  const editModeRef = useRef(false);
+  const editedContentRef = useRef(content);
+  const inputRef = useRef(null);
 
-  const handleCommentEdit = () => {};
-  const handleCommentDelete = () => {};
+  useEffect(() => {
+    if (editMode) {
+      inputRef.current.focus();
+    }
+  }, [editMode]);
+
+  const handleContentChange = () => {
+    editedContentRef.current = inputRef.current.innerText;
+  };
 
   const indentationLevel = parentId === _id ? 0 : 1;
   const isParentComment = parentId === _id;
-
-  const handleReplyToggle = () => {
-    setIsReplying(!isReplying);
-  };
 
   const { mutateAsync: postReComment } = useMutation({
     mutationFn: postSignatureReComment,
@@ -40,23 +55,89 @@ const SignatureComment = ({ data }) => {
     },
   });
 
+  const { mutateAsync: updateReComment } = useMutation({
+    mutationFn: updateSignatureReComment,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['signatureComments']);
+    },
+    onError: error => {
+      console.error('답글 수정 실패', error);
+    },
+  });
+
+  const { mutateAsync: deleteReComment } = useMutation({
+    mutationFn: deleteSignatureReComment,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['signatureComments']);
+    },
+    onError: error => {
+      console.error('답글 삭제 실패', error);
+    },
+  });
+
   return (
     <S.Container indentationLevel={indentationLevel}>
       <S.Avatar src={writer?.image ? writer?.image : Logo} />
       <S.ContentContainer>
         <S.NameContainer>
           <S.Name>{writer?.name}</S.Name>
-          {isParentComment && (
+          {writer?.is_writer === true && (
             <S.LeftContent>
-              <S.Button onClick={handleReplyToggle}>답글</S.Button>
-              <S.Icon src={Pen} onClick={handleCommentEdit} />
-              <S.Icon src={Trash} onClick={handleCommentDelete} />
+              {!editMode && (
+                <S.Button onClick={() => setIsReplying(true)}>답글</S.Button>
+              )}
+              {isReplying === true && (
+                <S.Button onClick={() => setIsReplying(false)}>취소</S.Button>
+              )}
+              {editMode ? (
+                <>
+                  <S.Button
+                    onClick={async () => {
+                      try {
+                        await updateReComment({
+                          signatureId,
+                          commentId: _id,
+                          content: editedContentRef.current,
+                        });
+                        setEditMode(false);
+                      } catch (e) {
+                        console.error(e);
+                      }
+                    }}>
+                    수정 완료
+                  </S.Button>
+                  <S.Button onClick={() => setEditMode(false)}>취소</S.Button>
+                </>
+              ) : (
+                <S.Icon
+                  src={Pen}
+                  onClick={() => {
+                    setEditMode(true);
+                  }}
+                />
+              )}
+              <S.Icon
+                src={Trash}
+                onClick={async () => {
+                  try {
+                    await deleteReComment({ signatureId, commentId: _id });
+                  } catch (e) {
+                    console.error(e);
+                  }
+                }}
+              />
             </S.LeftContent>
           )}
         </S.NameContainer>
-        <S.Content>{content}</S.Content>
+        <S.Content
+          contentEditable={editMode}
+          suppressContentEditableWarning={editMode}
+          ref={inputRef}
+          onInput={handleContentChange}>
+          {content}
+        </S.Content>
         <S.ContentInner>
-          <S.Content>{formattedEndDate}</S.Content>
+          <S.Content>{timeAgo}</S.Content>
           <S.EditContent>{is_edited === true ? '수정됨' : null}</S.EditContent>
         </S.ContentInner>
         {isReplying && (
@@ -76,6 +157,7 @@ const SignatureComment = ({ data }) => {
                     content: replyComment,
                   });
                   setReplyComment('');
+                  setIsReplying(false);
                 } catch (e) {
                   console.log(e);
                 }

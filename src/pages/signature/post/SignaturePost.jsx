@@ -159,17 +159,13 @@ const SignaturePostPage = () => {
               <S.PageCount>
                 {step}/{totalPages}
               </S.PageCount>
-              {author?.is_followed !== null && (
-                <S.FunctionButtonContainer>
-                  <S.ModifyButton
-                    onClick={() => navigate(`/signature/edit/${signatureId}`)}>
-                    수정
-                  </S.ModifyButton>
-                  <S.DeleteButton onClick={handleDeletePost}>
-                    삭제
-                  </S.DeleteButton>
-                </S.FunctionButtonContainer>
-              )}
+              <S.FunctionButtonContainer>
+                <S.ModifyButton
+                  onClick={() => navigate(`/signature/edit/${signatureId}`)}>
+                  수정
+                </S.ModifyButton>
+                <S.DeleteButton onClick={handleDeletePost}>삭제</S.DeleteButton>
+              </S.FunctionButtonContainer>
             </>
             <S.CommentContainer>
               <SignatureCommentInput />

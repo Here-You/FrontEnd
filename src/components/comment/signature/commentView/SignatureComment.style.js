@@ -30,7 +30,6 @@ const Button = styled.button`
   border: none;
   padding: 5px 10px;
   border-radius: 10px;
-  margin-left: 10px;
   cursor: pointer;
 
   &:hover {
@@ -86,8 +85,7 @@ const NameContainer = styled.div`
 `;
 
 const LeftContent = styled.div`
-  display: flex;
-  flex-direction: row;
+  ${theme.ALIGN.ROW_CENTER};
   gap: 5px;
   margin-left: auto;
 `;
@@ -95,8 +93,11 @@ const LeftContent = styled.div`
 const Icon = styled.img`
   display: flex;
   width: 15px;
-  height: 15px;
   cursor: pointer;
+
+  &:hover {
+    transform: scale(0.9);
+  }
 `;
 
 export {

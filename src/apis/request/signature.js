@@ -82,6 +82,22 @@ const postSignatureReComment = ({ signatureId, parentId, content }) => {
   });
 };
 
+// 시그니처 댓글/답글 수정하기
+const updateSignatureReComment = ({ signatureId, commentId, content }) => {
+  const url = `/api/v1/signature/${signatureId}/comment/${commentId}`;
+  console.log(url);
+  return axiosWithToken.patch(url, {
+    content: content,
+  });
+};
+
+// 시그니처 댓글/답글 삭제하기
+const deleteSignatureReComment = ({ signatureId, commentId }) => {
+  const url = `/api/v1/signature/${signatureId}/comment/${commentId}`;
+
+  return axiosWithToken.delete(url);
+};
+
 export {
   getMySignaturePreview,
   postNewSignature,
@@ -93,4 +109,6 @@ export {
   getSignatureComments,
   postSignatureComment,
   postSignatureReComment,
+  updateSignatureReComment,
+  deleteSignatureReComment,
 };
