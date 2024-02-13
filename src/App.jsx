@@ -55,7 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path: `${BASE_PATH.CALENDAR}`,
-        element: <Home />,
+        element: (
+          <ProtectedRouter>
+            <Home />
+          </ProtectedRouter>
+        ),
       },
       {
         path: `${BASE_PATH.MAP}`,
@@ -266,7 +270,16 @@ const router = createBrowserRouter([
       {
         element: <AppLayout />,
         errorElement: <ErrorPage />,
-        children: [{ index: true, element: <ExplorePage /> }],
+        children: [
+          {
+            index: true,
+            element: (
+              <ProtectedRouter>
+                <ExplorePage />
+              </ProtectedRouter>
+            ),
+          },
+        ],
       },
     ],
   },
