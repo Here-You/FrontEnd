@@ -31,6 +31,11 @@ const Button = styled.button`
   padding: 5px 10px;
   border-radius: 10px;
   margin-left: 10px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.9);
+  }
 `;
 
 const Input = styled.input`
@@ -76,6 +81,7 @@ const EditContent = styled.p`
 const NameContainer = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 100%;
 `;
 

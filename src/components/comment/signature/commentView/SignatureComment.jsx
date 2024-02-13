@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import * as S from './SignatureComment.style';
 import Pen from '/icons/Pen.svg';
 import Trash from '/icons/Trash.svg';
+import Logo from '/images/mypage/MyPageLogo.svg';
 import { postSignatureReComment } from '@/apis/request/signature';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -18,6 +19,7 @@ const SignatureComment = ({ data }) => {
   const [isReplying, setIsReplying] = useState(false);
   const [replyComment, setReplyComment] = useState('');
   console.log(replyComment);
+
   const handleCommentEdit = () => {};
   const handleCommentDelete = () => {};
 
@@ -40,7 +42,7 @@ const SignatureComment = ({ data }) => {
 
   return (
     <S.Container indentationLevel={indentationLevel}>
-      <S.Avatar src={writer?.image} />
+      <S.Avatar src={writer?.image ? writer?.image : Logo} />
       <S.ContentContainer>
         <S.NameContainer>
           <S.Name>{writer?.name}</S.Name>
