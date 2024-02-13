@@ -27,11 +27,13 @@ const MapPage = () => {
   return (
     <S.Container $dataLength={testData.length}>
       <S.ButtonContainer>
-        <S.Button clicked={pathname === '/'} onClick={() => navigate('/')}>
+        <S.Button
+          clicked={pathname === '/calender'}
+          onClick={() => navigate('/calendar')}>
           캘린더로 보기
         </S.Button>
         <S.Button
-          clicked={pathname === '/map'}
+          $clicked={pathname === '/map'}
           onClick={() => navigate('/map')}>
           지도로 보기
         </S.Button>

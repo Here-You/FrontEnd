@@ -99,7 +99,9 @@ const TravelCalendar = ({
   return (
     <S.Wrapper>
       <S.ButtonContainer>
-        <S.Button $clicked={pathname === '/'} onClick={() => navigate('/')}>
+        <S.Button
+          $clicked={pathname === '/calendar'}
+          onClick={() => navigate('/calendar')}>
           캘린더로 보기
         </S.Button>
         <S.Button

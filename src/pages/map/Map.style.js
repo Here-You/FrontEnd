@@ -35,10 +35,6 @@ const ButtonContainer = styled.div`
   margin-top: 40px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
   border-radius: 40px;
-
-  @media (max-width: 600px) {
-    width: 80%;
-  }
 `;
 
 const Button = styled.button`
@@ -46,17 +42,18 @@ const Button = styled.button`
   background-color: #ffffff;
   padding: 20px;
   border: ${props =>
-    props.clicked ? `2px solid ${theme.COLOR.MAIN.GREEN}` : 'none'};
+    props.$clicked ? `2px solid ${theme.COLOR.MAIN.GREEN}` : 'none'};
   color: ${props =>
-    props.clicked ? `${theme.COLOR.MAIN.GREEN}` : `${theme.COLOR.MAIN.GRAY}`};
+    props.$clicked ? `${theme.COLOR.MAIN.GREEN}` : `${theme.COLOR.MAIN.GRAY}`};
   font-size: ${FONT_SIZE.SM};
-  font-weight: ${props => (props.clicked ? 'bold' : 'none')};
+  font-weight: ${props => (props.$clicked ? 'bold' : 'none')};
   border-radius: 40px;
   cursor: pointer;
 
   &:hover {
     border: 2px solid ${theme.COLOR.MAIN.GREEN};
     background: ${theme.COLOR.MAIN.GREEN};
+    color: ${theme.COLOR.MAIN.WHITE};
   }
 `;
 
