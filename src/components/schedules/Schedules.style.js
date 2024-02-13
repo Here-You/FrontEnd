@@ -218,6 +218,10 @@ const SaveButton = styled.button`
   color: ${theme.COLOR.MAIN.WHITE};
   font-size: ${FONT_SIZE.XS};
   cursor: pointer;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    padding: 5px 3px;
+  }
 `;
 
 export {

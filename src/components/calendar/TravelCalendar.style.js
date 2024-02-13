@@ -49,6 +49,7 @@ const Button = styled.button`
   &:hover {
     border: 2px solid ${theme.COLOR.MAIN.GREEN};
     background: ${theme.COLOR.MAIN.GREEN};
+    color: ${theme.COLOR.MAIN.WHITE};
   }
 `;
 

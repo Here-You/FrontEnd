@@ -24,6 +24,7 @@ const Schedules = ({ data, endDate, refetch }) => {
   } = data;
   const [isToggle, setIsToggle] = useState(false);
   const [locationInfo, setLocationInfo] = useState({});
+  const [isDiary, setIsDiary] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const newDate = new Date(endDate);
@@ -55,6 +56,11 @@ const Schedules = ({ data, endDate, refetch }) => {
     setValue('location', locationInfo);
   }, [locationInfo]);
 
+  useEffect(() => {
+    refetch();
+    setIsDiary(diary[0]);
+  }, [data, refetch]);
+
   const handleDeleteSchedule = async () => {
     try {
       setLoading(true);
@@ -62,6 +68,8 @@ const Schedules = ({ data, endDate, refetch }) => {
       if (res) {
         refetch({ refetchPage: (page, index) => index === 0 });
         toast('일정이 초기화되었습니다.');
+        setValue('title', '');
+        setValue('location', {});
       }
     } catch (e) {
       setError(true);
@@ -117,14 +125,14 @@ const Schedules = ({ data, endDate, refetch }) => {
           <S.Mate>
             <S.Image src={LocationLight} />
             <SearchMap
-              inputValue={locationData[0].name}
+              inputValue={location?.name}
               register={register}
               selectLocation={setLocationInfo}
             />
           </S.Mate>
           <Link
             to={
-              diary[0]
+              isDiary
                 ? `/dailyrecord?scheduleId=${scheduleId}`
                 : `/dailyrecord/${scheduleId}/write?date=${date}`
             }
@@ -133,9 +141,9 @@ const Schedules = ({ data, endDate, refetch }) => {
               textDecoration: 'none',
               cursor: 'pointer',
             }}>
-            <S.LeftContainer $diaryWritten={diary[0]}>
-              {diary && diary[0] ? '일지 확인' : '일지 작성'}
-              <S.Image src={diary[0] ? File : EditLight} />
+            <S.LeftContainer $diaryWritten={isDiary}>
+              {isDiary ? '일지 확인' : '일지 작성'}
+              <S.Image src={isDiary ? File : EditLight} />
             </S.LeftContainer>
           </Link>
         </S.RowContainer>

@@ -78,11 +78,12 @@ const ImageWrapper = styled.div`
 const Image = styled.img`
   width: 150px;
   height: 150px;
-  border-radius: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   @media (max-width: 600px) {
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
   }
 `;
 

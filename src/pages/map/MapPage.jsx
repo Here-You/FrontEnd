@@ -1,5 +1,9 @@
-import { useState } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
 
 import * as S from './Map.style';
 import { TravelMap } from '@/components';
@@ -10,6 +14,7 @@ import { useMonthlyJourney } from '@/hooks/home/useMonthlyJourney';
 const MapPage = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const accessToken = localStorage.getItem('x-access-token');
   const [searchParams, setSearchParams] = useSearchParams();
   const year = parseInt(searchParams.get('year')) || 2024;
   const month = parseInt(searchParams.get('month')) || 2;
@@ -22,18 +27,28 @@ const MapPage = () => {
   return (
     <S.Container $dataLength={testData.length}>
       <S.ButtonContainer>
-        <S.Button clicked={pathname === '/'} onClick={() => navigate('/')}>
+        <S.Button
+          clicked={pathname === '/calender'}
+          onClick={() => navigate('/calendar')}>
           캘린더로 보기
         </S.Button>
         <S.Button
-          clicked={pathname === '/map'}
+          $clicked={pathname === '/map'}
           onClick={() => navigate('/map')}>
           지도로 보기
         </S.Button>
       </S.ButtonContainer>
       <S.MapContainer>
         <TravelMap mapDataList={mapDataList} />
-        <BottomScrollPage />
+        {accessToken ? (
+          <BottomScrollPage />
+        ) : (
+          <Link style={{ textDecoration: 'none' }} to={'/login'}>
+            <S.IntroMessage>
+              로그인 후 지도에서 여정을 확인해보세요!
+            </S.IntroMessage>
+          </Link>
+        )}
       </S.MapContainer>
     </S.Container>
   );

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const ListContainer = styled.div`
@@ -24,6 +25,11 @@ const ListWrapper = styled.div`
     background-color: ${theme.COLOR.MAIN.GREEN};
     color: ${theme.COLOR.MAIN.WHITE};
   }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    padding: 10px 20px;
+    gap: 30px;
+  }
 `;
 
 const MarkImage = styled.img`
@@ -32,11 +38,29 @@ const MarkImage = styled.img`
 
 const ListDescriptionContainer = styled.div`
   width: 100%;
+
+  h2 {
+    @media ${theme.WINDOW_SIZE.MOBILE} {
+      font-size: ${FONT_SIZE.BASE};
+    }
+  }
+
+  p {
+    @media ${theme.WINDOW_SIZE.MOBILE} {
+      font-size: ${FONT_SIZE.XS};
+    }
+  }
 `;
 
 const TextContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: space-between;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export {

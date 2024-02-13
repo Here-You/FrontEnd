@@ -16,4 +16,16 @@ const Container = styled.div`
   }
 `;
 
-export { Container };
+const IntroMessage = styled.div`
+  width: 100%;
+  padding: 20px;
+  color: ${theme.COLOR.MAIN.BLACK};
+
+  &:hover {
+    border-radius: 10px;
+    background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
+    cursor: pointer;
+  }
+`;
+
+export { Container, IntroMessage };
