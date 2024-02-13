@@ -107,7 +107,11 @@ const TravelMapDetail = ({ journeyInfo }) => {
                         height="50px"
                       />
                     )}
-                    <span>{post?.location?.name}</span>
+                    <span>
+                      {post?.location?.name
+                        .split(',')
+                        [post?.location?.name.split(',')?.length - 1]?.trim()}
+                    </span>
                   </S.InfoContainer>
                 </InfoWindowF>
               )}

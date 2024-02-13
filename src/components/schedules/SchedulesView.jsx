@@ -10,6 +10,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 const SchedulesView = ({ startDate, endDate }) => {
   const pageSize = 5;
   const date = new Date(startDate);
+  const isStartDateDateInstance = startDate instanceof Date;
 
   const formattedDate = format(date, 'yyyy-MM-dd');
 
@@ -50,21 +51,26 @@ const SchedulesView = ({ startDate, endDate }) => {
 
   return (
     <>
-      <S.Container $showContainer={dataExists}>
-        {schedulesData?.pages?.map((page, pageIndex) =>
-          page?.data?.data?.data?.paginatedSchedules.map(scheduleData => (
-            <Schedules
-              key={scheduleData?.scheduleId}
-              data={scheduleData}
-              endDate={endDate}
-              refetch={refetch}
-            />
-          )),
-        )}
-        <div style={{ height: 10 }} ref={ref}></div>
-      </S.Container>
+      {!isStartDateDateInstance && (
+        <S.Container $showContainer={dataExists}>
+          {schedulesData?.pages?.map((page, pageIndex) =>
+            page?.data?.data?.data?.paginatedSchedules.map(scheduleData => (
+              <Schedules
+                key={scheduleData?.scheduleId}
+                data={scheduleData}
+                endDate={endDate}
+                refetch={refetch}
+              />
+            )),
+          )}
+          <div style={{ height: 10 }} ref={ref}></div>
+        </S.Container>
+      )}
 
       {!dataExists && <div>아직 작성한 여정이 없어요!</div>}
+      {dataExists && isStartDateDateInstance && (
+        <div>달력에서 기간을 선택하고, 일정을 확인하세요!</div>
+      )}
     </>
   );
 };

@@ -57,7 +57,7 @@ const PlacesAutocomplete = ({
   selectLocation,
   currentPageIndex,
 }) => {
-  const [input, setInput] = useState(inputValue || '');
+  const [input, setInput] = useState('');
 
   useEffect(() => {
     if (currentPageIndex) {
@@ -68,6 +68,8 @@ const PlacesAutocomplete = ({
   useEffect(() => {
     if (inputValue) {
       setInput(inputValue);
+    } else {
+      setInput('');
     }
   }, [inputValue]);
 

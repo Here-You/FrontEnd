@@ -93,7 +93,7 @@ const DailyRecordWritePage = () => {
       if (res) {
         console.log('제출된 데이터: ', data);
         alert('하루 일지가 작성되었습니다.');
-        navigate('/');
+        navigate(`/dailyrecord?scheduleId=${scheduleId}`);
       }
     } catch (e) {
       setIsError(true);
