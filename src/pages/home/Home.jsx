@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 import * as S from './Home.style';
 import { TravelCalendar } from '@/components';
@@ -11,8 +11,7 @@ import useJourneyEditModal from '@/hooks/modal/useJourneyEditModal';
 import useJourneyWriteModal from '@/hooks/modal/useJourneyWriteModal';
 
 const HomePage = () => {
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const accessToken = localStorage.getItem('x-access-token');
   const journeyWriteModal = useJourneyWriteModal();
   const journeyEditModal = useJourneyEditModal();
   const [isClicked, setIsClicked] = useState(false);
@@ -61,23 +60,31 @@ const HomePage = () => {
   };
 
   const handleEditJourney = () => {
-    if (!startDate || !endDate) {
-      alert('먼저 달력에서 기간을 선택해주세요!');
-    } else if (!journeyInfo) {
-      alert('저장된 일정이 없습니다!');
+    if (!accessToken) {
+      toast('로그인이 필요한 기능입니다.');
     } else {
-      journeyEditModal.onOpen();
+      if (!startDate || !endDate) {
+        alert('먼저 달력에서 기간을 선택해주세요!');
+      } else if (!journeyInfo) {
+        alert('저장된 일정이 없습니다!');
+      } else {
+        journeyEditModal.onOpen();
+      }
     }
   };
 
   const handleAddJourney = () => {
-    const checkResult = checkOverlap(startDate, endDate, monthlyInfo);
-    if (journeyInfo || checkResult) {
-      alert('선택한 기간 내에 이미 저장된 여정이 있습니다.');
-    } else if (!startDate || !endDate) {
-      alert('먼저 달력에서 기간을 선택해주세요!');
+    if (!accessToken) {
+      toast('로그인이 필요한 기능입니다.');
     } else {
-      journeyWriteModal.onOpen();
+      const checkResult = checkOverlap(startDate, endDate, monthlyInfo);
+      if (journeyInfo || checkResult) {
+        alert('선택한 기간 내에 이미 저장된 여정이 있습니다.');
+      } else if (!startDate || !endDate) {
+        alert('먼저 달력에서 기간을 선택해주세요!');
+      } else {
+        journeyWriteModal.onOpen();
+      }
     }
   };
 

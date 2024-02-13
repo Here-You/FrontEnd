@@ -127,11 +127,8 @@ const TravelCalendar = ({
           formatDay={(locale, date) => moment(date).format('D')}
           selectRange={true}
         />
-        {startDate ? (
-          <SchedulesView startDate={startDate} endDate={endDate} />
-        ) : (
-          <div>일정을 보려면 달력에서 날짜를 선택하세요</div>
-        )}
+
+        <SchedulesView startDate={startDate} endDate={endDate} />
       </S.HomeContentContainer>
     </S.Wrapper>
   );

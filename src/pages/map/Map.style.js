@@ -71,6 +71,21 @@ const MapContainer = styled.div`
   margin-top: 40px;
 `;
 
+const IntroMessage = styled.div`
+  margin-top: 20px;
+  border-radius: 10px;
+  background-color: ${theme.COLOR.MAIN.MEDIUM_GREEN};
+  padding: 20px;
+
+  color: ${theme.COLOR.MAIN.WHITE};
+  font-size: ${FONT_SIZE.BASE};
+
+  &:hover {
+    background-color: ${theme.COLOR.MAIN.HEAVY_GREEN};
+    cursor: pointer;
+  }
+`;
+
 export {
   Container,
   CalendarContainer,
@@ -79,4 +94,5 @@ export {
   Button,
   MapContainer,
   AddButton,
+  IntroMessage,
 };

@@ -2,12 +2,14 @@ import { Schedules } from '..';
 import { format } from 'date-fns';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
 
 import * as S from './SchedulesView.style';
 import { getSchedule } from '@/apis/request/home';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 const SchedulesView = ({ startDate, endDate }) => {
+  const accessToken = localStorage.getItem('x-access-token');
   const pageSize = 5;
   const date = new Date(startDate);
   const isStartDateDateInstance = startDate instanceof Date;
@@ -67,8 +69,14 @@ const SchedulesView = ({ startDate, endDate }) => {
         </S.Container>
       )}
 
-      {!dataExists && <div>아직 작성한 여정이 없어요!</div>}
-      {dataExists && isStartDateDateInstance && (
+      {!accessToken && (
+        <Link style={{ textDecoration: 'none' }} to={'/login'}>
+          <S.IntroMessage>로그인 후 여정을 작성해보세요!</S.IntroMessage>
+        </Link>
+      )}
+
+      {accessToken && !dataExists && <div>아직 작성한 여정이 없어요!</div>}
+      {accessToken && dataExists && isStartDateDateInstance && (
         <div>달력에서 기간을 선택하고, 일정을 확인하세요!</div>
       )}
     </>
