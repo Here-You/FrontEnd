@@ -14,6 +14,7 @@ export default function HotSignature() {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
   return (
     <S.Wrapper
       onClick={() => {

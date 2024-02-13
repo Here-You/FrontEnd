@@ -1,7 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
 
-import MateContainer from '@/components/main/Box';
 import Box from '@/components/main/Box';
 import HereyouBanner from '@/components/main/HereyouBanner';
 import HotSignature from '@/components/main/HotSignature';

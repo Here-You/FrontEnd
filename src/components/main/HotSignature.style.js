@@ -11,23 +11,31 @@ const Wrapper = styled.div`
   background: var(--main, #fff);
   margin-top: 10px;
   cursor: pointer;
+
+  &:hover {
+    transform: scale(0.95);
+  }
 `;
+
 const Container = styled.div`
   display: flex;
   width: 90%;
   margin: 10px auto;
 `;
+
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-left: 10px;
 `;
+
 const Time = styled.div`
   display: flex;
   color: rgba(57, 57, 57, 0.8);
   font-family: 'Pretendard-semibold';
 `;
+
 const Text = styled.div`
   display: flex;
   color: #393939;
