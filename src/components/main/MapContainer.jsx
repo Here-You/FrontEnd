@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import * as S from './MapContainer.style';
 import calendar from '/images/main/calendar.svg';
 import map from '/images/main/map.svg';
 
 export default function MapContainer() {
+  const navigate = useNavigate();
+
   return (
     <S.Wrapper>
       <S.Container>
@@ -13,11 +16,11 @@ export default function MapContainer() {
           <S.Text2>나만의 여행 일정 계획하기</S.Text2>
         </S.TextContainer>
         <S.BoxContainer>
-          <S.Box>
+          <S.Box onClick={() => navigate('/calendar')}>
             <img src={calendar} />
             <S.Text3>캘린더로 보기</S.Text3>
           </S.Box>
-          <S.Box>
+          <S.Box onClick={() => navigate('/map')}>
             <img src={map} />
             <S.Text3>지도로 보기</S.Text3>
           </S.Box>

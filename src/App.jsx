@@ -50,6 +50,10 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <MainPage />,
+      },
+      {
+        path: `${BASE_PATH.CALENDAR}`,
         element: <Home />,
       },
       {

@@ -5,6 +5,9 @@ const BASE_PATH = {
   LOGIN: '/login',
   SNS_LOGIN_REDIRCT: '/login/oauth',
   ON_BOARDING: 'onboarding',
+  // CALENDAR
+  CALENDAR: '/calendar',
+  // MAP
   MAP: '/map',
   MAP_DETAIL: '/map/:journeyId',
   // DAILYRECORD
@@ -45,7 +48,6 @@ const BASE_PATH = {
 
   // profile
   PROFILE_PAGE: '/profile/:userId',
-
 };
 
 const VERSION = 'v1';

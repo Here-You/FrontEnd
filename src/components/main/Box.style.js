@@ -10,7 +10,13 @@ const Wrapper = styled.div`
   background: var(--main, #fff);
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.25);
   margin-top: 10px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.9);
+  }
 `;
+
 const Container = styled.div`
   display: flex;
   position: relative;
