@@ -31,4 +31,25 @@ const Img = styled.img`
   }
 `;
 
-export { Container, NotificationContainer, Img };
+const BellContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 30vh;
+  margin-top: 50%;
+`;
+
+const Bell = styled.img`
+  display: flex;
+  width: 30%;
+`;
+
+const Text = styled.div`
+  display: flex;
+  font-family: 'Pretendard-bold';
+  font-size: 23px;
+`;
+
+export { Container, NotificationContainer, Img, BellContainer, Bell, Text };
