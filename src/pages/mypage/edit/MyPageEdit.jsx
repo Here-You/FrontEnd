@@ -8,9 +8,7 @@ const MyPageEditPage = () => {
   return (
     <>
       <S.EditPageContainer>
-        <ModalPortal>
-        
-        </ModalPortal>
+        <ModalPortal></ModalPortal>
         <S.UserInfo>유저 정보</S.UserInfo>
         <MyProfileEdit />
       </S.EditPageContainer>

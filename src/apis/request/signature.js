@@ -54,7 +54,7 @@ const likeSignature = (signatureId, liked) => {
 
 //시그니처 좋아요 목록
 const getLikeList = signatureId => {
-  const url = `${API_URL.GET_MY_SIGNATURE}/${signatureId}/like`;
+  const url = `${API_URL.GET_MY_SIGNATURE}/like/${signatureId}`;
   const res = axiosWithToken.get(url);
   return res;
 };
