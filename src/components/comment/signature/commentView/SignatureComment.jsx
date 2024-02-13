@@ -25,7 +25,6 @@ const SignatureComment = ({ data }) => {
     locale: ko,
   });
 
-  const formattedEndDate = format(date, 'yyyy-MM-dd HH:mm:ss');
   const [editMode, setEditMode] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
   const [replyComment, setReplyComment] = useState('');
@@ -34,10 +33,10 @@ const SignatureComment = ({ data }) => {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if (editModeRef.current) {
+    if (editMode) {
       inputRef.current.focus();
     }
-  }, [editModeRef.current]);
+  }, [editMode]);
 
   const handleContentChange = () => {
     editedContentRef.current = inputRef.current.innerText;
@@ -158,6 +157,7 @@ const SignatureComment = ({ data }) => {
                     content: replyComment,
                   });
                   setReplyComment('');
+                  setIsReplying(false);
                 } catch (e) {
                   console.log(e);
                 }
