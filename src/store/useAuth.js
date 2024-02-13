@@ -3,11 +3,11 @@ import { create } from 'zustand';
 const useAuth = create(set => ({
   isLogin: false,
   login: token => {
-    localStorage.setItem('token', token);
+    localStorage.setItem('x-access-token', token);
     set({ isLogin: true });
   },
   logout: () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('x-access-token');
     set({ isLogin: false });
   },
 }));
