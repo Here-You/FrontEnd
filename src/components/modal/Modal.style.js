@@ -101,6 +101,7 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  flex: 1;
 `;
 
 const Button = styled.button`

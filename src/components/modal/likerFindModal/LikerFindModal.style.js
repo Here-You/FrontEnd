@@ -28,6 +28,15 @@ const ProfileContainer = styled.div`
   }
 `;
 
+const Button = styled.button`
+  border: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: ${(props => props.follow)
+    ? `${theme.COLOR.MAIN.LIGHT_GREEN}`
+    : `${theme.COLOR.MAIN.LIGHT_GRAY}`};
+`;
+
 const UserImg = styled.img`
   width: 45px;
   height: 45px;
@@ -95,4 +104,5 @@ export {
   UserNickName,
   UserBio,
   Wrapper,
+  Button,
 };

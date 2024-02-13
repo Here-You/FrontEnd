@@ -5,7 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import * as S from './SignaturePost.style';
 import Logo from '/images/mypage/MyPageLogo.svg';
 import { deleteMySignature, likeSignature } from '@/apis/request/signature';
-import HeartButton from '@/components/HeartButton/HeartButton';
 import SignatureCommentList from '@/components/comment/signature/SignatureCommentList';
 import SignatureCommentInput from '@/components/comment/signature/commentInput/SignatureCommentInput';
 import FollowButton from '@/components/mate/FollowButton';
