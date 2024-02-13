@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, formatDistance } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -12,11 +12,18 @@ import {
   updateSignatureReComment,
 } from '@/apis/request/signature';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { ko } from 'date-fns/locale';
 
 const SignatureComment = ({ data }) => {
   const { signatureId } = useParams();
   const queryClient = useQueryClient();
   const { _id, content, parentId, is_edited, writer, date } = data;
+
+  const currentTime = new Date();
+  const timeAgo = formatDistance(date, currentTime, {
+    addSuffix: true,
+    locale: ko,
+  });
 
   const formattedEndDate = format(date, 'yyyy-MM-dd HH:mm:ss');
   const [editMode, setEditMode] = useState(false);
@@ -127,7 +134,7 @@ const SignatureComment = ({ data }) => {
           {content}
         </S.Content>
         <S.ContentInner>
-          <S.Content>{formattedEndDate}</S.Content>
+          <S.Content>{timeAgo}</S.Content>
           <S.EditContent>{is_edited === true ? '수정됨' : null}</S.EditContent>
         </S.ContentInner>
         {isReplying && (
