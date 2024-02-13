@@ -1,4 +1,3 @@
-// RuleEditPage.js
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -48,11 +47,17 @@ const RuleEditPage = () => {
 
   const handleAddRule = () => {
     if (postData.rulePairs.length < 10) {
+      const newRuleNumber = postData.rulePairs.length + 1;
       setPostData(prevData => ({
         ...prevData,
         rulePairs: [
           ...prevData.rulePairs,
-          { ruleTitle: '', ruleDetail: '', id: null },
+          {
+            ruleNumber: newRuleNumber,
+            ruleTitle: '',
+            ruleDetail: '',
+            id: null,
+          },
         ],
       }));
     }
@@ -66,28 +71,25 @@ const RuleEditPage = () => {
   };
 
   const handleSubmitRule = () => {
-    const ruleData = postData.rulePairs.map((rule, index) => ({
+    const sortedRulePairs = postData.rulePairs.map((rule, index) => ({
+      ...rule,
       ruleNumber: index + 1,
-      id: rule.id,
-      ruleTitle: rule.ruleTitle,
-      ruleDetail: rule.ruleDetail,
+      id: rule.id === null ? null : rule.id,
     }));
 
     const extractMembersId = selectedMates.map(mate => mate.id);
 
     const postDataWithId = {
       mainTitle: postData.mainTitle,
-      rulePairs: ruleData,
+      rulePairs: sortedRulePairs,
       membersId: extractMembersId,
     };
-
     console.log(postDataWithId);
 
     updateTeamMateRule(ruleId, postDataWithId)
       .then(() => {
         toast.success('규칙을 성공적으로 수정하였습니다.');
         navigate(`/mate/rule-check/${ruleId}`);
-        console.log(postDataWithId);
       })
       .catch(error => {
         console.log(error);
