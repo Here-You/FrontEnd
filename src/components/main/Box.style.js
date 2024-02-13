@@ -5,11 +5,11 @@ import theme from '@/theme';
 const Wrapper = styled.div`
   display: flex;
   width: 48%;
-  height: 100%;
+  height: 90%;
   border-radius: 20px;
   background: var(--main, #fff);
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.25);
-  margin-top: 10px;
+  margin-top: 15px;
   cursor: pointer;
 
   &:hover {
@@ -32,8 +32,7 @@ const Icon = styled.img`
   position: absolute;
   bottom: 10px;
   right: -10px;
-  width: 70%;
-  max-height: 80%;
+  max-height: 50%;
 `;
 
 export { Wrapper, Container, Icon };
