@@ -89,8 +89,7 @@ const Button = styled.button`
   font-size: 3rem;
   background-color: transparent;
   cursor: pointer;
-
-  &:hover {
+  &:not(:disabled):hover {
     transform: scale(0.9);
     color: ${theme.COLOR.MAIN.HEAVY_GREEN};
   }
