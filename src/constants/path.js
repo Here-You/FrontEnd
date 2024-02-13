@@ -39,8 +39,13 @@ const BASE_PATH = {
   MAP_JOURNEY_DETAIL: '/map/journey/:journeyId',
   //notification
   NOTIFICATION_PAGE: '/notification',
+
+  //newMain
+  MAIN_PAGE: 'main',
+
   // profile
   PROFILE_PAGE: '/profile/:userId',
+
 };
 
 const VERSION = 'v1';

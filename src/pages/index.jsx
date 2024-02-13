@@ -15,6 +15,8 @@ import JourneyDetailPage from './journey/JourneyDetail';
 // LOGIN
 import LoginPage from './login/Login';
 import Redirect from './login/Redirect';
+//MainPage
+import MainPage from './main/MainPage';
 // MAP
 import MapPage from './map/MapPage';
 import MapDetailPage from './map/detail/MapDetailPage';
@@ -82,5 +84,6 @@ export {
   MapDetailPage,
   ExplorePage,
   JourneyDetailPage,
+  MainPage,
   ProfilePage,
 };
