@@ -4,10 +4,10 @@ import theme from '@/theme';
 
 const Wrapper = styled.div`
   display: flex;
-  height: 30%;
+  height: 28%;
   width: 90%;
   margin: 0 auto;
-  margin-top: 10px;
+  margin-top: 15px;
   border-radius: 20px;
   background: var(--main, #fff);
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.25);

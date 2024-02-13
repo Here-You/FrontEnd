@@ -7,15 +7,17 @@ import MapContainer from '@/components/main/MapContainer';
 
 export default function MainPage() {
   return (
-    <S.PageContainer>
-      <LoginBanner />
-      <MapContainer />
-      <S.Container2>
-        <Box title="시그니처" />
-        <Box title="메이트" />
-      </S.Container2>
-      <HereyouBanner />
-      <HotSignature />
-    </S.PageContainer>
+    <S.Wrapper>
+      <S.PageContainer>
+        <LoginBanner />
+        <MapContainer />
+        <S.Container2>
+          <Box title="시그니처" />
+          <Box title="메이트" />
+        </S.Container2>
+        <HereyouBanner />
+        <HotSignature />
+      </S.PageContainer>
+    </S.Wrapper>
   );
 }

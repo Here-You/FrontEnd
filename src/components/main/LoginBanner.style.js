@@ -5,7 +5,7 @@ import theme from '@/theme';
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 15%;
+  height: 12%;
   background-color: ${theme.COLOR.MAIN.GREEN};
   border-radius: 0px 0px 20px 20px;
   align-items: center;
@@ -37,7 +37,6 @@ const TextContainer = styled.div`
 const TextWrapper = styled.div`
   display: flex;
   margin-left: 10px;
-  flex-direction: column;
   color: white;
   justify-content: center;
   align-items: center;
