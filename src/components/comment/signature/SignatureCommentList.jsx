@@ -24,7 +24,6 @@ const SignatureCommentList = () => {
       {/* {Data.map(data => (
        
       ))} */}
-      123
     </S.Container>
   );
 };

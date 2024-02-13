@@ -5,6 +5,8 @@ import theme from '@/theme';
 
 const SignatureContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
+  width: 90%;
+  margin: auto;
 `;
 
 const HeaderContainer = styled.div`
@@ -80,14 +82,12 @@ const ButtonContainer = styled.div`
 const ImageContainer = styled.div`
   margin-top: 20px;
   ${theme.ALIGN.ROW_CENTER}
-  gap: 50px;
 `;
 
 const Button = styled.button`
-  background-color: transparent;
   border: none;
   font-size: 3rem;
-
+  background-color: transparent;
   cursor: pointer;
 
   &:hover {
