@@ -46,10 +46,6 @@ const SignatureComment = ({ data }) => {
   const indentationLevel = parentId === _id ? 0 : 1;
   const isParentComment = parentId === _id;
 
-  const handleReplyToggle = () => {
-    setIsReplying(!isReplying);
-  };
-
   const { mutateAsync: postReComment } = useMutation({
     mutationFn: postSignatureReComment,
     onSuccess: () => {
@@ -88,23 +84,31 @@ const SignatureComment = ({ data }) => {
           <S.Name>{writer?.name}</S.Name>
           {writer?.is_writer === true && (
             <S.LeftContent>
-              <S.Button onClick={handleReplyToggle}>답글</S.Button>
+              {!editMode && (
+                <S.Button onClick={() => setIsReplying(true)}>답글</S.Button>
+              )}
+              {isReplying === true && (
+                <S.Button onClick={() => setIsReplying(false)}>취소</S.Button>
+              )}
               {editMode ? (
-                <button
-                  onClick={async () => {
-                    try {
-                      await updateReComment({
-                        signatureId,
-                        commentId: _id,
-                        content: editedContentRef.current,
-                      });
-                      setEditMode(false);
-                    } catch (e) {
-                      console.error(e);
-                    }
-                  }}>
-                  수정 완료
-                </button>
+                <>
+                  <S.Button
+                    onClick={async () => {
+                      try {
+                        await updateReComment({
+                          signatureId,
+                          commentId: _id,
+                          content: editedContentRef.current,
+                        });
+                        setEditMode(false);
+                      } catch (e) {
+                        console.error(e);
+                      }
+                    }}>
+                    수정 완료
+                  </S.Button>
+                  <S.Button onClick={() => setEditMode(false)}>취소</S.Button>
+                </>
               ) : (
                 <S.Icon
                   src={Pen}
