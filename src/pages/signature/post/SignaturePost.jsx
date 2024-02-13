@@ -36,7 +36,6 @@ const SignaturePostPage = () => {
   });
 
   const detailSignatures = data?.data?.data;
-
   const author = detailSignatures?.author;
   const header = detailSignatures?.header;
 
