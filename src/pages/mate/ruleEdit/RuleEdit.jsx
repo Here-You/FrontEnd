@@ -1,3 +1,4 @@
+// RuleEditPage.js
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -18,7 +19,12 @@ const RuleEditPage = () => {
   const initialData = data;
 
   const inviteMatesModal = useInviteMatesModal();
-  const selectedMates = useMatesStore(state => state.selectedMates);
+  const {
+    selectedMates,
+    addSelectedMate,
+    removeSelectedMate,
+    clearSelectedMates,
+  } = useMatesStore();
   const [postData, setPostData] = useState({
     mainTitle: '',
     rulePairs: [],
@@ -67,7 +73,7 @@ const RuleEditPage = () => {
       ruleDetail: rule.ruleDetail,
     }));
 
-    const extractMembersId = postData.membersId.map(member => member.id);
+    const extractMembersId = selectedMates.map(mate => mate.id);
 
     const postDataWithId = {
       mainTitle: postData.mainTitle,
@@ -75,7 +81,9 @@ const RuleEditPage = () => {
       membersId: extractMembersId,
     };
 
-    updateTeamMateRule(ruleId, { postDataWithId })
+    console.log(postDataWithId);
+
+    updateTeamMateRule(ruleId, postDataWithId)
       .then(() => {
         toast.success('규칙을 성공적으로 수정하였습니다.');
         navigate(`/mate/rule-check/${ruleId}`);
@@ -102,12 +110,14 @@ const RuleEditPage = () => {
         </S.Header>
         <S.MatesContainer>
           {selectedMates.map(s => (
-            <S.MatesImages key={s.id} src={s.image ? s.image : Logo} />
+            <>
+              <S.MatesImages src={s.image ? s.image : Logo} />
+            </>
           ))}
         </S.MatesContainer>
         <S.Content>
           {postData.rulePairs.map((rule, index) => (
-            <S.ContentBox key={index}>
+            <S.ContentBox key={rule.id || index}>
               <S.TextContainer>
                 <S.ContentTitleInput
                   placeholder={`규칙 ${index + 1}을 입력해주세요!`}

@@ -4,12 +4,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './SignaturePost.style';
 import Logo from '/images/mypage/MyPageLogo.svg';
-import { deleteMySignature } from '@/apis/request/signature';
+import { deleteMySignature, likeSignature } from '@/apis/request/signature';
 import HeartButton from '@/components/HeartButton/HeartButton';
 import SignatureCommentList from '@/components/comment/signature/SignatureCommentList';
 import SignatureCommentInput from '@/components/comment/signature/commentInput/SignatureCommentInput';
 import FollowButton from '@/components/mate/FollowButton';
-import { useGetDetail } from '@/hooks/signature/useGetDetail';
+import LikerFindModal from '@/components/modal/likerFindModal/LikerFindModal';
+import useLikersModal from '@/hooks/modal/useLikersModal';
+import { useGetSignaturePost } from '@/hooks/signature/queries/useGetSignaturePost';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { CiLocationOn } from 'react-icons/ci';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
@@ -17,16 +20,22 @@ const SignaturePostPage = () => {
   const params = useParams();
   const { signatureId } = params;
   const navigate = useNavigate();
+  const LikersModal = useLikersModal();
+  const queryClient = useQueryClient();
 
-  const {
-    data: detailSignatures,
-    error,
-    loading,
-    like,
-    count,
-    setCount,
-    setLike,
-  } = useGetDetail(signatureId);
+  const { data, isPending, isError } = useGetSignaturePost(signatureId);
+
+  const { mutateAsync } = useMutation({
+    mutationFn: likeSignature,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['likers']);
+    },
+    onError: error => {
+      console.error('좋아요 실패', error);
+    },
+  });
+
+  const detailSignatures = data?.data?.data;
 
   const author = detailSignatures?.author;
   const header = detailSignatures?.header;
@@ -68,12 +77,12 @@ const SignaturePostPage = () => {
     }
   };
 
-  if (loading) {
-    return <div>로딩 중 입니다..</div>;
+  if (isPending) {
+    return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>에러가 발생했습니다...</div>;
+  if (isError) {
+    return <div>Error 발생...</div>;
   }
 
   return (
@@ -84,6 +93,7 @@ const SignaturePostPage = () => {
           <S.SignatureContainer>
             <>
               <S.HeaderContainer>
+                <LikerFindModal />
                 <S.ProfileContainer
                   onClick={() => navigate(`/profile/${author?._id}`)}>
                   {author?.image ? (
@@ -111,13 +121,20 @@ const SignaturePostPage = () => {
                 <h1>{header?.title}</h1>
               </S.TitleContainer>
               <S.ButtonContainer>
-                <HeartButton
-                  id={header?._id}
-                  like={like}
-                  setLike={setLike}
-                  count={count}
-                  setCount={setCount}
-                />
+                {/* {header._id} */}
+                <S.Container
+                  onClick={async () => {
+                    try {
+                      mutateAsync(header._id);
+                    } catch (e) {
+                      console.log(e);
+                    }
+                  }}>
+                  <S.OutLineHeart size={28} />
+                  <S.FillHeart size={24} isLiked={header?.is_liked} />
+                  <h3>{header?.like_cnt}</h3>
+                </S.Container>
+                <div onClick={() => LikersModal.onOpen()}>목록 확인하기</div>
               </S.ButtonContainer>
               <S.ImageContainer>
                 <S.Button onClick={handlePrevPage} disabled={step === 1}>

@@ -6,7 +6,8 @@ import { postFollowMate } from '@/apis/request/mate';
 const FollowButton = ({ initialFollowState, id }) => {
   const [follow, setFollow] = useState(initialFollowState);
 
-  const handleChangeFollowState = async () => {
+  const handleChangeFollowState = async e => {
+    e.stopPropagation();
     try {
       if (follow === true) {
         const res = await postFollowMate(id);
@@ -25,8 +26,8 @@ const FollowButton = ({ initialFollowState, id }) => {
   };
 
   return (
-    <S.Button onClick={handleChangeFollowState}>
-      {follow ? '언팔로우' : '팔로우'}
+    <S.Button onClick={handleChangeFollowState} follow={follow}>
+      {follow ? '팔로잉' : '팔로우'}
     </S.Button>
   );
 };
