@@ -30,11 +30,10 @@ const ExplorePage = () => {
       <S.SearchContainer>
         <S.InputContainer>
           <S.InputText
-            placeholder="여행지, 시그니처, 관심 키워드 검색"
+            placeholder="여행지, 시그니처, 관심 키워드를 검색하세요."
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
           />
-          <S.SearchButton type="submit" />
         </S.InputContainer>
         <S.Text>다양한 관심사를 검색해보세요</S.Text>
       </S.SearchContainer>

@@ -8,10 +8,9 @@ const Search = ({ setSearchTerm }) => {
     <S.SearchContainer>
       <S.InputContainer>
         <S.InputText
-          placeholder="ID로 친구 추가"
+          placeholder="ID로 친구를 추가해보세요!"
           onChange={e => setSearchTerm(e.target.value)}
         />
-        <S.SearchButton type="submit" />
       </S.InputContainer>
     </S.SearchContainer>
   );
