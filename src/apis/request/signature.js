@@ -66,6 +66,22 @@ const getSignatureComments = (signatureId, take, { pageParam }) => {
   return axiosWithToken.get(url);
 };
 
+// 시그니처 댓글 생성
+const postSignatureComment = ({ signatureId, content }) => {
+  const url = `/api/v1/signature/${signatureId}/comment`;
+  return axiosWithToken.post(url, {
+    content: content,
+  });
+};
+
+// 시그니처 답글 생성
+const postSignatureReComment = ({ signatureId, parentId, content }) => {
+  const url = `/api/v1/signature/${signatureId}/comment/${parentId}`;
+  return axiosWithToken.post(url, {
+    content: content,
+  });
+};
+
 export {
   getMySignaturePreview,
   postNewSignature,
@@ -75,4 +91,6 @@ export {
   likeSignature,
   getLikeList,
   getSignatureComments,
+  postSignatureComment,
+  postSignatureReComment,
 };

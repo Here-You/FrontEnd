@@ -31,7 +31,9 @@ const ContentContainer = styled.div`
 `;
 
 const ContentInner = styled.div`
-  ${theme.ALIGN.ROW_CENTER}
+  ${theme.ALIGN.ROW_CENTER};
+  justify-content: flex-start;
+  gap: 10px;
 `;
 
 const Name = styled.p`
@@ -42,6 +44,12 @@ const Name = styled.p`
 const Content = styled.p`
   color: ${theme.COLOR.MAIN.GRAY};
   font-size: ${FONT_SIZE.XS};
+  white-space: pre-line;
+`;
+
+const EditContent = styled.p`
+  color: ${theme.COLOR.MAIN.GRAY};
+  font-size: 0.5rem;
   white-space: pre-line;
 `;
 
@@ -72,6 +80,7 @@ export {
   ContentInner,
   Name,
   Content,
+  EditContent,
   NameContainer,
   LeftContent,
   Icon,
