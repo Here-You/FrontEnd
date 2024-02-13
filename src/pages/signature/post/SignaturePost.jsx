@@ -132,7 +132,9 @@ const SignaturePostPage = () => {
                   <S.FillHeart size={24} isLiked={header?.is_liked} />
                   <h3>{header?.like_cnt}</h3>
                 </S.Container>
-                <div onClick={() => LikersModal.onOpen()}>목록 확인하기</div>
+                <S.Liked onClick={() => LikersModal.onOpen()}>
+                  Who Liked?!
+                </S.Liked>
               </S.ButtonContainer>
               <S.ImageContainer>
                 <S.Button onClick={handlePrevPage} disabled={step === 1}>

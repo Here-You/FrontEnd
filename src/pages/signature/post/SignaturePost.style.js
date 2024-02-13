@@ -16,6 +16,17 @@ const Container = styled.div`
   }
 `;
 
+const Liked = styled.div`
+  display: flex;
+  outline: none;
+  color: black;
+  cursor: pointer;
+  background-color: pink;
+  border-radius: 20px;
+  padding: 5px 11px;
+  border: 1px solid black;
+`;
+
 const OutLineHeart = styled(AiOutlineHeart)`
   position: absolute;
   fill: white;
@@ -84,10 +95,10 @@ const TitleContainer = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
+  ${theme.ALIGN.COLUMN_CENTER};
   gap: 2px;
   margin-top: 10px;
-  margin-left: 300px;
+  margin-left: 250px;
 
   font-size: ${FONT_SIZE.SM};
 
@@ -105,6 +116,7 @@ const ButtonContainer = styled.div`
 
 const ImageContainer = styled.div`
   margin-top: 20px;
+
   ${theme.ALIGN.ROW_CENTER}
 `;
 
@@ -121,7 +133,7 @@ const Button = styled.button`
 
 const Image = styled.img`
   width: 300px;
-  height: 500px;
+  height: 400px;
   object-fit: contain;
 `;
 
@@ -208,4 +220,5 @@ export {
   Container,
   FillHeart,
   OutLineHeart,
+  Liked,
 };
