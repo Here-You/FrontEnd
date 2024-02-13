@@ -166,14 +166,14 @@ const DetailPlan = ({
 
         <S.AddDetailPlanContainer>
           {isOpenInput ? (
-            <>
+            <S.PlanText>
               <S.Input
                 placeholder="새로운 할 일 입력"
                 value={newPlan}
                 onChange={e => setNewPlan(e.target.value)}
               />
               <S.SaveButton onClick={handleOnSaveNewPlan}>저장</S.SaveButton>
-            </>
+            </S.PlanText>
           ) : (
             <S.AddDetailPlanText
               onClick={() => {
