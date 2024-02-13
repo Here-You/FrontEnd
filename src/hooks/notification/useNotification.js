@@ -13,7 +13,6 @@ export const useNotification = () => {
         setLoading(true);
         const res = await getNotification();
         const data = res.data.data;
-        console.log(data);
         console.log(res);
         setData(data);
       } catch (e) {
