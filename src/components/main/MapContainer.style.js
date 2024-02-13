@@ -4,7 +4,7 @@ import theme from '@/theme';
 
 const Wrapper = styled.div`
   display: flex;
-  height: 28%;
+  height: 25%;
   width: 90%;
   margin: 0 auto;
   margin-top: 15px;
@@ -43,7 +43,7 @@ const Text2 = styled.div`
 const Text3 = styled.div`
   display: flex;
   color: #393939;
-  font-size: 17px;
+  font-size: 15px;
   font-family: 'Pretendard-semibold';
   font-weight: 600;
 `;
@@ -71,7 +71,10 @@ const Box = styled.div`
     transform: scale(0.9);
   }
 `;
-
+const Icon = styled.img`
+  display: flex;
+  max-height: 50%;
+`;
 export {
   Wrapper,
   Container,
@@ -81,4 +84,5 @@ export {
   Text3,
   Box,
   BoxContainer,
+  Icon,
 };
