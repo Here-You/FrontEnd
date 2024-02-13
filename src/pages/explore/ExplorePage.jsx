@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import TokenErrorPage from '../signature/TokenErrorPage';
 import * as S from './ExplorePage.style';
 import SignatureSearchSlider from '@/components/explore/SignatureSearchSlider';
 import { useSearchExploreKeyword } from '@/hooks/search/useSearchExploreKeyword';
@@ -22,7 +23,7 @@ const ExplorePage = () => {
   }
 
   if (error) {
-    return <div>에러가 발생했습니다.</div>;
+    return <TokenErrorPage />;
   }
 
   return (

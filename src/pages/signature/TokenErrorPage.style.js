@@ -18,7 +18,6 @@ const PageContainer = styled.div`
   width: 80%;
   margin: 0 auto;
   height: 100%;
-  margin-top: 120px;
 `;
 
 const BackgroundColor = styled.div`

@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+import ProtectedRouter from './components/protectedRoute/ProtectedRoute';
 import { BASE_PATH } from './constants/path';
 import { TravelLayout } from './layout';
 import {
@@ -160,7 +161,14 @@ const router = createBrowserRouter([
         element: <AppLayout />,
         errorElement: <ErrorPage />,
         children: [
-          { index: true, element: <MatePage /> },
+          {
+            index: true,
+            element: (
+              <ProtectedRouter>
+                <MatePage />
+              </ProtectedRouter>
+            ),
+          },
 
           {
             path: `${BASE_PATH.MATE_MANAGEMENT}`,

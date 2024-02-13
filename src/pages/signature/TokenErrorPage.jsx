@@ -1,13 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import * as S from './TokenErrorPage.style';
 import spaceLogo from '/images/spacelogoShadow.svg';
 
 const TokenErrorPage = () => {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   return (
-    <S.PageContainer>
+    <S.PageContainer
+      style={{ marginTop: pathname == '/signature' ? '100px' : '0px' }}>
       <S.BackgroundColor />
       <S.LogoWrapper>
         <S.SpaceLogo src={spaceLogo} />
