@@ -1,4 +1,4 @@
-import { format, formatDistance } from 'date-fns';
+import { formatDistance } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ import { ko } from 'date-fns/locale';
 const SignatureComment = ({ data }) => {
   const { signatureId } = useParams();
   const queryClient = useQueryClient();
-  const { _id, content, parentId, is_edited, writer, date } = data;
+  const { _id, content, parentId, is_edited, writer, date, can_delete } = data;
 
   const currentTime = new Date();
   const timeAgo = formatDistance(date, currentTime, {
@@ -81,7 +81,7 @@ const SignatureComment = ({ data }) => {
       <S.ContentContainer>
         <S.NameContainer>
           <S.Name>{writer?.name}</S.Name>
-          {writer?.is_writer === true && (
+          {(can_delete || writer?.is_writer) && (
             <S.LeftContent>
               {!editMode && (
                 <S.Button onClick={() => setIsReplying(true)}>답글</S.Button>

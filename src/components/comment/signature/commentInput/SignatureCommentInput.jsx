@@ -1,12 +1,17 @@
-import { useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './SignatureInput.style';
+import Logo from '/images/mypage/MyPageLogo.svg';
 import { postSignatureComment } from '@/apis/request/signature';
+import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
+import useAuth from '@/store/useAuth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const SignatureCommentInput = () => {
+  const { isLogin } = useAuth();
   const [content, setContent] = useState('');
+  const navigate = useNavigate();
 
   const { signatureId } = useParams();
   const queryClient = useQueryClient();
@@ -22,31 +27,44 @@ const SignatureCommentInput = () => {
       );
     },
   });
+  const {
+    data: me,
+    isPending: mePending,
+    isError: meError,
+  } = useGetMyProfile();
+
+  const myProfile = me?.data?.data?.user?.profileImage;
+
   const placeholder = '댓글을 작성해주세요';
-  const imgUrl =
-    'https://images.unsplash.com/photo-1707421940727-ebfb88cd6aa0?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+
   return (
     <S.Container>
-      <S.Avatar src={imgUrl} />
-      <S.ContentContainer>
-        <S.Input
-          placeholder={placeholder}
-          value={content}
-          onChange={e => setContent(e.target.value)}
-          rows={1}
-        />
-        <S.SubmitButton
-          onClick={async () => {
-            try {
-              await mutateAsync({ signatureId, content });
-              setContent('');
-            } catch (e) {
-              console.error(e);
-            }
-          }}>
-          저장
-        </S.SubmitButton>
-      </S.ContentContainer>
+      {isLogin ? (
+        <>
+          <S.Avatar src={myProfile || Logo} />
+          <S.ContentContainer>
+            <S.Input
+              placeholder={placeholder}
+              value={content}
+              onChange={e => setContent(e.target.value)}
+              rows={1}
+            />
+            <S.SubmitButton
+              onClick={async () => {
+                try {
+                  await mutateAsync({ signatureId, content });
+                  setContent('');
+                } catch (error) {
+                  console.error('댓글 작성 실패:', error);
+                }
+              }}>
+              저장
+            </S.SubmitButton>
+          </S.ContentContainer>
+        </>
+      ) : (
+        <div onClick={() => navigate('/login')}>로그인을 해주세요</div>
+      )}
     </S.Container>
   );
 };

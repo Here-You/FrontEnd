@@ -10,6 +10,7 @@ import SignatureCommentInput from '@/components/comment/signature/commentInput/S
 import FollowButton from '@/components/mate/FollowButton';
 import LikerFindModal from '@/components/modal/likerFindModal/LikerFindModal';
 import useLikersModal from '@/hooks/modal/useLikersModal';
+import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 import { useGetSignaturePost } from '@/hooks/signature/queries/useGetSignaturePost';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { CiLocationOn } from 'react-icons/ci';
@@ -23,6 +24,13 @@ const SignaturePostPage = () => {
   const queryClient = useQueryClient();
 
   const { data, isPending, isError } = useGetSignaturePost(signatureId);
+  const {
+    data: me,
+    isPending: mePending,
+    isError: meError,
+  } = useGetMyProfile();
+
+  const isMine = me?.data?.data?.user?.id === data?.data?.data?.author?._id;
 
   const { mutateAsync } = useMutation({
     mutationFn: likeSignature,
@@ -159,13 +167,17 @@ const SignaturePostPage = () => {
               <S.PageCount>
                 {step}/{totalPages}
               </S.PageCount>
-              <S.FunctionButtonContainer>
-                <S.ModifyButton
-                  onClick={() => navigate(`/signature/edit/${signatureId}`)}>
-                  수정
-                </S.ModifyButton>
-                <S.DeleteButton onClick={handleDeletePost}>삭제</S.DeleteButton>
-              </S.FunctionButtonContainer>
+              {isMine && (
+                <S.FunctionButtonContainer>
+                  <S.ModifyButton
+                    onClick={() => navigate(`/signature/edit/${signatureId}`)}>
+                    수정
+                  </S.ModifyButton>
+                  <S.DeleteButton onClick={handleDeletePost}>
+                    삭제
+                  </S.DeleteButton>
+                </S.FunctionButtonContainer>
+              )}
             </>
             <S.CommentContainer>
               <SignatureCommentInput />
