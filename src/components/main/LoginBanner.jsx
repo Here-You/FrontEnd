@@ -7,10 +7,9 @@ import rightIcon from '/images/main/right.svg';
 import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 import useAuth from '@/store/useAuth';
 
-export default function LoginBanner() {
+export default function LoginBanner({ isLogin }) {
   const navigate = useNavigate();
-  const { isLogin } = useAuth();
-  console.log(isLogin);
+
   const { data, isPending, isError } = useGetMyProfile();
   const myProfile = data?.data?.data?.user;
 

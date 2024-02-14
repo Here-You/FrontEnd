@@ -4,12 +4,15 @@ import HereyouBanner from '@/components/main/HereyouBanner';
 import HotSignature from '@/components/main/HotSignature';
 import LoginBanner from '@/components/main/LoginBanner';
 import MapContainer from '@/components/main/MapContainer';
+import useAuth from '@/store/useAuth';
 
 export default function MainPage() {
+  const { isLogin } = useAuth();
+
   return (
     <S.Wrapper>
       <S.PageContainer>
-        <LoginBanner />
+        <LoginBanner isLogin={isLogin} />
         <MapContainer />
         <S.Container2>
           <Box title="시그니처" />
