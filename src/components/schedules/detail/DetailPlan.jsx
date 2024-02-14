@@ -31,14 +31,14 @@ const DetailPlan = ({
 
   const handleOnSaveNewPlan = async () => {
     if (!newPlan.trim()) {
-      alert('할 일을 작성해주세요!');
+      toast('할 일을 작성해주세요!');
     } else {
       try {
         setLoading(true);
         const res = await addDetailSchedule(scheduleId, newPlan);
         if (res) {
           refetch({ refetchPage: (page, index) => index === 0 });
-          toast('할 일이 저장되었습니다');
+          toast.success('할 일이 저장되었습니다');
           setIsOpenInput(false);
           setNewPlan('');
         }
@@ -55,21 +55,21 @@ const DetailPlan = ({
   const handleOnEditPlan = async id => {
     setEditingId(null);
     if (!editPlan.trim()) {
-      alert('할 일을 작성해주세요!');
+      toast('할 일을 작성해주세요!');
     } else {
       try {
         setLoading(true);
         const res = await postDetailSchedule(id, editPlan);
         if (res) {
           refetch({ refetchPage: (page, index) => index === 0 });
-          alert('할 일이 수정되었습니다');
+          toast.success('할 일이 수정되었습니다');
           setIsOpenEdit(false);
           setEditPlan('');
         }
       } catch (e) {
         setError(true);
         console.log(e);
-        toast('할 일 수정 중 오류가 발생했습니다.');
+        toast.error('할 일 수정 중 오류가 발생했습니다.');
       } finally {
         setLoading(false);
       }
@@ -82,13 +82,13 @@ const DetailPlan = ({
       const res = await deleteDetailSchedule(id);
       if (res) {
         refetch({ refetchPage: (page, index) => index === 0 });
-        toast('세부 일정이 삭제되었습니다');
+        toast.success('세부 일정이 삭제되었습니다');
       }
     } catch (e) {
       refetch({ refetchPage: (page, index) => index === 0 });
       setError(true);
       console.log(e);
-      toast('할 일 삭제 중 오류가 발생했습니다.');
+      toast.error('할 일 삭제 중 오류가 발생했습니다.');
     } finally {
       setLoading(false);
     }
@@ -105,7 +105,7 @@ const DetailPlan = ({
     } catch (e) {
       setError(true);
       console.log(e);
-      toast('할 일 체크 중 오류가 발생했습니다.');
+      toast.error('할 일 체크 중 오류가 발생했습니다.');
     } finally {
       setLoading(false);
     }

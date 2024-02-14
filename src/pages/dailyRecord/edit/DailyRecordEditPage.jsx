@@ -2,6 +2,7 @@ import imageCompression from 'browser-image-compression';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -98,13 +99,13 @@ const DailyRecordEditPage = () => {
       const res = await updateDiary(diaryId, data);
       if (res) {
         console.log('제출된 데이터: ', data);
-        alert('수정되었습니다');
+        toast.success('수정되었습니다');
         navigate(`/dailyrecord?scheduleId=${scheduleId}`);
       }
     } catch (e) {
       setError(e);
       console.log(e);
-      alert('일지 수정 중에 에러가 발생했습니다. 다시 시도해주세요');
+      toast.error('일지 수정 중에 에러가 발생했습니다. 다시 시도해주세요');
     } finally {
       setLoading(false);
     }

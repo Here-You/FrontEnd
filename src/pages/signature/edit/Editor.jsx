@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 import Page from './Page';
@@ -38,7 +39,7 @@ const Editor = ({ signatureId }) => {
     });
 
     if (!allPagesFilled) {
-      alert('모든 페이지 정보를 입력하세요!');
+      toast('모든 페이지 정보를 입력하세요!');
       return;
     }
 
@@ -50,13 +51,13 @@ const Editor = ({ signatureId }) => {
         pages.slice(0, pages.length),
       );
       if (res) {
-        alert('시그니처가 수정되었습니다.');
+        toast.success('시그니처가 수정되었습니다.');
         navigate(`/signature/post/${signatureId}`);
       }
       console.log(res);
     } catch (e) {
       setError(e);
-      alert('에러가 발생했습니다.');
+      toast.error('에러가 발생했습니다.');
     } finally {
       setLoading(false);
     }
@@ -66,7 +67,7 @@ const Editor = ({ signatureId }) => {
     if (pages.length < maxPages) {
       addPage();
     } else {
-      alert(`최대 ${maxPages}개의 페이지까지만 추가할 수 있습니다.`);
+      toast(`최대 ${maxPages}개의 페이지까지만 추가할 수 있습니다.`);
     }
   };
 

@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import toast from 'react-hot-toast';
 
 import * as S from './MateCommentInput.style';
 import { postMateRuleComment } from '@/apis/request/mate';
@@ -17,7 +18,7 @@ const MateCommentInput = ({ ruleId }) => {
     },
     onError: error => {
       console.error('댓글 삭제 실패', error);
-      alert('댓글이 삭제되지 않았습니다.');
+      toast.error('댓글이 삭제되지 않았습니다.');
     },
   });
 

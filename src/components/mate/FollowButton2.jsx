@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import styled from 'styled-components';
 
 import * as S from './FollowButton.style';
@@ -14,12 +15,12 @@ const FollowButton2 = ({ initialFollowState, id }) => {
       if (follow === true) {
         const res = await postFollowMate(id);
         console.log(res);
-        alert('팔로우가 취소되었습니다.');
+        toast.success('팔로우가 취소되었습니다.');
         setFollow(false);
       } else {
         const res = await postFollowMate(id);
         console.log(res);
-        alert('팔로잉되었습니다.');
+        toast.success('팔로잉되었습니다.');
         setFollow(true);
       }
     } catch (e) {
