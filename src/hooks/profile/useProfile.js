@@ -13,8 +13,7 @@ export const useProfileInfo = () => {
         setLoading(true);
         const res = await getProfileInfo();
         const data = res.data.data.user;
-        console.log(res);
-        console.log(data);
+
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

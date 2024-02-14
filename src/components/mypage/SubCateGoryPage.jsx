@@ -16,7 +16,7 @@ const SubCateGoryPage = ({ children, listName }) => {
       if (list.modal) {
         if (list.id === 1) {
           logoutModal.onOpen();
-        } else if (list.id === 3) {
+        } else if (list.id === 4) {
           publicScopeModal.onOpen();
         }
       } else if (list.notion) {
