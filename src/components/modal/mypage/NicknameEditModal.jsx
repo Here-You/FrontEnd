@@ -26,13 +26,13 @@ const NicknameEditModal = () => {
     resolver: yupResolver(Schema),
     mode: 'onChange',
     defaultValues: {
-      nickname: myProfile.nickname,
+      nickname: myProfile?.nickname,
     },
   });
 
   useEffect(() => {
-    setValue('nickname', myProfile.nickname);
-  }, [myProfile.nickname]);
+    setValue('nickname', myProfile?.nickname);
+  }, [myProfile?.nickname]);
 
   const { nickname } = watch();
 

@@ -36,19 +36,19 @@ const MyProfileEditContainer = ({ listName }) => {
         {listName?.map(list => {
           return (
             <S.EditContentContainer
-              key={list.id}
-              id={list.id}
+              key={list?.id}
+              id={list?.id}
               onClick={() => {
                 if (listName === EDIT_SECOND_CONTENTS_LIST) {
                   handleOpenModal(list);
                 }
               }}>
-              <p>{list.title}</p>
+              <p>{list?.title}</p>
 
               {listName === EDIT_SECOND_CONTENTS_LIST ? (
-                <S.ArrowImg src={list.img}></S.ArrowImg>
+                <S.ArrowImg src={list?.img}></S.ArrowImg>
               ) : (
-                <p>{data[list.content]}</p>
+                <p>{data[list?.content]}</p>
               )}
             </S.EditContentContainer>
           );

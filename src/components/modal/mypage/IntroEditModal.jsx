@@ -25,13 +25,13 @@ const IntroEditModal = () => {
     resolver: yupResolver(Schema),
     mode: 'onChange',
     defaultValues: {
-      introduction: myProfile.introduction,
+      introduction: myProfile?.introduction,
     },
   });
 
   useEffect(() => {
-    setValue('introduction', myProfile.introduction);
-  }, [myProfile.introduction]);
+    setValue('introduction', myProfile?.introduction);
+  }, [myProfile?.introduction]);
 
   const { introduction } = watch();
 
@@ -59,7 +59,6 @@ const IntroEditModal = () => {
     if (!introduction) {
       alert('내용을 입력해주세요!');
     } else {
-      setIsLoading(true);
       try {
         const res = await updateIntro(introduction);
         if (res) {
@@ -71,7 +70,6 @@ const IntroEditModal = () => {
         console.error('서버 내부 오류.', error);
         alert('서버 내부 오류');
       } finally {
-        setIsLoading(false);
         handleCloseModal();
       }
     }
@@ -79,7 +77,7 @@ const IntroEditModal = () => {
 
   return (
     <Modal
-      disabled={isLoading}
+      disabled={isPending}
       isOpen={introEditModal.isOpen}
       onClose={handleCloseModal}
       onSubmit={handleSubmit(onSubmit)}
