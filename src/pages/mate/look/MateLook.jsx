@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import * as S from './MateLook.style';
 import Banner from '@/components/mate/Banner';
 import MateBox from '@/components/mate/MateBox';
+import MateRecsys from '@/components/mate/MateRecsys';
 import { useRandomInfiniteMate } from '@/hooks/mate/queries/useRandomInfiniteMate';
 import { useGetLocationMate } from '@/hooks/mate/useGetLocationMate';
 
@@ -21,6 +22,7 @@ const MateLookPage = () => {
   useEffect(() => {
     if (inView) {
       !isFetching && hasNextPage && fetchNextPage();
+      console.log(mateProfiles);
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
@@ -32,7 +34,7 @@ const MateLookPage = () => {
         <S.CenteredContainer>
           {randomMates?.map(mateData =>
             mateData?.data.data.data.map(mate => (
-              <MateBox key={mate._id} mate={mate} />
+              <MateRecsys key={mate._id} mate={mate} />
             )),
           )}
 
@@ -43,12 +45,21 @@ const MateLookPage = () => {
             }}></div>
         </S.CenteredContainer>
       </S.BoxContainer>
-      <S.Title>{`${userName}이 사용한 위치 [${location}]을 함께 이용중인 메이트들`}</S.Title>
-      <S.CenteredContainer>
-        {mateProfiles?.map(mate => (
-          <MateBox key={mate._id} mate={mate} />
-        ))}
-      </S.CenteredContainer>
+      <S.BoxContainer>
+        <S.Title>{`${userName}님의 위치를 함께 이용 중인 메이트 추천`}</S.Title>
+        <S.Location>{`[${location}]`}</S.Location>
+        <S.CenteredContainer>
+          {mateProfiles ? (
+            mateProfiles.length > 0 ? (
+              mateProfiles.map(mate => <MateBox key={mate._id} mate={mate} />)
+            ) : (
+              <div>{`[${location}]`}를 사용하는 메이트가 없습니다.</div>
+            )
+          ) : (
+            <div>Loading...</div>
+          )}
+        </S.CenteredContainer>
+      </S.BoxContainer>
     </S.MateLookContainer>
   );
 };

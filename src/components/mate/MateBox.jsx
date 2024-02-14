@@ -16,11 +16,7 @@ const MateBox = ({ mate }) => {
   };
 
   return (
-    <S.MateBox
-      onClick={() => {
-        navigate(`/profile/${mate._id}`);
-      }}
-      key={mate._id}>
+    <S.MateBox key={mate._id}>
       <S.MateDescriptionBox>
         <S.MateImage
           src={imageError || !mate.mateImage ? Logo : mate.mateImage}
@@ -34,7 +30,7 @@ const MateBox = ({ mate }) => {
           <FollowButton initialFollowState={mate.is_followed} id={mate._id} />
         </S.TextBox>
       </S.MateDescriptionBox>
-      <S.ImageContainer>
+      <S.ImageWrapper>
         {mate?.signatures?.length > 0 ? (
           mate.signatures.map(signature => (
             <S.SignatureContainer key={signature._id}>
@@ -49,7 +45,7 @@ const MateBox = ({ mate }) => {
         ) : (
           <S.Image src={DefaultImg} />
         )}
-      </S.ImageContainer>
+      </S.ImageWrapper>
     </S.MateBox>
   );
 };
