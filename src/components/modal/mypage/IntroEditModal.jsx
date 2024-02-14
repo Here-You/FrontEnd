@@ -4,14 +4,16 @@ import { useForm } from 'react-hook-form';
 import Modal from '../Modal';
 import * as S from './EditModal.style';
 import { updateIntro } from '@/apis/request/profile';
-import Schema from '@/components/schema/Schema';
+import Schema from '@/components/schema/EditSchema';
 import useIntroEditModal from '@/hooks/modal/useIntroEditModal';
+import { useProfileInfo } from '@/hooks/profile/useProfile';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-const IntroEditModal = ({ myIntro }) => {
+const IntroEditModal = () => {
   const introEditModal = useIntroEditModal();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const { data } = useProfileInfo();
 
   const {
     register,
@@ -24,13 +26,13 @@ const IntroEditModal = ({ myIntro }) => {
     resolver: yupResolver(Schema),
     mode: 'onChange',
     defaultValues: {
-      introduction: myIntro,
+      introduction: data.introduction,
     },
   });
 
   useEffect(() => {
-    setValue('introduction', myIntro);
-  }, [myIntro]);
+    setValue('introduction', data.introduction);
+  }, [data.introduction]);
 
   const { introduction } = watch();
 
@@ -51,6 +53,7 @@ const IntroEditModal = ({ myIntro }) => {
 
   const handleCloseModal = () => {
     introEditModal.onClose();
+    window.location.reload();
   };
 
   const onSubmit = async data => {

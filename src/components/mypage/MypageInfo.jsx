@@ -1,48 +1,46 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './MypageInfo.style';
 import { myPageImg } from '/public/images/mypage/index';
-import { getProfileInfo } from '@/apis/request/profile';
+import { useProfileInfo } from '@/hooks/profile/useProfile';
+import useUser from '@/store/useUser';
 import theme from '@/theme';
 
 const MyPageInfo = () => {
-  const [info, setInfo] = useState([]);
+  const [isLogin, setIsLogin] = useState();
+
+  const { data, error } = useProfileInfo();
+  const profileImageSrc = data.profileImage
+    ? data.profileImage
+    : myPageImg.ProfilePicture;
   const navigate = useNavigate();
 
   const handleGoMate = () => {
     navigate('/mate/management');
   };
-  const getInfo = async () => {
-    try {
-      const res = await getProfileInfo();
-      const members = res.data;
-      setInfo(members);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+
   useEffect(() => {
-    getInfo();
+    setIsLogin(localStorage.getItem('x-access-token'));
   }, []);
   return (
     <S.ProfileContainer>
-      <S.ProfilePicture src={myPageImg.ProfilePicture} alt="아" />
+      <S.ProfilePicture src={profileImageSrc} alt="아" />
       <S.ProfileInfoContainer>
-        {info.nickname ? (
+        {isLogin ? (
           <>
             <S.NickNameTypeContainer>
-              <h3> {info.nickname}</h3>
-              <h3> {info.type}</h3>
+              <h3> {data.nickname}</h3>
             </S.NickNameTypeContainer>
-            <p> {info.email}</p>
+            <p> {data.email}</p>
             <p style={{ color: `${theme.COLOR.MAIN.BLACK}` }}>
-              {info.introduction}
+              {data.introduction}
             </p>
             <S.Mate onClick={handleGoMate}>
-              {info.follower}
-              <S.NumberOfPeople>32</S.NumberOfPeople> {info.following}
-              <S.NumberOfPeople>32</S.NumberOfPeople>
+              팔로워
+              <S.NumberOfPeople>{data.followers}</S.NumberOfPeople> 팔로잉
+              <S.NumberOfPeople>{data.followings}</S.NumberOfPeople>
             </S.Mate>
           </>
         ) : (
