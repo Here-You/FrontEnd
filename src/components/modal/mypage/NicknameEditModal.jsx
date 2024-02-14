@@ -6,13 +6,14 @@ import * as S from './EditModal.style';
 import { updateNickName } from '@/apis/request/profile';
 import Schema from '@/components/schema/EditSchema';
 import useNicknameEditModal from '@/hooks/modal/useNickameEditModal';
-import { useProfileInfo } from '@/hooks/profile/useProfile';
+import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 const NicknameEditModal = () => {
   const nicknameEditModal = useNicknameEditModal();
   const [isLoading, setIsLoading] = useState(false);
-  const { data } = useProfileInfo();
+  const { data, isPending, isError } = useGetMyProfile();
+  const myProfile = data?.data?.data?.user;
 
   const {
     register,
@@ -25,13 +26,13 @@ const NicknameEditModal = () => {
     resolver: yupResolver(Schema),
     mode: 'onChange',
     defaultValues: {
-      nickname: data.nickname,
+      nickname: myProfile?.nickname,
     },
   });
 
   useEffect(() => {
-    setValue('nickname', data.nickname);
-  }, [data.nickname]);
+    setValue('nickname', myProfile?.nickname);
+  }, [myProfile?.nickname]);
 
   const { nickname } = watch();
 
@@ -54,7 +55,7 @@ const NicknameEditModal = () => {
     nicknameEditModal.onClose();
   };
 
-  const onSubmit = async data => {
+  const onSubmit = async myProfile => {
     if (!nickname) {
       alert('내용을 입력해주세요!');
     } else {
@@ -64,7 +65,7 @@ const NicknameEditModal = () => {
         const res = await updateNickName(nickname);
         if (res) {
           alert('닉네임이 변경 되었습니다.');
-          console.log('제출된 데이터: ', data);
+          console.log('제출된 데이터: ', myProfile);
         }
       } catch (error) {
         console.log(error);

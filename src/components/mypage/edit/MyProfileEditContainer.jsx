@@ -8,13 +8,14 @@ import { EDIT_SECOND_CONTENTS_LIST } from '@/constants/editPage';
 import useIntroEditModal from '@/hooks/modal/useIntroEditModal';
 import useNicknameEditModal from '@/hooks/modal/useNickameEditModal';
 import useWithdrawalModal from '@/hooks/modal/useWithdrawalModal';
-import { useProfileInfo } from '@/hooks/profile/useProfile';
+import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 
 const MyProfileEditContainer = ({ listName }) => {
   const nicknameEditModal = useNicknameEditModal();
   const introEditModal = useIntroEditModal();
   const withdrawalModal = useWithdrawalModal();
-  const { data } = useProfileInfo();
+  const { data, isPending, isError } = useGetMyProfile();
+  const myProfile = data?.data?.data?.user;
 
   const handleOpenModal = list => {
     if (list.id === 0) {
@@ -25,7 +26,7 @@ const MyProfileEditContainer = ({ listName }) => {
       withdrawalModal.onOpen();
     }
   };
-  useEffect(() => {}, [data]);
+  useEffect(() => {}, [myProfile]);
   return (
     <>
       <S.EditContainer>
@@ -35,19 +36,19 @@ const MyProfileEditContainer = ({ listName }) => {
         {listName?.map(list => {
           return (
             <S.EditContentContainer
-              key={list.id}
-              id={list.id}
+              key={list?.id}
+              id={list?.id}
               onClick={() => {
                 if (listName === EDIT_SECOND_CONTENTS_LIST) {
                   handleOpenModal(list);
                 }
               }}>
-              <p>{list.title}</p>
+              <p>{list?.title}</p>
 
               {listName === EDIT_SECOND_CONTENTS_LIST ? (
-                <S.ArrowImg src={list.img}></S.ArrowImg>
+                <S.ArrowImg src={list?.img}></S.ArrowImg>
               ) : (
-                <p>{data[list.content]}</p>
+                <p>{data[list?.content]}</p>
               )}
             </S.EditContentContainer>
           );
