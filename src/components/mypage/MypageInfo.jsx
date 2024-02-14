@@ -14,6 +14,7 @@ const MyPageInfo = () => {
   const { data, isPending, isError } = useGetMyProfile();
   const myProfile = data?.data?.data?.user;
   const logoutModal = useLogoutModal();
+  console.log(isLogin);
 
   return (
     <S.ProfileContainer>

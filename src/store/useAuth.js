@@ -6,7 +6,6 @@ const JSONStorage = createJSONStorage(localStorage);
 
 const useAuth = create(
   persist(
-    'authState',
     set => ({
       isLogin: false,
       login: token => {
@@ -23,7 +22,7 @@ const useAuth = create(
       },
     }),
     {
-      name: 'authPersist',
+      name: 'authState',
       getStorage: () => JSONStorage,
     },
   ),
