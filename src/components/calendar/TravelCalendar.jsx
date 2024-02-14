@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import SchedulesView from '../schedules/SchedulesView';
 import * as S from './TravelCalendar.style';
+import CalendarSkeleton from './skeleton/CalendarSkeleton';
 import { useMonthlyJourney } from '@/hooks/home/useMonthlyJourney';
 import { ErrorPage } from '@/pages';
 
@@ -23,7 +24,11 @@ const TravelCalendar = ({
 
   const year = moment(endDate).format('YYYY');
   const month = moment(endDate).format('MM');
-  const { data, loading, error } = useMonthlyJourney(year, month);
+  const {
+    data,
+    loading: calendarLoading,
+    error,
+  } = useMonthlyJourney(year, month);
 
   useEffect(() => {
     if (data) {
@@ -92,47 +97,49 @@ const TravelCalendar = ({
   //   return <ErrorPage />;
   // }
 
-  if (loading) {
-    return <h1>로딩중입니다. 잠시만 기다려주세요.</h1>;
-  }
-
   return (
-    <S.Wrapper>
-      <S.ButtonContainer>
-        <S.Button
-          $clicked={pathname === '/calendar'}
-          onClick={() => navigate('/calendar')}>
-          캘린더로 보기
-        </S.Button>
-        <S.Button
-          $clicked={pathname === '/map'}
-          onClick={() => navigate(`/map?year=${year}&month=${month}`)}>
-          지도로 보기
-        </S.Button>
-      </S.ButtonContainer>
-      <S.HeaderWrapper>
-        <S.Circle />
-        <S.CircleWrapper>
-          <h1>{moment(startDate).format('MM')}</h1>
-          <S.FontWrapper>
-            {moment(startDate).format('MMMM')}
-            <br />
-            {moment(startDate).format('YYYY')}
-          </S.FontWrapper>
-        </S.CircleWrapper>
-      </S.HeaderWrapper>
-      <S.HomeContentContainer>
-        <Calendar
-          locale="en"
-          tileClassName={tileClassName}
-          onChange={changeDate}
-          formatDay={(locale, date) => moment(date).format('D')}
-          selectRange={true}
-        />
+    <>
+      {calendarLoading ? (
+        <CalendarSkeleton />
+      ) : (
+        <S.Wrapper>
+          <S.ButtonContainer>
+            <S.Button
+              $clicked={pathname === '/calendar'}
+              onClick={() => navigate('/calendar')}>
+              캘린더로 보기
+            </S.Button>
+            <S.Button
+              $clicked={pathname === '/map'}
+              onClick={() => navigate(`/map?year=${year}&month=${month}`)}>
+              지도로 보기
+            </S.Button>
+          </S.ButtonContainer>
+          <S.HeaderWrapper>
+            <S.Circle />
+            <S.CircleWrapper>
+              <h1>{moment(startDate).format('MM')}</h1>
+              <S.FontWrapper>
+                {moment(startDate).format('MMMM')}
+                <br />
+                {moment(startDate).format('YYYY')}
+              </S.FontWrapper>
+            </S.CircleWrapper>
+          </S.HeaderWrapper>
+          <S.HomeContentContainer>
+            <Calendar
+              locale="en"
+              tileClassName={tileClassName}
+              onChange={changeDate}
+              formatDay={(locale, date) => moment(date).format('D')}
+              selectRange={true}
+            />
 
-        <SchedulesView startDate={startDate} endDate={endDate} />
-      </S.HomeContentContainer>
-    </S.Wrapper>
+            <SchedulesView startDate={startDate} endDate={endDate} />
+          </S.HomeContentContainer>
+        </S.Wrapper>
+      )}
+    </>
   );
 };
 
