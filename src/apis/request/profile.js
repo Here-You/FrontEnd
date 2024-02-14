@@ -3,14 +3,15 @@ import { API_PATH, API_URL } from '@/constants/path';
 
 // 마이페이지 프로필 정보
 const getProfileInfo = () => {
-  return axios.get(API_PATH.MY_PAGE_INFO);
+  return axiosWithToken.get(API_URL.MY_PAGE_INFO);
 };
 // sns
-const postSnsLogin = (type, token) => {
+const postSnsLogin = (type, token, redirect_uri) => {
   const url = `${API_URL.SNS_LOGIN}`;
   const res = axiosWithToken.post(url, {
     type: type,
     token: token,
+    redirect_uri: redirect_uri,
   });
   return res;
 };
@@ -28,7 +29,7 @@ const postAddInformation = (nickname, introduction) => {
 // 닉네임 수정
 const updateNickName = nickname => {
   const url = `${API_URL.UPDATE_NICKNAME}`;
-  const res = axiosWithToken.put(url, {
+  const res = axiosWithToken.post(url, {
     nickname: nickname,
   });
   return res;
@@ -37,7 +38,7 @@ const updateNickName = nickname => {
 // 한줄 소개 수정
 const updateIntro = intro => {
   const url = `${API_URL.UPDATE_PROFILE_INTRO}`;
-  const res = axiosWithToken.put(url, {
+  const res = axiosWithToken.post(url, {
     intro: intro,
   });
   return res;
@@ -52,12 +53,11 @@ const deleteWithdrawMember = () => {
 // 공개 범위 설정
 const putPublicScope = visivility => {
   const url = `${API_URL.PUBLIC_SCOPE}`;
-  const res = axiosWithToken.put(url, {
+  const res = axiosWithToken.post(url, {
     visivility: visivility,
   });
   return res;
 };
-
 // 전체 일지 불러오기
 const getMyDiary = ({ pageParam }) => {
   let url;

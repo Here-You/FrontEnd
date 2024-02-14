@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import Modal from '../Modal';
 import * as S from './PublicScope.style';
 import { putPublicScope } from '@/apis/request/profile';
-import Schema from '@/components/schema/Schema';
+import Schema from '@/components/schema/SignUpSchema';
 import usePublicScopeModal from '@/hooks/modal/usePublicScopeModal';
 
 const PublicScopeModal = ({ myVisibility }) => {
