@@ -20,7 +20,7 @@ const MapPage = () => {
   const month = parseInt(searchParams.get('month')) || 2;
   const { data, loading, error } = useMonthlyJourney(year, month);
   let mapDataList = [];
-  data.forEach(journey => {
+  data?.forEach(journey => {
     mapDataList = mapDataList.concat(journey.map);
   });
 
