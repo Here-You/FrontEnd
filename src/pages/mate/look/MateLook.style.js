@@ -5,8 +5,12 @@ import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const MateLookContainer = styled.div`
-  gap: 10px;
   height: 100%;
+`;
+const BoxContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: green;
 `;
 
 const Title = styled.h1`
@@ -22,6 +26,7 @@ const CenteredContainer = styled.div`
   overflow-x: auto;
   margin-top: 20px;
   padding: 0 20px;
+  background-color: yellow;
 
   p {
     font-size: ${FONT_SIZE.LG};
@@ -120,6 +125,7 @@ const AlertLayout = styled.div`
 
 export {
   Title,
+  BoxContainer,
   MateLookContainer,
   CenteredContainer,
   MateContainer,

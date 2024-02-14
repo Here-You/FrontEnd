@@ -16,7 +16,11 @@ const MateBox = ({ mate }) => {
   };
 
   return (
-    <S.MateBox key={mate._id}>
+    <S.MateBox
+      onClick={() => {
+        navigate(`/profile/${mate._id}`);
+      }}
+      key={mate._id}>
       <S.MateDescriptionBox>
         <S.MateImage
           src={imageError || !mate.mateImage ? Logo : mate.mateImage}
