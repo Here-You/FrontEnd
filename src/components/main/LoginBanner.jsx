@@ -4,13 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './LoginBanner.style';
 import profileImg from '/images/main/profileImg.svg';
 import rightIcon from '/images/main/right.svg';
-import { myPageImg } from '/public/images/mypage/index';
 import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 import useAuth from '@/store/useAuth';
 
 export default function LoginBanner() {
   const navigate = useNavigate();
-
   const { isLogin } = useAuth();
   const { data, isPending, isError } = useGetMyProfile();
   const myProfile = data?.data?.data?.user;
