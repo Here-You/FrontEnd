@@ -33,6 +33,7 @@ const BASE_PATH = {
   // MY_PAGE
   MY_PAGE: '/mypage',
   MY_PAGE_EDIT: '/mypage/edit',
+  MY_PAGE_CHANGE_PASSWORD: '/mypage/password',
   TRAVEL_TYPE: '/traveltype',
   TRAVEL_TYPE_RESULT: '/traveltype/result',
   MY_DIARY: '/mydiary',
@@ -74,12 +75,13 @@ const API_URL = {
   PUBLIC_SCOPE: `/api/${VERSION}/${API_BASE.USER}/profile/visibility`,
   ADDITIONAL_INFORMATION: `/api/${VERSION}/${API_BASE.USER}/profile`,
   SNS_LOGIN: `/api/${VERSION}/${API_BASE.USER}/login/oauth`,
-  UPDATE_NICKNAME: `/api/${VERSION}/${API_BASE.PROFILE}/nickname`,
-  UPDATE_PROFILE_INTRO: `/api/${VERSION}/${API_BASE.PROFILE}/intro`,
+  UPDATE_NICKNAME: `/api/${VERSION}/${API_BASE.USER}/${API_BASE.PROFILE}/nickname`,
+  UPDATE_PROFILE_INTRO: `/api/${VERSION}/${API_BASE.USER}/${API_BASE.PROFILE}/intro`,
+  MY_PAGE_INFO: `/api/${VERSION}/${API_BASE.USER}/${API_BASE.PROFILE}`,
   GET_ALL_DIARY: `/api/${VERSION}/${API_BASE.USER}/diaries`,
 
   NOTIFICATION: `/api/${VERSION}/${API_BASE.NOTIFICATION}`,
-  WITHDRAW_MEMBER: `/api/${VERSION}/${API_BASE.PROFILE}/delete`,
+  WITHDRAW_MEMBER: `/api/${VERSION}/${API_BASE.USER}/${API_BASE.PROFILE}/delete`,
   // HOME
   LOAD_MONTHLY_SCHEDULE: `/api/${VERSION}/${API_BASE.SCHEDULE}/monthly/:year/:month`,
   SAVE_JOURNEY: `/api/${VERSION}/${API_BASE.JOURNEY}/create/`,
@@ -133,8 +135,6 @@ const API_URL = {
 };
 
 const API_PATH = {
-  MY_PAGE_INFO: `${BASE_PATH.MY_PAGE}`,
-
   MATE_SEARCH: `${BASE_PATH.MATE_SEARCH}`,
   MATE_LOOK: `${BASE_PATH.MATE_LOOK}`,
   MATE_MANAGEMENT: `${BASE_PATH.MATE_MANAGEMENT}`,

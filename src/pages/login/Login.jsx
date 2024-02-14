@@ -5,13 +5,11 @@ import * as S from './Login.style';
 import Logo from '/images/main.svg';
 import { axios, axiosWithToken } from '@/apis/api';
 import LoginButton from '@/components/login/LoginButton';
-import useAuth from '@/store/useAuth';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const auth = useAuth();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -26,8 +24,7 @@ const LoginPage = () => {
       );
 
       console.log(response);
-      auth.login(response.data.token);
-
+      localStorage.setItem('x-access-token', response.data.token);
       navigate('/');
     } catch (error) {
       console.error('Login failed:', error.message);

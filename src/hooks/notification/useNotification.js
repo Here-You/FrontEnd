@@ -13,7 +13,7 @@ export const useNotification = () => {
         setLoading(true);
         const res = await getNotification();
         const data = res.data.data;
-        console.log(data);
+        console.log(res);
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

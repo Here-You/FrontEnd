@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import * as S from './MyProfileEditContainer.style';
 import IntroEditModal from '@/components/modal/mypage/IntroEditModal';
 import NicknameEditModal from '@/components/modal/mypage/NicknameEditModal';
@@ -6,11 +8,14 @@ import { EDIT_SECOND_CONTENTS_LIST } from '@/constants/editPage';
 import useIntroEditModal from '@/hooks/modal/useIntroEditModal';
 import useNicknameEditModal from '@/hooks/modal/useNickameEditModal';
 import useWithdrawalModal from '@/hooks/modal/useWithdrawalModal';
+import { useProfileInfo } from '@/hooks/profile/useProfile';
 
 const MyProfileEditContainer = ({ listName }) => {
   const nicknameEditModal = useNicknameEditModal();
   const introEditModal = useIntroEditModal();
   const withdrawalModal = useWithdrawalModal();
+  const { data } = useProfileInfo();
+
   const handleOpenModal = list => {
     if (list.id === 0) {
       nicknameEditModal.onOpen();
@@ -20,12 +25,14 @@ const MyProfileEditContainer = ({ listName }) => {
       withdrawalModal.onOpen();
     }
   };
-
+  useEffect(() => {
+    console.log(listName);
+  }, [data]);
   return (
     <>
       <S.EditContainer>
-        <NicknameEditModal myNickname="여행의 이유" />
-        <IntroEditModal myIntro="졸리당" />
+        <NicknameEditModal />
+        <IntroEditModal />
         <WithDrawalModal />
         {listName?.map(list => {
           return (
@@ -38,9 +45,11 @@ const MyProfileEditContainer = ({ listName }) => {
                 }
               }}>
               <p>{list.title}</p>
-              <p>{list.content}</p>
-              {listName === EDIT_SECOND_CONTENTS_LIST && (
+
+              {listName === EDIT_SECOND_CONTENTS_LIST ? (
                 <S.ArrowImg src={list.img}></S.ArrowImg>
+              ) : (
+                <p>{data[list.content]}</p>
               )}
             </S.EditContentContainer>
           );
