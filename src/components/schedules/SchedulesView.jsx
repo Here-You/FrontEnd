@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 
 import * as S from './SchedulesView.style';
+import SchedulesViewSkeleton from './skeleton/SchedulesViewSkeleton';
 import { getSchedule } from '@/apis/request/home';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
@@ -22,6 +23,7 @@ const SchedulesView = ({ startDate, endDate }) => {
     hasNextPage,
     isFetching,
     isError,
+    isLoading,
     refetch,
   } = useInfiniteQuery({
     queryKey: ['schedules', startDate],
@@ -53,7 +55,8 @@ const SchedulesView = ({ startDate, endDate }) => {
 
   return (
     <>
-      {!isStartDateDateInstance && (
+      {isLoading && new Array(3).fill(0).map(item => <SchedulesViewSkeleton />)}
+      {!isLoading && !isStartDateDateInstance && (
         <S.Container $showContainer={dataExists}>
           {schedulesData?.pages?.map((page, pageIndex) =>
             page?.data?.data?.data?.paginatedSchedules.map(scheduleData => (
@@ -69,14 +72,16 @@ const SchedulesView = ({ startDate, endDate }) => {
         </S.Container>
       )}
 
-      {!accessToken && (
+      {!isLoading && !accessToken && (
         <Link style={{ textDecoration: 'none' }} to={'/login'}>
           <S.IntroMessage>로그인 후 여정을 작성해보세요!</S.IntroMessage>
         </Link>
       )}
 
-      {accessToken && !dataExists && <div>아직 작성한 여정이 없어요!</div>}
-      {accessToken && dataExists && isStartDateDateInstance && (
+      {!isLoading && accessToken && !dataExists && (
+        <div>아직 작성한 여정이 없어요!</div>
+      )}
+      {!isLoading && accessToken && dataExists && isStartDateDateInstance && (
         <div>달력에서 기간을 선택하고, 일정을 확인하세요!</div>
       )}
     </>

@@ -4,6 +4,7 @@ import { BottomSheet } from 'react-spring-bottom-sheet';
 
 import * as S from './BottomScrollPage.style';
 import BottomTravelList from './bottomTravelList/BottomTravelList';
+import BottomTravelListskeleton from './bottomTravelList/skeleton/BottomTravelListskeleton';
 import LeftIcon from '/icons/left.svg';
 import RightIcon from '/icons/right.svg';
 import { useMonthlyJourney } from '@/hooks/home/useMonthlyJourney';
@@ -15,11 +16,11 @@ const BottomScrollPage = () => {
   const [year, setYear] = useState(parseInt(searchParams.get('year')) || 2024);
   const [month, setMonth] = useState(parseInt(searchParams.get('month')) || 2);
 
-  const { data: journey, loading, error } = useMonthlyJourney(year, month);
-
-  if (loading) {
-    return <div>로딩 중 입니다...</div>;
-  }
+  const {
+    data: journey,
+    loading: JourneyLoading,
+    error,
+  } = useMonthlyJourney(year, month);
 
   if (error) {
     return <div>Error 발생 {error}</div>;
@@ -82,7 +83,9 @@ const BottomScrollPage = () => {
             height: '100%',
             position: 'relative',
           }}>
-          {journey ? (
+          {JourneyLoading &&
+            new Array(3).fill(0).map(() => <BottomTravelListskeleton />)}
+          {!JourneyLoading && journey ? (
             journey?.map(
               ({ journeyId, title, diaryCount, startDate, endDate }, idx) => {
                 return (

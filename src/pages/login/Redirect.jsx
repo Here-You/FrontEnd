@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import * as S from './Redirect.style';
+import RedirectIcon from '/images/RedirectIcon.png';
 import { postSnsLogin } from '@/apis/request/profile';
 import useAuth from '@/store/useAuth';
 
@@ -31,9 +33,11 @@ const Redirect = () => {
   }, [code]);
 
   return (
-    <>
-      <p>리다이렉트 페이지</p>
-    </>
+    <S.Container>
+      <S.Image src={RedirectIcon} />
+      <h3>여행의 이유를 찾는 중입니다 ! </h3>
+      <p>잠시만 기다려주세요</p>
+    </S.Container>
   );
 };
 
