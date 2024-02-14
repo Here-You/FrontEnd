@@ -9,23 +9,33 @@ const Container = styled.div`
   align-items: start;
   margin-top: 50px;
 `;
+
 const NotificationContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER}
   width: 90%;
-  align-items: start;
-  justify-content: start;
   font-size: ${FONT_SIZE.LG};
   margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
+  }
+
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.SM};
   }
+
   span {
     color: ${theme.COLOR.MAIN.GREEN};
   }
 `;
+
 const Img = styled.img`
   width: 8%;
   margin-right: 20px;
+
   @media ${theme.WINDOW_SIZE.MOBILE} {
     width: 10%;
   }
