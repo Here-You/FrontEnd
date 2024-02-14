@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const Header = styled.div`
@@ -11,6 +12,11 @@ const StyledMyDiary = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   padding: 40px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 10px;
+  }
 `;
 
 const Container = styled.div`
@@ -27,6 +33,7 @@ const Container = styled.div`
 
 const DiaryCard = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
+  gap: 5px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 10px 14px rgba(0, 0, 0, 0.1);
@@ -43,6 +50,11 @@ const DiaryImage = styled.img`
   width: 200px;
   border-radius: 8px;
   margin-bottom: 10px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    height: 150px;
+    width: 150px;
+  }
 `;
 
 const EmojiContainer = styled.div`
@@ -59,13 +71,25 @@ const EmojiImage = styled.img`
 `;
 
 const Title = styled.h3`
-  font-size: 1.5rem;
+  font-size: ${FONT_SIZE.XL};
   margin-bottom: 5px;
+  width: 300px;
+  text-align: center;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const Subtitle = styled.h4`
   font-size: 1rem;
   margin-bottom: 10px;
+  width: 300px;
+  text-align: center;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const Date = styled.h3`
@@ -75,9 +99,9 @@ const Date = styled.h3`
 
 const Content = styled.p`
   font-size: 1rem;
-  background-color: yellow;
   width: 250px;
   line-height: 1.5;
+  text-align: center;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

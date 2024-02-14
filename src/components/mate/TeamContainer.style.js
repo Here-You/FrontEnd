@@ -94,6 +94,10 @@ const TeamTitle = styled.span`
   font-weight: 600;
   line-height: normal;
 
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
   @media ${theme.WINDOW_SIZE.MOBILE} {
     width: 180px;
     font-size: 16px;

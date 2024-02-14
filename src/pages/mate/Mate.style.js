@@ -45,11 +45,23 @@ const NickNameContainer = styled.div`
   margin-top: 20px;
   h1 {
     font-size: ${FONT_SIZE.LG};
+    @media ${theme.WINDOW_SIZE.MOBILE} {
+      gap: 10px;
+      font-size: ${FONT_SIZE.SM};
+    }
+  }
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: ${FONT_SIZE.SM};
   }
 `;
 
 const FollowButton = styled.button`
   background-color: ${theme.COLOR.MAIN.MEDIUM_GREEN};
+  min-width: 65px;
   padding: 5px 10px;
   border: none;
   border-radius: 10px;
@@ -58,6 +70,10 @@ const FollowButton = styled.button`
 
   &:hover {
     transform: scale(0.9);
+  }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    padding: 5px;
   }
 `;
 

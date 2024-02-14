@@ -36,13 +36,14 @@ const Header = styled.div`
 
 const Title = styled.h1`
   padding: 20px 20px 0 20px;
-  width: 80%;
+  width: 100%;
   border: none;
   text-align: center;
   font-size: ${FONT_SIZE.TWO_XL};
+  word-break: break-all;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    font-size: ${FONT_SIZE.XL};
+    font-size: ${FONT_SIZE.LG};
   }
 `;
 

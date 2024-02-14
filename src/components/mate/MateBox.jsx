@@ -8,6 +8,8 @@ import Logo from '/images/mypage/MyPageLogo.svg';
 const MateBox = ({ mate }) => {
   const navigate = useNavigate();
   const [imageError, setImageError] = useState(false);
+  const DefaultImg =
+    'https://i.pinimg.com/564x/cb/a0/65/cba065ca68bafa4da74df37c0b39d8e8.jpg';
 
   const handleImageError = () => {
     setImageError(true);
@@ -41,7 +43,7 @@ const MateBox = ({ mate }) => {
             </S.SignatureContainer>
           ))
         ) : (
-          <div>시그니처가 없습니다.</div>
+          <S.Image src={DefaultImg} />
         )}
       </S.ImageContainer>
     </S.MateBox>
