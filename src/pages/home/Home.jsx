@@ -64,9 +64,9 @@ const HomePage = () => {
       toast('로그인이 필요한 기능입니다.');
     } else {
       if (!startDate || !endDate) {
-        alert('먼저 달력에서 기간을 선택해주세요!');
+        toast('먼저 달력에서 기간을 선택해주세요!');
       } else if (!journeyInfo) {
-        alert('저장된 일정이 없습니다!');
+        toast.error('저장된 일정이 없습니다!');
       } else {
         journeyEditModal.onOpen();
       }
@@ -79,9 +79,9 @@ const HomePage = () => {
     } else {
       const checkResult = checkOverlap(startDate, endDate, monthlyInfo);
       if (journeyInfo || checkResult) {
-        alert('선택한 기간 내에 이미 저장된 여정이 있습니다.');
+        toast('선택한 기간 내에 이미 저장된 여정이 있습니다.');
       } else if (!startDate || !endDate) {
-        alert('먼저 달력에서 기간을 선택해주세요!');
+        toast('먼저 달력에서 기간을 선택해주세요!');
       } else {
         journeyWriteModal.onOpen();
       }

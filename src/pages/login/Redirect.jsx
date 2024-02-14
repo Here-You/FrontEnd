@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './Redirect.style';
@@ -22,7 +23,7 @@ const Redirect = () => {
 
           const register_required = response.data.register_required;
           register_required ? navigate('/signup') : navigate('/');
-          alert('로그인 성공');
+          toast.success('로그인 성공');
         } catch (error) {
           console.log(error);
         }

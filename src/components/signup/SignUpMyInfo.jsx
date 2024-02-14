@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 import Schema from '../schema/SignUpSchema';
@@ -32,14 +33,14 @@ const SignUpMyInfo = () => {
     try {
       const res = postAddInformation(data.nickname, data.introduction);
       if (res) {
-        alert('정보가 입력되었습니다.');
+        toast.success('정보가 입력되었습니다.');
         console.log('제출된 데이터: ', data);
         navigate('/');
       }
     } catch (error) {
       console.log(error);
       console.error('서버 내부 오류.', error);
-      alert('서버 내부 오류');
+      toast.error('서버 내부 오류');
     } finally {
       setIsLoading(false);
     }

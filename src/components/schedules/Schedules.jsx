@@ -67,7 +67,7 @@ const Schedules = ({ data, endDate, refetch }) => {
       const res = await deleteSchedule(scheduleId);
       if (res) {
         refetch({ refetchPage: (page, index) => index === 0 });
-        toast('일정이 초기화되었습니다.');
+        toast.success('일정이 초기화되었습니다.');
         setValue('title', '');
         setValue('location', {});
       }
@@ -94,7 +94,7 @@ const Schedules = ({ data, endDate, refetch }) => {
       if (res) {
         console.log('제출된 데이터: ', data);
         refetch({ refetchPage: (page, index) => index === 0 });
-        alert('일정이 저장되었습니다.');
+        toast.success('일정이 저장되었습니다.');
       }
     } catch (e) {
       setError(true);

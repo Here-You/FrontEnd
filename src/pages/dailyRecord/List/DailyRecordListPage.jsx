@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useLocation, useParams } from 'react-router-dom';
 
 import * as S from './DailyRecordListPage.style';
@@ -42,7 +43,7 @@ const DailyRecordListPage = () => {
 
   const prevButtonClick = () => {
     if (nowPage === 0) {
-      alert('이 여정의 가장 첫 일지입니다!');
+      toast('이 여정의 가장 첫 일지입니다!');
     } else {
       setSlideDirection('slide-right');
       setNowPage(prevPage => prevPage - 1);
@@ -51,7 +52,7 @@ const DailyRecordListPage = () => {
 
   const nextButtonClick = () => {
     if (nowPage === validDiaryData?.length - 1) {
-      alert('이 여정의 가장 마지막 일지입니다!');
+      toast('이 여정의 가장 마지막 일지입니다!');
     } else {
       setSlideDirection('slide-left');
       setNowPage(prevPage => prevPage + 1);

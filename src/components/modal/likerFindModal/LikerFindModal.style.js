@@ -5,14 +5,11 @@ import theme from '@/theme';
 const Container = styled.div`
   height: 300px;
   ${theme.ALIGN.COLUMN_CENTER};
-  position: relative;
+  gap: 20px;
 `;
 
 const Title = styled.h1`
-  position: absolute;
-  top: 10px;
   font-size: 1rem;
-  height: 30px;
 `;
 
 const ProfileContainer = styled.div`
