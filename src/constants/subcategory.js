@@ -12,15 +12,23 @@ const USER_SETTING = [
   {
     id: 1,
     img: myPageImg.Sign_out_squre,
-    get modal() {
-      return localStorage.getItem('x-access-token') ? true : false;
-    },
     get link() {
       return !localStorage.getItem('x-access-token') ? '/login' : null;
+    },
+    get modal() {
+      return localStorage.getItem('x-access-token') ? true : false;
     },
   },
   {
     id: 2,
+    img: myPageImg.Book,
+    title: '내 하루일지 확인하기',
+    get link() {
+      return localStorage.getItem('x-access-token') ? '/mydiary' : null;
+    },
+  },
+  {
+    id: 3,
     img: myPageImg.Diamond,
     title: '내 시그니처 확인하기',
     get link() {
@@ -28,7 +36,7 @@ const USER_SETTING = [
     },
   },
   {
-    id: 3,
+    id: 4,
     img: myPageImg.Lock,
     title: '공개범위 설정',
     get modal() {

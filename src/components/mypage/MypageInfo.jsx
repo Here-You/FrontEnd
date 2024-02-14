@@ -11,9 +11,10 @@ import theme from '@/theme';
 const MyPageInfo = () => {
   const [isLogin, setIsLogin] = useState();
 
-  const { userInfo } = useUser();
   const { data, error } = useProfileInfo();
-
+  const profileImageSrc = data.profileImage
+    ? data.profileImage
+    : myPageImg.ProfilePicture;
   const navigate = useNavigate();
 
   const handleGoMate = () => {
@@ -25,7 +26,7 @@ const MyPageInfo = () => {
   }, []);
   return (
     <S.ProfileContainer>
-      <S.ProfilePicture src={myPageImg.ProfilePicture} alt="아" />
+      <S.ProfilePicture src={profileImageSrc} alt="아" />
       <S.ProfileInfoContainer>
         {isLogin ? (
           <>
