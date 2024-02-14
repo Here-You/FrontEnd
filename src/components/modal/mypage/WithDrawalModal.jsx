@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 import Modal from '../Modal';
 import * as S from './BasicModal.style';
 import { deleteWithdrawMember } from '@/apis/request/profile';
 import useWithdrawalModal from '@/hooks/modal/useWithdrawalModal';
+import useAuth from '@/store/useAuth';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const WithDrawalModal = () => {
+  const queryClient = useQueryClient();
   const withdrawalModal = useWithdrawalModal();
-  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const { revoke } = useAuth();
 
   const BodyContent = (
     <S.Container>
@@ -22,26 +27,31 @@ const WithDrawalModal = () => {
     withdrawalModal.onClose();
   };
 
-  const onSubmit = async data => {
-    setIsLoading(true);
+  const { mutateAsync: revokeMember } = useMutation({
+    mutationFn: deleteWithdrawMember,
+    onSuccess: () => {
+      queryClient.removeQueries(['myProfile']);
+      revoke();
+      navigate('/');
+      toast.success('회원 탈퇴가 정상적으로 되었습니다.');
+    },
+    onError: error => {
+      console.error('회원 탈퇴 실패', error);
+      toast.error('회원 탈퇴에 실패하셨습니다.');
+    },
+  });
+
+  const onSubmit = async () => {
     try {
-      const res = await deleteWithdrawMember();
-      if (res) {
-        alert('회원탈퇴 되었습니다');
-      }
-    } catch (error) {
-      console.log(error);
-      console.error('서버 내부 오류.', error);
-      alert('서버 내부 오류');
-    } finally {
-      setIsLoading(false);
-      handleCloseModal();
+      await revokeMember();
+      withdrawalModal.onClose();
+    } catch (e) {
+      console.error(e);
     }
   };
 
   return (
     <Modal
-      disabled={isLoading}
       isOpen={withdrawalModal.isOpen}
       onClose={handleCloseModal}
       onSubmit={onSubmit}

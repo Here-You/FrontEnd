@@ -10,6 +10,10 @@ const useAuth = create(set => ({
     localStorage.removeItem('x-access-token');
     set({ isLogin: false });
   },
+  revoke: () => {
+    localStorage.removeItem('x-access-token');
+    set({ isLogin: false });
+  },
 }));
 
 export default useAuth;
