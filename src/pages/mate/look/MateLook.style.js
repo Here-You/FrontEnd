@@ -49,12 +49,12 @@ const AlertMessage = styled.div`
   display: flex;
   align-items: center;
   white-space: pre-wrap;
-  margin-left: 20px;
 
   p {
     padding: 20px;
+    font-family: 'Pretendard-bold';
     color: ${theme.COLOR.MAIN.BLACK};
-    font-size: ${FONT_SIZE.TWO_XL};
+    font-size: ${FONT_SIZE.LG};
     font-weight: bold;
   }
 
@@ -79,7 +79,7 @@ const AlertContainer = styled(Link)`
   white-space: pre-wrap;
   gap: 30px;
   border-radius: 10px;
-  width: 50%;
+  width: 100%;
   min-width: 300px;
   padding: 30px;
   background-color: ${theme.COLOR.MAIN.WHITE};

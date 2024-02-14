@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useInView } from 'react-intersection-observer';
 
 import * as S from './Mate.style';
@@ -37,7 +38,7 @@ const MatePage = () => {
     },
     onError: () => {
       console.error('팔로우 요청 실패:', error);
-      alert('팔로우 요청이 실패했습니다. 나중에 다시 시도해주세요.');
+      toast.error('팔로우 요청이 실패했습니다. 나중에 다시 시도해주세요.');
     },
   });
 

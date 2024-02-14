@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 
 import * as S from './SignatureInput.style';
@@ -17,7 +18,7 @@ const SignatureCommentInput = () => {
     },
     onError: () => {
       console.error('규칙 나가기 실패:', error);
-      alert(
+      toast.error(
         '시그니처 포스트 댓글 작성에 실패했습니다. 나중에 다시 시도해주세요.',
       );
     },

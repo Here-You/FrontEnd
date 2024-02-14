@@ -1,4 +1,5 @@
 import { CountInfo } from '..';
+import toast from 'react-hot-toast';
 
 import * as S from './ProfileBox.style';
 import Logo from '/images/mypage/MyPageLogo.svg';
@@ -14,7 +15,7 @@ const ProfileBox = ({ profile }) => {
     },
     onError: () => {
       console.error('팔로우 요청 실패:', error);
-      alert('팔로우 요청이 실패했습니다. 나중에 다시 시도해주세요.');
+      toast.error('팔로우 요청이 실패했습니다. 나중에 다시 시도해주세요.');
     },
   });
 

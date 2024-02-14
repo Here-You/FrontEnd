@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './TeamContainer.style';
@@ -17,7 +18,7 @@ const TeamContainer = ({ ruleData }) => {
     },
     onError: () => {
       console.error('규칙 나가기 실패:', error);
-      alert('규칙 나가기에 실패했습니다. 나중에 다시 시도해주세요.');
+      toast.error('규칙 나가기에 실패했습니다. 나중에 다시 시도해주세요.');
     },
   });
 

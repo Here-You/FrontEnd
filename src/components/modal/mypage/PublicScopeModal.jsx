@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import Modal from '../Modal';
 import * as S from './PublicScope.style';
@@ -65,19 +66,19 @@ const PublicScopeModal = ({ myVisibility }) => {
 
   const onSubmit = async data => {
     if (!visibility) {
-      alert('내용을 입력해주세요!');
+      toast('내용을 입력해주세요!');
     } else {
       setIsLoading(true);
       try {
         const res = await putPublicScope(visibility);
         if (res) {
-          alert('공개범위가 설정되었습니다.');
+          toast.success('공개범위가 설정되었습니다.');
           console.log('제출된 데이터: ', data);
         }
       } catch (error) {
         console.log(error);
         console.error('서버 내부 오류.', error);
-        alert('서버 내부 오류');
+        toast.error('서버 내부 오류');
       } finally {
         setIsLoading(false);
         handleCloseModal();

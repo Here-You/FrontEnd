@@ -36,6 +36,10 @@ export default function Editor({ setSelectedHeader }) {
   const handlePublish = async () => {
     let allPagesFilled = true;
 
+    if (pages.length === 0) {
+      allPagesFilled = false;
+    }
+
     pages.forEach((page, index) => {
       if (!title || !page?.location || !page?.content || !page?.image) {
         allPagesFilled = false;
@@ -49,9 +53,11 @@ export default function Editor({ setSelectedHeader }) {
 
     try {
       setLoading(true);
+      console.log('title: ', title, 'pages: ', pages.slice(0, pages.length));
+      console.log(allPagesFilled);
       const res = await postNewSignature(title, pages.slice(0, pages.length));
       if (res) {
-        alert('시그니처가 저장되었습니다.');
+        toast.success('시그니처가 저장되었습니다.');
         console.log(res);
         updateTitle('');
       }
@@ -59,7 +65,7 @@ export default function Editor({ setSelectedHeader }) {
     } catch (e) {
       setError(e);
       console.log(e);
-      alert('에러가 발생했습니다.');
+      toast.error('에러가 발생했습니다.');
     } finally {
       setLoading(false);
     }
@@ -76,7 +82,7 @@ export default function Editor({ setSelectedHeader }) {
       if (pages.length < maxPages) {
         addPage();
       } else {
-        alert(`최대 ${maxPages}개의 페이지까지만 추가할 수 있습니다.`);
+        toast(`최대 ${maxPages}개의 페이지까지만 추가할 수 있습니다.`);
       }
     }
   };

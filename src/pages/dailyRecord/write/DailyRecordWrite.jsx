@@ -2,6 +2,7 @@ import imageCompression from 'browser-image-compression';
 import { useMemo, useRef, useState } from 'react';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './DailyRecordWritePage.style';
@@ -92,13 +93,13 @@ const DailyRecordWritePage = () => {
       const res = await postDiary({ scheduleId: scheduleId, postData: data });
       if (res) {
         console.log('제출된 데이터: ', data);
-        alert('하루 일지가 작성되었습니다.');
+        toast.success('하루 일지가 작성되었습니다.');
         navigate(`/dailyrecord?scheduleId=${scheduleId}`);
       }
     } catch (e) {
       setIsError(true);
       console.log(e);
-      alert('작성 중 에러가 발생했습니다. 나중에 다시 시도해주세요');
+      toast.error('작성 중 에러가 발생했습니다. 나중에 다시 시도해주세요');
     } finally {
       setIsLoading(false);
     }

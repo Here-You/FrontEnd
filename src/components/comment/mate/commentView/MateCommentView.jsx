@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 
 import * as S from './MateCommentView.style';
@@ -39,7 +40,7 @@ const MateCommentView = ({ commentData }) => {
     },
     onError: error => {
       console.error('댓글 삭제 실패', error);
-      alert('댓글이 삭제되지 않았습니다.');
+      toast.error('댓글이 삭제되지 않았습니다.');
     },
   });
 
@@ -50,7 +51,7 @@ const MateCommentView = ({ commentData }) => {
     },
     onError: error => {
       console.error('댓글 수정 실패', error);
-      alert('댓글이 수정되지 않았습니다.');
+      toast.error('댓글이 수정되지 않았습니다.');
     },
   });
 

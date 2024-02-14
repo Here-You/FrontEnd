@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import Modal from '../Modal';
 import * as S from './JourneyWriteModal.style';
@@ -58,19 +59,19 @@ const JourneyWriteModal = ({ startDate, endDate }) => {
 
   const onSubmit = async data => {
     if (!title || !startDate || !endDate) {
-      alert('내용을 입력해주세요!');
+      toast('내용을 입력해주세요!');
     } else {
       setIsLoading(true);
       try {
         const res = await saveJourney(data);
         if (res) {
-          alert('여정이 저장되었습니다.');
+          toast.success('여정이 저장되었습니다.');
           console.log('제출된 데이터: ', data);
           window.location.reload();
         }
       } catch (error) {
         setIsError(true);
-        alert('여정 저장 중에 오류가 발생했습니다. 다시 시도해주세요');
+        toast.error('여정 저장 중에 오류가 발생했습니다. 다시 시도해주세요');
       } finally {
         reset({});
         journeyWriteModal.onClose();
