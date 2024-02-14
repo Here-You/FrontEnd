@@ -15,28 +15,35 @@ const NavWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
-  // 정렬 사용방법 (ROW_CENTER, COLUMN_CENTER)
-
-  /* 태블릿 반응형 사용법 */
-  /* @media ${theme.WINDOW_SIZE.TABLET} {
-    background-color: ${theme.COLOR.MAIN.WHITE};
-  } */
-
-  /* 모바일 반응형 사용법 */
-  /* @media ${theme.WINDOW_SIZE.MOBILE} {
-    background-color: ${theme.COLOR.WHITE};
-  } */
 `;
 
 const Image = styled.img`
   display: flex;
   height: 46px;
 `;
+
 const ImageIcon = styled.img`
   display: flex;
   height: 35px;
 `;
 
+const ImageContainer = styled.div`
+  position: relative;
+
+  p {
+    position: absolute;
+    top: -4px;
+    font-size: 1rem;
+    right: -3px;
+    background-color: ${theme.COLOR.MAIN.RED};
+    color: ${theme.COLOR.MAIN.WHITE};
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 50%;
+  }
+`;
+
 const LinkTo = styled(Link)``;
 
-export { NavWrapper, Image, ImageIcon, LinkTo };
+export { NavWrapper, Image, ImageIcon, ImageContainer, LinkTo };
