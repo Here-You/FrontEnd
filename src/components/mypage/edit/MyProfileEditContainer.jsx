@@ -1,60 +1,31 @@
-import { useEffect } from 'react';
-
 import * as S from './MyProfileEditContainer.style';
-import IntroEditModal from '@/components/modal/mypage/IntroEditModal';
-import NicknameEditModal from '@/components/modal/mypage/NicknameEditModal';
-import WithDrawalModal from '@/components/modal/mypage/WithDrawalModal';
-import { EDIT_SECOND_CONTENTS_LIST } from '@/constants/editPage';
+import { myPageEditImg } from '/public/images/mypage/index';
 import useIntroEditModal from '@/hooks/modal/useIntroEditModal';
 import useNicknameEditModal from '@/hooks/modal/useNickameEditModal';
 import useWithdrawalModal from '@/hooks/modal/useWithdrawalModal';
-import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 
-const MyProfileEditContainer = ({ listName }) => {
+const MyProfileEditContainer = () => {
   const nicknameEditModal = useNicknameEditModal();
   const introEditModal = useIntroEditModal();
   const withdrawalModal = useWithdrawalModal();
-  const { data, isPending, isError } = useGetMyProfile();
-  const myProfile = data?.data?.data?.user;
 
-  const handleOpenModal = list => {
-    if (list.id === 0) {
-      nicknameEditModal.onOpen();
-    } else if (list.id === 1) {
-      introEditModal.onOpen();
-    } else {
-      withdrawalModal.onOpen();
-    }
-  };
-  useEffect(() => {}, [myProfile]);
   return (
-    <>
-      <S.EditContainer>
-        <NicknameEditModal />
-        <IntroEditModal />
-        <WithDrawalModal />
-        {listName?.map(list => {
-          return (
-            <S.EditContentContainer
-              key={list?.id}
-              id={list?.id}
-              onClick={() => {
-                if (listName === EDIT_SECOND_CONTENTS_LIST) {
-                  handleOpenModal(list);
-                }
-              }}>
-              <p>{list?.title}</p>
-
-              {listName === EDIT_SECOND_CONTENTS_LIST ? (
-                <S.ArrowImg src={list?.img}></S.ArrowImg>
-              ) : (
-                <p>{data[list?.content]}</p>
-              )}
-            </S.EditContentContainer>
-          );
-        })}
-      </S.EditContainer>
-    </>
+    <S.Container>
+      <S.ContentContainer>
+        <S.Content onClick={() => nicknameEditModal.onOpen()}>
+          <h3>닉네임 수정</h3>
+          <img src={myPageEditImg.RightArrow} />
+        </S.Content>
+        <S.Content onClick={() => introEditModal.onOpen()}>
+          <h3>프로필 소개 수정</h3>
+          <img src={myPageEditImg.RightArrow} />
+        </S.Content>
+        <S.Content onClick={() => withdrawalModal.onOpen()}>
+          <h3>여행의 이유 회원 탈퇴</h3>
+          <S.Image src={myPageEditImg.RightArrow} />
+        </S.Content>
+      </S.ContentContainer>
+    </S.Container>
   );
 };
 

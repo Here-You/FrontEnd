@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
-const Container = styled.div`
-  margin-top: 50px;
+const EditContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   background-color: ${theme.COLOR.MAIN.WHITE};
   border-radius: 20px;
@@ -23,27 +22,23 @@ const ContentContainer = styled.div`
 const Content = styled.div`
   border-bottom: 1px solid gray;
   width: 80%;
-  height: 40px;
   padding: 0 10px;
   ${theme.ALIGN.ROW_CENTER};
-  justify-content: space-between;
+  justify-content: flex-start;
   white-space: nowrap;
-
-  &:hover {
-    background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
-    border-radius: 10px;
-
-    transform: scale(0.99);
-  }
 
   h3 {
     font-size: ${FONT_SIZE.BASE};
     color: ${theme.COLOR.MAIN.GRAY};
   }
+
+  p {
+    margin-left: 40px;
+    color: ${theme.COLOR.MAIN.BLACK};
+  }
 `;
 
-const Image = styled.img`
-  font-size: 10px;
+const ArrowImg = styled.img`
+  width: 30px;
 `;
-
-export { Container, ContentContainer, Content, Image };
+export { EditContainer, ContentContainer, Content, ArrowImg };
