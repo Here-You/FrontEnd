@@ -5,7 +5,6 @@ import theme from '@/theme';
 const BannerContainer = styled.div`
   padding: 20px;
   width: 100%;
-  height: 150px;
   background: rgba(27, 156, 133, 0.16);
 `;
 

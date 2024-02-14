@@ -65,6 +65,10 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   margin-top: 20px;
   gap: 10px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export {

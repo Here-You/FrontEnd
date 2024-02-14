@@ -5,7 +5,7 @@ import theme from '@/theme';
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  align-items: center;
   width: 80%;
   gap: 10px;
   padding: 20px;
@@ -38,7 +38,6 @@ const SubmitButton = styled.button`
   color: ${theme.COLOR.MAIN.WHITE};
   padding: 5px;
   outline: none;
-  margin-top: auto;
   cursor: pointer;
 `;
 

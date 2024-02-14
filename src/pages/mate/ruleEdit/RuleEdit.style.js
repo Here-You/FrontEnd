@@ -15,6 +15,14 @@ const Wrapper = styled.div`
   border: 2px solid ${theme.COLOR.MAIN.HEAVY_GREEN};
   border-radius: 20px;
   padding: 20px;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #ccc;
+  }
 `;
 
 const Header = styled.div`

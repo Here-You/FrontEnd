@@ -12,7 +12,7 @@ const ManagementProfile = ({ profileData }) => {
         <S.TextContainer>
           <S.UserName>{nickName}</S.UserName>
           <S.UserNickName>{email}</S.UserNickName>
-          <S.UserBio>{introduction}</S.UserBio>
+          {introduction && <S.UserBio>{introduction}</S.UserBio>}
         </S.TextContainer>
         <S.Wrapper>
           <FollowButton initialFollowState={isFollowing} id={mateId} />

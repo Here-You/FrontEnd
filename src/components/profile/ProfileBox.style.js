@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const ProfileContainer = styled.div`
@@ -14,11 +15,21 @@ const ProfileContainer = styled.div`
   box-shadow:
     0 4px 10px rgba(0, 0, 0, 0.3),
     0 13px 10px rgba(0, 0, 0, 0.02);
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 90%;
+  }
 `;
 
 const ImageContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   gap: 30px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 `;
 
 const Image = styled.img`
@@ -27,14 +38,26 @@ const Image = styled.img`
   background-color: ${theme.COLOR.MAIN.GRAY};
   border-radius: 50%;
   margin: 20px 0 0 10px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const TextContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   margin-top: 30px;
 
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    margin-top: 0px;
+  }
+
   h1 {
     font-size: 1.8rem;
+    @media ${theme.WINDOW_SIZE.MOBILE} {
+      font-size: ${FONT_SIZE.LG};
+    }
   }
 `;
 
@@ -55,6 +78,12 @@ const InfoContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   white-space: nowrap;
   gap: 40px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 `;
 
 const CountContainer = styled.div`

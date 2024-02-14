@@ -8,7 +8,6 @@ const BannerContainer = styled.div`
   height: 99px;
   background: rgba(27, 156, 133, 0.16);
   position: relative;
-  margin-bottom: 18px;
 `;
 
 const TitleContainer = styled.div`

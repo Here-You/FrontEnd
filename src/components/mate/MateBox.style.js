@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const MateBox = styled.div`
@@ -25,9 +26,13 @@ const ImageContainer = styled.div`
   width: 300px;
   height: 100%;
   padding: 10px;
-  margin-left: 15px;
   margin-top: 60px;
   gap: 10px;
+
+  p {
+    color: ${theme.COLOR.MAIN.GRAY};
+    font-size: ${FONT_SIZE.BASE};
+  }
 `;
 
 const TextBox = styled.div`
@@ -65,7 +70,7 @@ const MateImage = styled.img`
 const SignatureContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: 200px;
 
   p {
     font-size: 0.8rem;
@@ -89,6 +94,12 @@ const SignatureImage = styled.img`
   }
 `;
 
+const Image = styled.img`
+  width: 170px;
+  height: 180px;
+  object-fit: cover;
+`;
+
 export {
   MateDescriptionBox,
   MateBox,
@@ -98,4 +109,5 @@ export {
   SignatureContainer,
   SignatureImage,
   ImageContainer,
+  Image,
 };

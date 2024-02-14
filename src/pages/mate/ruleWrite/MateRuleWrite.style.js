@@ -32,6 +32,11 @@ const TitleInput = styled.input`
   border: none;
   text-align: center;
   font-size: ${FONT_SIZE.TWO_XL};
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: ${FONT_SIZE.SM};
+    padding: 10px;
+  }
 `;
 
 const PlusSvg = styled.img`
@@ -91,7 +96,11 @@ const ContentTitleInput = styled.input`
   width: 80%;
   padding: 10px;
   border: none;
-  font-size: 1rem;
+  font-size: ${FONT_SIZE.BASE};
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: ${FONT_SIZE.XS};
+  }
 `;
 
 const ContentTextInput = styled.textarea`
@@ -99,8 +108,12 @@ const ContentTextInput = styled.textarea`
   padding: 9px;
   border: none;
   resize: none;
-  font-size: 0.8rem;
+  font-size: ${FONT_SIZE.SM};
   color: ${theme.COLOR.MAIN.GRAY};
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: ${FONT_SIZE.XS};
+  }
 `;
 
 const AddButtonWrapper = styled.div`
