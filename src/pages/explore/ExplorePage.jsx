@@ -3,6 +3,7 @@ import { useState } from 'react';
 import TokenErrorPage from '../signature/TokenErrorPage';
 import * as S from './ExplorePage.style';
 import SignatureSearchSlider from '@/components/explore/SignatureSearchSlider';
+import SignatureSearchPreviewSkeleton from '@/components/explore/skeleton/SignatureSearchPreviewSkeleton';
 import { useSearchExploreKeyword } from '@/hooks/search/useSearchExploreKeyword';
 import { useSearchExploreMain } from '@/hooks/search/useSearchExploreMain';
 import useDebounce from '@/hooks/useDebounce';
@@ -11,16 +12,12 @@ const ExplorePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 1000);
 
-  const { data, loading, error } = useSearchExploreMain();
+  const { data, loading: searchExploreLoading, error } = useSearchExploreMain();
   const {
     data: keyData,
     loading: keyLoading,
     error: keyError,
   } = useSearchExploreKeyword(debouncedSearchTerm);
-
-  if (loading) {
-    return <div>로딩중입니다...</div>;
-  }
 
   if (error) {
     return <div>에러가 발생했습니다.</div>;
@@ -39,15 +36,25 @@ const ExplorePage = () => {
         <S.Text>다양한 관심사를 검색해보세요</S.Text>
       </S.SearchContainer>
       {debouncedSearchTerm ? (
-        <SignatureSearchSlider
-          data={keyData}
-          type="search"
-          searchTerm={debouncedSearchTerm}
-        />
+        keyLoading ? (
+          <SignatureSearchPreviewSkeleton />
+        ) : (
+          <SignatureSearchSlider
+            data={keyData}
+            type="search"
+            searchTerm={debouncedSearchTerm}
+          />
+        )
       ) : (
         <>
-          <SignatureSearchSlider data={data?.hot} type="hot" />
-          <SignatureSearchSlider data={data?.new} type="new" />
+          {searchExploreLoading ? (
+            <SignatureSearchPreviewSkeleton />
+          ) : (
+            <>
+              <SignatureSearchSlider data={data?.hot} type="hot" />
+              <SignatureSearchSlider data={data?.new} type="new" />
+            </>
+          )}
         </>
       )}
     </>
