@@ -6,14 +6,13 @@ import theme from '@/theme';
 
 const ProfileContainer = styled.div`
   width: 100%;
-  padding: 40px 0 40px 50px;
+  min-width: 300px;
+  padding: 40px;
   border: 2px solid ${theme.COLOR.MAIN.LIGHT_BLACK};
   border-radius: 30px;
-  display: flex;
-  justify-content: start;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    padding: 20px 20px;
+    padding: 20px;
   }
 
   h3 {
@@ -37,14 +36,11 @@ const ProfileContainer = styled.div`
 
 const ProfileInfoContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  margin-left: 50px;
-  width: 100%;
   align-items: start;
 
   line-height: 35px;
   @media ${theme.WINDOW_SIZE.MOBILE} {
     line-height: 20px;
-    margin-left: 30px;
   }
 `;
 
@@ -60,10 +56,14 @@ const NickNameTypeContainer = styled.div`
 `;
 
 const ProfilePicture = styled.img`
-  border-radius: 50%;
+  border-radius: 100px;
   width: 100px;
   height: 100px;
-  border: 1px solid black;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const Mate = styled.div`
@@ -117,6 +117,13 @@ const LinkTo = styled(Link)`
   color: ${theme.COLOR.MAIN.BLACK};
 `;
 
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+`;
+
 export {
   ProfileContainer,
   ProfileInfoContainer,
@@ -127,4 +134,5 @@ export {
   NumberOfPeople,
   Button,
   LinkTo,
+  ContentContainer,
 };

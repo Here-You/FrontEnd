@@ -18,50 +18,52 @@ const MyPageInfo = () => {
   return (
     <S.ProfileContainer>
       <LogoutModal />
-      {isLogin ? (
-        <S.ProfilePicture
-          src={myProfile?.profileImage}
-          alt={myProfile?.nickname}
-        />
-      ) : (
-        <S.ProfilePicture src={myPageImg?.ProfilePicture} />
-      )}
-      <S.ProfileInfoContainer>
+      <S.ContentContainer>
         {isLogin ? (
-          <>
-            <S.NickNameTypeContainer>
-              <h3>{myProfile?.nickname}</h3>
-            </S.NickNameTypeContainer>
-            <p>{myProfile?.email}</p>
-            <p style={{ color: `${theme.COLOR.MAIN.BLACK}` }}>
-              {myProfile?.introduction}
-            </p>
-            <S.Mate onClick={() => navigate('/mate/management')}>
-              <S.FollowContainer>
-                <S.NumberOfPeople>
-                  <p>팔로워</p>
-                  {myProfile?.followers}
-                </S.NumberOfPeople>
-                <S.NumberOfPeople>
-                  <p>팔로잉</p> {myProfile?.followings}
-                </S.NumberOfPeople>
-                <S.Button
-                  onClick={e => {
-                    e.stopPropagation();
-                    logoutModal.onOpen();
-                  }}>
-                  로그아웃
-                </S.Button>
-              </S.FollowContainer>
-            </S.Mate>
-          </>
+          <S.ProfilePicture
+            src={myProfile?.profileImage}
+            alt={myProfile?.nickname}
+          />
         ) : (
-          <>
-            <h3>로그인하세요.</h3>
-            <S.LinkTo to="/login">로그인 하러가기</S.LinkTo>
-          </>
+          <S.ProfilePicture src={myPageImg?.ProfilePicture} />
         )}
-      </S.ProfileInfoContainer>
+        <S.ProfileInfoContainer>
+          {isLogin ? (
+            <>
+              <S.NickNameTypeContainer>
+                <h3>{myProfile?.nickname}</h3>
+              </S.NickNameTypeContainer>
+              <p>{myProfile?.email}</p>
+              <p style={{ color: `${theme.COLOR.MAIN.BLACK}` }}>
+                {myProfile?.introduction}
+              </p>
+              <S.Mate onClick={() => navigate('/mate/management')}>
+                <S.FollowContainer>
+                  <S.NumberOfPeople>
+                    <p>팔로워</p>
+                    {myProfile?.followers}
+                  </S.NumberOfPeople>
+                  <S.NumberOfPeople>
+                    <p>팔로잉</p> {myProfile?.followings}
+                  </S.NumberOfPeople>
+                  <S.Button
+                    onClick={e => {
+                      e.stopPropagation();
+                      logoutModal.onOpen();
+                    }}>
+                    로그아웃
+                  </S.Button>
+                </S.FollowContainer>
+              </S.Mate>
+            </>
+          ) : (
+            <>
+              <h3>로그인하세요.</h3>
+              <S.LinkTo to="/login">로그인 하러가기</S.LinkTo>
+            </>
+          )}
+        </S.ProfileInfoContainer>
+      </S.ContentContainer>
     </S.ProfileContainer>
   );
 };
