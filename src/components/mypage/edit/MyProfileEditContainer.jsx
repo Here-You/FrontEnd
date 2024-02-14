@@ -25,9 +25,7 @@ const MyProfileEditContainer = ({ listName }) => {
       withdrawalModal.onOpen();
     }
   };
-  useEffect(() => {
-    console.log(listName);
-  }, [data]);
+  useEffect(() => {}, [data]);
   return (
     <>
       <S.EditContainer>
