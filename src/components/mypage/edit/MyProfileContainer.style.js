@@ -23,6 +23,7 @@ const Content = styled.div`
   border-bottom: 1px solid gray;
   width: 80%;
   padding: 0 10px;
+  height: 40px;
   ${theme.ALIGN.ROW_CENTER};
   justify-content: flex-start;
   white-space: nowrap;

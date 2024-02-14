@@ -28,11 +28,11 @@ const Content = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   justify-content: space-between;
   white-space: nowrap;
+  cursor: pointer;
 
   &:hover {
     background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
     border-radius: 10px;
-
     transform: scale(0.99);
   }
 
