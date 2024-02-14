@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 import * as S from './MypageInfo.style';
 import { myPageImg } from '/public/images/mypage/index';
+import { useProfileInfo } from '@/hooks/profile/useProfile';
 import useUser from '@/store/useUser';
 import theme from '@/theme';
 
 const MyPageInfo = () => {
   const [isLogin, setIsLogin] = useState();
-  const [user_id, setUserId] = useState();
-  const [nickName, setNickName] = useState();
-  const [profileImage, setProfileImage] = useState();
+
   const { userInfo } = useUser();
+  const { data, error } = useProfileInfo();
 
   const navigate = useNavigate();
 
@@ -30,16 +30,16 @@ const MyPageInfo = () => {
         {isLogin ? (
           <>
             <S.NickNameTypeContainer>
-              <h3> {userInfo.nickname}</h3>
+              <h3> {data.nickname}</h3>
             </S.NickNameTypeContainer>
-            <p> {userInfo.email}</p>
+            <p> {data.email}</p>
             <p style={{ color: `${theme.COLOR.MAIN.BLACK}` }}>
-              {userInfo.introduction}
+              {data.introduction}
             </p>
             <S.Mate onClick={handleGoMate}>
               팔로워
-              <S.NumberOfPeople>32</S.NumberOfPeople> 팔로잉
-              <S.NumberOfPeople>32</S.NumberOfPeople>
+              <S.NumberOfPeople>{data.followers}</S.NumberOfPeople> 팔로잉
+              <S.NumberOfPeople>{data.followings}</S.NumberOfPeople>
             </S.Mate>
           </>
         ) : (

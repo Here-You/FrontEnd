@@ -4,13 +4,15 @@ import { useForm } from 'react-hook-form';
 import Modal from '../Modal';
 import * as S from './EditModal.style';
 import { updateNickName } from '@/apis/request/profile';
-import Schema from '@/components/schema/Schema';
+import Schema from '@/components/schema/EditSchema';
 import useNicknameEditModal from '@/hooks/modal/useNickameEditModal';
+import { useProfileInfo } from '@/hooks/profile/useProfile';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-const NicknameEditModal = ({ myNickname }) => {
+const NicknameEditModal = () => {
   const nicknameEditModal = useNicknameEditModal();
   const [isLoading, setIsLoading] = useState(false);
+  const { data } = useProfileInfo();
 
   const {
     register,
@@ -23,13 +25,13 @@ const NicknameEditModal = ({ myNickname }) => {
     resolver: yupResolver(Schema),
     mode: 'onChange',
     defaultValues: {
-      nickname: myNickname,
+      nickname: data.nickname,
     },
   });
 
   useEffect(() => {
-    setValue('nickname', myNickname);
-  }, [myNickname]);
+    setValue('nickname', data.nickname);
+  }, [data.nickname]);
 
   const { nickname } = watch();
 

@@ -20,7 +20,7 @@ export const ProfileHandlers = [
       success: true,
       message: '로그인 성공',
       token: 'JWT_TOKEN',
-      register_required: false,
+      register_required: true,
     });
   }), // 추가 정보입력
   http.post(
@@ -56,7 +56,7 @@ export const ProfileHandlers = [
     },
   ),
 
-  // 알림 (아직 미구현)
+  // 알림
   http.get(`${baseURL}${API_URL.NOTIFICATION}`, () => {
     return HttpResponse.json({
       status: 200,
@@ -104,15 +104,24 @@ export const ProfileHandlers = [
   }),
 
   // 프로필 정보 가져오기
-  http.get(`${baseURL}${API_PATH.MY_PAGE_INFO}`, (req, res, ctx) => {
-    const profile = {
-      nickname: '닉네임',
-      type: '🐯',
-      email: 'abcde@naver.com',
-      introduction: '특기는 여행, 취미는 기록: >',
-      follower: '팔로워',
-      following: '팔로잉',
-    };
-    return HttpResponse.json(profile);
+  http.get(`${baseURL}${API_URL.MY_PAGE_INFO}`, () => {
+    return HttpResponse.json({
+      timestamp: '2024-02-14T02:06:05.042Z',
+      code: 'OK',
+      success: true,
+      message: '유저 프로필 조회 성공',
+      data: {
+        user: {
+          id: 6,
+          email: 'test6@hereyou.com',
+          nickname: 'Test6',
+          introduction: '',
+          visibility: 'PUBLIC',
+          profileImage: null,
+          followers: 1,
+          followings: 4,
+        },
+      },
+    });
   }),
 ];

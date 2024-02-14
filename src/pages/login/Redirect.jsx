@@ -15,9 +15,9 @@ const Redirect = () => {
 
           const token = response.data.token;
           localStorage.setItem('x-access-token', token);
-          console.log('인가코드:', code);
-          // const register_required = response.data.register_required;
-          // register_required ? navigate('/signup') : navigate('/');
+
+          const register_required = response.data.register_required;
+          register_required ? navigate('/signup') : navigate('/');
           alert('로그인 성공');
         } catch (error) {
           console.log(error);
