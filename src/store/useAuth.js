@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 const useAuth = create(set => ({
-  isLogin: false,
+  isLogin: true,
   login: token => {
     localStorage.setItem('x-access-token', token);
     set({ isLogin: true });
