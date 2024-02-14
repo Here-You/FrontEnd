@@ -5,13 +5,24 @@ import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const MateLookContainer = styled.div`
-  gap: 10px;
   height: 100%;
 `;
+const BoxContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+`;
 
-const Title = styled.h1`
-  padding: 25px;
-  font-size: ${FONT_SIZE.TWO_XL};
+const Title = styled.div`
+  font-family: 'Pretendard-bold';
+  font-size: 18px;
+  color: ${theme.COLOR.MAIN.BLACK};
+`;
+const Location = styled.div`
+  font-family: 'Pretendard-semibold';
+  font-size: 18px;
   color: ${theme.COLOR.MAIN.GRAY};
 `;
 
@@ -21,7 +32,7 @@ const CenteredContainer = styled.div`
   gap: 20px;
   overflow-x: auto;
   margin-top: 20px;
-  padding: 0 20px;
+  padding: 0 0px;
 
   p {
     font-size: ${FONT_SIZE.LG};
@@ -120,6 +131,7 @@ const AlertLayout = styled.div`
 
 export {
   Title,
+  BoxContainer,
   MateLookContainer,
   CenteredContainer,
   MateContainer,
@@ -127,4 +139,5 @@ export {
   AlertContainer,
   Icon,
   AlertLayout,
+  Location,
 };

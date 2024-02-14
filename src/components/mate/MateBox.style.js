@@ -21,7 +21,7 @@ const MateDescriptionBox = styled.div`
   left: 20px;
 `;
 
-const ImageContainer = styled.div`
+const ImageWrapper = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   width: 300px;
   height: 100%;
@@ -33,6 +33,13 @@ const ImageContainer = styled.div`
     color: ${theme.COLOR.MAIN.GRAY};
     font-size: ${FONT_SIZE.BASE};
   }
+`;
+
+const ImageContainer = styled.div`
+  width: 80%;
+  margin: 0 auto;
+
+  display: flex;
 `;
 
 const TextBox = styled.div`
@@ -71,6 +78,7 @@ const SignatureContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 200px;
+  align-items: center;
 
   p {
     font-size: 0.8rem;
@@ -83,8 +91,9 @@ const SignatureContainer = styled.div`
 `;
 
 const SignatureImage = styled.img`
-  width: 100%;
-  height: 100px;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 5px;
   object-fit: cover;
   border-radius: 5px;
   cursor: pointer;
@@ -110,4 +119,5 @@ export {
   SignatureImage,
   ImageContainer,
   Image,
+  ImageWrapper,
 };
