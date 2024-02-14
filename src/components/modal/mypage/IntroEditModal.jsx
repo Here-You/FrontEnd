@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Modal from '../Modal';
@@ -6,14 +6,13 @@ import * as S from './EditModal.style';
 import { updateIntro } from '@/apis/request/profile';
 import Schema from '@/components/schema/EditSchema';
 import useIntroEditModal from '@/hooks/modal/useIntroEditModal';
-import { useProfileInfo } from '@/hooks/profile/useProfile';
+import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 const IntroEditModal = () => {
   const introEditModal = useIntroEditModal();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const { data } = useProfileInfo();
+  const { data, isPending, isError } = useGetMyProfile();
+  const myProfile = data?.data?.data?.user;
 
   const {
     register,
@@ -26,13 +25,13 @@ const IntroEditModal = () => {
     resolver: yupResolver(Schema),
     mode: 'onChange',
     defaultValues: {
-      introduction: data.introduction,
+      introduction: myProfile.introduction,
     },
   });
 
   useEffect(() => {
-    setValue('introduction', data.introduction);
-  }, [data.introduction]);
+    setValue('introduction', myProfile.introduction);
+  }, [myProfile.introduction]);
 
   const { introduction } = watch();
 
@@ -56,7 +55,7 @@ const IntroEditModal = () => {
     window.location.reload();
   };
 
-  const onSubmit = async data => {
+  const onSubmit = async myProfile => {
     if (!introduction) {
       alert('내용을 입력해주세요!');
     } else {
@@ -65,7 +64,7 @@ const IntroEditModal = () => {
         const res = await updateIntro(introduction);
         if (res) {
           alert('프로필 소개가 변경 되었습니다.');
-          console.log('제출된 데이터: ', data);
+          console.log('제출된 데이터: ', myProfile);
         }
       } catch (error) {
         console.log(error);
