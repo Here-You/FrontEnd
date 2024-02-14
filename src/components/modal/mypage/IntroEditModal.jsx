@@ -8,9 +8,11 @@ import Schema from '@/components/schema/EditSchema';
 import useIntroEditModal from '@/hooks/modal/useIntroEditModal';
 import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const IntroEditModal = () => {
   const introEditModal = useIntroEditModal();
+  const queryClient = useQueryClient();
   const { data, isPending, isError } = useGetMyProfile();
   const myProfile = data?.data?.data?.user;
 
@@ -52,26 +54,24 @@ const IntroEditModal = () => {
 
   const handleCloseModal = () => {
     introEditModal.onClose();
-    window.location.reload();
   };
 
-  const onSubmit = async myProfile => {
-    if (!introduction) {
-      alert('내용을 입력해주세요!');
-    } else {
-      try {
-        const res = await updateIntro(introduction);
-        if (res) {
-          alert('프로필 소개가 변경 되었습니다.');
-          console.log('제출된 데이터: ', myProfile);
-        }
-      } catch (error) {
-        console.log(error);
-        console.error('서버 내부 오류.', error);
-        alert('서버 내부 오류');
-      } finally {
-        handleCloseModal();
-      }
+  const { mutateAsync: changeIntro } = useMutation({
+    mutationFn: updateIntro,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['myProfile']);
+    },
+    onError: error => {
+      console.error('자기소개 변경 실패', error);
+    },
+  });
+
+  const onSubmit = async () => {
+    try {
+      await changeIntro(introduction);
+      introEditModal.onClose();
+    } catch (e) {
+      console.error(e);
     }
   };
 
