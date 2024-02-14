@@ -16,6 +16,7 @@ const MateRuleWritePage = () => {
   const { selectedMates, clearSelectedMates } = useMatesStore();
   const [title, setTitle] = useState('');
   const [rules, setRules] = useState([{ ruleTitle: '', ruleDetail: '' }]);
+  const [loading, setLoading] = useState(false);
 
   const handleAddRule = () => {
     if (rules.length < 10) {
@@ -28,6 +29,7 @@ const MateRuleWritePage = () => {
   };
 
   const handleSubmitRule = async () => {
+    setLoading(true);
     const postData = {
       mainTitle: title,
       rulePairs: rules.map((rule, index) => ({
@@ -38,15 +40,16 @@ const MateRuleWritePage = () => {
       membersId: selectedMates.map(mate => mate.id),
     };
 
-    await postCreateMateRule(postData)
-      .then(() => {
-        toast.success('규칙을 성공적으로 작성하였습니다.');
-        clearSelectedMates();
-        navigate('/mate');
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    try {
+      await postCreateMateRule(postData);
+      toast.success('규칙을 성공적으로 작성하였습니다.');
+      clearSelectedMates();
+      navigate('/mate');
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -107,7 +110,9 @@ const MateRuleWritePage = () => {
           )}
         </S.AddButtonWrapper>
       </S.Wrapper>
-      <S.SubmitBtn onClick={handleSubmitRule}>발행하기</S.SubmitBtn>
+      <S.SubmitBtn disabled={loading} onClick={handleSubmitRule}>
+        발행하기
+      </S.SubmitBtn>
     </S.Container>
   );
 };

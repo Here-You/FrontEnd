@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import Modal from '../Modal';
 import * as S from './EditModal.style';
@@ -32,12 +33,22 @@ const NicknameEditModal = () => {
     },
   });
 
-  const { mutateAsync: changeNickName } = useMutation({
+  const { mutateAsync: changeNickName, isError: nickError } = useMutation({
     mutationFn: updateNickName,
     onSuccess: () => {
       queryClient.invalidateQueries(['myProfile']);
     },
     onError: error => {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.code === 'CONFLICT'
+      ) {
+        toast.error('중복된 닉네임이 존재합니다.');
+      } else {
+        // Handle other errors
+        toast.error('에러가 발생했습니다.');
+      }
       console.error('닉네임 변경 실패', error);
     },
   });
@@ -47,6 +58,8 @@ const NicknameEditModal = () => {
   }, [myProfile?.nickname]);
 
   const { nickname } = watch();
+
+  console.log(nickError && mutation.error.message);
 
   const BodyContent = (
     <S.Container>

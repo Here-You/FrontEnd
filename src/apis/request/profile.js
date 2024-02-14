@@ -3,7 +3,9 @@ import { API_PATH, API_URL } from '@/constants/path';
 
 // 마이페이지 프로필 정보
 const getProfileInfo = () => {
-  return axiosWithToken.get(API_URL.MY_PAGE_INFO);
+  const response = axiosWithToken.get(API_URL.MY_PAGE_INFO);
+
+  return response;
 };
 // sns
 const postSnsLogin = (type, token, redirect_uri) => {

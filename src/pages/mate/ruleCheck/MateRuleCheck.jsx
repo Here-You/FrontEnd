@@ -8,6 +8,7 @@ import { ErrorPage } from '@/pages';
 const MateRuleCheckPage = () => {
   const { data, isPending, isError } = useGetTeamRuleList();
   const rulesData = data?.data?.data;
+  console.log(rulesData);
 
   if (isPending) {
     return <div>Loading...</div>;
