@@ -48,7 +48,6 @@ const BellContainer = styled.div`
   justify-content: space-evenly;
   width: 100%;
   height: 30vh;
-  margin-top: 5S0%;
 `;
 
 const Bell = styled.img`
