@@ -79,14 +79,36 @@ const Mate = styled.div`
   }
 `;
 
+const FollowContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
+  gap: 10px;
+`;
+
 const NumberOfPeople = styled.span`
+  ${theme.ALIGN.ROW_CENTER};
   color: ${theme.COLOR.MAIN.BLACK};
   font-family: 'Pretendard-bold';
   font-size: ${FONT_SIZE.LG};
-  margin: 0 10px;
+  gap: 10px;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: ${FONT_SIZE.XS};
+  }
+
+  p {
+    color: ${theme.COLOR.MAIN.GRAY};
+  }
+`;
+
+const Button = styled.button`
+  border: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.9);
   }
 `;
 
@@ -100,7 +122,9 @@ export {
   ProfileInfoContainer,
   ProfilePicture,
   NickNameTypeContainer,
+  FollowContainer,
   Mate,
   NumberOfPeople,
+  Button,
   LinkTo,
 };

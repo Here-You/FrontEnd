@@ -17,6 +17,7 @@ const EDIT_CONTENTS_LIST = [
     content: 'introduction',
   },
 ];
+
 const EDIT_SECOND_CONTENTS_LIST = [
   {
     id: 0,

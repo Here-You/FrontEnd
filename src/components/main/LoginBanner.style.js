@@ -20,13 +20,16 @@ const Container = styled.div`
 
 const Img = styled.img`
   display: flex;
-  height: 50%;
-  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 `;
+
 const ProfileContainer = styled.div`
   display: flex;
   cursor: pointer;
 `;
+
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,14 +44,17 @@ const TextWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const Text1 = styled.div`
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
 `;
+
 const Text2 = styled.div`
   font-size: 15px;
 `;
+
 const Text3 = styled.div`
   font-size: 18px;
   color: ${theme.COLOR.MAIN.WHITE};
