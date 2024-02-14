@@ -10,6 +10,7 @@ import useAuth from '@/store/useAuth';
 export default function LoginBanner() {
   const navigate = useNavigate();
   const { isLogin } = useAuth();
+  console.log(isLogin);
   const { data, isPending, isError } = useGetMyProfile();
   const myProfile = data?.data?.data?.user;
 
