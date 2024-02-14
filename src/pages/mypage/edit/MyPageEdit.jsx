@@ -5,12 +5,10 @@ import MyProfileEdit from '@/components/mypage/edit/MyProfileEdit';
 
 const MyPageEditPage = () => {
   return (
-    <>
-      <S.EditPageContainer>
-        <S.UserInfo>유저 정보</S.UserInfo>
-        <MyProfileEdit />
-      </S.EditPageContainer>
-    </>
+    <S.EditPageContainer>
+      <S.UserInfo>유저 정보</S.UserInfo>
+      <MyProfileEdit />
+    </S.EditPageContainer>
   );
 };
 
