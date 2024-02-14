@@ -5,32 +5,24 @@ import * as S from './LoginBanner.style';
 import profileImg from '/images/main/profileImg.svg';
 import rightIcon from '/images/main/right.svg';
 import { myPageImg } from '/public/images/mypage/index';
-import { getProfileInfo } from '@/apis/request/profile';
+import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
+import useAuth from '@/store/useAuth';
 
 export default function LoginBanner() {
   const navigate = useNavigate();
-  const [info, setInfo] = useState([]);
-  const getInfo = async () => {
-    try {
-      const res = await getProfileInfo();
-      const members = res.data;
-      setInfo(members);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  useEffect(() => {
-    getInfo();
-  }, []);
+
+  const { isLogin } = useAuth();
+  const { data, isPending, isError } = useGetMyProfile();
+  const myProfile = data?.data?.data?.user;
 
   return (
     <S.Wrapper>
       <S.Container>
-        {info.nickname ? (
+        {isLogin ? (
           <>
-            <S.Img src={myPageImg.ProfilePicture} />
+            <S.Img src={myProfile?.profileImage} />
             <S.TextContainer>
-              <S.Text1>{info.nickname}님 환영합니다🪐</S.Text1>
+              <S.Text1>{myProfile?.nickname}님 환영합니다🪐</S.Text1>
               <S.ProfileContainer onClick={() => navigate('/mypage')}>
                 <S.Text2>내 프로필 가기</S.Text2>
                 <img src={rightIcon} />
