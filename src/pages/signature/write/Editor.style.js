@@ -91,7 +91,8 @@ const ButtonWrap = styled.div`
 const AddButton = styled.button`
   display: flex;
   border-radius: 5px;
-  background: var(--New-Main, #21b69c);
+  background: ${props =>
+    props.$delete ? `${theme.COLOR.MAIN.RED}` : `var(--New-Main, #21b69c)`};
   padding: 5px 11px;
   outline: none;
   color: white;
