@@ -55,6 +55,10 @@ const Button = styled.button`
     background: ${theme.COLOR.MAIN.GREEN};
     color: ${theme.COLOR.MAIN.WHITE};
   }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 150px;
+  }
 `;
 
 const CalendarContainer = styled.div`
