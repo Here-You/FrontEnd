@@ -5,9 +5,9 @@ import theme from '@/theme';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 const Container = styled.div`
-  position: relative;
   cursor: pointer;
-  ${theme.ALIGN.ROW_CENTER};
+  margin-top: 25px;
+  ${theme.ALIGN.COLUMN_CENTER};
   gap: 10px;
 
   &:hover {
@@ -96,10 +96,6 @@ const TitleContainer = styled.div`
 
 const ButtonContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  gap: 2px;
-  margin-top: 10px;
-  margin-left: 250px;
-
   font-size: ${FONT_SIZE.SM};
 
   button {
@@ -174,6 +170,18 @@ const ModifyButton = styled.button`
   }
 `;
 
+const HeartCountWrapper = styled.div`
+  cursor: pointer;
+  width: 100%;
+  font-size: 15px;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
+    border-radius: 20px;
+  }
+`;
+
 const DeleteButton = styled.button`
   background-color: red;
   border: none;
@@ -211,6 +219,7 @@ export {
   ImageContainer,
   Button,
   Image,
+  HeartCountWrapper,
   TextContainer,
   FunctionButtonContainer,
   ModifyButton,

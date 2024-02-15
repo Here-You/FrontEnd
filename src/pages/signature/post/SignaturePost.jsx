@@ -126,24 +126,7 @@ const SignaturePostPage = () => {
               <S.TitleContainer>
                 <h1>{header?.title}</h1>
               </S.TitleContainer>
-              <S.ButtonContainer>
-                {/* {header._id} */}
-                <S.Container
-                  onClick={async () => {
-                    try {
-                      mutateAsync(header._id);
-                    } catch (e) {
-                      console.log(e);
-                    }
-                  }}>
-                  <S.OutLineHeart size={28} />
-                  <S.FillHeart size={24} isLiked={header?.is_liked} />
-                  <h3>{header?.like_cnt}</h3>
-                </S.Container>
-                <S.Liked onClick={() => LikersModal.onOpen()}>
-                  Who Liked?!
-                </S.Liked>
-              </S.ButtonContainer>
+
               <S.ImageContainer>
                 <S.Button onClick={handlePrevPage} disabled={step === 1}>
                   <GrFormPrevious />
@@ -173,6 +156,22 @@ const SignaturePostPage = () => {
                     onClick={() => navigate(`/signature/edit/${signatureId}`)}>
                     수정
                   </S.ModifyButton>
+                  <S.ButtonContainer>
+                    <S.Container
+                      onClick={async () => {
+                        try {
+                          mutateAsync(header._id);
+                        } catch (e) {
+                          console.log(e);
+                        }
+                      }}>
+                      <S.OutLineHeart size={28} />
+                      <S.FillHeart size={24} isLiked={header?.is_liked} />
+                    </S.Container>
+                    <S.HeartCountWrapper onClick={() => LikersModal.onOpen()}>
+                      좋아요 {header?.like_cnt}개
+                    </S.HeartCountWrapper>
+                  </S.ButtonContainer>
                   <S.DeleteButton onClick={handleDeletePost}>
                     삭제
                   </S.DeleteButton>
