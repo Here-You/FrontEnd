@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import * as S from './Home.style';
@@ -14,6 +14,9 @@ const HomePage = () => {
   const accessToken = localStorage.getItem('x-access-token');
   const journeyWriteModal = useJourneyWriteModal();
   const journeyEditModal = useJourneyEditModal();
+  const [isCreateSelected, setIsCreateSelected] = useState(false);
+  const [isEditSelected, setIsEditSelected] = useState(false);
+
   const [isClicked, setIsClicked] = useState(false);
   const [startDate, setStateDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -88,9 +91,20 @@ const HomePage = () => {
     }
   };
 
-  const handleClickAddButton = () => {
-    setIsClicked(!isClicked);
-  };
+  useEffect(() => {
+    if ((startDate, endDate)) {
+      const res = checkOverlap(startDate, endDate, monthlyInfo);
+      if (res) {
+        setIsEditSelected(true);
+        setIsClicked(true);
+        setIsCreateSelected(false);
+      } else {
+        setIsCreateSelected(true);
+        setIsClicked(true);
+        setIsEditSelected(false);
+      }
+    }
+  }, [startDate, endDate, monthlyInfo]);
 
   return (
     <S.Container $dataLength={testData.length}>
@@ -109,22 +123,22 @@ const HomePage = () => {
         startDate={journeyInfo?.startDate}
         endDate={journeyInfo?.endDate}
       />
-      <S.JourneyButtonContainer>
-        <S.EditButton $isClicked={isClicked} onClick={handleEditJourney}>
-          여정 확인 및 수정
-        </S.EditButton>
-        <S.VerticalLine $isClicked={isClicked} $browserName={browserName}>
-          |
-        </S.VerticalLine>
-        <S.WriteButton onClick={handleAddJourney} $isClicked={isClicked}>
-          새 여정 추가하기
-        </S.WriteButton>
-        <S.AddButton
-          onClick={handleClickAddButton}
-          $isClicked={isClicked}
-          $browserName={browserName}>
-          +
-        </S.AddButton>
+      <S.JourneyButtonContainer $isClicked={isClicked}>
+        {isEditSelected ? (
+          <S.EditButton
+            onClick={handleEditJourney}
+            $isClicked={isClicked}
+            $isEditSelected={isEditSelected}>
+            {isEditSelected && '✈️'} 여정 확인 및 수정
+          </S.EditButton>
+        ) : (
+          <S.WriteButton
+            onClick={handleAddJourney}
+            $isClicked={isClicked}
+            $isCreateSelected={isCreateSelected}>
+            {isCreateSelected && '✈️'} 새 여정 추가하기
+          </S.WriteButton>
+        )}
       </S.JourneyButtonContainer>
     </S.Container>
   );

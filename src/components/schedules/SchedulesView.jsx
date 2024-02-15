@@ -9,11 +9,10 @@ import SchedulesViewSkeleton from './skeleton/SchedulesViewSkeleton';
 import { getSchedule } from '@/apis/request/home';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-const SchedulesView = ({ startDate, endDate }) => {
+const SchedulesView = ({ startDate, endDate, journeyTitle }) => {
   const accessToken = localStorage.getItem('x-access-token');
   const pageSize = 5;
   const date = new Date(startDate);
-  const isStartDateDateInstance = startDate instanceof Date;
 
   const formattedDate = format(date, 'yyyy-MM-dd');
 
@@ -55,8 +54,10 @@ const SchedulesView = ({ startDate, endDate }) => {
 
   return (
     <>
-      {isLoading && new Array(3).fill(0).map(item => <SchedulesViewSkeleton />)}
-      {!isLoading && !isStartDateDateInstance && (
+      {isLoading &&
+        journeyTitle &&
+        new Array(3).fill(0).map(item => <SchedulesViewSkeleton />)}
+      {!isLoading && journeyTitle && (
         <S.Container $showContainer={dataExists}>
           {schedulesData?.pages?.map((page, pageIndex) =>
             page?.data?.data?.data?.paginatedSchedules.map(scheduleData => (
@@ -77,13 +78,13 @@ const SchedulesView = ({ startDate, endDate }) => {
           <S.IntroMessage>로그인 후 여정을 작성해보세요!</S.IntroMessage>
         </Link>
       )}
-
+      {/* 
       {!isLoading && accessToken && !dataExists && (
         <div>아직 작성한 여정이 없어요!</div>
       )}
-      {!isLoading && accessToken && dataExists && isStartDateDateInstance && (
+      {!isLoading && accessToken && dataExists && journeyTitle && (
         <div>달력에서 기간을 선택하고, 일정을 확인하세요!</div>
-      )}
+      )} */}
     </>
   );
 };

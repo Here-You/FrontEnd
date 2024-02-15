@@ -6,8 +6,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import SchedulesView from '../schedules/SchedulesView';
 import * as S from './TravelCalendar.style';
 import CalendarSkeleton from './skeleton/CalendarSkeleton';
+import EditLight from '/icons/EditLight.svg';
 import { useMonthlyJourney } from '@/hooks/home/useMonthlyJourney';
-import { ErrorPage } from '@/pages';
 
 moment.locale('en');
 
@@ -17,8 +17,18 @@ const TravelCalendar = ({
   setJourneyInfo,
   setMonthlyInfo,
 }) => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const storedStartDate = localStorage.getItem('startDate');
+  const storedEndDate = localStorage.getItem('endDate');
+
+  const [startDate, setStartDate] = useState(() => {
+    const storedStartDate = localStorage.getItem('startDate');
+    return storedStartDate ? storedStartDate : new Date();
+  });
+  const [endDate, setEndDate] = useState(() => {
+    const storedEndDate = localStorage.getItem('endDate');
+    return storedEndDate ? storedEndDate : new Date();
+  });
+  const [journeyTitle, setJourneyTitle] = useState('');
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -31,6 +41,9 @@ const TravelCalendar = ({
   } = useMonthlyJourney(year, month);
 
   useEffect(() => {
+    const storedStartDate = localStorage.getItem('startDate');
+    const storedEndDate = localStorage.getItem('endDate');
+
     if (data) {
       data &&
         data.forEach(monthlyJourney => {
@@ -41,6 +54,12 @@ const TravelCalendar = ({
               endDate: monthlyJourney.endDate,
             },
           ]);
+          if (
+            storedStartDate === monthlyJourney.startDate &&
+            storedEndDate === monthlyJourney.endDate
+          ) {
+            setJourneyTitle(monthlyJourney.title);
+          }
         });
     }
   }, [data, setMonthlyInfo]);
@@ -57,6 +76,8 @@ const TravelCalendar = ({
     const endDateFormatFind = moment(e[1]).format('YYYY-MM-DD');
 
     if (startDateFormatFind && endDateFormatFind) {
+      localStorage.setItem('startDate', startDateFormatFind);
+      localStorage.setItem('endDate', endDateFormatFind);
       if (data) {
         const foundJourney = data.find(
           journeydata =>
@@ -65,8 +86,10 @@ const TravelCalendar = ({
         );
         if (foundJourney) {
           setJourneyInfo(foundJourney);
+          setJourneyTitle(foundJourney.title);
         } else {
           setJourneyInfo(null);
+          setJourneyTitle('');
         }
       }
     }
@@ -134,8 +157,44 @@ const TravelCalendar = ({
               formatDay={(locale, date) => moment(date).format('D')}
               selectRange={true}
             />
+            <S.IntroductionContainer>
+              {storedStartDate && storedEndDate ? (
+                <>
+                  <S.JouneyInfoContainer>
+                    {journeyTitle ? (
+                      <p>🏖️ 선택된 여정 : {journeyTitle}</p>
+                    ) : (
+                      <p>새로운 여정을 추가하고 여행 일정을 생성하세요!</p>
+                    )}
 
-            <SchedulesView startDate={startDate} endDate={endDate} />
+                    <p>
+                      {startDate} ~ {endDate}
+                    </p>
+                  </S.JouneyInfoContainer>
+                  <S.JouneyInfoContainer>
+                    <h3>
+                      Tip.{'\t'}
+                      <span>
+                        일지 작성 <S.Image src={EditLight} />
+                      </span>
+                      버튼을 눌러 일지를 작성하면 지도에서
+                      <br />
+                      이미지로 표시된 위치를 확인할 수 있습니다.
+                    </h3>
+                  </S.JouneyInfoContainer>
+                </>
+              ) : (
+                <p>
+                  달력에서 기간을 선택하면 저장된 일정을 확인할 수 있습니다.
+                </p>
+              )}
+            </S.IntroductionContainer>
+
+            <SchedulesView
+              startDate={startDate}
+              endDate={endDate}
+              journeyTitle={journeyTitle}
+            />
           </S.HomeContentContainer>
         </S.Wrapper>
       )}

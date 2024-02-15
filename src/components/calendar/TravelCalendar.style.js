@@ -105,7 +105,7 @@ const Circle = styled.div`
 
 const HomeContentContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  gap: 50px;
+  gap: 40px;
 `;
 
 const SchedulesContainer = styled.div`
@@ -123,6 +123,59 @@ const SchedulesContainer = styled.div`
   }
 `;
 
+const IntroductionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 90%;
+  padding: 20px;
+  background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
+  border-radius: 10px;
+`;
+
+const JouneyInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  p {
+    color: ${theme.COLOR.MAIN.BLACK};
+    font-size: ${FONT_SIZE.LG};
+    font-family: 'Pretendard-semibold';
+  }
+
+  h3 {
+    color: ${theme.COLOR.MAIN.GRAY};
+    font-size: ${FONT_SIZE.SM};
+    font-family: 'Pretendard-semibold';
+  }
+
+  h3 span {
+    color: ${theme.COLOR.MAIN.BLACK};
+    font-size: ${FONT_SIZE.SM};
+    font-family: 'Pretendard-semibold';
+  }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    p {
+      font-size: ${FONT_SIZE.BASE};
+    }
+
+    h3 {
+      font-size: ${FONT_SIZE.XS};
+    }
+
+    h3 span {
+      font-size: ${FONT_SIZE.XS};
+    }
+  }
+`;
+
+const Image = styled.img`
+  width: 15px;
+`;
+
 export {
   HighlightedElement,
   Wrapper,
@@ -134,4 +187,7 @@ export {
   Circle,
   HomeContentContainer,
   SchedulesContainer,
+  IntroductionContainer,
+  JouneyInfoContainer,
+  Image,
 };
