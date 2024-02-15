@@ -55,6 +55,7 @@ const MateCommentInput = ({ ruleId }) => {
       <S.SubmitButton
         onClick={async () => {
           try {
+            if (!content.trim()) return;
             await postComment({ ruleId, content });
           } catch (e) {
             console.error(e);

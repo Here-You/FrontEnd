@@ -7,7 +7,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Preview = ({ data }) => {
   const navigate = useNavigate();
-
+  console.log(data);
   return (
     <>
       <S.PreviewWrap onClick={() => navigate(`/signature/post/${data?._id}`)}>
