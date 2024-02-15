@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 
 import * as S from './TravelMap.style';
 import Icon from '/icons/Icon.svg';
-// import { POSTS } from '@/constants/location';
 import {
   GoogleMap,
   InfoWindowF,
