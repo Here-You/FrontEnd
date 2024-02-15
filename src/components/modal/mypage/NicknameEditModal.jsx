@@ -76,15 +76,20 @@ const NicknameEditModal = () => {
   );
 
   const handleCloseModal = () => {
+    setValue('nickname', myProfile?.nickname);
     nicknameEditModal.onClose();
   };
 
   const handleUpdateNickname = async () => {
-    try {
-      await changeNickName(nickname);
-      nicknameEditModal.onClose();
-    } catch (e) {
-      console.error(e);
+    if (!errors.nickname) {
+      try {
+        await changeNickName(nickname);
+        nicknameEditModal.onClose();
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      toast.error('조건에 맞춰주세요!');
     }
   };
 
