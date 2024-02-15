@@ -6,13 +6,9 @@ import { useUnReadNotification } from '@/hooks/notification/useGetNotification';
 import useAuth from '@/store/useAuth';
 
 const Navbar = () => {
-  const { isLogin } = useAuth();
-  let unReadCounter = null;
-
-  if (isLogin) {
-    const { data: unReadCount, isPending, isError } = useUnReadNotification();
-    unReadCounter = unReadCount?.data?.data?.unreadCount;
-  }
+  const { isAuth } = useAuth();
+  const { data: unReadCount, isPending, isError } = useUnReadNotification();
+  const unReadCounter = unReadCount?.data?.data?.unreadCount;
 
   return (
     <S.NavWrapper>
