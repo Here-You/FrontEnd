@@ -98,6 +98,9 @@ const SignaturePostPage = () => {
         detailSignatures?.pages[step - 1] && (
           <S.SignatureContainer>
             <>
+              <S.TitleContainer>
+                <h1>{header?.title}</h1>
+              </S.TitleContainer>
               <S.HeaderContainer>
                 <LikerFindModal />
                 <S.ProfileContainer
@@ -123,9 +126,7 @@ const SignaturePostPage = () => {
                   />
                 )}
               </S.HeaderContainer>
-              <S.TitleContainer>
-                <h1>{header?.title}</h1>
-              </S.TitleContainer>
+              <S.Line />
               <S.ButtonContainer>
                 {/* {header._id} */}
                 <S.Container
@@ -138,12 +139,12 @@ const SignaturePostPage = () => {
                   }}>
                   <S.OutLineHeart size={28} />
                   <S.FillHeart size={24} isLiked={header?.is_liked} />
-                  <h3>{header?.like_cnt}</h3>
                 </S.Container>
                 <S.Liked onClick={() => LikersModal.onOpen()}>
-                  Who Liked?!
+                  좋아요 {header?.like_cnt}개
                 </S.Liked>
               </S.ButtonContainer>
+
               <S.ImageContainer>
                 <S.Button onClick={handlePrevPage} disabled={step === 1}>
                   <GrFormPrevious />

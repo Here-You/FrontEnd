@@ -21,10 +21,7 @@ const Liked = styled.div`
   outline: none;
   color: black;
   cursor: pointer;
-  background-color: pink;
-  border-radius: 20px;
-  padding: 5px 11px;
-  border: 1px solid black;
+  margin-left: 3px;
 `;
 
 const OutLineHeart = styled(AiOutlineHeart)`
@@ -39,16 +36,17 @@ const FillHeart = styled(AiFillHeart)`
 `;
 
 const SignatureContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
+  display: flex;
+  flex-direction: column;
   width: 90%;
   margin: auto;
 `;
 
 const HeaderContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  width: 80%;
+  width: 90%;
+  margin: 0 auto;
   justify-content: space-between;
-  margin-bottom: 10px;
   gap: 2px;
 `;
 
@@ -65,8 +63,8 @@ const ProfileContainer = styled.div`
 `;
 
 const ProfileImg = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
 `;
 
@@ -77,6 +75,10 @@ const ProfileDesc = styled.div`
   date {
     font-size: 0.8rem;
     color: ${theme.COLOR.MAIN.GRAY};
+  }
+  h3 {
+    font-family: 'Pretendard-light';
+    font-size: 1rem;
   }
 `;
 
@@ -89,17 +91,23 @@ const FollowButton = styled.button`
 `;
 
 const TitleContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
+  display: flex;
+  width: 80%;
+  margin: 20px auto 10px auto;
   font-size: ${FONT_SIZE.XS};
   gap: 10px;
+  h1 {
+    font-size: 20px;
+    font-family: 'Pretendard-semibold';
+  }
 `;
 
 const ButtonContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: 10px auto 0px auto;
   gap: 2px;
-  margin-top: 10px;
-  margin-left: 250px;
-
   font-size: ${FONT_SIZE.SM};
 
   button {
@@ -114,10 +122,15 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const ImageContainer = styled.div`
-  margin-top: 20px;
+const Line = styled.div`
+  width: 100%;
+  height: 0.7px;
+  background-color: lightgray;
+  margin-top: 5px;
+`;
 
-  ${theme.ALIGN.ROW_CENTER}
+const ImageContainer = styled.div`
+  ${theme.ALIGN.ROW_CENTER};
 `;
 
 const Button = styled.button`
@@ -130,7 +143,6 @@ const Button = styled.button`
     color: ${theme.COLOR.MAIN.HEAVY_GREEN};
   }
 `;
-
 const Image = styled.img`
   width: 300px;
   height: 400px;
@@ -139,18 +151,19 @@ const Image = styled.img`
 
 const TextContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  gap: 20px;
-  margin-top: 20px;
-  padding: 20px;
+  gap: 10px;
+  padding: 10px;
 
   h3 {
     ${theme.ALIGN.ROW_CENTER};
     gap: 5px;
+    font-family: 'Pretendard-bold';
   }
 
   p {
     color: ${theme.COLOR.MAIN.GRAY};
     white-space: pre-wrap;
+    font-family: 'Pretendard-light';
   }
 `;
 
@@ -197,7 +210,11 @@ const CommentContainer = styled.div`
   width: 100%;
 `;
 
-const PageCount = styled.p``;
+const PageCount = styled.p`
+  display: flex;
+  width: 10%;
+  margin: 0 auto;
+`;
 
 export {
   TitleContainer,
@@ -221,4 +238,5 @@ export {
   FillHeart,
   OutLineHeart,
   Liked,
+  Line,
 };
