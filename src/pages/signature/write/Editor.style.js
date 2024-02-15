@@ -1,6 +1,7 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 //SignatureWrite.jsx
@@ -175,6 +176,12 @@ const ImageInput = styled.input`
   cursor: pointer;
 `;
 
+const PageText = styled.p`
+  margin-left: auto;
+  color: ${theme.COLOR.MAIN.GRAY};
+  font-size: ${FONT_SIZE.SM};
+`;
+
 export {
   EditorContainer,
   Title,
@@ -199,4 +206,5 @@ export {
   Image,
   ImageInput,
   ImageAddButton,
+  PageText,
 };

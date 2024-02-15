@@ -40,6 +40,9 @@ export default function Page({ image, content }) {
           }}
           placeholder="위치 입력"
         />
+        <S.PageText>
+          {currentPageIndex + 1}/{pages.length}
+        </S.PageText>
       </S.LocationContainer>
       <S.InputWrap>
         <S.PhotoButton $image={image}>

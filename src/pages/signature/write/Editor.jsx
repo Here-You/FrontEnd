@@ -48,7 +48,18 @@ export default function Editor({ setSelectedHeader }) {
     });
 
     if (!allPagesFilled) {
-      toast('모든 페이지 정보를 입력하세요!');
+      const emptyPages = pages.reduce((emptyIndexes, page, index) => {
+        if (!page?.location || !page?.content || !page?.image) {
+          emptyIndexes.push(index + 1);
+        }
+        return emptyIndexes;
+      }, []);
+
+      if (emptyPages.length > 0) {
+        toast(`페이지 ${emptyPages.join(', ')}의 정보를 입력하세요!`);
+      } else {
+        toast('모든 페이지 정보를 입력하세요!');
+      }
       return;
     }
 
@@ -94,16 +105,7 @@ export default function Editor({ setSelectedHeader }) {
       <S.Divider />
       <S.ContentContainer>
         {currentPageIndex > 0 ? (
-          <img
-            src={leftIcon}
-            onClick={() =>
-              goToPreviousPage(
-                pages[currentPageIndex]?.image,
-                pages[currentPageIndex]?.content,
-                pages[currentPageIndex]?.location,
-              )
-            }
-          />
+          <img src={leftIcon} onClick={goToPreviousPage} />
         ) : (
           <S.Empty />
         )}
@@ -112,16 +114,7 @@ export default function Editor({ setSelectedHeader }) {
           content={pages[currentPageIndex]?.content}
         />
         {currentPageIndex < pages.length - 1 ? (
-          <img
-            src={rightIcon}
-            onClick={() =>
-              goToNextPage(
-                pages[currentPageIndex]?.image,
-                pages[currentPageIndex]?.content,
-                pages[currentPageIndex]?.location,
-              )
-            }
-          />
+          <img src={rightIcon} onClick={goToNextPage} />
         ) : (
           <S.Empty />
         )}

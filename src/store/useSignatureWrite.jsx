@@ -54,18 +54,13 @@ const useSignatureWrite = create(set => ({
         state.currentPageIndex > 0 ? state.currentPageIndex - 1 : 0,
     }));
   },
-  goToNextPage: (isImage, isContent, isLocation) => {
-    if (!isImage || !isContent || !isLocation) {
-      toast('모든 페이지 정보를 입력하세요!');
-      return;
-    } else {
-      set(state => ({
-        currentPageIndex:
-          state.currentPageIndex < state.pages.length - 1
-            ? state.currentPageIndex + 1
-            : state.currentPageIndex,
-      }));
-    }
+  goToNextPage: () => {
+    set(state => ({
+      currentPageIndex:
+        state.currentPageIndex < state.pages.length - 1
+          ? state.currentPageIndex + 1
+          : state.currentPageIndex,
+    }));
   },
   updateTitle: newTitle => set({ title: newTitle }),
   updatePage: (pageIndex, newData) =>
