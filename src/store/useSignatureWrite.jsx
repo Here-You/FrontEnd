@@ -29,34 +29,38 @@ const useSignatureWrite = create(set => ({
       ],
       currentPageIndex: state.pages.length,
     })),
-  removePage: () =>
+  removePage: pageIndex =>
+    set(state => {
+      const updatedPages = state.pages
+        .filter((_, index) => index !== pageIndex)
+        .map(page => ({
+          ...page,
+          page: page.page > pageIndex ? page.page - 1 : page.page,
+        }));
+
+      const updatedPageIndex =
+        state.currentPageIndex >= updatedPages.length
+          ? updatedPages.length - 1
+          : state.currentPageIndex;
+
+      return {
+        pages: updatedPages,
+        currentPageIndex: updatedPageIndex,
+      };
+    }),
+  goToPreviousPage: () => {
     set(state => ({
-      pages: state.pages.length > 1 ? state.pages.slice(0, -1) : state.pages,
-      currentPageIndex: state.pages.length > 1 ? state.currentPageIndex - 1 : 0,
-    })),
-  goToPreviousPage: (isImage, isContent, isLocation) => {
-    if (!isImage || !isContent || !isLocation) {
-      toast('모든 페이지 정보를 입력하세요!');
-      return;
-    } else {
-      set(state => ({
-        currentPageIndex:
-          state.currentPageIndex > 0 ? state.currentPageIndex - 1 : 0,
-      }));
-    }
+      currentPageIndex:
+        state.currentPageIndex > 0 ? state.currentPageIndex - 1 : 0,
+    }));
   },
-  goToNextPage: (isImage, isContent, isLocation) => {
-    if (!isImage || !isContent || !isLocation) {
-      toast('모든 페이지 정보를 입력하세요!');
-      return;
-    } else {
-      set(state => ({
-        currentPageIndex:
-          state.currentPageIndex < state.pages.length - 1
-            ? state.currentPageIndex + 1
-            : state.currentPageIndex,
-      }));
-    }
+  goToNextPage: () => {
+    set(state => ({
+      currentPageIndex:
+        state.currentPageIndex < state.pages.length - 1
+          ? state.currentPageIndex + 1
+          : state.currentPageIndex,
+    }));
   },
   updateTitle: newTitle => set({ title: newTitle }),
   updatePage: (pageIndex, newData) =>

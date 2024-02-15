@@ -19,6 +19,7 @@ export default function Editor({ setSelectedHeader }) {
     updateTitle,
     resetData,
     updatePage,
+    removePage,
   } = useSignatureWrite();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -47,7 +48,18 @@ export default function Editor({ setSelectedHeader }) {
     });
 
     if (!allPagesFilled) {
-      toast('모든 페이지 정보를 입력하세요!');
+      const emptyPages = pages.reduce((emptyIndexes, page, index) => {
+        if (!page?.location || !page?.content || !page?.image) {
+          emptyIndexes.push(index + 1);
+        }
+        return emptyIndexes;
+      }, []);
+
+      if (emptyPages.length > 0) {
+        toast(`페이지 ${emptyPages.join(', ')}의 정보를 입력하세요!`);
+      } else {
+        toast('모든 페이지 정보를 입력하세요!');
+      }
       return;
     }
 
@@ -72,19 +84,15 @@ export default function Editor({ setSelectedHeader }) {
   };
 
   const handleAddPage = () => {
-    if (
-      !pages[currentPageIndex]?.image ||
-      !pages[currentPageIndex]?.content ||
-      !pages[currentPageIndex]?.location
-    ) {
-      toast('모든 페이지 내용을 작성해주세요!');
+    if (pages.length < maxPages) {
+      addPage();
     } else {
-      if (pages.length < maxPages) {
-        addPage();
-      } else {
-        toast(`최대 ${maxPages}개의 페이지까지만 추가할 수 있습니다.`);
-      }
+      toast(`최대 ${maxPages}개의 페이지까지만 추가할 수 있습니다.`);
     }
+  };
+
+  const handleDeletePage = () => {
+    removePage(currentPageIndex);
   };
 
   return (
@@ -97,16 +105,7 @@ export default function Editor({ setSelectedHeader }) {
       <S.Divider />
       <S.ContentContainer>
         {currentPageIndex > 0 ? (
-          <img
-            src={leftIcon}
-            onClick={() =>
-              goToPreviousPage(
-                pages[currentPageIndex]?.image,
-                pages[currentPageIndex]?.content,
-                pages[currentPageIndex]?.location,
-              )
-            }
-          />
+          <img src={leftIcon} onClick={goToPreviousPage} />
         ) : (
           <S.Empty />
         )}
@@ -115,16 +114,7 @@ export default function Editor({ setSelectedHeader }) {
           content={pages[currentPageIndex]?.content}
         />
         {currentPageIndex < pages.length - 1 ? (
-          <img
-            src={rightIcon}
-            onClick={() =>
-              goToNextPage(
-                pages[currentPageIndex]?.image,
-                pages[currentPageIndex]?.content,
-                pages[currentPageIndex]?.location,
-              )
-            }
-          />
+          <img src={rightIcon} onClick={goToNextPage} />
         ) : (
           <S.Empty />
         )}
@@ -134,6 +124,11 @@ export default function Editor({ setSelectedHeader }) {
         <S.Button onClick={handlePublish}>발행</S.Button>
         {(currentPageIndex === pages.length - 1 || pages.length === 1) && (
           <S.AddButton onClick={handleAddPage}>페이지 추가</S.AddButton>
+        )}
+        {pages.length > 1 && (
+          <S.AddButton onClick={handleDeletePage} $delete={true}>
+            페이지 삭제
+          </S.AddButton>
         )}
       </S.ButtonWrap>
     </S.EditorContainer>

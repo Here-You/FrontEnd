@@ -1,6 +1,7 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 //SignatureWrite.jsx
@@ -21,6 +22,7 @@ const EditorContainer = styled.div`
 const Title = styled.input`
   outline: none;
   border: none;
+  width: 80%;
   font-family: 'Pretendard-bold';
   color: ${theme.COLOR.MAIN.BLACK};
   font-size: 18px;
@@ -91,7 +93,8 @@ const ButtonWrap = styled.div`
 const AddButton = styled.button`
   display: flex;
   border-radius: 5px;
-  background: var(--New-Main, #21b69c);
+  background: ${props =>
+    props.$delete ? `${theme.COLOR.MAIN.RED}` : `var(--New-Main, #21b69c)`};
   padding: 5px 11px;
   outline: none;
   color: white;
@@ -173,6 +176,12 @@ const ImageInput = styled.input`
   cursor: pointer;
 `;
 
+const PageText = styled.p`
+  margin-left: auto;
+  color: ${theme.COLOR.MAIN.GRAY};
+  font-size: ${FONT_SIZE.SM};
+`;
+
 export {
   EditorContainer,
   Title,
@@ -197,4 +206,5 @@ export {
   Image,
   ImageInput,
   ImageAddButton,
+  PageText,
 };
