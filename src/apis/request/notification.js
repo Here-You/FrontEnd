@@ -8,4 +8,10 @@ const getNotification = () => {
   return res;
 };
 
-export { getNotification };
+const getUnReadNotification = () => {
+  const url = `${API_URL.NOTIFICATION}/unread`;
+  const res = axiosWithToken.get(url);
+  return res;
+};
+
+export { getNotification, getUnReadNotification };
