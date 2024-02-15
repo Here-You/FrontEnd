@@ -17,11 +17,11 @@ export default function MapContainer() {
         </S.TextContainer>
         <S.BoxContainer>
           <S.Box onClick={() => navigate('/calendar')}>
-            <S.Icon src={calendar} />
+            <S.Icon src={calendar} alt="calendar-img" />
             <S.Text3>캘린더로 보기</S.Text3>
           </S.Box>
           <S.Box onClick={() => navigate('/map')}>
-            <S.Icon src={map} />
+            <S.Icon src={map} alt="map-img" />
             <S.Text3>지도로 보기</S.Text3>
           </S.Box>
         </S.BoxContainer>

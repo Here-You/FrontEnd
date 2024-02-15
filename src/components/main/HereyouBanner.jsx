@@ -11,15 +11,15 @@ export default function HereyouBanner() {
     <S.Wrapper>
       <S.Container>
         <S.LogoContainer>
-          <img src={logo} />
-          <img src={hereyouText} />
+          <img src={logo} alt="logo" />
+          <img src={hereyouText} alt="here-you-text" />
         </S.LogoContainer>
         <S.ContentContainer>
           <SS.TextContainer>
             <S.Text>나를 알고, 너를 알고, 여행지를 알면,</S.Text>
             <S.Text>막막한 여행도 지피지기 백전백승</S.Text>
           </SS.TextContainer>
-          <S.Mountain src={mountain} />
+          <S.Mountain src={mountain} alt="mountain" />
         </S.ContentContainer>
       </S.Container>
     </S.Wrapper>
