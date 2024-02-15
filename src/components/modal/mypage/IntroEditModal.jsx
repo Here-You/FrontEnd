@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import Modal from '../Modal';
 import * as S from './EditModal.style';
@@ -61,8 +62,15 @@ const IntroEditModal = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(['myProfile']);
     },
-    onError: error => {
-      console.error('자기소개 변경 실패', error);
+    onError: () => {
+      toast.error('프로필 수정을 실패하였습니다. 다음에 다시 실행해주세요.');
+    },
+    onSettled: isSuccess => {
+      if (isSuccess.data.success === true) {
+        toast.success('프로필 수정 성공');
+      } else {
+        toast.error(isSuccess.data.message);
+      }
     },
   });
 

@@ -37,8 +37,16 @@ const SignaturePostPage = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(['likers']);
     },
-    onError: error => {
-      console.error('좋아요 실패', error);
+    onError: () => {
+      toast.error('좋아요를 실패했습니다. 나중에 다시 시도해주세요.');
+    },
+    onSettled: isSuccess => {
+      console.log(isSuccess);
+      if (isSuccess.data.success === true) {
+        toast.success(isSuccess.data.message);
+      } else {
+        toast.error(isSuccess.data.message);
+      }
     },
   });
 

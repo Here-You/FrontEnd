@@ -42,8 +42,15 @@ const NicknameEditModal = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(['myProfile']);
     },
-    onError: error => {
-      toast.error(error);
+    onError: () => {
+      toast.error('닉네임 수정에 실패하였습니다.');
+    },
+    onSettled: isSuccess => {
+      if (isSuccess.data.success === true) {
+        toast.success('닉네임 수정 완료');
+      } else {
+        toast.error(isSuccess.data.message);
+      }
     },
   });
 
