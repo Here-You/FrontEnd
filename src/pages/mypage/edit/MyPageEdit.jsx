@@ -3,7 +3,6 @@ import { Toaster } from 'react-hot-toast';
 
 import * as S from './MyPageEdit.style';
 import MyProfileEdit from '@/components/mypage/edit/MyProfileEdit';
-import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 import TokenErrorPage from '@/pages/signature/TokenErrorPage';
 import useAuth from '@/store/useAuth';
 
