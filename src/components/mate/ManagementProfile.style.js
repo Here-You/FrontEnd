@@ -14,6 +14,7 @@ const ProfileContainer = styled.div`
   padding: 20px;
   cursor: pointer;
   border-radius: 20px;
+  width: 95%;
 
   &:hover {
     background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};

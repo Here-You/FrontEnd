@@ -145,7 +145,7 @@ const Button = styled.button`
   }
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 `;
 const Image = styled.img`
