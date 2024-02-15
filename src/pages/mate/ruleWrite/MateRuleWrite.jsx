@@ -29,6 +29,11 @@ const MateRuleWritePage = () => {
   };
 
   const handleSubmitRule = async () => {
+    if (title.trim() === '') {
+      toast.error('규칙 제목을 입력해주세요.');
+      return;
+    }
+
     setLoading(true);
     const postData = {
       mainTitle: title,
