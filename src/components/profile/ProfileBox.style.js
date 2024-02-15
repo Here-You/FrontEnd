@@ -37,12 +37,14 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 15%;
+  width: 100px;
+  height: 100px;
   background-color: ${theme.COLOR.MAIN.GRAY};
   border-radius: 50%;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    width: 25%;
+    width: 75px;
+    height: 75px;
   }
 `;
 const IntroContainer = styled.div`
