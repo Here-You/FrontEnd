@@ -4,7 +4,7 @@ import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const ProfileContainer = styled.div`
-  width: 95%;
+  width: 100%;
   margin-top: 20px;
 
   padding: 20px;
