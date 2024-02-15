@@ -3,15 +3,14 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const SignUpContainer = styled.div`
-  padding: 0 40px;
-  ${theme.ALIGN.COLUMN_CENTER}
-  height: 100%;
-  width: 100%;
-  justify-content: space-around;
-  
-  h2{
-    align-self: flex-start;
-    margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 50%;
+  h2 {
+    font-family: 'Pretendard-bold';
   }
 `;
 

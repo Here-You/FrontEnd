@@ -49,21 +49,22 @@ const SignUpMyInfo = () => {
   return (
     <>
       <S.Container onSubmit={handleSubmit(onSubmit)}>
-        <S.Title>닉네임</S.Title>
+        {/* <S.Title>닉네임</S.Title>
         <S.Input
           id="nickname"
           placeholder="닉네임을 입력하세요"
           {...register('nickname')}
         />
-        <S.ErrorMessage>{errors.nickname?.message}</S.ErrorMessage>
-        <S.Title>프로필 소개</S.Title>
+        <S.ErrorMessage>{errors.nickname?.message}</S.ErrorMessage> */}
+        <S.Title>상태메시지를 입력해주세요.</S.Title>
         <S.Input
           id="introduction"
-          placeholder="닉네임을 입력하세요"
+          placeholder="ex. 여행의 이유를 찾으러 왔어요!"
           {...register('introduction')}
         />
+
         <S.ErrorMessage>{errors.introduction?.message}</S.ErrorMessage>
-        <S.StoreButton type="submit">저장하기</S.StoreButton>
+        <S.StoreButton type="submit">시작하기</S.StoreButton>
       </S.Container>
     </>
   );

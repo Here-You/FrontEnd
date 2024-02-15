@@ -36,6 +36,7 @@ const Content = styled.div`
   p {
     margin-left: 40px;
     color: ${theme.COLOR.MAIN.BLACK};
+    font-size: 13px;
   }
 `;
 
