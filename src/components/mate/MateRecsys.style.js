@@ -7,14 +7,14 @@ const MateBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 0.1px solid #828282;
+  border: 1px solid ${theme.COLOR.MAIN.HEAVY_GREEN};
   border-radius: 20px;
-  height: 28vh;
+  height: 230px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 `;
 
 const MateDescriptionBox = styled.div`
-  display: flex;
-  flex-direcion: column;
+  ${theme.ALIGN.COLUMN_CENTER};
   align-items: center;
   width: 90%;
   margin: 0 auto;

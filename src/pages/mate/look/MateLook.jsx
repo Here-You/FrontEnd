@@ -29,7 +29,6 @@ const MateLookPage = () => {
   return (
     <S.MateLookContainer>
       <Banner />
-
       <S.BoxContainer>
         <S.Title>오늘의 랜덤 메이트 추천</S.Title>
         <S.CenteredContainer>
@@ -49,8 +48,11 @@ const MateLookPage = () => {
       <S.BoxContainer>
         {locationMate ? (
           <>
-            <S.Title>{`${locationMate?.userName}님의 위치를 함께 이용 중인 메이트 추천`}</S.Title>
-            <S.Location>{`[${locationMate?.location}]`}</S.Location>
+            <S.Title>
+              {`${locationMate?.userName}님의 시그니처 `}
+              <h3>[{locationMate?.location}]</h3>
+              {'를 함께 이용 중인 메이트 추천'}
+            </S.Title>
             <S.CenteredContainer>
               {locationMate?.mateProfiles ? (
                 locationMate?.mateProfiles.length > 0 ? (

@@ -8,7 +8,8 @@ const MateBox = styled.div`
   position: relative;
   width: 300px;
   height: 250px;
-  border: 1px solid ${theme.COLOR.MAIN.LIGHT_BLACK};
+  border: 1px solid ${theme.COLOR.MAIN.MEDIUM_GREEN};
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   gap: 10px;
 `;

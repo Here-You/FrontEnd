@@ -7,6 +7,7 @@ import theme from '@/theme';
 const MateLookContainer = styled.div`
   height: 100%;
 `;
+
 const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,13 +18,25 @@ const BoxContainer = styled.div`
 
 const Title = styled.div`
   font-family: 'Pretendard-bold';
+  ${theme.ALIGN.ROW_CENTER};
   font-size: 18px;
   color: ${theme.COLOR.MAIN.BLACK};
-`;
-const Location = styled.div`
-  font-family: 'Pretendard-semibold';
-  font-size: 18px;
-  color: ${theme.COLOR.MAIN.GRAY};
+  white-space: nowrap;
+
+  h3 {
+    font-family: 'Pretendard-semibold';
+    font-size: 24px;
+    padding: 0 5px;
+    color: ${theme.COLOR.MAIN.GRAY};
+  }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: 12px;
+
+    h3 {
+      font-size: 15px;
+    }
+  }
 `;
 
 const CenteredContainer = styled.div`
@@ -139,5 +152,4 @@ export {
   AlertContainer,
   Icon,
   AlertLayout,
-  Location,
 };

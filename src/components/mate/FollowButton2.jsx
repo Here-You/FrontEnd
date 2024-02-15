@@ -36,26 +36,24 @@ const FollowButton2 = ({ initialFollowState, id }) => {
 };
 
 export default FollowButton2;
+
 const Button = styled.button`
   border: ${props =>
     props.follow ? 'none' : `0.2px solid ${theme.COLOR.MAIN.GRAY}`};
+
   background-color: ${props =>
     props.follow ? theme.COLOR.MAIN.LIGHT_GREEN : theme.COLOR.MAIN.WHITE};
-  color: ${props =>
-    props.follow ? (
-      <theme className="COLOR MAIN BLA"></theme>
-    ) : (
-      theme.COLOR.MAIN.BLACK
-    )};
-  padding: 5px 18px;
-  border-radius: 10px;
-  margin-top: 5px;
 
+  color: ${theme.COLOR.MAIN.BLACK};
+  padding: 5px 18px;
+  border-radius: 12px;
+  margin-top: 5px;
+  width: 120px;
   font-size: 12px;
   white-space: nowrap;
   cursor: pointer;
-  width: 120px;
+
   &:hover {
-    transform: scale(0.9);
+    transform: scale(0.99);
   }
 `;
