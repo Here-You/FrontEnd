@@ -13,9 +13,9 @@ import Group2 from '/images/mate2.svg';
 import Globe2 from '/images/signature2.svg';
 
 const FooterMenu = [
-  { icon1: Home, icon2: Home2, name: '홈', to: '/' },
   { icon1: Calendar, icon2: Calendar2, name: '일정', to: '/calendar' },
   { icon1: Search, icon2: Search2, name: '탐색', to: '/explore' },
+  { icon1: Home, icon2: Home2, name: '홈', to: '/' },
   { icon1: Globe, icon2: Globe2, name: '시그니처', to: '/signature' },
   { icon1: Group, icon2: Group2, name: '메이트', to: '/mate' },
 ];
