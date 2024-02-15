@@ -7,7 +7,7 @@ const EditContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   background-color: ${theme.COLOR.MAIN.WHITE};
   border-radius: 20px;
-  width: 80%;
+  width: 90%;
   height: 400px;
   padding: 10px;
 `;
@@ -21,7 +21,7 @@ const ContentContainer = styled.div`
 
 const Content = styled.div`
   border-bottom: 1px solid gray;
-  width: 80%;
+  width: 95%;
   padding: 0 10px;
   height: 40px;
   ${theme.ALIGN.ROW_CENTER};
