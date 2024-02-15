@@ -1,5 +1,6 @@
 import { formatDistance } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 
 import * as S from './SignatureComment.style';
@@ -52,8 +53,15 @@ const SignatureComment = ({ data }) => {
     onSuccess: () => {
       queryClient.invalidateQueries(['signatureComments']);
     },
-    onError: error => {
-      console.error('답글 작성 실패', error);
+    onError: () => {
+      toast.error('답글 작성을 실패하였습니다. 다음에 다시 실행해주세요.');
+    },
+    onSettled: isSuccess => {
+      if (isSuccess.data.success === true) {
+        toast.success('답글 작성 완료');
+      } else {
+        toast.error(isSuccess.data.message);
+      }
     },
   });
 
@@ -62,8 +70,15 @@ const SignatureComment = ({ data }) => {
     onSuccess: () => {
       queryClient.invalidateQueries(['signatureComments']);
     },
-    onError: error => {
-      console.error('답글 수정 실패', error);
+    onError: () => {
+      toast.error('답글 수정을 실패하였습니다. 다음에 다시 실행해주세요.');
+    },
+    onSettled: isSuccess => {
+      if (isSuccess.data.success === true) {
+        toast.success('답글 수정 완료');
+      } else {
+        toast.error(isSuccess.data.message);
+      }
     },
   });
 
@@ -72,8 +87,15 @@ const SignatureComment = ({ data }) => {
     onSuccess: () => {
       queryClient.invalidateQueries(['signatureComments']);
     },
-    onError: error => {
-      console.error('답글 삭제 실패', error);
+    onError: () => {
+      toast.error('삭제를 실패하였습니다. 다음에 다시 실행해주세요.');
+    },
+    onSettled: isSuccess => {
+      if (isSuccess.data.success === true) {
+        toast.success('삭제 완료');
+      } else {
+        toast.error(isSuccess.data.message);
+      }
     },
   });
 

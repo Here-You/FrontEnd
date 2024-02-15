@@ -14,8 +14,15 @@ const ProfileBox = ({ profile }) => {
       queryClient.invalidateQueries(['profile']);
     },
     onError: () => {
-      console.error('팔로우 요청 실패:', error);
-      toast.error('팔로우 요청이 실패했습니다. 나중에 다시 시도해주세요.');
+      toast.error('팔로우 요청을 실패했습니다. 나중에 다시 시도해주세요.');
+    },
+    onSettled: isSuccess => {
+      console.log(isSuccess);
+      if (isSuccess.data.success === true) {
+        toast.success(isSuccess.data.message);
+      } else {
+        toast.error(isSuccess.data.message);
+      }
     },
   });
 

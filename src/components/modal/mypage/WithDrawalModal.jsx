@@ -33,11 +33,16 @@ const WithDrawalModal = () => {
       queryClient.removeQueries(['myProfile']);
       revoke();
       navigate('/');
-      toast.success('회원 탈퇴가 정상적으로 되었습니다.');
     },
-    onError: error => {
-      console.error('회원 탈퇴 실패', error);
-      toast.error('회원 탈퇴에 실패하셨습니다.');
+    onError: () => {
+      toast.error('회원 탈퇴를 실패하였습니다. 다음에 다시 실행해주세요.');
+    },
+    onSettled: isSuccess => {
+      if (isSuccess.data.success === true) {
+        toast.success('회원 탈퇴가 정상적으로 되었습니다.');
+      } else {
+        toast.error(isSuccess.data.message);
+      }
     },
   });
 

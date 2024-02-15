@@ -22,10 +22,14 @@ const SignatureCommentInput = () => {
       queryClient.invalidateQueries(['signatureComments']);
     },
     onError: () => {
-      console.error('규칙 나가기 실패:', error);
-      toast.error(
-        '시그니처 포스트 댓글 작성에 실패했습니다. 나중에 다시 시도해주세요.',
-      );
+      toast.error('댓글 작성을 실패했습니다. 나중에 다시 시도해주세요.');
+    },
+    onSettled: isSuccess => {
+      if (isSuccess.data.success === true) {
+        toast.success('댓글 작성 완료');
+      } else {
+        toast.error(isSuccess.data.message);
+      }
     },
   });
   const {

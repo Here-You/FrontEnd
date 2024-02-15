@@ -38,9 +38,15 @@ const MateCommentView = ({ commentData }) => {
     onSuccess: () => {
       queryClient.invalidateQueries(['comments']);
     },
-    onError: error => {
-      console.error('댓글 삭제 실패', error);
-      toast.error('댓글이 삭제되지 않았습니다.');
+    onError: () => {
+      toast.error('댓글 삭제을 실패하였습니다. 다음에 다시 실행해주세요.');
+    },
+    onSettled: isSuccess => {
+      if (isSuccess.data.success === true) {
+        toast.success('댓글 삭제 완료');
+      } else {
+        toast.error(isSuccess.data.message);
+      }
     },
   });
 
@@ -49,9 +55,15 @@ const MateCommentView = ({ commentData }) => {
     onSuccess: () => {
       queryClient.invalidateQueries(['comments']);
     },
-    onError: error => {
-      console.error('댓글 수정 실패', error);
-      toast.error('댓글이 수정되지 않았습니다.');
+    onError: () => {
+      toast.error('댓글이 수정되지 않았습니다. 다음에 다시 실행해주세요.');
+    },
+    onSettled: isSuccess => {
+      if (isSuccess.data.success === true) {
+        toast.success('댓글 수정 완료');
+      } else {
+        toast.error(isSuccess.data.message);
+      }
     },
   });
 

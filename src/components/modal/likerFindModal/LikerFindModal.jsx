@@ -26,6 +26,16 @@ const LikerFindModal = () => {
     onError: error => {
       console.error('팔로우 실패', error);
     },
+    onError: () => {
+      toast.error('팔로우를 실패하였습니다. 다음에 다시 실행해주세요.');
+    },
+    onSettled: isSuccess => {
+      if (isSuccess.data.success === true) {
+        toast.success('팔로우 성공');
+      } else {
+        toast.error(isSuccess.data.message);
+      }
+    },
   });
 
   const BodyContent = (

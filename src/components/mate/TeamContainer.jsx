@@ -17,8 +17,14 @@ const TeamContainer = ({ ruleData }) => {
       queryClient.invalidateQueries(['teamRule']);
     },
     onError: () => {
-      console.error('규칙 나가기 실패:', error);
-      toast.error('규칙 나가기에 실패했습니다. 나중에 다시 시도해주세요.');
+      toast.error('규칙 나가기에 실패하였습니다. 다음에 다시 실행해주세요.');
+    },
+    onSettled: isSuccess => {
+      if (isSuccess.data.success === true) {
+        toast.success('규칙 나가기 완료');
+      } else {
+        toast.error(isSuccess.data.message);
+      }
     },
   });
 
