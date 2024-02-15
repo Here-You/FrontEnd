@@ -28,6 +28,7 @@ const InputText = styled.input`
   border: none;
   background: none;
   padding-left: 15px;
+  width: 100%;
 
   ::placeholder {
     color: rgba(0, 0, 0, 0.57);

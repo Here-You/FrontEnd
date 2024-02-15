@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useParams } from 'react-router-dom';
 
 import Modal from '../Modal';
 import * as S from './InviteMatesModal.style';

@@ -15,7 +15,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const MatePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const debouncedValue = useDebounce(searchTerm, 2000);
+  const debouncedValue = useDebounce(searchTerm, 300);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { data, isFetching, hasNextPage, fetchNextPage } =
