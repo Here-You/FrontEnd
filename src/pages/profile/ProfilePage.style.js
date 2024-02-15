@@ -21,7 +21,7 @@ const GridContainer = styled.div`
   margin-top: 10px;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 `;
