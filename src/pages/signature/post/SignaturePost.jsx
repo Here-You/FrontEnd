@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './SignaturePost.style';
 import Logo from '/images/mypage/MyPageLogo.svg';
+import LocationImg from '/images/pin.svg';
 import { deleteMySignature, likeSignature } from '@/apis/request/signature';
 import SignatureCommentList from '@/components/comment/signature/SignatureCommentList';
 import SignatureCommentInput from '@/components/comment/signature/commentInput/SignatureCommentInput';
@@ -163,7 +164,8 @@ const SignaturePostPage = () => {
               </S.PageCount>
               <S.TextContainer>
                 <h3>
-                  <CiLocationOn />
+                  <img src={LocationImg} />
+                  {/*   <CiLocationOn /> */}
                   {detailSignatures?.pages[step - 1]?.location}
                 </h3>
                 <p>{detailSignatures?.pages[step - 1]?.content}</p>

@@ -44,7 +44,7 @@ const SignatureContainer = styled.div`
 
 const HeaderContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   justify-content: space-between;
   gap: 2px;
@@ -92,7 +92,7 @@ const FollowButton = styled.button`
 
 const TitleContainer = styled.div`
   display: flex;
-  width: 80%;
+  width: 90%;
   margin: 20px auto 10px auto;
   font-size: ${FONT_SIZE.XS};
   gap: 10px;
@@ -105,7 +105,7 @@ const TitleContainer = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 85%;
   margin: 10px auto 5px auto;
   gap: 2px;
   font-size: ${FONT_SIZE.SM};
@@ -151,19 +151,25 @@ const Image = styled.img`
 
 const TextContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
+
   gap: 10px;
   padding: 10px;
 
   h3 {
     ${theme.ALIGN.ROW_CENTER};
     gap: 5px;
-    font-family: 'Pretendard-bold';
+    font-family: 'Pretendard-semibold';
+    font-size: 16px;
   }
 
   p {
     color: ${theme.COLOR.MAIN.GRAY};
     white-space: pre-wrap;
     font-family: 'Pretendard-light';
+    font-size: 16px;
+  }
+  img {
+    width: 25px;
   }
 `;
 
