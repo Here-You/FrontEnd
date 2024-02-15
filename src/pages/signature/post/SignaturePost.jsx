@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './SignaturePost.style';
 import Logo from '/images/mypage/MyPageLogo.svg';
+import LocationImg from '/images/pin.svg';
 import { deleteMySignature, likeSignature } from '@/apis/request/signature';
 import SignatureCommentList from '@/components/comment/signature/SignatureCommentList';
 import SignatureCommentInput from '@/components/comment/signature/commentInput/SignatureCommentInput';
@@ -98,6 +99,9 @@ const SignaturePostPage = () => {
         detailSignatures?.pages[step - 1] && (
           <S.SignatureContainer>
             <>
+              <S.TitleContainer>
+                <h1>{header?.title}</h1>
+              </S.TitleContainer>
               <S.HeaderContainer>
                 <LikerFindModal />
                 <S.ProfileContainer
@@ -123,9 +127,26 @@ const SignaturePostPage = () => {
                   />
                 )}
               </S.HeaderContainer>
-              <S.TitleContainer>
-                <h1>{header?.title}</h1>
-              </S.TitleContainer>
+
+              <S.Line />
+              <S.ButtonContainer>
+                {/* {header._id} */}
+                <S.Container
+                  onClick={async () => {
+                    try {
+                      mutateAsync(header._id);
+                    } catch (e) {
+                      console.log(e);
+                    }
+                  }}>
+                  <S.OutLineHeart size={28} />
+                  <S.FillHeart size={24} isLiked={header?.is_liked} />
+                </S.Container>
+                <S.Liked onClick={() => LikersModal.onOpen()}>
+                  좋아요 {header?.like_cnt}개
+                </S.Liked>
+              </S.ButtonContainer>
+
 
               <S.ImageContainer>
                 <S.Button onClick={handlePrevPage} disabled={step === 1}>
@@ -140,16 +161,18 @@ const SignaturePostPage = () => {
                   <GrFormNext />
                 </S.Button>
               </S.ImageContainer>
+              <S.PageCount>
+                {step}/{totalPages}
+              </S.PageCount>
               <S.TextContainer>
                 <h3>
-                  <CiLocationOn />
+                  <img src={LocationImg} />
+                  {/*   <CiLocationOn /> */}
                   {detailSignatures?.pages[step - 1]?.location}
                 </h3>
                 <p>{detailSignatures?.pages[step - 1]?.content}</p>
               </S.TextContainer>
-              <S.PageCount>
-                {step}/{totalPages}
-              </S.PageCount>
+
               {isMine && (
                 <S.FunctionButtonContainer>
                   <S.ModifyButton
