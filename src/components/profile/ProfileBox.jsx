@@ -34,29 +34,32 @@ const ProfileBox = ({ profile }) => {
             src={profile?.image ? profile?.image : Logo}
             alt={profile?.nickname}
           />
-          <S.TextContainer>
-            <h1>{profile?.nickname}</h1>
-            {profile?.is_followed !== null && (
-              <S.Button
-                onClick={async () => {
-                  try {
-                    await mutateAsync(profile?._id);
-                  } catch (e) {
-                    console.error(e);
-                  }
-                }}>
-                {profile?.is_followed === true ? '언팔로우' : '팔로우'}
-              </S.Button>
-            )}
-          </S.TextContainer>
+          <S.IntroContainer>
+            <S.TextContainer>
+              <h1>{profile?.nickname}</h1>
+              {profile?.is_followed !== null && (
+                <S.Button
+                  onClick={async () => {
+                    try {
+                      await mutateAsync(profile?._id);
+                    } catch (e) {
+                      console.error(e);
+                    }
+                  }}>
+                  {profile?.is_followed === true ? '언팔로우' : '팔로우'}
+                </S.Button>
+              )}
+            </S.TextContainer>
+            <S.Intro>{profile?.introduction}</S.Intro>
+          </S.IntroContainer>
         </S.ImageContainer>
+
         <S.CountContainer>
           <CountInfo title="게시물" count={profile?.signatures} />
           <CountInfo title="팔로워" count={profile?.follower} />
           <CountInfo title="팔로잉" count={profile?.following} />
         </S.CountContainer>
       </S.InfoContainer>
-      <S.Intro>{profile?.introduction}</S.Intro>
     </S.ProfileContainer>
   );
 };
