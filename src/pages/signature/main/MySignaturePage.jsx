@@ -6,11 +6,7 @@ import { useSignaturePreview } from '@/hooks/signature/useSignaturePreview ';
 
 const MySignaturePage = () => {
   const { data: signaturePreview, loading, error } = useSignaturePreview();
-
-  if (error) {
-    return <TokenErrorPage />;
-  }
-
+  // ERROR tokenErrorPage떄 왜 에러나는지 찾아보기. (다인 카카오계정)
   return (
     <S.PageContainer>
       {signaturePreview.length !== 0 ? (
