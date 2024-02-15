@@ -2,10 +2,7 @@ import * as S from './Navbar.style';
 import Bell from '/images/Bell.svg';
 import User from '/images/User.svg';
 import main from '/images/main.svg';
-import {
-  useGetNotification,
-  useUnReadNotification,
-} from '@/hooks/notification/useGetNotification';
+import { useUnReadNotification } from '@/hooks/notification/useGetNotification';
 
 const Navbar = () => {
   const { data: unReadCount, isPending, isError } = useUnReadNotification();

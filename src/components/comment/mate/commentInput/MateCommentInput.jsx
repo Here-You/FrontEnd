@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 
 import * as S from './MateCommentInput.style';
 import { postMateRuleComment } from '@/apis/request/mate';
+import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const MateCommentInput = ({ ruleId }) => {
@@ -27,12 +28,17 @@ const MateCommentInput = ({ ruleId }) => {
     textarea.current.style.height = textarea.current.scrollHeight + 'px';
   };
 
-  const imgUrl =
-    'https://images.unsplash.com/photo-1677441564461-1b3e5bff781c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8';
+  const {
+    data: me,
+    isPending: mePending,
+    isError: meError,
+  } = useGetMyProfile();
+
+  const myProfile = me?.data?.data?.user?.profileImage;
 
   return (
     <S.Container>
-      <S.Avatar src={imgUrl} />
+      <S.Avatar src={myProfile} />
       <S.CommentInput
         id="content"
         rows={1}

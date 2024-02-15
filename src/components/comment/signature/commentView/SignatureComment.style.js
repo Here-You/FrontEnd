@@ -25,6 +25,21 @@ const ReplyContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
 `;
 
+const ReplyBtn = styled.button`
+  border: none;
+
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  transform: scaleY(-1);
+`;
+
+const CancelBtn = styled.button`
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+`;
+
 const Button = styled.button`
   background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
   border: none;
@@ -104,6 +119,8 @@ export {
   Container,
   Avatar,
   ContentContainer,
+  ReplyBtn,
+  CancelBtn,
   Button,
   Input,
   ReplyContainer,

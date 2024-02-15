@@ -13,6 +13,8 @@ import {
 } from '@/apis/request/signature';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ko } from 'date-fns/locale';
+import { HiReply } from 'react-icons/hi';
+import { TiDeleteOutline } from 'react-icons/ti';
 
 const SignatureComment = ({ data }) => {
   const { signatureId } = useParams();
@@ -81,13 +83,19 @@ const SignatureComment = ({ data }) => {
       <S.ContentContainer>
         <S.NameContainer>
           <S.Name>{writer?.name}</S.Name>
+          {/* can_delete가 true면 (관리자) 모두 삭제 가능 */}
+          {/* is_writer가 true면 (본인) 본인글 삭제가능 */}
           {(can_delete || writer?.is_writer) && (
             <S.LeftContent>
-              {!editMode && (
-                <S.Button onClick={() => setIsReplying(true)}>답글</S.Button>
+              {isReplying === false && !editMode && (
+                <S.ReplyBtn onClick={() => setIsReplying(true)}>
+                  <HiReply />
+                </S.ReplyBtn>
               )}
               {isReplying === true && (
-                <S.Button onClick={() => setIsReplying(false)}>취소</S.Button>
+                <S.CancelBtn onClick={() => setIsReplying(false)}>
+                  <TiDeleteOutline />
+                </S.CancelBtn>
               )}
               {editMode ? (
                 <>
