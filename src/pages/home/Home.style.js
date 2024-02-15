@@ -1,7 +1,19 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
+
+const popAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
 
 const Container = styled.div`
   ${theme.ALIGN.COLUMN_CENTER}
@@ -57,92 +69,52 @@ const JourneyButtonContainer = styled.div`
   cursor: pointer;
   z-index: 1;
   align-self: flex-end;
+
+  transition: all 0.3s ease;
+  ${props =>
+    props.$isClicked &&
+    css`
+      animation: ${popAnimation} 0.3s ease;
+    `}
 `;
 
 const EditButton = styled.button`
-  visibility: ${props => (props.$isClicked ? 'visible' : 'hidden')};
+  padding: 20px;
+  border: 1px solid ${theme.COLOR.MAIN.GREEN};
+  color: ${props =>
+    props.$isEditSelected
+      ? `${theme.COLOR.MAIN.GREEN}`
+      : `${theme.COLOR.MAIN.BLACK}`};
 
-  padding: 25px 30px;
-  border-top: 1px solid ${theme.COLOR.MAIN.GREEN};
-  border-left: 1px solid ${theme.COLOR.MAIN.GREEN};
-  border-bottom: 1px solid ${theme.COLOR.MAIN.GREEN};
-  border-right: 0px;
-
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
-
+  border-radius: 100px;
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    padding: 10px;
+  }
   background-color: ${theme.COLOR.MAIN.WHITE};
   cursor: pointer;
-  &:hover {
-    color: ${theme.COLOR.MAIN.GREEN};
-  }
-
-  @media ${theme.WINDOW_SIZE.MOBILE} {
-    padding: 20px 15px;
-  }
+  transition: all 0.3s ease;
+  animation: ${popAnimation} 0.3s ease;
 `;
 
 const WriteButton = styled.button`
-  visibility: ${props => (props.$isClicked ? 'visible' : 'hidden')};
-
-  padding: 10px 80px 10px 30px;
-  border-top: 1px solid ${theme.COLOR.MAIN.GREEN};
-  border-right: 1px solid ${theme.COLOR.MAIN.GREEN};
-  border-bottom: 1px solid ${theme.COLOR.MAIN.GREEN};
-  border-left: 0px;
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
+  padding: 20px;
+  border: 1px solid ${theme.COLOR.MAIN.GREEN};
+  border-radius: 100px;
+  color: ${props =>
+    props.$isCreateSelected
+      ? `${theme.COLOR.MAIN.GREEN}`
+      : `${theme.COLOR.MAIN.BLACK}`};
 
   background-color: ${theme.COLOR.MAIN.WHITE};
   cursor: pointer;
   &:hover {
     color: ${theme.COLOR.MAIN.GREEN};
   }
-
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    padding: 10px 60px 10px 30px;
+    padding: 10px;
   }
-`;
-
-const AddButton = styled.button`
-  position: absolute;
-  ${theme.ALIGN.COLUMN_CENTER};
-  padding: 0 0 5px 0;
-  width: 50px;
-  height: 50px;
-  top: 10px;
-  left: 310px;
-
-  text-align: center;
-  background-color: #e8f6ef;
-  border: none;
-  border-radius: 50%;
-  color: ${theme.COLOR.MAIN.GREEN};
-  font-size: ${FONT_SIZE.FOUR_XL};
-
-  cursor: pointer;
-  transform: ${({ $isClicked }) => ($isClicked ? 'rotate(-45deg)' : 'none')};
-  transition: transform 0.3s ease;
-
-  @media ${theme.WINDOW_SIZE.MOBILE} {
-    width: 40px;
-    height: 40px;
-    left: ${props => (props.$browserName === 'safari' ? '265px' : '270px')};
-  }
-`;
-
-const VerticalLine = styled.p`
-  visibility: ${props => (props.$isClicked ? 'visible' : 'hidden')};
-  position: absolute;
-  top: 25px;
-  left: 170px;
-  color: ${theme.COLOR.MAIN.GREEN};
-  font-size: ${FONT_SIZE.XL};
-
-  @media ${theme.WINDOW_SIZE.MOBILE} {
-    top: 18px;
-    left: ${props => (props.$browserName === 'safari' ? '150px' : '145px')};
-  }
+  transition: all 0.3s ease;
+  animation: ${popAnimation} 0.3s ease;
 `;
 
 const JourneyWrapper = styled.div``;
@@ -158,9 +130,7 @@ export {
   ButtonContainer,
   Button,
   MapContainer,
-  AddButton,
   JourneyButtonContainer,
   EditButton,
   WriteButton,
-  VerticalLine,
 };

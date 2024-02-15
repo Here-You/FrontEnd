@@ -84,6 +84,8 @@ const JourneyEditModal = ({ journeyId, journeyTitle, startDate, endDate }) => {
     try {
       const res = await deleteJourney(journeyId);
       if (res) toast.success('여정이 삭제되었습니다.');
+      localStorage.removeItem('startDate');
+      localStorage.removeItem('endDate');
       window.location.reload();
     } catch (error) {
       setIsError(true);
