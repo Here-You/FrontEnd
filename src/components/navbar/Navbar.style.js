@@ -32,14 +32,14 @@ const ImageContainer = styled.div`
 
   p {
     position: absolute;
-    top: -4px;
-    font-size: 1rem;
-    right: -3px;
+    ${theme.ALIGN.ROW_CENTER}
+    top: -3px;
+    font-size: 0.8rem;
+    right: -2px;
     background-color: ${theme.COLOR.MAIN.RED};
     color: ${theme.COLOR.MAIN.WHITE};
-    width: 20px;
-    height: 20px;
-    text-align: center;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
   }
 `;
