@@ -1,13 +1,16 @@
+import { useNavigate } from 'react-router-dom';
+
 import FollowButton from './FollowButton';
 import * as S from './ManagementProfile.style';
 import Logo from '/images/mypage/MyPageLogo.svg';
 
 const ManagementProfile = ({ profileData }) => {
+  const navigate = useNavigate();
   const { email, image, introduction, isFollowing, mateId, nickName } =
     profileData;
   return (
     <S.CenteredContainer>
-      <S.ProfileContainer>
+      <S.ProfileContainer onClick={() => navigate(`/profile/${mateId}`)}>
         <S.UserImg src={image ? image : Logo} />
         <S.TextContainer>
           <S.UserName>{nickName}</S.UserName>
