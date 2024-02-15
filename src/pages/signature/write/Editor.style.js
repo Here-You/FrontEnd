@@ -21,6 +21,7 @@ const EditorContainer = styled.div`
 const Title = styled.input`
   outline: none;
   border: none;
+  width: 80%;
   font-family: 'Pretendard-bold';
   color: ${theme.COLOR.MAIN.BLACK};
   font-size: 18px;
