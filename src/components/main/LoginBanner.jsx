@@ -5,13 +5,15 @@ import * as S from './LoginBanner.style';
 import profileImg from '/images/main/profileImg.svg';
 import rightIcon from '/images/main/right.svg';
 import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
-import useAuth from '@/store/useAuth';
 
 export default function LoginBanner({ isLogin }) {
   const navigate = useNavigate();
+  let myProfile = null;
 
-  const { data, isPending, isError } = useGetMyProfile();
-  const myProfile = data?.data?.data?.user;
+  if (isLogin) {
+    const { data, isPending, isError } = useGetMyProfile();
+    myProfile = data?.data?.data?.user;
+  }
 
   return (
     <S.Wrapper>
