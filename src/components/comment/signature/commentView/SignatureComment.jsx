@@ -178,7 +178,7 @@ const SignatureComment = ({ data }) => {
               value={replyComment}
               onChange={e => setReplyComment(e.target.value)}
             />
-            <S.Button
+            <S.AddReplyBtn
               onClick={async () => {
                 try {
                   postReComment({
@@ -193,7 +193,7 @@ const SignatureComment = ({ data }) => {
                 }
               }}>
               답글 작성
-            </S.Button>
+            </S.AddReplyBtn>
           </S.ReplyContainer>
         )}
       </S.ContentContainer>
