@@ -15,8 +15,8 @@ const Title = styled.h1`
 
 const ImageContainer = styled.div`
   position: relative;
-  width: 170px;
-  height: 170px;
+  width: 150px;
+  height: 150px;
   border-radius: 20px;
   box-shadow:
     0 4px 10px rgba(0, 0, 0, 0.1),
@@ -24,20 +24,20 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 170px;
-  height: 170px;
+  width: 150px;
+  height: 150px;
   border-radius: 20px;
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 `;
 
 const DescriptionContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  width: 170px;
-  height: 170px;
+  width: 150px;
+  height: 150px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);

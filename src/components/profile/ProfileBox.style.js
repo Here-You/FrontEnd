@@ -6,7 +6,7 @@ import theme from '@/theme';
 const ProfileContainer = styled.div`
   width: 95%;
   margin-top: 20px;
-  height: 200px;
+
   padding: 20px;
   background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
   ${theme.ALIGN.COLUMN_CENTER};
@@ -22,32 +22,38 @@ const ProfileContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
   gap: 30px;
-
+  margin-top: 10px;
+  /* 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     display: flex;
     flex-direction: column;
     gap: 5px;
-  }
+  } */
 `;
 
 const Image = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 15%;
   background-color: ${theme.COLOR.MAIN.GRAY};
   border-radius: 50%;
-  margin: 20px 0 0 10px;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    width: 50px;
-    height: 50px;
+    width: 25%;
   }
+`;
+const IntroContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const TextContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  margin-top: 30px;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     margin-top: 0px;
@@ -64,7 +70,7 @@ const TextContainer = styled.div`
 const Button = styled.button`
   background: ${theme.COLOR.MAIN.LIGHT_GREEN};
   border: none;
-  padding: 10px 20px;
+  padding: 5px 11px;
   border-radius: 20px;
   margin-left: 10px;
   cursor: pointer;
@@ -75,10 +81,10 @@ const Button = styled.button`
 `;
 
 const InfoContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
+  ${theme.ALIGN.COLUMN_CENTER};
   white-space: nowrap;
-  gap: 40px;
-
+  width: 90%;
+  margin: auto;
   @media ${theme.WINDOW_SIZE.MOBILE} {
     display: flex;
     flex-direction: column;
@@ -87,21 +93,22 @@ const InfoContainer = styled.div`
 `;
 
 const CountContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
+  display: flex;
+  justify-content: space-between;
   white-space: nowrap;
-  margin-top: 30px;
-  gap: 40px;
+  width: 70%;
+  margin-top: 5px;
 `;
 
 const Intro = styled.p`
-  margin-top: 30px;
   color: ${theme.COLOR.MAIN.GRAY};
   text-align: left;
-  width: 80%;
+  width: 100%;
 `;
 
 export {
   ProfileContainer,
+  IntroContainer,
   ImageContainer,
   Image,
   TextContainer,
