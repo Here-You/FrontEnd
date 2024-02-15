@@ -43,7 +43,7 @@ const NicknameEditModal = () => {
       queryClient.invalidateQueries(['myProfile']);
     },
     onError: () => {
-      toast.error('닉네임 수정에 실패하였습니다.');
+      toast.error('닉네임 수정을 실패하였습니다.');
     },
     onSettled: isSuccess => {
       if (isSuccess.data.success === true) {
