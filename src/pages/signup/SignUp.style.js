@@ -8,8 +8,8 @@ const SignUpContainer = styled.div`
   height: 100%;
   width: 100%;
   justify-content: space-around;
-  
-  h2{
+
+  h2 {
     align-self: flex-start;
     margin-left: 40px;
   }

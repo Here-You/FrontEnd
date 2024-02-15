@@ -1,6 +1,5 @@
+import * as S from './SignUp.style';
 import SignUpMyInfo from '@/components/signup/SignUpMyInfo';
-import * as S from './SignUp.style'
-
 
 const SignUpPage = () => {
   return (
