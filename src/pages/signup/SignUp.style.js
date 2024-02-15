@@ -8,7 +8,7 @@ const SignUpContainer = styled.div`
   justify-content: center;
   width: 80%;
   margin: 0 auto;
-  margin-top: 50%;
+  margin-top: 20vh;
   h2 {
     font-family: 'Pretendard-bold';
   }

@@ -35,7 +35,9 @@ const SignUpMyInfo = () => {
       if (res) {
         toast.success('정보가 입력되었습니다.');
         console.log('제출된 데이터: ', data);
-        navigate('/');
+        setTimeout(() => {
+          navigate('/');
+        }, 500);
       }
     } catch (error) {
       console.log(error);
@@ -49,13 +51,13 @@ const SignUpMyInfo = () => {
   return (
     <>
       <S.Container onSubmit={handleSubmit(onSubmit)}>
-        {/* <S.Title>닉네임</S.Title>
+        <S.Title>닉네임</S.Title>
         <S.Input
           id="nickname"
           placeholder="닉네임을 입력하세요"
           {...register('nickname')}
         />
-        <S.ErrorMessage>{errors.nickname?.message}</S.ErrorMessage> */}
+        <S.ErrorMessage>{errors.nickname?.message}</S.ErrorMessage>
         <S.Title>상태메시지를 입력해주세요.</S.Title>
         <S.Input
           id="introduction"
