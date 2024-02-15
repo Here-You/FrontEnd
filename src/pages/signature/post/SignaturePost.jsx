@@ -106,92 +106,85 @@ const SignaturePostPage = () => {
         detailSignatures?.pages &&
         detailSignatures?.pages[step - 1] && (
           <S.SignatureContainer>
-            <>
-              <S.TitleContainer>
-                <h1>{header?.title}</h1>
-              </S.TitleContainer>
-              <S.HeaderContainer>
-                <LikerFindModal />
-                <S.ProfileContainer
-                  onClick={() => navigate(`/profile/${author?._id}`)}>
-                  {author?.image ? (
-                    <S.ProfileImg src={author?.image} />
-                  ) : (
-                    <S.ProfileImg src={Logo} />
-                  )}
-                  <S.ProfileDesc>
-                    {author?.name === null ? (
-                      <h3>탈퇴한 회원</h3>
-                    ) : (
-                      <h3>{author?.name}</h3>
-                    )}
-                    <date>{header?.date}</date>
-                  </S.ProfileDesc>
-                </S.ProfileContainer>
-                {author?.is_followed !== null && (
-                  <FollowButton
-                    initialFollowState={author?.is_followed}
-                    id={author?._id}
-                  />
+            <S.TitleContainer>
+              <h1>{header?.title}</h1>
+            </S.TitleContainer>
+            <S.HeaderContainer>
+              <LikerFindModal />
+              <S.ProfileContainer
+                onClick={() => navigate(`/profile/${author?._id}`)}>
+                {author?.image ? (
+                  <S.ProfileImg src={author?.image} />
+                ) : (
+                  <S.ProfileImg src={Logo} />
                 )}
-              </S.HeaderContainer>
-
-              <S.Line />
-              <S.ButtonContainer>
-                {/* {header._id} */}
-                <S.Container
-                  onClick={async () => {
-                    try {
-                      mutateAsync(header._id);
-                    } catch (e) {
-                      console.log(e);
-                    }
-                  }}>
-                  <S.OutLineHeart size={28} />
-                  <S.FillHeart size={24} isLiked={header?.is_liked} />
-                </S.Container>
-                <S.Liked onClick={() => LikersModal.onOpen()}>
-                  좋아요 {header?.like_cnt}개
-                </S.Liked>
-              </S.ButtonContainer>
-
-              <S.ImageContainer>
-                <S.Button onClick={handlePrevPage} disabled={step === 1}>
-                  <GrFormPrevious />
-                </S.Button>
-                <S.Image
-                  src={detailSignatures?.pages[step - 1]?.image || Logo}
+                <S.ProfileDesc>
+                  {author?.name === null ? (
+                    <h3>탈퇴한 회원</h3>
+                  ) : (
+                    <h3>{author?.name}</h3>
+                  )}
+                  <date>{header?.date}</date>
+                </S.ProfileDesc>
+              </S.ProfileContainer>
+              {author?.is_followed !== null && (
+                <FollowButton
+                  initialFollowState={author?.is_followed}
+                  id={author?._id}
                 />
-                <S.Button
-                  onClick={handleNextPage}
-                  disabled={step === totalPages}>
-                  <GrFormNext />
-                </S.Button>
-              </S.ImageContainer>
-              <S.PageCount>
-                {step}/{totalPages}
-              </S.PageCount>
-              <S.TextContainer>
-                <h3>
-                  <img src={LocationImg} />
-                  {/*   <CiLocationOn /> */}
-                  {detailSignatures?.pages[step - 1]?.location}
-                </h3>
-                <p>{detailSignatures?.pages[step - 1]?.content}</p>
-              </S.TextContainer>
-
-              {isMine && (
-                <S.FunctionButtonContainer>
-                  <S.ModifyButton
-                    onClick={() => navigate(`/signature/edit/${signatureId}`)}>
-                    수정
-                  </S.ModifyButton>
-                  <S.DeleteButton onClick={handleDeletePost}>
-                    삭제
-                  </S.DeleteButton>
-                </S.FunctionButtonContainer>
               )}
-            </>
+            </S.HeaderContainer>
+
+            <S.Line />
+            <S.ButtonContainer>
+              {/* {header._id} */}
+              <S.Container
+                onClick={async () => {
+                  try {
+                    mutateAsync(header._id);
+                  } catch (e) {
+                    console.log(e);
+                  }
+                }}>
+                <S.OutLineHeart size={28} />
+                <S.FillHeart size={24} isLiked={header?.is_liked} />
+              </S.Container>
+              <S.Liked onClick={() => LikersModal.onOpen()}>
+                좋아요 {header?.like_cnt}개
+              </S.Liked>
+            </S.ButtonContainer>
+
+            <S.ImageContainer>
+              <S.Button onClick={handlePrevPage} disabled={step === 1}>
+                <GrFormPrevious />
+              </S.Button>
+              <S.Image src={detailSignatures?.pages[step - 1]?.image || Logo} />
+              <S.Button onClick={handleNextPage} disabled={step === totalPages}>
+                <GrFormNext />
+              </S.Button>
+            </S.ImageContainer>
+            <S.PageCount>
+              {step}/{totalPages}
+            </S.PageCount>
+            <S.TextContainer>
+              <h3>
+                <img src={LocationImg} />
+                {/*   <CiLocationOn /> */}
+                {detailSignatures?.pages[step - 1]?.location}
+              </h3>
+              <p>{detailSignatures?.pages[step - 1]?.content}</p>
+            </S.TextContainer>
+
+            {isMine && (
+              <S.FunctionButtonContainer>
+                <S.ModifyButton
+                  onClick={() => navigate(`/signature/edit/${signatureId}`)}>
+                  수정
+                </S.ModifyButton>
+                <S.DeleteButton onClick={handleDeletePost}>삭제</S.DeleteButton>
+              </S.FunctionButtonContainer>
+            )}
+
             <S.CommentContainer>
               <SignatureCommentInput />
               <SignatureCommentList />
