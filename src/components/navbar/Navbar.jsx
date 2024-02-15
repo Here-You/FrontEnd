@@ -9,7 +9,6 @@ const Navbar = () => {
   const { isAuth } = useAuth();
   const { data: unReadCount, isPending, isError } = useUnReadNotification();
   const unReadCounter = unReadCount?.data?.data?.unreadCount;
-
   return (
     <S.NavWrapper>
       <S.LinkTo to="/mypage">

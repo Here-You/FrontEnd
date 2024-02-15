@@ -7,6 +7,7 @@ import {
   GoogleMap,
   InfoWindowF,
   MarkerF,
+  Polyline,
   useJsApiLoader,
 } from '@react-google-maps/api';
 
@@ -60,6 +61,11 @@ const TravelMap = ({ mapDataList }) => {
     setSelectedMarker({ position, title });
     setClicked(true);
   };
+
+  const markerCoordinates = mapDataList.map(post => ({
+    lat: parseFloat(post?.location?.latitude),
+    lng: parseFloat(post?.location?.longitude),
+  }));
 
   return isLoaded ? (
     <GoogleMap
@@ -116,6 +122,15 @@ const TravelMap = ({ mapDataList }) => {
               )}
           </MarkerF>
         ))}
+      <Polyline
+        path={markerCoordinates} // Use marker coordinates as path
+        geodesic={true}
+        options={{
+          strokeColor: '#F05650',
+          strokeOpacity: 0.6,
+          strokeWeight: 5,
+        }}
+      />
     </GoogleMap>
   ) : (
     <></>
