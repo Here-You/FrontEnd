@@ -1,27 +1,40 @@
 import { useState } from 'react';
 
-import TokenErrorPage from '../signature/TokenErrorPage';
 import * as S from './ExplorePage.style';
 import SignatureSearchSlider from '@/components/explore/SignatureSearchSlider';
 import SignatureSearchPreviewSkeleton from '@/components/explore/skeleton/SignatureSearchPreviewSkeleton';
+import {
+  useGetHotSignature,
+  useGetNewSignature,
+} from '@/hooks/search/queries/useGetHotPost';
 import { useSearchExploreKeyword } from '@/hooks/search/useSearchExploreKeyword';
-import { useSearchExploreMain } from '@/hooks/search/useSearchExploreMain';
 import useDebounce from '@/hooks/useDebounce';
 
 const ExplorePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 1000);
 
-  const { data, loading: searchExploreLoading, error } = useSearchExploreMain();
   const {
     data: keyData,
     loading: keyLoading,
     error: keyError,
   } = useSearchExploreKeyword(debouncedSearchTerm);
 
-  if (error) {
-    return <div>에러가 발생했습니다.</div>;
-  }
+  const {
+    data: hotPost,
+    isLoading: hotLoading,
+    isError: hotError,
+  } = useGetHotSignature();
+
+  const {
+    data: newPost,
+    isLoading: newLoading,
+    isError: newError,
+  } = useGetNewSignature();
+
+  const hotSignatures = hotPost?.data?.data?.covers;
+
+  const newSignatures = newPost?.data?.data?.covers;
 
   return (
     <>
@@ -47,12 +60,12 @@ const ExplorePage = () => {
         )
       ) : (
         <>
-          {searchExploreLoading ? (
+          {keyLoading ? (
             <SignatureSearchPreviewSkeleton />
           ) : (
             <>
-              <SignatureSearchSlider data={data?.hot} type="hot" />
-              <SignatureSearchSlider data={data?.new} type="new" />
+              <SignatureSearchSlider data={hotSignatures} type="hot" />
+              <SignatureSearchSlider data={newSignatures} type="new" />
             </>
           )}
         </>

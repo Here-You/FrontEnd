@@ -21,7 +21,7 @@ export default function HotSignature() {
         navigate('/explore');
       }}>
       <S.Container>
-        <img src={fire} akt="fire" />
+        <img src={fire} alt="fire" />
         <S.ContentContainer>
           <S.Time>{currentTime.toLocaleString()}</S.Time>
           <S.Text>지금 가장 핫한 시그니처는?</S.Text>

@@ -2,6 +2,7 @@ import Preview from './Preview';
 import * as S from './SignatureSearchSlider.style';
 
 const SignatureSearchSlider = ({ data, type, searchTerm }) => {
+  console.log(data);
   return (
     <S.PageContainer>
       {type === 'hot' ? (
