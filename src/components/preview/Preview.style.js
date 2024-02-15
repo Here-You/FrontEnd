@@ -9,6 +9,7 @@ const PreviewWrap = styled.div`
   align-items: flex-start;
   height: 100%;
   width: 100%;
+  margin-bottom: 20px;
   cursor: pointer;
 `;
 
@@ -34,6 +35,10 @@ const PreviewImg = styled(LazyLoadImage)`
   object-fit: cover;
   border-radius: 5px;
   border: 1px solid var(--gray2, #c8c8c8);
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 100%;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -42,6 +47,10 @@ const ContentContainer = styled.div`
   width: 100%;
   border-radius: 10px;
   padding: 8px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 100%;
+  }
 `;
 
 const Title = styled.h1`
