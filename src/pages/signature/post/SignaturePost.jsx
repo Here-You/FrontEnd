@@ -158,6 +158,9 @@ const SignaturePostPage = () => {
                   <GrFormNext />
                 </S.Button>
               </S.ImageContainer>
+              <S.PageCount>
+                {step}/{totalPages}
+              </S.PageCount>
               <S.TextContainer>
                 <h3>
                   <CiLocationOn />
@@ -165,9 +168,7 @@ const SignaturePostPage = () => {
                 </h3>
                 <p>{detailSignatures?.pages[step - 1]?.content}</p>
               </S.TextContainer>
-              <S.PageCount>
-                {step}/{totalPages}
-              </S.PageCount>
+
               {isMine && (
                 <S.FunctionButtonContainer>
                   <S.ModifyButton

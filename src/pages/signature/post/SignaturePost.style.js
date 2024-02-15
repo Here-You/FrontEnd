@@ -106,7 +106,7 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   width: 80%;
-  margin: 10px auto 0px auto;
+  margin: 10px auto 5px auto;
   gap: 2px;
   font-size: ${FONT_SIZE.SM};
 
@@ -212,8 +212,8 @@ const CommentContainer = styled.div`
 
 const PageCount = styled.p`
   display: flex;
-  width: 10%;
-  margin: 0 auto;
+  margin: 10px auto 0px auto;
+  font-family: 'Pretendard-semibold';
 `;
 
 export {
