@@ -54,6 +54,7 @@ const IntroEditModal = () => {
   );
 
   const handleCloseModal = () => {
+    setValue('introduction', myProfile?.introduction);
     introEditModal.onClose();
   };
 
@@ -75,11 +76,13 @@ const IntroEditModal = () => {
   });
 
   const onSubmit = async () => {
-    try {
-      await changeIntro(introduction);
-      introEditModal.onClose();
-    } catch (e) {
-      console.error(e);
+    if (!errors.introduction) {
+      try {
+        await changeIntro(introduction);
+        introEditModal.onClose();
+      } catch (e) {
+        console.error(e);
+      }
     }
   };
 
