@@ -11,8 +11,13 @@ import theme from '@/theme';
 const MyPageInfo = () => {
   const navigate = useNavigate();
   const { isLogin } = useAuth();
-  const { data, isPending, isError } = useGetMyProfile();
-  const myProfile = data?.data?.data?.user;
+  let myProfile = null;
+
+  if (isLogin) {
+    const { data, isPending, isError } = useGetMyProfile();
+    myProfile = data?.data?.data?.user;
+  }
+
   const logoutModal = useLogoutModal();
 
   return (

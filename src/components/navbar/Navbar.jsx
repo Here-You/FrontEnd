@@ -3,11 +3,12 @@ import Bell from '/images/Bell.svg';
 import User from '/images/User.svg';
 import main from '/images/main.svg';
 import { useUnReadNotification } from '@/hooks/notification/useGetNotification';
+import useAuth from '@/store/useAuth';
 
 const Navbar = () => {
+  const { isAuth } = useAuth();
   const { data: unReadCount, isPending, isError } = useUnReadNotification();
   const unReadCounter = unReadCount?.data?.data?.unreadCount;
-
   return (
     <S.NavWrapper>
       <S.LinkTo to="/mypage">
