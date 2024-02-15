@@ -60,11 +60,17 @@ const TravelMap = ({ mapDataList }) => {
     setSelectedMarker({ position, title });
     setClicked(true);
   };
-
-  const markerCoordinates = mapDataList.map(post => ({
-    lat: parseFloat(post?.location?.latitude),
-    lng: parseFloat(post?.location?.longitude),
-  }));
+  const markerCoordinates = mapDataList
+    .map(post => {
+      const latitude = parseFloat(post?.location?.latitude);
+      const longitude = parseFloat(post?.location?.longitude);
+      if (isNaN(latitude) || isNaN(longitude)) {
+        console.error('Invalid latitude or longitude:', post?.location);
+        return null;
+      }
+      return { lat: latitude, lng: longitude };
+    })
+    .filter(coordinate => coordinate !== null);
 
   return isLoaded ? (
     <GoogleMap
@@ -122,7 +128,7 @@ const TravelMap = ({ mapDataList }) => {
           </MarkerF>
         ))}
       <Polyline
-        path={markerCoordinates} // Use marker coordinates as path
+        path={markerCoordinates}
         geodesic={true}
         options={{
           strokeColor: '#F05650',
