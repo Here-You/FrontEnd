@@ -143,6 +143,10 @@ const Button = styled.button`
     transform: scale(0.9);
     color: ${theme.COLOR.MAIN.HEAVY_GREEN};
   }
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: 1.5rem;
+  }
 `;
 const Image = styled.img`
   width: 300px;

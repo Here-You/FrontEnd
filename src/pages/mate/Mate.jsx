@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useInView } from 'react-intersection-observer';
+import { useNavigate } from 'react-router-dom';
 
 import * as S from './Mate.style';
 import MateMainPage from './main/MateMain';
@@ -14,8 +15,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const MatePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const debouncedValue = useDebounce(searchTerm, 2000);
+  const debouncedValue = useDebounce(searchTerm, 300);
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const { data, isFetching, hasNextPage, fetchNextPage } =
     useGetSearchInfiniteNickname(debouncedValue, 2);
 
@@ -55,13 +57,17 @@ const MatePage = () => {
       {searchTerm ? (
         searchMembers?.map(members => {
           return members?.data?.data?.data.map(member => (
-            <S.ProfileContainer key={member.id}>
+            <S.ProfileContainer
+              key={member?.id}
+              onClick={() => navigate(`/profile/${member?.id}`)}>
               <S.ProfileImage src={member.image ? member.image : Logo} />
               <S.IntroContainer>
                 <S.NickNameContainer>
                   <h1>{member.nickName}</h1>
                   <S.FollowButton
-                    onClick={async () => {
+                    follow={member.isFollowing}
+                    onClick={async e => {
+                      e.stopPropagation();
                       try {
                         await mutateAsync(member.id);
                       } catch (e) {
@@ -70,8 +76,6 @@ const MatePage = () => {
                     }}>
                     {member.isFollowing === true ? '언팔로우' : '팔로우'}
                   </S.FollowButton>
-
-                  {/* <div>{member.isFollowing}</div> */}
                 </S.NickNameContainer>
                 <S.InfoContainer>{member.introduction}</S.InfoContainer>
                 <S.CountContainer>

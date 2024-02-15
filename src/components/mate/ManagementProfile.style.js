@@ -37,6 +37,10 @@ const TextContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 3px;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const UserName = styled.span`
@@ -47,6 +51,10 @@ const UserName = styled.span`
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.864px;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const UserNickName = styled.span`
@@ -57,6 +65,10 @@ const UserNickName = styled.span`
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.864px;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const UserBio = styled.span`

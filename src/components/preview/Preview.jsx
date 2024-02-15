@@ -10,7 +10,7 @@ const Preview = ({ signature }) => {
   const navigate = useNavigate();
 
   const formattedDate = useMemo(() => {
-    return format(date, 'yy/MM/dd');
+    return format(date, 'yy년 MM월 dd일');
   }, [date]);
 
   return (
@@ -25,8 +25,10 @@ const Preview = ({ signature }) => {
           effect="blur"
           width="150"
         />
-        <S.Title>{title}</S.Title>
-        <S.Open to={`/signature/post/${_id}`}>자세히보기</S.Open>
+        <S.ContentContainer>
+          <S.Title>{title}</S.Title>
+          <S.Open to={`/signature/post/${_id}`}>자세히보기</S.Open>
+        </S.ContentContainer>
       </S.PreviewWrap>
     </>
   );

@@ -13,6 +13,13 @@ const Container = styled.div`
   margin-left: ${props => (props.indentationLevel ? '40px' : 0)};
   border-left: ${props => (props.indentationLevel ? '2px solid #ccc' : 'none')};
   padding-left: ${props => (props.indentationLevel ? '10px' : '0')};
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    margin-left: ${props => (props.indentationLevel ? '60px' : 0)};
+    border-left: ${props =>
+      props.indentationLevel ? '2px solid #ccc' : 'none'};
+    padding-left: ${props => (props.indentationLevel ? '10px' : '0')};
+  }
 `;
 
 const Avatar = styled.img`
@@ -27,7 +34,7 @@ const ReplyContainer = styled.div`
 
 const ReplyBtn = styled.button`
   border: none;
-
+  color: black;
   border-radius: 10px;
   cursor: pointer;
   background-color: transparent;
@@ -37,6 +44,7 @@ const ReplyBtn = styled.button`
 const CancelBtn = styled.button`
   border: none;
   cursor: pointer;
+  color: black;
   background-color: transparent;
 `;
 
@@ -45,6 +53,7 @@ const Button = styled.button`
   border: none;
   padding: 5px 10px;
   border-radius: 10px;
+  color: black;
   cursor: pointer;
 
   &:hover {
@@ -115,6 +124,20 @@ const Icon = styled.img`
   }
 `;
 
+const AddReplyBtn = styled.button`
+  background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
+  border: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: black;
+  margin-left: 10px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+`;
+
 export {
   Container,
   Avatar,
@@ -131,4 +154,5 @@ export {
   NameContainer,
   LeftContent,
   Icon,
+  AddReplyBtn,
 };

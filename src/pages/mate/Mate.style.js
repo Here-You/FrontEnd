@@ -10,19 +10,22 @@ const Container = styled.div`
 `;
 
 const ProfileContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER}
-
-  gap: 50px;
-  justify-content: space-around;
-  border-radius: 30px;
+  ${theme.ALIGN.COLUMN_CENTER};
+  width: 400px;
+  height: 300px;
+  border-radius: 20px;
   margin-top: 20px;
   background-color: white;
-  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
-  padding: 10px 30px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(0.99);
+  }
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    gap: 10px;
-    max-width: 250px;
+    width: 90%;
+    border-radius: 10px;
   }
 `;
 
@@ -30,62 +33,55 @@ const ProfileImage = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-
-  @media ${theme.WINDOW_SIZE.MOBILE} {
-    width: 50px;
-    height: 50px;
-  }
+  object-fit: cover;
+  margin-bottom: 20px;
 `;
 
-const IntroContainer = styled.div``;
+const IntroContainer = styled.div`
+  text-align: center;
+`;
 
 const NickNameContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER};
-  gap: 20px;
-  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+
   h1 {
     font-size: ${FONT_SIZE.LG};
-    @media ${theme.WINDOW_SIZE.MOBILE} {
-      gap: 10px;
-      font-size: ${FONT_SIZE.SM};
-    }
-  }
-  @media ${theme.WINDOW_SIZE.MOBILE} {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: ${FONT_SIZE.SM};
+    margin: 0;
   }
 `;
 
 const FollowButton = styled.button`
-  background-color: ${theme.COLOR.MAIN.MEDIUM_GREEN};
-  min-width: 65px;
-  padding: 5px 10px;
+  background-color: ${props =>
+    props.follow ? theme.COLOR.MAIN.RED : theme.COLOR.MAIN.MEDIUM_GREEN};
+  padding: 8px 16px;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
   color: ${theme.COLOR.MAIN.WHITE};
+  transition: transform 0.3s ease;
 
   &:hover {
-    transform: scale(0.9);
-  }
-
-  @media ${theme.WINDOW_SIZE.MOBILE} {
-    padding: 5px;
+    transform: scale(0.95);
   }
 `;
 
 const InfoContainer = styled.div`
-  margin-top: 20px;
+  text-align: center;
   color: ${theme.COLOR.MAIN.GRAY};
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const CountContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER}
-  margin-bottom: 20px;
-  gap: 30px;
+  ${theme.ALIGN.ROW_CENTER};
+  gap: 20px;
+  margin-top: 20px;
 `;
 
 export {

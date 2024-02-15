@@ -21,9 +21,6 @@ const SignatureCommentList = () => {
           <SignatureComment key={comment._id} data={comment} />
         )),
       )}
-      {/* {Data.map(data => (
-       
-      ))} */}
     </S.Container>
   );
 };

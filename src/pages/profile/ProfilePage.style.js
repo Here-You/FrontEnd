@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const Container = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
   background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
+  padding: 10px;
+  ${theme.ALIGN.COLUMN_CENTER};
 `;
 
 const Title = styled.h1`
@@ -13,10 +14,23 @@ const Title = styled.h1`
   align-items: flex-start;
 `;
 
+const GridContainer = styled.div`
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 10px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+`;
+
 const ImageContainer = styled.div`
   position: relative;
-  width: 150px;
-  height: 150px;
+  margin-top: 10px;
+  width: 140px;
+  height: 140px;
   border-radius: 20px;
   box-shadow:
     0 4px 10px rgba(0, 0, 0, 0.1),
@@ -24,8 +38,8 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
   border-radius: 20px;
   cursor: pointer;
 
@@ -36,8 +50,8 @@ const Image = styled.img`
 
 const DescriptionContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
@@ -57,17 +71,6 @@ const DescriptionContainer = styled.div`
     white-space: nowrap;
     overflow: hidden;
     margin-bottom: 5px;
-  }
-`;
-
-const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin-top: 20px;
-  gap: 10px;
-
-  @media ${theme.WINDOW_SIZE.MOBILE} {
-    grid-template-columns: repeat(2, 1fr);
   }
 `;
 

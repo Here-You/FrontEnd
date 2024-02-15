@@ -21,15 +21,9 @@ const SignatureCommentInput = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(['signatureComments']);
     },
-    onError: () => {
-      toast.error('댓글 작성을 실패했습니다. 나중에 다시 시도해주세요.');
-    },
-    onSettled: isSuccess => {
-      if (isSuccess.data.success === true) {
-        toast.success('댓글 작성 완료');
-      } else {
-        toast.error(isSuccess.data.message);
-      }
+    onError: error => {
+      console.error('댓글 작성하기', error);
+      toast.error();
     },
   });
   const {

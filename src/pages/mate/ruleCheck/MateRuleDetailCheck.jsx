@@ -28,12 +28,17 @@ const MateRuleDetailCheckPage = () => {
         <S.Header>
           <S.Title>{data?.mainTitle}</S.Title>
           <S.ProfileContainer>
-            {data?.detailMembers?.map(p => (
+            {data?.detailMembers?.slice(0, 5).map(p => (
               <S.ProfileBox key={p.id}>
                 <S.ProfileImages src={p.image ? p.image : Logo} />
                 <h3>{p.name}</h3>
               </S.ProfileBox>
             ))}
+            {data?.detailMembers?.length > 5 && ( //
+              <S.ProfileBox>
+                <h3>외 {data.detailMembers.length - 5} 명</h3>
+              </S.ProfileBox>
+            )}
           </S.ProfileContainer>
         </S.Header>
         <S.Content>

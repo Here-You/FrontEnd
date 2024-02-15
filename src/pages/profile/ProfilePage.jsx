@@ -48,7 +48,6 @@ const ProfilePage = () => {
   return (
     <S.Container>
       <ProfileBox profile={profileData} />
-      {/* <S.Title>{data?.nickname}님의 시그니처 포스트</S.Title> */}
       <S.GridContainer>
         {signaturesList?.map(signature => {
           return signature?.data?.data?.data?.map(s => (
