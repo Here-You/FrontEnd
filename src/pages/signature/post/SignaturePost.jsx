@@ -155,7 +155,6 @@ const SignaturePostPage = () => {
                 </S.Liked>
               </S.ButtonContainer>
 
-
               <S.ImageContainer>
                 <S.Button onClick={handlePrevPage} disabled={step === 1}>
                   <GrFormPrevious />
@@ -187,22 +186,6 @@ const SignaturePostPage = () => {
                     onClick={() => navigate(`/signature/edit/${signatureId}`)}>
                     수정
                   </S.ModifyButton>
-                  <S.ButtonContainer>
-                    <S.Container
-                      onClick={async () => {
-                        try {
-                          mutateAsync(header._id);
-                        } catch (e) {
-                          console.log(e);
-                        }
-                      }}>
-                      <S.OutLineHeart size={28} />
-                      <S.FillHeart size={24} isLiked={header?.is_liked} />
-                    </S.Container>
-                    <S.HeartCountWrapper onClick={() => LikersModal.onOpen()}>
-                      좋아요 {header?.like_cnt}개
-                    </S.HeartCountWrapper>
-                  </S.ButtonContainer>
                   <S.DeleteButton onClick={handleDeletePost}>
                     삭제
                   </S.DeleteButton>

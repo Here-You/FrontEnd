@@ -6,7 +6,6 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 const Container = styled.div`
   cursor: pointer;
-  margin-top: 25px;
   ${theme.ALIGN.COLUMN_CENTER};
   gap: 10px;
 
@@ -39,6 +38,7 @@ const SignatureContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 90%;
+  height: 100%;
   margin: auto;
 `;
 
@@ -123,9 +123,10 @@ const ButtonContainer = styled.div`
 `;
 
 const Line = styled.div`
+  display: flex;
   width: 100%;
-  height: 0.7px;
-  background-color: lightgray;
+  height: 1.7px;
+  background-color: pink;
   margin-top: 5px;
 `;
 
