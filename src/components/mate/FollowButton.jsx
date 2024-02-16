@@ -28,7 +28,7 @@ const FollowButton = ({ initialFollowState, id }) => {
 
   return (
     <S.Button onClick={handleChangeFollowState} follow={follow}>
-      {follow ? '팔로우' : '언팔로우'}
+      {follow ? '팔로잉' : '팔로우'}
     </S.Button>
   );
 };
