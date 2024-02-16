@@ -61,6 +61,11 @@ const Schedules = ({ data, endDate, refetch }) => {
     setIsDiary(diary[0]);
   }, [data, refetch]);
 
+  useEffect(() => {
+    setValue('location', locationData[0]);
+    setValue('title', scheduleTitle);
+  }, []);
+
   const handleDeleteSchedule = async () => {
     try {
       setLoading(true);
