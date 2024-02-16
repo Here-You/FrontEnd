@@ -39,6 +39,8 @@ import Notification from './notification/Notification';
 import OnBoardingPage from './onboarding/OnBoardingPage';
 //Profile
 import ProfilePage from './profile/ProfilePage';
+// Quit User Page
+import QuitUserPage from './quitUserPage/QuitUserPage';
 // Signature
 import SignaturePage from './signature/SignaturePage';
 import SignatureEditPage from './signature/edit/SignatureEdit';
@@ -86,4 +88,5 @@ export {
   JourneyDetailPage,
   MainPage,
   ProfilePage,
+  QuitUserPage,
 };

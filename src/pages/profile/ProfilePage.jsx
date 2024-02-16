@@ -1,3 +1,4 @@
+import { QuitUserPage } from '..';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -14,6 +15,7 @@ const ProfilePage = () => {
   const { userId } = useParams();
   const { data, isPending, isError } = useProfileData(userId);
   const profileData = data?.data?.data;
+  const quitUser = profileData?.isQuit;
 
   const navigate = useNavigate();
 
@@ -44,6 +46,10 @@ const ProfilePage = () => {
   const handleMouseOut = () => {
     setHoveredSignature(null);
   };
+
+  if (quitUser) {
+    return <QuitUserPage />;
+  }
 
   return (
     <S.Container>
