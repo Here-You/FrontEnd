@@ -26,6 +26,7 @@ const Avatar = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 100px;
+  cursor: pointer;
 `;
 
 const ReplyContainer = styled.div`
