@@ -39,6 +39,7 @@ const ProfileBox = ({ profile }) => {
               <h1>{profile?.nickname}</h1>
               {profile?.is_followed !== null && (
                 <S.Button
+                  follow={profile?.is_followed}
                   onClick={async () => {
                     try {
                       await mutateAsync(profile?._id);
@@ -46,7 +47,7 @@ const ProfileBox = ({ profile }) => {
                       console.error(e);
                     }
                   }}>
-                  {profile?.is_followed === true ? '언팔로우' : '팔로우'}
+                  {profile?.is_followed === true ? '팔로잉' : '팔로우'}
                 </S.Button>
               )}
             </S.TextContainer>

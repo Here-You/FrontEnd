@@ -70,8 +70,9 @@ const TextContainer = styled.div`
 `;
 
 const Button = styled.button`
-  background: ${theme.COLOR.MAIN.LIGHT_GREEN};
-  border: none;
+  background-color: ${props =>
+    props.follow ? theme.COLOR.MAIN.LIGHT_GRAY : theme.COLOR.MAIN.LIGHT_GREEN};
+  border: 1px solid gray;
   padding: 5px 11px;
   border-radius: 20px;
   margin-left: 10px;

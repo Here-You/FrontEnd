@@ -6,7 +6,7 @@ const Button = styled.button`
   border: ${props =>
     props.follow ? `0.2px solid ${theme.COLOR.MAIN.GRAY}` : 'none'};
   background-color: ${props =>
-    props.follow ? theme.COLOR.MAIN.LIGHT_GREEN : theme.COLOR.MAIN.LIGHT_GRAY};
+    props.follow ? theme.COLOR.MAIN.LIGHT_GRAY : theme.COLOR.MAIN.LIGHT_GREEN};
   color: ${theme.COLOR.MAIN.GRAY};
   padding: 5px 18px;
   border-radius: 10px;
