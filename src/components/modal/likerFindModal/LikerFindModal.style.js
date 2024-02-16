@@ -2,14 +2,33 @@ import styled from 'styled-components';
 
 import theme from '@/theme';
 
-const Container = styled.div`
-  height: 300px;
-  ${theme.ALIGN.COLUMN_CENTER};
-  gap: 20px;
+const BodyContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER}
 `;
 
-const Title = styled.h1`
-  font-size: 1rem;
+const Title = styled.div`
+  background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+const Container = styled.div`
+  height: 400px;
+  gap: 50px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 `;
 
 const ProfileContainer = styled.div`
@@ -92,6 +111,7 @@ const Wrapper = styled.div`
 `;
 
 export {
+  BodyContainer,
   Container,
   Title,
   ProfileContainer,

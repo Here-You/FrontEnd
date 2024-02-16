@@ -39,36 +39,38 @@ const LikerFindModal = () => {
   });
 
   const BodyContent = (
-    <S.Container>
-      <S.Title>이 게시글에 좋아요 누른사람 {likeCount}명</S.Title>
-      {data?.data?.data?.profiles?.map(profile => (
-        <S.ProfileContainer
-          key={profile._id}
-          onClick={() => navigate(`/profile/${profile._id}`)}>
-          <S.UserImg src={profile.image ? profile.image : Logo} />
-          <S.TextContainer>
-            <S.UserName>{profile.nickname}</S.UserName>
-            <S.UserBio>{profile.introduction}</S.UserBio>
-          </S.TextContainer>
-          <S.Wrapper>
-            {profile.is_followed !== null && (
-              <S.Button
-                follow={profile.is_followed}
-                onClick={async e => {
-                  e.stopPropagation();
-                  try {
-                    mutateAsync(profile._id);
-                  } catch (e) {
-                    console.log(e);
-                  }
-                }}>
-                {profile.is_followed ? '팔로잉' : '팔로우'}
-              </S.Button>
-            )}
-          </S.Wrapper>
-        </S.ProfileContainer>
-      ))}
-    </S.Container>
+    <S.BodyContainer>
+      <S.Title>이 게시글에 좋아요를 누른사람 {likeCount}명</S.Title>
+      <S.Container>
+        {data?.data?.data?.profiles?.map(profile => (
+          <S.ProfileContainer
+            key={profile._id}
+            onClick={() => navigate(`/profile/${profile._id}`)}>
+            <S.UserImg src={profile.image ? profile.image : Logo} />
+            <S.TextContainer>
+              <S.UserName>{profile.nickname}</S.UserName>
+              <S.UserBio>{profile.introduction}</S.UserBio>
+            </S.TextContainer>
+            <S.Wrapper>
+              {profile.is_followed !== null && (
+                <S.Button
+                  follow={profile.is_followed}
+                  onClick={async e => {
+                    e.stopPropagation();
+                    try {
+                      mutateAsync(profile._id);
+                    } catch (e) {
+                      console.log(e);
+                    }
+                  }}>
+                  {profile.is_followed ? '팔로잉' : '팔로우'}
+                </S.Button>
+              )}
+            </S.Wrapper>
+          </S.ProfileContainer>
+        ))}
+      </S.Container>
+    </S.BodyContainer>
   );
 
   return (
