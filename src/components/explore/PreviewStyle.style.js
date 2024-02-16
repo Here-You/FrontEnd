@@ -7,7 +7,7 @@ import theme from '@/theme';
 const PreviewWrap = styled.div`
   display: flex;
   flex-direction: column;
-  width: 150px;
+  width: 200px;
   margin: 3%;
   cursor: pointer;
 `;
@@ -19,6 +19,11 @@ const PreviewImg = styled(LazyLoadImage)`
   overflow: hidden;
   border-radius: 5px;
   border: 1px solid var(--gray2, #c8c8c8);
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 300px;
+    height: 300px;
+  }
 `;
 
 const Title = styled.div`
