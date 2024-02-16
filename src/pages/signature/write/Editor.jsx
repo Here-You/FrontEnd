@@ -101,6 +101,7 @@ export default function Editor({ setSelectedHeader }) {
         placeholder="제목"
         value={title || ''}
         onChange={handleTitleChange}
+        maxLength="200"
       />
       <S.Divider />
       <S.ContentContainer>

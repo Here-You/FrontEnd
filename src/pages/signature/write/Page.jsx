@@ -65,6 +65,7 @@ export default function Page({ image, content }) {
           handleContentChange(e);
           handleResizeHeight();
         }}
+        maxLength="1500"
       />
     </S.PageContainer>
   );
