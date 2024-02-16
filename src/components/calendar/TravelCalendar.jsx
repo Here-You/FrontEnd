@@ -131,7 +131,7 @@ const TravelCalendar = ({
     if (endDate > lastDayOfPrevMonth) {
       newEndDate = lastDayOfPrevMonth;
     }
-
+    setValue(prevValue);
     setEndDate(newEndDate);
   };
 
@@ -221,8 +221,6 @@ const TravelCalendar = ({
                       <br />
                       이미지로 표시된 위치를 확인할 수 있습니다.
                     </h3>
-                    <input value={moment(value).format('YYYY/MM/DD') || ''} />
-                    <input value={moment(endDate).format('YYYY/MM/DD') || ''} />
                   </S.JouneyInfoContainer>
                 </>
               ) : (

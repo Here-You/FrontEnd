@@ -85,6 +85,7 @@ const SignatureContainer = styled.div`
     font-size: 0.8rem;
     display: block;
     text-overflow: ellipsis;
+    width: 100px;
     white-space: nowrap;
     overflow: hidden;
     color: ${theme.COLOR.MAIN.GRAY};

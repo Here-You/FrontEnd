@@ -3,7 +3,6 @@ import { useInView } from 'react-intersection-observer';
 
 import * as S from './MateLook.style';
 import explore2 from '/images/explore2.svg';
-import signature2 from '/images/signature2.svg';
 import Banner from '@/components/mate/Banner';
 import MateBox from '@/components/mate/MateBox';
 import MateRecsys from '@/components/mate/MateRecsys';
