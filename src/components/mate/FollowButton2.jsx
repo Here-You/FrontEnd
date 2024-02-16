@@ -39,10 +39,10 @@ export default FollowButton2;
 
 const Button = styled.button`
   border: ${props =>
-    props.follow ? 'none' : `0.2px solid ${theme.COLOR.MAIN.GRAY}`};
+    props.follow ? '0.2px solid gray' : `0.2px solid ${theme.COLOR.MAIN.GRAY}`};
 
   background-color: ${props =>
-    props.follow ? theme.COLOR.MAIN.LIGHT_GREEN : theme.COLOR.MAIN.WHITE};
+    props.follow ? theme.COLOR.MAIN.LIGHT_GRAY : theme.COLOR.MAIN.LIGHT_GREEN};
 
   color: ${theme.COLOR.MAIN.BLACK};
   padding: 5px 18px;
