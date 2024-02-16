@@ -123,17 +123,36 @@ const TravelCalendar = ({
 
     return '';
   };
-
   const handlePrev = () => {
-    const newValue = moment(value).subtract(1, 'month').toDate();
-    setValue(newValue);
+    const prevValue = moment(value).subtract(1, 'month').toDate();
+    const lastDayOfPrevMonth = moment(prevValue).endOf('month').toDate();
+    let newEndDate = endDate;
+
+    if (endDate > lastDayOfPrevMonth) {
+      newEndDate = lastDayOfPrevMonth;
+    }
+
+    setEndDate(newEndDate);
   };
 
-  // nextLabel 이벤트 핸들러
   const handleNext = () => {
-    const newValue = moment(value).add(1, 'month').toDate();
-    setValue(newValue);
+    const nextValue = moment(value).add(1, 'month').toDate();
+    const firstDayOfNextMonth = moment(nextValue).startOf('month').toDate();
+    let newStartDate = value;
+    let newEndDate = endDate;
+
+    if (value < firstDayOfNextMonth) {
+      newStartDate = firstDayOfNextMonth;
+      newEndDate = moment(firstDayOfNextMonth)
+        .add(moment(endDate).diff(moment(value)))
+        .toDate();
+    }
+
+    setValue(nextValue);
+    setEndDate(newEndDate);
   };
+
+  console.log();
 
   return (
     <>
