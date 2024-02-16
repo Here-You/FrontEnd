@@ -1,7 +1,7 @@
 import { formatDistance } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './SignatureComment.style';
 import Pen from '/icons/Pen.svg';
@@ -18,6 +18,7 @@ import { HiReply } from 'react-icons/hi';
 import { TiDeleteOutline } from 'react-icons/ti';
 
 const SignatureComment = ({ data }) => {
+  const navigate = useNavigate();
   const { signatureId } = useParams();
   const queryClient = useQueryClient();
   const { _id, content, parentId, is_edited, writer, date, can_delete } = data;
@@ -101,28 +102,44 @@ const SignatureComment = ({ data }) => {
 
   return (
     <S.Container indentationLevel={indentationLevel}>
-      <S.Avatar src={writer?.image ? writer?.image : Logo} />
+      <S.Avatar
+        onClick={() => navigate(`/profile/${writer?._id}`)}
+        src={writer?.image ? writer?.image : Logo}
+      />
       <S.ContentContainer>
         <S.NameContainer>
           <S.Name>{writer?.name}</S.Name>
-          {/* can_delete가 true면 (관리자) 모두 삭제 가능 */}
-          {/* is_writer가 true면 (본인) 본인글 삭제가능 */}
-          {(can_delete || writer?.is_writer) && (
-            <S.LeftContent>
-              {isReplying === false && !editMode && (
-                <S.ReplyBtn onClick={() => setIsReplying(true)}>
-                  <HiReply />
-                </S.ReplyBtn>
-              )}
-              {isReplying === true && (
-                <S.CancelBtn onClick={() => setIsReplying(false)}>
-                  <TiDeleteOutline />
-                </S.CancelBtn>
-              )}
-              {editMode ? (
-                <>
-                  <S.Button
-                    onClick={async () => {
+          <S.LeftContent>
+            {/* 본인 댓글이거나 게시글 주인인 경우에만 답글 버튼 표시 */}
+            <S.ReplyBtn onClick={() => setIsReplying(prev => !prev)}>
+              {isReplying === true ? <TiDeleteOutline /> : <HiReply />}
+            </S.ReplyBtn>
+            {/* 본인 댓글인 경우에만 수정 및 삭제 버튼 표시 */}
+            {writer?.is_writer && !editMode && (
+              <>
+                <S.Icon
+                  src={Pen}
+                  onClick={() => {
+                    setEditMode(true);
+                  }}
+                />
+                <S.Icon
+                  src={Trash}
+                  onClick={async () => {
+                    try {
+                      await deleteReComment({ signatureId, commentId: _id });
+                    } catch (e) {
+                      console.error(e);
+                    }
+                  }}
+                />
+              </>
+            )}
+            {editMode && (
+              <>
+                <S.Button
+                  onClick={async () => {
+                    if (editedContentRef.current.trim() !== '') {
                       try {
                         await updateReComment({
                           signatureId,
@@ -133,31 +150,16 @@ const SignatureComment = ({ data }) => {
                       } catch (e) {
                         console.error(e);
                       }
-                    }}>
-                    수정 완료
-                  </S.Button>
-                  <S.Button onClick={() => setEditMode(false)}>취소</S.Button>
-                </>
-              ) : (
-                <S.Icon
-                  src={Pen}
-                  onClick={() => {
-                    setEditMode(true);
-                  }}
-                />
-              )}
-              <S.Icon
-                src={Trash}
-                onClick={async () => {
-                  try {
-                    await deleteReComment({ signatureId, commentId: _id });
-                  } catch (e) {
-                    console.error(e);
-                  }
-                }}
-              />
-            </S.LeftContent>
-          )}
+                    } else {
+                      toast.error('댓글 내용을 입력해주세요!');
+                    }
+                  }}>
+                  수정 완료
+                </S.Button>
+                <S.Button onClick={() => setEditMode(false)}>취소</S.Button>
+              </>
+            )}
+          </S.LeftContent>
         </S.NameContainer>
         <S.Content
           contentEditable={editMode}
@@ -177,19 +179,24 @@ const SignatureComment = ({ data }) => {
               placeholder="답글을 작성하세요..."
               value={replyComment}
               onChange={e => setReplyComment(e.target.value)}
+              maxLength="200"
             />
             <S.AddReplyBtn
               onClick={async () => {
-                try {
-                  postReComment({
-                    signatureId,
-                    parentId,
-                    content: replyComment,
-                  });
-                  setReplyComment('');
-                  setIsReplying(false);
-                } catch (e) {
-                  console.log(e);
+                if (replyComment.trim() !== '') {
+                  try {
+                    postReComment({
+                      signatureId,
+                      parentId,
+                      content: replyComment,
+                    });
+                    setReplyComment('');
+                    setIsReplying(false);
+                  } catch (e) {
+                    console.log(e);
+                  }
+                } else {
+                  toast.error('답글 내용을 입력해주세요!');
                 }
               }}>
               답글 작성
