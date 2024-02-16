@@ -11,8 +11,10 @@ const Container = styled.div`
 `;
 
 const NotificationContainer = styled.div`
-  ${theme.ALIGN.ROW_CENTER}
-  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 95%;
   font-size: ${FONT_SIZE.LG};
   margin-bottom: 30px;
   padding: 20px;

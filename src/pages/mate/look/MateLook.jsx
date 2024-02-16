@@ -31,7 +31,9 @@ const MateLookPage = () => {
     <S.MateLookContainer>
       <Banner />
       <S.BoxContainer>
-        <S.Title>오늘의 랜덤 메이트 추천</S.Title>
+        <S.Title>
+          오늘의 <h3>랜덤 메이트</h3> 추천
+        </S.Title>
         <S.CenteredContainer>
           {isLoading
             ? new Array(5).fill(0).map(() => <MateRecsysSkeleton />)
@@ -68,7 +70,7 @@ const MateLookPage = () => {
                     ))
                   ) : (
                     <div>
-                      {`[${locationMate?.location}]`}를 사용하는 메이트가
+                      {`[${locationMate?.location}]`}을/를 사용하는 메이트가
                       없습니다.
                     </div>
                   ))}
