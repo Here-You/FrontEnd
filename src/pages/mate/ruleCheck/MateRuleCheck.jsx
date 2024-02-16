@@ -1,6 +1,6 @@
 import MateContainer from '../MateContainer';
 import * as S from './MateRuleCheck.style';
-import { getTeamRuleList } from '@/apis/request/mate';
+import MateRuleCheckSkeleton from './MateRuleSkeleton/MateRuleCheckSkeleton';
 import TeamContainer from '@/components/mate/TeamContainer';
 import { useGetTeamRuleList } from '@/hooks/mate/queries/useGetTeamRuleList';
 import { ErrorPage } from '@/pages';
@@ -8,10 +8,16 @@ import { ErrorPage } from '@/pages';
 const MateRuleCheckPage = () => {
   const { data, isPending, isError } = useGetTeamRuleList();
   const rulesData = data?.data?.data;
-  console.log(rulesData);
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return (
+      <MateContainer>
+        <S.SkeletonTitle />
+        {new Array(5).fill(0).map(() => (
+          <MateRuleCheckSkeleton />
+        ))}
+      </MateContainer>
+    );
   }
 
   if (isError) {
