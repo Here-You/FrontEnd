@@ -167,7 +167,6 @@ const SignaturePostPage = () => {
             <S.TextContainer>
               <h3>
                 <img src={LocationImg} />
-                {/*   <CiLocationOn /> */}
                 {detailSignatures?.pages[step - 1]?.location}
               </h3>
               <p>{detailSignatures?.pages[step - 1]?.content}</p>

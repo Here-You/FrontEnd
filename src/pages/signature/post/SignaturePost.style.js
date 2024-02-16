@@ -96,6 +96,7 @@ const TitleContainer = styled.div`
   margin: 20px auto 10px auto;
   font-size: ${FONT_SIZE.XS};
   gap: 10px;
+
   h1 {
     font-size: 20px;
     font-family: 'Pretendard-semibold';
@@ -105,7 +106,7 @@ const TitleContainer = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 85%;
+  width: 92%;
   margin: 10px auto 5px auto;
   gap: 2px;
   font-size: ${FONT_SIZE.SM};
