@@ -66,6 +66,7 @@ const MateRuleWritePage = () => {
             value={title}
             onChange={e => setTitle(e.target.value)}
             placeholder="규칙 제목을 입력해주세요."
+            maxLength="200"
           />
           <S.PlusSvg src={PlusUser} onClick={() => inviteMatesModal.onOpen()} />
         </S.Header>
@@ -88,6 +89,7 @@ const MateRuleWritePage = () => {
                     newRules[index].ruleTitle = e.target.value;
                     setRules(newRules);
                   }}
+                  maxLength="250"
                 />
                 <S.ContentTextInput
                   placeholder={`규칙 ${index + 1} 내용을 입력해주세요!`}
@@ -99,6 +101,7 @@ const MateRuleWritePage = () => {
                   }}
                   rows="5"
                   columns="2"
+                  maxLength="1500"
                 />
                 <S.DeleteRuleButton onClick={() => handleRemoveRule(index)}>
                   X
