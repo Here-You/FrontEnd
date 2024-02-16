@@ -14,23 +14,21 @@ const Preview = ({ signature }) => {
   }, [date]);
 
   return (
-    <>
-      <S.PreviewWrap onClick={() => navigate(`/signature/post/${_id}`)}>
-        <S.DateWrapper>
-          <S.Date>{formattedDate}</S.Date>
-        </S.DateWrapper>
-        <S.PreviewImg
-          src={image}
-          height={'fit-content'}
-          effect="blur"
-          width="150"
-        />
-        <S.ContentContainer>
-          <S.Title>{title}</S.Title>
-          <S.Open to={`/signature/post/${_id}`}>자세히보기</S.Open>
-        </S.ContentContainer>
-      </S.PreviewWrap>
-    </>
+    <S.PreviewWrap onClick={() => navigate(`/signature/post/${_id}`)}>
+      <S.DateWrapper>
+        <S.Date>{formattedDate}</S.Date>
+      </S.DateWrapper>
+      <S.PreviewImg
+        src={image}
+        height={'fit-content'}
+        effect="blur"
+        width="150"
+      />
+      <S.ContentContainer>
+        <S.Title>{title}</S.Title>
+        <S.Open to={`/signature/post/${_id}`}>자세히보기</S.Open>
+      </S.ContentContainer>
+    </S.PreviewWrap>
   );
 };
 

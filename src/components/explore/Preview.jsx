@@ -13,7 +13,7 @@ const Preview = ({ data }) => {
         <S.PreviewImg
           height={'fit-content'}
           effect="blur"
-          width={'140px'}
+          width={'200px'}
           src={data?.image}
         />
         <S.Title>{data?.title}</S.Title>
