@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
+
 import Preview from './Preview';
 import * as S from './SignatureSearchSlider.style';
 
 const SignatureSearchSlider = ({ data, type, searchTerm }) => {
-  console.log(data);
+  const navigate = useNavigate();
   return (
     <S.PageContainer>
       {type === 'hot' ? (
@@ -13,10 +15,13 @@ const SignatureSearchSlider = ({ data, type, searchTerm }) => {
         <S.Title>"{searchTerm}" 에 관한 시그니처⭐</S.Title>
       )}
       <S.PreviewContainer>
-        {data?.length === 0 ? (
+        {data === null ? (
           <S.EmptyContainer>
-            <S.Text>해당 검색어에 해당하는 컨텐츠가 없습니다.</S.Text>
-            <S.Text>가장 먼저 해당 키워드의 작성자가 되어보세요!</S.Text>
+            <S.Text>로그인 후</S.Text>
+            <S.Text>내 메이트의 새로운 여행 소식을 받아보세요!</S.Text>
+            <S.Button onClick={() => navigate('/login')}>
+              소셜 로그인으로 빠르게 사용하기!
+            </S.Button>
           </S.EmptyContainer>
         ) : (
           data?.map((d, _) => {

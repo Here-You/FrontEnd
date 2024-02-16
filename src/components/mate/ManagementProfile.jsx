@@ -8,6 +8,7 @@ const ManagementProfile = ({ profileData }) => {
   const navigate = useNavigate();
   const { email, image, introduction, isFollowing, mateId, nickName } =
     profileData;
+
   return (
     <S.CenteredContainer>
       <S.ProfileContainer onClick={() => navigate(`/profile/${mateId}`)}>

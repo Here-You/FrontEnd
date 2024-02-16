@@ -7,8 +7,8 @@ import theme from '@/theme';
 const PreviewWrap = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   align-items: flex-start;
-  height: 100%;
-  width: 100%;
+  height: 280px;
+  width: 200px;
   margin-bottom: 20px;
   cursor: pointer;
 `;
@@ -44,7 +44,7 @@ const PreviewImg = styled(LazyLoadImage)`
 const ContentContainer = styled.div`
   background-color: ${theme.COLOR.MAIN.WHITE};
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  width: 100%;
+  width: 200px;
   border-radius: 10px;
   padding: 8px;
 

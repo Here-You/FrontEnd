@@ -38,4 +38,17 @@ const Text = styled.div`
   text-align: center;
 `;
 
-export { PageContainer, EmptyContainer, Title, PreviewContainer, Text };
+const Button = styled.button`
+  font-size: 1rem;
+  color: ${theme.COLOR.MAIN.MEDIUM_GREEN};
+  background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(0.99);
+  }
+`;
+
+export { PageContainer, EmptyContainer, Title, PreviewContainer, Text, Button };

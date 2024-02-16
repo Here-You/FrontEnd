@@ -269,11 +269,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: (
-              <ProtectedRouter>
-                <ExplorePage />
-              </ProtectedRouter>
-            ),
+            element: <ExplorePage />,
           },
         ],
       },
