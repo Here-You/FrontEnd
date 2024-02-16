@@ -33,14 +33,12 @@ const TravelCalendar = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    const currentDate = new Date(); // 현재 날짜
-    const currentYear = currentDate.getFullYear(); // 현재 연도
-    const currentMonth = currentDate.getMonth() + 1; // 현재 월 (0부터 시작하므로 +1 필요)
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
 
-    // 현재 연도와 월을 문자열로 변환하여 pathname과 함께 사용하여 현재 페이지의 키를 생성
     const currentKey = `/calendar?year=${currentYear}&month=${currentMonth}`;
 
-    // 만약 현재 페이지의 키와 pathname이 같다면 캘린더를 현재 날짜로 설정
     if (currentKey === pathname) {
       setValue(currentDate);
     }
@@ -126,18 +124,15 @@ const TravelCalendar = ({
     return '';
   };
 
-  console.log(value);
-
-  // prevLabel 이벤트 핸들러
   const handlePrev = () => {
-    const newValue = moment(value).subtract(1, 'month').toDate(); // 이전 달로 설정
-    setValue(newValue); // state 업데이트
+    const newValue = moment(value).subtract(1, 'month').toDate();
+    setValue(newValue);
   };
 
   // nextLabel 이벤트 핸들러
   const handleNext = () => {
-    const newValue = moment(value).add(1, 'month').toDate(); // 다음 달로 설정
-    setValue(newValue); // state 업데이트
+    const newValue = moment(value).add(1, 'month').toDate();
+    setValue(newValue);
   };
 
   return (
@@ -177,12 +172,8 @@ const TravelCalendar = ({
               formatDay={(locale, date) => moment(date).format('D')}
               selectRange={true}
               value={[value, endDate]}
-              prevLabel={
-                <S.changeDateBtn onClick={handlePrev}>{'<'}</S.changeDateBtn>
-              }
-              nextLabel={
-                <S.changeDateBtn onClick={handleNext}>{'>'}</S.changeDateBtn>
-              }
+              prevLabel={<S.PrevBtn onClick={handlePrev}>{'<'}</S.PrevBtn>}
+              nextLabel={<S.NextBtn onClick={handleNext}>{'>'}</S.NextBtn>}
             />
             <S.IntroductionContainer>
               {storedStartDate && storedEndDate ? (

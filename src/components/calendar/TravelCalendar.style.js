@@ -176,14 +176,27 @@ const Image = styled.img`
   width: 15px;
 `;
 
-const changeDateBtn = styled.button`
+const PrevBtn = styled.button`
   background: none;
   border: none;
   font-size: 20px;
+  margin-right: 20px;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: 15px;
-    margin-right: 10px;
+    margin-left: -20px;
+  }
+`;
+
+const NextBtn = styled.button`
+  background: none;
+  border: none;
+  font-size: 20px;
+  margin-left: 20px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: 15px;
+    margin-right: -20px;
   }
 `;
 
@@ -201,5 +214,6 @@ export {
   IntroductionContainer,
   JouneyInfoContainer,
   Image,
-  changeDateBtn,
+  PrevBtn,
+  NextBtn,
 };
