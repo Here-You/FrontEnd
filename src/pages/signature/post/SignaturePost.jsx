@@ -146,7 +146,6 @@ const SignaturePostPage = () => {
                     console.log(e);
                   }
                 }}>
-                <S.OutLineHeart size={28} />
                 <S.FillHeart size={24} isLiked={header?.is_liked} />
               </S.Container>
               <S.Liked onClick={() => LikersModal.onOpen()}>
