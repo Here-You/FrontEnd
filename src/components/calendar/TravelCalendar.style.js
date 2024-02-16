@@ -176,6 +176,34 @@ const Image = styled.img`
   width: 15px;
 `;
 
+const CalendarContainer = styled.div`
+  position: relative;
+`;
+
+const PrevBtn = styled.button`
+  background: none;
+  border: none;
+  font-size: 20px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    position: absolute;
+    font-size: 15px;
+    right: 0;
+  }
+`;
+
+const NextBtn = styled.button`
+  background: none;
+  border: none;
+  font-size: 20px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    position: absolute;
+    font-size: 15px;
+    left: 0;
+  }
+`;
+
 export {
   HighlightedElement,
   Wrapper,
@@ -188,6 +216,9 @@ export {
   HomeContentContainer,
   SchedulesContainer,
   IntroductionContainer,
+  CalendarContainer,
   JouneyInfoContainer,
   Image,
+  PrevBtn,
+  NextBtn,
 };
