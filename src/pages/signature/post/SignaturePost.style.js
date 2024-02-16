@@ -155,6 +155,7 @@ const Image = styled.img`
   width: 300px;
   height: 400px;
   object-fit: cover;
+  border-radius: 7px;
 `;
 
 const TextContainer = styled.div`

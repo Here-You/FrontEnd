@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './SignaturePost.style';
+import SignaturePostSkeleton from './skeleton/SignaturePostSkeleton';
 import Logo from '/images/mypage/MyPageLogo.svg';
 import LocationImg from '/images/pin.svg';
 import { deleteMySignature, likeSignature } from '@/apis/request/signature';
@@ -91,17 +92,16 @@ const SignaturePostPage = () => {
     }
   };
 
-  if (isPending) {
-    return <div>Loading...</div>;
-  }
-
   if (isError) {
     return <div>Error 발생...</div>;
   }
 
   return (
     <>
-      {detailSignatures &&
+      {isPending || mePending ? (
+        <SignaturePostSkeleton />
+      ) : (
+        detailSignatures &&
         detailSignatures?.pages &&
         detailSignatures?.pages[step - 1] && (
           <S.SignatureContainer>
@@ -136,7 +136,6 @@ const SignaturePostPage = () => {
 
             <S.Line />
             <S.ButtonContainer>
-              {/* {header._id} */}
               <S.Container
                 onClick={async () => {
                   try {
@@ -187,7 +186,8 @@ const SignaturePostPage = () => {
               <SignatureCommentList />
             </S.CommentContainer>
           </S.SignatureContainer>
-        )}
+        )
+      )}
     </>
   );
 };
