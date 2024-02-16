@@ -140,6 +140,7 @@ const Button = styled.button`
   font-size: 3rem;
   background-color: transparent;
   cursor: pointer;
+
   &:not(:disabled):hover {
     transform: scale(0.9);
     color: ${theme.COLOR.MAIN.HEAVY_GREEN};
@@ -149,15 +150,15 @@ const Button = styled.button`
     font-size: 1rem;
   }
 `;
+
 const Image = styled.img`
   width: 300px;
   height: 400px;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 const TextContainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-
   gap: 10px;
   padding: 10px;
 
@@ -174,6 +175,7 @@ const TextContainer = styled.div`
     font-family: 'Pretendard-light';
     font-size: 16px;
   }
+
   img {
     width: 25px;
   }
