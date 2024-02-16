@@ -14,7 +14,6 @@ import useLikersModal from '@/hooks/modal/useLikersModal';
 import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 import { useGetSignaturePost } from '@/hooks/signature/queries/useGetSignaturePost';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { CiLocationOn } from 'react-icons/ci';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const SignaturePostPage = () => {

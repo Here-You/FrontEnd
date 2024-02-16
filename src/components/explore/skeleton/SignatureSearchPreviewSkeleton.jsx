@@ -24,7 +24,6 @@ const SignatureSearchPreviewSkeleton = () => {
           {new Array(10).fill(0).map(() => Preview)}
         </S.PreviewContainer>
       </S.PageContainer>
-
       <S.PageContainer>
         <S.Title />
         <S.PreviewContainer>

@@ -25,8 +25,8 @@ const PreviewWrap = styled.div`
 
 const PreviewImg = styled.div`
   display: flex;
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
   overflow: hidden;
   border-radius: 5px;
 `;
@@ -59,7 +59,7 @@ const ProfileImg = styled.div`
 
 const Nickname = styled.div`
   border-radius: 20px;
-  width: 50px;
+  width: 100px;
   padding: 10px;
   animation: ${skeletonGradient} 1.5s infinite;
 `;
@@ -84,7 +84,6 @@ const HeartContainer = styled.div`
 
 const Open = styled.div`
   display: flex;
-
   cursor: pointer;
 `;
 
@@ -101,7 +100,6 @@ const PageContainer = styled.div`
 
   width: 95%;
   margin: 0 auto;
-  margin-top: 70px;
 `;
 
 const EmptyContainer = styled.div`
