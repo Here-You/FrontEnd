@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
 
 const PageContainer = styled.div`
@@ -23,12 +24,37 @@ const EmptyContainer = styled.div`
 const Title = styled.div`
   display: flex;
   margin-left: 10px;
+  font-size: ${FONT_SIZE.LG};
+  color: ${theme.COLOR.MAIN.BLACK};
   font-family: 'Pretendard-bold';
 `;
 
 const PreviewContainer = styled.div`
   display: flex;
   overflow-x: scroll;
+  margin-bottom: 10px;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+  }
 `;
 
 const Text = styled.div`

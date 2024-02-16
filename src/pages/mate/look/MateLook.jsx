@@ -6,6 +6,8 @@ import explore2 from '/images/explore2.svg';
 import Banner from '@/components/mate/Banner';
 import MateBox from '@/components/mate/MateBox';
 import MateRecsys from '@/components/mate/MateRecsys';
+import MateBoxSkeleton from '@/components/mate/skeleton/MateBoxSkeleton';
+import MateRecsysSkeleton from '@/components/mate/skeleton/MateRecsysSkeleton';
 import { useRandomInfiniteMate } from '@/hooks/mate/queries/useRandomInfiniteMate';
 import { useGetLocationMate } from '@/hooks/mate/useGetLocationMate';
 
@@ -29,14 +31,17 @@ const MateLookPage = () => {
     <S.MateLookContainer>
       <Banner />
       <S.BoxContainer>
-        <S.Title>오늘의 랜덤 메이트 추천</S.Title>
+        <S.Title>
+          오늘의 <h3>랜덤 메이트</h3> 추천
+        </S.Title>
         <S.CenteredContainer>
-          {randomMates?.map(mateData =>
-            mateData?.data.data.data.map(mate => (
-              <MateRecsys key={mate._id} mate={mate} />
-            )),
-          )}
-
+          {isLoading
+            ? new Array(5).fill(0).map(() => <MateRecsysSkeleton />)
+            : randomMates?.map(mateData =>
+                mateData?.data.data.data.map(mate => (
+                  <MateRecsys key={mate._id} mate={mate} />
+                )),
+              )}
           <div
             ref={ref}
             style={{
@@ -47,26 +52,29 @@ const MateLookPage = () => {
       <S.BoxContainer>
         {locationMate ? (
           <>
-            <S.Title>
-              {`${locationMate?.userName}님의 시그니처 `}
-              <h3>[{locationMate?.location}]</h3>
-              {'를 함께 이용 중인 메이트 추천'}
-            </S.Title>
+            {!loading && (
+              <S.Title>
+                {`${locationMate?.userName}님의 시그니처 `}
+                <h3>[{locationMate?.location}]</h3>
+                {'를 함께 이용 중인 메이트 추천'}
+              </S.Title>
+            )}
+
             <S.CenteredContainer>
-              {locationMate?.mateProfiles ? (
-                locationMate?.mateProfiles.length > 0 ? (
-                  locationMate?.mateProfiles.map(mate => (
-                    <MateBox key={mate._id} mate={mate} />
-                  ))
-                ) : (
-                  <div>
-                    {`[${locationMate?.location}]`}를 사용하는 메이트가
-                    없습니다.
-                  </div>
-                )
-              ) : (
-                <div>Loading...</div>
-              )}
+              {loading
+                ? new Array(5).fill(0).map(() => <MateBoxSkeleton />)
+                : locationMate?.mateProfiles &&
+                  (locationMate?.mateProfiles.length > 0 ? (
+                    locationMate?.mateProfiles.map(mate => (
+                      <MateBox key={mate._id} mate={mate} />
+                    ))
+                  ) : (
+                    <div>
+                      {`[${locationMate?.location}]`}을/를 사용하는 메이트가
+                      없습니다.
+                    </div>
+                  ))}
+              {}
             </S.CenteredContainer>
           </>
         ) : (
