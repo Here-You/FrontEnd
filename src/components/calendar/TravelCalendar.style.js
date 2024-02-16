@@ -181,26 +181,42 @@ const CalendarContainer = styled.div`
 `;
 
 const PrevBtn = styled.button`
+  position: absolute;
   background: none;
   border: none;
   font-size: 20px;
+  left: 0;
 
-  @media ${theme.WINDOW_SIZE.MOBILE} {
+  @media (min-width: 768px) {
     position: absolute;
-    font-size: 15px;
-    right: 0;
+    font-size: 20px;
+    right: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    position: absolute;
+    font-size: 20px;
+    right: 30px;
   }
 `;
 
 const NextBtn = styled.button`
+  position: absolute;
   background: none;
   border: none;
   font-size: 20px;
+  right: 0;
 
-  @media ${theme.WINDOW_SIZE.MOBILE} {
+  @media (min-width: 768px) {
     position: absolute;
-    font-size: 15px;
-    left: 0;
+    font-size: 20px;
+    left: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    position: absolute;
+    font-size: 20px;
+    left: 30px;
   }
 `;
 
