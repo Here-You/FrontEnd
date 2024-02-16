@@ -9,6 +9,7 @@ import Logo from '/images/mypage/MyPageLogo.svg';
 import { postFollowMate } from '@/apis/request/mate';
 import { CountInfo } from '@/components';
 import Search from '@/components/mate/Search';
+import ProfileSkeleton from '@/components/mate/skeleton/ProfileSkeleton';
 import { useGetSearchInfiniteNickname } from '@/hooks/mate/queries/useGetSearcInfiniteNickname';
 import useDebounce from '@/hooks/useDebounce';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -55,42 +56,46 @@ const MatePage = () => {
     <S.Container>
       <Search setSearchTerm={setSearchTerm} />
       {searchTerm ? (
-        searchMembers?.map(members => {
-          return members?.data?.data?.data.map(member => (
-            <S.ProfileContainer
-              key={member?.id}
-              onClick={() => navigate(`/profile/${member?.id}`)}>
-              <S.ProfileImage src={member.image ? member.image : Logo} />
-              <S.IntroContainer>
-                <S.NickNameContainer>
-                  <h1>{member.nickName}</h1>
-                  <S.FollowButton
-                    follow={member.isFollowing}
-                    onClick={async e => {
-                      e.stopPropagation();
-                      try {
-                        await mutateAsync(member.id);
-                      } catch (e) {
-                        console.error(e);
-                      }
-                    }}>
-                    {member.isFollowing === true ? '언팔로우' : '팔로우'}
-                  </S.FollowButton>
-                </S.NickNameContainer>
-                <S.InfoContainer>{member.introduction}</S.InfoContainer>
-                <S.CountContainer>
-                  <CountInfo title="팔로워" count={member.followerCnt} />
-                  <CountInfo title="팔로우" count={member.followingCnt} />
-                </S.CountContainer>
-              </S.IntroContainer>
-              <div
-                ref={ref}
-                style={{
-                  height: '5px',
-                }}></div>
-            </S.ProfileContainer>
-          ));
-        })
+        isFetching ? (
+          new Array(10).fill(0).map(() => <ProfileSkeleton />)
+        ) : (
+          searchMembers?.map(members => {
+            return members?.data?.data?.data.map(member => (
+              <S.ProfileContainer
+                key={member?.id}
+                onClick={() => navigate(`/profile/${member?.id}`)}>
+                <S.ProfileImage src={member.image ? member.image : Logo} />
+                <S.IntroContainer>
+                  <S.NickNameContainer>
+                    <h1>{member.nickName}</h1>
+                    <S.FollowButton
+                      follow={member.isFollowing}
+                      onClick={async e => {
+                        e.stopPropagation();
+                        try {
+                          await mutateAsync(member.id);
+                        } catch (e) {
+                          console.error(e);
+                        }
+                      }}>
+                      {member.isFollowing === true ? '언팔로우' : '팔로우'}
+                    </S.FollowButton>
+                  </S.NickNameContainer>
+                  <S.InfoContainer>{member.introduction}</S.InfoContainer>
+                  <S.CountContainer>
+                    <CountInfo title="팔로워" count={member.followerCnt} />
+                    <CountInfo title="팔로우" count={member.followingCnt} />
+                  </S.CountContainer>
+                </S.IntroContainer>
+                <div
+                  ref={ref}
+                  style={{
+                    height: '5px',
+                  }}></div>
+              </S.ProfileContainer>
+            ));
+          })
+        )
       ) : (
         <MateMainPage />
       )}
