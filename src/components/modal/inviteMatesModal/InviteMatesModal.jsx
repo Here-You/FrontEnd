@@ -14,7 +14,7 @@ const InviteMatesModal = () => {
   const [nickname, setNickname] = useState('');
   const debouncedNickname = useDebounce(nickname, 2000);
 
-  const { selectedMates, addSelectedMate, clearSelectedMates } =
+  const { selectedMates, addSelectedMate, removeSelectedMate } =
     useMatesStore();
 
   const mateIds = selectedMates.map(mate => mate.id);
@@ -71,7 +71,7 @@ const InviteMatesModal = () => {
                   isSelected={isSelected}
                   onClick={() => {
                     isSelected
-                      ? clearSelectedMates(mate.id)
+                      ? removeSelectedMate(mate.id)
                       : addSelectedMate(mate);
                   }}>
                   <S.ProfileImage src={mate.image ? mate.image : Logo} />
