@@ -20,20 +20,34 @@ const TravelCalendar = ({
   const storedStartDate = localStorage.getItem('startDate');
   const storedEndDate = localStorage.getItem('endDate');
 
-  const [startDate, setStartDate] = useState(() => {
+  const [value, setValue] = useState(() => {
     const storedStartDate = localStorage.getItem('startDate');
-    return storedStartDate ? storedStartDate : new Date();
+    return storedStartDate ? new Date(storedStartDate) : new Date();
   });
   const [endDate, setEndDate] = useState(() => {
     const storedEndDate = localStorage.getItem('endDate');
-    return storedEndDate ? storedEndDate : new Date();
+    return storedEndDate ? new Date(storedEndDate) : new Date();
   });
   const [journeyTitle, setJourneyTitle] = useState('');
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const year = moment(endDate).format('YYYY');
-  const month = moment(endDate).format('MM');
+  useEffect(() => {
+    const currentDate = new Date(); // 현재 날짜
+    const currentYear = currentDate.getFullYear(); // 현재 연도
+    const currentMonth = currentDate.getMonth() + 1; // 현재 월 (0부터 시작하므로 +1 필요)
+
+    // 현재 연도와 월을 문자열로 변환하여 pathname과 함께 사용하여 현재 페이지의 키를 생성
+    const currentKey = `/calendar?year=${currentYear}&month=${currentMonth}`;
+
+    // 만약 현재 페이지의 키와 pathname이 같다면 캘린더를 현재 날짜로 설정
+    if (currentKey === pathname) {
+      setValue(currentDate);
+    }
+  }, [pathname]);
+
+  const year = moment(value).format('YYYY');
+  const month = moment(value).format('MM');
   const {
     data,
     loading: calendarLoading,
@@ -41,34 +55,30 @@ const TravelCalendar = ({
   } = useMonthlyJourney(year, month);
 
   useEffect(() => {
-    const storedStartDate = localStorage.getItem('startDate');
-    const storedEndDate = localStorage.getItem('endDate');
-
     if (data) {
-      data &&
-        data.forEach(monthlyJourney => {
-          setMonthlyInfo(prev => [
-            ...prev,
-            {
-              startDate: monthlyJourney.startDate,
-              endDate: monthlyJourney.endDate,
-            },
-          ]);
-          if (
-            storedStartDate === monthlyJourney.startDate &&
-            storedEndDate === monthlyJourney.endDate
-          ) {
-            setJourneyTitle(monthlyJourney.title);
-          }
-        });
+      data.forEach(monthlyJourney => {
+        setMonthlyInfo(prev => [
+          ...prev,
+          {
+            startDate: monthlyJourney.startDate,
+            endDate: monthlyJourney.endDate,
+          },
+        ]);
+        if (
+          storedStartDate === monthlyJourney.startDate &&
+          storedEndDate === monthlyJourney.endDate
+        ) {
+          setJourneyTitle(monthlyJourney.title);
+        }
+      });
     }
-  }, [data, setMonthlyInfo]);
+  }, [data, storedStartDate, storedEndDate, setMonthlyInfo]);
 
   const changeDate = e => {
     const startDateFormat = moment(e[0]).format('YYYY/MM/DD');
     const endDateFormat = moment(e[1]).format('YYYY/MM/DD');
-    setStartDate(startDateFormat);
-    setEndDate(endDateFormat);
+    setValue(e[0]);
+    setEndDate(e[1]);
     clickStateDtate(startDateFormat);
     clickEndDate(endDateFormat);
 
@@ -116,9 +126,19 @@ const TravelCalendar = ({
     return '';
   };
 
-  // if (error) {
-  //   return <ErrorPage />;
-  // }
+  console.log(value);
+
+  // prevLabel 이벤트 핸들러
+  const handlePrev = () => {
+    const newValue = moment(value).subtract(1, 'month').toDate(); // 이전 달로 설정
+    setValue(newValue); // state 업데이트
+  };
+
+  // nextLabel 이벤트 핸들러
+  const handleNext = () => {
+    const newValue = moment(value).add(1, 'month').toDate(); // 다음 달로 설정
+    setValue(newValue); // state 업데이트
+  };
 
   return (
     <>
@@ -141,11 +161,11 @@ const TravelCalendar = ({
           <S.HeaderWrapper>
             <S.Circle />
             <S.CircleWrapper>
-              <h1>{moment(startDate).format('MM')}</h1>
+              <h1>{moment(value).format('MM')}</h1>
               <S.FontWrapper>
-                {moment(startDate).format('MMMM')}
+                {moment(value).format('MMMM')}
                 <br />
-                {moment(startDate).format('YYYY')}
+                {moment(value).format('YYYY')}
               </S.FontWrapper>
             </S.CircleWrapper>
           </S.HeaderWrapper>
@@ -156,6 +176,13 @@ const TravelCalendar = ({
               onChange={changeDate}
               formatDay={(locale, date) => moment(date).format('D')}
               selectRange={true}
+              value={[value, endDate]}
+              prevLabel={
+                <S.changeDateBtn onClick={handlePrev}>{'<'}</S.changeDateBtn>
+              }
+              nextLabel={
+                <S.changeDateBtn onClick={handleNext}>{'>'}</S.changeDateBtn>
+              }
             />
             <S.IntroductionContainer>
               {storedStartDate && storedEndDate ? (
@@ -168,7 +195,8 @@ const TravelCalendar = ({
                     )}
 
                     <p>
-                      {startDate} ~ {endDate}
+                      {moment(value).format('YYYY/MM/DD')} ~{' '}
+                      {moment(endDate).format('YYYY/MM/DD')}
                     </p>
                   </S.JouneyInfoContainer>
                   <S.JouneyInfoContainer>
@@ -181,6 +209,8 @@ const TravelCalendar = ({
                       <br />
                       이미지로 표시된 위치를 확인할 수 있습니다.
                     </h3>
+                    <input value={moment(value).format('YYYY/MM/DD') || ''} />
+                    <input value={moment(endDate).format('YYYY/MM/DD') || ''} />
                   </S.JouneyInfoContainer>
                 </>
               ) : (
@@ -191,8 +221,8 @@ const TravelCalendar = ({
             </S.IntroductionContainer>
 
             <SchedulesView
-              startDate={startDate}
-              endDate={endDate}
+              startDate={moment(value).format('YYYY/MM/DD')}
+              endDate={moment(endDate).format('YYYY/MM/DD')}
               journeyTitle={journeyTitle}
             />
           </S.HomeContentContainer>

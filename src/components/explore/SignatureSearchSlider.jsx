@@ -20,7 +20,7 @@ const SignatureSearchSlider = ({ data, type, searchTerm }) => {
           </S.EmptyContainer>
         ) : (
           data?.map((d, _) => {
-            return <Preview key={d._id} data={d} />;
+            return <Preview key={d?._id} data={d} />;
           })
         )}
       </S.PreviewContainer>

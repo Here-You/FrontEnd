@@ -12,7 +12,7 @@ const MySignaturePage = () => {
       {signaturePreview.length !== 0 ? (
         <S.PreviewContainer>
           {signaturePreview.map((s, _) => (
-            <Preview key={s._id} signature={s} />
+            <Preview key={s?._id} signature={s} />
           ))}
         </S.PreviewContainer>
       ) : (

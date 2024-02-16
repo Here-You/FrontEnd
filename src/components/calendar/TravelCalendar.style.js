@@ -176,6 +176,17 @@ const Image = styled.img`
   width: 15px;
 `;
 
+const changeDateBtn = styled.button`
+  background: none;
+  border: none;
+  font-size: 20px;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    font-size: 15px;
+    margin-right: 10px;
+  }
+`;
+
 export {
   HighlightedElement,
   Wrapper,
@@ -190,4 +201,5 @@ export {
   IntroductionContainer,
   JouneyInfoContainer,
   Image,
+  changeDateBtn,
 };
