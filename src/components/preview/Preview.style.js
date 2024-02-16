@@ -11,6 +11,11 @@ const PreviewWrap = styled.div`
   width: 200px;
   margin-bottom: 20px;
   cursor: pointer;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 300px;
+    height: 300px;
+  }
 `;
 
 const DateWrapper = styled.div`
@@ -37,7 +42,8 @@ const PreviewImg = styled(LazyLoadImage)`
   border: 1px solid var(--gray2, #c8c8c8);
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    width: 100%;
+    width: 300px;
+    height: 200px;
   }
 `;
 
