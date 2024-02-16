@@ -51,6 +51,7 @@ const MateCommentInput = ({ ruleId }) => {
         placeholder="댓글을 작성해보세요~"
         value={content}
         onChange={e => setContent(e.target.value)}
+        maxLength="300"
       />
       <S.SubmitButton
         onClick={async () => {

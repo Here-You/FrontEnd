@@ -33,7 +33,7 @@ const MateCommentList = ({ ruleId }) => {
       <S.LoadingWrapper>
         {isFetching && <ClipLoader size={50} color={'#1B9C85'} />}
       </S.LoadingWrapper>
-      <div ref={ref} style={{ height: 5 }}></div>
+      <div ref={ref} style={{ height: 5 }} />
     </S.Container>
   );
 };

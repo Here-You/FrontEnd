@@ -23,7 +23,7 @@ const RuleComments = (userImage, commentsData) => {
       <S.InputContainer>
         {userImage && <S.UserImg src={userImage.image} />}
         <S.InputWrapper onSubmit={handleSubmitForm}>
-          <S.InputText placeholder="댓글을 달아보세요" />
+          <S.InputText placeholder="댓글을 달아보세요" maxLength="300" />
           <S.SubmitButton type="submit" />
         </S.InputWrapper>
       </S.InputContainer>

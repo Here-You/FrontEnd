@@ -47,6 +47,7 @@ const SignatureCommentInput = () => {
               value={content}
               onChange={e => setContent(e.target.value)}
               rows={1}
+              maxLength="300"
             />
             <S.SubmitButton
               onClick={async () => {
