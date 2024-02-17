@@ -30,7 +30,7 @@ const MyDiary = () => {
         <BannerDiary />
       </S.Header>
       <S.StyledMyDiary>
-        {isFetching
+        {isLoading
           ? new Array(10).fill(0).map(() => <DiarySkeleton />)
           : diaryList?.map((page, pageIndex) => (
               <React.Fragment key={pageIndex}>
