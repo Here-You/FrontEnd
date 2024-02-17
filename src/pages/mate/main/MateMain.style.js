@@ -6,7 +6,8 @@ import theme from '@/theme';
 const Maincontainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   width: 500px;
-  gap: 40px;
+  gap: 25px;
+
   height: 100%;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
@@ -16,7 +17,6 @@ const Maincontainer = styled.div`
 
 const SpanWrapper = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  margin-top: 25px;
 
   span {
     color: rgba(0, 0, 0, 0.57);
@@ -37,6 +37,7 @@ const MenuContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+
   @media ${theme.WINDOW_SIZE.MOBILE} {
     gap: 10px;
   }
