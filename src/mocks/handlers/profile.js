@@ -68,11 +68,35 @@ export const ProfileHandlers = [
           id: 2,
           type: 'COMMENT',
           content: '상추부자, 이녕12님 외 10명이 내 시그니처에 좋아요',
+          itemId: 10,
+          isRead: false,
+          created: '2024-02-11T14:52:14.240Z',
         },
         {
           id: 3,
           type: 'INVITE',
           content: '상추부자, 이녕12님 외 10명이 내 시그니처에 좋아요',
+          itemId: 10,
+          isRead: false,
+          created: '2024-02-11T14:52:14.240Z',
+        },
+      ],
+    });
+  }),
+  // 읽지 않은 알림의 개수 조회
+  http.get(`${baseURL}${API_URL.NOTIFICATION}/unread`, () => {
+    return HttpResponse.json({
+      status: 200,
+      success: true,
+      message: '알림 조회 성공',
+      data: [
+        {
+          id: 1,
+          type: 'LIKE',
+          content: '상추부자, 이녕12님 외 10명이 내 시그니처에 좋아요',
+          itemId: 10,
+          isRead: false,
+          created: '2024-02-11T14:52:14.240Z',
         },
       ],
     });
