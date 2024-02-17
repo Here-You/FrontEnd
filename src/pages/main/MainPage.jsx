@@ -15,7 +15,6 @@ export default function MainPage() {
         <LoginBanner isLogin={isLogin} />
         <MapContainer />
         <S.Container2>
-          <div>야호!</div>
           <Box title="시그니처" />
           <Box title="메이트" />
         </S.Container2>
