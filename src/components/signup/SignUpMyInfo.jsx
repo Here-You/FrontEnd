@@ -34,7 +34,6 @@ const SignUpMyInfo = () => {
       const res = postAddInformation(data.nickname, data.introduction);
       if (res) {
         toast.success('정보가 입력되었습니다.');
-        console.log('제출된 데이터: ', data);
         setTimeout(() => {
           navigate('/');
         }, 500);

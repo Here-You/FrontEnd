@@ -43,7 +43,6 @@ const SignaturePostPage = () => {
       toast.error('좋아요를 실패했습니다. 나중에 다시 시도해주세요.');
     },
     onSettled: isSuccess => {
-      console.log(isSuccess);
       if (isSuccess.data.success === true) {
         toast.success(isSuccess.data.message);
       } else {
@@ -67,7 +66,6 @@ const SignaturePostPage = () => {
   };
 
   const handlePrevPage = () => {
-    console.log('첫 번째 페이지입니다.');
     if (step > 1) {
       setStep(prevStep => prevStep - 1);
     }

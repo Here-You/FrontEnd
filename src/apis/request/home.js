@@ -39,7 +39,6 @@ const deleteJourney = journeyId => {
 
 // 일정 작성하기
 const createSchedule = (scheduleId, title, location, latitude, longitude) => {
-  console.log(latitude, longitude);
   const url = `/api/${VERSION}/${API_BASE.SCHEDULE}/update/${scheduleId}`;
   const res = axiosWithToken.put(url, {
     title: title,
@@ -59,7 +58,6 @@ const deleteSchedule = scheduleId => {
 
 // 세부 일정 추가하기
 const addDetailSchedule = (scheduleId, content) => {
-  console.log(content);
   const url = `/api/${VERSION}/${API_BASE.DETAIL_SCHEDULE}/create/${scheduleId}`;
   const res = axiosWithToken.post(url, {
     content: content,

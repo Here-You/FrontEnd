@@ -68,7 +68,7 @@ const getMyDiary = ({ pageParam }) => {
   } else {
     url = `${API_URL.GET_ALL_DIARY}?cursor=${pageParam}`;
   }
-  console.log(url);
+
   return axiosWithToken.get(url);
 };
 

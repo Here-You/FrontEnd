@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { getTeamMateRulePost } from '@/apis/request/mate';
+import { updateMySignature } from '@/apis/request/signature';
 
-export const useTeamMateRulePost = ruleId => {
+//시그니처 수정하기
+export const useUpdateMySignature = (signatureId, { patchData }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -11,7 +12,7 @@ export const useTeamMateRulePost = ruleId => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getTeamMateRulePost(ruleId);
+        const res = await updateMySignature(signatureId, { patchData });
         const data = res.data.data;
         setData(data);
       } catch (e) {
@@ -22,7 +23,8 @@ export const useTeamMateRulePost = ruleId => {
     };
 
     fetchData();
-  }, [ruleId]);
+  }, []);
 
   return { data, loading, error };
 };
+s;

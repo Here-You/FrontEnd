@@ -92,13 +92,11 @@ const DailyRecordWritePage = () => {
       setIsLoading(true);
       const res = await postDiary({ scheduleId: scheduleId, postData: data });
       if (res) {
-        console.log('제출된 데이터: ', data);
         toast.success('하루 일지가 작성되었습니다.');
         navigate(`/dailyrecord?scheduleId=${scheduleId}`);
       }
     } catch (e) {
       setIsError(true);
-      console.log(e);
       toast.error('작성 중 에러가 발생했습니다. 나중에 다시 시도해주세요');
     } finally {
       setIsLoading(false);

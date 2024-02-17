@@ -30,7 +30,6 @@ const DailyRecordListPage = () => {
 
   useEffect(() => {
     const validData = diaryData?.diaryList?.filter(s => s !== null);
-    // console.log('실제로 존재하는 일지: ', validData);
     setValidDiaryData(validData);
   }, [diaryData]);
 

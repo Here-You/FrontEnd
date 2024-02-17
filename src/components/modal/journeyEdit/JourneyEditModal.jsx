@@ -67,7 +67,7 @@ const JourneyEditModal = ({ journeyId, journeyTitle, startDate, endDate }) => {
         const res = await updateJourney({ ...data, journeyId: journeyId });
         if (res) {
           toast.success('여정이 수정되었습니다.');
-          console.log('제출된 데이터: ', data);
+
           window.location.reload();
         }
       } catch (error) {

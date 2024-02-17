@@ -13,7 +13,7 @@ const postFollowMate = followId => {
   // FOLLOW_MATE: `/api/${VERSION}/${API_BASE.MATE}/follow/:followId`,
   // 백엔드 API : api/v1/mate/follow/:followId
   const url = `${API_URL.FOLLOW_MATE}/${followId}`;
-  console.log(url);
+
   return axiosWithToken.patch(url);
 };
 

@@ -65,18 +65,14 @@ export default function Editor({ setSelectedHeader }) {
 
     try {
       setLoading(true);
-      console.log('title: ', title, 'pages: ', pages.slice(0, pages.length));
-      console.log(allPagesFilled);
       const res = await postNewSignature(title, pages.slice(0, pages.length));
       if (res) {
         toast.success('시그니처가 저장되었습니다.');
-        console.log(res);
         updateTitle('');
       }
       setSelectedHeader('내 시그니처');
     } catch (e) {
       setError(e);
-      console.log(e);
       toast.error('에러가 발생했습니다.');
     } finally {
       setLoading(false);

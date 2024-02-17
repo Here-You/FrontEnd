@@ -97,7 +97,6 @@ const Schedules = ({ data, endDate, refetch }) => {
       );
 
       if (res) {
-        console.log('제출된 데이터: ', data);
         refetch({ refetchPage: (page, index) => index === 0 });
         toast.success('일정이 저장되었습니다.');
       }
