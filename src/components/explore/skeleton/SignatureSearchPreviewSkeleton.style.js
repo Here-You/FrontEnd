@@ -20,7 +20,6 @@ const PreviewWrap = styled.div`
   width: 150px;
   margin: 3%;
   border-radius: 20px;
-  animation: ${skeletonGradient} 1.5s infinite;
 `;
 
 const PreviewImg = styled.div`
@@ -29,23 +28,23 @@ const PreviewImg = styled.div`
   height: 120px;
   overflow: hidden;
   border-radius: 5px;
+  animation: ${skeletonGradient} 1.5s infinite;
 `;
 
 const PreviewTitle = styled.div`
   width: 120px;
-  padding: 10px;
+  padding: 8px;
   border-radius: 20px;
-  margin-left: 10px;
-
+  margin-top: 10px;
   animation: ${skeletonGradient} 1.5s infinite;
 `;
 
 const Profile = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   width: 140px;
-  padding: 10px;
   gap: 5px;
   justify-content: flex-start;
+  margin-top: 5px;
 `;
 
 const ProfileImg = styled.div`
@@ -59,14 +58,15 @@ const ProfileImg = styled.div`
 
 const Nickname = styled.div`
   border-radius: 20px;
-  width: 100px;
-  padding: 10px;
+  width: 80px;
+  padding: 8px;
   animation: ${skeletonGradient} 1.5s infinite;
 `;
 
 const Date = styled.div`
   display: flex;
-  width: 70%;
+  width: 50%;
+  padding: 5px;
   border-radius: 20px;
 
   animation: ${skeletonGradient} 1.5s infinite;
@@ -75,8 +75,8 @@ const Date = styled.div`
 const HeartContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   margin-left: 40px;
-  width: 140px;
-  gap: 2px;
+  width: 20px;
+  height: 20px;
   border-radius: 20px;
 
   animation: ${skeletonGradient} 1.5s infinite;
@@ -112,7 +112,7 @@ const EmptyContainer = styled.div`
 
 const Title = styled.div`
   display: flex;
-  width: 300px;
+  width: 200px;
   padding: 15px;
   margin-left: 10px;
   border-radius: 20px;

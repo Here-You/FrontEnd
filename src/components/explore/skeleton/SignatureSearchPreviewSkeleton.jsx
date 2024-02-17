@@ -10,7 +10,6 @@ const Preview = (
     </S.Profile>
     <S.Info>
       <S.Date />
-      <S.HeartContainer />
     </S.Info>
   </S.PreviewWrap>
 );
