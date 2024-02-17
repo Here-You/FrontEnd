@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -33,13 +34,34 @@ const OutletContainer = styled.div`
 const AppLayout = () => {
   const location = useLocation();
   const hideNavAndFooter = location.pathname === '/onboarding';
+  const [isOpen, setIsOpen] = useState(false);
+  const sideMenuRef = useRef(null);
+
+  const toggleSideMenu = () => {
+    setIsOpen(prev => !prev);
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = event => {
+      if (sideMenuRef.current && !sideMenuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
+
   return (
     <AppContainer>
       <ContentContainer>
-        {!hideNavAndFooter && <Navbar />}
+        {!hideNavAndFooter && <Navbar toggleSideMenu={toggleSideMenu} />}
         <OutletContainer>
           <Toaster />
-          <SideMenu />
+          <SideMenu isOpen={isOpen} setIsOpen={setIsOpen} />
           <Outlet />
         </OutletContainer>
         {!hideNavAndFooter && <Footer />}

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import * as S from './SideMenu.style';
@@ -20,18 +21,36 @@ const FooterMenu = [
   { icon1: Group, icon2: Group2, name: '메이트', to: '/mate' },
 ];
 
-const SideMenu = () => {
+const SideMenu = ({ isOpen, setIsOpen }) => {
   const { pathname } = useLocation();
+  const outside = useRef();
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handlerOutsie);
+    return () => {
+      document.removeEventListener('mousedown', handlerOutsie);
+    };
+  });
+  const handlerOutsie = e => {
+    if (!outside.current.contains(e.target)) {
+      toggleSide();
+    }
+  };
+  const toggleSide = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <S.Container>
+    <S.Container $isOpen={isOpen} ref={outside}>
+      <S.CloseIcon onClick={toggleSide} />
       {FooterMenu.map((f, index) => (
-        <S.TitleContainer key={index} to={f.to} $active={pathname === f.to}>
-          <S.Icon
-            src={pathname === f.to ? f.icon2 : f.icon1}
-            $color={pathname === f.to ? 'green' : 'black'}
-          />
-          <S.Title>{f.name}</S.Title>
+        <S.TitleContainer
+          key={index}
+          to={f.to}
+          $active={pathname === f.to}
+          onClick={toggleSide}>
+          <S.Icon src={pathname === f.to ? f.icon2 : f.icon1} />
+          <S.Title $clicked={pathname === f.to}>{f.name}</S.Title>
         </S.TitleContainer>
       ))}
     </S.Container>

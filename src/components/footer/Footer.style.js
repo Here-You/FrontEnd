@@ -14,7 +14,7 @@ const FooterWrapper = styled.div`
   padding: 0 30px;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    height: 50px;
+    display: none;
   }
 `;
 

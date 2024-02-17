@@ -29,6 +29,13 @@ const ImageIcon = styled.img`
   height: 35px;
 `;
 
+const LogoIcon = styled.img`
+  display: flex;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 const ImageContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -58,10 +65,14 @@ const MenuIcon = styled(CiMenuBurger)`
 `;
 
 const SideMenuContainer = styled.div`
-  display: flex;
+  display: none;
   flex-direction: row;
   align-items: center;
   cursor: pointer;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    display: flex;
+  }
 `;
 
 export {
@@ -72,4 +83,5 @@ export {
   LinkTo,
   MenuIcon,
   SideMenuContainer,
+  LogoIcon,
 };
