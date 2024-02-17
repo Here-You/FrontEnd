@@ -21,10 +21,10 @@ const PreviewWrap = styled.div`
 const DateWrapper = styled.div`
   display: flex;
   background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   color: ${theme.COLOR.MAIN.HEAVY_GREEN};
   padding: 5px 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   align-items: center;
   margin-bottom: 5px;
 `;
@@ -49,7 +49,7 @@ const PreviewImg = styled(LazyLoadImage)`
 
 const ContentContainer = styled.div`
   background-color: ${theme.COLOR.MAIN.WHITE};
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   width: 200px;
   border-radius: 10px;
   padding: 8px;

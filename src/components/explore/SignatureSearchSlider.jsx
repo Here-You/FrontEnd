@@ -8,9 +8,9 @@ const SignatureSearchSlider = ({ data, type, searchTerm }) => {
   return (
     <S.PageContainer>
       {type === 'hot' ? (
-        <S.Title>🔥 인기 급상승 시그니처</S.Title>
+        <S.Title>인기 급상승 시그니처🔥</S.Title>
       ) : type === 'new' ? (
-        <S.Title>🔥 최신 시그니처</S.Title>
+        <S.Title>최신 시그니처⏰</S.Title>
       ) : (
         <S.Title>"{searchTerm}" 에 관한 시그니처⭐</S.Title>
       )}

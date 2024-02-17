@@ -8,6 +8,7 @@ const Container = styled.div`
   cursor: pointer;
   ${theme.ALIGN.COLUMN_CENTER};
   gap: 10px;
+  margin-left: 10px;
 
   &:hover {
     opacity: 0.8;
@@ -77,7 +78,7 @@ const ProfileDesc = styled.div`
     color: ${theme.COLOR.MAIN.GRAY};
   }
   h3 {
-    font-family: 'Pretendard-light';
+    font-family: 'Pretendard-bold';
     font-size: 1rem;
   }
 `;
@@ -166,7 +167,7 @@ const TextContainer = styled.div`
   h3 {
     ${theme.ALIGN.ROW_CENTER};
     gap: 5px;
-    font-family: 'Pretendard-semibold';
+    font-family: 'Pretendard-light';
     font-size: 16px;
   }
 
@@ -192,7 +193,7 @@ const ModifyButton = styled.button`
   background-color: ${theme.COLOR.MAIN.GRAY};
   border: none;
   border-radius: 20px;
-  padding: 2px 8px;
+  padding: 5px 11px;
   color: ${theme.COLOR.MAIN.WHITE};
   cursor: pointer;
   white-space: nowrap;
@@ -218,7 +219,7 @@ const DeleteButton = styled.button`
   background-color: red;
   border: none;
   border-radius: 20px;
-  padding: 2px 8px;
+  padding: 5px 11px;
   color: ${theme.COLOR.MAIN.WHITE};
   cursor: pointer;
   white-space: nowrap;

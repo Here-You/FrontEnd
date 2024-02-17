@@ -55,7 +55,7 @@ const SubmitButton = styled.button`
   border-radius: 10px;
   background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
   outline: none;
-
+  color: black;
   cursor: pointer;
   &:hover {
     background-color: ${theme.COLOR.MAIN.MEDIUM_GREEN};

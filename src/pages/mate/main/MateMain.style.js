@@ -6,7 +6,9 @@ import theme from '@/theme';
 const Maincontainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   width: 500px;
-  gap: 40px;
+  gap: 25px;
+
+  height: 100%;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     width: 320px;
@@ -15,7 +17,6 @@ const Maincontainer = styled.div`
 
 const SpanWrapper = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  margin-top: 25px;
 
   span {
     color: rgba(0, 0, 0, 0.57);
@@ -32,11 +33,13 @@ const SpanWrapper = styled.div`
 `;
 
 const MenuContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
-  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    gap: 20px;
+    gap: 10px;
   }
 `;
 
@@ -51,6 +54,10 @@ const Title = styled.span`
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: 18px;
   }
+`;
+
+const Des = styled.div`
+  display: flex;
 `;
 
 const CardContainer = styled.div`
@@ -72,6 +79,7 @@ export {
   SpanWrapper,
   MenuContainer,
   Title,
+  Des,
   CardContainer,
   LinkTo,
 };

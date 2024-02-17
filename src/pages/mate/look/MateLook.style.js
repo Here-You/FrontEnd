@@ -13,7 +13,7 @@ const BoxContainer = styled.div`
   flex-direction: column;
   width: 90%;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 10px;
 `;
 
 const Title = styled.div`
@@ -47,7 +47,7 @@ const CenteredContainer = styled.div`
   flex-direction: row;
   gap: 20px;
   overflow-x: auto;
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 10px 0px;
 
   p {

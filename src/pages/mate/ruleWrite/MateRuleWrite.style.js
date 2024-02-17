@@ -5,11 +5,13 @@ import theme from '@/theme';
 
 const Container = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
+  width: 100%;
+  height: 100%;
 `;
 
 const Wrapper = styled.div`
   width: 80%;
-  height: 900px;
+  height: 85%;
   overflow-y: scroll;
 
   border: 2px solid ${theme.COLOR.MAIN.HEAVY_GREEN};
@@ -34,7 +36,7 @@ const TitleInput = styled.input`
   font-size: ${FONT_SIZE.TWO_XL};
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    font-size: ${FONT_SIZE.SM};
+    font-size: ${FONT_SIZE.LG};
     padding: 10px;
   }
 `;
@@ -53,6 +55,9 @@ const PlusSvg = styled.img`
 const MatesContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
   gap: 2px;
+  width: 90%;
+  margin: 0 auto;
+  overflow: scroll;
 `;
 
 const MatesImages = styled.img`
@@ -99,7 +104,7 @@ const ContentTitleInput = styled.input`
   font-size: ${FONT_SIZE.BASE};
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    font-size: ${FONT_SIZE.XS};
+    font-size: ${FONT_SIZE.S};
   }
 `;
 
@@ -136,7 +141,7 @@ const AddQuestionButton = styled.button`
 const SubmitBtn = styled.button`
   border: none;
   width: 200px;
-  height: 50px;
+  height: 43px;
   margin-top: 20px;
   background-color: ${theme.COLOR.MAIN.HEAVY_GREEN};
   color: white;
