@@ -24,6 +24,7 @@ const AddButton = styled.button`
   position: sticky;
   bottom: 20px;
   margin-right: -80px;
+
   cursor: pointer;
   z-index: 1;
   align-self: flex-end;
@@ -31,7 +32,7 @@ const AddButton = styled.button`
 
 const ButtonContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  margin-top: 10px;
+  margin-top: 40px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
   border-radius: 40px;
 `;
@@ -39,13 +40,13 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   width: 200px;
   background-color: #ffffff;
-  padding: 10px;
+  padding: 20px;
   border: ${props =>
     props.$clicked ? `2px solid ${theme.COLOR.MAIN.GREEN}` : 'none'};
   color: ${props =>
     props.$clicked ? `${theme.COLOR.MAIN.GREEN}` : `${theme.COLOR.MAIN.GRAY}`};
   font-size: ${FONT_SIZE.SM};
-
+  font-weight: ${props => (props.$clicked ? 'bold' : 'none')};
   border-radius: 40px;
   cursor: pointer;
 
@@ -56,7 +57,7 @@ const Button = styled.button`
   }
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    width: 140px;
+    width: 150px;
   }
 `;
 
@@ -67,10 +68,7 @@ const CalendarContainer = styled.div`
 const JourneyWrapper = styled.div``;
 
 const MapContainer = styled.div`
-  width: 80%;
-  display: flex;
-  flex-direction: Column;
-  height: 65vh;
+  width: 90%;
   margin-top: 40px;
 `;
 
