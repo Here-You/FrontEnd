@@ -5,7 +5,7 @@ const Search = ({ setSearchTerm }) => {
     <S.SearchContainer>
       <S.InputContainer>
         <S.InputText
-          placeholder="닉네임으로 친구를 추가해보세요!"
+          placeholder="닉네임으로 메이트를 추가해보세요."
           onChange={e => setSearchTerm(e.target.value)}
         />
       </S.InputContainer>

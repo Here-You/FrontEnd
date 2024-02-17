@@ -24,7 +24,6 @@ const AddButton = styled.button`
   position: sticky;
   bottom: 20px;
   margin-right: -80px;
-
   cursor: pointer;
   z-index: 1;
   align-self: flex-end;
@@ -32,7 +31,7 @@ const AddButton = styled.button`
 
 const ButtonContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  margin-top: 40px;
+  margin-top: 30px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
   border-radius: 40px;
 `;
