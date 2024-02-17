@@ -156,7 +156,7 @@ const RuleEditPage = () => {
           )}
         </S.AddButtonWrapper>
       </S.Wrapper>
-      <S.SubmitBtn onClick={handleSubmitRule}>수정하기</S.SubmitBtn>
+      <S.SubmitBtn onClick={handleSubmitRule}>저장하기</S.SubmitBtn>
     </S.Container>
   );
 };
