@@ -193,7 +193,7 @@ const ModifyButton = styled.button`
   background-color: ${theme.COLOR.MAIN.GRAY};
   border: none;
   border-radius: 20px;
-  padding: 2px 8px;
+  padding: 5px 11px;
   color: ${theme.COLOR.MAIN.WHITE};
   cursor: pointer;
   white-space: nowrap;
@@ -219,7 +219,7 @@ const DeleteButton = styled.button`
   background-color: red;
   border: none;
   border-radius: 20px;
-  padding: 2px 8px;
+  padding: 5px 11px;
   color: ${theme.COLOR.MAIN.WHITE};
   cursor: pointer;
   white-space: nowrap;
