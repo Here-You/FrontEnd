@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom';
 import * as S from './SchedulesView.style';
 import SchedulesViewSkeleton from './skeleton/SchedulesViewSkeleton';
 import { getSchedule } from '@/apis/request/home';
+import useAuth from '@/store/useAuth';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 const SchedulesView = ({ startDate, endDate, journeyTitle }) => {
-  const accessToken = localStorage.getItem('x-access-token');
+  const { isLogin } = useAuth();
   const pageSize = 5;
   const date = new Date(startDate);
 
@@ -73,7 +74,7 @@ const SchedulesView = ({ startDate, endDate, journeyTitle }) => {
         </S.Container>
       )}
 
-      {!isLoading && !accessToken && (
+      {!isLogin && (
         <Link style={{ textDecoration: 'none' }} to={'/login'}>
           <S.IntroMessage>로그인 후 여정을 작성해보세요!</S.IntroMessage>
         </Link>
