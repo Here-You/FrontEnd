@@ -11,7 +11,7 @@ export default function NoSignature() {
     <S.PageContainer>
       <S.ContentContainer>
         <img src={bookImg} />
-        <S.Text>아직 작성한 시그니처가 없어요!</S.Text>
+        <S.Text>아직 작성한 시그니처가 없어요!!</S.Text>
       </S.ContentContainer>
     </S.PageContainer>
   );
