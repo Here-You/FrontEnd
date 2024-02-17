@@ -76,6 +76,7 @@ const Button = styled.button`
   padding: 5px 11px;
   border-radius: 20px;
   margin-left: 10px;
+  color: ${theme.COLOR.MAIN.BLACK};
   cursor: pointer;
 
   &:hover {

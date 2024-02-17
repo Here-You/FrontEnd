@@ -141,6 +141,7 @@ const TitleText = styled.input`
   font-weight: 700;
   text-align: center;
   border: none;
+  padding: 0 5px;
 
   &::placeholder {
     color: #aaa;

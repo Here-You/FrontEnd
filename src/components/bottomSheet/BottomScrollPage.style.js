@@ -11,7 +11,7 @@ const Button = styled.button`
   ${theme.ALIGN.ROW_CENTER};
   background-color: ${theme.COLOR.MAIN.GREEN};
   border: none;
-  width: 400px;
+  width: 90%;
   height: 60px;
   color: ${theme.COLOR.MAIN.WHITE};
   border-radius: 30px;
