@@ -8,7 +8,7 @@ const Container = styled.div`
   align-items: center;
   max-height: 500px;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
 
   &::-webkit-scrollbar {
     width: 4px;

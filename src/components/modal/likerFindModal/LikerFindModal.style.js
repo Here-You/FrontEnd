@@ -51,6 +51,7 @@ const Button = styled.button`
   background-color: ${(props => props.follow)
     ? `${theme.COLOR.MAIN.LIGHT_GREEN}`
     : `${theme.COLOR.MAIN.LIGHT_GRAY}`};
+  cursor: pointer;
 `;
 
 const UserImg = styled.img`

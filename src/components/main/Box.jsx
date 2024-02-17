@@ -8,8 +8,8 @@ import signatureIcon from '/images/main/signatureIcon.svg';
 
 export default function Box({ title }) {
   const navigate = useNavigate();
-  const route = title == '시그니처' ? '/signature ' : '/mate';
-  console.log(route);
+  const route = title == '시그니처' ? '/signature' : '/mate';
+
   const des =
     title == '시그니처' ? '나만의 시그니처 작성하기 ' : '나의 여행 메이트 찾기';
   const IconUrl = title == '시그니처' ? signatureIcon : mateIcon;
