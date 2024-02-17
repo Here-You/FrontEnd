@@ -34,7 +34,7 @@ const TravelMapDetail = ({ journeyInfo }) => {
 
   const [map, setMap] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
-  const [center, setCenter] = useState({ lat: 37.552497, lng: 127.13301 });
+  const [center, setCenter] = useState({ lat: 36, lng: 127.5 });
   const [clicked, setClicked] = useState(false);
 
   const showInfoWin = e => {
@@ -80,7 +80,7 @@ const TravelMapDetail = ({ journeyInfo }) => {
       options={{ disableDefaultUI: true, styles: myStyles }}
       mapContainerStyle={tabletStyle}
       center={center}
-      zoom={10}
+      zoom={7}
       onLoad={onLoad}
       onUnmount={onUnmount}>
       {scheduleLocations &&
