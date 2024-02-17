@@ -3,9 +3,16 @@ import NoSignature from './NoSignature';
 import Preview from '@/components/preview/Preview';
 import PreviewSkeleton from '@/components/preview/skeleton/PreviewSkeleton';
 import { useSignaturePreview } from '@/hooks/signature/useSignaturePreview ';
+import { QuitUserPage } from '@/pages';
+import theme from '@/theme';
 
 const MySignaturePage = () => {
   const { data: signaturePreview, loading, error } = useSignaturePreview();
+  if (error) {
+    return (
+      <QuitUserPage type="not-login" bgColor={`${theme.COLOR.MAIN.WHITE}`} />
+    );
+  }
   return (
     <S.PageContainer>
       {loading ? (
