@@ -186,6 +186,7 @@ const PrevBtn = styled.button`
   border: none;
   font-size: 20px;
   left: 0;
+  color: ${theme.COLOR.MAIN.BLACK};
 
   @media (min-width: 768px) {
     position: absolute;
@@ -206,6 +207,7 @@ const NextBtn = styled.button`
   border: none;
   font-size: 20px;
   right: 0;
+  color: ${theme.COLOR.MAIN.BLACK};
 
   @media (min-width: 768px) {
     position: absolute;

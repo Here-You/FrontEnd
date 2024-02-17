@@ -102,6 +102,7 @@
   max-width: 100%;
   border: none;
   line-height: 1.125em;
+  color: black;
 
   @media (min-width: 640px) {
     width: 500px;
@@ -181,6 +182,7 @@
   align-items: center;
   background-color: transparent;
   border: none;
+  color: black;
 }
 
 .react-calendar__tile:enabled:hover,

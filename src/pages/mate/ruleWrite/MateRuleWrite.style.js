@@ -91,6 +91,7 @@ const DeleteRuleButton = styled.button`
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
+  color: ${theme.COLOR.MAIN.BLACK};
 
   &:hover {
     transform: scale(0.9);
@@ -132,6 +133,7 @@ const AddQuestionButton = styled.button`
   border-radius: 10px;
   background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
   cursor: pointer;
+  color: ${theme.COLOR.MAIN.BLACK};
 
   &:hover {
     transform: scale(0.9);

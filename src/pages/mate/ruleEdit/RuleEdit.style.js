@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
+import { th } from 'date-fns/locale';
 
 const Container = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
@@ -94,6 +95,7 @@ const DeleteRuleButton = styled.button`
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
+  color: ${theme.COLOR.MAIN.BLACK};
 
   &:hover {
     transform: scale(0.9);
@@ -127,6 +129,7 @@ const AddQuestionButton = styled.button`
   border-radius: 10px;
   background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
   cursor: pointer;
+  color: ${theme.COLOR.MAIN.BLACK};
 
   &:hover {
     transform: scale(0.9);
