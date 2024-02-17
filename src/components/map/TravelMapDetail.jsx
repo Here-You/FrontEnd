@@ -6,6 +6,7 @@ import {
   GoogleMap,
   InfoWindowF,
   MarkerF,
+  Polyline,
   useJsApiLoader,
 } from '@react-google-maps/api';
 
@@ -62,6 +63,17 @@ const TravelMapDetail = ({ journeyInfo }) => {
     setClicked(true);
   };
 
+  const markerCoordinates = scheduleLocations
+    ?.map(post => {
+      const latitude = parseFloat(post?.location?.latitude);
+      const longitude = parseFloat(post?.location?.longitude);
+      if (isNaN(latitude) || isNaN(longitude)) {
+        console.error('Invalid latitude or longitude:', post?.location);
+        return null;
+      }
+      return { lat: latitude, lng: longitude };
+    })
+    .filter(coordinate => coordinate !== null);
   return isLoaded ? (
     <GoogleMap
       style={{ width: '1200', height: '450' }}
@@ -115,6 +127,15 @@ const TravelMapDetail = ({ journeyInfo }) => {
                   </S.InfoContainer>
                 </InfoWindowF>
               )}
+            <Polyline
+              path={markerCoordinates}
+              geodesic={true}
+              options={{
+                strokeColor: '#F05650',
+                strokeOpacity: 0.6,
+                strokeWeight: 5,
+              }}
+            />
           </MarkerF>
         ))}
     </GoogleMap>
