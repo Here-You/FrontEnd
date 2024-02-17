@@ -7,6 +7,7 @@ const Maincontainer = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   width: 500px;
   gap: 40px;
+  height: 100%;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     width: 320px;

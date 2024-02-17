@@ -7,6 +7,7 @@ const Container = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
   gap: 20px;
   padding: 10px 0;
+  margin-top: 15px;
 `;
 
 const ProfileContainer = styled.div`

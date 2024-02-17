@@ -8,6 +8,7 @@ const Container = styled.div`
   cursor: pointer;
   ${theme.ALIGN.COLUMN_CENTER};
   gap: 10px;
+  margin-left: 10px;
 
   &:hover {
     opacity: 0.8;
