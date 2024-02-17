@@ -36,6 +36,7 @@ const LoginPage = () => {
   return (
     <S.LoginContainer>
       <S.LogoImg src={Logo} />
+
       <S.ButtonWrap>
         <LoginButton />
         <form onSubmit={handleSubmit}>
