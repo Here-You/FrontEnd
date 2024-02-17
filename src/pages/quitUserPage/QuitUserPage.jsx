@@ -5,14 +5,24 @@ import RedirectIcon from '/images/RedirectIcon.png';
 
 const QuitUserPage = ({ type }) => {
   const navigate = useNavigate();
+  let message;
+  switch (type) {
+    case 'quit':
+      message = '이미 탈퇴한 회원입니다!';
+      break;
+    case 'non-user':
+      message = '존재하지 않는 회원입니다!';
+      break;
+    case 'not-login':
+      message = '로그인 후 서비스를 이용해주세요!';
+      break;
+    default:
+      message = '';
+  }
   return (
     <S.Container>
       <S.Image src={RedirectIcon} />
-      {type === 'quit' ? (
-        <h3>이미 탈퇴한 회원입니다!</h3>
-      ) : (
-        <h3>존재하지 않는 회원입니다!</h3>
-      )}
+      <h3>{message}</h3>
       <S.Button onClick={() => navigate('/')}>홈 화면으로 돌아가기</S.Button>
     </S.Container>
   );

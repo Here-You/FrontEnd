@@ -14,6 +14,7 @@ import LikerFindModal from '@/components/modal/likerFindModal/LikerFindModal';
 import useLikersModal from '@/hooks/modal/useLikersModal';
 import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 import { useGetSignaturePost } from '@/hooks/signature/queries/useGetSignaturePost';
+import { QuitUserPage } from '@/pages';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
@@ -93,7 +94,7 @@ const SignaturePostPage = () => {
   };
 
   if (isError) {
-    return <div>Error 발생...</div>;
+    return <QuitUserPage type="not-login" />;
   }
 
   return (

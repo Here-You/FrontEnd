@@ -46,6 +46,10 @@ const ProfilePage = () => {
     setHoveredSignature(null);
   };
 
+  if (isError) {
+    return <QuitUserPage type={'not-login'} />;
+  }
+
   // 기존 유저 중 탈퇴한 회원일 때
   if (quitUser) {
     return <QuitUserPage type={'quit'} />;
