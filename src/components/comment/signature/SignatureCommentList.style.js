@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const Container = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-height: 500px;
   width: 100%;
   overflow: scroll;
