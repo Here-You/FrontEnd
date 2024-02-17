@@ -141,7 +141,7 @@ const AddQuestionButton = styled.button`
 const SubmitBtn = styled.button`
   border: none;
   width: 200px;
-  height: 50px;
+  height: 43px;
   margin-top: 20px;
   background-color: ${theme.COLOR.MAIN.HEAVY_GREEN};
   color: white;
