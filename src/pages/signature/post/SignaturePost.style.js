@@ -78,7 +78,7 @@ const ProfileDesc = styled.div`
     color: ${theme.COLOR.MAIN.GRAY};
   }
   h3 {
-    font-family: 'Pretendard-light';
+    font-family: 'Pretendard-bold';
     font-size: 1rem;
   }
 `;
@@ -167,7 +167,7 @@ const TextContainer = styled.div`
   h3 {
     ${theme.ALIGN.ROW_CENTER};
     gap: 5px;
-    font-family: 'Pretendard-semibold';
+    font-family: 'Pretendard-light';
     font-size: 16px;
   }
 
