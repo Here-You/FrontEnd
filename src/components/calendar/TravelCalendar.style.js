@@ -19,11 +19,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 20px 0;
 `;
 
 const ButtonContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  margin-top: 10px;
+  margin-top: 40px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
   border-radius: 40px;
 
@@ -35,13 +36,13 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   width: 200px;
   background-color: #ffffff;
-  padding: 10px;
+  padding: 20px;
   border: ${props =>
     props.$clicked ? `2px solid ${theme.COLOR.MAIN.GREEN}` : 'none'};
   color: ${props =>
     props.$clicked ? `${theme.COLOR.MAIN.GREEN}` : `${theme.COLOR.MAIN.GRAY}`};
   font-size: ${FONT_SIZE.SM};
-
+  font-weight: ${props => (props.$clicked ? 'bold' : 'none')};
   border-radius: 40px;
   cursor: pointer;
 
@@ -58,8 +59,7 @@ const HeaderWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 60px;
-  margin-top: 20px;
+  height: 200px;
   gap: 120px;
   margin-bottom: 20px;
 
@@ -73,7 +73,7 @@ const HeaderWrapper = styled.div`
   }
 
   @media (max-width: 600px) {
-    gap: 120px;
+    gap: 80px;
     h1 {
       font-size: 50px;
     }
@@ -89,20 +89,16 @@ const FontWrapper = styled.div`
   -webkit-transform: rotate(90deg); // Chrome Safari Opera
 
   color: #1c1c1c;
-  font-size: 15px;
+  font-size: 25px;
   font-weight: bold;
 `;
 const CircleWrapper = styled.div`
   display: flex;
-  font-family: 'Pretenard-bold';
-  h1 {
-    font-size: 30px;
-  }
 `;
 
 const Circle = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background-color: black;
 `;
@@ -114,7 +110,6 @@ const HomeContentContainer = styled.div`
 
 const SchedulesContainer = styled.div`
   max-height: 400px;
-
   padding: 0 30px;
 
   &::-webkit-scrollbar {
@@ -131,8 +126,9 @@ const SchedulesContainer = styled.div`
 const IntroductionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 100%;
+  gap: 20px;
+
+  width: 90%;
   padding: 20px;
   background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
   border-radius: 10px;
@@ -182,7 +178,6 @@ const Image = styled.img`
 
 const CalendarContainer = styled.div`
   position: relative;
-  color: black;
 `;
 
 const PrevBtn = styled.button`
