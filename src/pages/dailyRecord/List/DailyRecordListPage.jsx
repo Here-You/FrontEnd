@@ -66,7 +66,7 @@ const DailyRecordListPage = () => {
 
   return (
     <>
-      {!loading ? (
+      {loading ? (
         <DailyRecordListSkeleton />
       ) : (
         <S.Container>
