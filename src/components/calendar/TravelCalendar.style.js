@@ -41,7 +41,7 @@ const Button = styled.button`
   color: ${props =>
     props.$clicked ? `${theme.COLOR.MAIN.GREEN}` : `${theme.COLOR.MAIN.GRAY}`};
   font-size: ${FONT_SIZE.SM};
-  font-weight: ${props => (props.$clicked ? 'bold' : 'none')};
+
   border-radius: 40px;
   cursor: pointer;
 
@@ -132,7 +132,7 @@ const IntroductionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 90%;
+  width: 100%;
   padding: 20px;
   background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
   border-radius: 10px;
