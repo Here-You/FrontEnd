@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import GoogleLoginButton from './GoogleLoginButton';
 import KakaoLoginButton from './KakaoLoginButton';
 import { GoogleOAuthProvider } from '@react-oauth/google';

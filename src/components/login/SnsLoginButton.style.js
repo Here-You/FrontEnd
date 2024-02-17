@@ -8,7 +8,7 @@ const LoginButton = styled.button`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 35%;
+  height: 45%;
   color: black;
   border: none;
   padding: 10px 11px;
@@ -36,7 +36,7 @@ const KLoginButton = styled.button`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 35%;
+  height: 45%;
   color: black;
   border: none;
   padding: 10px 11px;
