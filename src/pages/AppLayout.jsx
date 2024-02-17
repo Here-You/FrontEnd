@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Footer, Navbar } from '../components';
+import SideMenu from '@/components/sideMenu/SideMenu';
 
 const AppContainer = styled.div`
   height: 100vh;
@@ -38,6 +39,7 @@ const AppLayout = () => {
         {!hideNavAndFooter && <Navbar />}
         <OutletContainer>
           <Toaster />
+          <SideMenu />
           <Outlet />
         </OutletContainer>
         {!hideNavAndFooter && <Footer />}
