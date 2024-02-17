@@ -9,9 +9,9 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 80%;
-  height: 60vh;
+  height: 900px;
   overflow-y: scroll;
-  margin-top: 40px;
+
   border: 2px solid ${theme.COLOR.MAIN.HEAVY_GREEN};
   border-radius: 20px;
   padding: 20px;
@@ -49,12 +49,12 @@ const Title = styled.h1`
 
 const ProfileContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  width: 100%;
 `;
 
 const ProfileBox = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
-  margin: 0px 4px;
+  margin-right: 10px;
+
   h3 {
     font-size: ${FONT_SIZE.XS};
     white-space: nowrap;
@@ -63,8 +63,8 @@ const ProfileBox = styled.div`
 
 const ProfileImages = styled.img`
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   margin-bottom: 10px;
   object-fit: cover;
 `;
