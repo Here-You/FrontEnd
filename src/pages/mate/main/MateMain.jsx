@@ -57,11 +57,13 @@ const MateMainPage = () => {
 
       <S.MenuContainer>
         <S.Title>내 메이트</S.Title>
+        <S.Des>나와 함께 여행 할 메이트들을 찾아보세요!</S.Des>
         <S.CardContainer>{renderCards(MY_MATE)}</S.CardContainer>
       </S.MenuContainer>
 
       <S.MenuContainer>
         <S.Title>우리 여행의 규칙은?</S.Title>
+        <S.Des>함께 여행할 메이트들과 규칙을 정해보세요!</S.Des>
         <S.CardContainer>{renderCards(OUR_RULE)}</S.CardContainer>
       </S.MenuContainer>
     </S.Maincontainer>

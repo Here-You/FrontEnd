@@ -32,11 +32,12 @@ const SpanWrapper = styled.div`
 `;
 
 const MenuContainer = styled.div`
-  ${theme.ALIGN.COLUMN_CENTER};
-  gap: 30px;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    gap: 20px;
+    gap: 10px;
   }
 `;
 
@@ -51,6 +52,10 @@ const Title = styled.span`
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: 18px;
   }
+`;
+
+const Des = styled.div`
+  display: flex;
 `;
 
 const CardContainer = styled.div`
@@ -72,6 +77,7 @@ export {
   SpanWrapper,
   MenuContainer,
   Title,
+  Des,
   CardContainer,
   LinkTo,
 };
