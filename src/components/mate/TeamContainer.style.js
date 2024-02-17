@@ -89,11 +89,11 @@ const TeamTitle = styled.span`
   margin-right: auto;
   color: #000;
   text-align: center;
-  font-size: 22px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-
+  font-family: 'Pretendard-semibold';
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
