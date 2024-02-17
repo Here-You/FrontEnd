@@ -52,9 +52,9 @@ const SearchButton = styled.button`
 `;
 
 const Text = styled.h1`
-  font-size: 20px;
+  font-size: 16px;
   color: ${theme.COLOR.MAIN.HEAVY_GREEN};
-  padding: 50px;
+  padding: 30px;
 `;
 
 export { SearchContainer, InputContainer, InputText, SearchButton, Text };
