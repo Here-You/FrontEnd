@@ -61,8 +61,7 @@ const getLikeList = signatureId => {
 
 // 시그니처 댓글 / 답글 불러오기 (무한 스크롤)
 const getSignatureComments = (signatureId, take, { pageParam }) => {
-  const url = `api/v1/signature/${signatureId}/comment?take${take}&cursorId=${pageParam}`;
-  console.log(url);
+  const url = `api/v1/signature/${signatureId}/comment?take=${take}&cursorId=${pageParam}`;
   return axiosWithToken.get(url);
 };
 

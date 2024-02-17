@@ -9,12 +9,14 @@ const useGetSignatureComments = (signatureId, take) => {
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages, lastPageParam) => {
       const meta = lastPage?.data?.data?.meta;
-      if (meta && meta.hasNextData) {
-        return meta.cursor;
+      console.log(lastPage);
+      if (meta?.hasNextData) {
+        return meta?.cursor;
       } else {
         return null;
       }
     },
+    staleTime: 60 * 1000,
   });
 };
 
