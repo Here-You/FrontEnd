@@ -5,7 +5,7 @@ import { API_BASE, API_URL } from '@/constants/path';
 
 export const MateHandlers = [
   //메이트 검색하기
-  http.get(`${baseURL}${API_URL.SEARCH_MATE}`, ({ request, params }) => {
+  http.get(`${baseURL}${API_URL.FOLLOW_MATE}/search`, ({ request, params }) => {
     const url = new URL(request.url);
     const searchTerm = url.searchParams.get('searchTerm');
     const cursor = url.searchParams.get('cursor');
@@ -13,9 +13,7 @@ export const MateHandlers = [
 
     if (!searchTerm) {
       return new HttpResponse(null, { status: 404 });
-    }
-
-    if (searchTerm === 'ahnyewon') {
+    } else {
       return HttpResponse.json({
         status: 200,
         success: true,
@@ -68,8 +66,8 @@ export const MateHandlers = [
   }),
 
   //메이트 팔로우
-  http.post(
-    `${baseURL}${API_URL.FOLLOW_MATE}/:userId`,
+  http.patch(
+    `${baseURL}${API_URL.FOLLOW_MATE}/:followingId`,
     ({ request, params }) => {
       const userId = params.userId;
 
@@ -220,6 +218,36 @@ export const MateHandlers = [
     });
   }),
 
+  //팔로잉 목록 불러오기
+  http.get(`${baseURL}${API_URL.GET_MATE_FOLLOW}`, ({ request, params }) => {
+    return HttpResponse.json({
+      status: 200,
+      success: true,
+      message: '팔로잉 리스트 불러오기 성공',
+      data: {
+        mates: [
+          {
+            _id: 1,
+            name: '팔로잉_안예원',
+            nickname: 'ahnyewon',
+            bio: '안녕하세요 안예원입니다. 반가워요',
+            image:
+              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            followId: 123,
+          },
+          {
+            _id: 2,
+            name: '안예',
+            nickname: 'ahnyw',
+            bio: '안녕하세요 안예입니다. 반가워요',
+            image:
+              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            followId: 'null',
+          },
+        ],
+      },
+    });
+  }),
   //팔로워 목록 불러오기
   http.get(`${baseURL}${API_URL.GET_MATE_FOLLOWER}`, ({ request, params }) => {
     return HttpResponse.json({
@@ -245,37 +273,6 @@ export const MateHandlers = [
             image:
               'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
             followId: 'null',
-          },
-        ],
-      },
-    });
-  }),
-
-  //팔로잉 목록 불러오기
-  http.get(`${baseURL}${API_URL.GET_MATE_FOLLOWING}`, ({ request, params }) => {
-    return HttpResponse.json({
-      status: 200,
-      success: true,
-      message: '팔로잉 리스트 불러오기 성공',
-      data: {
-        mates: [
-          {
-            _id: 1,
-            name: '팔로잉_안예원',
-            nickname: 'ahnyewon',
-            bio: '안녕하세요 안예원입니다. 반가워요',
-            image:
-              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            is_following: true,
-          },
-          {
-            _id: 2,
-            name: '안예',
-            nickname: 'ahnyw',
-            bio: '안녕하세요 안예입니다. 반가워요',
-            image:
-              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            is_following: false,
           },
         ],
       },
