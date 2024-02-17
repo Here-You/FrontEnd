@@ -22,13 +22,13 @@ const USER_SETTING = [
     link: '/signature',
     modal: false,
   },
-  {
-    id: 3,
-    img: myPageImg.Lock,
-    title: '공개범위 설정',
-    link: null,
-    modal: true,
-  },
+  // {
+  //   id: 3,
+  //   img: myPageImg.Lock,
+  //   title: '공개범위 설정',
+  //   link: null,
+  //   modal: true,
+  // },
 ];
 
 const SUPPORT = [
