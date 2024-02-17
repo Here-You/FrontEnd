@@ -8,7 +8,7 @@ const BannerContainer = styled.div`
   justify-content: center;
   padding: 5%;
   width: 100%;
-  height: 160px;
+  height: 130px;
   background: rgba(27, 156, 133, 0.16);
 `;
 

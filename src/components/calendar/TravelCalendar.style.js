@@ -19,12 +19,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
 `;
 
 const ButtonContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  margin-top: 40px;
+  margin-top: 30px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
   border-radius: 40px;
 
