@@ -77,7 +77,7 @@ const MatePage = () => {
                           console.error(e);
                         }
                       }}>
-                      {member.isFollowing === true ? '언팔로우' : '팔로우'}
+                      {member.isFollowing === true ? '팔로잉' : '팔로우'}
                     </S.FollowButton>
                   </S.NickNameContainer>
                   <S.InfoContainer>{member.introduction}</S.InfoContainer>
