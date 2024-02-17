@@ -20,7 +20,7 @@ const DailyRecordEditPage = () => {
   const scheduleId = params.get('scheduleId');
   const [selectedImg, setSelectedImg] = useState();
   const { data } = useGetDiary(scheduleId);
-  const [lodaing, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const Date = useMemo(() => {
@@ -125,7 +125,10 @@ const DailyRecordEditPage = () => {
         <S.YearText>{Date.date && Date.date[0]}</S.YearText>
         <S.DateText>
           {Date.date && Date.date[1]}, {Date.date && Date.date[2]}
-          <S.UploadButton type="submit" onClick={handleSubmit(onSubmit)}>
+          <S.UploadButton
+            type="submit"
+            onClick={handleSubmit(onSubmit)}
+            disabled={loading}>
             수정
           </S.UploadButton>
         </S.DateText>
