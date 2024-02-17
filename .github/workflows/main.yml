@@ -13,15 +13,6 @@ jobs:
       - name: Check Node v
         run: node -v
 
-      - name: .env setting
-        run: |
-          echo "VITE_NODE_ENV=${{ secrets.VITE_NODE_ENV }}" >> .env
-          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
-          echo "VITE_GOOGLE_MAP_API=${{ secrets.VITE_GOOGLE_MAP_API }}" >> .env
-          echo "VITE_GOOGLE_AUTH_CLIENT_ID=${{ secrets.VITE_GOOGLE_AUTH_CLIENT_ID }}" >> .env
-          echo "VITE_KAKAO_REST_API_KEAY=${{ secrets.VITE_KAKAO_REST_API_KEAY }}" >> .env
-          echo "VITE_REDIRECT_URI=${{ secrets.VITE_REDIRECT_URI }}" >> .env
-
       - name: Install dependencies
         run: yarn
 
@@ -36,7 +27,7 @@ jobs:
         run: yarn run build
 
       - name: Deploy
-        run: aws s3 cp --recursive --region ap-northeast-2 dist s3://here---you
+        run: aws s3 cp --recursive --region ap-northeast-2 ./dist s3://here---you
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
