@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './Login.style';
+import plane from '/images/airplane.svg';
 import Logo from '/images/main.svg';
 import { axios, axiosWithToken } from '@/apis/api';
 import LoginButton from '@/components/login/LoginButton';
@@ -36,7 +37,7 @@ const LoginPage = () => {
   return (
     <S.LoginContainer>
       <S.LogoImg src={Logo} />
-
+      <S.AirPlane src={plane} />
       <S.ButtonWrap>
         <LoginButton />
         <form onSubmit={handleSubmit}>
