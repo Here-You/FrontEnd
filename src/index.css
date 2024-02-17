@@ -101,7 +101,7 @@
   width: 300px;
   max-width: 100%;
   border: none;
-  line-height: 1.125em;
+  line-height: 1em;
 
   @media (min-width: 640px) {
     width: 500px;
@@ -112,7 +112,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-content: center;
+
+  margin-left: 5%;
+  width: 100%;
 }
 
 .react-calendar__navigation__label > span {
@@ -156,17 +158,18 @@
   position: absolute;
   bottom: 0px;
   content: 'TODAY';
-  font-family: 900;
   background-color: gold;
   border-radius: 10px;
   padding: 2px 8px;
+  font-size: 10px;
 }
 
 /* 일자 */
 .react-calendar__tile {
   text-align: center;
   position: relative;
-  height: 80px;
+  height: 50px;
+  color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;

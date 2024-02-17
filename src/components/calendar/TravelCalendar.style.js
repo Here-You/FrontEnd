@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
 const ButtonContainer = styled.div`
   ${theme.ALIGN.ROW_CENTER};
-  margin-top: 30px;
+  margin-top: 10px;
   border: 1px solid ${theme.COLOR.MAIN.GREEN};
   border-radius: 40px;
 
@@ -35,7 +35,7 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   width: 200px;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 10px;
   border: ${props =>
     props.$clicked ? `2px solid ${theme.COLOR.MAIN.GREEN}` : 'none'};
   color: ${props =>
@@ -58,7 +58,8 @@ const HeaderWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 200px;
+  height: 60px;
+  margin-top: 20px;
   gap: 120px;
   margin-bottom: 20px;
 
@@ -72,7 +73,7 @@ const HeaderWrapper = styled.div`
   }
 
   @media (max-width: 600px) {
-    gap: 80px;
+    gap: 120px;
     h1 {
       font-size: 50px;
     }
@@ -88,16 +89,20 @@ const FontWrapper = styled.div`
   -webkit-transform: rotate(90deg); // Chrome Safari Opera
 
   color: #1c1c1c;
-  font-size: 25px;
+  font-size: 15px;
   font-weight: bold;
 `;
 const CircleWrapper = styled.div`
   display: flex;
+  font-family: 'Pretenard-bold';
+  h1 {
+    font-size: 30px;
+  }
 `;
 
 const Circle = styled.div`
-  width: 120px;
-  height: 120px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: black;
 `;
@@ -109,6 +114,7 @@ const HomeContentContainer = styled.div`
 
 const SchedulesContainer = styled.div`
   max-height: 400px;
+
   padding: 0 30px;
 
   &::-webkit-scrollbar {
@@ -125,8 +131,7 @@ const SchedulesContainer = styled.div`
 const IntroductionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-
+  gap: 10px;
   width: 90%;
   padding: 20px;
   background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
@@ -177,6 +182,7 @@ const Image = styled.img`
 
 const CalendarContainer = styled.div`
   position: relative;
+  color: black;
 `;
 
 const PrevBtn = styled.button`
