@@ -98,13 +98,13 @@
 /* REACT_CALENDAR */
 
 .react-calendar {
-  width: 300px;
+  width: 290px;
+
   max-width: 100%;
   border: none;
-  line-height: 1.125em;
 
   @media (min-width: 640px) {
-    width: 500px;
+    width: 400px;
   }
 }
 
@@ -112,7 +112,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-content: center;
+
+  margin-left: 5%;
+  width: 100%;
 }
 
 .react-calendar__navigation__label > span {
@@ -145,9 +147,9 @@
     border-radius: 50%;
 
     @media (min-width: 640px) {
-      font-size: 22px;
-      width: 60px;
-      height: 60px;
+      font-size: 20px;
+      width: 50px;
+      height: 50px;
     }
   }
 }
@@ -156,17 +158,18 @@
   position: absolute;
   bottom: 0px;
   content: 'TODAY';
-  font-family: 900;
   background-color: gold;
   border-radius: 10px;
   padding: 2px 8px;
+  font-size: 10px;
 }
 
 /* 일자 */
 .react-calendar__tile {
   text-align: center;
   position: relative;
-  height: 80px;
+  height: 50px;
+  color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -183,13 +186,13 @@
 
   abbr {
     text-decoration: none;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
+    border-radius: 100%;
     border: 2px solid black !important;
 
     @media (max-width: 600px) {

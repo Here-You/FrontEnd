@@ -41,7 +41,6 @@ const Button = styled.button`
   color: ${props =>
     props.clicked ? `${theme.COLOR.MAIN.GREEN}` : `${theme.COLOR.MAIN.GRAY}`};
   font-size: ${FONT_SIZE.SM};
-  font-weight: ${props => (props.clicked ? 'bold' : 'none')};
   border-radius: 40px;
   cursor: pointer;
 
@@ -58,6 +57,7 @@ const CalendarContainer = styled.div`
 
 const JourneyButtonContainer = styled.div`
   position: relative;
+
   display: flex;
   flex-direction: row;
 

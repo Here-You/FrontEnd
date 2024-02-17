@@ -12,11 +12,11 @@ const Button = styled.button`
   background-color: ${theme.COLOR.MAIN.GREEN};
   border: none;
   width: 200px;
-  height: 50px;
+  height: 70px;
   color: ${theme.COLOR.MAIN.WHITE};
   border-radius: 20px;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 15px;
   cursor: pointer;
   font-size: ${FONT_SIZE.XL};
 

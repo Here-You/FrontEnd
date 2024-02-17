@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import * as S from './Navbar.style';
 import Bell from '/images/Bell.svg';
 import User from '/images/User.svg';
@@ -6,9 +8,9 @@ import { useUnReadNotification } from '@/hooks/notification/useGetNotification';
 import useAuth from '@/store/useAuth';
 
 const Navbar = () => {
-  const { isAuth } = useAuth();
   const { data: unReadCount, isPending, isError } = useUnReadNotification();
   const unReadCounter = unReadCount?.data?.data?.unreadCount;
+
   return (
     <S.NavWrapper>
       <S.LinkTo to="/mypage">
@@ -20,7 +22,8 @@ const Navbar = () => {
       <S.LinkTo to="/notification">
         <S.ImageContainer>
           <S.ImageIcon src={Bell} />
-          {unReadCounter === 0 ? null : <p>{unReadCounter}</p>}
+
+          {!unReadCounter ? null : <p>{unReadCounter}</p>}
         </S.ImageContainer>
       </S.LinkTo>
     </S.NavWrapper>

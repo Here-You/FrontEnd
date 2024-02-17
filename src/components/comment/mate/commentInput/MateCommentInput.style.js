@@ -36,7 +36,7 @@ const SubmitButton = styled.button`
   border-radius: 10px;
   background-color: ${theme.COLOR.MAIN.MEDIUM_GREEN};
   color: ${theme.COLOR.MAIN.WHITE};
-  padding: 5px;
+  padding: 5px 11px;
   outline: none;
   cursor: pointer;
 `;
