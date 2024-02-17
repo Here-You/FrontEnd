@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import * as S from './SignaturePage.style';
 import MySignaturePage from './main/MySignaturePage';
 import Editor from './write/Editor';
-import { getSignaturePreview } from '@/apis/request/preview';
 import Banner from '@/components/banner/Banner';
 import useSignatureWrite from '@/store/useSignatureWrite';
 

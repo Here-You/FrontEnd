@@ -62,13 +62,6 @@ const getSearchNickname = (searchTerm, take, { pageParam }) => {
   return axiosWithToken.get(url);
 };
 
-const getParticipateTeamMate = () => {
-  // GET_PARTICIPATE_TEAM_MATE: `/api/${VERSION}/${API_BASE.MATE}/rule/participants/:ruleId`,
-  // 백엔드 API : api/v1/mate/rule/participants/:ruleId
-  const url = `${API_URL.GET_PARTICIPATE_TEAM_MATE}`;
-  return axiosWithToken.get(url);
-};
-
 // 여행 규칙 확인하기 (게시글)
 const getTeamMateRulePost = ruleId => {
   // GET_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/view/:ruleId`,
@@ -81,16 +74,6 @@ const getTeamMateRulePost = ruleId => {
 const getTeamMateRuleComment = (ruleId, take, { pageParam }) => {
   const url = `${API_URL.GET_TEAM_MATE_RULE}/comment/${ruleId}?take=${take}&cursorId=${pageParam}&sort`;
   return axiosWithToken.get(url);
-};
-
-const patchTeamMateRule = () => {
-  // UPDATE_TEAM_MATE_RULE: `/api/${VERSION}/${API_BASE.MATE}/rule/edit/:ruleId`,
-  // 백엔드 API : api/v1/mate/rule/edit/:ruleId
-  const url = `${API_URL.UPDATE_TEAM_MATE_RULE}`;
-  return axiosWithToken.patch(url, {
-    title: title,
-    contents: contents,
-  });
 };
 
 const deleteTeamMate = () => {
@@ -158,10 +141,8 @@ export {
   postCreateMateRule,
   getSearchInviteMate,
   getSearchNickname,
-  getParticipateTeamMate,
   getTeamMateRulePost,
   getTeamMateRuleComment,
-  patchTeamMateRule,
   getLocationMate,
   deleteTeamMate,
   postMateRuleComment,
