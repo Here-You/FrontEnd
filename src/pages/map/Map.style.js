@@ -67,7 +67,10 @@ const CalendarContainer = styled.div`
 const JourneyWrapper = styled.div``;
 
 const MapContainer = styled.div`
-  width: 90%;
+  width: 80%;
+  display: flex;
+  flex-direction: Column;
+  height: 65vh;
   margin-top: 40px;
 `;
 
