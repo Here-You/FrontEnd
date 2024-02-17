@@ -6,8 +6,7 @@ import theme from '@/theme';
 const FooterWrapper = styled.div`
   width: 100%;
   height: 80px;
-  position: fixed;
-  bottom: 0px;
+
   background-color: ${theme.COLOR.MAIN.WHITE};
   color: ${theme.COLOR.MAIN.BLACK};
 
