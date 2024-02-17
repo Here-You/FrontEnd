@@ -13,15 +13,18 @@ jobs:
       - name: Check Node v
         run: node -v
 
-      - name: .env setting
+      - name: create env file
+        working-directory: ./
         run: |
+          pwd
           touch .env
-          echo "VITE_NODE_ENV=${{ secrets.VITE_NODE_ENV }}" > .env
-          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env
-          echo "VITE_GOOGLE_MAP_API=${{ secrets.VITE_GOOGLE_MAP_API }}" > .env
-          echo "VITE_GOOGLE_AUTH_CLIENT_ID=${{ secrets.VITE_GOOGLE_AUTH_CLIENT_ID }}" > .env
-          echo "VITE_KAKAO_REST_API_KEAY=${{ secrets.VITE_KAKAO_REST_API_KEAY }}" > .env
-          echo "VITE_REDIRECT_URI=${{ secrets.VITE_REDIRECT_URI }}" > .env
+          echo "VITE_NODE_ENV=${{ secrets.VITE_NODE_ENV }}" >> .env
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
+          echo "VITE_GOOGLE_MAP_API=${{ secrets.VITE_GOOGLE_MAP_API }}" >> .env
+          echo "VITE_GOOGLE_AUTH_CLIENT_ID=${{ secrets.VITE_GOOGLE_AUTH_CLIENT_ID }}" >> .env
+          echo "VITE_KAKAO_REST_API_KEAY=${{ secrets.VITE_KAKAO_REST_API_KEAY }}" >> .env
+          echo "VITE_REDIRECT_URI=${{ secrets.VITE_REDIRECT_URI }}" >> .env
+          cat .env
 
       - name: Install dependencies
         run: yarn
