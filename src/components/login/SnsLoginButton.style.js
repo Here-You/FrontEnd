@@ -2,23 +2,34 @@ import styled from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
 
-
 const LoginButton = styled.button`
-  border-radius: 80px;
+  display: flex;
+  align-items: center;
   width: 100%;
-  border: 3px solid #21b69c;
-  color: #21b69c;
-  background-color: white;
-  padding: 20px;
+  height: 35%;
+  color: black;
+  border: none;
+  padding: 10px 11px;
   margin-bottom: 26px;
-    
+  border-radius: 100px;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
   font-size: ${FONT_SIZE.BASE};
 
   &:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transform: scale(1.05);
   }
-  
+
+  h3 {
+    font-family: 'Pretendard-semibold';
+    font-size: 16px;
+    width: 80%;
+  }
 `;
 
-export { LoginButton};
+const Icon = styled.img`
+  display: flex;
+  margin-left: 10px;
+  width: 25px;
+`;
+export { LoginButton, Icon };

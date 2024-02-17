@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { useLocation, useParams } from 'react-router-dom';
 
 import * as S from './DailyRecordListPage.style';
+import DailyRecordListSkeleton from './skeleton/DailyRecordListSkeleton';
 import ExpandLeft from '/icons/ExpandLeft.svg';
 import ExpandRight from '/icons/ExpandRight.svg';
 import PenGreen from '/icons/PenGreen.svg';
@@ -64,41 +65,51 @@ const DailyRecordListPage = () => {
   }
 
   return (
-    <S.Container>
-      <S.DateText>{date}의 일지</S.DateText>
+    <>
+      {!loading ? (
+        <DailyRecordListSkeleton />
+      ) : (
+        <S.Container>
+          <S.DateText>{date}의 일지</S.DateText>
 
-      <S.MainRecordContainer>
-        <S.LeftButton src={ExpandLeft} onClick={prevButtonClick} />
+          <S.MainRecordContainer>
+            <S.LeftButton src={ExpandLeft} onClick={prevButtonClick} />
 
-        <S.RecordContentsContainer
-          className={slideDirection}
-          onAnimationEnd={handleAnimationEnd}>
-          <S.PreviewImage src={currentVisibleData?.diaryImage?.imageUrl} />
-          <S.LocationText>{currentVisibleData?.diary?.place}</S.LocationText>
-          <S.TitleText>{currentVisibleData?.diary?.title}</S.TitleText>
-          <S.WeatherContainer>
-            {WEATHER_ICON_LIST.map(item => {
-              if (item.iconName === currentVisibleData?.diary?.weather) {
-                return <S.Icon src={item.iconUrl} />;
-              }
-            })}
-            {MOOD_ICON_LIST.map(item => {
-              if (item.iconName === currentVisibleData?.diary?.mood) {
-                return <S.Icon src={item.iconUrl} />;
-              }
-            })}
-          </S.WeatherContainer>
-          <S.ContentText>{currentVisibleData?.diary?.content}</S.ContentText>
-        </S.RecordContentsContainer>
+            <S.RecordContentsContainer
+              className={slideDirection}
+              onAnimationEnd={handleAnimationEnd}>
+              <S.PreviewImage src={currentVisibleData?.diaryImage?.imageUrl} />
+              <S.LocationText>
+                {currentVisibleData?.diary?.place}
+              </S.LocationText>
+              <S.TitleText>{currentVisibleData?.diary?.title}</S.TitleText>
+              <S.WeatherContainer>
+                {WEATHER_ICON_LIST.map(item => {
+                  if (item.iconName === currentVisibleData?.diary?.weather) {
+                    return <S.Icon src={item.iconUrl} />;
+                  }
+                })}
+                {MOOD_ICON_LIST.map(item => {
+                  if (item.iconName === currentVisibleData?.diary?.mood) {
+                    return <S.Icon src={item.iconUrl} />;
+                  }
+                })}
+              </S.WeatherContainer>
+              <S.ContentText>
+                {currentVisibleData?.diary?.content}
+              </S.ContentText>
+            </S.RecordContentsContainer>
 
-        <S.RightButton src={ExpandRight} onClick={nextButtonClick} />
-      </S.MainRecordContainer>
+            <S.RightButton src={ExpandRight} onClick={nextButtonClick} />
+          </S.MainRecordContainer>
 
-      <S.AddButton
-        to={`/dailyrecord/${currentVisibleData?.diary?.id}/edit?scheduleId=${currentVisibleData?.scheduleId}`}>
-        <S.PenIcon src={PenGreen} />
-      </S.AddButton>
-    </S.Container>
+          <S.AddButton
+            to={`/dailyrecord/${currentVisibleData?.diary?.id}/edit?scheduleId=${currentVisibleData?.scheduleId}`}>
+            <S.PenIcon src={PenGreen} />
+          </S.AddButton>
+        </S.Container>
+      )}
+    </>
   );
 };
 

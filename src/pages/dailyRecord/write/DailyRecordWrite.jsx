@@ -120,7 +120,11 @@ const DailyRecordWritePage = () => {
             $errors={
               !content || !fileName || !mood || !place || !title || !weather
             }
-            onClick={handleSubmit(onSubmit)}>
+            onClick={() => {
+              if (!isLoading) {
+                handleSubmit(onSubmit)();
+              }
+            }}>
             저장
           </S.UploadButton>
         </S.DateText>

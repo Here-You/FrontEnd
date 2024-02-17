@@ -7,6 +7,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './DailyRecordEdit.style';
+import DailyRecordEditSkeleton from './skeleton/DailyRecordEditSkeleton';
 import { updateDiary } from '@/apis/request/home';
 import IconSelectBox from '@/components/SelectBox/IconSelectBox/IconSelectBox';
 import { MOOD_ICON_LIST, WEATHER_ICON_LIST } from '@/constants/dailyRecord';
@@ -19,8 +20,8 @@ const DailyRecordEditPage = () => {
   const params = new URLSearchParams(search);
   const scheduleId = params.get('scheduleId');
   const [selectedImg, setSelectedImg] = useState();
-  const { data } = useGetDiary(scheduleId);
-  const [lodaing, setLoading] = useState(false);
+  const { data, loading: getLoading } = useGetDiary(scheduleId);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const Date = useMemo(() => {
@@ -120,65 +121,74 @@ const DailyRecordEditPage = () => {
   };
 
   return (
-    <S.Container>
-      <S.DateContainer>
-        <S.YearText>{Date.date && Date.date[0]}</S.YearText>
-        <S.DateText>
-          {Date.date && Date.date[1]}, {Date.date && Date.date[2]}
-          <S.UploadButton type="submit" onClick={handleSubmit(onSubmit)}>
-            수정
-          </S.UploadButton>
-        </S.DateText>
-      </S.DateContainer>
-      <S.RecordContainer>
-        <S.RecordImageContainer $selectedImg={selectedImg}>
-          <label htmlFor="fileName">
-            <S.PreviewImage src={selectedImg ? selectedImg : fileName} />
-          </label>
-          <S.ImageInput
-            id="fileName"
-            type="file"
-            accept="image/jpeg, image/webp, image/svg, image/png"
-            onChange={handleFileChange}
-          />
-        </S.RecordImageContainer>
-        <S.LocationText
-          id="place"
-          placeholder="오늘의 위치"
-          ref={textRef}
-          onInput={handleResizeHeight}
-          value={place}
-          {...register('place', { required: '위치를 입력해주세요' })}
-        />
-        <S.TitleText
-          id="title"
-          placeholder="제목"
-          value={title}
-          {...register('title', { required: '제목을 입력해주세요' })}
-        />
+    <>
+      {getLoading ? (
+        <DailyRecordEditSkeleton />
+      ) : (
+        <S.Container>
+          <S.DateContainer>
+            <S.YearText>{Date.date && Date.date[0]}</S.YearText>
+            <S.DateText>
+              {Date.date && Date.date[1]}, {Date.date && Date.date[2]}
+              <S.UploadButton
+                type="submit"
+                onClick={handleSubmit(onSubmit)}
+                disabled={loading}>
+                수정
+              </S.UploadButton>
+            </S.DateText>
+          </S.DateContainer>
+          <S.RecordContainer>
+            <S.RecordImageContainer $selectedImg={selectedImg}>
+              <label htmlFor="fileName">
+                <S.PreviewImage src={selectedImg ? selectedImg : fileName} />
+              </label>
+              <S.ImageInput
+                id="fileName"
+                type="file"
+                accept="image/jpeg, image/webp, image/svg, image/png"
+                onChange={handleFileChange}
+              />
+            </S.RecordImageContainer>
+            <S.LocationText
+              id="place"
+              placeholder="오늘의 위치"
+              ref={textRef}
+              onInput={handleResizeHeight}
+              value={place}
+              {...register('place', { required: '위치를 입력해주세요' })}
+            />
+            <S.TitleText
+              id="title"
+              placeholder="제목"
+              value={title}
+              {...register('title', { required: '제목을 입력해주세요' })}
+            />
 
-        <S.WeatherContainer>
-          <IconSelectBox
-            iconData={WEATHER_ICON_LIST}
-            onClick={handleIconClick}
-            type="weather"
-            value={weather}
-          />
-          <IconSelectBox
-            iconData={MOOD_ICON_LIST}
-            onClick={handleIconClick}
-            type="mood"
-            value={mood}
-          />
-        </S.WeatherContainer>
-        <S.ContentText
-          id="content"
-          placeholder="내용"
-          value={content}
-          {...register('content', { required: '내용을 입력해주세요' })}
-        />
-      </S.RecordContainer>
-    </S.Container>
+            <S.WeatherContainer>
+              <IconSelectBox
+                iconData={WEATHER_ICON_LIST}
+                onClick={handleIconClick}
+                type="weather"
+                value={weather}
+              />
+              <IconSelectBox
+                iconData={MOOD_ICON_LIST}
+                onClick={handleIconClick}
+                type="mood"
+                value={mood}
+              />
+            </S.WeatherContainer>
+            <S.ContentText
+              id="content"
+              placeholder="내용"
+              value={content}
+              {...register('content', { required: '내용을 입력해주세요' })}
+            />
+          </S.RecordContainer>
+        </S.Container>
+      )}
+    </>
   );
 };
 
