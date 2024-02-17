@@ -13,7 +13,6 @@ const GoogleLoginButton = () => {
 
   const login = useGoogleLogin({
     onSuccess: async tokenResponse => {
-      console.log(tokenResponse);
       const response = await postSnsLogin('GOOGLE', tokenResponse.access_token);
       const token = response.data.token;
       googleLogin(token);

@@ -73,7 +73,6 @@ const PublicScopeModal = ({ myVisibility }) => {
         const res = await putPublicScope(visibility);
         if (res) {
           toast.success('공개범위가 설정되었습니다.');
-          console.log('제출된 데이터: ', data);
         }
       } catch (error) {
         console.log(error);

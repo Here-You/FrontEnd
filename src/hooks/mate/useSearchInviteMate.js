@@ -13,7 +13,6 @@ export const useSearchInviteMate = searchTerm => {
         setLoading(true);
         const res = await getSearchInviteMate(searchTerm);
         const data = res.data.data.mates;
-        console.log(data);
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

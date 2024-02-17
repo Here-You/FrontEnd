@@ -22,7 +22,6 @@ const SignatureCommentList = () => {
 
   useEffect(() => {
     if (inView) {
-      console.log('fire');
       !isFetching && hasNextPage && fetchNextPage();
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { loadMonthlySchedule } from '@/apis/request/home';
 
 export const useLoadMonthlyJourney = (year, month) => {
-  console.log(year, month);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);

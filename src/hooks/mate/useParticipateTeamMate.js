@@ -13,7 +13,6 @@ export const useParticipateTeamMate = ruleId => {
         setLoading(true);
         const res = await getParticipateTeamMate(ruleId);
         const data = res.data.data.mates;
-        console.log(data);
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

@@ -12,9 +12,7 @@ export const useTeamMateRulePost = ruleId => {
       try {
         setLoading(true);
         const res = await getTeamMateRulePost(ruleId);
-        console.log(res);
         const data = res.data.data;
-
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

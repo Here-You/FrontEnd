@@ -14,7 +14,6 @@ export const useUpdateMySignature = (signatureId, { patchData }) => {
         setLoading(true);
         const res = await updateMySignature(signatureId, { patchData });
         const data = res.data.data;
-        console.log(res);
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

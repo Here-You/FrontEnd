@@ -14,12 +14,12 @@ const FollowButton2 = ({ initialFollowState, id }) => {
     try {
       if (follow === true) {
         const res = await postFollowMate(id);
-        console.log(res);
+
         toast.success('팔로우가 취소되었습니다.');
         setFollow(false);
       } else {
         const res = await postFollowMate(id);
-        console.log(res);
+
         toast.success('팔로잉되었습니다.');
         setFollow(true);
       }

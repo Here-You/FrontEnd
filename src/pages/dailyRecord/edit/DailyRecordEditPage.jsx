@@ -99,13 +99,11 @@ const DailyRecordEditPage = () => {
       setLoading(true);
       const res = await updateDiary(diaryId, data);
       if (res) {
-        console.log('제출된 데이터: ', data);
         toast.success('수정되었습니다');
         navigate(`/dailyrecord?scheduleId=${scheduleId}`);
       }
     } catch (e) {
       setError(e);
-      console.log(e);
       toast.error('일지 수정 중에 에러가 발생했습니다. 다시 시도해주세요');
     } finally {
       setLoading(false);

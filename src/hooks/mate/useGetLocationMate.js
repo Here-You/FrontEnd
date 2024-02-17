@@ -12,9 +12,7 @@ export const useGetLocationMate = () => {
       try {
         setLoading(true);
         const res = await getLocationMate();
-        console.log(res);
         const data = res.data.data;
-        console.log(data);
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

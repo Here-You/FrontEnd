@@ -84,7 +84,7 @@ const postSignatureReComment = ({ signatureId, parentId, content }) => {
 // 시그니처 댓글/답글 수정하기
 const updateSignatureReComment = ({ signatureId, commentId, content }) => {
   const url = `/api/v1/signature/${signatureId}/comment/${commentId}`;
-  console.log(url);
+
   return axiosWithToken.patch(url, {
     content: content,
   });

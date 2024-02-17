@@ -9,7 +9,7 @@ import useAuth from '@/store/useAuth';
 const ProtectedRouter = ({ children }) => {
   const navigate = useNavigate();
   const { isLogin } = useAuth();
-  console.log(isLogin);
+
   return isLogin === true ? children : <TokenErrorPage />;
 };
 

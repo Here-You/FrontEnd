@@ -54,7 +54,6 @@ const Editor = ({ signatureId }) => {
         toast.success('시그니처가 수정되었습니다.');
         navigate(`/signature/post/${signatureId}`);
       }
-      console.log(res);
     } catch (e) {
       setError(e);
       toast.error('에러가 발생했습니다.');

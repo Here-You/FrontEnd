@@ -14,7 +14,6 @@ export const useLikeSignature = signatureId => {
         setLoading(true);
         const res = await likeSignature(signatureId);
         const data = res.data.data;
-        console.log(res);
         setData(data);
       } catch (e) {
         setError(e.message || '에러가 발생했습니다.');

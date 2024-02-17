@@ -30,8 +30,6 @@ const InviteMatesModal = () => {
 
   const searchMates = search?.pages;
 
-  console.log(searchMates);
-
   const handleInviteClick = () => {
     InviteMatesModal.onClose();
   };
