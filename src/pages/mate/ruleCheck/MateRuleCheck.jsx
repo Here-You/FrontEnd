@@ -13,8 +13,8 @@ const MateRuleCheckPage = () => {
     return (
       <MateContainer>
         <S.SkeletonTitle />
-        {new Array(5).fill(0).map(() => (
-          <MateRuleCheckSkeleton />
+        {new Array(5).fill(0).map((_, idx) => (
+          <MateRuleCheckSkeleton key={idx} />
         ))}
       </MateContainer>
     );

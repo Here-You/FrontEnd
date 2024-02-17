@@ -6,6 +6,7 @@ import TravelMap from './map/TravelMap';
 import Navbar from './navbar/Navbar';
 import CountInfo from './profile/CountInfo';
 import ProfileBox from './profile/ProfileBox';
+import ProgressiveImg from './progressiveImg/ProgressiveImg';
 import Schedules from './schedules/Schedules';
 
 export {
@@ -15,6 +16,7 @@ export {
   Schedules,
   TravelMap,
   ProfileBox,
+  ProgressiveImg,
   BottomJourneyDetailScrollPage,
   Comment,
   CountInfo,

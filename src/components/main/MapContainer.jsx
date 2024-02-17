@@ -1,3 +1,4 @@
+import { ProgressiveImg } from '..';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 

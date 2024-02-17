@@ -6,7 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import * as S from './ProfilePage.style';
 import Heart from '/images/signature/ClickedHeart.svg';
 import { ProfileBox } from '@/components';
-import { useMateProfileSearch } from '@/hooks/mate/useMateProfileSearch';
 import { useInfiniteSignatureList } from '@/hooks/profile/queries/useInfiniteSignatureList';
 import { useProfileData } from '@/hooks/profile/queries/useProfileData';
 
@@ -47,8 +46,14 @@ const ProfilePage = () => {
     setHoveredSignature(null);
   };
 
+  // 기존 유저 중 탈퇴한 회원일 때
   if (quitUser) {
-    return <QuitUserPage />;
+    return <QuitUserPage type={'quit'} />;
+  }
+
+  // 아직 가입하지 않은 회원의 마이페이지에 접근했을 경우.
+  if (profileData === null) {
+    return <QuitUserPage type={'non-user'} />;
   }
 
   return (
