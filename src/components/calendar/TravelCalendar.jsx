@@ -8,6 +8,7 @@ import * as S from './TravelCalendar.style';
 import CalendarSkeleton from './skeleton/CalendarSkeleton';
 import EditLight from '/icons/EditLight.svg';
 import { useMonthlyJourney } from '@/hooks/home/useMonthlyJourney';
+import useAuth from '@/store/useAuth';
 
 moment.locale('en');
 
@@ -17,6 +18,7 @@ const TravelCalendar = ({
   setJourneyInfo,
   setMonthlyInfo,
 }) => {
+  const { isLogin } = useAuth();
   const storedStartDate = localStorage.getItem('startDate');
   const storedEndDate = localStorage.getItem('endDate');
 
@@ -188,39 +190,43 @@ const TravelCalendar = ({
                 nextLabel={<S.NextBtn onClick={handleNext}>{'>'}</S.NextBtn>}
               />
             </S.CalendarContainer>
-            <S.IntroductionContainer>
-              {storedStartDate && storedEndDate ? (
-                <>
-                  <S.JouneyInfoContainer>
-                    {journeyTitle ? (
-                      <p>🏖️ 선택된 여정 : {journeyTitle}</p>
-                    ) : (
-                      <p>새로운 여정을 추가하고 여행 일정을 생성하세요!</p>
-                    )}
+            {isLogin && (
+              <S.IntroductionContainer>
+                {storedStartDate && storedEndDate ? (
+                  <>
+                    <S.JouneyInfoContainer>
+                      {journeyTitle ? (
+                        <p>🏖️ 선택된 여정 : {journeyTitle}</p>
+                      ) : (
+                        <p>새로운 여정을 추가하고 여행 일정을 생성하세요!</p>
+                      )}
 
-                    <p>
-                      {moment(value).format('YYYY/MM/DD')} ~{' '}
-                      {moment(endDate).format('YYYY/MM/DD')}
-                    </p>
-                  </S.JouneyInfoContainer>
-                  <S.JouneyInfoContainer>
-                    <h3>
-                      Tip.{'\t'}
-                      <span>
-                        일지 작성 <S.Image src={EditLight} />
-                      </span>
-                      버튼을 눌러 일지를 작성하면 지도에서
-                      <br />
-                      이미지로 표시된 위치를 확인할 수 있습니다.
-                    </h3>
-                  </S.JouneyInfoContainer>
-                </>
-              ) : (
-                <p>
-                  달력에서 기간을 선택하면 저장된 일정을 확인할 수 있습니다.
-                </p>
-              )}
-            </S.IntroductionContainer>
+                      <p>
+                        {moment(value).format('YYYY/MM/DD')} ~{' '}
+                        {moment(endDate).format('YYYY/MM/DD')}
+                      </p>
+                    </S.JouneyInfoContainer>
+                    <S.JouneyInfoContainer>
+                      <h3>
+                        Tip.{'\t'}
+                        <span>
+                          일지 작성 <S.Image src={EditLight} />
+                        </span>
+                        버튼을 눌러 일지를 작성하면 지도에서
+                        <br />
+                        이미지로 표시된 위치를 확인할 수 있습니다.
+                      </h3>
+                    </S.JouneyInfoContainer>
+                  </>
+                ) : !isLogin ? (
+                  <></>
+                ) : (
+                  <p>
+                    달력에서 기간을 선택하면 저장된 일정을 확인할 수 있습니다.
+                  </p>
+                )}
+              </S.IntroductionContainer>
+            )}
 
             <SchedulesView
               startDate={moment(value).format('YYYY/MM/DD')}
