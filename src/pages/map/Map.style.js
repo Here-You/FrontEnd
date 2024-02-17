@@ -56,7 +56,7 @@ const Button = styled.button`
   }
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    width: 150px;
+    width: 140px;
   }
 `;
 
