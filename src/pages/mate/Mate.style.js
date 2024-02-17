@@ -57,7 +57,7 @@ const NickNameContainer = styled.div`
 
 const FollowButton = styled.button`
   background-color: ${props =>
-    props.follow ? theme.COLOR.MAIN.RED : theme.COLOR.MAIN.MEDIUM_GREEN};
+    props.follow ? theme.COLOR.MAIN.GRAY : theme.COLOR.MAIN.MEDIUM_GREEN};
   padding: 8px 16px;
   border: none;
   border-radius: 20px;
