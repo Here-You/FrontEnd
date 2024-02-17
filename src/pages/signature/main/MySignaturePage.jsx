@@ -8,7 +8,7 @@ const MySignaturePage = () => {
   const { data: signaturePreview, loading, error } = useSignaturePreview();
   return (
     <S.PageContainer>
-      {loading ? (
+      {ssloading ? (
         <S.PreviewContainer>
           {new Array(10).fill(0).map(() => (
             <PreviewSkeleton />
