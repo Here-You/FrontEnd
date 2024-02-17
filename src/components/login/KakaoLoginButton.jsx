@@ -11,12 +11,10 @@ const KakaoLoginButton = () => {
   };
   return (
     <>
-      <S.LoginButton
-        style={{ backgroundColor: '#FEE500' }}
-        onClick={handleLogin}>
+      <S.KLoginButton onClick={handleLogin}>
         <S.Icon src={KakaoIcon} />
         <h3>카카오 로그인 </h3>
-      </S.LoginButton>
+      </S.KLoginButton>
     </>
   );
 };

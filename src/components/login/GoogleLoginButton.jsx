@@ -27,7 +27,7 @@ const GoogleLoginButton = () => {
   });
 
   return (
-    <S.LoginButton onClick={login} style={{ backgroundColor: 'white' }}>
+    <S.LoginButton onClick={login}>
       <S.Icon src={GoogleIcon} />
       <h3>구글 로그인 </h3>
     </S.LoginButton>
