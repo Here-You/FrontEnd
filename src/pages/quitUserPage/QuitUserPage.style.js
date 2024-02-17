@@ -20,7 +20,8 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   gap: 30px;
-  background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
+  background-color: ${props =>
+    props?.$bgColor ? props.$bgColor : `${theme.COLOR.MAIN.LIGHT_GRAY}`};
 
   h3 {
     color: ${theme.COLOR.MAIN.BLACK};
