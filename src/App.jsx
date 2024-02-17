@@ -74,10 +74,7 @@ const router = createBrowserRouter([
         path: `${BASE_PATH.SIGN_UP}`,
         element: <SignUpPage />,
       },
-      {
-        path: `${BASE_PATH.LOGIN}`,
-        element: <LoginPage />,
-      },
+
       {
         path: `${BASE_PATH.ON_BOARDING}`,
         element: <OnBoardingPage />,
@@ -89,6 +86,17 @@ const router = createBrowserRouter([
       {
         path: `${BASE_PATH.MY_DIARY}`,
         element: <MyDiary />,
+      },
+    ],
+  },
+  {
+    path: `${BASE_PATH.BASE}`,
+    element: <TravelLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: `${BASE_PATH.LOGIN}`,
+        element: <LoginPage />,
       },
     ],
   },

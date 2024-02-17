@@ -1,4 +1,5 @@
 import * as S from './SnsLoginButton.style';
+import KakaoIcon from '/images/Kakao.svg';
 
 const KakaoLoginButton = () => {
   const Rest_api_key = import.meta.env.VITE_KAKAO_REST_API_KEAY;
@@ -10,7 +11,12 @@ const KakaoLoginButton = () => {
   };
   return (
     <>
-      <S.LoginButton onClick={handleLogin}>카카오 로그인</S.LoginButton>
+      <S.LoginButton
+        style={{ backgroundColor: '#FEE500' }}
+        onClick={handleLogin}>
+        <S.Icon src={KakaoIcon} />
+        <h3>카카오 로그인 </h3>
+      </S.LoginButton>
     </>
   );
 };
