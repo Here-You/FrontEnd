@@ -23,7 +23,7 @@ const StyledTitle = styled.span`
   margin-bottom: 35px;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    font-size: 18px;
+    font-size: 12px;
   }
 `;
 
