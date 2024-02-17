@@ -21,21 +21,26 @@ const PreviewWrap = styled.div`
   width: 200px;
   margin-bottom: 20px;
   border-radius: 10px;
-  animation: ${skeletonGradient} 1.5s infinite;
+
+  @media ${theme.WINDOW_SIZE.MOBILE} {
+    width: 300px;
+    height: 300px;
+  }
 `;
 
 const DateWrapper = styled.div`
   display: flex;
-  padding: 10px 25px;
-  border-radius: 10px;
+  padding: 5px 10px;
   align-items: center;
   margin-bottom: 5px;
-  animation: ${skeletonGradient} 1.5s infinite;
 `;
 
 const Date = styled.div`
+  width: 80px;
+  padding: 8px;
   margin-left: 2px;
-  font-size: 12px;
+  border-radius: 10px;
+  animation: ${skeletonGradient} 1.5s infinite;
 `;
 
 const PreviewImg = styled.div`
@@ -47,13 +52,13 @@ const PreviewImg = styled.div`
   @media ${theme.WINDOW_SIZE.MOBILE} {
     width: 100%;
   }
+  animation: ${skeletonGradient} 1.5s infinite;
 `;
 
 const ContentContainer = styled.div`
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   width: 200px;
   border-radius: 10px;
-  padding: 3px;
+  padding: 8px;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     width: 100%;
@@ -63,8 +68,7 @@ const ContentContainer = styled.div`
 const Title = styled.h1`
   margin: 3px 0px;
   width: 60%;
-  padding: 15px;
-  overflow: hidden;
+  padding: 12px;
   border-radius: 20px;
   animation: ${skeletonGradient} 1.5s infinite;
 `;
@@ -72,7 +76,7 @@ const Title = styled.h1`
 const Open = styled.div`
   display: flex;
   width: 30%;
-  padding: 15px;
+  padding: 12px;
   border-radius: 20px;
   animation: ${skeletonGradient} 1.5s infinite;
 `;
