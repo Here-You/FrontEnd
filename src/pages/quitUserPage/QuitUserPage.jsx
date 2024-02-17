@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './QuitUserPage.style';
 import RedirectIcon from '/images/RedirectIcon.png';
 
-const QuitUserPage = ({ type }) => {
+const QuitUserPage = ({ type, bgColor }) => {
   const navigate = useNavigate();
   let message;
   switch (type) {
@@ -20,7 +20,7 @@ const QuitUserPage = ({ type }) => {
       message = '';
   }
   return (
-    <S.Container>
+    <S.Container $bgColor={bgColor}>
       <S.Image src={RedirectIcon} />
       <h3>{message}</h3>
       <S.Button onClick={() => navigate('/')}>홈 화면으로 돌아가기</S.Button>

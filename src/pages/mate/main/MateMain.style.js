@@ -74,6 +74,10 @@ const LinkTo = styled(Link)`
   color: inherit;
 `;
 
+const CardButton = styled.div`
+  cursor: pointer;
+`;
+
 export {
   Maincontainer,
   SpanWrapper,
@@ -82,4 +86,5 @@ export {
   Des,
   CardContainer,
   LinkTo,
+  CardButton,
 };

@@ -114,7 +114,8 @@ const Button = styled.button`
 
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  color: ${props => props.buttonColor};
+  color: ${props =>
+    props.buttonColor ? props.buttonColor : `${theme.COLOR.MAIN.BLACK}`};
   background-color: transparent;
   cursor: pointer;
 
