@@ -82,17 +82,17 @@ const MateRuleWritePage = () => {
             <S.ContentBox key={index}>
               <S.TextContainer>
                 <S.ContentTitleInput
-                  placeholder={`규칙 ${index + 1} 제목을 입력해주세요.`}
+                  placeholder={`규칙 ${index + 1}을 입력해주세요!`}
                   value={rule.ruleTitle}
                   onChange={e => {
                     const newRules = [...rules];
                     newRules[index].ruleTitle = e.target.value;
                     setRules(newRules);
                   }}
-                  maxlength="20"
+                  maxLength="250"
                 />
                 <S.ContentTextInput
-                  placeholder={`규칙 ${index + 1} 내용을 입력해주세요.`}
+                  placeholder={`규칙 ${index + 1} 내용을 입력해주세요!`}
                   value={rule.ruleDetail}
                   onChange={e => {
                     const newRules = [...rules];
@@ -101,7 +101,7 @@ const MateRuleWritePage = () => {
                   }}
                   rows="5"
                   columns="2"
-                  maxlength="1500"
+                  maxLength="1500"
                 />
                 <S.DeleteRuleButton onClick={() => handleRemoveRule(index)}>
                   X
