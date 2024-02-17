@@ -106,7 +106,7 @@ const Button = styled.button`
   border-radius: 10px;
   background-color: ${theme.COLOR.MAIN.LIGHT_GREEN};
   cursor: pointer;
-
+  color: black;
   &:hover {
     transform: scale(0.9);
   }
