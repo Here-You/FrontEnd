@@ -51,8 +51,7 @@ const MateMainPage = () => {
   return (
     <S.Maincontainer>
       <S.SpanWrapper>
-        <span>여행의 이유를 함께 찾아줄 친구를</span>
-        <span>ID로 추가해보세요!</span>
+        <span>여행의 이유를 함께 찾아볼 친구를 추가해보세요!</span>
       </S.SpanWrapper>
 
       <S.MenuContainer>
