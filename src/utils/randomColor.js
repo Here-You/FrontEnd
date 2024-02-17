@@ -8,14 +8,14 @@ export const generateCSSForID = (id, color) => `
  
     width: 30px;
     height: 30px;
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 50%;
     ${theme.ALIGN.COLUMN_CENTER}
 
     @media (min-width: 600px) {
-      font-size: 22px;
-      width: 60px;
-      height: 60px;
+      font-size: 18px;
+      width: 50px;
+      height: 50px;
     }
   }
 
