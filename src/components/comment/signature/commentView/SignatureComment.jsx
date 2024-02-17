@@ -111,9 +111,11 @@ const SignatureComment = ({ data }) => {
           <S.Name>{writer?.name}</S.Name>
           <S.LeftContent>
             {/* 본인 댓글이거나 게시글 주인인 경우에만 답글 버튼 표시 */}
-            <S.ReplyBtn onClick={() => setIsReplying(prev => !prev)}>
-              {isReplying === true ? <TiDeleteOutline /> : <HiReply />}
-            </S.ReplyBtn>
+            {isParentComment && (
+              <S.ReplyBtn onClick={() => setIsReplying(prev => !prev)}>
+                {isReplying === true ? <TiDeleteOutline /> : <HiReply />}
+              </S.ReplyBtn>
+            )}
             {/* 본인 댓글인 경우에만 수정 및 삭제 버튼 표시 */}
             {writer?.is_writer && !editMode && (
               <>

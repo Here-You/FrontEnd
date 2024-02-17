@@ -101,6 +101,9 @@ const TravelCalendar = ({
           setJourneyInfo(null);
           setJourneyTitle('');
         }
+      } else {
+        setJourneyInfo(null);
+        setJourneyTitle('');
       }
     }
   };

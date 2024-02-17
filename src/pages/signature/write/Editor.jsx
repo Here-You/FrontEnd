@@ -118,7 +118,9 @@ export default function Editor({ setSelectedHeader }) {
       </S.ContentContainer>
 
       <S.ButtonWrap>
-        <S.Button onClick={handlePublish}>발행</S.Button>
+        <S.Button onClick={handlePublish} disabled={loading}>
+          발행
+        </S.Button>
         {(currentPageIndex === pages.length - 1 || pages.length === 1) && (
           <S.AddButton onClick={handleAddPage}>페이지 추가</S.AddButton>
         )}
