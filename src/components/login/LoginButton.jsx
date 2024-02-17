@@ -9,9 +9,9 @@ const LoginButton = () => {
   return (
     <>
       <KakaoLoginButton />
-      {/* <GoogleOAuthProvider clientId={clientId}>
+      <GoogleOAuthProvider clientId={clientId}>
         <GoogleLoginButton />
-      </GoogleOAuthProvider> */}
+      </GoogleOAuthProvider>
     </>
   );
 };
