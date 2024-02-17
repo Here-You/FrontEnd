@@ -4,6 +4,7 @@ import { FONT_SIZE } from '@/constants/size';
 
 const LoginButton = styled.button`
   display: flex;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 35%;
@@ -23,7 +24,7 @@ const LoginButton = styled.button`
   h3 {
     font-family: 'Pretendard-semibold';
     font-size: 16px;
-    width: 80%;
+    width: 90%;
   }
 `;
 
