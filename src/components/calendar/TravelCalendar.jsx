@@ -125,34 +125,26 @@ const TravelCalendar = ({
   };
   const handlePrev = () => {
     const prevValue = moment(value).subtract(1, 'month').toDate();
-    const lastDayOfPrevMonth = moment(prevValue).endOf('month').toDate();
-    let newEndDate = endDate;
-
-    if (endDate > lastDayOfPrevMonth) {
-      newEndDate = lastDayOfPrevMonth;
-    }
+    const prevEndValue = moment(endDate).subtract(1, 'month').toDate();
     setValue(prevValue);
-    setEndDate(newEndDate);
+
+    const lastDayOfPrevMonth = moment(prevValue).endOf('month').toDate();
+    setEndDate(
+      prevEndValue > lastDayOfPrevMonth ? lastDayOfPrevMonth : prevEndValue,
+    );
   };
 
   const handleNext = () => {
     const nextValue = moment(value).add(1, 'month').toDate();
-    const firstDayOfNextMonth = moment(nextValue).startOf('month').toDate();
-    let newStartDate = value;
-    let newEndDate = endDate;
-
-    if (value < firstDayOfNextMonth) {
-      newStartDate = firstDayOfNextMonth;
-      newEndDate = moment(firstDayOfNextMonth)
-        .add(moment(endDate).diff(moment(value)))
-        .toDate();
-    }
+    const nextEndValue = moment(endDate).add(1, 'month').toDate();
 
     setValue(nextValue);
-    setEndDate(newEndDate);
-  };
 
-  console.log();
+    const firstDayOfNextMonth = moment(nextValue).startOf('month').toDate();
+    setEndDate(
+      nextEndValue < firstDayOfNextMonth ? nextEndValue : firstDayOfNextMonth,
+    );
+  };
 
   return (
     <>
