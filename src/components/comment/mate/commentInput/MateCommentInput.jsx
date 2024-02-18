@@ -57,7 +57,10 @@ const MateCommentInput = ({ ruleId }) => {
       <S.SubmitButton
         onClick={async () => {
           try {
-            if (!content.trim()) return;
+            if (!content.trim()) {
+              toast('댓글 내용을 입력해주세요!');
+              return;
+            }
             await postComment({ ruleId, content });
           } catch (e) {
             console.error(e);
