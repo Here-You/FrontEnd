@@ -15,6 +15,12 @@ const SignatureSearchSlider = ({ data, type, searchTerm }) => {
         <S.Title>"{searchTerm}" 에 관한 시그니처⭐</S.Title>
       )}
       <S.PreviewContainer>
+        {data?.length === 0 && (
+          <S.EmptyContainer>
+            {type === 'hot' && <h3>시그니처를 작성해주세요~!</h3>}
+            {type === 'new' && <h3>시그니처를 작성해주세요~!</h3>}
+          </S.EmptyContainer>
+        )}
         {data === null ? (
           <S.EmptyContainer>
             <S.Text>로그인 후</S.Text>
