@@ -5,14 +5,14 @@ import { useGetNotification } from '@/hooks/notification/useGetNotification';
 
 const Notification = () => {
   const { data, isPending, isError } = useGetNotification();
-  const notification = data?.data?.data;
-  console.log(notification);
+  const notifications = data?.data?.data;
+
   return (
     <S.Container>
       {isPending ? (
         <NotificationSkeleton />
       ) : (
-        <NotificationPage notification={notification} />
+        <NotificationPage notifications={notifications} />
       )}
     </S.Container>
   );
