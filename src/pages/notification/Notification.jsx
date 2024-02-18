@@ -6,6 +6,7 @@ import { useGetNotification } from '@/hooks/notification/useGetNotification';
 const Notification = () => {
   const { data, isPending, isError } = useGetNotification();
   const notification = data?.data?.data;
+  console.log(notification);
   return (
     <S.Container>
       {isPending ? (
