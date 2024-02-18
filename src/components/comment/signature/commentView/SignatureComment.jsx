@@ -137,6 +137,20 @@ const SignatureComment = ({ data }) => {
                 />
               </>
             )}
+            {can_delete && !editMode && (
+              <>
+                <S.Icon
+                  src={Trash}
+                  onClick={async () => {
+                    try {
+                      await deleteReComment({ signatureId, commentId: _id });
+                    } catch (e) {
+                      console.error(e);
+                    }
+                  }}
+                />
+              </>
+            )}
             {editMode && (
               <>
                 <S.Button
