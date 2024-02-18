@@ -27,7 +27,7 @@ const BottomDetailScrollPage = ({ startDate, endDate }) => {
       if (!lastPage?.data?.data?.data?.meta?.hasNextData) {
         return null;
       } else {
-        return lastPage?.data?.data?.data?.meta?.cursor + 1;
+        return lastPage?.data?.data?.data?.meta?.cursor;
       }
     },
     staleTime: 60 * 1000,
