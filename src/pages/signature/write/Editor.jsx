@@ -129,6 +129,7 @@ export default function Editor({ setSelectedHeader }) {
             페이지 삭제
           </S.AddButton>
         )}
+        {loading && <S.Spinner />}
       </S.ButtonWrap>
     </S.EditorContainer>
   );

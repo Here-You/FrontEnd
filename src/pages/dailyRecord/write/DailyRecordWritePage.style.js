@@ -1,7 +1,31 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
+
+const rotation = keyframes`
+    from{
+        transform: rotate(0deg);
+    }
+
+    to{
+        transform: rotate(360deg);
+    }
+
+`;
+
+const Spinner = styled.div`
+  position: absolute;
+  bottom: 0px;
+  left: 215px;
+  height: 20px;
+  width: 20px;
+  border: 1px solid ${theme.COLOR.MAIN.MEDIUM_GREEN};
+  border-radius: 50%;
+  border-top: none;
+  border-right: none;
+  animation: ${rotation} 1s linear infinite;
+`;
 
 const Container = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
@@ -279,4 +303,5 @@ export {
   ImageInput,
   PreviewImage,
   UploadButton,
+  Spinner,
 };

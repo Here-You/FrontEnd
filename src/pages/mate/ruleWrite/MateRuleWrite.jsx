@@ -121,6 +121,7 @@ const MateRuleWritePage = () => {
       <S.SubmitBtn disabled={loading} onClick={handleSubmitRule}>
         발행하기
       </S.SubmitBtn>
+      {loading && <S.Spinner />}
     </S.Container>
   );
 };

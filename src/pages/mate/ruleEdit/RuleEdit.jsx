@@ -15,6 +15,7 @@ const RuleEditPage = () => {
   const navigate = useNavigate();
   const { ruleId } = useParams();
   const { data, loading, error } = useTeamMateRulePost(ruleId);
+  const [isLoading, setIsLoading] = useState(false);
   const initialData = data;
 
   const inviteMatesModal = useInviteMatesModal();
@@ -84,14 +85,16 @@ const RuleEditPage = () => {
       rulePairs: sortedRulePairs,
       membersId: extractMembersId,
     };
-
+    setIsLoading(true);
     updateTeamMateRule(ruleId, { postDataWithId })
       .then(() => {
         toast.success('규칙을 성공적으로 수정하였습니다.');
         navigate(`/mate/rule-check/${ruleId}`);
+        setIsLoading(false);
       })
       .catch(error => {
         console.log(error);
+        setIsLoading(false);
       });
   };
 
@@ -156,6 +159,7 @@ const RuleEditPage = () => {
         </S.AddButtonWrapper>
       </S.Wrapper>
       <S.SubmitBtn onClick={handleSubmitRule}>수정하기</S.SubmitBtn>
+      {isLoading && <S.Spinner />}
     </S.Container>
   );
 };

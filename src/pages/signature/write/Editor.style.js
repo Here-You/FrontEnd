@@ -1,8 +1,29 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
+
+const rotation = keyframes`
+    from{
+        transform: rotate(0deg);
+    }
+
+    to{
+        transform: rotate(360deg);
+    }
+
+`;
+
+const Spinner = styled.div`
+  height: 20px;
+  width: 20px;
+  border: 1px solid ${theme.COLOR.MAIN.MEDIUM_GREEN};
+  border-radius: 50%;
+  border-top: none;
+  border-right: none;
+  animation: ${rotation} 1s linear infinite;
+`;
 
 //SignatureWrite.jsx
 const PageWrapper = styled.div`
@@ -207,4 +228,5 @@ export {
   ImageInput,
   ImageAddButton,
   PageText,
+  Spinner,
 };
