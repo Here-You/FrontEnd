@@ -541,8 +541,6 @@ export const MateHandlers = [
     ({ request, params }) => {
       const ruleId = params.ruleId;
 
-      console.log(ruleId);
-
       if (!ruleId) {
         return new HttpResponse(null, { status: 404 });
       }

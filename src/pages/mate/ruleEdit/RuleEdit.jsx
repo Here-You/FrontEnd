@@ -84,7 +84,6 @@ const RuleEditPage = () => {
       rulePairs: sortedRulePairs,
       membersId: extractMembersId,
     };
-    console.log(postDataWithId);
 
     updateTeamMateRule(ruleId, { postDataWithId })
       .then(() => {
