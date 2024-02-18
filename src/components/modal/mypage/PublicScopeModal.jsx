@@ -75,7 +75,6 @@ const PublicScopeModal = ({ myVisibility }) => {
           toast.success('공개범위가 설정되었습니다.');
         }
       } catch (error) {
-        console.log(error);
         console.error('서버 내부 오류.', error);
         toast.error('서버 내부 오류');
       } finally {

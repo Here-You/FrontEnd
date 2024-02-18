@@ -78,7 +78,7 @@ const Schedules = ({ data, endDate, refetch }) => {
       }
     } catch (e) {
       setError(true);
-      console.log(e);
+
       toast.error('일정 초기화 중 에러가 발생했습니다.');
     } finally {
       setLoading(false);

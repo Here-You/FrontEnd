@@ -7,7 +7,6 @@ import Heart from '/images/signature/ClickedHeart.svg';
 
 const NotificationPage = ({ notifications }) => {
   const navigate = useNavigate();
-  console.log(notifications);
 
   return (
     <S.Container>

@@ -20,8 +20,6 @@ const SignatureCommentList = () => {
     delay: 0,
   });
 
-  console.log(signatureComments);
-
   useEffect(() => {
     if (inView) {
       !isFetching && hasNextPage && fetchNextPage();
