@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Preview from './Preview';
 import * as S from './SignatureSearchSlider.style';
+import NoSignature from '@/pages/signature/main/NoSignature';
 
 const SignatureSearchSlider = ({ data, type, searchTerm }) => {
   const navigate = useNavigate();
@@ -17,8 +18,8 @@ const SignatureSearchSlider = ({ data, type, searchTerm }) => {
       <S.PreviewContainer>
         {data?.length === 0 && (
           <S.EmptyContainer>
-            {type === 'hot' && <h3>시그니처를 작성해주세요~!</h3>}
-            {type === 'new' && <h3>시그니처를 작성해주세요~!</h3>}
+            {type === 'hot' && <NoSignature />}
+            {type === 'new' && <NoSignature />}
           </S.EmptyContainer>
         )}
         {data === null ? (

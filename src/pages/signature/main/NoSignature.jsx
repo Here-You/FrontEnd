@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './NoSignature.style';
 import bookImg from '/images/bookImg.svg';
 
-//내 시그니처 없으면 띄우는 페이지
 export default function NoSignature() {
-  const navigate = useNavigate();
   return (
     <S.PageContainer>
       <S.ContentContainer>
