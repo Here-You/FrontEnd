@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import * as S from './MateCommentInput.style';
+import Logo from '/images/mypage/MyPageLogo.svg';
 import { postMateRuleComment } from '@/apis/request/mate';
 import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -44,7 +45,7 @@ const MateCommentInput = ({ ruleId }) => {
 
   return (
     <S.Container>
-      <S.Avatar src={myProfile} />
+      <S.Avatar src={myProfile ? myProfile : Logo} />
       <S.CommentInput
         id="content"
         rows={1}
