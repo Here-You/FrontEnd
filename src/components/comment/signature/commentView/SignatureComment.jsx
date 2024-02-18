@@ -125,21 +125,25 @@ const SignatureComment = ({ data }) => {
                     setEditMode(true);
                   }}
                 />
-                <S.Icon
-                  src={Trash}
-                  onClick={async () => {
-                    try {
-                      await deleteReComment({ signatureId, commentId: _id });
-                    } catch (e) {
-                      console.error(e);
-                    }
-                  }}
-                />
+                {!can_delete && ( // can_delete가 false일 때만 쓰레기통 아이콘 표시
+                  <S.Icon
+                    src={Trash}
+                    onClick={async () => {
+                      try {
+                        await deleteReComment({ signatureId, commentId: _id });
+                      } catch (e) {
+                        console.error(e);
+                      }
+                    }}
+                  />
+                )}
               </>
             )}
+
             {/* 모두 삭제하는 권한이 있는 경우. */}
-            {can_delete && !editMode && (
-              <>
+            {can_delete &&
+              !writer?.is_writer &&
+              !editMode && ( // writer가 아니고, can_delete가 true일 때만 쓰레기통 아이콘 표시
                 <S.Icon
                   src={Trash}
                   onClick={async () => {
@@ -150,8 +154,7 @@ const SignatureComment = ({ data }) => {
                     }
                   }}
                 />
-              </>
-            )}
+              )}
             {editMode && (
               <>
                 <S.Button
