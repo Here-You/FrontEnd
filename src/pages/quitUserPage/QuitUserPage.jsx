@@ -16,6 +16,9 @@ const QuitUserPage = ({ type, bgColor }) => {
     case 'not-login':
       message = '로그인 후 서비스를 이용해주세요!';
       break;
+    case 'no-diary-data':
+      message = '작성하신 하루일지가 없습니다.';
+      break;
     default:
       message = '';
   }
