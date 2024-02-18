@@ -15,7 +15,7 @@ const NotificationContainer = styled.div`
   flex-direction: row;
   align-items: center;
   width: 95%;
-  font-size: ${FONT_SIZE.LG};
+  font-size: ${FONT_SIZE.SM};
   margin-bottom: 30px;
   padding: 20px;
   border-radius: 10px;
@@ -29,9 +29,18 @@ const NotificationContainer = styled.div`
     font-size: ${FONT_SIZE.SM};
   }
 
-  span {
+  h3 {
     color: ${theme.COLOR.MAIN.GREEN};
   }
+
+  span {
+    color: ${theme.COLOR.MAIN.GREEN};
+    font-size: ${FONT_SIZE.h3};
+  }
+`;
+
+const TextContainer = styled.div`
+  width: 100%;
 `;
 
 const Img = styled.img`
@@ -63,4 +72,12 @@ const Text = styled.div`
   font-size: 23px;
 `;
 
-export { Container, NotificationContainer, Img, BellContainer, Bell, Text };
+export {
+  Container,
+  NotificationContainer,
+  TextContainer,
+  Img,
+  BellContainer,
+  Bell,
+  Text,
+};
