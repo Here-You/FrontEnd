@@ -102,6 +102,7 @@ const API_URL = {
   GET_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/get-journey/:journeyId`,
   GET_DIARIES_MAP: `/api/${VERSION}/${API_BASE.MAP}/get-diaries/:journeyId`,
   GET_DETAIL_JOURNEY_MAP: `/api/${VERSION}/${API_BASE.MAP}/get-schedules/:journeyId`,
+  GET_MONTHLY_LIST_SCHEDULE: `/api/${VERSION}/${API_BASE.MAP}/get-monthly-schedule`,
   // SIGNATURE
   SEARCH_SIGNATURE: `/api/${VERSION}/${API_BASE.SEARCH}`, // 검색탭 메인화면
   GET_MY_SIGNATURE: `/api/${VERSION}/${API_BASE.SIGNATURE}`,

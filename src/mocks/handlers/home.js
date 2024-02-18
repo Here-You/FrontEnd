@@ -4,172 +4,12 @@ import { baseURL } from '@/apis/api';
 import { API_URL } from '@/constants/path';
 
 export const HomeHandlers = [
-  //월별 일정 불러오기 (확정x)
-  http.get(
-    `${baseURL}${API_URL.LOAD_MONTHLY_SCHEDULE}`,
-    ({ request, params }) => {
-      const year = params.year;
-      const month = params.month;
-
-      if (!year || !month) {
-        return new HttpResponse(null, { status: 404 });
-      } else if (year && month) {
-        return HttpResponse.json({
-          status: 200,
-          success: true,
-          message: '닉네임 수정 성공',
-          data: {
-            year: year,
-            month: month,
-            monthlyJourneys: [
-              {
-                journeyId: 123,
-                journeyTitle: 'My Journey',
-                dateGroup: {
-                  id: 1,
-                  startDate: '2024-02-05',
-                  endDate: '2024-02-06',
-                },
-                schedules: [
-                  {
-                    scheduleId: 1,
-                    date: `${year}-${month}-11`,
-                    title: 'Day 1 Schedule',
-                    location: {
-                      name: 'Google Location',
-                      latitude: 37.7749,
-                      longitude: -122.4194,
-                    },
-                    detailSchedules: [
-                      {
-                        detailScheduleId: 101,
-                        content:
-                          'Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1',
-                      },
-                      {
-                        detailScheduleId: 102,
-                        content:
-                          'Detail for Day 12 Detail for Day 12 Detail for Day 12 Detail for Day 12 Detail for Day 1',
-                      },
-                    ],
-                    diary_written: true,
-                  },
-                  {
-                    scheduleId: 2,
-                    date: `${year}-${month}-12`,
-                    title: 'Day 2 Schedule',
-                    location: {
-                      name: 'Google Location',
-                      latitude: 37.7749,
-                      longitude: -122.4194,
-                    },
-                    detailSchedules: [
-                      {
-                        detailScheduleId: 102,
-                        content: 'Detail for Day 2 Schedule',
-                      },
-                    ],
-                    diary_written: false,
-                  },
-                  {
-                    scheduleId: 3,
-                    date: `${year}-${month}-13`,
-                    title: 'Day 3 Schedule',
-                    location: {
-                      name: 'Google Location',
-                      latitude: 37.7749,
-                      longitude: -122.4194,
-                    },
-                    detailSchedules: [
-                      {
-                        detailScheduleId: 103,
-                        content: 'Detail for Day 3 Schedule',
-                      },
-                    ],
-                    diary_written: false,
-                  },
-                ],
-              },
-              {
-                journeyId: 124,
-                journeyTitle: 'My Journey',
-                dateGroup: {
-                  id: 1,
-                  startDate: '2024-02-08',
-                  endDate: '2024-02-14',
-                },
-                schedules: [
-                  {
-                    scheduleId: 5,
-                    date: `${year}-${month}-11`,
-                    title: 'Day 1 Schedule',
-                    location: {
-                      name: 'Google Location',
-                      latitude: 37.7749,
-                      longitude: -122.4194,
-                    },
-                    detailSchedules: [
-                      {
-                        detailScheduleId: 101,
-                        content:
-                          'Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1 Detail for Day 1',
-                      },
-                      {
-                        detailScheduleId: 102,
-                        content:
-                          'Detail for Day 12 Detail for Day 12 Detail for Day 12 Detail for Day 12 Detail for Day 1',
-                      },
-                    ],
-                    diary_written: true,
-                  },
-                  {
-                    scheduleId: 6,
-                    date: `${year}-${month}-12`,
-                    title: 'Day 2 Schedule',
-                    location: {
-                      name: 'Google Location',
-                      latitude: 37.7749,
-                      longitude: -122.4194,
-                    },
-                    detailSchedules: [
-                      {
-                        detailScheduleId: 102,
-                        content: 'Detail for Day 2 Schedule',
-                      },
-                    ],
-                    diary_written: false,
-                  },
-                  {
-                    scheduleId: 7,
-                    date: `${year}-${month}-13`,
-                    title: 'Day 3 Schedule',
-                    location: {
-                      name: 'Google Location',
-                      latitude: 37.7749,
-                      longitude: -122.4194,
-                    },
-                    detailSchedules: [
-                      {
-                        detailScheduleId: 103,
-                        content: 'Detail for Day 3 Schedule',
-                      },
-                    ],
-                    diary_written: false,
-                  },
-                ],
-              },
-            ],
-          },
-        });
-      }
-    },
-  ),
   //여정 저장하기
   http.post(`${baseURL}${API_URL.SAVE_JOURNEY}`, ({ params, request }) => {
     return HttpResponse.json({
       status: 200,
       success: true,
-      message: '여정 저장하기 성공',
+      message: '여정이 저장되었습니다',
       data: {
         id: 1,
         title: 'New Journey',
@@ -227,143 +67,59 @@ export const HomeHandlers = [
     });
   }),
   //일정 불러오기 (커서 기반)  -> 확정 안됨
-  http.get(`${baseURL}${API_URL.GET_SCHEDULE}`, async ({ request, params }) => {
-    const url = new URL(request.url);
-    const journeyId = params.journeyId;
-    const cursor = parseInt(url.searchParams.get('cursor')) || 0;
-    if (!journeyId) {
-      return new HttpResponse(null, { status: 404 });
-    } else if (journeyId) {
-      await delay(3000);
+  http.get(
+    `${baseURL}${API_URL.GET_MONTHLY_LIST_SCHEDULE}/:data`,
+    async ({ request, params }) => {
+      const url = new URL(request.url);
+
       return HttpResponse.json({
-        status: 200,
-        success: true,
-        message: '일정 불러오기 성공',
-        data: [
-          {
-            scheduleId: cursor + 1,
-            journeyId: journeyId,
-            title: 'Exploration',
-            date: '2024-01-11',
-            location: {
-              name: 'Googleplex',
-              latitude: 37.422,
-              longitude: -122.0841,
+        data: {
+          success: true,
+          code: 200,
+          message: '일정를 불러오는데 성공했습니다.',
+          data: {
+            journeyInfo: {
+              userId: 1,
+              journeyId: 6,
+              startDate: '2024-02-01',
+              endDate: '2024-02-15',
             },
-            detailSchedules: [
+            paginatedSchedules: [
               {
-                detailScheduleId: 1,
-                content: 'Morning exploration',
-                isDone: false,
-              },
-              {
-                detailScheduleId: 2,
-                content: 'Afternoon adventure',
-                isDone: true,
+                scheduleId: 17,
+                title: '2월 24일 일정',
+                date: '2024-02-01',
+                location: [
+                  {
+                    locationId: 3,
+                    name: '서울',
+                    latitude: '11.000000',
+                    longitude: '11.000000',
+                  },
+                ],
+                detailSchedules: [
+                  [
+                    {
+                      id: 2,
+                      content: null,
+                      isDone: false,
+                    },
+                  ],
+                ],
+                diary: [true],
               },
             ],
-            diary_written: true,
-          },
-          {
-            scheduleId: cursor + 2,
-            journeyId: journeyId,
-            title: 'Relaxation',
-            date: '2024-01-12',
-            location: {
-              name: 'Sunny Beach',
-              latitude: 36.7783,
-              longitude: -119.4179,
+            meta: {
+              take: '1',
+              total: 15,
+              hasNextData: true,
+              cursor: 1,
             },
-            detailSchedules: [
-              {
-                detailScheduleId: 3,
-                content: 'Beach time',
-                isDone: false,
-              },
-              {
-                detailScheduleId: 4,
-                content: 'Sunset watching',
-                isDone: true,
-              },
-            ],
-            diary_written: false,
           },
-          {
-            scheduleId: cursor + 3,
-            journeyId: journeyId,
-            title: 'City Tour',
-            date: '2024-01-13',
-            location: {
-              name: 'City Center',
-              latitude: 37.7749,
-              longitude: -122.4194,
-            },
-            detailSchedules: [
-              {
-                detailScheduleId: 5,
-                content: 'Visit landmarks',
-                isDone: false,
-              },
-              {
-                detailScheduleId: 6,
-                content: 'Try local cuisine',
-                isDone: false,
-              },
-            ],
-            diary_written: false,
-          },
-          {
-            scheduleId: cursor + 4,
-            journeyId: journeyId,
-            title: 'City Tour',
-            date: '2024-01-13',
-            location: {
-              name: 'City Center',
-              latitude: 37.7749,
-              longitude: -122.4194,
-            },
-            detailSchedules: [
-              {
-                detailScheduleId: 5,
-                content: 'Visit landmarks',
-                isDone: false,
-              },
-              {
-                detailScheduleId: 6,
-                content: 'Try local cuisine',
-                isDone: false,
-              },
-            ],
-            diary_written: false,
-          },
-          {
-            scheduleId: cursor + 5,
-            journeyId: journeyId,
-            title: 'City Tour',
-            date: '2024-01-13',
-            location: {
-              name: 'City Center',
-              latitude: 37.7749,
-              longitude: -122.4194,
-            },
-            detailSchedules: [
-              {
-                detailScheduleId: 5,
-                content: 'Visit landmarks',
-                isDone: false,
-              },
-              {
-                detailScheduleId: 6,
-                content: 'Try local cuisine',
-                isDone: false,
-              },
-            ],
-            diary_written: false,
-          },
-        ],
+        },
       });
-    }
-  }),
+    },
+  ),
   //세부 일정 추가하기
   http.post(
     `${baseURL}${API_URL.CREATE_DETAIL_SCHEDULE}`,
@@ -618,66 +374,6 @@ export const HomeHandlers = [
                 'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
             },
           },
-          {
-            journeyId: journeyId,
-            date: '2022-03-21',
-            diary: {
-              id: 2,
-              title: '일지',
-              place: '내 집',
-              weather: 'SUNNY',
-              mood: 'HAPPY',
-              content: '5번째 일지를 작성했습니다...',
-              created: '2024-02-06T20:07:47.266Z',
-              updated: '2024-02-06T20:07:47.266Z',
-              deleted: null,
-            },
-            diaryImage: {
-              id: 2,
-              imageUrl:
-                'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-            },
-          },
-          {
-            journeyId: journeyId,
-            date: '2022-03-22',
-            diary: {
-              id: 3,
-              title: '일지',
-              place: '내 집',
-              weather: 'SUNNY',
-              mood: 'HAPPY',
-              content: '5번째 일지를 작성했습니다...',
-              created: '2024-02-06T20:07:47.266Z',
-              updated: '2024-02-06T20:07:47.266Z',
-              deleted: null,
-            },
-            diaryImage: {
-              id: 3,
-              imageUrl:
-                'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-            },
-          },
-          {
-            journeyId: journeyId,
-            date: '2022-03-23',
-            diary: {
-              id: 4,
-              title: '일지',
-              place: '내 집',
-              weather: 'SUNNY',
-              mood: 'HAPPY',
-              content: '5번째 일지를 작성했습니다...',
-              created: '2024-02-06T20:07:47.266Z',
-              updated: '2024-02-06T20:07:47.266Z',
-              deleted: null,
-            },
-            diaryImage: {
-              id: 4,
-              imageUrl:
-                'https://images.unsplash.com/photo-1682687219570-4c596363fd96?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D',
-            },
-          },
         ],
       });
     }
@@ -753,9 +449,10 @@ export const HomeHandlers = [
   // 전체 일지 불러오기 (마이페이지)
   http.get(`${baseURL}${API_URL.GET_ALL_DIARY}`, ({ params, request }) => {
     return HttpResponse.json({
-      status: 200,
+      timestamp: '2024-02-11T16:13:33.881Z',
+      code: 'OK',
       success: true,
-      message: '지도에서 일지 불러오기 성공',
+      message: '일지 목록 조회 성공',
       data: {
         diaries: [
           {

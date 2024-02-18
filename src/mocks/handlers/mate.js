@@ -1,11 +1,11 @@
 import { HttpResponse, http } from 'msw';
 
 import { baseURL } from '@/apis/api';
-import { API_URL } from '@/constants/path';
+import { API_BASE, API_URL } from '@/constants/path';
 
 export const MateHandlers = [
   //메이트 검색하기
-  http.get(`${baseURL}${API_URL.SEARCH_MATE}`, ({ request, params }) => {
+  http.get(`${baseURL}${API_URL.FOLLOW_MATE}/search`, ({ request, params }) => {
     const url = new URL(request.url);
     const searchTerm = url.searchParams.get('searchTerm');
     const cursor = url.searchParams.get('cursor');
@@ -13,9 +13,7 @@ export const MateHandlers = [
 
     if (!searchTerm) {
       return new HttpResponse(null, { status: 404 });
-    }
-
-    if (searchTerm === 'ahnyewon') {
+    } else {
       return HttpResponse.json({
         status: 200,
         success: true,
@@ -68,8 +66,8 @@ export const MateHandlers = [
   }),
 
   //메이트 팔로우
-  http.post(
-    `${baseURL}${API_URL.FOLLOW_MATE}/:userId`,
+  http.patch(
+    `${baseURL}${API_URL.FOLLOW_MATE}/:followingId`,
     ({ request, params }) => {
       const userId = params.userId;
 
@@ -164,7 +162,92 @@ export const MateHandlers = [
       });
     },
   ),
+  //메이트 탐색2
+  http.get(`${baseURL}${API_URL.LOCATION_MATE}`, ({ request, params }) => {
+    const url = new URL(request.url);
+    const cursorId = parseInt(url.searchParams.get('cursor')) || 0;
+    const take = parseInt(url.searchParams.get('take')) || 0;
 
+    return HttpResponse.json({
+      timestamp: '2024-02-09T11:49:13.427Z',
+      code: 'OK',
+      success: true,
+      message: '장소 기반 메이트 추천 리스트 가져오기 성공',
+      data: {
+        location: '알베르',
+        userName: '샐리',
+        mateProfiles: [
+          {
+            _id: 3,
+            mateName: '써니',
+            introduction: '안녕하세요 반가워요',
+            is_followed: false,
+            mateImage:
+              'https://hereyou-cdn.kaaang.dev/signature/07f8c65c-5966-4b2e-9d96-08d5d084d013.png',
+            signatures: [
+              {
+                _id: 22,
+                title: '강남역 근처 카페 추천',
+                image:
+                  'https://hereyou-cdn.kaaang.dev/signature/07f8c65c-5966-4b2e-9d96-08d5d084d013.png',
+              },
+              {
+                _id: 22,
+                title: '강남역근처',
+                image:
+                  'https://hereyou-cdn.kaaang.dev/signature/07f8c65c-5966-4b2e-9d96-08d5d084d013.png',
+              },
+            ],
+          },
+          {
+            _id: 4,
+            mateName: '예니',
+            introduction: '안녕하세요 반가워요',
+            is_followed: false,
+            mateImage:
+              'https://hereyou-cdn.kaaang.dev/signature/07f8c65c-5966-4b2e-9d96-08d5d084d013.png',
+            signatures: {
+              _id: 22,
+              title: '강남역 근처 카페 추천',
+              image:
+                'https://hereyou-cdn.kaaang.dev/signature/07f8c65c-5966-4b2e-9d96-08d5d084d013.png',
+            },
+          },
+        ],
+      },
+    });
+  }),
+
+  //팔로잉 목록 불러오기
+  http.get(`${baseURL}${API_URL.GET_MATE_FOLLOW}`, ({ request, params }) => {
+    return HttpResponse.json({
+      status: 200,
+      success: true,
+      message: '팔로잉 리스트 불러오기 성공',
+      data: {
+        mates: [
+          {
+            _id: 1,
+            name: '팔로잉_안예원',
+            nickname: 'ahnyewon',
+            bio: '안녕하세요 안예원입니다. 반가워요',
+            image:
+              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            followId: 123,
+          },
+          {
+            _id: 2,
+            name: '안예',
+            nickname: 'ahnyw',
+            bio: '안녕하세요 안예입니다. 반가워요',
+            image:
+              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            followId: 'null',
+          },
+        ],
+      },
+    });
+  }),
   //팔로워 목록 불러오기
   http.get(`${baseURL}${API_URL.GET_MATE_FOLLOWER}`, ({ request, params }) => {
     return HttpResponse.json({
@@ -190,37 +273,6 @@ export const MateHandlers = [
             image:
               'https://plus.unsplash.com/premium_photo-1671478394583-3d91fd9c7ca5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D',
             followId: 'null',
-          },
-        ],
-      },
-    });
-  }),
-
-  //팔로잉 목록 불러오기
-  http.get(`${baseURL}${API_URL.GET_MATE_FOLLOWING}`, ({ request, params }) => {
-    return HttpResponse.json({
-      status: 200,
-      success: true,
-      message: '팔로잉 리스트 불러오기 성공',
-      data: {
-        mates: [
-          {
-            _id: 1,
-            name: '팔로잉_안예원',
-            nickname: 'ahnyewon',
-            bio: '안녕하세요 안예원입니다. 반가워요',
-            image:
-              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            is_following: true,
-          },
-          {
-            _id: 2,
-            name: '안예',
-            nickname: 'ahnyw',
-            bio: '안녕하세요 안예입니다. 반가워요',
-            image:
-              'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            is_following: false,
           },
         ],
       },
@@ -354,54 +406,63 @@ export const MateHandlers = [
       }
 
       return HttpResponse.json({
-        timestamp: '2024-02-08T12:15:07.069Z',
+        timestamp: '2024-02-12T07:35:57.786Z',
         code: 'OK',
         success: true,
-        message: '여행 규칙 불러오기 성공',
-        data: [
-          {
-            id: 123,
-            mainTitle: '제주도 여행',
-            detailMembers: [
-              {
-                id: 1234,
-                name: '김용민',
-                nickname: 'dydals3440',
-                introduction: '안녕하세요 안예원 입니다. 반가워요',
-                image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              },
-              {
-                id: 12345,
-                name: '다인',
-                nickname: 'chakk',
-                introduction: '안녕하세요 안원 입니다. 반가워요',
-                image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              },
-              {
-                id: 1235,
-                name: '예원',
-                nickname: 'yewon',
-                introduction: '안녕하세요 예원 입니다. 반가워요',
-                image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              },
-            ],
-            rulePairs: [
-              {
-                id: 123,
-                ruleTitle: '규칙 제목1',
-                ruleDetail: '세부 내용1',
-              },
-              {
-                id: 124,
-                ruleTitle: '규칙 제목2',
-                ruleDetail: '세부 내용2',
-              },
-            ],
+        message: '여행 규칙 상세 페이지 (게시글) 조회 성공',
+        data: {
+          id: '21',
+          mainTitle: '일본 여행',
+          rulePairs: [
+            {
+              id: 40,
+              ruleTitle: '취침 시간 규칙',
+              ruleDetail: '12시엔 자기',
+            },
+            {
+              id: 41,
+              ruleTitle: '기상 규칙',
+              ruleDetail: '7시 기상',
+            },
+          ],
+          detailMembers: [
+            {
+              id: 2,
+              name: 'Test2',
+              image: null,
+            },
+            {
+              id: 3,
+              name: 'Test3',
+              image: null,
+            },
+            {
+              id: 1,
+              name: 'Test1',
+              image: null,
+            },
+          ],
+          comments: [
+            {
+              id: 1234,
+              image: 'profile_img_url',
+              text: '완벽한 규칙이네요',
+              created: 1675275543,
+            },
+            {
+              id: 124,
+              image: 'profile_img_url',
+              text: '완벽한 규칙이네요',
+              created: 1675275543,
+            },
+          ],
+          metaToBack: {
+            total: 3,
+            take: 2,
+            cursor: 1,
+            hasNextData: true,
           },
-        ],
+        },
       });
     },
   ),
@@ -556,72 +617,86 @@ export const MateHandlers = [
   //여행 규칙 전체 리스트
   http.get(`${baseURL}${API_URL.GET_TEAM_RULE_LIST}`, ({ request, params }) => {
     return HttpResponse.json({
-      status: 200,
+      timestamp: '2024-02-10T15:33:53.125Z',
+      code: 'OK',
       success: true,
-      message: '참여 중인 여행 규칙 리스트 불러오기 성공',
-      data: {
-        rules: [
-          {
-            id: 1,
-            memberCnt: 3,
-            title: '제주도 여행을 위한 규칙',
-            updated: 1675275543,
-            participants: [
-              {
-                id: 345,
-                image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              },
-              {
-                id: 678,
-                image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              },
-            ],
-          },
-          {
-            id: 2,
-            memberCnt: 3,
-            title: '제주도 여행을 위한 규칙',
-            updated: 1675275543,
-            participants: [
-              {
-                id: 345,
-                image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              },
-              {
-                id: 678,
-                image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              },
-            ],
-          },
-          {
-            id: 3,
-            memberCnt: 3,
-            title: '제주도 여행을 위한 규칙',
-            updated: 1675275543,
-            participants: [
-              {
-                id: 345,
-                image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              },
-              {
-                id: 678,
-                image:
-                  'https://images.unsplash.com/photo-1671920090611-9a40303b52cb?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              },
-            ],
-          },
-        ],
-      },
+      message: '여행 규칙 전체 리스트 조회 성공',
+      data: [
+        {
+          id: '20',
+          title: '일본 여행',
+          updated: '2024-02-09T03:37:32.711Z',
+          memberCnt: 3,
+          memberPairs: [
+            {
+              id: 3,
+              name: 'Test3',
+              image: null,
+            },
+            {
+              id: 2,
+              name: 'Test2',
+              image: null,
+            },
+            {
+              id: 1,
+              name: 'Test1',
+              image: null,
+            },
+          ],
+        },
+        {
+          id: '21',
+          title: '일본 여행',
+          updated: '2024-02-09T04:47:27.972Z',
+          memberCnt: 3,
+          memberPairs: [
+            {
+              id: 2,
+              name: 'Test2',
+              image: null,
+            },
+            {
+              id: 3,
+              name: 'Test3',
+              image: null,
+            },
+            {
+              id: 1,
+              name: 'Test1',
+              image: null,
+            },
+          ],
+        },
+        {
+          id: '31',
+          title: '중국 여행',
+          updated: '2024-02-09T13:18:30.953Z',
+          memberCnt: 3,
+          memberPairs: [
+            {
+              id: 2,
+              name: 'Test2',
+              image: null,
+            },
+            {
+              id: 3,
+              name: 'Test3',
+              image: null,
+            },
+            {
+              id: 1,
+              name: 'Test1',
+              image: null,
+            },
+          ],
+        },
+      ],
     });
   }),
 
   // 여행 규칙 참여에서 나가기
-  http.delete(`${API_URL.EXIT_TEAM_RULE}`, ({ request, params }) => {
+  http.delete(`${API_URL.EXIT_TEAM_RULE}/:ruleId`, ({ request, params }) => {
     const ruleId = params.ruleId;
 
     if (!ruleId) {
@@ -634,4 +709,85 @@ export const MateHandlers = [
       message: '여행 규칙에서 나가기 성공',
     });
   }),
+  //메이트 프로필 정보
+  http.get(
+    `${baseURL}${API_URL.MATE_PROFILE_SEARCH}/:mateId`,
+    ({ request, params }) => {
+      return HttpResponse.json({
+        timestamp: '2024-02-10T17:27:55.001Z',
+        code: 'OK',
+        success: true,
+        message: '유저 프로필 정보 가져오기 성공',
+        data: {
+          _id: 1,
+          nickname: '여행의 이유',
+          introduction: '졸리당',
+          image: null,
+          is_followed: true,
+          following: 1,
+          follower: 2,
+          signatures: 28,
+          isQuit: false,
+        },
+      });
+    },
+  ),
+
+  //메이트 시그니처 리스트
+  http.get(
+    `${baseURL}${API_URL.MATE_PROFILE_SEARCH}/signature/:mateId`,
+    ({ request, params }) => {
+      const url = new URL(request.url);
+      const take = parseInt(url.searchParams.get('take')) || 5;
+      const cursorId = parseInt(url.searchParams.get('cursorId')) || 0;
+      if (!cursorId) {
+        return new HttpResponse(null, { status: 404 });
+      } else {
+        return HttpResponse.json({
+          timestamp: '2024-02-10T19:54:19.895Z',
+          code: 'OK',
+          success: true,
+          message: '메이트의 시그니처 가져오기 성공',
+          data: {
+            data: [
+              {
+                _id: 27,
+                title: '알베르 테스트 유저5',
+                liked: 0,
+                image:
+                  'https://hereyou-cdn.kaaang.dev/signature/91a3d721-0998-44e6-91a0-843c00f3ab1b.png',
+              },
+              {
+                _id: 26,
+                title: '알베르 테스트 유저5',
+                liked: 0,
+                image:
+                  'https://hereyou-cdn.kaaang.dev/signature/d5956637-c404-4985-8a12-764455ce6cad.png',
+              },
+              {
+                _id: 25,
+                title: '알베르 테스트 유저5',
+                liked: 0,
+                image:
+                  'https://hereyou-cdn.kaaang.dev/signature/300492d8-34ec-44f2-9fff-2de15686ad75.png',
+              },
+              {
+                _id: 24,
+                title: '알베르 테스트 유저5',
+                liked: 0,
+                image:
+                  'https://hereyou-cdn.kaaang.dev/signature/c663dc21-3b0e-4902-aa11-b90d91a12787.png',
+              },
+            ],
+            meta: {
+              take: '5',
+              total: 4,
+              hasNextData: false,
+              cursor: null,
+            },
+          },
+        });
+      }
+    },
+  ),
 ];
