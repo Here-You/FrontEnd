@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './LoginBanner.style';
 import profileImg from '/images/main/profileImg.svg';
 import rightIcon from '/images/main/right.svg';
+import Logo from '/images/mypage/MyPageLogo.svg';
 import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
 
 export default function LoginBanner({ isLogin }) {
@@ -23,7 +24,9 @@ export default function LoginBanner({ isLogin }) {
         <S.Container>
           {isLogin ? (
             <>
-              <S.Img src={myProfile?.profileImage} />
+              <S.Img
+                src={myProfile?.profileImage ? myProfile?.profileImage : Logo}
+              />
               <S.TextContainer>
                 <S.Text1>{myProfile?.nickname}님 환영합니다🪐</S.Text1>
                 <S.ProfileContainer onClick={() => navigate('/mypage')}>

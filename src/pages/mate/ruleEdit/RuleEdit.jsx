@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import MateRuleDetailSkeleton from '../ruleCheck/MateRuleDetailSkeleton/MateRuleDetailSkeleton';
 import * as S from './RuleEdit.style';
+import RuleEditSkeleton from './RuleEditSkeleton/RuleEditSkeleton';
 import PlusUser from '/images/mate/add-user.svg';
 import Logo from '/images/mypage/MyPageLogo.svg';
 import { updateTeamMateRule } from '@/apis/request/mate';
@@ -15,6 +17,7 @@ const RuleEditPage = () => {
   const navigate = useNavigate();
   const { ruleId } = useParams();
   const { data, loading, error } = useTeamMateRulePost(ruleId);
+  const [isLoading, setIsLoading] = useState(false);
   const initialData = data;
 
   const inviteMatesModal = useInviteMatesModal();
@@ -84,79 +87,91 @@ const RuleEditPage = () => {
       rulePairs: sortedRulePairs,
       membersId: extractMembersId,
     };
-
+    setIsLoading(true);
     updateTeamMateRule(ruleId, { postDataWithId })
       .then(() => {
         toast.success('규칙을 성공적으로 수정하였습니다.');
         navigate(`/mate/rule-check/${ruleId}`);
+        setIsLoading(false);
       })
       .catch(error => {
         console.log(error);
+        setIsLoading(false);
       });
   };
 
   return (
-    <S.Container>
-      <InviteMatesModal />
-      <S.Wrapper>
-        <S.Header>
-          <S.TitleInput
-            value={postData.mainTitle}
-            onChange={e =>
-              setPostData({ ...postData, mainTitle: e.target.value })
-            }
-            placeholder="규칙 제목을 입력해주세요."
-          />
-          <S.PlusSvg src={PlusUser} onClick={() => inviteMatesModal.onOpen()} />
-        </S.Header>
-        <S.MatesContainer>
-          {selectedMates.map(s => (
-            <>
-              <S.MatesImages src={s.image ? s.image : Logo} />
-            </>
-          ))}
-        </S.MatesContainer>
-        <S.Content>
-          {postData.rulePairs.map((rule, index) => (
-            <S.ContentBox key={rule.id || index}>
-              <S.TextContainer>
-                <S.ContentTitleInput
-                  placeholder={`규칙 ${index + 1}을 입력해주세요!`}
-                  value={rule.ruleTitle}
-                  onChange={e => {
-                    const newRulePairs = [...postData.rulePairs];
-                    newRulePairs[index].ruleTitle = e.target.value;
-                    setPostData({ ...postData, rulePairs: newRulePairs });
-                  }}
-                />
-                <S.ContentTextInput
-                  placeholder={`규칙 ${index + 1} 내용을 입력해주세요!`}
-                  value={rule.ruleDetail}
-                  onChange={e => {
-                    const newRulePairs = [...postData.rulePairs];
-                    newRulePairs[index].ruleDetail = e.target.value;
-                    setPostData({ ...postData, rulePairs: newRulePairs });
-                  }}
-                  rows="5"
-                  columns="2"
-                />
-                <S.DeleteRuleButton onClick={() => handleRemoveRule(index)}>
-                  X
-                </S.DeleteRuleButton>
-              </S.TextContainer>
-            </S.ContentBox>
-          ))}
-        </S.Content>
-        <S.AddButtonWrapper>
-          {postData.rulePairs.length < 10 && (
-            <S.AddQuestionButton onClick={handleAddRule}>
-              규칙 추가하기
-            </S.AddQuestionButton>
-          )}
-        </S.AddButtonWrapper>
-      </S.Wrapper>
-      <S.SubmitBtn onClick={handleSubmitRule}>수정하기</S.SubmitBtn>
-    </S.Container>
+    <>
+      {loading ? (
+        <RuleEditSkeleton />
+      ) : (
+        <S.Container>
+          <InviteMatesModal />
+          <S.Wrapper>
+            <S.Header>
+              <S.TitleInput
+                value={postData.mainTitle}
+                onChange={e =>
+                  setPostData({ ...postData, mainTitle: e.target.value })
+                }
+                placeholder="규칙 제목을 입력해주세요."
+              />
+              <S.PlusSvg
+                src={PlusUser}
+                onClick={() => inviteMatesModal.onOpen()}
+              />
+            </S.Header>
+            <S.MatesContainer>
+              {selectedMates.map(s => (
+                <>
+                  <S.MatesImages src={s.image ? s.image : Logo} />
+                </>
+              ))}
+            </S.MatesContainer>
+            <S.Content>
+              {postData.rulePairs.map((rule, index) => (
+                <S.ContentBox key={rule.id || index}>
+                  <S.TextContainer>
+                    <S.ContentTitleInput
+                      placeholder={`규칙 ${index + 1}을 입력해주세요!`}
+                      value={rule.ruleTitle}
+                      onChange={e => {
+                        const newRulePairs = [...postData.rulePairs];
+                        newRulePairs[index].ruleTitle = e.target.value;
+                        setPostData({ ...postData, rulePairs: newRulePairs });
+                      }}
+                    />
+                    <S.ContentTextInput
+                      placeholder={`규칙 ${index + 1} 내용을 입력해주세요!`}
+                      value={rule.ruleDetail}
+                      onChange={e => {
+                        const newRulePairs = [...postData.rulePairs];
+                        newRulePairs[index].ruleDetail = e.target.value;
+                        setPostData({ ...postData, rulePairs: newRulePairs });
+                      }}
+                      rows="5"
+                      columns="2"
+                    />
+                    <S.DeleteRuleButton onClick={() => handleRemoveRule(index)}>
+                      X
+                    </S.DeleteRuleButton>
+                  </S.TextContainer>
+                </S.ContentBox>
+              ))}
+            </S.Content>
+            <S.AddButtonWrapper>
+              {postData.rulePairs.length < 10 && (
+                <S.AddQuestionButton onClick={handleAddRule}>
+                  규칙 추가하기
+                </S.AddQuestionButton>
+              )}
+            </S.AddButtonWrapper>
+          </S.Wrapper>
+          <S.SubmitBtn onClick={handleSubmitRule}>수정하기</S.SubmitBtn>
+          {isLoading && <S.Spinner />}
+        </S.Container>
+      )}
+    </>
   );
 };
 

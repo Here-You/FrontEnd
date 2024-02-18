@@ -41,6 +41,7 @@ const Image = styled.img`
   height: 100px;
   background-color: ${theme.COLOR.MAIN.GRAY};
   border-radius: 50%;
+  object-fit: cover;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     width: 75px;

@@ -1,6 +1,27 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import theme from '@/theme';
+
+const rotation = keyframes`
+    from{
+        transform: rotate(0deg);
+    }
+
+    to{
+        transform: rotate(360deg);
+    }
+
+`;
+
+const Spinner = styled.div`
+  height: 20px;
+  width: 20px;
+  border: 1px solid ${theme.COLOR.MAIN.MEDIUM_GREEN};
+  border-radius: 50%;
+  border-top: none;
+  border-right: none;
+  animation: ${rotation} 1s linear infinite;
+`;
 
 //SignatureWrite.jsx
 const PageWrapper = styled.div`
@@ -20,6 +41,7 @@ const EditorContainer = styled.div`
 const Title = styled.input`
   outline: none;
   border: none;
+  width: 80%;
   font-family: 'Pretendard-bold';
   color: ${theme.COLOR.MAIN.BLACK};
   font-size: 18px;
@@ -190,4 +212,5 @@ export {
   Icon,
   Image,
   ImageInput,
+  Spinner,
 };

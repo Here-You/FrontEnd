@@ -1,8 +1,29 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { FONT_SIZE } from '@/constants/size';
 import theme from '@/theme';
-import { th } from 'date-fns/locale';
+
+const rotation = keyframes`
+    from{
+        transform: rotate(0deg);
+    }
+
+    to{
+        transform: rotate(360deg);
+    }
+
+`;
+
+const Spinner = styled.div`
+  height: 20px;
+  width: 20px;
+  border: 1px solid ${theme.COLOR.MAIN.MEDIUM_GREEN};
+  border-radius: 50%;
+  border-top: none;
+  border-right: none;
+  animation: ${rotation} 1s linear infinite;
+  margin-top: 10px;
+`;
 
 const Container = styled.div`
   ${theme.ALIGN.COLUMN_CENTER};
@@ -164,4 +185,5 @@ export {
   AddButtonWrapper,
   AddQuestionButton,
   SubmitBtn,
+  Spinner,
 };

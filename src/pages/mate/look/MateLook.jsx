@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer';
 
 import * as S from './MateLook.style';
 import explore2 from '/images/explore2.svg';
+import location from '/images/location.svg';
 import Banner from '@/components/mate/Banner';
 import MateBox from '@/components/mate/MateBox';
 import MateRecsys from '@/components/mate/MateRecsys';
@@ -69,10 +70,13 @@ const MateLookPage = () => {
                       <MateBox key={mate._id} mate={mate} />
                     ))
                   ) : (
-                    <div>
-                      {`[${locationMate?.location}]`}을/를 사용하는 메이트가
-                      없습니다.
-                    </div>
+                    <S.MateContentContainer>
+                      <S.Image src={location} />
+                      <p>
+                        <span>{`[${locationMate?.location}]`}</span>을/를
+                        사용하는 메이트가 없습니다.
+                      </p>
+                    </S.MateContentContainer>
                   ))}
               {}
             </S.CenteredContainer>

@@ -51,11 +51,16 @@ const SignatureCommentInput = () => {
             />
             <S.SubmitButton
               onClick={async () => {
-                try {
-                  await mutateAsync({ signatureId, content });
-                  setContent('');
-                } catch (error) {
-                  console.error('댓글 작성 실패:', error);
+                const comment = content.trim();
+                if (!comment) {
+                  toast('댓글 내용을 입력해주세요!');
+                } else {
+                  try {
+                    await mutateAsync({ signatureId, content });
+                    setContent('');
+                  } catch (error) {
+                    console.error('댓글 작성 실패:', error);
+                  }
                 }
               }}>
               저장

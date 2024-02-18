@@ -97,6 +97,7 @@ const Editor = ({ signatureId }) => {
         {(currentPageIndex === pages.length - 1 || pages.length === 1) && (
           <S.AddButton onClick={handleAddPage}>페이지 추가</S.AddButton>
         )}
+        {loading && <S.Spinner />}
       </S.ButtonWrap>
     </S.EditorContainer>
   );

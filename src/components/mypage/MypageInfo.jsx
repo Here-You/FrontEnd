@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import LogoutModal from '../modal/mypage/LogoutModal';
 import * as S from './MypageInfo.style';
+import Logo from '/images/mypage/MyPageLogo.svg';
 import { myPageImg } from '/public/images/mypage/index';
 import useLogoutModal from '@/hooks/modal/useLogoutModal';
 import { useGetMyProfile } from '@/hooks/profile/queries/useGetMyProfile';
@@ -26,7 +27,7 @@ const MyPageInfo = () => {
       <S.ContentContainer>
         {isLogin ? (
           <S.ProfilePicture
-            src={myProfile?.profileImage}
+            src={myProfile?.profileImage ? myProfile?.profileImage : Logo}
             alt={myProfile?.nickname}
           />
         ) : (

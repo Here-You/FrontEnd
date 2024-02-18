@@ -110,6 +110,7 @@ const DailyRecordWritePage = () => {
         <S.DateText>
           {Date?.recordDate && Date.recordDate[1]},{' '}
           {Date?.recordDate && Date.recordDate[2]}
+          {isLoading && <S.Spinner />}
           <S.UploadButton
             type="submit"
             disabled={

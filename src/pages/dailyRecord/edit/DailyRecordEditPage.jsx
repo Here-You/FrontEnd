@@ -134,6 +134,7 @@ const DailyRecordEditPage = () => {
                 disabled={loading}>
                 수정
               </S.UploadButton>
+              {loading && <S.Spinner />}
             </S.DateText>
           </S.DateContainer>
           <S.RecordContainer>

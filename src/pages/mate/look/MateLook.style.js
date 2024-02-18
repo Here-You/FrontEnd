@@ -167,6 +167,30 @@ const AlertLayout = styled.div`
   gap: 40px;
 `;
 
+const MateContentContainer = styled.div`
+  ${theme.ALIGN.COLUMN_CENTER};
+  gap: 20px;
+  width: 100%;
+  margin-top: 50px;
+
+  p {
+    color: ${theme.COLOR.MAIN.BLACK};
+    font-size: ${FONT_SIZE.XL};
+    font-family: 'Pretendard-regular';
+  }
+
+  p span {
+    color: ${theme.COLOR.MAIN.HEAVY_GREEN};
+    font-size: ${FONT_SIZE.XL};
+    font-family: 'Pretendard-regular';
+  }
+`;
+
+const Image = styled.img`
+  width: 100px;
+  height: 100px;
+`;
+
 export {
   Title,
   BoxContainer,
@@ -177,4 +201,6 @@ export {
   AlertContainer,
   Icon,
   AlertLayout,
+  MateContentContainer,
+  Image,
 };
