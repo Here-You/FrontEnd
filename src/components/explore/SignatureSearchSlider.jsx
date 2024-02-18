@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Preview from './Preview';
 import * as S from './SignatureSearchSlider.style';
+import FollowRedirectPage from '@/pages/explore/followRedirect/FollowRedirectPage';
 import NoSignature from '@/pages/signature/main/NoSignature';
 
 const SignatureSearchSlider = ({ data, type, searchTerm }) => {
@@ -19,7 +20,7 @@ const SignatureSearchSlider = ({ data, type, searchTerm }) => {
         {data?.length === 0 && (
           <S.EmptyContainer>
             {type === 'hot' && <NoSignature />}
-            {type === 'new' && <NoSignature />}
+            {type === 'new' && <FollowRedirectPage />}
           </S.EmptyContainer>
         )}
         {data === null ? (

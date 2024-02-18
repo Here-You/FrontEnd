@@ -1,6 +1,3 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
 import * as S from './NoSignature.style';
 import bookImg from '/images/bookImg.svg';
 
