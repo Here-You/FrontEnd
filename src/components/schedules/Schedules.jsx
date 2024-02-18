@@ -31,6 +31,7 @@ const Schedules = ({ data, endDate, refetch }) => {
   const formattedEndDate = format(newDate, 'yyyy-MM-dd');
   const lastPlan = date === formattedEndDate ? true : false;
 
+  console.log('안녕');
   const handleOnToggle = () => {
     setIsToggle(!isToggle);
   };
