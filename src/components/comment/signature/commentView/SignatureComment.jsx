@@ -137,6 +137,7 @@ const SignatureComment = ({ data }) => {
                 />
               </>
             )}
+            {/* 모두 삭제하는 권한이 있는 경우. */}
             {can_delete && !editMode && (
               <>
                 <S.Icon
