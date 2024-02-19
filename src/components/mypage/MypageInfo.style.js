@@ -45,10 +45,8 @@ const ProfileInfoContainer = styled.div`
 `;
 
 const NickNameTypeContainer = styled.div`
-  display: flex;
-
   width: 100%;
-  justify-content: space-between;
+  white-space: nowrap;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     width: 40%;

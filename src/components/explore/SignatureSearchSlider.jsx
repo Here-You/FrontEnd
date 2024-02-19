@@ -4,15 +4,17 @@ import Preview from './Preview';
 import * as S from './SignatureSearchSlider.style';
 import FollowRedirectPage from '@/pages/explore/followRedirect/FollowRedirectPage';
 import NoSignature from '@/pages/signature/main/NoSignature';
+import useAuth from '@/store/useAuth';
 
 const SignatureSearchSlider = ({ data, type, searchTerm }) => {
   const navigate = useNavigate();
+  const { isLogin } = useAuth();
   return (
     <S.PageContainer>
       {type === 'hot' ? (
         <S.Title>인기 급상승 시그니처🔥</S.Title>
       ) : type === 'new' ? (
-        <S.Title>최신 시그니처⏰</S.Title>
+        <S.Title>실시간 메이트 시그니처 ⏰</S.Title>
       ) : (
         <S.Title>"{searchTerm}" 에 관한 시그니처⭐</S.Title>
       )}
