@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import theme from '@/theme';
 
 const Container = styled.div`
-  background-color: ${theme.COLOR.MAIN.LIGHT_GRAY};
   padding: 10px;
   ${theme.ALIGN.COLUMN_CENTER};
 `;
