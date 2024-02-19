@@ -8,7 +8,7 @@ import useAuth from '@/store/useAuth';
 
 const SignatureSearchSlider = ({ data, type, searchTerm }) => {
   const navigate = useNavigate();
-  const { isLogin } = useAuth();
+
   return (
     <S.PageContainer>
       {type === 'hot' ? (

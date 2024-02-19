@@ -120,7 +120,7 @@ const CancelButton = styled.button`
   ${theme.ALIGN.ROW_CENTER};
   background-color: ${theme.COLOR.MAIN.WHITE};
   border: 1px solid ${theme.COLOR.MAIN.GRAY};
-  width: 400px;
+  width: 90%;
   height: 60px;
   color: ${theme.COLOR.MAIN.GREEN};
   border-radius: 30px;
