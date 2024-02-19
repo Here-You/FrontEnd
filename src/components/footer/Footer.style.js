@@ -15,7 +15,7 @@ const FooterWrapper = styled.div`
   padding: 0 30px;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    height: 50px;
+    height: 60px;
   }
 `;
 
@@ -24,7 +24,7 @@ const Image = styled.img`
   object-fit: cover;
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
-    height: 25px;
+    height: 30px;
   }
 `;
 
@@ -37,7 +37,7 @@ const LinkTo = styled(Link)`
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     p {
-      font-size: 7px;
+      font-size: 15px;
     }
   }
 `;
