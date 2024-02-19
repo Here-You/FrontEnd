@@ -36,8 +36,13 @@ const Title = styled.div`
 
   @media ${theme.WINDOW_SIZE.MOBILE} {
     font-size: 12px;
+    width: 100%;
+
     h3 {
       font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 `;
