@@ -74,7 +74,7 @@ const UserNickName = styled.span`
 
 const UserBio = styled.span`
   width: 100%;
-  height: 15px;
+  height: 20px;
   color: ${theme.COLOR.MAIN.LIGHT_BLACK};
   font-size: ${FONT_SIZE.XS};
   font-style: normal;
