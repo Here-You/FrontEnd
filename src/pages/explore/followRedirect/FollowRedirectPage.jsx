@@ -6,8 +6,8 @@ const FollowRedirectPage = () => {
     <S.PageContainer>
       <S.ContentContainer>
         <img src={AirplaneImg} />
-        <S.Text>로그인하고 내 메이트와</S.Text>
-        <S.Text>새로운 여행 기록을 확인해보세요!</S.Text>
+        <S.Text>새 친구를 팔로우하고</S.Text>
+        <S.Text>최신 시그니처를 확인해보세요!</S.Text>
       </S.ContentContainer>
     </S.PageContainer>
   );
